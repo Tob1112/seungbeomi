@@ -9,24 +9,29 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.Guestbook;
+
 import business.GuestbookService;
-import domain.Guestbook;
 
 public class GuestbookController extends HttpServlet {
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+		throws IOException{
 		
 		String action = request.getParameter("action");
 		GuestbookService gservice = new GuestbookService();
-		
+		String view = null;
+		System.out.println(" * action = " + action);
 		if (action.equals("selectGuestbookList")) {
 			System.out.println("selectGuestbookList");
-			List<Guestbook> list = null;
+			List<Guestbook> model = null;
 			try {
-				list = gservice.selectGuestbookList();
+				model = gservice.selectGuestbookList();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+			request.setAttribute("model", model);
+			view = "./guestbook/guestbookList.jsp";
 		} else if (action.equals("insertGuestbook")) {
 			System.out.println("insertGuestbook");
 		} else if (action.equals("selectGuestbookById")) {
@@ -38,6 +43,7 @@ public class GuestbookController extends HttpServlet {
 		} else {
 			System.out.println("illigalAction");
 		}		
+		response.sendRedirect(view);
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
