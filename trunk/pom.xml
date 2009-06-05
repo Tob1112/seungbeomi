@@ -1,0 +1,72 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>guestbook</groupId>
+	<artifactId>guestbook</artifactId>
+	<packaging>war</packaging>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>guestbook Maven Webapp</name>
+	<url>http://maven.apache.org</url>
+	<repositories>
+		<repository>
+			<id>guestbook-repos</id>
+			<name>guestbook repository</name>
+			<url>svn://192.168.0.16/repo/maven</url>
+		</repository>
+	</repositories>
+
+	<properties>
+		<java.version>1.5</java.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.4</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>6.0.18</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<finalName>guestbook</finalName>
+		<directory>${basedir}/build</directory>
+		<sourceDirectory>${basedir}/src/</sourceDirectory>
+		<outputDirectory>${basedir}/build/classes</outputDirectory>
+		<!--<testSourceDirectory>${basedir}/test</testSourceDirectory>-->
+		<!--
+			<testOutputDirectory>${basedir}/build/test-classes</testOutputDirectory>
+
+			<resources> <resource> <directory>${basedir}/src/res</directory>
+			</resource> </resources> <testResources> <testResource>
+			<directory>${basedir}/src/test</directory> <excludes>
+			<exclude>*.java</exclude> </excludes> </testResource>
+			</testResources>
+		-->
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<warSourceDirectory>${basedir}/WebContent</warSourceDirectory>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<dependencyManagement>
+		<dependencies>
+		</dependencies>
+	</dependencyManagement>
+</project>
