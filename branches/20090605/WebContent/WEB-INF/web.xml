@@ -12,16 +12,6 @@
 		<url-pattern>/guestbook/*</url-pattern>
 	</servlet-mapping>
 
-	<servlet>
-		<servlet-name>loginController</servlet-name>
-		<servlet-class>controller.LoginController</servlet-class>		
-	</servlet>
-	
-	<servlet-mapping>
-		<servlet-name>loginController</servlet-name>
-		<url-pattern>/guestbook/*</url-pattern>
-	</servlet-mapping>
-
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
