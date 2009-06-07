@@ -49,7 +49,7 @@ public class GuestbookDAOTest extends TestCase {
 				System.out.println(">>> " + guestbook);
 				list.add(guestbook);
 			}
-			list.size();
+			assertEquals(2, list.size());
 						
 		} finally {
 			close(con,ps,rs);	
