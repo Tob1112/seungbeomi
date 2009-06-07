@@ -58,5 +58,4 @@ public class Guestbook {
 		buffer.append("]");
 		return buffer.toString();
 	}
-
 }

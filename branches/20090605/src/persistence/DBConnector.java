@@ -8,8 +8,8 @@ public class DBConnector {
         Connection con = null;
         String driver = "org.postgresql.Driver";
         String url = "jdbc:postgresql://localhost:5432/guestbook";
-		String id = "pgsql";
-		String pw = "pgsql";
+		String id = "postgres";
+		String pw = "postgres";
 		
 		/*
 		String driver = "org.hsqldb.Driver";

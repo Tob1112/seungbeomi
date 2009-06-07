@@ -21,19 +21,21 @@ public class GuestbookController extends HttpServlet {
 		String action = request.getParameter("action");
 		GuestbookService gservice = new GuestbookService();
 		String view = null;
+		
 		System.out.println(" * action = " + action);
 		if (action.equals("selectGuestbookList")) {
 			System.out.println("selectGuestbookList");
-			List<Guestbook> model = null;
+			List<Guestbook> list = null;
 			try {
-				model = gservice.selectGuestbookList();
+				list = gservice.selectGuestbookList();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			request.setAttribute("model", model);
+			request.setAttribute("list", list);
 			view = "./guestbook/guestbookList.jsp";
 		} else if (action.equals("insertGuestbook")) {
 			System.out.println("insertGuestbook");
+			
 		} else if (action.equals("selectGuestbookById")) {
 			System.out.println("selectGuestbookById");
 		} else if (action.equals("updateGuestbook")) {
