@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -10,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.Guestbook;
-
 import business.GuestbookService;
 
 public class GuestbookController extends HttpServlet {
@@ -24,13 +22,8 @@ public class GuestbookController extends HttpServlet {
 		
 		System.out.println(" * action = " + action);
 		if (action.equals("selectGuestbookList")) {
-			System.out.println("selectGuestbookList");
-			List<Guestbook> list = null;
-			try {
-				list = gservice.selectGuestbookList();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			System.out.println(" * selectGuestbookList");
+			List<Guestbook> list = gservice.selectGuestbookList();
 			request.setAttribute("list", list);
 			view = "./guestbook/guestbookList.jsp";
 		} else if (action.equals("insertGuestbook")) {

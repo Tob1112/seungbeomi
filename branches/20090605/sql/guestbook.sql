@@ -29,3 +29,11 @@ INSERT INTO GUESTBOOK VALUES(1,'sonid','title','category','2009-06-01','comment'
 INSERT INTO GUESTBOOK VALUES(2,'chaeid','title','category','2009-06-01','comment');
 
 select * from guestbook;
+
+
+
+---------------hsql
+
+delete from guestbook where no > 2;
+drop sequence QUESTBOOK_SEQ;
+create sequence QUESTBOOK_SEQ start with 3;

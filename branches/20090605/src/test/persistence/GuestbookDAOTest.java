@@ -1,5 +1,7 @@
 package test.persistence;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,26 +10,23 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Guestbook;
-import persistence.DBConnector;
 import junit.framework.TestCase;
+import model.Guestbook;
+
+import org.dbunit.database.DatabaseConnection;
+import org.dbunit.database.IDatabaseConnection;
+import org.dbunit.dataset.IDataSet;
+import org.dbunit.dataset.ITable;
+import org.dbunit.dataset.xml.FlatXmlDataSet;
+
+import persistence.DBConnector;
+import persistence.GuestbookDAO;
 
 public class GuestbookDAOTest extends TestCase {
 
-	private static final String SQL_SELECTGUESTBOOKLIST = "select * from guestbook";
-	private static final String SQL_INSERTGUESTBOOK = "insert into guestbook values (nextval('guestbook_no_seq'), ?, ?, ?, ?, ?)";
-	private static final String SQL_SELECTGUESTBOOK = "select * from guestbook where no = ?";
-	private static final String SQL_UPDATEGUESTBOOK = "update guestbook set user_id = ?, title = ?, category = ?, postdate = ?, comment = ? where no = ?";
-	private static final String SQL_DELETEGUESTBOOK = "delete from guestbook where no = ?";
+	private File file;
 	
-	protected void setUp() throws Exception {
-		super.setUp();
-	}
-
-	protected void tearDown() throws Exception {
-		super.tearDown();
-	}
-
+	/*
 	public List<Guestbook> testSelectGuestbookList() {
 
 		Connection con = DBConnector.getConnection();
@@ -59,29 +58,44 @@ public class GuestbookDAOTest extends TestCase {
 		}
 		return list;
 	}
+	*/
 
 	public void testInsertGuestbook() {
-		fail("Not yet implemented");
+		GuestbookDAO dao = new GuestbookDAO();
+		dao.insertGuestbook(populateGuestbook());
+		
+		IDatabaseConnection idbcon = null;
+		
+		try {
+			Connection con = DBConnector.getConnection();
+			idbcon = new DatabaseConnection(con);
+			IDataSet dataset = idbcon.createDataSet();
+			ITable actualTable = dataset.getTable("guestbook");
+			IDataSet expectedDataSet = new FlatXmlDataSet(new FileInputStream("C:/development/workspace/guestbook/src/test/data/insertGuestbook.xml"));
+			ITable expectedTable = expectedDataSet.getTable("guestbook");
+			assertEquals(expectedTable, actualTable);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(idbcon, null, null);
+		}		
 	}
 
 	public void testSelectGuestbook() {
-		fail("Not yet implemented");
 	}
 
 	public void testUpdateGuestbook() {
-		fail("Not yet implemented");
 	}
 
 	public void testDeleteGuestbook() {
-		fail("Not yet implemented");
 	}
 	
-	public void close(Connection con, PreparedStatement ps, ResultSet rs) {
+	public void close(IDatabaseConnection idbcon, PreparedStatement ps, ResultSet rs) {
 		try {
-			if (con != null) con.close();
+			if (idbcon != null) idbcon.close();
 			if (ps != null) ps.close();
 			if (rs != null) rs.close();
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -90,12 +104,12 @@ public class GuestbookDAOTest extends TestCase {
 	
 	private Guestbook populateGuestbook() {
 		Guestbook guestbook = new Guestbook();
-		guestbook.setNo(1);
-		guestbook.setUserId("userId");
-		guestbook.setTitle("title");
-		guestbook.setPostdate(Timestamp.valueOf("2009-06-07"));
-		guestbook.setCategory("category");
-		guestbook.setComment("comment");
+		//guestbook.setNo(1);
+		guestbook.setUserId("son");
+		guestbook.setTitle("test");
+		guestbook.setPostdate(Timestamp.valueOf("2009-06-09 00:00:00.000000000"));
+		guestbook.setCategory("test");
+		guestbook.setComment("test");
 		return guestbook;		
 	}
 }

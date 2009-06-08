@@ -13,7 +13,8 @@ import model.Guestbook;
 public class GuestbookDAO {
 
 	private static final String SQL_SELECTGUESTBOOKLIST = "select * from guestbook";
-	private static final String SQL_INSERTGUESTBOOK = "insert into guestbook values (nextval('guestbook_no_seq'), ?, ?, ?, ?, ?)";
+	//private static final String SQL_INSERTGUESTBOOK = "insert into guestbook values (nextval('guestbook_no_seq'), ?, ?, ?, ?, ?)";
+	private static final String SQL_INSERTGUESTBOOK = "insert into guestbook values (next value for GUESTBOOK_SEQ, ?, ?, ?, ?, ?)";
 	private static final String SQL_SELECTGUESTBOOK = "select * from guestbook where no = ?";
 	private static final String SQL_UPDATEGUESTBOOK = "update guestbook set user_id = ?, title = ?, category = ?, postdate = ?, comment = ? where no = ?";
 	private static final String SQL_DELETEGUESTBOOK = "delete from guestbook where no = ?";
@@ -41,7 +42,7 @@ public class GuestbookDAO {
 				list.add(guestbook);
 			}
 		} catch (SQLException e) {
-			
+			e.printStackTrace();
 		} finally {
 			close(con,ps,rs);	
 		}
@@ -130,8 +131,7 @@ public class GuestbookDAO {
 			close(con, ps, null);
 		}		
 	}
-	
-	
+		
 	public void close(Connection con, PreparedStatement ps, ResultSet rs){
 		try {
 			if (con != null) con.close();
