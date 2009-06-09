@@ -1,3 +1,4 @@
+drop table guestbook;
 drop table user_info;
 
 CREATE TABLE user_info
@@ -7,11 +8,11 @@ CREATE TABLE user_info
   name text NOT NULL
 );
 
+CREATE INDEX user_info_id ON user_info(id);
+
 INSERT INTO USER_INFO VALUES('chaeid','chaepw','woonjoo');
 INSERT INTO USER_INFO VALUES('sonid','sonpw','seungbeomi');
 select * from user_info;
-
-drop table guestbook;
 
 CREATE TABLE guestbook
 (
@@ -29,11 +30,3 @@ INSERT INTO GUESTBOOK VALUES(1,'sonid','title','category','2009-06-01','comment'
 INSERT INTO GUESTBOOK VALUES(2,'chaeid','title','category','2009-06-01','comment');
 
 select * from guestbook;
-
-
-
----------------hsql
-
-delete from guestbook where no > 2;
-drop sequence QUESTBOOK_SEQ;
-create sequence QUESTBOOK_SEQ start with 3;

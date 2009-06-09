@@ -14,7 +14,8 @@ public class DBConnector {
          */
 		
 		String driver = "org.hsqldb.jdbcDriver";
-        String url = "jdbc:hsqldb:hsql://localhost:9002";
+		String url = "jdbc:hsqldb:hsql://localhost:9002";
+		//String url = "jdbc:hsqldb:guestbookdb";
 		String id = "sa";
 		String pw = "";
         

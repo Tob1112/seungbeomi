@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<!-- 
+	[ test data ]
+	<dataset>
+		<(table_name) (column_name)="(value)" />
+		<(table_name) (column_name)="(value)" />
+	</dataset>
+	
+	[ Data type ]
+	DATE      :  yyyy-MM-dd
+	TIME      :  HH:mm:ss
+	TIMESTAMP :  yyyy-MM-dd HH:mm:ss.SSS000000
+-->
+<dataset>
+	<GUESTBOOK NO="1" USER_ID="son" TITLE="title" CATEGORY="category" POSTDATE="2009-06-01 00:00:00.000000000" COMMENT="comment" />
+</dataset>
