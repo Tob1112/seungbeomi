@@ -1,0 +1,1 @@
+<jsp:forward page="flora.do?method=findAll" />

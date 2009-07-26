@@ -1,0 +1,44 @@
+body, td, p {
+	font: normal x-small verdana, arial, helvetica, sans-serif;
+}
+
+.panelTitle {
+	background-color: #003399;
+	color:#eeeeee;
+	font-weight: bold;
+	border-color: #3366ff #000033 #000033 #3366ff;
+	border-width: 1;
+	border-style: solid;
+	padding: 1;
+}
+
+.panelBody {
+	background-color: #eeeeee;
+	border-color: black;
+	border-width: 0 1 1 1;
+	border-style: solid;
+	padding: 2;
+}
+
+#pageTitle {
+	font-family: Arial, sans-serif;
+	font-weight: bold;
+	font-size: 16px;
+	text-align: center;	
+	color: #fff;
+	padding: 1;
+	background: #696;
+	border-width: 1;
+}
+
+#footer {
+	background-color:#999999;
+	font-size: 12px;	
+	text-align: center;
+	color: white;
+	border-color: #666666 #cccccc #cccccc #666666;
+	border-width: 1;
+	border-style: solid;
+	padding: 1;
+}
+
