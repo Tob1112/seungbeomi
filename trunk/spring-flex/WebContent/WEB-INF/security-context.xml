@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-2.0.1.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<security:global-method-security secured-annotations="enabled">
+		<security:protect-pointcut
+			expression="execution(public * seungbeomi.user..*.*(..))"
+			access="ROLE_ADMIN"/>
+	</security:global-method-security>
+
+	<bean id="loggerListener"
+		class="org.springframework.security.event.authentication.LoggerListener" />
+
+	<security:http auto-config="true" >
+        <security:intercept-url pattern="*" access="ROLE_USER"/>
+    </security:http>
+
+	<security:authentication-manager alias="authenticationManager"/>
+
+	<security:authentication-provider>
+		<security:jdbc-user-service
+        	data-source-ref="dataSource"
+        	users-by-username-query="SELECT user_id, password, true as enabled FROM userinfo WHERE user_id 	= ?"
+        	authorities-by-username-query="SELECT u.user_id, ga.authority FROM userinfo u, group_authorities ga WHERE u.group_id = ga.group_id AND u.user_id = ?"/>
+        	<!-- group-authorities-by-username-query="SELECT g.id, g.group_name, ga.authority FROM groups g, group_members gm, group_authorities ga WHERE gm.username = ? AND g.id = ga.group_id AND g.id = gm.group_id" -->
+	</security:authentication-provider>
+</beans>
