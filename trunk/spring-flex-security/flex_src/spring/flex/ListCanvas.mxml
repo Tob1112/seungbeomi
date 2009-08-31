@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="300" creationComplete="userRO.findUsers();">-->
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:comp="spring.flex.*" width="400" height="300">
+
+	<comp:ListCanvasController id="listCanvasController" />
+
+	<mx:VBox x="10" y="10" height="280" width="380">
+		<mx:Label text="UserID:{parentApplication.userModel.user.userId}, Roles:{parentApplication.userModel.user.groups}" />
+		<mx:HBox>
+			<mx:Button id="btnLoadData" label="Load Data" x="325" y="28" />
+			<mx:Button id="btnLogout" label="Logout" x="325" y="28" />
+		</mx:HBox>
+
+		<mx:DataGrid id="dg" width="380" height="185">
+			<mx:columns>
+				<mx:DataGridColumn headerText="userId" dataField="userId"/>
+				<mx:DataGridColumn headerText="password" dataField="password"/>
+				<mx:DataGridColumn headerText="name" dataField="name"/>
+				<mx:DataGridColumn headerText="email" dataField="email"/>
+			</mx:columns>
+		</mx:DataGrid>
+
+	</mx:VBox>
+
+</mx:Canvas>
