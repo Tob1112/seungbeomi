@@ -103,10 +103,4 @@
         <welcome-file>main.html</welcome-file>
     </welcome-file-list>
 
-    <!-- ERROR PAGE -->
-    <error-page>
-    	<error-code>403</error-code>
-    	<location>/error.html</location>
-    </error-page>
-
 </web-app>

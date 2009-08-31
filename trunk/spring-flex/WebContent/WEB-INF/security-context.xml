@@ -24,7 +24,6 @@
         <intercept-url pattern="*" access="ROLE_USER"/>
     </http>
 
-
 	<authentication-provider>
 		<jdbc-user-service
         	data-source-ref="dataSource"
