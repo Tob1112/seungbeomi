@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-2.0.1.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<security:global-method-security secured-annotations="enabled">
+		<security:protect-pointcut
+			expression="execution(public * seungbeomi.user..*.*(..))"
+			access="ROLE_ADMIN"/>
+	</security:global-method-security>
+
+	<!--
+	<security:http auto-config="true" session-fixation-protection="none"/>
+
+	    <security:http
+		auto-config="true"
+		entry-point-ref="preAuthenticatedEntryPoint"/>
+
+	<bean id="preAuthenticatedEntryPoint"
+		class="org.springframework.security.ui.preauth.PreAuthenticatedProcessingFilterEntryPoint"/>
+	-->
+
+	<bean id="loggerListener"
+		class="org.springframework.security.event.authentication.LoggerListener" />
+
+	<security:http auto-config="true">
+        <security:intercept-url pattern="index.html" filters="none"/>
+        <security:intercept-url pattern="*.swf" filters="none"/>
+        <!--<security:intercept-url pattern="*.html" access="ROLE_USER, ROLE_ADMIN,ROLE_ANONYMOUS"/>-->
+    </security:http>
+
+	<security:authentication-provider>
+		<!--<security:jdbc-user-service data-source-ref="dataSource" />-->
+		<security:jdbc-user-service
+        	data-source-ref="dataSource"
+        	users-by-username-query="SELECT userid, password, true as enabled FROM userinfo WHERE userid = ?"
+        	authorities-by-username-query="SELECT userid, authority FROM userinfo WHERE userId = ?"
+        	group-authorities-by-username-query="SELECT g.id, g.group_name, ga.authority FROM groups g, group_members gm, group_authorities ga WHERE gm.user_id = ? AND g.id = ga.group_id AND g.id = gm.group_id"/>
+	</security:authentication-provider>
+</beans>
