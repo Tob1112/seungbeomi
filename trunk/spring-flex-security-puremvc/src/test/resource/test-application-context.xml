@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="
+    	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+	<context:property-placeholder location="classpath:test.database.properties" />
+
+    <!-- ============================================================= -->
+    <!--  DATASOURCE                                                   -->
+    <!-- ============================================================= -->
+    <bean id="dataSource"
+            class="org.apache.commons.dbcp.BasicDataSource"
+            destroy-method="close"
+            p:driverClassName="${db.driver}"
+            p:url="${db.url}"
+            p:username="${db.username}"
+            p:password="${db.password}"
+            p:defaultAutoCommit="true" />
+
+    <!-- ============================================================= -->
+    <!--  IBATIS                                                       -->
+    <!-- ============================================================= -->
+    <bean id="sqlMapClient"
+            class="org.springframework.orm.ibatis.SqlMapClientFactoryBean"
+            p:configLocation="sql-map-config.xml"
+            p:dataSource-ref="dataSource"/>
+
+
+    <!-- ============================================================= -->
+    <!--  TRANSACTION                                                  -->
+    <!-- ============================================================= -->
+	<!--
+	<bean id="txManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+		p:dataSource-ref="dataSource"/>
+
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+		<tx:attributes>
+			<tx:method name="find*" read-only="true"/>
+			<tx:method name="update*" propagation="REQUIRED"/>
+			<tx:method name="create*" propagation="REQUIRED"/>
+			<tx:method name="delete*" propagation="REQUIRED"/>
+		</tx:attributes>
+	</tx:advice>
+
+	<aop:config>
+		<aop:pointcut id="userDaoPointCut" expression="execution(public * seungbeomi.user.ibatis.dao.*.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="userDaoPointCut"/>
+	</aop:config>
+	 -->
+</beans>
