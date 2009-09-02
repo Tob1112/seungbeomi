@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	layout="absolute"
+	xmlns:comp="spring.flex.*">
+
+	<comp:UserModel id="userModel" />
+
+	<mx:Panel x="50" y="50" title="spring-flex login">
+		<mx:ViewStack id="viewStack" >
+			<comp:LoginCanvas id="loginCanvas"/>
+			<comp:ListCanvas id="listCanvas"/>
+		</mx:ViewStack>
+	</mx:Panel>
+</mx:Application>
