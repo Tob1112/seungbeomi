@@ -34,7 +34,6 @@ package seungbeomi.view
 
 			// listen to events dispatched by its view component
 			loginPanel.addEventListener( LoginPanel.TRY_LOGIN, login );
-
 		}
 
 		/**

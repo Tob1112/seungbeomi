@@ -19,7 +19,7 @@ package seungbeomi.model
 		public static const LOGIN_FAILED:String = "loginFailed";
 
 		//login sevice
-		private var _userService:RemoteObject;
+		private var _service:RemoteObject;
 
 		//error message
 		public var faultMessage:String;
@@ -42,12 +42,12 @@ package seungbeomi.model
 			_appProxy = facade.retrieveProxy( ApplicationProxy.NAME ) as ApplicationProxy;
 
 			// login service
-			_userService = new RemoteObject();
-			_userService.destination = "userService";
-			//_userService.source = "seungbemomi.LoginFacade";
+			_service = new RemoteObject();
+			_service.destination = "userService";
+			//_service.source = "seungbemomi.LoginFacade";
 
-			_userService.authenticateUser.addEventListener(ResultEvent.RESULT, loginResult);
-			_userService.addEventListener(FaultEvent.FAULT, loginFailed);
+			_service.authenticateUser.addEventListener(ResultEvent.RESULT, loginResult);
+			_service.addEventListener(FaultEvent.FAULT, loginFailed);
 		 }
 
 		 /**
@@ -58,10 +58,10 @@ package seungbeomi.model
 		public function login( vo: UserVO ):void
 		{
 			// authentication
-			_userService.authenticateUser( vo.userId, vo.password );
+			_service.authenticateUser( vo.userId, vo.password );
 
 			// get User info
-			//_userService.findUserByUserId( vo.userId );
+			//_service.findUserByUserId( vo.userId );
 
 			CursorManager.setBusyCursor();
 		}
@@ -78,7 +78,6 @@ package seungbeomi.model
 			// populate its data object using the result
 			var userVO: UserVO = event.result as UserVO
 
-			//userVO.loginDate = new Date();
 			setData( userVO );
 
 			// change the view state

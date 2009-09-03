@@ -4,7 +4,7 @@ package seungbeomi
 
 	import seungbeomi.controller.ApplicationStartupCommand;
 	import seungbeomi.controller.LoginCommand;
-	import seungbeomi.controller.UserManagerCommand;
+	//import seungbeomi.controller.UserManagerCommand;
 
 	public class ApplicationFacade extends Facade
 	{
@@ -34,7 +34,7 @@ package seungbeomi
 		 	//register commands
 		 	registerCommand(APP_STARTUP, ApplicationStartupCommand);	// MacroCommand
 		 	registerCommand(LOGIN, LoginCommand);
-		 	registerCommand(USER_MANAGER, UserManagerCommand);
+		 	//registerCommand(USER_MANAGER, UserManagerCommand);
 		 }
 
 		 public function startup(app:Main4PureMVC):void
