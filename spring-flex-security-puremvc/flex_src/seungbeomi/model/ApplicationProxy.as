@@ -16,6 +16,7 @@ package seungbeomi.model
 		public static const LOGGED_IN_STATE:uint = 2;
 		public static const LOGIN_ERROR_STATE:uint = 3;
 		public static const USER_MANAGER_STATE:uint = 4;
+		public static const TEST_STATE:uint = 5;
 
 		/**
 		 * constructor

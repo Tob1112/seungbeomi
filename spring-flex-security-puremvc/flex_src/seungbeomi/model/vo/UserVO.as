@@ -1,5 +1,7 @@
 package seungbeomi.model.vo
 {
+	import mx.collections.ArrayCollection;
+
 	[RemoteClass(alias="seungbeomi.user.model.User")]
 	[Bindable]
 	public class UserVO {

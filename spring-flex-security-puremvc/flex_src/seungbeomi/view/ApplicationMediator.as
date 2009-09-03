@@ -96,8 +96,6 @@ package seungbeomi.view
 				break;
 				case ApplicationProxy.USER_MANAGER_STATE:
 					child = app.userManager;
-					// findUsers method ?
-					//_userManagerProxy.findUsers();
 				break;
 				default:
 					child = app.login;

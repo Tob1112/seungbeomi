@@ -23,6 +23,7 @@
 			}
 			private function loadData(event: MouseEvent = null):void
 			{
+				trace(userVO);
 				this.dispatchEvent(new Event(LOAD_DATA));
 			}
 
@@ -33,7 +34,7 @@
 		<mx:VBox height="100%" width="261">
 			<mx:HBox width="100%">
 				<mx:Label text="User ID:"/>
-				<mx:Text text="{userVO.userId}" id="txtUserId"/>
+				<mx:Label text="{userVO.userId}" id="txtUserId"/>
 			</mx:HBox>
 			<mx:HBox width="100%">
 				<mx:Label text="Roles:"/>

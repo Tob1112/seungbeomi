@@ -2,6 +2,8 @@ package seungbeomi.view
 {
 	import flash.events.Event;
 
+	import mx.collections.ArrayCollection;
+
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;
@@ -36,14 +38,18 @@ package seungbeomi.view
 		 	//UserManagerPanel.addEventListener(UserManagerPanel.FIND_USER_BY_USERID, userManager);
 		 }
 
+
+
 		 private function logout (event: Event = null):void
 		 {
+
 		 	sendNotification( ApplicationFacade.USER_MANAGER);
 		 }
 
 		 private function loadData (event: Event = null):void
 		 {
-		 	sendNotification( ApplicationFacade.USER_MANAGER);
+		 	_userManagerProxy.findUsers();
+		 	//sendNotification( ApplicationFacade.USER_MANAGER);
 		 }
 
 
@@ -73,6 +79,12 @@ package seungbeomi.view
 		 {
 		 	switch ( notification.getName() )
 		 	{
+		 		case UserManagerProxy.LOAD_DATA_FAILED:
+
+		 		break;
+		 		case UserManagerProxy.LOAD_DATA_SUCCESS:
+					userManagerPanel.dg.dataProvider = _userManagerProxy.usersData;
+		 		break;
 		 		case UserManagerProxy.LOGOUT_FAILED:
 
 		 		break;
