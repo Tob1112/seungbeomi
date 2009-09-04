@@ -2,13 +2,15 @@ package seungbeomi.view
 {
 	import flash.events.Event;
 
+	import org.puremvc.as3.interfaces.IMediator;
+	import org.puremvc.as3.interfaces.INotification;
+	import org.puremvc.as3.patterns.mediator.Mediator;
+
 	import seungbeomi.ApplicationFacade;
 	import seungbeomi.model.LoginProxy;
 	import seungbeomi.model.vo.UserVO;
 	import seungbeomi.view.components.LoginPanel;
-	import org.puremvc.as3.interfaces.IMediator;
-	import org.puremvc.as3.interfaces.INotification;
-	import org.puremvc.as3.patterns.mediator.Mediator;
+	import seungbeomi.view.components.UserManagerPanel;
 
 
 	/**
@@ -44,6 +46,9 @@ package seungbeomi.view
 			var userVO: UserVO = new UserVO();
 			userVO.userId = loginPanel.userId.text;
 			userVO.password = loginPanel.password.text;
+
+			var result: UserVO = _loginProxy.login(userVO);
+
 
 			sendNotification( ApplicationFacade.LOGIN, userVO );
 		}

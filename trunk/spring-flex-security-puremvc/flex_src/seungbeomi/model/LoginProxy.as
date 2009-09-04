@@ -55,15 +55,13 @@ package seungbeomi.model
 		 *
 		 * @param 	users data as UserVO
 		 */
-		public function login( vo: UserVO ):void
+		public function login( vo: UserVO ): UserVO
 		{
 			// authentication
-			_service.authenticateUser( vo.userId, vo.password );
-
-			// get User info
-			//_service.findUserByUserId( vo.userId );
+			var result: UserVO = _service.authenticateUser( vo.userId, vo.password ) as UserVO;
 
 			CursorManager.setBusyCursor();
+			return result;
 		}
 
 		/**
