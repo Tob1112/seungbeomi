@@ -19,7 +19,7 @@
 		WHERE  user_id = #userId#
 	</select>
 
-	<select id="findUsers" resultMap="result">
+	<select id="getUsers" resultMap="result">
 		SELECT *
 		FROM userinfo
     </select>

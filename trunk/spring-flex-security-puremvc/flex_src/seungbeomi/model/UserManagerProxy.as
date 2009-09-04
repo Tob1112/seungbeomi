@@ -10,7 +10,7 @@ package seungbeomi.model
 	import org.puremvc.as3.interfaces.IProxy;
 	import org.puremvc.as3.patterns.proxy.Proxy;
 
-	import seungbeomi.model.business.UserManagerDelegate;
+//	import seungbeomi.model.business.UserManagerDelegate;
 	import seungbeomi.model.vo.UserVO;
 	import seungbeomi.view.UserManagerMediator;
 

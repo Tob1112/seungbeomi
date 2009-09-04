@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="400" height="300" title="spring-flex-security-puremvc">
+	<mx:Script>
+		<![CDATA[
+			import mx.events.ValidationResultEvent;
+
+			// event
+			public static const LOGIN:String = "login";
+
+			public function login():void
+			{
+				/*
+				vUserId.enabled = true;
+				vPassword.enabled = true;
+
+				var noUserId:Boolean = vUserId.validate().type == ValidationResultEvent.INVALID;
+				var noPassword:Boolean = vPassword.validate().type == ValidationResultEvent.INVALID;
+
+				if (noUserId || noPassword)
+				{
+					return;
+				}
+				else
+				{
+					dispatchEvent(new Event(LOGIN));
+				}
+				*/
+				dispatchEvent(new Event(LOGIN));
+			}
+
+			/**
+			 * called LoginMediator
+			 * */
+			public function resetLogin():void{
+				vUserId.enabled = false;
+				vPassword.enabled = false;
+				userId.text = "";
+				password.text = "";
+			}
+		]]>
+	</mx:Script>
+
+	<mx:StringValidator id="vUserId" source="{ userId }" property="text" required="true"/>
+    <mx:StringValidator id="vPassword" source="{ password }" property="text" required="true"/>
+
+	<mx:Form id="loginForm" x="56" y="0">
+
+        <mx:FormItem label="User ID: ">
+            <mx:TextInput id="userId"/>
+        </mx:FormItem>
+
+        <mx:FormItem label="Password: ">
+            <mx:TextInput id="password"
+            	displayAsPassword="true"/>
+        </mx:FormItem>
+
+    </mx:Form>
+
+    <mx:Text id="statusMessage"
+    	width="400" height="30"
+    	textAlign="center" fontWeight="bold"
+    	text="[ user: admin / password: admin ]" x="-10" y="88"/>
+
+    <mx:ControlBar horizontalAlign="right" x="0" y="256">
+        <mx:Button id="loginButton"
+        	label="Login"
+        	click="login()"/>
+    </mx:ControlBar>
+</mx:Panel>
