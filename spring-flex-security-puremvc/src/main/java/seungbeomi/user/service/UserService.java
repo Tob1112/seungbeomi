@@ -7,11 +7,11 @@ import seungbeomi.user.model.User;
 public interface UserService {
 
 	//login
-	public User authenticateUser(String userId, String password);
+	public User login(String userId, String password);
 
 	public User findUserByUserIdAndPassword(String userId, String password);
 
-	public Collection<User> findUsers();
+	public Collection<User> getUsers();
 
 	public User findUserByUserId(String userId);
 

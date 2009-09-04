@@ -19,8 +19,8 @@ public class UserDaoImpl extends SqlMapClientDaoSupport implements UserDao{
 	}
 
 	@SuppressWarnings("unchecked")
-	public Collection<User> findUsers() throws DataAccessException {
-		return getSqlMapClientTemplate().queryForList("findUsers", null);
+	public Collection<User> getUsers() throws DataAccessException {
+		return getSqlMapClientTemplate().queryForList("getUsers", null);
 	}
 
 	@SuppressWarnings("unchecked")

@@ -56,7 +56,7 @@ public class UserDaoTransactionUnitTest{
     public void testUserDaoTransactionUnit() throws Exception {
         assertNotNull("User DAO is null.", userDao);
 
-        Collection<User> userList = userDao.findUsers();
+        Collection<User> userList = userDao.getUsers();
 
         assertNotNull("User list is null.", userList);
         assertEquals("Number of users should be " + SIZE + ".", SIZE, userList.size());
@@ -80,7 +80,7 @@ public class UserDaoTransactionUnitTest{
     }
 
     protected void testUser(boolean beforeTransaction, String matchLastName) {
-        ArrayList<User> userList = (ArrayList<User>) userDao.findUsers();
+        ArrayList<User> userList = (ArrayList<User>) userDao.getUsers();
 
         assertNotNull("Person list is null.", userList);
         assertEquals("Number of users should be " + SIZE + ".", SIZE, userList.size());

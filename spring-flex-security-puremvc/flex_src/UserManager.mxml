@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute"
+	xmlns:view="usermanager.view.components.*"
+	creationComplete="facade.startup(this)">
+
+	<mx:Script>
+		<![CDATA[
+		import usermanager.*;
+		private var facade:ApplicationFacade = ApplicationFacade.getInstance();
+		]]>
+	</mx:Script>
+
+	<mx:ViewStack id="viewStack"  x="42" y="37">
+		<view:LoginPanel id="loginPanel" width="410"/>
+		<view:UserManagerPanel id="userManagerPanel"/>
+	</mx:ViewStack>
+
+
+	<mx:Move id="faultEffect"
+		target="{viewStack}"
+		repeatCount="4" duration="50"
+		xFrom="{viewStack.x - 30}" xTo="{viewStack.x}" />
+</mx:Application>

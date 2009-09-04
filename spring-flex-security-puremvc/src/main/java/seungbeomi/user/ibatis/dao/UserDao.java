@@ -21,7 +21,7 @@ public interface UserDao {
 	/**
 	 * Find users
 	 */
-	public Collection<User> findUsers() throws DataAccessException ;
+	public Collection<User> getUsers() throws DataAccessException ;
 
 	/**
 	 * Find users by name

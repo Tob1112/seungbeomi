@@ -47,10 +47,10 @@ public class UserDaoTest {
 	}
 
 	@Test
-	public void testFindUsers() {
+	public void testGetUsers() {
 		assertNotNull("User DAO is null.", userDao);
 
-		Collection<User> userList = userDao.findUsers();
+		Collection<User> userList = userDao.getUsers();
 
 		int expected = 2;
 

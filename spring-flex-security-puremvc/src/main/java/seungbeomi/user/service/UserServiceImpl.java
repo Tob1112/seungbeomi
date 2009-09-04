@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	// login
-	public User authenticateUser(String userId, String password) {
+	public User login(String userId, String password) {
 
 		String id;
 		Authentication authentication;
@@ -66,10 +66,10 @@ public class UserServiceImpl implements UserService {
         return new User(authorizedGroups, id);
 	}
 
-	public Collection<User> findUsers() {
+	public Collection<User> getUsers() {
 		//SecurityContextHolder.getContext().setAuthentication(authentication);
 
-		return userDao.findUsers();
+		return userDao.getUsers();
 	}
 
 	public User findUserByUserIdAndPassword(String userId, String password) {

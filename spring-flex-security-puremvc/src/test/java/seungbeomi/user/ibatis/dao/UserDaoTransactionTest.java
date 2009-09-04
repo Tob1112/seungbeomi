@@ -44,7 +44,7 @@ public class UserDaoTransactionTest{
     public void testUserDaoTransaction() {
         assertNotNull("Person DAO is null.", userDao);
 
-        Collection<User> userList = userDao.findUsers();
+        Collection<User> userList = userDao.getUsers();
 
         assertNotNull("User list is null.", userList);
         assertEquals("Number of users should be " + SIZE + ".", SIZE, userList.size());

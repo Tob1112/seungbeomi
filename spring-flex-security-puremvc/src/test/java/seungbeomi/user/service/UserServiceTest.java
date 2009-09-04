@@ -37,19 +37,19 @@ public class UserServiceTest {
 	}
 
 	@Test
-	public void testAuthenticateUser() {
+	public void testLogin() {
 		assertNotNull("userService is not null", service);
 
 		String adminUserId = "admin";
 		String adminPassword = "admin";
 
-		User adminUser = service.authenticateUser(adminUserId, adminPassword);
+		User adminUser = service.login(adminUserId, adminPassword);
 		//assertEquals("ROLE_ADMIN", adminUser.getAuthority());
 
 		String userUserId = "admin";
 		String userPassword = "admin";
 
-		User userUser = service.authenticateUser(userUserId, userPassword);
+		User userUser = service.login(userUserId, userPassword);
 		//assertEquals("ROLE_ADMIN", userUser.getAuthority());
 
 
@@ -75,16 +75,16 @@ public class UserServiceTest {
 	}
 
 	@Test
-	public void testFindUsers() {
+	public void testGetUsers() {
 		assertNotNull("userService is not null", service);
 		assertNotNull("userDao is not null", mockUserDao);
 
 		String adminUserId = "admin";
 		String sonUserId = "son";
 
-		expect(mockUserDao.findUsers()).andReturn(getUserCollection());
+		expect(mockUserDao.getUsers()).andReturn(getUserCollection());
 		replay(mockUserDao);
-		Collection<User> userCollection= mockUserDao.findUsers();
+		Collection<User> userCollection= mockUserDao.getUsers();
 		assertNotNull("userCollection is not null.",userCollection);
 		verify(mockUserDao);
 
