@@ -1,4 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="400" height="300">
-	
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="400" height="300"  title="Spring-Flex-Security-PureMVC">
+
+        <mx:Script>
+                <![CDATA[
+                        import usermanager.model.vo.UserVO;
+                        import mx.controls.Alert;
+
+                        [Bindable] public var userVO: UserVO;
+
+                        // event name
+                        public static const LOGOUT: String = "logout";
+                        public static const LOAD_DATA: String = "loadData";
+                        public static const CREATE_USER: String = "createUser";
+                        public static const UPDATE_USER: String = "updateUser";
+                        public static const DELETE_USER: String = "deleteUser";
+
+                        private function logout(event: MouseEvent = null):void
+                        {
+                                this.dispatchEvent(new Event(LOGOUT));
+                        }
+                        private function loadData(event: MouseEvent = null):void
+                        {
+                                trace(userVO);
+                                this.dispatchEvent(new Event(LOAD_DATA));
+                        }
+
+                ]]>
+        </mx:Script>
+
+        <mx:HBox x="10" y="10" width="360" height="59">
+                <mx:VBox height="100%" width="261">
+                        <mx:HBox width="100%">
+                                <mx:Label text="User ID:"/>
+                                <mx:Label text="{userVO.userId}" id="txtUserId"/>
+                        </mx:HBox>
+                        <mx:HBox width="100%">
+                                <mx:Label text="Roles:"/>
+                                <mx:Text text="{userVO.groups}" id="txtGroups"/>
+                        </mx:HBox>
+                </mx:VBox>
+                <mx:VBox height="100%" width="87">
+                        <mx:Button label="Log out" width="83" click="logout(event);" height="57"/>
+                </mx:VBox>
+        </mx:HBox>
+
+        <mx:DataGrid x="10" y="77" width="360" height="173"
+                id="dg" editable="true">
+                <mx:columns>
+                        <mx:DataGridColumn headerText="User ID" dataField="userId"/>
+                        <mx:DataGridColumn headerText="Name" dataField="name"/>
+                        <mx:DataGridColumn headerText="Email" dataField="email"/>
+                </mx:columns>
+        </mx:DataGrid>
+
 </mx:Panel>
