@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="400" height="300" title="Before">
+
+	<mx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			public static const LOGIN:String = "login";
+
+			private function login():void {
+				//Alert.show("login");
+				dispatchEvent( new Event(LOGIN));
+			}
+		]]>
+	</mx:Script>
+
+	<mx:Form x="55.5" y="58" width="269" height="114">
+		<mx:FormItem label="username">
+			<mx:TextInput id="username"/>
+		</mx:FormItem>
+		<mx:FormItem label="password">
+			<mx:TextInput id="password"/>
+		</mx:FormItem>
+		<mx:FormItem direction="horizontal" >
+    		<mx:Button label="Login" click="login()" width="95"/>
+    	</mx:FormItem>
+	</mx:Form>
+</mx:Panel>
