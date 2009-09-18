@@ -6,8 +6,8 @@
 
 	<mx:Script>
 		<![CDATA[
-		import sample.*;
-		private var facade:ApplicationFacade = ApplicationFacade.getInstance();
+			import sample.*;
+			private var facade:ApplicationFacade = ApplicationFacade.getInstance();
 		]]>
 	</mx:Script>
 

@@ -13,13 +13,13 @@ package sample.view
     import sample.view.components.AfterPanel;
     import sample.view.components.BeforePanel;
 
-    public class BeforeMediator extends Mediator implements IMediator
+    public class BeforePanelMediator extends Mediator implements IMediator
     {
-        public static const NAME:String = "BeforeMediator";
+        public static const NAME:String = "BeforePanelMediator";
 
 		private var userProxy:UserProxy;
 
-        public function BeforeMediator( viewComponent:Object )
+        public function BeforePanelMediator( viewComponent:Object )
         {
             super( NAME, viewComponent );
 
@@ -29,10 +29,8 @@ package sample.view
 
         private function login(event:Event = null):void {
 
-        	var user:User = userProxy.login(beforePanel.username.text, beforePanel.password.text) as User;
-        	if(user == null) Alert.show("user is null");
-
-        	sendNotification(ApplicationFacade.LOGIN_RESULT, user);
+        	userProxy.login(beforePanel.username.text, beforePanel.password.text);
+	        sendNotification(ApplicationFacade.VIEW_AFTER_PANEL);
         }
 
         private function get beforePanel():BeforePanel {

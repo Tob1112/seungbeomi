@@ -4,7 +4,8 @@ package sample.view
     import org.puremvc.as3.patterns.mediator.Mediator;
 
     import sample.ApplicationFacade;
-    import sample.view.components.AfterPanel;
+    import sample.model.UserProxy;
+    import sample.model.vo.User;
 
     public class ApplicationMediator extends Mediator implements IMediator
     {
@@ -13,25 +14,33 @@ package sample.view
 		public static const BEFORE_PANEL_VIEWSTACK:Number =	0;
 		public static const AFTER_PANEL_VIEWSTACK:Number =	1;
 
+		private var userProxy:UserProxy;
+
         public function ApplicationMediator( viewComponent:Object )
         {
             super( NAME, viewComponent );
 
-            facade.registerMediator(new BeforeMediator(app.beforePanel));
-            facade.registerMediator(new AfterMediator(app.afterPanel));
+            facade.registerMediator(new BeforePanelMediator(app.beforePanel));
+            facade.registerMediator(new AfterPanelMediator(app.afterPanel));
+
+            userProxy = UserProxy(facade.retrieveProxy(UserProxy.NAME));
         }
 
 		override public function listNotificationInterests():Array {
 			return [
-				ApplicationFacade.LOGIN_RESULT
+				ApplicationFacade.VIEW_BEFORE_PANEL,
+				ApplicationFacade.VIEW_AFTER_PANEL
 			];
 		}
 		override public function handleNotification(note:INotification):void {
 			switch(note.getName()) {
-				case  ApplicationFacade.LOGIN_RESULT:
+				case ApplicationFacade.VIEW_BEFORE_PANEL:
+					app.viewStack.selectedIndex = BEFORE_PANEL_VIEWSTACK;
+					break;
+				case  ApplicationFacade.VIEW_AFTER_PANEL:
 					app.viewStack.selectedIndex = AFTER_PANEL_VIEWSTACK;
-					sendNotification(AfterMediator.SHOW_AFTER_DATA, note.getBody());
-				break;
+					sendNotification(ApplicationFacade.LOGIN_RESULT, note.getBody());
+					break;
 			}
 		}
 

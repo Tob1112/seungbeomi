@@ -4,6 +4,8 @@
 	<mx:Script>
 		<![CDATA[
 			import mx.controls.Alert;
+
+			//event
 			public static const LOGIN:String = "login";
 
 			private function login():void {
@@ -21,7 +23,7 @@
 			<mx:TextInput id="password"/>
 		</mx:FormItem>
 		<mx:FormItem direction="horizontal" >
-    		<mx:Button label="Login" click="login()" width="95"/>
+    		<mx:Button label="Login" click="login()"/>
     	</mx:FormItem>
 	</mx:Form>
 </mx:Panel>

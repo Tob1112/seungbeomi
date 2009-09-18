@@ -13,16 +13,12 @@ package sample.model
 			 super(NAME, data);
 		}
 
-		public function login(username:String, password:String):User {
-
-			trace("<<< input username = " + username + ", password = " + password);
-
-			var user:User = new User(username, password);
-			return user;
+		public function login(username:String, password:String):void {
+			data = new User(username, password);
 		}
 
 		public function get user():User {
-			return user as User;
+			return data as User;
 		}
 	}
 }

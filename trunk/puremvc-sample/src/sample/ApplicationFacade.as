@@ -11,8 +11,10 @@ package sample
 
         // Notification name constants
         public static const STARTUP:String = "startup";
-        public static const LOGIN:String = "login";
         public static const LOGIN_RESULT:String = "loginResult";
+
+        public static const VIEW_BEFORE_PANEL:String = "viewBeforePanel";
+        public static const VIEW_AFTER_PANEL:String = "viewAfterPanel";
 
         public static function getInstance() : ApplicationFacade
 		{
