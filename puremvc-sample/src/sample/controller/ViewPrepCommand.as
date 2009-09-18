@@ -4,9 +4,8 @@ package sample.controller
     import org.puremvc.as3.patterns.command.*;
     import org.puremvc.as3.patterns.observer.*;
 
+    import sample.ApplicationFacade;
     import sample.view.ApplicationMediator;
-    import sample.view.BeforeMediator;
-    import sample.view.AfterMediator;
 
     public class ViewPrepCommand extends SimpleCommand
     {
@@ -14,9 +13,12 @@ package sample.controller
 		{
              facade.registerMediator( new ApplicationMediator( note.getBody() ) );
 
-             var app:main = note.getBody() as main;
-             facade.registerMediator( new BeforeMediator(app.beforePanel));
-             facade.registerMediator( new AfterMediator(app.afterPanel));
+             // loadData
+			
+
+             // notificate main page infomation
+             sendNotification(ApplicationFacade.VIEW_BEFORE_PANEL);
+
         }
     }
 }
