@@ -9,12 +9,10 @@ package sample
     public class ApplicationFacade extends Facade
     {
 
-        // Notification name constants
         public static const STARTUP:String = "startup";
-        public static const LOGIN_RESULT:String = "loginResult";
 
-        public static const VIEW_BEFORE_PANEL:String = "viewBeforePanel";
-        public static const VIEW_AFTER_PANEL:String = "viewAfterPanel";
+        public static const VIEW_LOGIN_PANEL:String = "viewLoginPanel";
+        public static const VIEW_LOGIN_RESULT_PANEL:String = "viewLoginResultPanel";
 
         public static function getInstance() : ApplicationFacade
 		{
@@ -28,7 +26,7 @@ package sample
             registerCommand( STARTUP, ApplicationStartupCommand );
         }
 
-        public function startup( app:main ):void
+        public function startup( app:Main ):void
         {
         	sendNotification( STARTUP, app );
         }

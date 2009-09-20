@@ -9,7 +9,7 @@
 <sourceAttachmentPath/>
 </compiler>
 <applications>
-<application path="main.mxml"/>
+<application path="Main.mxml"/>
 </applications>
 <modules/>
 <buildCSSFiles/>

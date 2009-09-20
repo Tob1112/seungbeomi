@@ -14,10 +14,10 @@ package sample.controller
              facade.registerMediator( new ApplicationMediator( note.getBody() ) );
 
              // loadData
-			
+
 
              // notificate main page infomation
-             sendNotification(ApplicationFacade.VIEW_BEFORE_PANEL);
+             sendNotification(ApplicationFacade.VIEW_LOGIN_PANEL);
 
         }
     }

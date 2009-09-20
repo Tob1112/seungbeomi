@@ -1,5 +1,6 @@
 package  sample.model.vo
 {
+	[Bindable]
 	public class User
 	{
 
