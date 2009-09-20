@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute"
+	xmlns:view="sample.view.components.*"
+	xmlns:mvc="sample.*"
+	creationComplete="facade.startup(this)">
+
+	<mx:Script>
+		<![CDATA[
+			import sample.*;
+			private var facade:ApplicationFacade = ApplicationFacade.getInstance();
+		]]>
+	</mx:Script>
+
+	<mx:ViewStack id="viewStack">
+		<view:LoginPanel id="loginPanel"/>
+		<view:LoginResultPanel id="loginResultPanel"/>
+	</mx:ViewStack>
+
+</mx:Application>
