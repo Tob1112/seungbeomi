@@ -30,7 +30,7 @@ public class ProductListEvent extends Event
     public function ProductListEvent(type:String, bubbles:Boolean=true, cancelable:Boolean=false)
     {
         super(type, bubbles, cancelable);
-        trace("[ ProductListEvent.as ] event type:" + type.toString() + ", bubbles:" + bubbles + ", cancelable:" + cancelable);
+        trace("[ ProductListEvent.as ] event type:" + type.toString());
     }
 
 }
