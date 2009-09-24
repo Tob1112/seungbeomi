@@ -106,6 +106,9 @@
 
         public function getProducts():Array
         {
+
+        	trace("[ ProductList.mxml ] getProducts()")
+
             var ret:Array = [];
             for (var i:int = 0; i < items.length; i++)
             {
@@ -116,6 +119,8 @@
 
         private function removeItemHandler(event:Event):void
         {
+        	trace("[ ProductList.mxml ] removeItemHandler(event)")
+
             var item:ProductListItem = event.target as ProductListItem;
             var index:int = indexOf(item.product.productId);
             items.splice(index, 1);
@@ -125,6 +130,8 @@
 
         private function layoutItems(startIndex:int, scrollToBottom:Boolean=false):void
 		{
+			trace("[ ProductList.mxml ] layoutItems(startIndex:" + startIndex + ", scrollToBottom:" + scrollToBottom + ")")
+
             var n:int = items.length;
             var e:Move;
 			for (var i:int = startIndex; i < n ; i++)
@@ -173,22 +180,30 @@
         private function indexOf(productId:int):int
 		{
             var index:int = -1;
-
             var n:int = items.length;
+
+			trace("[ ProductList.mxml ] indexOf(productId:" + productId + ") - items.length:" + items.length)
+
 			for (var i:int = 0; i < items.length; i++)
 			{
+				trace("[ ProductList.mxml ] items[" + i + "].product.productId:" + items[i].product.productId + " productId:" + productId)
+
                 if (items[i].product.productId == productId)
 				{
+					trace("[ ProductList.mxml ] " + items[i].product.name + " is existing shopping cart")
                     index = i;
                     break;
                 }
             }
 
+			trace("[ ProductList.mxml ] return index:" + index)
             return index;
         }
 
         private function doDragEnter(event:DragEvent):void
         {
+        	trace("[ ProductList.mxml ] doDragEnter(event)")
+
             if (event.dragSource.hasFormat("product"))
             {
                 DragManager.acceptDragDrop(IUIComponent(event.target));
@@ -197,6 +212,8 @@
 
         private function doDragDrop(event:DragEvent):void
         {
+        	trace("[ ProductList.mxml ] doDragDrop(event)")
+
             var product:Product = event.dragSource.dataForFormat("product") as Product;
             addProduct(product);
         }
