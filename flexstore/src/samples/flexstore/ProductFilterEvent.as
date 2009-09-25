@@ -17,15 +17,16 @@ import flash.events.Event;
 public class ProductFilterEvent extends Event
 {
     public static const FILTER:String = "filter";
-    
+
     public var live:Boolean;
     public var filter:ProductFilter;
-    
+
     public function ProductFilterEvent(filter:ProductFilter, live:Boolean)
     {
         super(FILTER);
         this.filter = filter;
         this.live = live;
+        trace("[ ProductFilterEvent.as ] ProductFilterEvent(filter:ProductFilter, live:Boolean)")
     }
 }
 

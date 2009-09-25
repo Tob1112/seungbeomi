@@ -22,14 +22,16 @@ public class ProductFilter
     public var triband:Boolean;
     public var camera:Boolean;
     public var video:Boolean;
-    
+
     public function ProductFilter()
     {
         super();
+        trace("[ ProductFilter.as ] ProductFilter()")
     }
-    
+
     public function accept(product:Product):Boolean
     {
+    	trace("[ ProductFilter.as ] accept(product:" + product.name + ")")
         //price is often the first test so let's fail fast if possible
         if (minPrice > product.price || maxPrice < product.price)
             return false;
@@ -41,7 +43,7 @@ public class ProductFilter
             return false;
         if (video && !product.video)
             return false;
-        
+
         return true;
     }
 }

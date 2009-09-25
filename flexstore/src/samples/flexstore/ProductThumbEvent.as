@@ -11,7 +11,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package samples.flexstore
 {
-    
+
 import flash.events.Event;
 
 public class ProductThumbEvent extends Event
@@ -20,17 +20,19 @@ public class ProductThumbEvent extends Event
     public static const COMPARE:String = "compare";
     public static const DETAILS:String = "details";
     public static const BROWSE:String = "browse";
-    
+
     public var product:Product;
-    
+
     public function ProductThumbEvent(type:String, product:Product)
     {
         super(type);
         this.product = product;
+        trace("[ ProductThumbEvent.as ] ProductThumbEvent(type:" + type + ", product:" + product.name + ")")
     }
-    
+
     override public function clone():Event
     {
+    	trace("[ ProductThumbEvent.as ] clone()")
         return new ProductThumbEvent(type, product);
     }
 }
