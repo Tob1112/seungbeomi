@@ -36,6 +36,7 @@ public class Product
 
     public function fill(obj:Object):void
     {
+    	trace("[ Product.as ] fill(obj:Object)")
         for (var i:String in obj)
         {
             this[i] = obj[i];
@@ -45,6 +46,8 @@ public class Product
     [Bindable(event="propertyChange")]
     public function get featureString():String
     {
+    	trace("[ Product.as ] get featureString()")
+
     	var str:String = "";
     	if (triband)
     		str += "Tri-band ";

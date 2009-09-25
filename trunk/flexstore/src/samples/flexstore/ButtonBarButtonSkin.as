@@ -62,6 +62,7 @@ public class ButtonBarButtonSkin extends Border
 											  fillColor0:uint,
 											  fillColor1:uint):Object
 	{
+		trace("[ ButtonBarButtonSkin.as ] calcDerivedStyles(themeColor:" + themeColor + ", fillColor0:" + fillColor0 + ", fillColor1:" + fillColor1 +")")
 		var key:String = HaloColors.getCacheKey(themeColor,
 												fillColor0, fillColor1);
 
@@ -92,6 +93,7 @@ public class ButtonBarButtonSkin extends Border
 	 */
 	public function ButtonBarButtonSkin()
 	{
+		trace("[ ButtonBarButtonSkin.as ] ButtonBarButtonSkin()")
 		super();
 	}
 
@@ -110,6 +112,7 @@ public class ButtonBarButtonSkin extends Border
 	 */
 	override public function get measuredWidth():Number
 	{
+		trace("[ ButtonBarButtonSkin.as ] get measuredWidth()")
 		return 50;
 	}
 
@@ -122,6 +125,7 @@ public class ButtonBarButtonSkin extends Border
 	 */
 	override public function get measuredHeight():Number
 	{
+		trace("[ ButtonBarButtonSkin.as ] get measuredHeight()")
 		return 22;
 	}
 
@@ -137,6 +141,8 @@ public class ButtonBarButtonSkin extends Border
 	override protected function updateDisplayList(w:Number, h:Number):void
 	{
 		super.updateDisplayList(w, h);
+		trace("[ ButtonBarButtonSkin.as ] updateDisplayList(width:" + w + ", height:" + h + ")")
+
 
 		// User-defined styles.
 		var borderColor:uint = getStyle("borderColor");
@@ -266,6 +272,8 @@ public class ButtonBarButtonSkin extends Border
 	private function getCornerRadius(pos:int, horizontal:Boolean,
 									 radius:Number):Object
 	{
+		trace("[ ButtonBarButtonSkin.as ] getCornerRadius(pos:" + pos + ", horizontal:" + horizontal + ", radius:" + radius +")")
+
 		if (pos == 0)
 			return 0;
 
