@@ -40,6 +40,7 @@
 
         private function productListEventHandler(event:ProductListEvent):void
         {
+        	trace("[ ProductCart.mxml ] productListEventHandler (event:ProductListEvent) entered!!")
             switch (event.type)
             {
                 case ProductListEvent.ADD_PRODUCT:

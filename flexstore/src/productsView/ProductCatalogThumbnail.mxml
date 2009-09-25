@@ -40,10 +40,10 @@
 
 		import mx.events.*;
         import mx.core.*;
-        
+
         import samples.flexstore.Product;
         import samples.flexstore.ProductThumbEvent;
-        
+
         public static const COL_WIDTH_4:int = 162;
         public static const COL_HEIGHT_4:int = 122;
         public static const COL_WIDTH_3:int = 217;
@@ -59,6 +59,8 @@
 
         private function rollOverHandler(event:MouseEvent):void
 		{
+			trace("[ ProductCatalogThumbnail.mxml ] rollOverHandler(MouseEvent:" + event.target + ")")
+
             setStyle("borderColor", "#CCCCCC");
             setStyle("dropShadowEnabled", true);
             buttons.visible = true;
@@ -66,6 +68,8 @@
 
         private function rollOutHandler(event:MouseEvent):void
 		{
+			trace("[ ProductCatalogThumbnail.mxml ] rollOutHandler(MouseEvent:" + event.target + ")")
+
             setStyle("borderColor", "#FFFFFF");
             setStyle("dropShadowEnabled", false);
 			buttons.visible = false;
@@ -75,6 +79,8 @@
 
         public function mouseDownHandler(event:MouseEvent):void
         {
+        	trace("[ ProductCatalogThumbnail.mxml ] mouseDownHandler(MouseEvent:" + event.target + ")")
+
             if (event.target != purchase &&
                 event.target != compare &&
                 event.target != details)
@@ -87,6 +93,8 @@
 
         public function mouseMoveHandler(event:MouseEvent):void
         {
+        	//trace("[ ProductCatalogThumbnail.mxml ] mouseMoveHandler(event:MouseEvent)")
+
             if (dragStartPoint != null)
             {
                 var dragEvent:DragEvent = new DragEvent(DragEvent.DRAG_START, true);
@@ -103,6 +111,7 @@
 
         public function mouseUpHandler(event:MouseEvent):void
         {
+        	trace("[ ProductCatalogThumbnail.mxml ] mouseUpHandler(MouseEvent:" + event.target + ")")
             if (dragStartPoint != null)
             {
                 dragStartPoint = null;
@@ -111,6 +120,7 @@
 
         public function clickHandler(event:MouseEvent):void
         {
+        	trace("[ ProductCatalogThumbnail.mxml ] clickHandler(MouseEvent:" + event.target + ")")
             if (event.target != purchase &&
                 event.target != compare &&
                 event.target != details)
@@ -147,14 +157,14 @@
     </mx:VBox>
 
     <mx:VBox id="buttons" visible="false" verticalGap="4" paddingRight="8" right="8" top="12">
-        <mx:Button id="purchase" icon="@Embed('/assets/icon_cart_empty.png')" 
-            click="dispatchEvent(new ProductThumbEvent(ProductThumbEvent.PURCHASE, product))" 
+        <mx:Button id="purchase" icon="@Embed('/assets/icon_cart_empty.png')"
+            click="dispatchEvent(new ProductThumbEvent(ProductThumbEvent.PURCHASE, product))"
             width="30" toolTip="Add to cart"/>
-        <mx:Button id="compare" icon="@Embed('/assets/icon_compare.png')" 
-            click="dispatchEvent(new ProductThumbEvent(ProductThumbEvent.COMPARE, product))" 
+        <mx:Button id="compare" icon="@Embed('/assets/icon_compare.png')"
+            click="dispatchEvent(new ProductThumbEvent(ProductThumbEvent.COMPARE, product))"
             width="30" toolTip="Add to compare list"/>
-        <mx:Button id="details" icon="@Embed('/assets/icon_details.png')" 
-            click="dispatchEvent(new ProductThumbEvent(ProductThumbEvent.DETAILS, product))" 
+        <mx:Button id="details" icon="@Embed('/assets/icon_details.png')"
+            click="dispatchEvent(new ProductThumbEvent(ProductThumbEvent.DETAILS, product))"
             width="30" toolTip="Show details"/>
     </mx:VBox>
 
