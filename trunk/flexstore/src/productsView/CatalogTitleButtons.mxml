@@ -25,13 +25,13 @@
 
             private function rollOverLabel(event:Event):void
             {
-            	trace("[ CatalogTitleButtons.mxml ] rollOverLabel(event:Event)")
+            	trace("[ CatalogTitleButtons.mxml ] rollOverLabel(event:" + event.target.valueOf() + ")")
                 Label(event.target).setStyle("styleName", "catalogTitleButtonHighlighted");
             }
 
             private function rollOutLabel(event:Event):void
             {
-            	trace("[ CatalogTitleButtons.mxml ] rollOutLabel(event:Event)")
+            	trace("[ CatalogTitleButtons.mxml ] rollOutLabel(event:" + event.target.valueOf() + ")")
                 Label(event.target).setStyle("styleName", "catalogTitleButtonDeselected");
             }
         ]]>

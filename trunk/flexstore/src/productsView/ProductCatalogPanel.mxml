@@ -12,24 +12,24 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 -->
-<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" 
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml"
     xmlns:productsView="productsView.*"
-    layout="vertical" 
+    layout="vertical"
     currentState="browse"
     verticalScrollPolicy="off"
     horizontalScrollPolicy="off"
     styleName="catalogPanel">
-    
+
     <mx:Metadata>
         [Event(name="purchase", type="samples.flexstore.ProductThumbEvent")]
         [Event(name="compare", type="samples.flexstore.ProductThumbEvent")]
         [Event(name="details", type="samples.flexstore.ProductThumbEvent")]
     </mx:Metadata>
-    
+
     <mx:Script>
         <![CDATA[
         import flash.utils.Dictionary;
-        
+
         import mx.collections.ArrayCollection;
         import mx.collections.IViewCursor;
         import mx.core.DragSource;
@@ -45,25 +45,27 @@
         import samples.flexstore.ProductFilter;
         import samples.flexstore.ProductFilterEvent;
         import samples.flexstore.ProductThumbEvent;
-       
-     
+
+
         private var accepted:Dictionary = new Dictionary();
         private var thumbnails:Array;
         private var filterCount:int;
         private var thumbnailState:String = 'browse'; //either 'browse' or 'compare'
         [Bindable]
         private var titleButtons:CatalogTitleButtons; //the buttons that also allow the panel to switch sides
-        
+
         override protected function createChildren():void
         {
+        	trace("[ ProductCatalogPanel.mxml ] createChildren()")
             super.createChildren();
             titleButtons = new CatalogTitleButtons();
             titleBar.addChild(titleButtons);
-            
+
         }
 
         override protected function layoutChrome(unscaledWidth:Number, unscaledHeight:Number):void
-        {        
+        {
+        	trace("[ ProductCatalogPanel.mxml ] layoutChrome(unscaledWidth:" + unscaledWidth + ", unscaledHeight:" + unscaledHeight + ")")
             super.layoutChrome(unscaledWidth, unscaledHeight);
             //when adding to a UIComponent (not a Container) need explicit width/height
             titleButtons.width = unscaledWidth / 2; //make it big so as we add cart items we can stretch)
@@ -72,35 +74,39 @@
             //involve copying more of the Panel layoutChrome method and supporting methods
             titleButtons.move(statusTextField.x - titleButtons.width, titleTextField.y);
         }
-        
-        
+
+
         [Bindable]
         public var cartCount:int;
-        
+
         //-----------------------------
         // catalog
         //-----------------------------
-        
+
         private var _catalog:ArrayCollection;
-        
+
         [Bindable]
         public function set catalog(c:ArrayCollection):void
         {
+        	trace("[ ProductCatalogPanel.mxml ] set catalog()")
             _catalog = c;
             createThumbnails();
         }
-        
+
         public function get catalog():ArrayCollection
         {
+        	trace("[ ProductCatalogPanel.mxml ] get catalog()")
             return _catalog;
         }
-        
+
         //----------------------------------------------------------------------
         // methods
         //----------------------------------------------------------------------
-       
+
         private function createThumbnails():void
         {
+        	trace("[ ProductCatalogPanel.mxml ] createThumnails()")
+
             var i:int; //variables are hoisted up in scope so declare here to avoid warning
             if (thumbnails != null)
             {
@@ -109,13 +115,13 @@
                     thumbContent.removeChild(thumbnails[i]);
                 }
             }
-            
+
             var row:int = 0;
             var col:int = -1;
             var n:int = catalog.length;
             thumbnails = new Array(n);
             filterCount = n;
-            
+
             for (i=0; i < n; i++)
             {
                 var thumb:ProductCatalogThumbnail = new ProductCatalogThumbnail();
@@ -132,9 +138,11 @@
 
             layoutCatalog();
         }
-        
+
         private function thumbDragStartHandler(event:MouseEvent):void
         {
+        	trace("[ ProductCatalogPanel.mxml ] thumbDragStartHandler(event:MouseEvent)")
+
             if (DragManager.isDragging == false)
             {
                 var thumb:ProductCatalogThumbnail = event.target as ProductCatalogThumbnail;
@@ -143,17 +151,19 @@
 
                 var di:ProductCatalogThumbnail = new ProductCatalogThumbnail();
                 di.product = thumb.product;
-                
+
                 //the offset logic is honestly not the most intuitive but
                 //it's necessary to get the dragProxy positioned correctly
-                DragManager.doDrag(thumbContent, ds, event, di, -thumb.x, 
-            				       -thumb.y + thumbContent.verticalScrollPosition, 
+                DragManager.doDrag(thumbContent, ds, event, di, -thumb.x,
+            				       -thumb.y + thumbContent.verticalScrollPosition,
             				       0.5, false);
-            }    
+            }
         }
-        
+
         public function filter(productFilter:ProductFilter, live:Boolean):void
         {
+        	trace("[ ProductCatalogPanel.mxml ] filter(productFilter:ProductFilter, live:" + live + ")")
+
             currentState = "browse";
             thumbnailState = "browse";
             var count:int=0;
@@ -169,7 +179,7 @@
                 if (productFilter.accept(product))
                 {
                     accepted[product] = true;
-                    thumb.alpha = 1;    
+                    thumb.alpha = 1;
                     count++;
                 }
                 else
@@ -188,7 +198,7 @@
             productFilter.count = count;
             filterCount = count;
 
-            if (targets.length > 0)    
+            if (targets.length > 0)
             {
                 fadeOut.targets = targets;
                 fadeOut.play();
@@ -203,9 +213,11 @@
                 layoutCatalog();
             }
         }
-        
+
         private function layoutCatalog():Effect
         {
+        	trace("[ ProductCatalogPanel.mxml ] layoutCatalog()")
+
             var tileWidth:Number;
             var tileHeight:Number;
             var numCols:int;
@@ -236,7 +248,7 @@
 			else
 			{
             }
-            
+
             var row:int = 0;
             var col:int = -1;
 
@@ -313,10 +325,12 @@
             //return the last move to watch
             return move;
         }
-        
+
         //return the last effect so we could add effectEnd handler if desired
         private function fadeInThumbnails():void
 		{
+			trace("[ ProductCatalogPanel.mxml ] fadeInThumnails()")
+
 			var n:int = thumbnails.length;
 			var effect:Fade = new Fade();
 			effect.alphaTo = 1;
@@ -337,9 +351,11 @@
                 effect.play();
             }
         }
-        
+
         private function showDetails(product:Product):void
         {
+        	trace("[ ProductCatalogPanel.mxml ] showDetails(product:" + product.name + ")")
+
             if (currentState == "details")
 			{
                 details.product = product;
@@ -385,7 +401,7 @@
                         move.yTo = yTo;
                         move.play();
                     }
-                    
+
                     if (thumb.product == product)
                     {
                         selectedThumb = thumb;
@@ -411,11 +427,13 @@
 					    }
 					});
             }
-            
+
         }
-        
+
         private function productThumbEventHandler(event:ProductThumbEvent):void
         {
+        	trace("[ ProductCatalogPanel.mxml ] productThumbEventHandler(event:ProductThumbEvent)")
+
             if (event.type == ProductThumbEvent.DETAILS)
             {
                 showDetails(event.product);
@@ -423,7 +441,7 @@
             else if (event.type == ProductThumbEvent.BROWSE)
             {
                 if (thumbnailState == "browse")
-                {                
+                {
                     currentState = "browse";
                     layoutCatalog();
                 }
@@ -437,9 +455,12 @@
                 dispatchEvent(event);
             }
         }
-        
+
         public function compare(toCompare:Array=null):void
         {
+
+        	trace("[ ProductCatalogPanel.mxml ] compare(toCompare:Array=null)")
+
             currentState = "compare";
             thumbnailState = "compare";
             if (toCompare != null)
@@ -468,12 +489,14 @@
                 setCompareState();
             }
         }
-        
+
         private function setCompareState():void
         {
+        	trace("[ ProductCatalogPanel.mxml ] setCompareState()")
+
             //avoid an issue if the user clicks quickly where we move into
             //compare state even though we're no longer in compare
-            if (currentState == "compare") 
+            if (currentState == "compare")
             {
                 var n:int = thumbnails.length;
                 for (var i:int = 0; i < n; i++)
@@ -484,23 +507,23 @@
                         thumb.currentState = "compare";
                     }
                 }
-                
+
             }
         }
-        
+
         ]]>
     </mx:Script>
-    
+
     <mx:Binding source="cartCount" destination="titleButtons.cartCount" />
     <!-- two-way binding between the states of panel title buttons and the product view state -->
     <mx:Binding source="ProductsView(parentDocument).currentState" destination="titleButtons.currentState" />
     <mx:Binding destination="ProductsView(parentDocument).currentState" source="titleButtons.currentState" />
 
-    <mx:Canvas width="100%" height="100%" 
+    <mx:Canvas width="100%" height="100%"
         verticalScrollPolicy="off"
         horizontalScrollPolicy="off"
         paddingRight="0">
-        <mx:Canvas id="thumbContent" width="100%" height="100%" 
+        <mx:Canvas id="thumbContent" width="100%" height="100%"
             horizontalScrollPolicy="off"/>
         <productsView:ProductDetails id="details"
             width="{ProductCatalogThumbnail.COL_WIDTH_4 * 3}"
@@ -510,7 +533,7 @@
             purchase="productThumbEventHandler(event)"
             browse="productThumbEventHandler(event)" />
     </mx:Canvas>
-    
+
     <mx:states>
         <mx:State name="browse">
             <mx:SetProperty name="title" value="Browse"/>
@@ -525,5 +548,5 @@
             <mx:SetProperty target="{details}" name="visible" value="true"/>
         </mx:State>
     </mx:states>
-    
+
 </mx:Panel>

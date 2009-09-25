@@ -12,45 +12,49 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 -->
-<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" 
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml"
     xmlns:productsView="productsView.*"
     xmlns:flexstore="samples.flexstore.*"
-    height="100%" 
-    paddingLeft="4" 
-    paddingRight="12" 
-    paddingTop="12" 
-    paddingBottom="8" 
+    height="100%"
+    paddingLeft="4"
+    paddingRight="12"
+    paddingTop="12"
+    paddingBottom="8"
     verticalGap="0"
     currentState="showingThumbnails">
-    
+
     <mx:Metadata>
-       [Event(name="filter", type="samples.flexstore.ProductFilterEvent")] 
+       [Event(name="filter", type="samples.flexstore.ProductFilterEvent")]
        [Event("compare")]
     </mx:Metadata>
-    
+
     <mx:Script>
         <![CDATA[
         import mx.controls.sliderClasses.Slider;
-        import mx.controls.Alert; 
+        import mx.controls.Alert;
         import samples.flexstore.ProductFilterEvent;
-           
+
         private var thumbBeingPressed:Boolean;
-           
+
         private function dispatchFilter():void
         {
-            var event:ProductFilterEvent = 
+        	trace("[ ProductFilterPanel.mxml ] dispatchFilter()")
+            var event:ProductFilterEvent =
                 new ProductFilterEvent(filter, thumbBeingPressed);
             dispatchEvent(event);
             currentState = "showingThumbnails";
         }
-        
+
         private function sliderValue(values:Array, index:int):Number
         {
+        	trace("[ ProductFilterPanel.mxml ] sliderValue(values:Array, index:" + index + ")")
             return values[index];
         }
-        
+
         private function productRemoved():void
         {
+        	trace("[ ProductFilterPanel.mxml ] productRemoved()")
+
             if (currentState == "showingComparison")
             {
                 if (productList.items.length == 0)
@@ -63,9 +67,10 @@
                 }
             }
         }
-        
+
         private function attemptCompare():void
         {
+        	trace("[ ProductFilterPanel.mxml ] attemptCompare()")
             if (productList.items.length > 0)
             {
                 dispatchEvent(new Event("compare"));
@@ -76,10 +81,10 @@
                 Alert.show("There are no items to compare.", "Compare");
             }
         }
-        
+
         ]]>
     </mx:Script>
-    
+
     <flexstore:ProductFilter id="filter">
         <flexstore:series>{series.selectedItem}</flexstore:series>
         <flexstore:minPrice>{sliderValue(priceSlider.values, 0)}</flexstore:minPrice>
@@ -89,10 +94,10 @@
         <flexstore:video>{cbVideo.selected}</flexstore:video>
     </flexstore:ProductFilter>
 
-    <mx:CurrencyFormatter currencySymbol="$" id="cf"/>    
-    
+    <mx:CurrencyFormatter currencySymbol="$" id="cf"/>
+
     <mx:Label text="Find" styleName="sectionHeader"/>
-    
+
     <mx:HBox width="100%">
         <mx:TextInput styleName="glass" width="100%"/>
         <mx:Button styleName="glass" label="Go" click="Alert.show('This feature is not implemented in this sample', 'Find')"/>
@@ -164,13 +169,13 @@
 
     <!-- height is maxItems * ProductListItem.HEIGHT + 2px border -->
     <productsView:ProductList id="productList" height="{productList.maxItems * ProductListItem.HEIGHT + 2}" width="100%"
-        newItemStartX="300" newItemStartY="-100" maxItems="4" 
+        newItemStartX="300" newItemStartY="-100" maxItems="4"
         removeProduct="productRemoved()"/>
 
     <mx:Spacer height="8"/>
-    
+
     <mx:Button id="compareButton" styleName="glass" />
-    
+
     <mx:states>
        <mx:State name="showingThumbnails">
           <mx:SetProperty target="{compareButton}" name="label" value="Compare Items" />
