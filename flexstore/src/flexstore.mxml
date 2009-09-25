@@ -34,6 +34,7 @@
 
         private function toggleTheme():void
         {
+        	trace("[ flexstore.mxml ] toggleTheme()")
             if (currentTheme == "beige")
             {
                 currentTheme = "blue";
@@ -48,11 +49,13 @@
 
         private function startService():void
         {
+        	trace("[ flexstore.mxml ] startService()")
             productService.send();
         }
 
         private function loadStyle():void
         {
+        	trace("[ flexstore.mxml ] loadStyle()")
             var eventDispatcher:IEventDispatcher =
                 StyleManager.loadStyleDeclarations(currentTheme + ".swf");
             eventDispatcher.addEventListener(StyleEvent.COMPLETE, completeHandler);
@@ -60,6 +63,7 @@
 
         private function completeHandler(event:StyleEvent):void
         {
+        	trace("[ flexstore.mxml ] completeHandler(event:StyleEvent)")
             image.source = acb.getStyle("storeLogo");
             homeView.updateMapImage();
             super.initialized = true;
@@ -67,6 +71,7 @@
 
         private function productServiceResultHandler(event:ResultEvent):void
         {
+        	trace("[ flexstore.mxml ] productServiceResultHandler(event:ResultEvent)")
             //HTTPService returns an ArrayCollection for nested arrays
             var products:ArrayCollection = event.result.catalog.product;
             var temp:ArrayCollection = new ArrayCollection();
@@ -83,6 +88,7 @@
 
         override public function set initialized(value:Boolean):void
         {
+        	trace("[ flexstore.mxml ] set initialized(value:" + value + ")")
             // Hold off until the Runtime CSS SWF is done loading.
         }
     ]]>
@@ -96,7 +102,7 @@
     <mx:VBox width="990" paddingLeft="0" paddingRight="0" horizontalCenter="0" top="12">
 
         <mx:ApplicationControlBar id="acb" width="100%" styleName="storeControlBar">
-            <mx:Image id="image" 
+            <mx:Image id="image"
                       click="toggleTheme()"
                       toolTip="Change Theme"/>
             <mx:ToggleButtonBar
