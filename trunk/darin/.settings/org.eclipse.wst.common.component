@@ -11,5 +11,8 @@
         <wb-resource deploy-path="/" source-path="/src/darin-service/src/test/java"/>
         <wb-resource deploy-path="/" source-path="/src/darin-commons/src/main/java"/>
         <wb-resource deploy-path="/" source-path="/src/darin-commons/src/test/java"/>
+        <wb-resource deploy-path="/" source-path="/src/darin-services/src/main/java"/>
+        <wb-resource deploy-path="/" source-path="/src/darin-services/src/test/java"/>
+        <wb-resource deploy-path="/" source-path="/src/darin-persist/src/resources"/>
     </wb-module>
 </project-modules>

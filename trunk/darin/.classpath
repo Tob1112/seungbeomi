@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
+	<classpathentry kind="src" path="src/darin-services/src/main/java"/>
+	<classpathentry kind="src" path="src/darin-services/src/test/java"/>
 	<classpathentry kind="src" path="src/darin-model/src/main/java"/>
 	<classpathentry kind="src" path="src/darin-model/src/test/java"/>
 	<classpathentry kind="src" path="src/darin-persist/src/main/java"/>
 	<classpathentry kind="src" path="src/darin-persist/src/test/java"/>
+	<classpathentry kind="src" path="src/darin-persist/src/resources"/>
 	<classpathentry kind="src" path="src/darin-plugins/src/main/java"/>
 	<classpathentry kind="src" path="src/darin-plugins/src/test/java"/>
-	<classpathentry kind="src" path="src/darin-service/src/main/java"/>
-	<classpathentry kind="src" path="src/darin-service/src/test/java"/>
 	<classpathentry kind="src" path="src/darin-commons/src/main/java"/>
 	<classpathentry kind="src" path="src/darin-commons/src/test/java"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>

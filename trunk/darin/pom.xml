@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.modu</groupId>
 	<artifactId>darin</artifactId>
@@ -7,12 +8,12 @@
 	<version>0.0.1-SNAPSHOT</version>
 
 	<modules>
-    	<module>darin-commons</module>
+		<module>darin-commons</module>
 		<module>darin-services</module>
 		<module>darin-persist</module>
 		<module>darin-model</module>
 		<module>darin-plugins</module>
-  </modules>
+	</modules>
 
 	<!-- properties -->
 	<properties>
@@ -128,6 +129,13 @@
 					<artifactId>spring-support</artifactId>
 				</exclusion>
 			</exclusions>
+		</dependency>
+
+		<!-- apache commons -->
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>1.2.2</version>
 		</dependency>
 
 		<!-- test -->
