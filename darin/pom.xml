@@ -8,7 +8,7 @@
 
 	<modules>
     	<module>darin-commons</module>
-		<module>darin-service</module>
+		<module>darin-services</module>
 		<module>darin-persist</module>
 		<module>darin-model</module>
 		<module>darin-plugins</module>
