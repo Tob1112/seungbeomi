@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+	<parent>
+		<artifactId>darin</artifactId>
+		<groupId>org.modu</groupId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.modu</groupId>
+	<artifactId>darin-plugins</artifactId>
+	<name>darin-plugins</name>
+	<version>0.0.1-SNAPSHOT</version>
+	<url>http://maven.apache.org</url>
+
+</project>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="darin">
+        <wb-resource deploy-path="/" source-path="/src/darin-model/src/main/java"/>
+        <wb-resource deploy-path="/" source-path="/src/darin-model/src/test/java"/>
+        <wb-resource deploy-path="/" source-path="/src/darin-persist/src/main/java"/>
+        <wb-resource deploy-path="/" source-path="/src/darin-persist/src/test/java"/>
+        <wb-resource deploy-path="/" source-path="/src/darin-plugins/src/main/java"/>
+        <wb-resource deploy-path="/" source-path="/src/darin-plugins/src/test/java"/>
+        <wb-resource deploy-path="/" source-path="/src/darin-service/src/main/java"/>
+        <wb-resource deploy-path="/" source-path="/src/darin-service/src/test/java"/>
+        <wb-resource deploy-path="/" source-path="/src/darin-commons/src/main/java"/>
+        <wb-resource deploy-path="/" source-path="/src/darin-commons/src/test/java"/>
+    </wb-module>
+</project-modules>
