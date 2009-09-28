@@ -1,0 +1,18 @@
+/* CSS file */
+
+.rosterTitleButtonSelected
+{
+    color:                  #FFFFFF;
+    fontWeight:             "bold";
+}
+.rosterTitleButtonDeselected
+{
+    color:                  #222222;
+    fontWeight:             "bold";
+}
+
+.rosterTitleButtonHighlighted
+{
+    color:                  #FFCC99;
+    fontWeight:             "bold";
+}
