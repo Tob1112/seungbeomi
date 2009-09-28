@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml"
+    styleName="listItem"
+    height="{EmployeeListItem.HEIGHT}"
+    automationName="{employee.name}">
+
+    <mx:Metadata>
+       [Event(name="employeeQtyChange", type="suite.view.employeeManager.EmployeeListEvent")]
+       [Event(name="removeEmployee", type="suite.view.employeeManager.EmployeeListEvent")]
+    </mx:Metadata>
+
+    <mx:Script>
+    <![CDATA[
+    	import suite.view.employeeManager.EmployeeListEvent;
+    	import suite.model.vo.Employee;
+
+        public static const HEIGHT:int = 30;
+
+        [Bindable]
+        public var employee:Employee;
+
+        private function qtyChange():void
+    	{
+            employee.qty = int(qty.text);
+    		trace("[ EmployeeListItem.mxml ] qtyChange() - qty:" + qty.text)
+            var event:EmployeeListEvent = new EmployeeListEvent(EmployeeListEvent.EMPLOYEE_QTY_CHANGE);
+            event.employee = employee;
+    		dispatchEvent(event);
+        }
+
+        private function removeItem():void
+        {
+        	trace("[ EmployeeListItem.mxml ] removeItem()")
+            var event:EmployeeListEvent = new EmployeeListEvent(EmployeeListEvent.REMOVE_EMPLOYEE);
+            event.employee = employee;
+    		dispatchEvent(event);
+        }
+
+    ]]>
+    </mx:Script>
+
+    <mx:CurrencyFormatter currencySymbol="$" id="cf" precision="2"/>
+
+    <mx:Button id="removeButton"
+        width="14" height="14"
+        icon="@Embed('/assets/trashcan.png')"
+        toolTip="Remove from cart"
+        click="removeItem()"/>
+
+    <mx:Image id="employeeImage" width="12" height="24" source="{employee.image}"/>
+
+    <mx:Label id="employeeName" maxWidth="100" text="{employee.name}"/>
+
+    <mx:Spacer width="100%" />
+
+    <mx:Label id="employeePrice"
+        text="{cf.format(employee.price)}" textAlign="right"/>
+
+    <mx:states>
+        <mx:State name="showQuantity">
+            <mx:AddChild>
+                <mx:TextInput id="qty" width="25" text="{employee.qty}"
+                    textAlign="right" maxChars="3" change="qtyChange()" />
+           </mx:AddChild>
+       </mx:State>
+    </mx:states>
+
+</mx:HBox>

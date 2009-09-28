@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml"
+    xmlns:employeeManager="suite.view.employeeManager.components.*"
+    horizontalAlign="right"
+    paddingTop="8"
+    paddingBottom="8"
+    paddingRight="4"
+    paddingLeft="4"
+    horizontalScrollPolicy="off"
+    verticalScrollPolicy="off">
+
+    <mx:Script>
+        <![CDATA[
+    	import suite.model.vo.Employee;
+    	import suite.view.employeeManager.EmployeeListEvent;
+
+        import mx.controls.Alert;
+
+
+        [Bindable]
+        public var numEmployees:int=0;
+
+        [Bindable]
+        private var total:Number = 0;
+
+        private const SHIPPING:Number = 1.99;
+
+        private function employeeListEventHandler(event:EmployeeListEvent):void
+        {
+        	trace("[ EmployeeCart.mxml ] employeeListEventHandler (event:EmployeeListEvent) entered!!")
+            switch (event.type)
+            {
+                case EmployeeListEvent.ADD_EMPLOYEE:
+                    event.employee.qty = 0;
+                    //fall through into the same logic as dup
+                case EmployeeListEvent.DUPLICATE_EMPLOYEE:
+                    event.employee.qty++;
+                    total += event.employee.price;
+                    numEmployees++;
+                    trace("[ EmployeeCart.mxml ] employee quantity:" + event.employee.qty + ", price:" + event.employee.price + ", total:" + total + ", numEmployees:" + numEmployees)
+                    break;
+                case EmployeeListEvent.EMPLOYEE_QTY_CHANGE:
+                case EmployeeListEvent.REMOVE_EMPLOYEE:
+                    var items:Array = employeeList.items;
+                    total = 0;
+                    numEmployees = 0;
+                    for (var i:int=0; i < items.length; i++)
+                    {
+                        var employee:Employee = items[i].employee;
+                        total += employee.qty * employee.price;
+                        numEmployees += employee.qty;
+                    }
+                    trace("[ EmployeeCart.mxml ] employee quantity:" + event.employee.qty + ", price:" + event.employee.price + ", total:" + total + ", numEmployees:" + numEmployees)
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        ]]>
+    </mx:Script>
+
+    <mx:CurrencyFormatter currencySymbol="$" id="cf" precision="2"/>
+
+    <mx:Label width="100%" text="Your Shopping Cart" styleName="sectionHeader"/>
+
+    <employeeManager:EmployeeList id="employeeList" height="100%" width="100%"
+        newItemStartX="-100" newItemStartY="-100"
+        addEmployee="employeeListEventHandler(event)"
+        duplicateEmployee="employeeListEventHandler(event)"
+        employeeQtyChange="employeeListEventHandler(event)"
+        removeEmployee="employeeListEventHandler(event)"
+        showQuantity="true"
+        />
+
+    <mx:Form verticalGap="0" paddingRight="0">
+
+        <mx:FormItem label="Total:">
+
+            <mx:Label width="70" text="{cf.format(total)}" textAlign="right"/>
+
+        </mx:FormItem>
+
+        <mx:FormItem label="Shipping:">
+
+            <mx:Label width="70" text="{cf.format(numEmployees * SHIPPING)}" textAlign="right"/>
+
+        </mx:FormItem>
+
+        <mx:FormItem label="Grand Total:" fontWeight="bold">
+
+            <mx:Label width="70" text="{cf.format(total + (numEmployees * SHIPPING))}" textAlign="right"/>
+
+        </mx:FormItem>
+
+    </mx:Form>
+
+    <mx:Button label="Submit Order"  click="Alert.show('This feature is not implemented in this sample', 'Submit Order')"/>
+
+</mx:VBox>
