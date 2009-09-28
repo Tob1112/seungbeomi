@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml"
+	width="1024" height="598" >
+		<mx:Panel width="1024" height="598" title="人事管理">
+			<mx:VBox width="100%" height="100%">
+				<mx:ControlBar width="100%" verticalAlign="top" horizontalAlign="left">
+					<mx:TextInput text="Search"/>
+					<mx:Button label="Search"/>
+					<mx:Label text="会社"/>
+					<mx:ComboBox>
+						<mx:dataProvider>
+							<mx:Array>
+								<mx:String>All</mx:String>
+								<mx:String>ルウがルソン</mx:String>
+								<mx:String>ルウがルソン・スイート</mx:String>
+								<mx:String>ルウがルソン・ラニング</mx:String>
+							</mx:Array>
+						</mx:dataProvider>
+					</mx:ComboBox>
+					<mx:Label text="部署"/>
+					<mx:ComboBox>
+						<mx:dataProvider>
+							<mx:Array>
+								<mx:String>All</mx:String>
+								<mx:String>開発</mx:String>
+								<mx:String>ネットワーク</mx:String>
+							</mx:Array>
+						</mx:dataProvider>
+					</mx:ComboBox>
+					<mx:Label text="入社日"/>
+					<mx:DateField/>
+					<mx:Label text="〜"/>
+					<mx:DateField/>
+					<mx:Button label="新規社員" width="136"/>
+				</mx:ControlBar>
+
+			</mx:VBox>
+		</mx:Panel>
+</mx:Canvas>
