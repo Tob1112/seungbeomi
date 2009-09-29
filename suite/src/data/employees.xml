@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<employees>
+
+    <employee employeeId="1">
+        <name>emp01</name>
+        <department>department01</department>
+        <email></email>
+        <address></address>
+        <image>assets/pic/emp01.gif</image>
+    </employee>
+
+	<employee employeeId="2">
+        <name>emp02</name>
+        <department>department02</department>
+        <email></email>
+        <address></address>
+        <image>assets/pic/emp02.gif</image>
+    </employee>
+
+	<employee employeeId="3">
+        <name>emp03</name>
+        <department>department03</department>
+        <email></email>
+        <address></address>
+        <image>assets/pic/emp03.gif</image>
+    </employee>
+
+	<employee employeeId="4">
+        <name>emp04</name>
+        <department>department04</department>
+        <email></email>
+        <address></address>
+        <image>assets/pic/emp04.gif</image>
+    </employee>
+
+	<employee employeeId="5">
+        <name>emp05</name>
+        <department>department05</department>
+        <email></email>
+        <address></address>
+        <image>assets/pic/emp05.gif</image>
+    </employee>
+
+	<employee employeeId="6">
+        <name>emp06</name>
+        <department>department06</department>
+        <email></email>
+        <address></address>
+        <image>assets/pic/emp06.gif</image>
+    </employee>
+
+	<employee employeeId="7">
+        <name>emp07</name>
+        <department>department07</department>
+        <email></email>
+        <address></address>
+        <image>assets/pic/emp07.gif</image>
+    </employee>
+
+	<employee employeeId="8">
+        <name>emp08</name>
+        <department>department08</department>
+        <email></email>
+        <address></address>
+        <image>assets/pic/emp08.gif</image>
+    </employee>
+
+	<employee employeeId="9">
+        <name>emp09</name>
+        <department>department09</department>
+        <email></email>
+        <address></address>
+        <image>assets/pic/emp09.gif</image>
+    </employee>
+
+	<employee employeeId="10">
+        <name>emp10</name>
+        <department>department10</department>
+        <email></email>
+        <address></address>
+        <image>assets/pic/emp10.gif</image>
+    </employee>
+
+</employees>

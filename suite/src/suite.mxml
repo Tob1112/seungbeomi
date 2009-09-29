@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute"
 	minWidth="1024" minHeight="768"
-	xmlns:suiteViews="suite.view.*"
+	xmlns:view="suite.view.*"
 	creationComplete="startService()"
 	pageTitle="SUITE">
 
@@ -13,40 +13,32 @@
 			import mx.collections.ArrayCollection;
 
 			[Bindable]
-			private var roster:ArrayCollection;
+			public var employees:ArrayCollection;
 
 			private function startService():void {
 				employeeService.send();
 			}
 
 			private function employeeServiceResultHandler(event:ResultEvent):void {
-				var employees:ArrayCollection = event.result.roster.employee;
-				var temp:ArrayCollection = new ArrayCollection();
-				var cursor:IViewCursor = employees.createCursor();
-				while(!cursor.afterLast) {
-					var employee:Employee = new Employee();
-					employee.fill(cursor.current);
-					temp.addItem(employee);
-					cursor.moveNext();
-				}
-				roster = temp;
+				employees = event.result.employees.employee;
 			}
 		]]>
 	</mx:Script>
 
-	<mx:Style source="suite.css"/>
+		<mx:HTTPService id="employeeService"
+		url="data/employees.xml"
+		result="employeeServiceResultHandler(event)" />
 
-	<mx:HTTPService id="employeeService" url="data/roster.xml" result="employeeServiceResultHandler(event)" />
 	<mx:VBox width="1024" paddingLeft="0" paddingRight="0" horizontalCenter="0" top="12">
 		<mx:ApplicationControlBar id="acb" width="100%">
 			<mx:Text text="SUITE"/>
 			<mx:ToggleButtonBar height="100%"
-				dataProvider="{suiteViews}"/>
+				dataProvider="{view}"/>
 		</mx:ApplicationControlBar>
 
-		<mx:ViewStack id="suiteViews" width="100%" height="768" creationPolicy="all">
-			<suiteViews:Home id="home" label="Home"/>
-			<suiteViews:EmployeeManager id="employeeManage" label="人事管理" />
+		<mx:ViewStack id="view" width="100%" height="768" creationPolicy="all">
+			<view:Home id="home" label="Home"  employees="{employees}"/>
+			<view:EmployeeManager id="employeeManage" label="人事管理" />
 		</mx:ViewStack>
 	</mx:VBox>
 
