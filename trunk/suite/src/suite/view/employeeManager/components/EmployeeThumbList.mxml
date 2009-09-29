@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml"
+	horizontalScrollPolicy="off"
+	verticalScrollPolicy="auto">
+
+	<mx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+
+			private var _employees:ArrayCollection;
+
+			public function get employees():ArrayCollection {
+				return _employees;
+			}
+			public function set employee(e:ArrayCollection):void {
+				_employees = e;
+			}
+		]]>
+	</mx:Script>
+	<mx:DataGrid x="36" y="66" dataProvider="{employees}">
+		<mx:columns>
+			<mx:DataGridColumn dataField="name"/>
+			<mx:DataGridColumn dataField="email"/>
+			<mx:DataGridColumn dataField="address"/>
+		</mx:columns>
+	</mx:DataGrid>
+
+</mx:Canvas>
