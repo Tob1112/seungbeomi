@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" width="264" height="600">
+
+	<mx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+
+			private var _employees:ArrayCollection;
+
+			[Bindable]
+			public function get employees():ArrayCollection {
+				return _employees;
+			}
+			public function set employees(e:ArrayCollection):void {
+				_employees = e;
+			}
+			
+			
+		]]>
+	</mx:Script>
+
+	<mx:HBox width="100%">
+		<mx:TextInput text="社員検索"/>
+		<mx:Button label="Button"/>
+	</mx:HBox>
+	<mx:Tree width="100%" height="571">
+
+	</mx:Tree>
+</mx:VBox>

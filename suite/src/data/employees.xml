@@ -4,80 +4,90 @@
 
     <employee employeeId="1">
         <name>emp01</name>
+        <company>company01</company>
         <department>department01</department>
-        <email></email>
+        <email>email01</email>
         <address></address>
         <image>assets/pic/emp01.gif</image>
     </employee>
 
 	<employee employeeId="2">
         <name>emp02</name>
+        <company>company03</company>
         <department>department02</department>
-        <email></email>
+        <email>email02</email>
         <address></address>
         <image>assets/pic/emp02.gif</image>
     </employee>
 
 	<employee employeeId="3">
         <name>emp03</name>
+        <company>company01</company>
         <department>department03</department>
-        <email></email>
+        <email>email03</email>
         <address></address>
         <image>assets/pic/emp03.gif</image>
     </employee>
 
 	<employee employeeId="4">
         <name>emp04</name>
+        <company>company01</company>
         <department>department04</department>
-        <email></email>
+        <email>email04</email>
         <address></address>
         <image>assets/pic/emp04.gif</image>
     </employee>
 
 	<employee employeeId="5">
         <name>emp05</name>
+        <company>company02</company>
         <department>department05</department>
-        <email></email>
+        <email>email05</email>
         <address></address>
         <image>assets/pic/emp05.gif</image>
     </employee>
 
 	<employee employeeId="6">
         <name>emp06</name>
+        <company>company01</company>
         <department>department06</department>
-        <email></email>
+        <email>email06</email>
         <address></address>
         <image>assets/pic/emp06.gif</image>
     </employee>
 
 	<employee employeeId="7">
         <name>emp07</name>
+        <company>company02</company>
         <department>department07</department>
-        <email></email>
+        <email>email07</email>
         <address></address>
         <image>assets/pic/emp07.gif</image>
     </employee>
 
 	<employee employeeId="8">
         <name>emp08</name>
+        <company>company01</company>
         <department>department08</department>
-        <email></email>
+        <email>email08</email>
         <address></address>
         <image>assets/pic/emp08.gif</image>
     </employee>
 
 	<employee employeeId="9">
         <name>emp09</name>
+        <company>company03</company>
         <department>department09</department>
-        <email></email>
+        <email>email09</email>
         <address></address>
         <image>assets/pic/emp09.gif</image>
     </employee>
 
 	<employee employeeId="10">
         <name>emp10</name>
+        <company>company03</company>
         <department>department10</department>
-        <email></email>
+        <email>email10</email>
         <address></address>
         <image>assets/pic/emp10.gif</image>
     </employee>
