@@ -25,9 +25,9 @@
 		]]>
 	</mx:Script>
 
-		<mx:HTTPService id="employeeService"
-		url="data/employees.xml"
-		result="employeeServiceResultHandler(event)" />
+	<mx:HTTPService id="employeeService"
+	url="data/employees.xml"
+	result="employeeServiceResultHandler(event)" />
 
 	<mx:VBox width="1024" paddingLeft="0" paddingRight="0" horizontalCenter="0" top="12">
 		<mx:ApplicationControlBar id="acb" width="100%">
@@ -37,8 +37,8 @@
 		</mx:ApplicationControlBar>
 
 		<mx:ViewStack id="view" width="100%" height="768" creationPolicy="all">
-			<view:Home id="home" label="Home"  employees="{employees}"/>
-			<view:EmployeeManager id="employeeManage" label="人事管理" />
+			<view:Home id="home" label="Home" height="732" width="1030"/>
+			<view:EmployeeManager id="employeeManage" label="人事管理" employees="{employees}"/>
 		</mx:ViewStack>
 	</mx:VBox>
 

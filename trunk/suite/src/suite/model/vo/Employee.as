@@ -11,6 +11,8 @@ package suite.model.vo
 	    public var name:String;
 		public var email:String;
 		public var address:String;
+		public var company:String;
+		public var department:String;
 	    public var image:String;
 
 	    public function Employee()

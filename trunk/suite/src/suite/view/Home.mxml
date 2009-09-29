@@ -2,25 +2,4 @@
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml"
 	width="1024" height="740">
 
-	<mx:Script>
-		<![CDATA[
-			import mx.collections.ArrayCollection;
-
-			private var _employees:ArrayCollection;
-
-			[Bindable]
-			public function get employees():ArrayCollection {
-				return _employees;
-			}
-			public function set employees(e:ArrayCollection):void {
-				_employees = e;
-			}
-		]]>
-	</mx:Script>
-	<mx:DataGrid x="110" y="163" dataProvider="{employees}">
-		<mx:columns>
-			<mx:DataGridColumn dataField="name"/>
-		</mx:columns>
-	</mx:DataGrid>
-
 </mx:Canvas>
