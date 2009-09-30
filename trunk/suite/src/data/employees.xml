@@ -7,7 +7,7 @@
         <company>company01</company>
         <department>department01</department>
         <email>email01</email>
-        <address></address>
+        <address>address01</address>
         <image>assets/pic/emp01.gif</image>
     </employee>
 
@@ -16,7 +16,7 @@
         <company>company03</company>
         <department>department02</department>
         <email>email02</email>
-        <address></address>
+        <address>address02</address>
         <image>assets/pic/emp02.gif</image>
     </employee>
 
@@ -25,7 +25,7 @@
         <company>company01</company>
         <department>department03</department>
         <email>email03</email>
-        <address></address>
+        <address>address03</address>
         <image>assets/pic/emp03.gif</image>
     </employee>
 
@@ -34,7 +34,7 @@
         <company>company01</company>
         <department>department04</department>
         <email>email04</email>
-        <address></address>
+        <address>address04</address>
         <image>assets/pic/emp04.gif</image>
     </employee>
 
@@ -43,7 +43,7 @@
         <company>company02</company>
         <department>department05</department>
         <email>email05</email>
-        <address></address>
+        <address>address05</address>
         <image>assets/pic/emp05.gif</image>
     </employee>
 
@@ -52,7 +52,7 @@
         <company>company01</company>
         <department>department06</department>
         <email>email06</email>
-        <address></address>
+        <address>address06</address>
         <image>assets/pic/emp06.gif</image>
     </employee>
 
@@ -61,7 +61,7 @@
         <company>company02</company>
         <department>department07</department>
         <email>email07</email>
-        <address></address>
+        <address>address07</address>
         <image>assets/pic/emp07.gif</image>
     </employee>
 
@@ -70,7 +70,7 @@
         <company>company01</company>
         <department>department08</department>
         <email>email08</email>
-        <address></address>
+        <address>address08</address>
         <image>assets/pic/emp08.gif</image>
     </employee>
 
@@ -79,7 +79,7 @@
         <company>company03</company>
         <department>department09</department>
         <email>email09</email>
-        <address></address>
+        <address>address09</address>
         <image>assets/pic/emp09.gif</image>
     </employee>
 
@@ -88,7 +88,7 @@
         <company>company03</company>
         <department>department10</department>
         <email>email10</email>
-        <address></address>
+        <address>address10</address>
         <image>assets/pic/emp10.gif</image>
     </employee>
 

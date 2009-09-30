@@ -19,15 +19,7 @@
 	<mx:Panel width="1024" height="598" title="人事管理" verticalScrollPolicy="off">
 		<mx:HBox width="100%" height="100%" verticalScrollPolicy="off">
 			<view:EmployeeSearchBox id="eSearchBar"  width="250"/>
-
-			<mx:VRule height="100%"/>
-
-			<mx:ViewStack id="eManagerViewStack" width="100%" height="100%" >
-				<view:EmployeeThumbList id="eThumbList"
-					width="100%" height="100%"
-					employees="{employees}"/>
-				<view:EmployeeDetails id="eDetail" width="100%" height="100%"/>
-			</mx:ViewStack>
+			<view:EmployeeInfoCanvas id="eThumbList" width="100%" height="100%" employees="{employees}"/>
 		</mx:HBox>
 	</mx:Panel>
 </mx:Canvas>

@@ -10,8 +10,6 @@
   </compiler>
   <applications>
     <application path="suite.mxml"/>
-    <application path="Tree.mxml"/>
-    <application path="test01.mxml"/>
   </applications>
   <modules/>
   <buildCSSFiles/>

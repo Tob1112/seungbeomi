@@ -6,7 +6,6 @@ package suite.model.vo
 	[Bindable]
 	public class Employee
 	{
-
 	    public var employeeId:int;
 	    public var name:String;
 		public var email:String;
@@ -18,6 +17,17 @@ package suite.model.vo
 	    public function Employee()
 	    {
 
+	    }
+
+	    public function fill(obj:Object):void
+	    {
+	    	this.employeeId = obj.employeeId;
+	    	this.name = obj.name;
+	    	this.email = obj.email;
+	    	this.address = obj.address;
+	    	this.company = obj.company;
+	    	this.department = obj.department;
+	    	this.image = obj.image;
 	    }
 	}
 }
