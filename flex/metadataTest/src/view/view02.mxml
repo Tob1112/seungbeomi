@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="300">
+
+	<mx:Metadata>
+		[Event(name="event01", type="event.MainEvent")]
+		[Event(name="event02", type="event.MainEvent")]
+	</mx:Metadata>
+
+	<mx:Script>
+		<![CDATA[
+			import event.MainEvent;
+		]]>
+	</mx:Script>
+
+	<mx:Text text="view02" x="10" y="10"/>
+
+	<mx:Button id="btnView01" label="go view01" click="dispatchEvent(new MainEvent(MainEvent.EVENT02))" x="10" y="40"/>
+</mx:Canvas>
