@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml"
+	horizontalScrollPolicy="off"
+	verticalScrollPolicy="off"
+	width="100%" height="100%">
+
+	<mx:Script>
+		<![CDATA[
+			import suite.model.vo.Employee;
+
+			[Bindable]
+			private var _employee:Employee;
+
+			[Bindable]
+			public function get employee():Employee	{
+				return _employee;
+			}
+			public function set employee(e:Employee):void {
+				_employee = e;
+			}
+		]]>
+	</mx:Script>
+
+	<mx:Image id="imgEmployee" source="{employee.image}" width="200" height="200"
+		 scaleContent="true" horizontalAlign="center" verticalAlign="middle"/>
+
+	<mx:VBox width="100%" height="100%" horizontalAlign="left">
+		<mx:Label text="{employee.employeeId}" />
+		<mx:Label text="{employee.name}"/>
+		<mx:Label text="{employee.email}"/>
+		<mx:Label text="{employee.address}"/>
+		<mx:Label text="{employee.company}"/>
+		<mx:Label text="{employee.department}"/>
+		<mx:Button click="currentState=''" label="return List"/>
+	</mx:VBox>
+</mx:HBox>
