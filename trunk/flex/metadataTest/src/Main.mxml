@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute"
+	xmlns:view="view.*"
+	currentState="state01">
+
+	<mx:Metadata>
+		[Event(name="event01", type="event.MainEvent")]
+		[Event(name="event02", type="event.MainEvent")]
+	</mx:Metadata>
+
+	<mx:Script>
+		<![CDATA[
+			import event.MainEvent;
+
+			public function mainEventHandler(e:MainEvent):void {
+				if (e.type == MainEvent.EVENT01) {
+					trace("event01!!")
+					currentState = "state02";
+				} else if (e.type == MainEvent.EVENT02) {
+					trace("event02!!")
+					currentState = "state01";
+				};
+			}
+		]]>
+	</mx:Script>
+
+	<mx:Panel x="85" y="23" width="360" height="370" layout="absolute" title="Metadata Test" id="mainPanel" />
+
+	<mx:states>
+		<mx:State name="state01">
+			<mx:AddChild relativeTo="{mainPanel}" position="lastChild">
+				<view:view01 event01="mainEventHandler(event)"  x="10" y="10" width="320"/>
+			</mx:AddChild>
+		</mx:State>
+		<mx:State name="state02">
+			<mx:AddChild relativeTo="{mainPanel}" position="lastChild">
+				<view:view02 event02="mainEventHandler(event)"  width="320" x="10" y="10"/>
+			</mx:AddChild>
+		</mx:State>
+	</mx:states>
+
+</mx:Application>
