@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="user">
+	<resultMap class="seungbeomi.user.User" id="result">
+		<result property="userId" column="USER_ID"/>
+		<result property="password" column="PASSWORD"/>
+	</resultMap>
+
+	 <typeAlias alias="user" type="seungbeomi.user.User"/>
+
+	 <select id="getUsers" resultMap="result">
+	 	select * from sampledb
+	 </select>
+</sqlMap>

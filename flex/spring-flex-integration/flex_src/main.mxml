@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute">
+
+	<mx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			import mx.rpc.remoting.RemoteObject;
+			import mx.controls.Alert;
+
+			public function loadData():void
+			{
+				var _service:RemoteObject = new RemoteObject();
+				_service.destination = "userService";
+				_service.addEventListener("result", loadDataResult);
+				_service.addEventListener("fault", loadDataFault);
+				_service.getUsers();
+			}
+			public function loadDataResult(event:ResultEvent):void
+			{
+				dg.dataProvider = event.result;
+			}
+			public function loadDataFault(event:FaultEvent):void
+			{
+				Alert.show(event.fault.message);
+			}
+		]]>
+	</mx:Script>
+
+	<mx:Panel x="90" y="88" width="417" height="255" layout="absolute" title="spring-flex-integration-sample">
+		<mx:Button x="27" y="10" label="load data" click="loadData()"/>
+		<mx:DataGrid id="dg" x="27" y="49" width="342" height="134">
+			<mx:columns>
+				<mx:DataGridColumn headerText="id" dataField="userId"/>
+				<mx:DataGridColumn headerText="password" dataField="password"/>
+			</mx:columns>
+		</mx:DataGrid>
+	</mx:Panel>
+</mx:Application>
