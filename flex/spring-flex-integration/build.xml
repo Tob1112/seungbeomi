@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="application" basedir="." default="deploy">
+	<property file="build.properties" />
+
+	<property environment="env" />
+	<property name="CATALINA_HOME" value="${env.CATALINA_HOME}" />
+	<property name="FLEX_HOME" value="${env.FLEX_HOME}" />
+	<property name="deploy.dir" value="${CATALINA_HOME}/webapps/${webapp.name}" />
+
+	<!--<import file=""/>-->
+
+	<!-- ============================================ -->
+	<!-- =                path                      = -->
+	<!-- ============================================ -->
+	<path id="classpath">
+		<fileset dir="${lib.dir}" includes="*.jar" />
+		<pathelement path="${build.dir}" />
+	</path>
+
+	<!-- ============================================ -->
+	<!-- =                patternset                = -->
+	<!-- ============================================ -->
+	<patternset id="war.files">
+		<include name="**/*.*" />
+		<exclude name="**/*unit*.jar" />
+		<exclude name="**/easymock-*.jar" />
+		<exclude name="**/servlet-api*.jar" />
+	</patternset>
+
+	<!-- ============================================ -->
+	<!-- =                target                        = -->
+	<!-- ============================================ -->
+	<target name="compile" depends="clean, flex-compile" description="Compile main source tree java files">
+		<mkdir dir="${build.dir}/main/classes" />
+		<javac destdir="${build.dir}/main/classes" debug="true" optimize="false" deprecation="false" failonerror="true">
+			<compilerarg compiler="$${ajc}" line="-argfile ../build.ajproperties" />
+			<src path="${src.dir}" />
+			<classpath refid="classpath" />
+		</javac>
+
+		<!-- compile tests -->
+		<!--
+    	<echo message="test class compile..." />
+        <mkdir dir="${build.dir}/test/classes" />
+        <javac destdir="${build.dir}" debug="true" optimize="false" deprecation="false" failonerror="true">
+            <src path="${test.dir}" />
+            <classpath>
+                <path refid="classpath" />
+                <path location="${build.dir}/classes" />
+            </classpath>
+        </javac>
+		-->
+		<!-- Copy XML files to ${build.dir}/classes -->
+		<copy todir="${build.dir}/main/classes">
+			<fileset dir="${src.dir}" includes="**/*.xml, **/*.properties" />
+			<fileset dir="${resource.dir}" includes="**/*.xml, **/*.properties" />
+		</copy>
+
+		<!--
+        <native2ascii src="${resources.dir}" dest="${build.dir}/classes" includes="**/*.properties" />
+        -->
+	</target>
+
+	<target name="war" depends="compile" description="Packages app as WAR">
+		<mkdir dir="${dist.dir}" />
+		<war destfile="${dist.dir}/${webapp.name}.war" webxml="${web.dir}/WEB-INF/web.xml" compress="true">
+			<classes dir="${build.dir}/main/classes" />
+			<fileset dir="${web.dir}">
+				<patternset refid="war.files" />
+				<exclude name="**/web.xml" />
+			</fileset>
+		</war>
+	</target>
+
+	<target name="deploy" depends="compile" description="Deploy application">
+		<copy todir="${deploy.dir}" preservelastmodified="true">
+			<fileset dir="${web.dir}">
+				<patternset refid="war.files" />
+			</fileset>
+		</copy>
+		<copy todir="${deploy.dir}/WEB-INF/classes" preservelastmodified="true">
+			<fileset dir="${build.dir}/main/classes">
+				<exclude name="**/*Test.class" />
+			</fileset>
+		</copy>
+		<copy todir="${deploy.dir}/WEB-INF/lib" preservelastmodified="true">
+			<fileset dir="${lib.dir}">
+				<exclude name="**/*unit*.jar" />
+				<exclude name="**/easymock-*.jar" />
+				<exclude name="**/servlet-api*.jar" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="deploywar" depends="war" description="Deploy application as a WAR file">
+		<copy todir="${CATALINA_HOME}/webapps" preservelastmodified="true" file="${dist.dir}/${webapp.name}.war" />
+	</target>
+
+	<target name="clean" description="Clean output directories">
+		<delete dir="${build.dir}" />
+		<delete dir="${dist.dir}" />
+	</target>
+
+	<!-- ============================================ -->
+	<!-- =            Tomcat Ant Tasks              = -->
+	<!-- ============================================ -->
+	<taskdef file="tomcatTasks.properties">
+		<classpath>
+			<pathelement path="${CATALINA_HOME}/lib/catalina-ant.jar" />
+			<!--<pathelement path="${CATALINA_HOME}/server/lib/catalina-ant.jar" />-->
+		</classpath>
+	</taskdef>
+
+	<target name="remove" description="Remove application from Tomcat">
+		<undeploy url="${tomcat.manager.url}" username="${tomcat.manager.username}" password="${tomcat.manager.password}" path="/${webapp.name}" />
+		<delete dir="${deploy.dir}/${webapp.name}" />
+	</target>
+
+	<target name="reload" depends="deploy" description="Reload application in Tomcat">
+		<reload url="${tomcat.manager.url}" username="${tomcat.manager.username}" password="${tomcat.manager.password}" path="/${webapp.name}" />
+	</target>
+
+	<target name="start" description="Start Tomcat application">
+		<start url="${tomcat.manager.url}" username="${tomcat.manager.username}" password="${tomcat.manager.password}" path="/${webapp.name}" />
+	</target>
+
+	<target name="stop" description="Stop Tomcat application">
+		<stop url="${tomcat.manager.url}" username="${tomcat.manager.username}" password="${tomcat.manager.password}" path="/${webapp.name}" />
+	</target>
+
+	<target name="list" description="List Tomcat applications">
+		<list url="${tomcat.manager.url}" username="${tomcat.manager.username}" password="${tomcat.manager.password}" />
+	</target>
+
+	<!-- ============================================ -->
+	<!-- =            DATABASE Tasks                = -->
+	<!-- ============================================ -->
+	<target name="db-init">
+		<echo message="Loading sample data..." />
+		<sql driver="${db.driver}"
+			 url="${db.url}"
+			 userid="${db.username}"
+			 password="${db.password}"
+			 src="${initdb.sql}">
+			<classpath refid="classpath" />
+		</sql>
+	</target>
+
+	<target name="db-clear">
+		<echo message="Deleting data from database..." />
+		<sql driver="${db.driver}" url="${db.url}" userid="${db.username}" password="${db.password}">
+			<classpath refid="classpath" />
+			<![CDATA[
+	                DELETE FROM SAMPLEDB;
+	            ]]>
+		</sql>
+	</target>
+
+
+	<!-- ============================================ -->
+	<!-- Flex Ant Tasks                               -->
+	<!-- ============================================ -->
+	<taskdef resource="flexTasks.tasks" classpath="${FLEX_HOME}/ant/lib/flexTasks.jar" />
+
+	<target name="flex-init">
+		<delete dir="${flex.output.dir}/history" />
+		<delete file="${flex.output.dir}/AC_OETags.js" />
+		<delete file="${flex.output.dir}/index.html" />
+		<delete file="${flex.output.dir}/playerProductInstall.swf" />
+		<delete file="${flex.output.dir}/${webapp.name}.swf" />
+		<!--<mkdir dir="${flex.output.dir}"/>-->
+		<!--<mkdir dir="${flex.output.dir}"/>-->
+	</target>
+
+	<target name="flex-wrapper">
+		<html-wrapper
+	            title="${webapp.name}"
+	            file="main.html"
+	            height="100%"
+	            width="100%"
+	            bgcolor="red"
+	            application="app"
+	            swf="${webapp.name}"
+	            version-major="9"
+	            version-revision="0"
+	            history="true"
+	            template="express-installation"
+	            output="${flex.output.dir}"/>
+	</target>
+
+	<target name="flex-compile" depends="flex-init,flex-wrapper">
+		<mxmlc file="${flex.src.dir}/main.mxml"
+	             output="${flex.output.dir}/${webapp.name}.swf"
+	            keep-generated-actionscript="true">
+			<load-config filename="${FLEX_HOME}/frameworks/flex-config.xml"/>
+			<source-path path-element="${FLEX_HOME}/frameworks"/>
+			<compiler.library-path dir="${FLEX_HOME}/frameworks" append="true">
+				<include name="flex_libs" />
+			</compiler.library-path>
+		</mxmlc>
+		<delete dir="${flex.src.dir}/generated"/>
+	</target>
+</project>
