@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="suite" basedir=".">
+    <property file="build.properties" />
+
+	<path id="classpath">
+		<fileset dir="${lib.dir}" includes="postgresql*.jar, ojdbc14.jar" />
+    </path>
+
+	<!-- CREATE SCHEMA THE DATABASE -->
+    <target name="db-schema">
+        <echo message="Create schema..." />
+        <sql   driver="${jdbc.driver}"
+                  url="${jdbc.url}"
+               userid="${jdbc.username}"
+             password="${jdbc.password}"
+                  src="${schema.sql}">
+            <classpath refid="classpath" />
+        </sql>
+    </target>
+
+	<!-- LOAD DATA THE DATABASE -->
+    <target name="db-loadData">
+        <echo message="Loading data..." />
+        <sql   driver="${jdbc.driver}"
+                  url="${jdbc.url}"
+               userid="${jdbc.username}"
+             password="${jdbc.password}"
+                  src="${data.sql}">
+            <classpath refid="classpath" />
+        </sql>
+    </target>
+
+</project>

@@ -1,0 +1,9 @@
+var ro:RemoteObject = new RemoteObject();
+ro.destination = "< DESTINATION NAME >";
+var cs:ChannelSet = new ChannelSet();
+var ac:AMFChannel = new AMFChannel("suite-amf", "http://localhost:8080/suite/spring/messagebroker/amf");
+cs.addChannel(ac);
+ro.channelSet = cs;
+ro.addEventListener('result', < RESULT HANDLER METHOD NAME >);
+ro.addEventListener('fault',  < FAULT HANDLER METHOD NAME >);
+ro.< SERVER METHOD >(< PAREMETER >);

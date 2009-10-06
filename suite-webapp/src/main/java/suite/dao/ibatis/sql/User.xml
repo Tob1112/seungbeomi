@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="user">
+
+	<resultMap id="result" class="suite.vo.User">
+		<result property="userId" column="USER_ID" />
+		<result property="password" column="PASSWORD" />
+		<result property="name" column="NAME" />
+	</resultMap>
+
+	<typeAlias alias="user" type="suite.vo.User"/>
+
+    <select id="login" parameterClass="user" resultMap="result">
+    	SELECT *
+    	FROM   userinfo
+    	WHERE  user_id = #userId#
+    		AND password = #password#
+    </select>
+
+</sqlMap>
