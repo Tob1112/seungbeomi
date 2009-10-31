@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Emp">
+
+	<typeAlias alias="emp" type="domain.Emp"/>
+
+	<!-- ============================ -->
+	<!-- =	RESULT MAP				= -->
+	<!-- ============================ -->
+
+	<resultMap id="resultEmpBase" class="emp">
+		<result property="empNo" column="EMP_NO" />
+		<result property="empName" column="EMP_NAME" />
+	</resultMap>
+
+	<resultMap id="resultGetEmp" class="emp" extends="resultEmpBase">
+		<result property="empDetail.email" column="EMAIL"/>
+	</resultMap>
+
+	<!-- ============================ -->
+	<!-- =	SQL						= -->
+	<!-- ============================ -->
+
+	<select id="getEmp" parameterClass="java.lang.String" resultMap="resultGetEmp">
+		SELECT
+	        E.EMP_NO
+	        ,E.EMP_NAME
+	        ,E.DEPT_NO
+	        ,ED.EMAIL
+	    FROM
+	        EMP E, EMP_DETAIL ED
+	    WHERE
+	    	E.EMP_NO = ED.EMP_NO AND
+	        E.DEPT_NO = #value#
+	</select>
+
+</sqlMap>
