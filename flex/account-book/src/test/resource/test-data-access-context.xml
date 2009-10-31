@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:p="http://www.springframework.org/schema/p"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	   			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:property-placeholder location="classpath:test.database.properties" />
+
+    <bean id="dataSource"
+            class="org.apache.commons.dbcp.BasicDataSource"
+            destroy-method="close"
+            p:driverClassName="${db.driver}"
+            p:url="${db.url}"
+            p:username="${db.username}"
+            p:password="${db.password}"
+            p:defaultAutoCommit="true" />
+
+    <!-- ============================================================= -->
+    <!--  IBATIS                                                       -->
+    <!-- ============================================================= -->
+    <bean id="sqlMapClient"
+            class="org.springframework.orm.ibatis.SqlMapClientFactoryBean"
+            p:configLocation="classpath:test-sql-map-config.xml"
+            p:dataSource-ref="dataSource"/>
+
+	<bean id="accountBookUserDao"
+			class="examples.account.dao.impl.AccountBookUserDaoImpl"
+			p:sqlMapClient-ref="sqlMapClient" />
+
+	<bean id="accountDao"
+			class="examples.account.dao.impl.AccountDaoImpl"
+			p:sqlMapClient-ref="sqlMapClient" />
+
+	<bean id="firstTitleDao"
+			class="examples.account.dao.impl.FirstTitleDaoImpl"
+			p:sqlMapClient-ref="sqlMapClient" />
+
+	<bean id="secondTitleDoa"
+			class="examples.account.dao.impl.SecondTitleDaoImpl"
+			p:sqlMapClient-ref="sqlMapClient" />
+
+	<bean id="thirdTitleDao"
+			class="examples.account.dao.impl.ThirdTitleDaoImpl"
+			p:sqlMapClient-ref="sqlMapClient" />
+
+</beans>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:account="examples.account.*" initialize="initializeHandler(event)" viewSourceURL="srcview/index.html">
+
+    <mx:Script>
+        <![CDATA[
+            import mx.controls.Alert;
+            import mx.events.FlexEvent;
+
+            private function initializeHandler(event:FlexEvent):void {
+                Alert.buttonWidth=100;
+                Alert.okLabel="実行";
+            }
+        ]]>
+    </mx:Script>
+
+    <mx:Style source="main.css"/>
+    <account:AccountBookMain/>
+</mx:Application>

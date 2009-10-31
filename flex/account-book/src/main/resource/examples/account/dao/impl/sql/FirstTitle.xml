@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="FirstTitle">
+
+	<cacheModel id="firstTitleCache" type="LRU">
+ 		<flushInterval hours="24"/>
+ 		<property name="size" value="100"/>
+ 	</cacheModel>
+
+	<resultMap id="result" class="examples.account.entity.FirstTitle">
+		<result property="firstTitleId"   column="FIRST_TITLE_ID" />
+		<result property="firstTitleName" column="FIRST_TITLE_NAME" />
+	</resultMap>
+
+	<typeAlias alias="FirstTitle" type="examples.account.entity.FirstTitle"/>
+
+	<select id="findAll" resultMap="result" cacheModel="firstTitleCache">
+		select * from FIRST_TITLE
+	</select>
+
+</sqlMap>
