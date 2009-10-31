@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:account="examples.account.*" xmlns:formatters="examples.account.formatters.*" width="100%" height="100%" label="日付別">
+
+    <mx:states>
+        <mx:State name="Selected">
+            <mx:SetProperty target="{updateButton}" name="enabled" value="true"/>
+            <mx:SetProperty target="{deleteButton}" name="enabled" value="true"/>
+        </mx:State>
+    </mx:states>
+
+    <mx:transitions>
+        <mx:Transition fromState="" toState="Selected">
+            <mx:Sequence targets="{[updateButton, deleteButton]}">
+                <mx:Glow duration="700" alphaFrom="1.0" alphaTo="0.0" blurXFrom="0.0" blurXTo="100.0" blurYFrom="0.0" blurYTo="100.0" color="0x009900"/>
+            </mx:Sequence>
+        </mx:Transition>
+    </mx:transitions>
+
+    <account:DailyAccountTabModel id="model"/>
+    <account:DailyAccountTabController id="controller"/>
+
+    <formatters:DateColumnFormatter id="dateColumnFormatter"/>
+    <formatters:CurrencyColumnFormatter id="currencyColumnFormatter"/>
+
+    <mx:DataGrid id="accountGrid" width="100%" height="400" dataProvider="{model.accounts}">
+        <mx:columns>
+            <mx:DataGridColumn headerText="日付" dataField="txdate" labelFunction="{dateColumnFormatter.format}" itemRenderer="examples.account.DayColoredLabel"/>
+            <mx:DataGridColumn headerText="大項目" dataField="firstTitleName"/>
+            <mx:DataGridColumn headerText="中項目" dataField="secondTitleName"/>
+            <mx:DataGridColumn headerText="小項目" dataField="thirdTitle"/>
+            <mx:DataGridColumn headerText="金額" dataField="price" labelFunction="{currencyColumnFormatter.format}"/>
+        </mx:columns>
+    </mx:DataGrid>
+    <mx:Spacer height="10"/>
+    <mx:HBox width="100%" horizontalAlign="center">
+        <mx:Button id="insertButton" label="記録を追加"/>
+        <mx:Spacer width="10"/>
+        <mx:Button id="updateButton" label="記録を訂正" enabled="false"/>
+        <mx:Spacer width="10"/>
+        <mx:Button id="deleteButton" label="記録を削除" enabled="false"/>
+    </mx:HBox>
+</mx:VBox>

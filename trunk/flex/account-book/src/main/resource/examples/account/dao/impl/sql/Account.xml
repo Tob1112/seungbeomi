@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Account">
+
+	<!--
+	<resultMap id="result" class="examples.account.entity.Account">
+		<result property="accountId" column="ACCOUNT_ID" />
+		<result property="txdate" column="TXDATE" />
+		<result property="firstTitle" column="FIRST_TITLE" />
+		<result property="secondTitle" column="SECOND_TITLE" />
+		<result property="thirdTitle" column="THIRD_TITLE" />
+		<result property="price" column="PRICE" />
+		<result property="userId" column="USER_ID" />
+		<result property="version" column="VERSION_NO" />
+	</resultMap>
+ 	-->
+
+ 	<cacheModel id="accountCache" type="MEMORY">
+ 		<flushOnExecute statement="Account.insert"/>
+ 		<flushOnExecute statement="Account.update"/>
+ 		<flushOnExecute statement="Account.delete"/>
+ 		<property name="reference-type" value="WEAK"/>
+ 	</cacheModel>
+
+	<typeAlias alias="account" type="examples.account.entity.Account"/>
+	<typeAlias alias="groupedAccount" type="examples.account.entity.GroupedAccount"/>
+	<typeAlias alias="totalAccount" type="examples.account.entity.TotalAccount"/>
+
+	<select id="findAccountEntries" resultClass="account" parameterClass="map" cacheModel="accountCache">
+		SELECT
+			account.account_id             "accountId",
+			account.txdate                 "txdate",
+			account.first_title            "firstTitle",
+			first_title.first_title_name   "firstTitleName",
+			account.second_title           "secondTitle",
+			account.second_title           "secondTitle",
+			second_title.second_title_name "secondTitleName",
+			account.third_title            "thirdTitle",
+			account.price                  "price",
+			account.version_no             "version"
+		FROM
+			account
+			INNER JOIN
+				first_title ON account.first_title = first_title.first_title_id
+			INNER JOIN
+				second_title ON account.second_title = second_title.second_title_id
+			WHERE
+				extract(year from txdate) = #txyear#
+			AND extract(month from txdate) = #txmonth#
+		ORDER BY
+			txdate
+	</select>
+
+	<select id="findGroupedAccounts" resultClass="groupedAccount" parameterClass="map" cacheModel="accountCache">
+		SELECT
+		  account.first_title            firstTitle
+		 ,first_title.first_title_name   firstTitleName
+		 ,account.second_title           secondTitle
+		 ,second_title.second_title_name secondTitleName
+		 ,SUM(account.price)             groupPrice
+		FROM
+		  account
+		 INNER JOIN
+		  first_title ON account.first_title = first_title.first_title_id
+		 INNER JOIN
+		  second_title ON account.second_title = second_title.second_title_id
+		WHERE
+		     extract(year from txdate) = #txyear#
+		 AND extract(month from txdate) = #txmonth#
+		GROUP BY
+		  first_title
+		 ,firstTitleName
+		 ,second_title
+		 ,secondTitleName
+		ORDER BY first_title, groupPrice DESC
+	</select>
+
+	<select id="findTodayAccounts" resultClass="account" parameterClass="date" cacheModel="accountCache">
+		SELECT
+			ACCOUNT.ACCOUNT_ID             "accountId",
+		    ACCOUNT.TXDATE                 "txdate",
+		    ACCOUNT.FIRST_TITLE            "firstTitle",
+		    FIRST_TITLE.FIRST_TITLE_NAME   "firstTitleName",
+		    ACCOUNT.SECOND_TITLE           "secondTitle",
+		    SECOND_TITLE.SECOND_TITLE_NAME "secondTitleName",
+		    ACCOUNT.PRICE                  "price",
+		    ACCOUNT.VERSION_NO             "version"
+		FROM
+		    ACCOUNT
+		  INNER JOIN
+		    FIRST_TITLE ON ACCOUNT.FIRST_TITLE = FIRST_TITLE.FIRST_TITLE_ID
+		  INNER JOIN
+		    SECOND_TITLE ON ACCOUNT.SECOND_TITLE = SECOND_TITLE.SECOND_TITLE_ID
+		WHERE
+		  TXDATE = #txdate#
+	</select>
+
+	<select id="getTotalAccount" resultClass="totalAccount" parameterClass="map" cacheModel="accountCache">
+		SELECT
+		  extract(year from txdate) as txyear
+		 ,extract(month from txdate) as txmonth
+		 ,sum(COALESCE(price, 0)) as totalprice
+		FROM
+		  account
+		WHERE
+		     extract(year from txdate) = #txyear#
+		 AND extract(month from txdate) = #txmonth#
+		GROUP BY
+		  extract(year from txdate)
+		 ,extract(month from txdate)
+	</select>
+
+	<insert id="insert" parameterClass="account">
+		INSERT INTO
+			ACCOUNT
+		VALUES(
+			(SELECT MAX(ACCOUNT_ID) + 1 FROM ACCOUNT),
+			#txdate#,
+			#firstTitle#,
+			#secondTitle#,
+			#thirdTitle#,
+			#price#,
+			#userId#,
+			#version#)
+	</insert>
+
+	<update id="update" parameterClass="account">
+		UPDATE
+			ACCOUNT
+		SET
+			TXDATE = #txdate#,
+			FIRST_TITLE = #firstTitle#,
+			SECOND_TITLE = #secondTitle#,
+			THIRD_TITLE = #thirdTitle#,
+			PRICE = #price#,
+			USER_ID = #userId#,
+			VERSION_NO = #version#
+		WHERE
+			ACCOUNT_ID = #accountId#
+	</update>
+
+	<delete id="delete" parameterClass="account">
+		DELETE FROM
+			ACCOUNT
+		WHERE
+			TXDATE = #txdate#
+		AND	FIRST_TITLE = #firstTitle#
+		AND	SECOND_TITLE = #secondTitle#
+		AND	THIRD_TITLE = #thirdTitle#
+		AND	PRICE = #price#
+		AND	USER_ID = #userId#
+		AND	VERSION_NO = #version#
+	</delete>
+</sqlMap>

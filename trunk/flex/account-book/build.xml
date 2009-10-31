@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="account-book" basedir="." default="populate">
+    <property file="build.properties" />
+
+    <path id="classpath">
+        <fileset dir="${lib.dir}" includes="postgresql*.jar" />
+    </path>
+
+    <!-- populate the database -->
+    <target name="populate" >
+        <echo message="Loading sample data..." />
+        <sql   driver="${db.driver}"
+                  url="${db.url}"
+               userid="${db.username}"
+             password="${db.password}"
+                  src="${initdb.sql}">
+            <classpath refid="classpath" />
+        </sql>
+    </target>
+
+    <!-- clear the database -->
+    <target name="clear">
+        <echo message="Deleting data from database..." />
+        <sql   driver="${db.driver}"
+                  url="${db.url}"
+               userid="${db.username}"
+             password="${db.password}">
+            <classpath refid="classpath" />
+            <![CDATA[
+                DROP TABLE EMP;
+				DROP TABLE DEPT;
+				DROP TABLE ACCOUNT;
+				DROP TABLE ACCOUNT_BOOK_USER;
+				DROP TABLE FIRST_TITLE;
+				DROP TABLE SECOND_TITLE;
+				DROP TABLE THIRD_TITLE;
+				DROP SEQUENCE ACCOUNT_ID_SEQUENCE;
+            ]]>
+        </sql>
+    </target>
+</project>

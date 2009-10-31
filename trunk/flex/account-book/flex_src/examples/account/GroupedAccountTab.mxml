@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:HDividedBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:account="examples.account.*" xmlns:formatters="examples.account.formatters.*" width="100%" height="100%" label="項目別">
+
+    <mx:Script>
+        <![CDATA[
+            import mx.formatters.CurrencyFormatter;
+            import examples.account.dto.GroupedAccount;
+
+            private var curFormatter:CurrencyFormatter=new CurrencyFormatter();
+
+            private function chartLabelFunction(data:Object, field:String, index:Number, percentValue:Number):String {
+                return GroupedAccount(data).titleName + ": \n" + curFormatter.format(GroupedAccount(data).groupPrice);
+            }
+        ]]>
+    </mx:Script>
+
+    <account:GroupedAccountTabModel id="model"/>
+    <account:GroupedAccountTabController id="controller"/>
+
+    <formatters:CurrencyColumnFormatter id="curcolumnFormatter"/>
+
+    <!-- 以下、表示内容 -->
+    <mx:DataGrid dataProvider="{model.groupedAccountList}" width="40%" height="100%">
+        <mx:columns>
+            <mx:DataGridColumn headerText="大項目" dataField="firstTitleName"/>
+            <mx:DataGridColumn headerText="中項目" dataField="secondTitleName"/>
+            <mx:DataGridColumn headerText="合計額" dataField="groupPrice" labelFunction="{curcolumnFormatter.format}"/>
+        </mx:columns>
+    </mx:DataGrid>
+    <mx:VBox width="60%" height="100%" backgroundColor="0xDDDDDD">
+        <mx:PieChart id="chart" width="100%" height="100%" showDataTips="true" dataProvider="{model.groupedAccountList}">
+            <mx:series>
+                <mx:PieSeries explodeRadius="0.03" nameField="titleName" labelFunction="chartLabelFunction" field="groupPrice" labelPosition="inside"/>
+            </mx:series>
+        </mx:PieChart>
+        <mx:Legend dataProvider="{chart}"/>
+    </mx:VBox>
+</mx:HDividedBox>
+

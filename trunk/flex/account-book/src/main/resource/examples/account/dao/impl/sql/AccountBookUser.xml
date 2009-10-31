@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="AccountBookUser">
+
+	<resultMap id="result" class="examples.account.entity.AccountBookUser">
+		<result property="userId"   column="USER_ID" />
+		<result property="password" column="PASSWORD" />
+		<result property="userName" column="USER_NAME" />
+		<result property="version"  column="VERSION_NO" />
+	</resultMap>
+
+	<typeAlias alias="accountBookUser" type="examples.account.entity.AccountBookUser"/>
+
+	<select id="findAll" resultMap="result">
+		select * from ACCOUNT_BOOK_USER
+	</select>
+
+	<select id="getCount" resultClass="integer">
+		select
+			count(*)
+		from
+			ACCOUNT_BOOK_USER
+	</select>
+
+</sqlMap>

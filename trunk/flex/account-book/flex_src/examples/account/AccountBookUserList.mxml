@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:examples="examples.account.*" title="家計簿ユーザリスト" width="540" height="450">
+    <!--
+         <examples:AccountBookUserListModel id="model" />
+    -->
+    <examples:AccountBookUserListController id="controller"/>
+
+    <mx:RemoteObject id="accountBookUserService" destination="accountBookUserService"/>
+
+    <mx:Consumer id="consumer"/>
+
+    <mx:VBox id="vbox" width="100%" height="100%">
+        <mx:Spacer height="10"/>
+        <mx:HBox width="100%">
+            <mx:Text id="message"/>
+            <mx:Text id="notify"/>
+        </mx:HBox>
+        <mx:Spacer height="10"/>
+        <mx:DataGrid id="accountBookUserGrid" width="100%" height="271">
+            <mx:columns>
+                <mx:DataGridColumn headerText="ID" dataField="userId"/>
+                <mx:DataGridColumn headerText="NAME" dataField="userName"/>
+            </mx:columns>
+        </mx:DataGrid>
+        <mx:Button id="startButton" label="サーバプッシュ開始"/>
+        <mx:Button id="endButton" label="サーバプッシュ終了"/>
+    </mx:VBox>
+</mx:Panel>
