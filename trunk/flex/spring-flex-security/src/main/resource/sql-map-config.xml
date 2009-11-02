@@ -4,6 +4,6 @@
 
 <sqlMapConfig>
 
-        <sqlMap resource="seungbeomi/user/ibatis/dao/sql/User.xml"/>
+        <sqlMap resource="seungbeomi/user/ibatis/dao/User.xml"/>
 
 </sqlMapConfig>
