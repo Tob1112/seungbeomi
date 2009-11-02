@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="2.4"
+         xmlns="http://java.sun.com/xml/ns/j2ee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+    <display-name>spring-sample</display-name>
+
+	<!-- ============================================= -->
+	<!-- CONTEXT PARAMETER DEFINITION				   -->
+	<!-- ============================================= -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            /WEB-INF/application-context.xml,
+            /WEB-INF/data-access-context.xml,
+            /WEB-INF/security-context.xml
+        </param-value>
+    </context-param>
+
+	<!-- ============================================= -->
+	<!-- LISTENER DEFINITION						   -->
+	<!-- ============================================= -->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <!-- Http Flex Session attribute and binding listener support -->
+    <!--<listener>
+        <listener-class>
+        	org.springframework.security.ui.session.HttpSessionEventPublisher
+        </listener-class>
+    </listener>-->
+    <listener>
+		<listener-class>flex.messaging.HttpFlexSession</listener-class>
+	</listener>
+
+
+	<!-- ============================================= -->
+	<!-- FILTER DEFINITION							   -->
+	<!-- ============================================= -->
+    <filter>
+        <filter-name>encoding-filter</filter-name>
+        <filter-class>
+            org.springframework.web.filter.CharacterEncodingFilter
+        </filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+    </filter>
+
+    <filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+
+    <filter-mapping>
+        <filter-name>encoding-filter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<!-- ============================================= -->
+	<!-- SERVLET DEFINITION							   -->
+	<!-- ============================================= -->
+	<!-- SPRING MVC SERVLET -->
+    <!--<servlet>
+        <servlet-name>spring-mvc</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value></param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+    </servlet>-->
+
+	<!-- SPRING FLEX SERVLET -->
+	 <servlet>
+        <servlet-name>spring-flex</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>
+            	/WEB-INF/flex-servlet-context.xml
+            </param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <!--<servlet-mapping>
+        <servlet-name>spring-mvc</servlet-name>
+        <url-pattern>*.html</url-pattern>
+    </servlet-mapping>-->
+
+    <servlet-mapping>
+        <servlet-name>spring-flex</servlet-name>
+        <url-pattern>/spring/*</url-pattern>
+    </servlet-mapping>
+
+	<!-- WELCOME PAGE -->
+    <welcome-file-list>
+        <welcome-file>main.html</welcome-file>
+    </welcome-file-list>
+
+    <!-- ERROR PAGE -->
+    <error-page>
+    	<error-code>403</error-code>
+    	<location>/error.html</location>
+    </error-page>
+
+</web-app>
