@@ -22,7 +22,7 @@
     <!-- ============================================================= -->
     <bean id="sqlMapClient"
             class="org.springframework.orm.ibatis.SqlMapClientFactoryBean"
-            p:configLocation="classpath:sql-map-config.xml"
+            p:configLocation="classpath:sqlMapConfig.xml"
             p:dataSource-ref="dataSource"/>
 
 	<bean id="userDao"
