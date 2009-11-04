@@ -21,12 +21,12 @@ public class UserAspect {
 		StopWatch stopWatch = new StopWatch();
 
 		if(logger.isInfoEnabled()) {
-			logger.debug(" # start : " + methodName + "()");
+			logger.debug(" + start : " + methodName + "()");
 
 			Object[] args = proceedingJointPoint.getArgs();
 			if((args != null) && (args.length > 0)) {
 				for(int i = 0; i < args.length; i++) {
-					logger.debug(" # Argument[" + i + "] : " + args[i]);
+					logger.debug(" + Argument[" + i + "] : " + args[i]);
 				}
 			}
 		}
@@ -39,7 +39,7 @@ public class UserAspect {
 			stopWatch.stop();
 
 			if(logger.isDebugEnabled()) {
-				logger.debug(" # return value : " + returnValue);
+				logger.debug(" + return value : " + returnValue);
 			}
 
 			return returnValue;
@@ -47,11 +47,12 @@ public class UserAspect {
 		} catch (Throwable e) {
 			if(logger.isErrorEnabled()) {
 				logger.error("error accured while processing!!");
+				e.printStackTrace();
 			}
 			throw e;
 		} finally {
 			if(logger.isDebugEnabled()) {
-				logger.debug(" # finish : " + methodName + "()");
+				logger.debug(" + finish : " + methodName + "()");
 				logger.debug("time : " + stopWatch.getTotalTimeSeconds() + " seconds");
 			}
 		}
