@@ -1,7 +1,7 @@
-drop table userinfo;
-drop table groups;
-drop table group_members;
-drop table group_authorities;
+--drop table userinfo;
+--drop table groups;
+--drop table group_members;
+--drop table group_authorities;
 
 create table userinfo(
   user_id varchar(20) primary key,
