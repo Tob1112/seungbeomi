@@ -1,17 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml"
-	xmlns:comp="sample.flex.*"
-	 width="400" height="300" xmlns:dto="sample.flex.dto.*">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:comp="sample.flex.*" width="400" height="300" xmlns:dto="sample.flex.dto.*" verticalScrollPolicy="off" horizontalScrollPolicy="off">
 
-	<comp:LoginCanvasController id="loginCanvasController" />
+    <mx:Style>
+        .error {
+            color : red;
+            font-weight : bold;
+        }
+    </mx:Style>
 
-	<mx:Form x="40" y="27" width="300" height="95">
-			<mx:FormItem label="userId">
-				<mx:TextInput id="txtUserId" enter="loginCanvasController.loginHandler()"/>
-			</mx:FormItem>
-			<mx:FormItem label="password">
-				<mx:TextInput id="txtPassword" displayAsPassword="true"	enter="loginCanvasController.loginHandler()"/>
-			</mx:FormItem>
-		</mx:Form>
-		<mx:Button id="btnLogin" label="Login" width="164" textAlign="center" x="108" y="147"/>
+    <comp:LoginCanvasController id="loginCanvasController"/>
+
+    <mx:Array id="validators">
+    	<mx:Validator enabled="false" id="userIdValidator" source="{txtUserId}" property="text" requiredFieldError="userId is required"/>
+    	<mx:Validator enabled="false" id="passwordValidator" source="{txtPassword}" property="text" requiredFieldError="password is required"/>
+    </mx:Array>
+
+    <mx:Text id="errorMessage" visible="false" styleName="error"/>
+
+    <mx:Form x="50" y="44" width="300" height="95">
+        <mx:FormItem label="userId">
+            <mx:TextInput id="txtUserId"/>
+        </mx:FormItem>
+        <mx:FormItem label="password">
+            <mx:TextInput id="txtPassword" displayAsPassword="true"/>
+        </mx:FormItem>
+    </mx:Form>
+    <mx:Button id="btnLogin" label="Login" width="164" textAlign="center" x="118" y="147"/>
 </mx:Canvas>

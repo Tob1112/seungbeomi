@@ -4,23 +4,21 @@
 	layout="absolute"
 	xmlns:comp="sample.flex.*"
 	xmlns:test="sample.flex.module.*">
-	<mx:Script>
-		<![CDATA[
-			[Bindable]
-			public var moduleUrl:String = null;
-		]]>
-	</mx:Script>
 
 	<comp:UserModel id="userModel" />
 
-	<mx:Panel x="50" y="50" title="spring-flex login">
+	<mx:Panel id="mainPanel" x="50" y="50" title="spring-flex login">
 		<mx:ViewStack id="viewStack" >
 			<comp:LoginCanvas id="loginCanvas"/>
 		 	<comp:ListCanvas id="listCanvas"/>
-			<!--<comp:ModuleContent id="content">
-				<mx:ModuleLoader id="mLoader" url="{moduleUrl}"/>
-			</comp:ModuleContent>-->
 		</mx:ViewStack>
 	</mx:Panel>
+
+	<mx:Move id="faultEffect"
+		target="{mainPanel}"
+		repeatCount="4"
+		duration="50"
+		xFrom="{mainPanel.x - 30}"
+		xTo="{mainPanel.x}"/>
 
 </mx:Application>
