@@ -12,15 +12,13 @@
         http://www.springframework.org/schema/flex http://www.springframework.org/schema/flex/spring-flex-1.0.xsd
         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
 
+    <context:component-scan base-package="seungbeomi.user.flex.service" />
+    <context:component-scan base-package="seungbeomi.user.ibatis.dao" />
+
+	<!-- Enable @AspectJ support -->
     <aop:aspectj-autoproxy />
 
     <bean class="seungbeomi.user.aspect.UserAspect" />
-
-    <!-- Imports the configurations of the different infrastructure systems of the application -->
-    <!--<import resource="data-access-context.xml" />-->
-    <!--<import resource="security-context.xml" />-->
-    <!--<import resource="webmvc-context.xml" />-->
-
-
+    <bean class="seungbeomi.user.aspect.UserSecurityAspect"/>
 
 </beans>

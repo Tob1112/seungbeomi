@@ -11,10 +11,10 @@
     <bean id="dataSource"
             class="org.apache.commons.dbcp.BasicDataSource"
             destroy-method="close"
-            p:driverClassName="${db.driver}"
-            p:url="${db.url}"
-            p:username="${db.username}"
-            p:password="${db.password}"
+            p:driverClassName="${jdbc.driver}"
+            p:url="${jdbc.url}"
+            p:username="${jdbc.username}"
+            p:password="${jdbc.password}"
             p:defaultAutoCommit="true" />
 
     <!-- ============================================================= -->
@@ -24,9 +24,5 @@
             class="org.springframework.orm.ibatis.SqlMapClientFactoryBean"
             p:configLocation="classpath:sqlMapConfig.xml"
             p:dataSource-ref="dataSource"/>
-
-	<bean id="userDao"
-			class="seungbeomi.user.ibatis.dao.UserDaoImpl"
-			p:sqlMapClient-ref="sqlMapClient" />
 
 </beans>
