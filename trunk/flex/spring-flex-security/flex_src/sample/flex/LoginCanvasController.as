@@ -2,13 +2,12 @@ package sample.flex
 {
 	import flash.events.MouseEvent;
 
-	import mx.controls.Alert;
 	import mx.core.IMXMLObject;
 	import mx.events.FlexEvent;
-	import mx.modules.ModuleLoader;
 	import mx.rpc.events.FaultEvent;
 	import mx.rpc.events.ResultEvent;
 	import mx.rpc.remoting.RemoteObject;
+	import mx.validators.Validator;
 
 	import sample.flex.dto.User;
 
@@ -24,17 +23,29 @@ package sample.flex
 		public function initialized(document:Object, id:String):void
 		{
 			this.document = document as LoginCanvas;
-			this.document.addEventListener(FlexEvent.CREATION_COMPLETE , createHandler);
+			this.document.addEventListener(FlexEvent.CREATION_COMPLETE, createHandler);
 		}
 
 		public function createHandler(event:FlexEvent):void
 		{
 			this.document.btnLogin.addEventListener(MouseEvent.CLICK, btnLoginEventHandler);
+			this.document.txtUserId.addEventListener(FlexEvent.ENTER, btnLoginEventHandler);
+			this.document.txtPassword.addEventListener(FlexEvent.ENTER, btnLoginEventHandler);
 		}
 
-		public function btnLoginEventHandler(event:MouseEvent):void
+		public function btnLoginEventHandler(event:*):void
 		{
+			document.validators.forEach(function(item:Object, index:int, array:Array):void {
+				item.enabled = true;
+			});
+
 			loginHandler();
+
+			var validatorResult:Array = Validator.validateAll(document.validators);
+			if (validatorResult.length > 0) {
+				return;
+			}
+
 		}
 
 		//==================================
@@ -50,28 +61,18 @@ package sample.flex
 		}
 
 		private function loginResultHandler(event:ResultEvent):void {
+			document.validators.forEach(function(item:Object, index:int, array:Array):void {
+				item.enabled = false;
+			});
 
 			userModel = new UserModel();
 			document.parentApplication.userModel.user = event.result as User;
 
-//			var mLoader:ModuleLoader = new ModuleLoader();
-//			if (document.parentApplication.userModel.isAdmin() == true) {
-//				trace("admin");
-//				mLoader.url = "./sample/flex/module/AdminModule.swf";
-//			} else {
-//				trace("user");
-//				mLoader.url = "./sample/flex/module/UserModule.swf";
-//			}
-
-			//create session
-			//createSession(document.parentApplication.userModel.user.userId);
-
-			//viewstack
-//			document.parentApplication.moduleUrl = mLoader.url;
-//			mLoader.loadModule();
 			document.parentApplication.viewStack.selectedIndex = 1;
 			document.parentApplication.loginCanvas.txtUserId.text = "";
 			document.parentApplication.loginCanvas.txtPassword.text = "";
+			document.errorMessage.visible = false;
+
 		}
 
 		//==================================
@@ -93,7 +94,11 @@ package sample.flex
 			//Alert.show("success!!");
 		}
 		private function serviceFaultHandler(event:FaultEvent):void {
-			Alert.show(event.fault.toString());
+			document.errorMessage.visible = true;
+			document.errorMessage.text = event.fault.faultString as String;
+
+			document.parentDocument.faultEffect.end();
+			document.parentDocument.faultEffect.play();
 		}
 	}
 }

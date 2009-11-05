@@ -75,6 +75,7 @@ package sample.flex
 
 			document.dg.dataProvider = null;
 			document.parentApplication.viewStack.selectedIndex = 0;
+
 		}
 
 		//==================================
