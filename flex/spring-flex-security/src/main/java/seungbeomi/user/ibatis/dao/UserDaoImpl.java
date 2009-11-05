@@ -2,6 +2,7 @@ package seungbeomi.user.ibatis.dao;
 
 import java.util.Collection;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 import org.springframework.stereotype.Repository;
@@ -10,12 +11,21 @@ import org.springframework.transaction.annotation.Transactional;
 
 import seungbeomi.user.model.User;
 
-@Repository
+import com.ibatis.sqlmap.client.SqlMapClient;
+
+@Repository("userDao")
 @Transactional(readOnly = true)
-public class UserDaoImpl extends SqlMapClientDaoSupport implements UserDao{
+public class UserDaoImpl extends SqlMapClientDaoSupport implements UserDao {
+
+	@Autowired
+	public UserDaoImpl(SqlMapClient sqlMapClient) {
+		super();
+		this.setSqlMapClient(sqlMapClient);
+	}
 
 	public User findUserByUserId(String userId) {
-		return (User) getSqlMapClientTemplate().queryForObject("findUserByUserId", userId);
+		return (User) getSqlMapClientTemplate().queryForObject(
+				"findUserByUserId", userId);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -24,7 +34,8 @@ public class UserDaoImpl extends SqlMapClientDaoSupport implements UserDao{
 	}
 
 	@SuppressWarnings("unchecked")
-	public Collection<User> findUsersByName(String name) throws DataAccessException {
+	public Collection<User> findUsersByName(String name)
+			throws DataAccessException {
 		return getSqlMapClientTemplate().queryForList("findUsersByName", name);
 	}
 
@@ -38,17 +49,18 @@ public class UserDaoImpl extends SqlMapClientDaoSupport implements UserDao{
 		getSqlMapClientTemplate().update("updateUser", user);
 	}
 
-	//@Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
+	// @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
 	public void delete(String userId) {
 		getSqlMapClientTemplate().delete("deleteUser", userId);
 	}
 
-	public User findUserByUserIdAndPassword(String userId, String password){
+	public User findUserByUserIdAndPassword(String userId, String password) {
 		User user = new User();
 		user.setUserId(userId);
 		user.setPassword(password);
 
-		return (User) getSqlMapClientTemplate().queryForObject("findByUserIdAndPassword", user);
+		return (User) getSqlMapClientTemplate().queryForObject(
+				"findByUserIdAndPassword", user);
 	}
 
 }
