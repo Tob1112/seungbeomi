@@ -24,7 +24,7 @@ import flex.messaging.FlexSession;
 @RemotingDestination
 public class UserServiceImpl implements UserService {
 
-	Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
+	Logger logger = LoggerFactory.getLogger(getClass());
 
 
 	private UserDao userDao;
@@ -35,32 +35,32 @@ public class UserServiceImpl implements UserService {
 	}
 
 	// login
-	public User authenticateUser(String userId, String password) {
-		String id;
+	public User authenticateUser(String username, String password) {
+		String name;
 		Authentication authentication;
-    	ApplicationContext appContext;
+    	ApplicationContext context;
     	AuthenticationManager manager;
-    	UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userId,password);
-    	int numAuthorities;
+    	UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username,password);
+    	int authoritiesCount;
     	GrantedAuthority[] authorities;
     	String[] authorizedGroups;
 
-    	appContext = WebApplicationContextUtils.getWebApplicationContext(FlexContext.getServletConfig().getServletContext());
-        manager = (AuthenticationManager)appContext.getBean("_authenticationManager");
+    	context = WebApplicationContextUtils.getWebApplicationContext(FlexContext.getServletConfig().getServletContext());
+        manager = (AuthenticationManager) context.getBean("_authenticationManager");
         authentication = manager.authenticate(token);
         SecurityContextHolder.getContext().setAuthentication(authentication);
         authorities = SecurityContextHolder.getContext().getAuthentication().getAuthorities();
-        numAuthorities = authorities.length;
+        authoritiesCount = authorities.length;
 
-        authorizedGroups = new String[numAuthorities];
+        authorizedGroups = new String[authoritiesCount];
 
-        id = SecurityContextHolder.getContext().getAuthentication().getName();
-        for (int counter = 0; counter < numAuthorities - 1; counter++) {
+        name = SecurityContextHolder.getContext().getAuthentication().getName();
+        for (int counter = 0; counter < authoritiesCount; counter++) {
         	authorizedGroups[counter] = authorities[counter].getAuthority();
-        	logger.debug(" # Authenticate / user authority : id = " + id + ", authorizedGroups[" + counter + "] = " + authorizedGroups[counter]);
+        	logger.debug(" + Authenticate / user authority : name = " + name + ", authorizedGroups[" + counter + "] = " + authorizedGroups[counter]);
         }
 
-        return new User(authorizedGroups, id);
+        return new User(authorizedGroups, name);
 	}
 
 	public Collection<User> findUsers() {
@@ -77,13 +77,13 @@ public class UserServiceImpl implements UserService {
 
 	// Session
 	public void createSession(String userId) {
-		logger.debug(" # create session : userId = " + userId);
+		logger.debug(" + create session : userId = " + userId);
 
 		if( getSession(userId) == null) {
 			FlexSession session = FlexContext.getFlexSession();
 			session.setAttribute("userId", userId);
 		} else {
-			logger.debug(" # exist session!!");
+			logger.debug(" + exist session!!");
 		}
 	}
 
@@ -93,7 +93,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	public void removeSession() {
-		logger.debug(" # remove session");
+		logger.debug(" + remove session");
 		FlexSession session = FlexContext.getFlexSession();
 		session.invalidate();
 
