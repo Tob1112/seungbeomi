@@ -1,7 +1,7 @@
---drop table userinfo;
---drop table groups;
---drop table group_members;
---drop table group_authorities;
+drop table userinfo;
+drop table groups;
+drop table group_members;
+drop table group_authorities;
 
 create table userinfo(
   user_id varchar(20) primary key,
@@ -51,9 +51,9 @@ insert into group_members values('gid_admin','son');
 insert into group_members values('gid_user','kim');
 insert into group_members values('gid_user','lee');
 
-insert into group_authorities values('gid_admin','ROLE_ADMIN');
-insert into group_authorities values('gid_admin','ROLE_USER');
-insert into group_authorities values('gid_user','ROLE_USER');
+insert into group_authorities values('gid_admin','ADMIN');
+insert into group_authorities values('gid_admin','USER');
+insert into group_authorities values('gid_user','USER');
 
 
 --authorities-by-username-query="SELECT userid, authority FROM userinfo WHERE userId = ?"
