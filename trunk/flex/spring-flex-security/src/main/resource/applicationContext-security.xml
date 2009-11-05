@@ -10,16 +10,10 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<security:global-method-security>
-		<security:protect-pointcut
-			expression="execution(public * seungbeomi.user..*.*(..))"
-			access="ROLE_ADMIN, ROLE_USER"/>
+		<security:protect-pointcut expression="execution(public * seungbeomi.user..*.*(..))" access="ROLE_ADMIN, ROLE_USER, ROLE_ANONYMOUS"/>
 		<!--
-		<security:protect-pointcut
-			expression="execution(public * seungbeomi.user..*.delete*(..))"
-			access="ROLE_ADMIN"/>
-		<security:protect-pointcut
-			expression="execution(public * seungbeomi.user..*.get*(..))"
-			access="ROLE_USER"/>
+		<security:protect-pointcut expression="execution(public * seungbeomi.user..*.delete*(..))" access="ROLE_ADMIN"/>
+		<security:protect-pointcut expression="execution(public * seungbeomi.user..*.get*(..))" access="ROLE_USER"/>
 		-->
 	</security:global-method-security>
 
@@ -28,6 +22,7 @@
 		<security:intercept-url pattern="index.html" filters="none"/>
 		<security:intercept-url pattern="*.swf" filters="none"/>
 		<security:intercept-url pattern="*.html" access="ROLE_USER"/>
+		<!--<security:remember-me user-service-ref="userService"/>-->
 	</security:http>
 
 	<bean id="preAuthenticatedEntryPoint"
@@ -38,6 +33,7 @@
 
 	<security:authentication-provider>
 		<security:jdbc-user-service
+			role-prefix="ROLE_"
         	data-source-ref="dataSource"
         	users-by-username-query="SELECT user_id, password, true as enabled FROM userinfo WHERE user_id 	= ?"
         	authorities-by-username-query="SELECT u.user_id, ga.authority FROM userinfo u, group_authorities ga WHERE u.group_id = ga.group_id AND u.user_id = ?"
