@@ -10,7 +10,7 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<security:global-method-security>
-		<security:protect-pointcut expression="execution(public * seungbeomi.user..*.*(..))" access="ROLE_ADMIN, ROLE_USER, ROLE_ANONYMOUS"/>
+		<security:protect-pointcut expression="execution(public * seungbeomi.user..*.*(..))" access="ROLE_ADMIN, ROLE_ANONYMOUS"/>
 		<!--
 		<security:protect-pointcut expression="execution(public * seungbeomi.user..*.delete*(..))" access="ROLE_ADMIN"/>
 		<security:protect-pointcut expression="execution(public * seungbeomi.user..*.get*(..))" access="ROLE_USER"/>
