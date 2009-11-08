@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="2.4"
+         xmlns="http://java.sun.com/xml/ns/j2ee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+    <display-name>FLORA APPLICATION</display-name>
+
+    <!-- ============================================= -->
+	<!-- SPRING CONTEXT PARAMETER		   			   -->
+	<!-- ============================================= -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+			classpath:applicationContext.xml
+			classpath:applicationContext-persist.xml
+			classpath:applicationContext-security.xml
+		</param-value>
+	</context-param>
+
+	<!-- ============================================= -->
+	<!-- LISTENER						   			   -->
+	<!-- ============================================= -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+    <!-- ============================================= -->
+	<!-- SPRING FLEX SERVLET			   			   -->
+	<!-- ============================================= -->
+	 <servlet>
+        <servlet-name>flora-servlet</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>
+            	classpath:applicationContext-flex.xml
+            </param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>flora-servlet</servlet-name>
+        <url-pattern>/spring/*</url-pattern>
+    </servlet-mapping>
+
+	<welcome-file-list>
+		<welcome-file>flora.html</welcome-file>
+	</welcome-file-list>
+</web-app>

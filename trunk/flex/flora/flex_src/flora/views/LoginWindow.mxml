@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="300" height="160" horizontalScrollPolicy="off" verticalScrollPolicy="off" backgroundColor="#FFFFFF">
+
+	<mx:Style source="asset/css/main.css"/>
+
+	<mx:Script>
+		<![CDATA[
+			import flora.business.FloraController;
+			import mx.controls.Alert;
+			import com.adobe.cairngorm.control.CairngormEventDispatcher;
+			import flora.vo.User;
+			import flora.events.LoginEvent;
+
+			private function login():void {
+				trace("clickBtnLogin");
+				var user:User = new User();
+				user.userId = txtUserId.text;
+				user.password = txtPassword.text;
+				var event:LoginEvent = new LoginEvent(LoginEvent.EVENT_LOGIN, user);
+				event.dispatch();
+			}
+		]]>
+	</mx:Script>
+
+	<mx:Form textAlign="left">
+		<mx:FormItem label="User Id : ">
+			<mx:TextInput id="txtUserId" enter="login()" width="175"/>
+		</mx:FormItem>
+		<mx:FormItem label="password : ">
+			<mx:TextInput id="txtPassword" displayAsPassword="true" enter="login()" width="175"/>
+		</mx:FormItem>
+	</mx:Form>
+	<mx:Button id="btnLogin" label="Login" click="login()" y="90" width="105" left="15"/>
+	<mx:Text text="Remember me" x="182" y="92"/>
+	<mx:CheckBox x="160" y="92"/>
+
+	<mx:Move id="loginFaultEffect" target="{this}" repeatCount="4" duration="50" xFrom="{this.x - 30}" xTo="{this.x}"/>
+
+</mx:Canvas>

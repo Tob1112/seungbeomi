@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" verticalGap="0">
+
+	<mx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			import mx.managers.PopUpManager;
+
+			private function initLogin():void {
+				var loginWindow:LoginWindow = new LoginWindow();
+				btnLogin.popUp = loginWindow;
+			}
+		]]>
+	</mx:Script>
+
+	<mx:Spacer height="10"/>
+
+	<mx:HBox width="800">
+		<mx:Spacer width="87%"/>
+		<mx:PopUpButton id="btnLogin" label="Login" creationComplete="initLogin()" toggle="true" width="80"/>
+	</mx:HBox>
+
+	<mx:Spacer height="10"/>
+
+	<mx:Canvas width="800" height="200" backgroundColor="#3BB210" top="40">
+		<mx:Image source="asset/images/logo.png" width="169" height="82" left="20" top="20"/>
+		<mx:Button label="Register" fontSize="20" width="133" height="44" right="20" bottom="30"/>
+		<mx:Text text="Flora" fontSize="40" x="197" y="20" color="#FFFFFF" fontFamily="Courier New"/>
+		<mx:Text text="Flex - Cairngorm - BlazeDS - Spring Security - Spring - iBatis" color="#FFFFFF" x="197" y="81" fontSize="14" fontFamily="Courier New"/>
+	</mx:Canvas>
+	<mx:Canvas width="800" height="100" backgroundColor="#28292E">
+		<mx:Text text="test"/>
+	</mx:Canvas>
+</mx:VBox>
