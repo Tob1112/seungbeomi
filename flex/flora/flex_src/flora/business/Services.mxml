@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rds:ServiceLocator xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:rds="com.adobe.cairngorm.business.*">
+
+	<mx:RemoteObject
+		id="securityRO"
+		destination="securityService">
+	</mx:RemoteObject>
+
+</rds:ServiceLocator>
