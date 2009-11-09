@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml"
+	color="#000000">
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+
+			[Bindable]
+			public var purchasedPhotos:ArrayCollection;
+		]]>
+	</mx:Script>
+	
+	<mx:states>
+		<mx:State name="expandedCart">
+			<mx:SetProperty target="{cart}" name="height" value="472"/>
+			<mx:AddChild relativeTo="{cart}" position="lastChild">
+				<mx:DataGrid x="10" y="60" height="340"
+					dataProvider="{purchasedPhotos}">
+					<mx:columns>
+						<mx:DataGridColumn headerText="Picture" 
+							dataField="filename"
+							width="60"/>
+						<mx:DataGridColumn headerText="Information"
+							width="100">
+							<mx:itemRenderer>
+								<mx:Component>
+									<mx:VBox>
+										<mx:Label text="{data.photographer}"/>
+										<mx:Label text="{data.category}"/>
+									</mx:VBox>
+								</mx:Component>
+							</mx:itemRenderer>
+						</mx:DataGridColumn>
+					</mx:columns>
+				</mx:DataGrid>
+			</mx:AddChild>
+			<mx:AddChild relativeTo="{cart}" position="lastChild">
+				<mx:Button x="10" y="410" label="delete"/>
+			</mx:AddChild>
+			<mx:AddChild relativeTo="{cart}" position="lastChild">
+				<mx:Button x="131" y="410" label="check out"/>
+			</mx:AddChild>
+			<mx:SetProperty target="{expandCollapse}" name="label" value="collapse details"/>
+			<mx:SetEventHandler target="{expandCollapse}" name="click" handler="currentState=''"/>
+		</mx:State>
+	</mx:states>
+	
+	<mx:transitions>
+		<mx:Transition id="expandingCart"
+			fromState=""
+			toState="expandedCart">
+			<mx:Resize target="{cart}"/>
+		</mx:Transition>
+		<mx:Transition id="collapseCart"
+			fromState="expandedCart"
+			toState="">
+			<mx:Resize target="{cart}" 
+				duration="1000"/>
+		</mx:Transition>
+	</mx:transitions>
+	
+	<mx:Image id="woman" 
+		source="assets/fstop/woman.jpg"
+		y="100"/>
+		
+	<mx:Panel id="cart"
+		layout="absolute"
+		width="225" height="90"
+		title="Shopping Cart"
+		borderAlpha="1"
+		headerColors="[#63769E, #B5D2FA]"
+		borderThicknessBottom="0"
+		borderThicknessLeft="0"
+		borderThicknessRight="0"
+		paddingBottom="10">
+		<mx:Label text="You have {purchasedPhotos.length} item(s) in your cart."
+			x="10" y="8" />	
+		<mx:Button id="expandCollapse"
+			label="expand details"
+			x="10" y="30"  
+			click="currentState='expandedCart'"/>
+	</mx:Panel>
+	
+</mx:Canvas>

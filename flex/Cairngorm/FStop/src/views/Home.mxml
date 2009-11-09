@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml"
+	verticalGap="8">
+	
+	<mx:HBox>
+		<mx:Image source="assets/fstop/city.jpg"/>
+		<mx:VBox>
+			<mx:Text
+				fontSize="13"
+				width="250"
+				color="#F8E5BB"
+				text="At fStop, you can view and purchase unique prints by amateur and professional photographers." />
+			<mx:Text
+				fontSize="13"
+				width="250"
+				color="#F8E5BB"
+				text="Shoppers, you can browse our Gallery to find the perfect evocative images for every room in your office or home." />
+			<mx:Text
+				fontSize="13"
+				width="250"
+				color="#F8E5BB"
+				text="If you are a photographer, go to the Contribute section to upload your files and sell your prints." />
+		</mx:VBox>
+	</mx:HBox>
+	
+	<mx:Image source="assets/fstop/beach.jpg"/>
+	
+</mx:VBox>

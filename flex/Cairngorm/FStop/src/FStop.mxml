@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application layout="absolute"
+				backgroundColor="#000000"
+				creationComplete="initApp()"
+				xmlns:v="views.*"
+				xmlns:mx="http://www.adobe.com/2006/mxml"	>
+
+	<mx:Style source="assets/fstop.css" />
+
+	<mx:Script>
+		<![CDATA[
+			import model.ModelLocator;
+			import business.events.AddPhotoToCartEvent;
+			import business.events.LoadPhotosEvent;
+			import events.PhotoEvent;
+			import valueObjects.Photo;
+			import mx.collections.ArrayCollection;
+			import mx.rpc.events.ResultEvent;
+
+			[Bindable]
+			private var __model:ModelLocator=ModelLocator.getInstance();
+
+			private function photoSelectedHandler(event:PhotoEvent):void
+			{
+				var addEvent:AddPhotoToCartEvent=new AddPhotoToCartEvent(event.selectedPhoto);
+				addEvent.dispatch();
+			}
+
+			private function initApp():void
+			{
+				var event:LoadPhotosEvent=new LoadPhotosEvent();
+				event.dispatch();
+			}
+		]]>
+	</mx:Script>
+
+	<rds:Services xmlns:rds="business.*"/>
+
+	<router:FSController xmlns:router="business.*"/>
+
+	<mx:LinkBar x="101" y="5"
+		dataProvider="{fStopContent}"
+		color="#FFFFFF"
+		rollOverColor="#B5D2FA"/>
+	<mx:Image x="101" y="30"
+		source="assets/fstop/header.jpg"/>
+
+	<v:ShoppingCart x="626" y="118"
+		purchasedPhotos="{__model.purchasedPhotos}"/>
+	<mx:ViewStack x="101" y="118" id="fStopContent" resizeToContent="true">
+
+		<v:Home id="home" label="Home"/>
+		<v:Contribute id="contribute" label="Contribute"/>
+		<v:Gallery id="gallery" label="Gallery"
+			photoData="{__model.photoData}"
+			photoSelected="photoSelectedHandler(event)"/>
+
+	</mx:ViewStack>
+
+</mx:Application>
