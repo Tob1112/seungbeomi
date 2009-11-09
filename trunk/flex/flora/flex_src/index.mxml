@@ -24,5 +24,4 @@
 		</mx:ViewStack>
 	</mx:Canvas>
 
-	<mx:Move id="loginFaultEffect" target="{mainPanel}" repeatCount="4" duration="50" xFrom="{mainPanel.x - 30}" xTo="{mainPanel.x}"/>
 </mx:Application>

@@ -22,9 +22,7 @@ package flora.business.delegates {
         public function login(user:User):void {
         	trace("login - userId:" + user.userId + ", pw:" + user.password);
         	var token:AsyncToken = _service.authenticateUser(user.userId, user.password);
-        	//var token:AsyncToken = _service.test();
         	token.addResponder(_responder);
         }
-
     }
 }

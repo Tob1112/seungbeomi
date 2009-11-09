@@ -31,4 +31,5 @@
 	<mx:Canvas width="800" height="100" backgroundColor="#28292E">
 		<mx:Text text="test"/>
 	</mx:Canvas>
+
 </mx:VBox>
