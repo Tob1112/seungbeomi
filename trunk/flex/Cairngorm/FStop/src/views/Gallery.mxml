@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" 
+	width="515"
+	verticalGap="8"
+	xmlns:v="views.*">
+	
+	<mx:Metadata>
+		[Event(name="photoSelected",type="events.PhotoEvent")]
+	</mx:Metadata>
+
+	<mx:Script>
+		<![CDATA[
+				
+			import events.PhotoEvent;
+			import mx.collections.ArrayCollection;
+			import valueObjects.Photo;
+
+			[Bindable]
+			public var photoData:ArrayCollection;
+			[Bindable]
+			private var selectedPhoto:Photo;
+			
+			private function displayDetails(event:Event):void
+			{
+				currentState='details';
+				selectedPhoto=event.target.selectedItem as Photo;
+			}
+			private function purchasePhoto():void
+			{
+				var eventObj:PhotoEvent=new PhotoEvent("photoSelected", selectedPhoto);
+				dispatchEvent(eventObj);
+			}
+		]]>
+	</mx:Script>
+
+	<mx:states>
+		<mx:State name="details">
+			<mx:RemoveChild target="{thumbnails}"/>
+			<mx:AddChild position="lastChild">
+				<mx:Canvas>
+					<mx:Image id="photoInState" source="{'assets/gallery/'+selectedPhoto.filename+'.jpg'}"
+						x="55" y="15"
+						width="400" />
+					<mx:Text  id="photographerText" text="{selectedPhoto.photographer}"
+						x="65" y="330" 
+						width="367" height="18" 
+						fontWeight="bold"
+						color="#F8E5BB" />
+					<mx:Text id="descText" text="{selectedPhoto.desc}"
+						x="65" y="350"
+						width="367" height="36"
+						color="#F8E5BB" />
+					<mx:Button
+						x="65" y="400"
+						fillAlphas="[1,.8]"
+						fillColors="[#F8E5BB, #F8E5BB]"
+						label="return to gallery" 
+						click="currentState=''" />
+					<mx:Button
+						x="200" y="400"
+						fillAlphas="[1,.8]"
+						fillColors="[#F8E5BB, #F8E5BB]"
+						label="purchase photo" 
+						click="purchasePhoto()" />
+				</mx:Canvas>
+			</mx:AddChild>
+		</mx:State>
+	</mx:states>
+	
+	<mx:HBox backgroundColor="#F8E5BB"
+		width="100%"
+		verticalAlign="middle"
+		fontSize="11"
+		paddingBottom="3"
+		paddingLeft="5"
+		paddingRight="5"
+		paddingTop="8">
+		<mx:Label text="You are viewing:"/>
+		<mx:CheckBox label="All Photos"/>
+		<mx:Label text="The Category"/>
+		<mx:ComboBox>
+			<mx:dataProvider>
+				<mx:ArrayCollection>
+						<mx:String>Abstract</mx:String>
+						<mx:String>Animals</mx:String>
+						<mx:String>City</mx:String>
+						<mx:String>Miscellaneous</mx:String>
+						<mx:String>Nature</mx:String>
+						<mx:String>People</mx:String>
+					</mx:ArrayCollection>
+			</mx:dataProvider>	
+		</mx:ComboBox>
+	</mx:HBox>
+
+	<mx:TileList id="thumbnails"
+		dataProvider="{photoData}"
+		change="displayDetails(event)"
+		backgroundColor="#000000"
+		backgroundAlpha="0"
+		columnWidth="120"
+		rowHeight="110"
+		width="515"
+		height="430"
+		rollOverColor="#63769E"
+		borderThickness="0"
+		itemRenderer="views.DisplayImage"/>
+
+</mx:VBox>

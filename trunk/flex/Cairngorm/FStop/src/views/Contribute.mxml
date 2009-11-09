@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" 
+	width="515"
+	verticalGap="8">
+	
+	<mx:Form width="100%"
+		fontSize="11"
+		backgroundColor="#F8E5BB">
+		<mx:Label text="Enter your information and upload a file to the gallery"/>
+		<mx:FormItem label="Photograher:">
+			<mx:TextInput width="284"/>
+		</mx:FormItem>
+		<mx:FormItem label="Description:">
+			<mx:TextArea width="284"/>
+		</mx:FormItem>
+		<mx:FormItem label="Category">
+			<mx:ComboBox></mx:ComboBox>
+		</mx:FormItem>
+		<mx:FormItem label="Image:" direction="horizontal">
+			<mx:TextInput width="284" editable="false"/>
+			<mx:Button label="Browse"/>
+		</mx:FormItem>
+		<mx:FormItem>
+			<mx:Button label="upload"/>
+		</mx:FormItem>
+	</mx:Form>
+	<mx:Image source="assets/fstop/tulips.jpg"/>
+	
+</mx:VBox>

@@ -1,0 +1,19 @@
+/* CSS file */
+global 
+{
+	color: #63769E;
+}
+.windowStyles 
+{
+	color: #63769E;
+}
+ComboBox 
+{
+	fontWeight: normal;
+	selection-color: #63769E;
+	roll-over-color: #B5D2FA;
+}
+Button 
+{
+	fontWeight: normal;
+}
