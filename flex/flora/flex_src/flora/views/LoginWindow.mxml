@@ -16,7 +16,7 @@
 				var user:User = new User();
 				user.userId = txtUserId.text;
 				user.password = txtPassword.text;
-				var event:LoginEvent = new LoginEvent(LoginEvent.EVENT_LOGIN, user);
+				var event:LoginEvent = new LoginEvent(user, this);
 				event.dispatch();
 			}
 		]]>
@@ -35,5 +35,6 @@
 	<mx:CheckBox x="160" y="92"/>
 
 	<mx:Move id="loginFaultEffect" target="{this}" repeatCount="4" duration="50" xFrom="{this.x - 30}" xTo="{this.x}"/>
+	<mx:Label id="txtMessage" x="15" y="120" styleName="message"/>
 
 </mx:Canvas>

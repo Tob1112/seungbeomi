@@ -9,7 +9,7 @@ package flora.business {
         public function FloraController() {
         	trace("FloraController");
         	super();
-        	addCommand(LoginEvent.EVENT_LOGIN, LoginCommand);
+        	addCommand(LoginEvent.EVENT_ID, LoginCommand);
         }
 
     }
