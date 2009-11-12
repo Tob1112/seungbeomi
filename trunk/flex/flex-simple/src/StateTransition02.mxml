@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" verticalAlign="middle" horizontalAlign="center" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+
+    <mx:Script>
+        <![CDATA[
+            import mx.events.MenuEvent;
+            import mx.controls.Alert;
+            import mx.events.ListEvent;
+            import mx.collections.ICollectionView;
+            import mx.effects.easing.*;
+
+            // 클릭시 해당 노드 오픈
+            private function itemClick(evt:ListEvent):void {
+                var item:Object=Tree(evt.currentTarget).selectedItem;
+
+                if (MenuList.dataDescriptor.isBranch(item)) {
+                    MenuList.expandItem(item, !MenuList.isItemOpen(item), true);
+                }
+            }
+
+
+            // 노드의 하위노드 갯수출력
+            private function labelFunction(item:XML):String {
+                var children:ICollectionView;
+                var suffix:String="";
+
+                if (MenuList.dataDescriptor.isBranch(item)) {
+                    children=MenuList.dataDescriptor.getChildren(item);
+                    suffix=" (" + children.length + ")";
+                }
+
+                return item[MenuList.labelField] + suffix;
+            }
+        ]]>
+    </mx:Script>
+
+
+    <!-- State 처리부분 -->
+
+    <mx:states>
+        <mx:State name="Menu2">
+            <mx:SetProperty target="{RightMenu}" name="height" value="542"/>
+            <mx:SetProperty target="{RightMenu}" name="y" value="247"/>
+
+            <mx:SetProperty target="{TopMenu}" name="x" value="936"/>
+            <mx:SetProperty target="{TopMenu}" name="width" value="155"/>
+
+            <mx:RemoveChild target="{BottomMenu}"/>
+
+            <mx:SetProperty target="{LeftMenu}" name="width" value="798"/>
+            <mx:RemoveChild target="{StatusBar}"/>
+        </mx:State>
+
+        <mx:State name="PanelUp">
+            <mx:SetProperty target="{StatusBar}" name="y" value="600"/>
+            <mx:RemoveChild target="{form1}"/>
+
+            <mx:AddChild relativeTo="{canvas1}" position="lastChild">
+                <mx:Form width="288" height="112" x="224" y="10" horizontalScrollPolicy="off" verticalScrollPolicy="off" backgroundColor="#F2EDA2">
+                    <mx:FormItem label="이름" backgroundColor="#9EF551" id="formitem0" fontFamily="Monaco" fontSize="12">
+                        <mx:Label text="{dg.selectedItem.name}" color="#094BA5" width="198" id="label0"/>
+                    </mx:FormItem>
+                    <mx:FormItem label="연락처" backgroundColor="#9EF551" id="formitem4" fontFamily="Monaco" fontSize="12">
+                        <mx:Label text="{dg.selectedItem.phone}" color="#094BA5" width="198" id="label4"/>
+                    </mx:FormItem>
+                    <mx:FormItem label="이메일" backgroundColor="#9EF551" id="formitem5" fontFamily="Monaco" fontSize="12">
+                        <mx:Label text="{dg.selectedItem.email}" color="#094BA5" width="198" id="label5"/>
+                    </mx:FormItem>
+                </mx:Form>
+            </mx:AddChild>
+        </mx:State>
+
+    </mx:states>
+
+
+    <!-- State Effect 처리부분 -->
+    <!-- 초급과정에서 참고만 하고 -->
+    <!-- State 처리는 되도록 액션스크립트로 처리할것을 권함 -->
+
+    <mx:transitions>
+
+        <mx:Transition id="myTransition" fromState="*" toState="*">
+            <mx:Parallel id="t1" targets="{[LeftMenu, TopMenu, RightMenu]}">
+                <mx:Move duration="450"/>
+                <mx:Resize duration="450"/>
+                <mx:Iris targets="{[BottomMenu]}" duration="450"/>
+            </mx:Parallel>
+        </mx:Transition>
+
+        <mx:Transition id="myTransition2" fromState="*" toState="PanelUp">
+            <mx:Parallel id="t2" targets="{[StatusBar]}">
+                <mx:Move duration="350"/>
+            </mx:Parallel>
+        </mx:Transition>
+
+        <mx:Transition id="myTransition3" fromState="PanelUp" toState="*">
+            <mx:Parallel id="t4" targets="{[StatusBar]}">
+                <mx:Move duration="350"/>
+            </mx:Parallel>
+        </mx:Transition>
+
+    </mx:transitions>
+
+    <!-- XML 은 확장성을 고려하여 xml 파일을 읽어와서 처리하는게 좋음(액션스크립트 권장) -->
+    <!-- 예를 들자면 -->
+    <!-- <mx:XMLList id="treeData" source="_XML/CateGory.xml" /> -->
+
+    <!-- Left Tab XML -->
+
+    <mx:XMLList id="treeData">
+        <node label="장르목록">
+            <node label="락발라드">
+                <node label="Marketing"/>
+                <node label="Product Management"/>
+                <node label="Personal"/>
+            </node>
+            <node label="하드락">
+                <node label="Professional"/>
+                <node label="Personal"/>
+            </node>
+        </node>
+    </mx:XMLList>
+
+
+    <!-- Right Tab XML -->
+
+    <mx:XMLList id="treeData2">
+        <node label="가수목록">
+            <node label="이승철">
+                <node label="1집"/>
+                <node label="2집"/>
+            </node>
+        </node>
+    </mx:XMLList>
+
+
+    <!-- StatusBar XML -->
+
+    <mx:XMLList id="employees">
+        <employee>
+            <name>서현주</name>
+            <phone>010-111-2222</phone>
+            <email>Jooooo@teamflex.co.kr</email>
+            <active>true</active>
+        </employee>
+        <employee>
+            <name>박은미</name>
+            <phone>010-222-3333</phone>
+            <email>Meeeee@teamflex.co.k</email>
+            <active>true</active>
+        </employee>
+        <employee>
+            <name>김해년</name>
+            <phone>010-333-4444</phone>
+            <email>Nyunnnnn@teamflex.co.k</email>
+            <active>false</active>
+        </employee>
+    </mx:XMLList>
+
+
+    <!-- StatusBar XML -->
+
+    <mx:XMLList id="employees2">
+        <employee>
+            <subject>깊은밤의 서정곡</subject>
+            <singer>블랙홀</singer>
+            <album>블랙홀 1집</album>
+        </employee>
+        <employee>
+            <subject>깊은밤의 장송곡</subject>
+            <singer>블랙헐</singer>
+            <album>블랙헐 100집</album>
+        </employee>
+        <employee>
+            <subject>짜린밤의 서정곡</subject>
+            <singer>쩔은헐</singer>
+            <album>쩔은 39집</album>
+        </employee>
+    </mx:XMLList>
+
+
+    <mx:Canvas x="0" y="0" width="100%" height="100%">
+        <mx:Panel x="130" y="39" width="155" height="750" layout="absolute" id="LeftMenu" title="Tab Part">
+            <mx:TabNavigator x="5" y="10" width="90%" height="90%" fontFamily="Monaco" fontSize="12">
+                <mx:Canvas label="장르" width="100%" height="100%" fontFamily="Monaco" fontSize="9">
+                    <mx:Tree x="5" y="5" width="90%" height="90%" fontFamily="Monaco" fontSize="12" dataProvider="{treeData}" labelField="@label" showRoot="false" openEasingFunction="Bounce.easeOut"
+                             labelFunction="labelFunction" itemClick="itemClick(event);" id="MenuList">
+                    </mx:Tree>
+                </mx:Canvas>
+            </mx:TabNavigator>
+        </mx:Panel>
+        <mx:Panel x="293" y="39" width="635" height="200" layout="absolute" id="TopMenu" title="Stete Effect 테스트">
+            <mx:HBox x="0" y="0" width="100%" height="100%" horizontalAlign="center" verticalAlign="middle">
+                <mx:HBox width="100%" height="100%" horizontalAlign="center" verticalAlign="middle">
+                    <mx:Canvas width="100%" height="100%" horizontalScrollPolicy="off" verticalScrollPolicy="off" id="canvas1">
+                        <mx:Form width="288" height="112" x="224" y="10" horizontalScrollPolicy="off" verticalScrollPolicy="off" backgroundColor="#F2EDA2" id="form1">
+                            <mx:FormItem label="앨범" backgroundColor="#9EF551" id="formitem3" fontFamily="Monaco" fontSize="12">
+                                <mx:Label text="{dg2.selectedItem.album}" color="#050595" width="198" id="label3" fontWeight="normal" fontFamily="Monaco" fontSize="12"/>
+                            </mx:FormItem>
+                            <mx:FormItem label="제목" backgroundColor="#9EF551" id="formitem1" fontFamily="Monaco" fontSize="12">
+                                <mx:Label text="{dg2.selectedItem.subject}" color="#050595" width="198" id="label1" fontWeight="normal" fontFamily="Monaco" fontSize="12"/>
+                            </mx:FormItem>
+                            <mx:FormItem label="가수" backgroundColor="#9EF551" id="formitem2" fontFamily="Monaco" fontSize="12">
+                                <mx:Label text="{dg2.selectedItem.singer}" color="#050595" width="198" id="label2" fontWeight="normal" fontFamily="Monaco" fontSize="12"/>
+                            </mx:FormItem>
+                        </mx:Form>
+                        <mx:Tile x="10" y="35" width="69" height="57">
+                            <mx:LinkButton label="1" themeColor="#F08484" click="currentState='Menu2'" color="#DD1738"/>
+                            <mx:LinkButton label="2" themeColor="#F08484" click="currentState=''" color="#0DBD15"/>
+                            <mx:LinkButton label="3" themeColor="#F08484" click="currentState=''" color="#B52BCE"/>
+                            <mx:LinkButton label="4" themeColor="#F08484" click="currentState=''" color="#7A1930"/>
+                        </mx:Tile>
+                        <mx:Label x="10" y="10" text="메뉴" fontFamily="Monaco" fontSize="12" width="69" textAlign="center" fontWeight="bold" color="#3459E4"/>
+                    </mx:Canvas>
+                </mx:HBox>
+            </mx:HBox>
+        </mx:Panel>
+        <mx:Panel x="293" y="247" width="635" height="542" layout="absolute" id="BottomMenu" title="DataGrid Part">
+            <mx:DataGrid id="dg2" x="0" y="0" width="100%" height="100%" fontFamily="Monaco" fontSize="12" textAlign="center" dataProvider="{employees2}">
+                <mx:columns>
+                    <mx:DataGridColumn headerText="제목" dataField="subject" width="50" textAlign="left"/>
+                    <mx:DataGridColumn headerText="가수" dataField="singer" width="15" textAlign="left"/>
+                    <mx:DataGridColumn headerText="앨범" dataField="album" width="15" textAlign="left"/>
+                </mx:columns>
+            </mx:DataGrid>
+        </mx:Panel>
+        <mx:Panel x="936" y="39" width="155" height="750" layout="absolute" id="RightMenu" title="Tab Part2">
+            <mx:TabNavigator x="5" y="10" width="90%" height="90%" fontFamily="Monaco" fontSize="12">
+                <mx:Canvas label="가수" width="100%" height="100%" fontFamily="Monaco" fontSize="9">
+                    <mx:Tree x="5" y="5" width="90%" height="90%" fontFamily="Monaco" fontSize="12" dataProvider="{treeData2}" labelField="@label" showRoot="false" id="MenuList2">
+                    </mx:Tree>
+                </mx:Canvas>
+            </mx:TabNavigator>
+        </mx:Panel>
+    </mx:Canvas>
+
+
+    <!-- 정보창 부분은  Canvas 위에 겹쳐야되므로  전체 Canvas 밖에 정의함 -->
+
+    <mx:HBox x="130" y="795" width="961" height="500" horizontalScrollPolicy="off" verticalScrollPolicy="off" id="StatusBar">
+
+        <mx:Canvas width="100%" height="500">
+            <mx:HBox x="0" y="0" width="100%" height="40" verticalAlign="middle">
+                <mx:Button label="위로" fontFamily="Monaco" fontSize="12" click="currentState='PanelUp'" id="button4"/>
+                <mx:Button label="아래로" fontFamily="Monaco" fontSize="12" click="currentState=''" id="button5"/>
+            </mx:HBox>
+
+            <mx:Canvas x="0" y="0" width="100%" height="460" verticalScrollPolicy="off" backgroundAlpha="0.5">
+                <mx:DataGrid id="dg" x="0" y="40" width="100%" height="100%" textAlign="center" fontFamily="Monaco" fontSize="12" rowCount="5" dataProvider="{employees}">
+                    <mx:columns>
+                        <mx:DataGridColumn dataField="name" headerText="이름"/>
+                        <mx:DataGridColumn dataField="phone" headerText="연락처"/>
+                        <mx:DataGridColumn dataField="email" headerText="이메일"/>
+                    </mx:columns>
+                </mx:DataGrid>
+            </mx:Canvas>
+        </mx:Canvas>
+    </mx:HBox>
+
+</mx:Application>
+
