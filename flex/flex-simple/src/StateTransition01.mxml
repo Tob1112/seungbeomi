@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" >
+
+	<!-- APPLICATION CONTROL BAR -->
+	<mx:ApplicationControlBar width="1024" top="20" horizontalCenter="0">
+		<mx:LinkButton label="all" click="this.currentState=''"/>
+		<mx:LinkButton label="one" click="this.currentState='expandOne'"/>
+		<mx:LinkButton label="two" click="this.currentState='expandTwo'"/>
+		<mx:LinkButton label="three" click="this.currentState='expandThree'"/>
+	</mx:ApplicationControlBar>
+
+	<!-- LAYOUT -->
+	<mx:Canvas top="50" width="1024" height="600" horizontalCenter="0">
+		<mx:Panel id="panelOne" title="one" layout="absolute" width="506" x="10" y="20" height="558" click="this.currentState='expandOne'">
+			<mx:ControlBar />
+		</mx:Panel>
+		<mx:Panel id="panelTwo" title="two" layout="absolute" width="490" height="275" x="524" y="20" click="this.currentState='expandTwo'">
+			<mx:ControlBar  id="controlbar2"/>
+		</mx:Panel>
+		<mx:Panel id="panelThree" title="three" layout="absolute" width="490" height="275" x="524" y="303" click="this.currentState='expandThree'">
+			<mx:ControlBar  id="controlbar1"/>
+		</mx:Panel>
+	</mx:Canvas>
+
+	<!-- STATE -->
+	<mx:states>
+		<mx:State name="expandOne">
+			<mx:SetProperty target="{panelTwo}" name="width" value="80"/>
+			<mx:SetProperty target="{panelTwo}" name="x" value="934"/>
+			<mx:SetProperty target="{panelThree}" name="width" value="80"/>
+			<mx:SetProperty target="{panelThree}" name="x" value="934"/>
+			<mx:SetProperty target="{panelOne}" name="width" value="916"/>
+		</mx:State>
+		<mx:State name="expandTwo">
+			<mx:SetProperty target="{panelOne}" name="width" value="80"/>
+			<mx:SetProperty target="{panelOne}" name="height" value="275"/>
+			<mx:SetProperty target="{panelThree}" name="width" value="80"/>
+			<mx:SetProperty target="{panelThree}" name="x" value="10"/>
+			<mx:SetProperty target="{panelTwo}" name="width" value="916"/>
+			<mx:SetProperty target="{panelTwo}" name="height" value="558"/>
+			<mx:SetProperty target="{panelTwo}" name="x" value="98"/>
+		</mx:State>
+		<mx:State name="expandThree">
+			<mx:SetProperty target="{panelOne}" name="height" value="275"/>
+			<mx:SetProperty target="{panelOne}" name="y" value="303"/>
+			<mx:SetProperty target="{panelTwo}" name="x" value="10"/>
+			<mx:SetProperty target="{panelTwo}" name="width" value="80"/>
+			<mx:SetProperty target="{panelOne}" name="width" value="80"/>
+			<mx:SetProperty target="{panelThree}" name="width" value="916"/>
+			<mx:SetProperty target="{panelThree}" name="height" value="558"/>
+			<mx:SetProperty target="{panelThree}" name="x" value="98"/>
+			<mx:SetProperty target="{panelThree}" name="y" value="20"/>
+		</mx:State>
+	</mx:states>
+
+	<!-- TRANSITION -->
+	<mx:transitions>
+		<mx:Transition id="transiteOne" fromState="*" toState="*">
+			<mx:Parallel id="parallel0ne" targets="{[panelOne,panelTwo,panelThree]}">
+				<mx:Move duration="450"/>
+				<mx:Resize duration="450"/>
+			</mx:Parallel>
+		</mx:Transition>
+	</mx:transitions>
+
+</mx:Application>
