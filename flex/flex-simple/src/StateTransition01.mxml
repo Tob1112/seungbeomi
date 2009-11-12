@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" >
 
+	<!--
+		1. layout 작성
+		2. Design 모드에서 state 생성후 state 에 맞는 화면 작성
+		3. transition 작성
+	-->
+
 	<!-- APPLICATION CONTROL BAR -->
 	<mx:ApplicationControlBar width="1024" top="20" horizontalCenter="0">
 		<mx:LinkButton label="all" click="this.currentState=''"/>
