@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:flex="http://www.springframework.org/schema/flex"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/flex http://www.springframework.org/schema/flex/spring-flex-1.0.xsd">
+
+    <flex:message-broker />
+
+    <!-- ============================================= -->
+    <!-- REMOTING DESTINATION			   			   -->
+    <!-- ============================================= -->
+
+    <!-- common -->
+    <flex:remoting-destination ref="codeService"/>
+    <flex:remoting-destination ref="codeTypeService"/>
+    <flex:remoting-destination ref="employeesService"/>
+    <flex:remoting-destination ref="familiesService"/>
+    <flex:remoting-destination ref="masterCompanyService"/>
+    <flex:remoting-destination ref="masterComDetailService"/>
+    <flex:remoting-destination ref="masterDepartmentService"/>
+    <flex:remoting-destination ref="masterExtraHolidayService"/>
+    <flex:remoting-destination ref="masterPositionService"/>
+    <flex:remoting-destination ref="positionsService"/>
+    <!-- common -->
+
+    <!-- 交通費管理用のリモーティング・デスティネーション -->
+    <flex:remoting-destination ref="trafficService"/>
+
+    <!-- holiday -->
+    <flex:remoting-destination ref="holidayService"/>
+    <!-- holiday -->
+
+    <!-- fieldFixedTimes -->
+    <flex:remoting-destination ref="fieldFixedTimesService"/>
+    <!-- fieldFixedTimes -->
+
+    <!-- 勤務表詳細リモーティング・デスティネーション -->
+    <!-- timesheetDetails  -->
+    <flex:remoting-destination ref="timeSheetDetailsService"/>
+    <!-- timesheetDetails  -->
+
+    <!-- menu -->
+    <flex:remoting-destination ref="menuService"/>
+    <!-- menu -->
+
+</beans>

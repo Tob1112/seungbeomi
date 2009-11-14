@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="1024" height="100%" horizontalScrollPolicy="off" creationComplete="init()">
+
+    <mx:Style source="assets/css/main.css"/>
+
+    <mx:Script>
+        <![CDATA[
+            import com.prms.common.Constants;
+
+            private function init():void {
+                headerModuleLoader.url = Constants.LOGIN_HEADER_SWF;
+                bodyModuleLoader.url = Constants.LOGIN_BODY_SWF;
+
+                trace(bodyModuleLoader.url);
+            }
+        ]]>
+    </mx:Script>
+
+    <mx:constraintColumns>
+        <mx:ConstraintColumn id="col01" width="100%"/>
+    </mx:constraintColumns>
+    <mx:constraintRows>
+        <mx:ConstraintRow id="row01" height="60"/>
+        <mx:ConstraintRow id="row02" height="100%"/>
+        <mx:ConstraintRow id="row03" height="15"/>
+    </mx:constraintRows>
+
+    <mx:HBox id="header" left="col01:0" right="col01:0" top="row01:0" bottom="row01:0" verticalAlign="middle" maxHeight="60">
+        <mx:Text id="txtHeader" text="PRMS logo" fontSize="40" color="#EDF6FC"/>
+        <mx:ModuleLoader id="headerModuleLoader"/>
+    </mx:HBox>
+
+    <mx:Canvas id="body" left="col01:0" right="col01:0" top="row02:0" bottom="row02:0" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+        <mx:ModuleLoader id="bodyModuleLoader"/>
+    </mx:Canvas>
+
+    <mx:Box id="footer" left="col01:0" right="col01:0" top="row03:0" bottom="row03:0" horizontalAlign="center" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+        <mx:Text id="txtFooter" text="@Copyright" color="#FFFFFF"/>
+    </mx:Box>
+
+    <mx:WipeDown id="messageWipeDown"/>
+
+</mx:Application>

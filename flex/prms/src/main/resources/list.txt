@@ -1,0 +1,13 @@
+# Spring Config
+applicationContxt.xml
+applicationContxt-flex.xml
+applicationContxt-persist.xml
+
+# iBatis Config
+sqlMapConfig.xml
+
+# Log4j
+log4j.xml
+
+# DB
+database.properties
