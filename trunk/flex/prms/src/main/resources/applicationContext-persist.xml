@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:property-placeholder location="classpath:database.properties" />
+
+    <!-- ============================================ -->
+    <!-- DATASOURCE 								  -->
+    <!-- ============================================ -->
+    <bean id="dataSource"
+          class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+
+    <!-- ============================================ -->
+    <!-- IBATIS SQLMAPCLIENT						  -->
+    <!-- ============================================ -->
+    <bean id="sqlMapClient"
+          class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+        <property name="configLocation" value="classpath:sqlMapConfig.xml" />
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!-- ============================================= -->
+    <!-- TRANSACTION MANAGER			   			   -->
+    <!-- ============================================= -->
+    <bean id="transactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+
+    <!-- ============================================= -->
+    <!-- DAO							   			   -->
+    <!-- ============================================= -->
+
+    <!-- common -->
+    <bean id="codeDao" class="com.prms.common.model.persistence.CodeDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient"/>
+    </bean>
+    <bean id="codeTypeDao" class="com.prms.common.model.persistence.CodeTypeDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient"/>
+    </bean>
+    <bean id="employeesDao" class="com.prms.common.model.persistence.EmployeesDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient"/>
+    </bean>
+    <bean id="familiesDao" class="com.prms.common.model.persistence.FamiliesDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient"/>
+    </bean>
+    <bean id="masterCompanyDao" class="com.prms.common.model.persistence.MasterCompanyDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient"/>
+    </bean>
+    <bean id="masterComDetailDao" class="com.prms.common.model.persistence.MasterComDetailDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient"/>
+    </bean>
+    <bean id="masterDepartmentDao" class="com.prms.common.model.persistence.MasterDepartmentDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient"/>
+    </bean>
+    <bean id="masterExtraHolidayDao" class="com.prms.common.model.persistence.MasterExtraHolidayDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient"/>
+    </bean>
+    <bean id="masterPositionDao" class="com.prms.common.model.persistence.MasterPositionDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient"/>
+    </bean>
+    <bean id="positionsDao" class="com.prms.common.model.persistence.PositionsDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient"/>
+    </bean>
+    <!-- common -->
+
+    <!-- holiday -->
+    <bean id="holidayDao" class="com.prms.holiday.model.persistence.HolidayDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient"/>
+    </bean>
+    <bean id="holidayMonthDao" class="com.prms.holiday.model.persistence.HolidayMonthDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient"/>
+    </bean>
+    <bean id="holidayDayDao" class="com.prms.holiday.model.persistence.HolidayDayDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient"/>
+    </bean>
+    <bean id="holidayUpdateDao" class="com.prms.holiday.model.persistence.HolidayUpdateDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient"/>
+    </bean>
+    <!-- holiday -->
+
+
+    <!-- ============================================= -->
+    <!-- 交通費関連DAO定義				   			   -->
+    <!-- ============================================= -->
+    <!-- trafficExpensesDetailDao      交通費申請詳細情報を管理   -->
+    <bean id="trafficExpensesDetailDao" class="com.prms.traffic.model.persistence.TrafficExpensesDetailDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient"/>
+    </bean>
+
+    <!-- trafficExpensesTotalDao	交通費申請情報を月別で管理 -->
+    <bean id="trafficExpensesTotalDao" class="com.prms.traffic.model.persistence.TrafficExpensesTotalDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient"/>
+    </bean>
+
+    <!-- trafficRegularDao				定期券・バス利用情報を管理 -->
+    <bean id="trafficRegularDao" class="com.prms.traffic.model.persistence.TrafficRegularDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient"/>
+    </bean>
+
+    <!-- fieldFixedTimes -->
+    <bean id="fieldFixedTimesDao" class="com.prms.timesheet.model.persistence.FieldFixedTimesDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient"/>
+    </bean>
+    <!-- fieldFixedTimes -->
+
+    <!-- ============================================= -->
+    <!-- 勤務表詳細関連DAO定義				   			   -->
+    <!-- ============================================= -->
+    <!-- attendanceMonthsDao	勤怠基本 -->
+    <bean id="attendanceMonthsDao" class="com.prms.timesheet.model.persistence.AttendanceMonthsDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient"/>
+    </bean>
+    <!-- attendanceMonthsDao -->
+
+    <!-- attendanceDaysDao	勤怠詳細 -->
+    <bean id="attendanceDaysDao" class="com.prms.timesheet.model.persistence.AttendanceDaysDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient"/>
+    </bean>
+    <!-- attendanceDaysDao	 -->
+
+    <!-- menu -->
+    <bean id="menuDao" class="com.prms.menu.model.persistence.MenuDaoImpl">
+        <property name="sqlMapClient" ref="sqlMapClient"/>
+    </bean>
+    <!-- menu -->
+</beans>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//iBATIS.com//DTD SQL Map Config 2.0//EN"
+    "http://www.ibatis.com/dtd/sql-map-config-2.dtd">
+
+<sqlMapConfig>
+	<settings useStatementNamespaces="true" />
+	<!-- ============================================= -->
+	<!-- SQL MAPPING FILE				   			   -->
+	<!-- ============================================= -->
+	<!-- COMMON SQL -->
+	<sqlMap resource="com/prms/common/model/persistence/sql/Code.xml"/>
+	<sqlMap resource="com/prms/common/model/persistence/sql/CodeType.xml"/>
+	<sqlMap resource="com/prms/common/model/persistence/sql/Employees.xml"/>
+	<sqlMap resource="com/prms/common/model/persistence/sql/Families.xml"/>
+	<sqlMap resource="com/prms/common/model/persistence/sql/MasterCompany.xml"/>
+	<sqlMap resource="com/prms/common/model/persistence/sql/MasterComDetail.xml"/>
+	<sqlMap resource="com/prms/common/model/persistence/sql/MasterDepartment.xml"/>
+	<sqlMap resource="com/prms/common/model/persistence/sql/MasterExtraHoliday.xml"/>
+	<sqlMap resource="com/prms/common/model/persistence/sql/MasterPosition.xml"/>
+	<sqlMap resource="com/prms/common/model/persistence/sql/Positions.xml"/>
+	<!-- COMMON SQL -->
+
+	<!-- HOLIDAY SQL -->
+	<sqlMap resource="com/prms/holiday/model/persistence/sql/Holiday.xml"/>
+	<sqlMap resource="com/prms/holiday/model/persistence/sql/HolidayMonth.xml"/>
+	<sqlMap resource="com/prms/holiday/model/persistence/sql/HolidayDay.xml"/>
+	<sqlMap resource="com/prms/holiday/model/persistence/sql/HolidayUpdate.xml"/>
+	<!-- HOLIDAY SQL -->
+
+	<!-- TRAFFIC EXPENSES SQL MAPPING FILE -->
+	<sqlMap resource="com/prms/traffic/model/persistence/sql/TrafficExpensesDetail.xml"/>
+	<sqlMap resource="com/prms/traffic/model/persistence/sql/TrafficExpensesTotal.xml"/>
+	<sqlMap resource="com/prms/traffic/model/persistence/sql/TrafficRegular.xml"/>
+
+	<!-- FieldFixedTimes SQL -->
+	<sqlMap resource="com/prms/timesheet/model/persistence/sql/FieldFixedTimes.xml"/>
+	<!-- FieldFixedTimes SQL -->
+
+	<!-- menu -->
+	<sqlMap resource="com/prms/menu/model/persistence/sql/MenuSql.xml"/>
+	<!-- menu -->
+
+</sqlMapConfig>

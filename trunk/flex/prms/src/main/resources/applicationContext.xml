@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <aop:aspectj-autoproxy />
+
+    <bean class="com.prms.util.LoggingAspect" />
+
+    <!-- ============================================= -->
+    <!-- SERVICES						   			   -->
+    <!-- ============================================= -->
+
+    <!-- common vo -->
+    <bean id="codeService" class="com.prms.common.model.service.CodeServiceImpl">
+        <property name="codeDao" ref="codeDao"/>
+    </bean>
+    <bean id="codeTypeService" class="com.prms.common.model.service.CodeTypeServiceImpl">
+        <property name="codeTypeDao" ref="codeTypeDao"/>
+    </bean>
+    <bean id="employeesService" class="com.prms.common.model.service.EmployeesServiceImpl">
+        <property name="employeesDao" ref="employeesDao"/>
+    </bean>
+    <bean id="familiesService" class="com.prms.common.model.service.FamiliesServiceImpl">
+        <property name="familiesDao" ref="familiesDao"/>
+    </bean>
+    <bean id="masterCompanyService" class="com.prms.common.model.service.MasterCompanyServiceImpl">
+        <property name="masterCompanyDao" ref="masterCompanyDao"/>
+    </bean>
+    <bean id="masterComDetailService" class="com.prms.common.model.service.MasterComDetailServiceImpl">
+        <property name="masterComDetailDao" ref="masterComDetailDao"/>
+    </bean>
+    <bean id="masterDepartmentService" class="com.prms.common.model.service.MasterDepartmentServiceImpl">
+        <property name="masterDepartmentDao" ref="masterDepartmentDao"/>
+    </bean>
+    <bean id="masterExtraHolidayService" class="com.prms.common.model.service.MasterExtraHolidayServiceImpl">
+        <property name="masterExtraHolidayDao" ref="masterExtraHolidayDao"/>
+    </bean>
+    <bean id="masterPositionService" class="com.prms.common.model.service.MasterPositionServiceImpl">
+        <property name="masterPositionDao" ref="masterPositionDao"/>
+    </bean>
+    <bean id="positionsService" class="com.prms.common.model.service.PositionsServiceImpl">
+        <property name="positionsDao" ref="positionsDao"/>
+    </bean>
+    <!-- common vo -->
+
+    <!-- Spring Security Service -->
+    <bean id="securityService" class="com.prms.security.service.SecurityServiceImpl" />
+
+
+    <!-- 交通費サービス・ビーン -->
+    <bean id="trafficService" class="com.prms.traffic.model.service.TrafficServiceImpl">
+        <property name="trafficExpensesDetailDao" ref="trafficExpensesDetailDao"/>
+        <property name="trafficExpensesTotalDao" ref="trafficExpensesTotalDao"/>
+        <property name="trafficRegularDao" ref="trafficRegularDao"/>
+    </bean>
+
+    <!-- holiday vo -->
+    <bean id="holidayService"
+          class="com.prms.holiday.model.service.HolidaySereviceImpl">
+        <property name="holidayDao" ref="holidayDao"/>
+        <property name="holidayDayDao" ref="holidayDayDao"/>
+        <property name="codeDao" ref="codeDao"/>
+    </bean>
+    <!-- holiday vo -->
+
+    <!-- fieldFixedTimes vo -->
+    <bean id="fieldFixedTimesService"
+          class="com.prms.timesheet.model.service.FieldFixedTimesServiceImpl">
+        <property name="fieldFixedTimesDao" ref="fieldFixedTimesDao"/>
+    </bean>
+    <!-- fieldFixedTimes vo -->
+
+    <!-- 勤務表詳細サービス  -->
+    <bean  id="timeSheetDetailsService"
+          class="com.prms.timesheet.model.service.TimeSheetDetailsServiceImpl">
+        <property name="attendanceMonthsDao" ref="attendanceMonthsDao" />
+        <property name="attendanceDaysDao" ref="attendanceDaysDao" />
+    </bean>
+
+    <!-- menu -->
+    <bean id="menuService" class="com.prms.menu.model.service.MenuServiceImpl">
+        <property name="menuDao" ref="menuDao"/>
+    </bean>
+    <!-- menu -->
+</beans>
