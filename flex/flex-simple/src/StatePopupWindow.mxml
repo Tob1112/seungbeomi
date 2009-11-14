@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="400" height="300" title="one" backgroundColor="#FF0000" showCloseButton="true" creationComplete="creationCompleteHandler()">
+
+	<mx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			import mx.managers.PopUpManager;
+			import mx.events.CloseEvent;
+
+			private function creationCompleteHandler():void {
+				this.addEventListener(CloseEvent.CLOSE, closeButtonClickHandler);
+				btnExecute.addEventListener(MouseEvent.CLICK, executeButtonClickHandler);
+			}
+			private function closeButtonClickHandler(e:CloseEvent):void {
+				PopUpManager.removePopUp(this);
+			}
+
+			private function executeButtonClickHandler(e:MouseEvent):void {
+
+				var state:String = this.currentState;
+
+				switch(state) {
+					case "one":
+						Alert.show("execute one을 표시하겠습니까?", "check", Alert.OK | Alert.CANCEL, this, alertCallback);
+						break;
+					case "two":
+						Alert.show("execute two를 표시하겠습니까?", "check", Alert.OK | Alert.CANCEL, this, alertCallback);
+						break;
+					case "three":
+						Alert.show("execute three를 표시하겠습니까?", "check", Alert.OK | Alert.CANCEL, this, alertCallback);
+						break;
+					default:
+						Alert.show("error");
+				}
+				// 부모창에 event를 dispatch 시킴
+				this.dispatchEvent(new StatePopupEvent(StatePopupEvent.POPUP_TO_MAIN));
+			}
+
+			private function alertCallback(e:CloseEvent):void {
+				if(e.detail == Alert.OK) {
+					var state:String = this.currentState;
+
+				switch(state) {
+					case "one":
+						lblExecute.text = "execute one";
+						break;
+					case "two":
+						lblExecute.text = "execute two";
+						break;
+					case "three":
+						lblExecute.text = "execute three";
+						break;
+					default:
+						Alert.show("error");
+				}
+				}
+			}
+		]]>
+	</mx:Script>
+
+	<mx:states>
+		<mx:State name="one"/>
+		<mx:State name="two">
+			<mx:SetProperty name="title" value="two"/>
+			<mx:SetProperty target="{label1}" name="text" value="two popup window"/>
+			<mx:SetStyle name="backgroundColor" value="#00ff00"/>
+		</mx:State>
+		<mx:State name="three">
+			<mx:SetProperty name="title" value="three"/>
+			<mx:SetProperty target="{label1}" name="text" value="three popup window"/>
+			<mx:SetStyle name="backgroundColor" value="#9C9CFF"/>
+		</mx:State>
+	</mx:states>
+
+	<mx:Label x="10" y="10" text="one popup window" id="label1"/>
+	<mx:Button id="btnExecute" x="157" y="228" label="Execute"/>
+	<mx:Label id="lblExecute" horizontalCenter="0" verticalCenter="0"/>
+
+</mx:TitleWindow>

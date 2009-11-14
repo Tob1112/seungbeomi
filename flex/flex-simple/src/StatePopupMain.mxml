@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" creationComplete="creationCompleteHandler()">
+
+	<mx:Script>
+		<![CDATA[
+			import mx.managers.PopUpManager;
+
+			private var i:int = 0;
+
+			private function creationCompleteHandler():void {
+				oneButton.addEventListener(MouseEvent.CLICK, oneButtonClickHandler);
+				twoButton.addEventListener(MouseEvent.CLICK, twoButtonClickHandler);
+				threeButton.addEventListener(MouseEvent.CLICK, threeButtonClickHandler);
+			}
+
+			private function oneButtonClickHandler(e:MouseEvent):void {
+				var oneWindow:statePopupWindow = PopUpManager.createPopUp(this, statePopupWindow, true) as statePopupWindow;
+				oneWindow.currentState = "one";
+				// popup에서 발생한 이벤트 처리
+				oneWindow.addEventListener(StatePopupEvent.POPUP_TO_MAIN, popupToMainHandler);
+				PopUpManager.centerPopUp(oneWindow);
+			}
+			private function twoButtonClickHandler(e:MouseEvent):void {
+				var twoWindow:statePopupWindow = PopUpManager.createPopUp(this, statePopupWindow, true) as statePopupWindow;
+				twoWindow.currentState = "two";
+				// popup에서 발생한 이벤트 처리
+				twoWindow.addEventListener(StatePopupEvent.POPUP_TO_MAIN, popupToMainHandler);
+				PopUpManager.centerPopUp(twoWindow);
+			}
+			private function threeButtonClickHandler(e:MouseEvent):void {
+				var threeWindow:statePopupWindow = PopUpManager.createPopUp(this, statePopupWindow, true) as statePopupWindow;
+				threeWindow.currentState = "three";
+				// popup에서 발생한 이벤트 처리
+				threeWindow.addEventListener(StatePopupEvent.POPUP_TO_MAIN, popupToMainHandler);
+				PopUpManager.centerPopUp(threeWindow);
+			}
+			private function popupToMainHandler(e:StatePopupEvent):void {
+				lblMessage.text = "execute event " + i
+				i++;
+			}
+
+		]]>
+	</mx:Script>
+
+	<mx:Panel x="136" y="102" width="256" height="122" layout="absolute" title="State 를 이용한 Popup 샘플">
+		<mx:Button id="oneButton" x="10" y="10" label="one" width="70"/>
+		<mx:Button id="twoButton" x="83" y="10" label="two" width="70"/>
+		<mx:Button id="threeButton" x="156" y="10" label="three" width="70"/>
+		<mx:Label id="lblMessage" x="10" y="45" text="popup으로부터의 메세지"/>
+	</mx:Panel>
+
+</mx:Application>
