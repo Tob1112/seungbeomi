@@ -62,4 +62,8 @@ public class UserDaoImpl extends SqlMapClientDaoSupport implements UserDao {
 				"findByUserIdAndPassword", user);
 	}
 
+	public Integer getCount() {
+		return (Integer) getSqlMapClientTemplate().queryForObject("getCount",null);
+	}
+
 }

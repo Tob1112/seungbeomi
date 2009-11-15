@@ -59,4 +59,9 @@
     		AND password = #password#
     </select>
 
+    <select id="getCount" resultClass="integer">
+		SELECT count(*)
+		FROM   userinfo
+    </select>
+
 </sqlMap>
