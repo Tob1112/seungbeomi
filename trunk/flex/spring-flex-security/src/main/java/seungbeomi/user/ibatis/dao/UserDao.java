@@ -47,4 +47,9 @@ public interface UserDao {
 	 * Login
 	 */
 	public User findUserByUserIdAndPassword(String userId, String password);
+
+	/**
+	 * getCount for WatchService
+	 */
+	public Integer getCount();
 }
