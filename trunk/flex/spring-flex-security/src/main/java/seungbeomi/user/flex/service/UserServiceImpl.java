@@ -17,6 +17,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import seungbeomi.user.ibatis.dao.UserDao;
 import seungbeomi.user.model.User;
+import seungbeomi.util.Md5Encrypt;
 import flex.messaging.FlexContext;
 import flex.messaging.FlexSession;
 
@@ -25,7 +26,6 @@ import flex.messaging.FlexSession;
 public class UserServiceImpl implements UserService {
 
 	Logger logger = LoggerFactory.getLogger(getClass());
-
 
 	private UserDao userDao;
 
@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService {
 		Authentication authentication;
     	ApplicationContext context;
     	AuthenticationManager manager;
-    	UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username,password);
+    	UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username,new Md5Encrypt().encrypting(password));
     	int authoritiesCount;
     	GrantedAuthority[] authorities;
     	String[] authorizedGroups;
