@@ -1,0 +1,27 @@
+/* CSS file */
+/* TYPE SELECTER */
+Application {
+	background-color: #000000;
+}
+
+Panel, TitleWindow {
+	modal-transparency: 0.5;
+	modal-transparency-blur: 1.0;
+	background-alpha: 1.0;
+	border-alpha: 1.0;
+	corner-radius: 15;
+	border-color: #666699;
+	border-thickness-left: 0;
+	border-thickness-right:0;
+}
+
+Alert {
+	border-color: #666666;
+	modal-transparency: 0.5;
+	modal-transparency-blur: 0.0;
+	background-alpha: 1.0;
+	background-color: #666699;
+	border-thickness-top: 10;
+	border-thickness-left: 20;
+	border-thickness-right: 20;
+}
