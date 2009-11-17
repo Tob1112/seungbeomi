@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" backgroundGradientAlphas="[1.0, 1.0]" backgroundGradientColors="[#FFFFFF, #8C8C8C]" viewSourceURL="srcview/index.html">
+    <mx:Script>
+        <![CDATA[
+            import mx.effects.easing.*;
+        ]]>
+    </mx:Script>
+
+    <mx:Style source="Animation.css"/>
+    <mx:Parallel id="bounceEffect" duration="1100">
+        <mx:Blur blurXFrom="18" blurYFrom="18" blurXTo="0" blurYTo="0"/>
+        <mx:Zoom zoomWidthFrom="0.01" zoomWidthTo="1.0" zoomHeightFrom="0.01" zoomHeightTo="1.0" easingFunction="Bounce.easeOut"/>
+    </mx:Parallel>
+    <mx:Parallel id="openEffect" duration="1100">
+        <mx:Resize heightFrom="30" heightTo="400" duration="500"/>
+        <mx:Move yFrom="300" yTo="71" easingFunction="Bounce.easeOut"/>
+    </mx:Parallel>
+    <mx:Parallel id="collapseEffect" duration="1100">
+        <mx:Resize heightFrom="400" heightTo="30" duration="500"/>
+        <mx:Move yFrom="71" yTo="300" easingFunction="Bounce.easeOut"/>
+    </mx:Parallel>
+    <mx:Canvas x="496" y="71" width="300" height="400" borderStyle="solid" id="cloudscape" verticalScrollPolicy="off" horizontalScrollPolicy="off" borderThickness="2" alpha="1.0" borderColor="#585858" backgroundColor="#EFEFEF">
+        <mx:ApplicationControlBar x="0" y="0" width="100%" fillAlphas="[1.0, 1.0]" fillColors="[#E6E6E6, #B8B8B8]">
+            <mx:Button label="Open" click="openEffect.play([cloudscape]);"/>
+        </mx:ApplicationControlBar>
+    </mx:Canvas>
+    <mx:Button x="45.4" y="70" width="105" height="104" click="bounceEffect.play([cloudscape]);" labelPlacement="bottom" label="Bounce"/>
+    <mx:Button x="181.4" y="70" click="collapseEffect.play([cloudscape]);" label="Collapse" width="105" height="104"/>
+
+</mx:Application>
