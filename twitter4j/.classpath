@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="src" path="src/main/resources"/>
+	<classpathentry kind="src" path="src/test/java"/>
+	<classpathentry kind="src" path="src/test/resources"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/development/ide/eclipse/workspace/twitter4j/lib/jdom.jar"/>
+	<classpathentry kind="lib" path="C:/development/ide/eclipse/workspace/twitter4j/lib/junit.jar"/>
+	<classpathentry kind="lib" path="C:/development/ide/eclipse/workspace/twitter4j/lib/logback-classic-0.9.6.jar"/>
+	<classpathentry kind="lib" path="C:/development/ide/eclipse/workspace/twitter4j/lib/logback-core-0.9.6.jar"/>
+	<classpathentry kind="lib" path="C:/development/ide/eclipse/workspace/twitter4j/lib/rome-0.9.jar"/>
+	<classpathentry kind="lib" path="C:/development/ide/eclipse/workspace/twitter4j/lib/slf4j-api-1.5.0.jar"/>
+	<classpathentry kind="lib" path="C:/development/ide/eclipse/workspace/twitter4j/lib/twitter4j-2.0.10.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
