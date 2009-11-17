@@ -46,7 +46,7 @@ public class AccountBookUserServiceImpl implements AccountBookUserService {
 				new Runnable() {
 
 					public void run() {
-						logger.debug("get count");
+						logger.info("get count");
 						int count = accountBookUserDao.getCount();
 						notifyToClient(new Integer(count));
 					}
@@ -55,7 +55,7 @@ public class AccountBookUserServiceImpl implements AccountBookUserService {
 		executor.schedule(new Runnable() {
 
 			public void run() {
-				logger.debug("cancel.");
+				logger.info("cancel.");
 				future.cancel(true);
 			}
 
@@ -64,7 +64,7 @@ public class AccountBookUserServiceImpl implements AccountBookUserService {
 	}
 
 	public synchronized void endWatch() {
-		logger.debug("shutdown operation");
+		logger.info("shutdown operation");
 		executor.shutdown();
 		try {
 			if (executor.awaitTermination(3, TimeUnit.SECONDS)) {
