@@ -1,0 +1,17 @@
+/* CSS file */
+
+@font-face {
+    fontWeight: normal;
+    font-family: "Arial";
+}
+@font-face {
+    fontWeight: bold;
+    font-family: "Arial";
+}
+
+Application
+{
+    font-family: "Arial";
+    backgroundGradientAlphas: 1.0, 1.0;
+    backgroundGradientColors: #0E0E0E, #636363;
+}
