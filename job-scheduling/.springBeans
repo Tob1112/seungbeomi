@@ -9,6 +9,8 @@
 	<configs>
 		<config>src/spring/jdktimer/BirthdayScheduledTask-context.xml</config>
 		<config>src/spring/jdktimer/TimerFactoryBeanExample-context.xml</config>
+		<config>src/spring/jdktimer/MethodInvokingTimerTaskExample-context.xml</config>
+		<config>src/quartz/SimpleSpringQuartzIntegrationExample-scheduler.xml</config>
 	</configs>
 	<configSets>
 	</configSets>
