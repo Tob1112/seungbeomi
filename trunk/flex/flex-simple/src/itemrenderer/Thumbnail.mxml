@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" width="140" height="95">
+
+	<!-- itemRenderer 내에서 렌더링 되는 각각의 모든 아이템의 데이터느느 data라는 변수로 접근 가능 -->
+	<mx:Label text="{data.name}"/>
+	<mx:Image source="assets/images/{data.imgName}.png" scaleContent="true" width="120" height="65"/>
+</mx:VBox>
