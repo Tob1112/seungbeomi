@@ -9,11 +9,13 @@
     <sourceAttachmentPath/>
   </compiler>
   <applications>
-    <application path="StatePopupMain.mxml"/>
     <application path="temp.mxml"/>
-    <application path="StateTransition02.mxml"/>
+    <application path="StatePopupMain.mxml"/>
     <application path="Layout.mxml"/>
+    <application path="StateTransition02.mxml"/>
     <application path="StateTransition01.mxml"/>
+    <application path="test.mxml"/>
+    <application path="LabelFunctionTest.mxml"/>
   </applications>
   <modules/>
   <buildCSSFiles/>

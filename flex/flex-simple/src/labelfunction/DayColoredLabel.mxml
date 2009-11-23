@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Label xmlns:mx="http://www.adobe.com/2006/mxml">
+    <mx:Script>
+        <![CDATA[
+            import mx.controls.dataGridClasses.DataGridListData;
+
+            override public function set data(value:Object):void {
+                super.data=value;
+
+                var date:Date=value[DataGridListData(listData).dataField] as Date;
+
+                if (date) {
+                    switch (date.day) {
+                        case 0: // 日曜
+                            setStyle("color", 0xFF0000);
+                            break;
+                        case 6: // 土曜
+                            setStyle("color", 0x0000FF);
+                            break;
+                        default: // 平日
+                            setStyle("color", 0x000000);
+                            break;
+                    }
+                }
+            }
+        ]]>
+    </mx:Script>
+</mx:Label>

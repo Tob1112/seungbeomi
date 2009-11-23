@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute"
+	xmlns:labelfunction="labelfunction.*">
+	<mx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+
+			private var arrayData:Array = [
+				{name:"banana",cat:"fruit",cost:0.99},
+				{name:"bread",cat:"bakery",cost:0.52},
+				{name:"orange",cat:"fruit",cost:0.33}
+			];
+			private var arrayData02:Array = [
+				{date:new Date("4/27/2009")},
+				{date:new Date("11/22/2009")},
+				{date:new Date("12/25/2009")},
+				{date:new Date("12/26/2009")},
+			];
+
+			private var dp:ArrayCollection = new ArrayCollection(arrayData);
+			private var dp02:ArrayCollection = new ArrayCollection(arrayData02);
+
+			private function multiDisplay(item:Object):String {
+				return item.cat + ": " + item.name + " $" + item.cost;
+			}
+		]]>
+	</mx:Script>
+
+	<labelfunction:DateColumnFormatter id="formatter"/>
+
+	<mx:Label text="labelField" x="10" y="10"/>
+	<mx:HorizontalList dataProvider="{dp}" labelField="name" columnWidth="130" width="600" y="36" x="10"/>
+
+	<mx:Label text="labelFunction" y="100" x="10"/>
+	<mx:HorizontalList dataProvider="{dp02}" labelFunction="multiDisplay" columnWidth="130" width="600" y="126" x="10"/>
+
+	<mx:Label text="date handling" y="190" x="10"/>
+	<mx:DataGrid dataProvider="{dp02}" x="10" y="216" width="142">
+		<mx:columns>
+			<mx:DataGridColumn headerText="date" dataField="date" labelFunction="{formatter.format}" itemRenderer="labelfunction.DayColoredLabel"/>
+		</mx:columns>
+	</mx:DataGrid>
+
+
+</mx:Application>
