@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml" horizontalAlign="center">
+<mx:Script>
+	<![CDATA[
+
+		//Embed the three icons
+		[Embed("assets/images/green.png")]
+		private var low:Class;
+
+		[Embed("assets/images/orange.png")]
+		private var medium:Class;
+
+		[Embed("assets/images/red.png")]
+		private var high:Class;
+
+		[Bindable]
+		private var riskLevelImage:Class;
+
+		override public function set data(value:Object):void{
+			if(value != null){
+				//based on the data, set the appropriate risk level icon in the source for the image
+				super.data = value;
+				riskLevelImage = this[value.riskLevel];
+			}
+		}
+	]]>
+</mx:Script>
+	<mx:Image source="{riskLevelImage}"/>
+</mx:HBox>
