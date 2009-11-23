@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute">
+	<mx:states>
+		<mx:State name="changeState">
+			<mx:SetStyle target="{panel1}" name="backgroundColor" value="#00D2FF"/>
+			<mx:SetProperty target="{panel1}" name="width" value="309"/>
+			<mx:SetProperty target="{panel1}" name="height" value="262"/>
+			<mx:SetProperty target="{button1}" name="x" value="94.5"/>
+			<mx:SetProperty target="{button1}" name="y" value="190"/>
+			<mx:AddChild relativeTo="{panel1}" position="lastChild">
+				<mx:Label x="25" y="10" text="Label"/>
+			</mx:AddChild>
+		</mx:State>
+	</mx:states>
+	<mx:Panel x="10" y="10" width="250" height="200" layout="absolute" id="panel1">
+		<mx:Button x="65" y="128" label="change state" id="button1" click="this.currentState='changeState'"/>
+	</mx:Panel>
+
+</mx:Application>
