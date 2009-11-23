@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:datagrid="datagrid.*">
+    <mx:Script>
+        <![CDATA[
+            import mx.collections.IViewCursor;
+            import mx.controls.Alert;
+            import mx.collections.ArrayCollection;
+
+            private var Hits:Array=new Array();
+            private function handleSearch():void { //search for text string
+                Hits.length=0; //first empty Array
+                var myCursor:IViewCursor=myDataGrid.dataProvider.createCursor(); //declare a cursor to go through the datagrid
+                while (!myCursor.afterLast) { //use cursor to search for string
+                    if (myCursor.current.myComment.indexOf(searchString.text) > -1 && searchString.text.length > 1)
+                        Hits.push(myCursor.current); //add any hit to Hits Array
+                    myCursor.moveNext();
+                }
+                if (Hits.length == 0)
+                    myError.text="Search string not found!";
+                myDataGrid.invalidateDisplayList(); //force redraw of grid rows
+            }
+
+            private function resetError():void {
+                if (myError.text == "")
+                    return;
+                else
+                    myError.text="";
+            }
+
+            private function getSearchHits(item:Object, color:uint):uint
+            {
+                if (Hits.indexOf(item) > -1)
+                    return 0xEEC591;
+                return color;
+            }
+        ]]>
+
+    </mx:Script>
+    <mx:Panel width="455" height="321" layout="absolute" horizontalCenter="0" verticalCenter="0" title="Search Datagrid">
+        <datagrid:CustomRowColorDG id="myDataGrid" rowColorFunction="getSearchHits" width="100%" height="100%">
+            <datagrid:dataProvider>
+                <mx:Array>
+                    <mx:Object userName="user" myComment="what do you thing you are dooing?"/>
+                    <mx:Object userName="gen" myComment="i am going to China"/>
+                    <mx:Object userName="user" myComment="laughing out my ass off"/>
+                    <mx:Object userName="come to me" myComment="there was a KING and a queen"/>
+                    <mx:Object userName="admin" myComment="try 1234 on ur search bro"/>
+                    <mx:Object userName="gen" myComment="it gets really HOT in the summer! duh!"/>
+                    <mx:Object userName="admin" myComment="what do u say?"/>
+                    <mx:Object userName="user" myComment="a KING is KING ???"/>
+                    <mx:Object userName="gen" myComment="Narrow streets"/>
+                    <mx:Object userName="gen" myComment="light of a street lamp"/>
+                    <mx:Object userName="admin" myComment="tonight its going to be cold and damp"/>
+                    <mx:Object userName="user" myComment="damp and dark room"/>
+                    <mx:Object userName="user" myComment="China is 1234 km away"/>
+                </mx:Array>
+            </datagrid:dataProvider>
+            <datagrid:columns>
+                <!--Define dataGrid Itemrendrer : UserLabelRendr3r-->
+                <mx:DataGridColumn itemRenderer="datagrid.UserLabelRendr3r" headerText="User" resizable="true" fontWeight="bold" width="125"/>
+                <mx:DataGridColumn dataField="myComment" headerText="Comments (searchable)"/>
+            </datagrid:columns>
+        </datagrid:CustomRowColorDG>
+        <mx:ControlBar defaultButton="{Search}">
+            <mx:Text id="myError" fontWeight="bold" color="red"/>
+            <mx:Spacer width="100%"/>
+            <mx:TextInput id="searchString" change="resetError()"/>
+            <mx:Button label="find" id="Search" click="handleSearch()"/>
+        </mx:ControlBar>
+    </mx:Panel>
+</mx:Application>

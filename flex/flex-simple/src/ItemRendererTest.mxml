@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:itemrenderer="itemrenderer.*">
+	<mx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+
+			private var arrayData:Array = [
+				{name:"banana",cat:"fruit",cost:0.99,imgName:"son"},
+				{name:"bread",cat:"bakery",cost:0.52,imgName:"son"},
+				{name:"orange",cat:"fruit",cost:0.33,imgName:"son"}
+			];
+
+			private var dp:ArrayCollection = new ArrayCollection(arrayData);
+
+		]]>
+	</mx:Script>
+
+	<mx:HorizontalList dataProvider="{dp}" itemRenderer="itemrenderer.Thumbnail" width="500"/>
+
+</mx:Application>

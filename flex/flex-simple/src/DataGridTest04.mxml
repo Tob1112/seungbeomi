@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical">
+<mx:Script>
+    <![CDATA[
+        import mx.collections.ArrayCollection;
+        private function changeSelect():void {
+            txtName.text = grd.selectedItem.name;
+            txtGender.text = grd.selectedItem.gender;
+            txtArea.text = grd.selectedItem.area;
+        }
+        private var uinfo:Array = [
+         {name:"浜田　慶太",no:"10111",email:"hamada-k@abc.co.jp",gender:"web",area:"東京"},
+         {name:"古賀　省吾",no:"10121",email:"koga-s@abc.co.jp",gender:"web",area:"広島"},
+         {name:"中野　秀樹",no:"10221",email:"nakano-h@abc.co.jp",gender:"eigyo",area:"東京"},
+         {name:"岡本　和人",no:"10301",email:"okamoto-k@abc.co.jp",gender:"eigyo",area:"東京"},
+         {name:"伊藤　奈々子",no:"10630",email:"itoh-n@abc.co.jp",gender:"web",area:"広島"}
+        ];
+        [Bindable]
+        private var usrInfo:ArrayCollection = new ArrayCollection(uinfo);
+    ]]>
+</mx:Script>
+<mx:Component id="cmb">
+    <mx:ComboBox>
+        <mx:Script>
+            <![CDATA[
+                private var genderList:Array = [
+                    {label:"Web開発部",data:"web"},{label:"営業事業部",data:"eigyo"}
+                ];
+            ]]>
+        </mx:Script>
+        <mx:creationComplete>
+            <![CDATA[
+                dataProvider = genderList;
+            ]]>
+        </mx:creationComplete>
+    </mx:ComboBox>
+</mx:Component>
+    <mx:DataGrid id="grd" dataProvider="{usrInfo}" change="changeSelect()" editable="true">
+        <mx:columns>
+            <mx:DataGridColumn headerText="名前" dataField="name" editable="false" width="80"/>
+            <mx:DataGridColumn headerText="社員番号" dataField="no" editable="false" width="60"/>
+            <mx:DataGridColumn headerText="E-Mail" dataField="email" editable="false" width="140"/>
+            <mx:DataGridColumn headerText="所属" dataField="gender" width="100"
+                itemRenderer="{cmb}" rendererIsEditor="true" editorDataField="value"/>
+        </mx:columns>
+    </mx:DataGrid>
+    <mx:HBox>
+      <mx:TextInput id="txtName"/>
+        <mx:TextInput id="txtGender" width="70"/>
+      <mx:TextInput id="txtArea" width="70"/>
+    </mx:HBox>
+
+</mx:Application>
+

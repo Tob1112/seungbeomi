@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute">
+	<mx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			import mx.collections.ArrayCollection;
+
+			private var arrayData:Array = [
+				{name:"banana",cat:"fruit",cost:0.99,total:0},
+				{name:"bread",cat:"bakery",cost:0.52,total:0},
+				{name:"orange",cat:"fruit",cost:0.33,total:0}
+			];
+
+			private var dp:ArrayCollection = new ArrayCollection(arrayData);
+
+			public function removeItem():void {
+				Alert.show("click");
+			}
+		]]>
+	</mx:Script>
+
+	<!--
+		itemEditor와 editorDataField로 데이터를 관리할 때 어떤 어디터를 사용할 것인지 명시
+		사용가능한 내장 컨트롤
+			Button			CheckBox			ComboBox			DateField
+			Image			Label				NumericStepper		Text(Default)
+			TextArea		TextInput
+	-->
+
+	<mx:DataGrid dataProvider="{dp}" editable="true">
+		<mx:columns>
+			<mx:DataGridColumn headerText="category" dataField="cat"/>
+			<mx:DataGridColumn headerText="name" dataField="name"/>
+			<mx:DataGridColumn headerText="cost" dataField="cost"/>
+			<!-- editorDataField : NumericStepper 속성중 edit될 속성 -->
+			<mx:DataGridColumn headerText="quentity"
+				itemEditor="mx.controls.NumericStepper" editorDataField="value" editable="true"/>
+			<mx:DataGridColumn headerText="total cost" dataField="total"/>
+			<mx:DataGridColumn editable="false">
+				<mx:itemRenderer>
+					<mx:Component>
+						<mx:VBox>
+							<mx:Script>
+								<![CDATA[
+
+								]]>
+							</mx:Script>
+							<mx:Button label="remove" click="outerDocument.removeItem()"/>
+						</mx:VBox>
+					</mx:Component>
+				</mx:itemRenderer>
+			</mx:DataGridColumn>
+			<mx:DataGridColumn headerText="comboBox">
+				<mx:itemEditor>
+					<mx:Component>
+						<mx:ComboBox dataProvider="{kubun_combo}">
+							<mx:Script>
+								<![CDATA[
+									import mx.collections.ArrayCollection;
+
+									[Bindable]
+									private var kubun_combo:ArrayCollection = new ArrayCollection([
+										{label:"바나나", data:"banana"},
+										{label:"빵", data:"bread"},
+										{label:"오렌지", data:"orange"}
+						  			]);
+								]]>
+							</mx:Script>
+						</mx:ComboBox>
+					</mx:Component>
+				</mx:itemEditor>
+			</mx:DataGridColumn>
+		</mx:columns>
+	</mx:DataGrid>
+</mx:Application>

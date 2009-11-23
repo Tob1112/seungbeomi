@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" creationComplete="initApp()">
+
+	<mx:XML id="testData" xmlns="">
+		<root>
+		<book>
+		    <author>Peter F. Hamilton</author>
+		    <title>Pandora's Star</title>
+		    <image>assets/images/pandoras_star_.jpg</image>
+		    <date>Dec 3, 2004</date>
+		</book>
+		<book>
+			<author>Peter F. Hamilton</author>
+		    <title>Judas Unchained</title>
+		    <image>assets/images/judas_unchained.jpg</image>
+		    <date>Feb 28, 2006</date>
+		</book>
+		</root>
+	</mx:XML>
+
+	<mx:Script>
+	<![CDATA[
+		import datagrid.outerdocument.BuyBookEvent;
+		import mx.controls.Alert;
+		import datagrid.outerdocument.BuyBookEvent;
+
+		/**
+		 * Initialize this application by adding an event listener for the BuyBookEvent
+		 * which will bubble up from the itemRenderer in the TileList and be caught here
+		 */
+		private function initApp() : void
+		{
+			addEventListener( BuyBookEvent.BUY_BOOK, handleBuyBook );
+		}
+
+		/**
+		 * Handles the BuyBookEvent. If you had your interface to a web service defined at
+		 * this level, bubbling the event up to here would make it easier to handle.
+		 */
+		private function handleBuyBook( event:BuyBookEvent ) : void
+		{
+			Alert.show("You have selected '"+event.bookData.title+"' by "+event.bookData.author, "Buy This Book");
+		}
+	]]>
+	</mx:Script>
+
+	<!-- Simple inline itemRenderer
+	-->
+	<mx:List x="29" y="67" dataProvider="{testData.book}" width="286" height="190">
+		<mx:itemRenderer>
+			<mx:Component>
+				<mx:Label text="{data.author}: {data.title}" />
+			</mx:Component>
+		</mx:itemRenderer>
+	</mx:List>
+
+	<!-- More complex inline itemRenderer
+	-->
+	<mx:List x="372" y="67" width="351" height="190" variableRowHeight="true" dataProvider="{testData.book}">
+		<mx:itemRenderer>
+			<mx:Component>
+				<mx:HBox >
+					<mx:Image source="{data.image}" width="50" height="50" scaleContent="true" />
+					<mx:Label text="{data.author}" width="125" />
+					<mx:Text  text="{data.title}" width="100%" />
+				</mx:HBox>
+			</mx:Component>
+		</mx:itemRenderer>
+	</mx:List>
+
+	<!-- A DataGrid with a complex, inline itemRenderer that overrides the set data function
+	     so special logic can be used within the itemRenderer.
+	-->
+	<mx:DataGrid x="29" y="303" width="694" height="190" dataProvider="{testData.book}" variableRowHeight="true">
+		<mx:columns>
+			<mx:DataGridColumn headerText="Pub Date" dataField="date" width="85" />
+			<mx:DataGridColumn headerText="Author" dataField="author" width="125"/>
+			<mx:DataGridColumn headerText="Title" dataField="title">
+				<mx:itemRenderer>
+					<mx:Component>
+						<mx:HBox paddingLeft="2">
+							<mx:Script>
+							<![CDATA[
+								override public function set data( value:Object ) : void {
+									super.data = value;
+									var today:Number = (new Date()).time;
+									var pubDate:Number = Date.parse(data.date);
+									if( pubDate > today ) setStyle("backgroundColor",0xff99ff);
+									else setStyle("backgroundColor",0xffffff);
+								}
+							]]>
+							</mx:Script>
+							<mx:Image source="{data.image}" width="50" height="50" scaleContent="true" />
+							<mx:Text width="100%" text="{data.title}" />
+						</mx:HBox>
+					</mx:Component>
+				</mx:itemRenderer>
+			</mx:DataGridColumn>
+		</mx:columns>
+	</mx:DataGrid>
+
+	<!-- TileList with a complex inline itemRenderer that also dispatches a bubbling event.
+	-->
+	<mx:TileList x="29" y="542" width="694" dataProvider="{testData.book}" height="232" columnWidth="275" rowHeight="135" >
+		<mx:itemRenderer>
+			<mx:Component>
+				<mx:HBox verticalAlign="top">
+					<mx:Script></mx:Script>
+					<mx:Image source="{data.image}" />
+					<mx:VBox height="115" verticalAlign="top" verticalGap="0">
+						<mx:Text text="{data.title}" fontWeight="bold" width="100%"/>
+						<mx:Spacer height="20" />
+						<mx:Label text="{data.author}" />
+						<mx:Label text="Available {data.date}" />
+						<mx:Spacer height="100%" />
+						<mx:HBox width="100%" horizontalAlign="right">
+							<mx:Button label="Buy" fillColors="[0x99ff99,0x99ff99]">
+								<mx:click>
+								<![CDATA[
+									import datagrid.outerdocument.BuyBookEvent;
+									var e:BuyBookEvent = new BuyBookEvent();
+									e.bookData = data;
+									dispatchEvent(e);
+								]]>
+								</mx:click>
+							</mx:Button>
+						</mx:HBox>
+					</mx:VBox>
+				</mx:HBox>
+			</mx:Component>
+		</mx:itemRenderer>
+	</mx:TileList>
+
+</mx:Application>

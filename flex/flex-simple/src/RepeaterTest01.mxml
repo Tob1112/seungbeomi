@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute">
+	<mx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+
+			private var arrayData:Array = [
+				{name:"banana",cat:"fruit",cost:0.99,imgName:"son"},
+				{name:"bread",cat:"bakery",cost:0.52,imgName:"son"},
+				{name:"orange",cat:"fruit",cost:0.33,imgName:"son"}
+			];
+
+			private var dp:ArrayCollection = new ArrayCollection(arrayData);
+
+			private function displayCost(repeaterItem:Object):void {
+				lblPrice.text = repeaterItem.cost;
+			}
+
+			private function changeLabels():void {
+				myButton[0].label = "New banana";
+				myButton[2].label = "New orange";
+			}
+		]]>
+	</mx:Script>
+	<mx:VBox>
+		<mx:Label id="lblPrice"/>
+		<!-- Repeater가 반복을 마치면 -1 값을 가진다. -->
+		<mx:Repeater id="myRepeater" dataProvider="{dp}">
+			<mx:RadioButton id="myButton" label="{myRepeater.currentItem.name}"
+				  click="displayCost(event.target.getRepeaterItem())"/>
+		</mx:Repeater>
+		<mx:Button label="change radio buttons" click="changeLabels()"/>
+	</mx:VBox>
+</mx:Application>

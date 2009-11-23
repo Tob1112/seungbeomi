@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="horizontal" creationComplete="onCreation()"
+	xmlns:gunua="datagrid.gunua.*" viewSourceURL="srcview/index.html">
+<mx:Script>
+	<![CDATA[
+		import datagrid.gunua.RiskLevelEvent;
+		import mx.collections.ArrayCollection;
+		[Bindable]
+		private var dgData:ArrayCollection;
+
+		private function onCreation():void{
+			dgData = new ArrayCollection([{description:"Item 1", riskLevel:"high"},
+											{description:"Item 2", riskLevel:"low"},
+											{description:"Item 3", riskLevel:"high"},
+											{description:"Item 4", riskLevel:"medium"},
+											{description:"Item 5", riskLevel:"high"}]);
+			//add the event handler for the risk level change
+			this.addEventListener(RiskLevelEvent.CHANGE, onRiskLevelChange);
+		}
+
+		//RiskLevelEvent.CHANGE is dispatched by the item renderer
+		private function onRiskLevelChange (event:RiskLevelEvent):void {
+			//the event contains an object from the DataProcider, find the index based on that
+			var dpTargetIndex:int = dgData.getItemIndex(event.item);
+			//after finding the index, change the risk level within the object inside the DP to the new risk level
+			var dpTargetObject:Object = dgData.getItemAt(dpTargetIndex);
+			dpTargetObject.riskLevel = event.riskLevel;
+			//update the DG data after the evet
+			dgData.refresh();
+		}
+	]]>
+</mx:Script>
+	<mx:DataGrid id="riskLevelDG" dataProvider="{dgData}">
+		<mx:columns>
+			<mx:DataGridColumn headerText="Description" dataField="description"/>
+			<mx:DataGridColumn headerText="Risk Level Icon">
+				<mx:itemRenderer>
+					<mx:Component>
+						<gunua:RiskLevelRenderer/>
+					</mx:Component>
+				</mx:itemRenderer>
+			</mx:DataGridColumn>
+			<mx:DataGridColumn>
+				<mx:itemRenderer>
+					<mx:Component>
+						<gunua:RiskLevelController/>
+					</mx:Component>
+				</mx:itemRenderer>
+			</mx:DataGridColumn>
+		</mx:columns>
+	</mx:DataGrid>
+</mx:Application>
