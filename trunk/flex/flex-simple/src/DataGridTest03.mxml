@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" backgroundGradientColors="[#ffffff, #ffffff]">
+<mx:Script>
+    <![CDATA[
+        import mx.collections.ArrayCollection;
+        public var viewdata:Array = [
+         {name:"hoge",data:1},{name:"foo",data:2},{name:"goo",data:5}
+        ];
+        [Bindable]
+        public var viewDataAC:ArrayCollection = new ArrayCollection(viewdata);
+        [Bindable]
+        public var editObj:Object = new Object();
+        [Bindable]
+        public var rendObj:Object = new Object();
+
+        public function getData(event:Event):void {
+            var id:String = event.currentTarget.id;
+            switch(id) {
+                case "iedit":editObj = event.currentTarget.selectedItem;
+                             break;
+                case "irend":rendObj = event.currentTarget.selectedItem;
+                             break;
+            }
+        }
+    ]]>
+</mx:Script>
+    <mx:Label x="27" y="9" text="ItemEditor"/>
+    <mx:DataGrid x="27" y="35" dataProvider="{viewDataAC}" editable="true" height="142"
+                 itemClick="getData(event)" id="iedit">
+        <mx:columns>
+            <mx:DataGridColumn headerText="Name" dataField="name" editable="false"/>
+            <mx:DataGridColumn headerText="data" dataField="data"
+                 editorDataField="value">
+                <mx:itemEditor>
+                    <mx:Component>
+                        <mx:NumericStepper minimum="1" maximum="5"/>
+                    </mx:Component>
+                </mx:itemEditor>
+            </mx:DataGridColumn>
+        </mx:columns>
+    </mx:DataGrid>
+    <mx:TextInput x="27" y="185" id="name1" text="{editObj.name}"/>
+    <mx:TextInput x="27" y="215" id="data1" text="{editObj.data}"/>
+    <mx:Label x="259" y="9" text="ItemRenderer"/>
+    <mx:DataGrid x="259" y="35" dataProvider="{viewDataAC}" editable="true" height="142"
+                 itemClick="getData(event)" id="irend">
+        <mx:columns>
+            <mx:DataGridColumn headerText="Name" dataField="name" editable="false"/>
+            <mx:DataGridColumn headerText="data" dataField="data"
+                 rendererIsEditor="true" editorDataField="value">
+                <mx:itemRenderer>
+                    <mx:Component>
+                        <mx:NumericStepper minimum="1" maximum="5"/>
+                    </mx:Component>
+                </mx:itemRenderer>
+            </mx:DataGridColumn>
+        </mx:columns>
+    </mx:DataGrid>
+    <mx:TextInput x="259" y="185" id="name2" text="{rendObj.name}"/>
+    <mx:TextInput x="259" y="215" id="data2" text="{rendObj.data}"/>
+
+</mx:Application>
+
