@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<mx:ComboBox xmlns:mx="http://www.adobe.com/2006/mxml" arrowButtonWidth="0" creationComplete="init()" prompt="click to start">
+
+    <mx:dataProvider>
+        <mx:Array>
+            <mx:Object data="admin" label="管理者"/>
+            <mx:Object data="user" label="ユーザー"/>
+        </mx:Array>
+    </mx:dataProvider>
+
+    <mx:Script>
+        <![CDATA[
+            private function init():void {
+                for (var i:int = 0, f:int = dataProvider.length; i < f; i++) {
+                    if (dataProvider[i].data == data.role) {
+                        selectedIndex = i;
+                        break;
+                    }
+                }
+            }
+        ]]>
+    </mx:Script>
+
+</mx:ComboBox>
