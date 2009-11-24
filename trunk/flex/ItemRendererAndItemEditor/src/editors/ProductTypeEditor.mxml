@@ -1,51 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:ComboBox xmlns:mx="http://www.adobe.com/2006/mxml">
 
-	<!-- This is the content of the ComboBox. 
-	-->
-	<mx:dataProvider>
-		<mx:Object label="Cog" />
-		<mx:Object label="Sproket" />
-	</mx:dataProvider>
-	
-	<mx:Script>
-	<![CDATA[
-		import mx.collections.ArrayCollection;
-	
-		/**
-		 * This override of set data compares the data.label against the label property
-		 * of each item in the dataProvider (above). This code is written a bit more
-		 * generically than necessary, but it would allow you to have a long list
-		 * in the dataProvider and not have to change this code.
-		 */
-		override public function set data(value:Object):void
-		{
-			super.data = value;
-			
-			var list:ArrayCollection = dataProvider as ArrayCollection;
-			
-			for(var i:int=0; i < list.length; i++)
-			{
-				if( String(value.type) == list[i].label ) {
-					selectedIndex = i;
-				}
-			}
-		}
-		
-		/**
-		 * This getter is the one identified as the editorDataField in the list for
-		 * the itemEditor.
-		 */
-		public function get type() : String
-		{
-			if( selectedItem ) {
-				return selectedItem.label;
-			}
-			else {
-				return null;
-			}
-		}
-	]]>
-	</mx:Script>
-	
+    <!-- This is the content of the ComboBox.
+    -->
+    <mx:dataProvider>
+        <mx:Object label="Cog"/>
+        <mx:Object label="Sproket"/>
+    </mx:dataProvider>
+
+    <mx:Script>
+        <![CDATA[
+            import mx.collections.ArrayCollection;
+
+            /**
+             * This override of set data compares the data.label against the label property
+             * of each item in the dataProvider (above). This code is written a bit more
+             * generically than necessary, but it would allow you to have a long list
+             * in the dataProvider and not have to change this code.
+             */
+            override public function set data(value:Object):void {
+                super.data = value;
+
+                var list:ArrayCollection = dataProvider as ArrayCollection;
+
+                for (var i:int = 0; i < list.length; i++) {
+                    if (String(value.type) == list[i].label) {
+                        selectedIndex = i;
+                    }
+                }
+            }
+
+            /**
+             * This getter is the one identified as the editorDataField in the list for
+             * the itemEditor.
+             */
+            public function get type():String {
+                if (selectedItem) {
+                    return selectedItem.label;
+                } else {
+                    return null;
+                }
+            }
+        ]]>
+    </mx:Script>
+
 </mx:ComboBox>
