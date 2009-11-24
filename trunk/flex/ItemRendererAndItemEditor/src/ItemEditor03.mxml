@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute">
+    <mx:Script>
+        <![CDATA[
+            import mx.controls.dataGridClasses.DataGridColumn;
+            import mx.collections.IViewCursor;
+            import mx.collections.ArrayCollection;
+
+            private var arrayData:Array = [{name:"admin", role:"admin"}, {name:"user", role:"user"}, {name:"son", role:"admin"}, {name:"kim", role:"user"}];
+
+            [Bindable]
+            private var dp:ArrayCollection = new ArrayCollection(arrayData);
+
+            private function getRoleName(item:Object, column:DataGridColumn):String {
+                var role:String = item.role;
+                return (role == "admin") ? "管理者" : "ユーザー";
+            }
+
+            private function changeItem():void {
+                var cursor:IViewCursor = dp.createCursor();
+
+                while (!cursor.afterLast) {
+                    trace(cursor.current.name + " : " + cursor.current.role);
+                    cursor.moveNext();
+                }
+
+                trace("-------------------");
+            }
+        ]]>
+    </mx:Script>
+
+    <mx:DataGrid dataProvider="{dp}" editable="true" x="10" y="10" change="changeItem()">
+        <mx:columns>
+            <mx:DataGridColumn headerText="NAME" dataField="name"/>
+            <mx:DataGridColumn headerText="ROLE" dataField="role" labelFunction="{getRoleName}" itemEditor="renderers.RoleRenderer" editorDataField="value"/>
+        </mx:columns>
+    </mx:DataGrid>
+
+</mx:Application>
