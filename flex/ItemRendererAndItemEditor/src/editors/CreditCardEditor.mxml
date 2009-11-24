@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml" paddingTop="1" paddingBottom="2" >
+
+	<mx:Script>
+	<![CDATA[
+		
+		/**
+		 * This override of set data takes the credit card number, which is a single
+		 * string of 16 digits, and breaks it into 4 separate strings among the 4
+		 * TextInput components.
+		 */
+		override public function set data(value:Object):void
+		{
+			super.data = value;
+			part1.text = value.ccard.substr(0,4);
+			part2.text = value.ccard.substr(4,4);
+			part3.text = value.ccard.substr(8,4);
+			part4.text = value.ccard.substr(12,4);
+		}
+		
+		/**
+		 * This getter property is the one named in the editorDataField of the list for
+		 * this itemEditor.
+		 */
+		public function get value() : String
+		{
+			return part1.text+part2.text+part3.text+part4.text;
+		}
+	]]>
+	</mx:Script>
+	
+	<mx:TextInput id="part1" maxChars="4" restrict="[0-9]" width="40"  height="20"/>
+	<mx:TextInput id="part2" maxChars="4" restrict="[0-9]" width="40"  height="20"/>
+	<mx:TextInput id="part3" maxChars="4" restrict="[0-9]" width="40"  height="20"/>
+	<mx:TextInput id="part4" maxChars="4" restrict="[0-9]" width="40"  height="20"/>
+	
+</mx:HBox>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" backgroundColor="#FFFFFF" backgroundGradientAlphas="[1.0, 1.0]" backgroundGradientColors="[#FFFFFF, #FFFFFF]">
+
+    <mx:Script>
+        <![CDATA[
+            import mx.collections.ArrayCollection;
+
+            [Bindable]
+            private var inventoryDB:ArrayCollection = new ArrayCollection([{product:"Widgets", part:"WDG-1000", inStock:true, quantity:53}, {product:"Gizmos", part:"GZM-850", inStock:false, quantity:0}, {product:"Thingys", part:"THG-4320", inStock:true, quantity:120}, {product:"Gadgets", part:"GAT-910", inStock:true, quantity:4}]);
+
+            [Bindable]
+            private var employeeDB:ArrayCollection = new ArrayCollection([{name:"James Kirk", position:"Captain", age:38}, {name:"Spock", position:"1st Officer", age:154}, {name:"Montgomery Scott", position:"Engineer (Chief)", age:46}, {name:"Leonard McCoy", position:"Doctor", age:52}]);
+
+            [Bindable]
+            private var accountDB:ArrayCollection = new ArrayCollection([{account:"John's Pants", ccard:"1234100012341000"}, {account:"Jeopardy Airlines", ccard:"0000222244441111"}, {account:"No-Go Adventures", ccard:"9222833374446555"}]);
+
+            private function inStockLabeler(item:Object, col:*):String {
+                return item.inStock ? "yes" : "NO";
+            }
+        ]]>
+    </mx:Script>
+
+    <!-- inventory: simple text editing -->
+
+    <mx:DataGrid x="46" y="79" editable="true" dataProvider="{inventoryDB}">
+        <mx:columns>
+            <mx:DataGridColumn headerText="Product" dataField="product"/>
+            <mx:DataGridColumn headerText="Part #" dataField="part"/>
+            <mx:DataGridColumn headerText="In Stock?" dataField="inStock"/>
+            <mx:DataGridColumn headerText="Quantity" dataField="quantity"/>
+        </mx:columns>
+    </mx:DataGrid>
+
+    <!-- employee: custom inline editor -->
+
+    <mx:DataGrid x="46" y="270" editable="true" dataProvider="{employeeDB}">
+        <mx:columns>
+            <mx:DataGridColumn headerText="Name" dataField="name"/>
+            <mx:DataGridColumn headerText="Position" dataField="position"/>
+            <mx:DataGridColumn headerText="Age" dataField="age">
+                <mx:itemEditor>
+                    <mx:Component>
+                        <mx:TextInput restrict="0-9" maxChars="3"/>
+                    </mx:Component>
+                </mx:itemEditor>
+            </mx:DataGridColumn>
+        </mx:columns>
+    </mx:DataGrid>
+
+    <!-- inventory: numeric stepper -->
+
+    <mx:DataGrid x="531" y="82" editable="true" dataProvider="{inventoryDB}">
+        <mx:columns>
+            <mx:DataGridColumn headerText="Product" dataField="product"/>
+            <mx:DataGridColumn headerText="Part #" dataField="part"/>
+            <mx:DataGridColumn headerText="In Stock?" dataField="inStock"/>
+            <mx:DataGridColumn headerText="Quantity" dataField="quantity" itemEditor="mx.controls.NumericStepper" editorDataField="value"/>
+        </mx:columns>
+    </mx:DataGrid>
+
+    <!-- inventory: checkbox -->
+
+    <mx:DataGrid x="531" y="273" editable="true" dataProvider="{inventoryDB}">
+        <mx:columns>
+            <mx:DataGridColumn headerText="Product" dataField="product"/>
+            <mx:DataGridColumn headerText="Part #" dataField="part"/>
+            <mx:DataGridColumn headerText="In Stock?" dataField="inStock" labelFunction="inStockLabeler" itemEditor="mx.controls.CheckBox" editorDataField="selected"/>
+            <mx:DataGridColumn headerText="Quantity" dataField="quantity"/>
+        </mx:columns>
+    </mx:DataGrid>
+
+    <!-- credit card: complex itemEditor -->
+
+    <mx:DataGrid x="46" y="463" editable="true" dataProvider="{accountDB}" width="302">
+        <mx:columns>
+            <mx:DataGridColumn headerText="Account" dataField="account" width="100"/>
+            <mx:DataGridColumn headerText="Credit Card" dataField="ccard" editorDataField="value">
+                <mx:itemEditor>
+                    <mx:Component>
+                        <mx:HBox>
+                            <mx:Script>
+                                <![CDATA[
+                                    public function get value():String {
+                                        return part1.text + part2.text + part3.text + part4.text;
+                                    }
+
+                                    override public function set data(value:Object):void {
+                                        super.data = value;
+                                        part1.text = value.ccard.substr(0, 4);
+                                        part2.text = value.ccard.substr(4, 4);
+                                        part3.text = value.ccard.substr(8, 4);
+                                        part4.text = value.ccard.substr(12, 4);
+                                    }
+                                ]]>
+                            </mx:Script>
+                            <mx:TextInput id="part1" maxChars="4" restrict="[0-9]" width="40"/>
+                            <mx:TextInput id="part2" maxChars="4" restrict="[0-9]" width="40"/>
+                            <mx:TextInput id="part3" maxChars="4" restrict="[0-9]" width="40"/>
+                            <mx:TextInput id="part4" maxChars="4" restrict="[0-9]" width="40"/>
+                        </mx:HBox>
+                    </mx:Component>
+                </mx:itemEditor>
+            </mx:DataGridColumn>
+        </mx:columns>
+    </mx:DataGrid>
+
+</mx:Application>
