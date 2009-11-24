@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute"
+	backgroundColor="#FFFFFF" 
+	backgroundGradientAlphas="[1.0, 1.0]" 
+	backgroundGradientColors="[#FFFFFF, #FFFFFF]">
+	
+	<mx:Script>
+	<![CDATA[
+		import editors.CreditCardEditor;
+		import mx.controls.Alert;
+		import mx.controls.DataGrid;
+		import mx.controls.TextInput;
+		import mx.events.DataGridEventReason;
+		import mx.events.DataGridEvent;
+		import mx.collections.ArrayCollection;
+		
+		[Bindable]
+		private var inventoryDB:ArrayCollection = new ArrayCollection(
+			[ {product:"Widgets", permanent:true,  part:"WDG-1000", type:"Cog",  quantity: 53},
+			  {product:"Gizmos",  permanent:false, part:"GZM-850",  type:"Cog", quantity: 0},
+			  {product:"Thingys", permanent:false, part:"THG-4320", type:"Sproket",  quantity: 120},
+			  {product:"Gadgets", permanent:true,  part:"GAT-910",  type:"Cog",  quantity: 4}
+			]);
+			
+		[Bindable]
+		private var accountDB:ArrayCollection = new ArrayCollection(
+			[ {account:"John's Pants",  ccard:"1234100012341000"},
+			  {account:"Jeopardy Airlines", ccard:"0000222244441111"},
+			  {account:"No-Go Adventures", ccard:"9222833374446555"}
+			]);
+		
+		/**
+		 * Example of simple validation
+		 */
+		private function verifyInput( event:DataGridEvent ) : void
+		{
+			// it is OK if the user cancels the edit
+			if( event.reason == DataGridEventReason.CANCELLED ) return;
+			
+			// grab the instance of the itemEditor. For this DataGrid, only the
+			// TextInput control is used as the editor, so it is safe to get the
+			// editor no matter what column has been edited.
+			var editor:TextInput = (event.currentTarget as DataGrid).itemEditorInstance as TextInput;
+			
+			// if the edit is on the part number column, make sure it is not blank
+			if( event.dataField == "part" )
+			{
+				if( editor.text.length == 0 ) {
+					// call event.preventDefault() so the edit will not continue and store the
+					// blank value
+					event.preventDefault();
+					// give the editor an error to display to the user
+					editor.errorString = "You must enter a part number";
+					return;
+				}
+			}
+			
+			// handle other columns here
+		}
+		
+		/**
+		 * Example of selective cell editing. If the column is the product column AND
+		 * the record has the permanent field true, then editing is not allowed.
+		 */		
+		private function allowForEdit(event:DataGridEvent) : void
+		{
+			// if the field to be edited is a product, prevent the user from making
+			// changes if the permanent flag is true. You can use more complex logic, 
+			// of course.
+			if( event.dataField == "product" ) {
+				
+				var item:Object = ((event.currentTarget as DataGrid).dataProvider as ArrayCollection)[event.rowIndex];
+				if( item.permanent ) {
+					event.preventDefault();
+				}
+			}
+			
+			// handle other columns here
+		}
+		
+		/**
+		 * Example of verifying the completeness of the credit card number. All this does is check the
+		 * length of the string and issue an error if the length is not 16 digits.
+		 */
+		private function verifyCreditCard( event:DataGridEvent ) : void
+		{
+			if( event.reason == DataGridEventReason.CANCELLED ) return;
+			
+			if( event.dataField == "ccard" ) {
+				var editor:CreditCardEditor = (event.currentTarget as DataGrid).itemEditorInstance as CreditCardEditor;
+				var value:String = editor.value;
+				if( value.length != 16 ) {
+					event.preventDefault();
+					editor.errorString = "Not enough digits!";
+					return;
+				}
+			}
+		}
+			  
+	]]>
+	</mx:Script>
+	
+	<mx:Label x="10" y="38" text="Verify Input Example"/>
+	
+	<mx:DataGrid x="10" y="64" editable="true" dataProvider="{inventoryDB}" 
+		itemEditEnd="verifyInput(event)" 
+		itemEditBeginning="allowForEdit(event)">
+		<mx:columns>
+			<mx:DataGridColumn headerText="Product" dataField="product"/>
+			<mx:DataGridColumn headerText="Part #" dataField="part"/>
+			<mx:DataGridColumn headerText="Type" dataField="type"
+				itemEditor="editors.ProductTypeEditor" editorDataField="type"/>
+			<mx:DataGridColumn headerText="Quantity" dataField="quantity"/>
+		</mx:columns>
+	</mx:DataGrid>
+	
+	<mx:Label x="10" y="259" text="Complex Item Editor"/>
+	
+	<mx:DataGrid x="10" y="285" editable="true" dataProvider="{accountDB}" width="302" itemEditEnd="verifyCreditCard(event)">
+		<mx:columns>
+			<mx:DataGridColumn headerText="Account" dataField="account" width="100"/>
+			<mx:DataGridColumn headerText="Credit Card" dataField="ccard" editorDataField="value"
+				itemEditor="editors.CreditCardEditor" />
+		</mx:columns>
+	</mx:DataGrid>
+	
+</mx:Application>
