@@ -7,6 +7,7 @@
 
             private var arrayData:Array = [{name:"banana", cat:"fruit", cost:0.99}, {name:"bread", cat:"bakery", cost:0.52}, {name:"orange", cat:"fruit", cost:0.33}];
 
+            [Bindable]
             private var dp:ArrayCollection = new ArrayCollection(arrayData);
 
             private function creationCompleteHandler():void {
