@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" creationComplete="creationCompleteHandler()">
+    <mx:Script>
+        <![CDATA[
+            import mx.controls.Alert;
+            import mx.collections.ArrayCollection;
+
+            private var arrayData:Array = [{name:"banana", cat:"fruit", cost:0.99}, {name:"bread", cat:"bakery", cost:0.52}, {name:"orange", cat:"fruit", cost:0.33}];
+
+            private var dp:ArrayCollection = new ArrayCollection(arrayData);
+
+            private function creationCompleteHandler():void {
+                colCost.visible = false;
+            }
+
+            private function showDetail():void {
+                if (!colCost.visible) {
+                    colCost.visible = true;
+                } else {
+                    colCost.visible = false;
+                }
+
+            }
+        ]]>
+    </mx:Script>
+
+    <mx:VBox width="300">
+        <mx:DataGrid dataProvider="{dp}" width="100%">
+            <mx:columns>
+                <mx:DataGridColumn id="colCat" dataField="cat" headerText="CATEGORY"/>
+                <mx:DataGridColumn id="colName" dataField="name" headerText="NAME"/>
+                <mx:DataGridColumn id="colCost" dataField="cost" headerText="COST"/>
+            </mx:columns>
+        </mx:DataGrid>
+        <mx:CheckBox id="chkbox" label="detail" change="showDetail()"/>
+    </mx:VBox>
+</mx:Application>
