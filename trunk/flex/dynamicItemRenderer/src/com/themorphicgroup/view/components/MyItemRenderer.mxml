@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas 
+	height="24" 
+	width="100%" 
+	implements="mx.core.IDataRenderer"
+	xmlns:mx="http://www.adobe.com/2006/mxml">
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.core.IDataRenderer;
+			import com.themorphicgroup.vo.BaseVO;
+			import mx.controls.listClasses.ListBase;
+			import com.themorphicgroup.vo.PersonVO;
+			
+			//embed images
+            [Embed(source="assets/bin.png")]
+            public var imgTrashOpen:Class;
+            [Embed(source="assets/bin_closed.png")]
+            public var imgTrashClosed:Class;
+			
+			
+			public var removeItemFunction:Function;
+			public var labelFunction:Function;
+			public var iconImage:Class;
+			public var labelStyle:String;
+			public var labelTitle:String = "";
+
+			private var baseVO:BaseVO;
+			
+			override public function set data(value:Object):void {
+				super.data = value;
+				if (value is BaseVO) {
+					baseVO = BaseVO(value);
+				}
+			}
+			
+			override protected function updateDisplayList(unscaledWidth:Number,unscaledHeight:Number):void {
+				super.updateDisplayList(unscaledWidth, unscaledHeight);
+				//set display items
+				icon_img.source = iconImage;
+				title_lbl.text = labelTitle;
+				name_lbl.text = labelFunction(baseVO);
+				name_lbl.styleName = labelStyle;
+				trash_img.source = imgTrashClosed;
+			}
+			
+			private function swapTrashIcon(open:Boolean):void {
+				if (open) {
+					trash_img.source = imgTrashOpen;
+				} else {
+					trash_img.source = imgTrashClosed;
+				}
+			}
+			
+		]]>
+	</mx:Script>
+
+	<!-- icon -->
+	<mx:Image id="icon_img"
+				width="16" 
+				height="16" 
+				verticalCenter="0" 
+				left="2" 
+				verticalAlign="middle" 
+				horizontalAlign="center"/>
+	
+	<mx:HBox verticalCenter="2" left="20" horizontalGap="0" verticalAlign="middle">
+	
+		<!-- title label -->
+		<mx:Label id="title_lbl" color="0x666666" styleName="mpro" />
+
+		<!-- main label -->
+		<mx:Label id="name_lbl"  />
+
+	</mx:HBox>
+
+	<!-- delete image/button -->
+	<mx:Image id="trash_img" 
+				click="removeItemFunction(event)"
+				width="16" 
+				height="16"  
+				verticalCenter="0" 
+				right="6" 
+				toolTip="Delete this person" 
+				mouseOver="swapTrashIcon(true);" 
+				mouseOut="swapTrashIcon(false);" 
+				buttonMode="true" 
+				useHandCursor="true" />
+	
+</mx:Canvas>

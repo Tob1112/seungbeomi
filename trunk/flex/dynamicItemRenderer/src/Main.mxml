@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application
+	initialize="onInit()"
+	creationComplete="onCC()"
+	layout="absolute"
+	pageTitle="Dynamic ItemRenderer Example"
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	viewSourceURL="srcview/index.html">
+
+	<mx:Script>
+		<![CDATA[
+			import com.themorphicgroup.vo.PlaceVO;
+			import com.themorphicgroup.view.components.MyItemRenderer;
+			import com.themorphicgroup.vo.PersonVO;
+			import mx.utils.ObjectProxy;
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.rpc.events.ResultEvent;
+
+			[Bindable]private var peopleDataProvider:ArrayCollection = new ArrayCollection();
+			[Bindable]private var placesDataProvider:ArrayCollection = new ArrayCollection();
+
+			private var personItemRendererFactory:ClassFactory;
+			private var placeItemRendererFactory:ClassFactory;
+			private var currentPeopleIcon:Class;
+			private var currentPlacesFunction:Function;
+
+            [Embed(source="assets/user_female.png")]
+            public var imgUserFemale:Class;
+            [Embed(source="assets/user_comment.png")]
+            public var imgUserComment:Class;
+            [Embed(source="assets/house.png")]
+            public var imgHouse:Class;
+
+
+			private function onInit():void {
+				setPeopleItemRenderer(imgUserFemale,"Name:");
+				setPlacesItemRenderer(placeLabelFunction1,"Business:");
+				peopleColumn.headerText = "q";
+			}
+
+			private function setPeopleItemRenderer(icon:Class,labelTitle:String):void {
+				//setup people item renderer
+				personItemRendererFactory = new ClassFactory(MyItemRenderer);
+				personItemRendererFactory.properties = {removeItemFunction:deletePerson_handler,
+														iconImage:icon,
+														labelFunction:personLabelFunction,
+														labelStyle:"irpeople",
+														labelTitle:labelTitle};
+				peopleColumn.itemRenderer = personItemRendererFactory;
+			}
+
+			private function setPlacesItemRenderer(labelFunction:Function,labelTitle:String):void {
+				//setup place item renderer
+				placeItemRendererFactory = new ClassFactory(MyItemRenderer);
+				placeItemRendererFactory.properties = {removeItemFunction:deletePlace_handler,
+														iconImage:imgHouse,
+														labelFunction:labelFunction,
+														labelStyle:"irplaces",
+														labelTitle:labelTitle};
+				placesList.itemRenderer = placeItemRendererFactory;
+			}
+
+
+			private function onCC():void {
+				//get demo data
+				peopleHttpService.send();
+				placesHttpService.send();
+			}
+
+			//handler for removal of person
+			private function deletePerson_handler(evt:MouseEvent):void {
+				if (peopleDataGrid.selectedIndex != -1)
+					peopleDataProvider.removeItemAt(peopleDataGrid.selectedIndex);
+			}
+
+			//handler for removal of place
+			private function deletePlace_handler(evt:MouseEvent):void {
+				if (placesList.selectedIndex != -1)
+					placesDataProvider.removeItemAt(placesList.selectedIndex);
+			}
+
+
+			//icon function
+			private function setPeopleIcon():void {
+				if (currentPeopleIcon == imgUserComment) {
+					currentPeopleIcon = imgUserFemale;
+					setPeopleItemRenderer(imgUserFemale,"Name:");
+				} else {
+					currentPeopleIcon = imgUserComment;
+					setPeopleItemRenderer(imgUserComment,"Name:");
+				}
+			}
+
+			//label function for Places
+			private function setPlacesLabel():void {
+				if (currentPlacesFunction == placeLabelFunction2) {
+					currentPlacesFunction = placeLabelFunction1;
+					setPlacesItemRenderer(placeLabelFunction1,"Business:");
+				} else {
+					currentPlacesFunction = placeLabelFunction2;
+					setPlacesItemRenderer(placeLabelFunction2,"Address:");
+				}
+			}
+			private function personLabelFunction(data:PersonVO):String {
+				return data.lastname + ", " + data.name;
+			}
+
+			private function placeLabelFunction1(data:PlaceVO):String {
+				return data.name + " - " + data.address;
+			}
+
+			private function placeLabelFunction2(data:PlaceVO):String {
+				return data.address + " :: " + data.name;
+			}
+
+			//function to fill demo data
+			private function peopleHttpResult_handler(evt:ResultEvent):void {
+				if (evt.result.people.person) {
+					//result
+					var resultAC:ArrayCollection = evt.result.people.person as ArrayCollection;
+					//loop through each item in data
+					for (var i:int=0;i<resultAC.length;i++) {
+						//create person VO
+						var person:PersonVO = new PersonVO();
+						//add data
+						person.fill(resultAC[i]);
+						//add person to main data provider
+						peopleDataProvider.addItem(person);
+					}
+				}
+			}
+			//function to fill demo data
+			private function placesHttpResult_handler(evt:ResultEvent):void {
+				if (evt.result.places.place) {
+					//result
+					var resultAC:ArrayCollection = evt.result.places.place as ArrayCollection;
+					//loop through each item in data
+					for (var i:int=0;i<resultAC.length;i++) {
+						//create person VO
+						var place:PlaceVO = new PlaceVO();
+						//add data
+						place.fill(resultAC[i]);
+						//add person to main data provider
+						placesDataProvider.addItem(place);
+					}
+				}
+			}
+
+		]]>
+	</mx:Script>
+
+	<mx:Style source="css/main.css" />
+
+	<mx:HTTPService id="peopleHttpService" url="data/PersonData.xml" resultFormat="object" result="peopleHttpResult_handler(event)" fault="Alert.show(event.fault.toString())" />
+	<mx:HTTPService id="placesHttpService" url="data/PlacesData.xml" resultFormat="object" result="placesHttpResult_handler(event)" fault="Alert.show(event.fault.toString())" />
+
+	<mx:DataGrid id="peopleDataGrid"
+				dataProvider="{peopleDataProvider}"
+				width="350"
+				rowHeight="28"
+				left="20"
+				top="79">
+
+		<mx:columns>
+			<mx:DataGridColumn id="peopleColumn" headerText="People DataGrid ({peopleDataProvider.length})" sortable="false" />
+		</mx:columns>
+
+	</mx:DataGrid>
+
+
+	<mx:Button x="47" y="285" label="Swap People Icons" styleName="mpro" fontWeight="normal" buttonMode="true" click="setPeopleIcon()" fontSize="11"/>
+
+
+	<mx:HBox x="378" y="80" width="350" height="24" verticalAlign="middle" backgroundColor="0xffffff" backgroundAlpha=".9" borderStyle="solid" borderThickness="1">
+		<mx:Label text="Places List ({placesDataProvider.length})" styleName="mprobold" fontSize="13" paddingLeft="10" paddingTop="2" />
+	</mx:HBox>
+
+
+	<mx:List id="placesList"
+				dataProvider="{placesDataProvider}"
+				width="350"
+				rowHeight="28"
+				left="378"
+				top="102"
+				height="175"/>
+
+
+
+	<mx:Button x="408" y="285" label="Swap Places Label Function" styleName="mpro" fontWeight="normal" buttonMode="true" click="setPlacesLabel()" fontSize="11"/>
+
+
+	<mx:Label y="10" text="Dynamic ItemRenderer Example" styleName="mprobold" fontSize="20" alpha="0.75" left="10"/>
+	<mx:Label y="36" text="A DataGrid and a List share the same ItemRenderer with custom properties passed into the ItemRenderers" styleName="mprobold" fontSize="12" alpha="0.75" left="15" color="#6D6D6D"/>
+	<mx:Label y="51" text="Example also shows icons and label functions dynamically changed" styleName="mprobold" fontSize="12" alpha="0.75" left="15" color="#6D6D6D"/>
+	<mx:Label x="63" y="398" text="Right click for source view" color="#929292"/>
+	<mx:TextArea x="32" y="317" selectable="false" text="Properties set on ItemRenderers:&#xa; - Icon class&#xa; - Label function&#xa; - Delete item function&#xa; - Label style" editable="false" width="172" height="73" borderStyle="none" backgroundAlpha="0.0" styleName="mpro" fontSize="11"/>
+
+</mx:Application>
