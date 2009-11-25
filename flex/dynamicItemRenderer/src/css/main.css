@@ -1,0 +1,63 @@
+/* CSS file */
+
+@font-face {
+    src: url("myriad.swf");
+    fontFamily: "Myriad Pro";
+    fontStyle: normal;
+    fontWeight: normal;
+}
+
+@font-face {
+    src: url("myriad.swf");
+    fontFamily: "Myriad Pro Bold";
+    fontStyle: normal;
+    fontWeight: normal;
+}
+
+.mprobold {
+	fontFamily: "Myriad Pro Bold";
+}
+.mpro {
+	fontFamily: "Myriad Pro";
+}
+
+global
+{
+	color: #333333;
+	themeColor: #6699cc;
+}
+
+
+Application
+{
+	backgroundColor:#f8f8f8;
+	backgroundGradientColors:#f8f8f8,#dddddd;
+}
+
+
+DataGrid {
+   alternatingItemColors: #efefef, #dfdfdf;
+   rollOverColor: #88bbee;
+   textRollOverColor: #000000;
+   selectionColor: #99ccee;
+   headerStyleName: "mydataGridHeaderStyle";
+}
+
+.mydataGridHeaderStyle {
+   fontFamily: "Myriad Pro Bold";
+   fontSize:13;
+}
+
+.irpeople, .irplaces {
+	fontFamily: "Myriad Pro Bold";
+}
+
+.irpeople {
+	color:#333333;
+	fontSize:11;
+}
+
+.irplaces {
+	color:#225588;
+	fontSize:10.5;
+}

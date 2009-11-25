@@ -1,0 +1,27 @@
+<places>
+	
+	<place>
+		<name>Power Plant</name>
+		<email>snpp@simpsons.com</email>
+		<address>600 Radioactive St.</address>
+	</place>
+	
+	<place>
+		<name>Moe's Tavern</name>
+		<email>moes@simpsons.com</email>
+		<address>500 Main St.</address>
+	</place>
+	
+	<place>
+		<name>The Frying Dutchman</name>
+		<email>fry@simpsons.com</email>
+		<address>500 Grease St.</address>
+	</place>
+	
+	<place>
+		<name>The Androids Dungeon</name>
+		<email>comics@simpsons.com</email>
+		<address>2112 Somewhere St.</address>
+	</place>
+	
+</places>
