@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute">
+	<mx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			import mx.controls.Alert;
+			import mx.collections.ArrayCollection;
+
+			private var arrayData:Array = [
+				{name:"banana",cat:"fruit",cost:0.99,total:0},
+				{name:"bread",cat:"bakery",cost:0.52,total:0},
+				{name:"orange",cat:"fruit",cost:0.33,total:0}
+			];
+
+			private var dp:ArrayCollection = new ArrayCollection(arrayData);
+
+			public function test(item:String):void {
+				Alert.show("category : " + item);
+			}
+		]]>
+	</mx:Script>
+	<mx:Label text="DataGrid를 선택해주세요" x="10" y="14"/>
+	<mx:DataGrid x="10" y="40" dataProvider="{dp}">
+		<mx:columns>
+			<mx:DataGridColumn headerText="name" dataField="name"/>
+			<mx:DataGridColumn headerText="outerDocumentTest" dataField="cat">
+				<mx:itemRenderer>
+					<mx:Component>
+						<mx:VBox>
+							<mx:Button label="category" click="outerDocument.test(data.cat);"/>
+						</mx:VBox>
+					</mx:Component>
+				</mx:itemRenderer>
+			</mx:DataGridColumn>
+		</mx:columns>
+	</mx:DataGrid>
+
+</mx:Application>
