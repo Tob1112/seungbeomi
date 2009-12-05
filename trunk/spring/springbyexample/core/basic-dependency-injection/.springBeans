@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beansProjectDescription>
+	<version>1</version>
+	<pluginVersion><![CDATA[2.2.0.v200809261800]]></pluginVersion>
+	<configSuffixes>
+		<configSuffix><![CDATA[xml]]></configSuffix>
+	</configSuffixes>
+	<enableImports><![CDATA[false]]></enableImports>
+	<configs>
+		<config>src/test/resources/org/springbyexample/di/xml/DefaultMessageTest-context.xml</config>
+		<config>src/test/resources/org/springbyexample/di/xml/ConstructorMessageTest-context.xml</config>
+		<config>src/test/resources/org/springbyexample/di/xml/SetterMessageTest-context.xml</config>
+	</configs>
+	<configSets>
+	</configSets>
+</beansProjectDescription>

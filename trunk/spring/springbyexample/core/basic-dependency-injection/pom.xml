@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+ <modelVersion>4.0.0</modelVersion>
+    <groupId>org.springbyexample.core</groupId>
+    <artifactId>basic-dependency-injection</artifactId>
+    <version>1.0</version>
+    <name>Basic Dependency Injection</name>
+    <description>
+        Basic Dependency Injection with the Spring Framework.
+    </description>
+
+    <properties>
+        <spring.version>2.5.6</spring.version>
+        <slf4j.version>1.5.6</slf4j.version>
+    </properties>
+
+    <inceptionYear>2008</inceptionYear>
+
+    <organization>
+        <name>Spring by Example</name>
+        <url>http://www.springbyexample.org</url>
+    </organization>
+
+    <developers>
+        <developer>
+            <id>dwinterfeldt</id>
+            <name>David Winterfeldt</name>
+            <email>dwinterfeldt at springbyexample.org</email>
+            <organization>Spring by Example</organization>
+            <organizationUrl> http://www.springbyexample.org
+            </organizationUrl>
+            <roles>
+                <role>Developer</role>
+            </roles>
+            <timezone>-5</timezone>
+        </developer>
+    </developers>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.4</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>org.springframework.test</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>2.5.6</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>log4j-over-slf4j</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <!--
+            No Commons Logging -
+            http://day-to-day-stuff.blogspot.com/2007/07/no-more-commons-logging.html
+        -->
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>99.0-does-not-exist</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging-api</artifactId>
+            <version>99.0-does-not-exist</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+        	<groupId>ch.qos.logback</groupId>
+        	<artifactId>logback-classic</artifactId>
+        	<version>0.9.9</version>
+        </dependency>
+    </dependencies>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+            <comments> Copyright 2002-2008 the original author or
+                authors. Licensed under the Apache License, Version 2.0
+                (the "License"); you may not use this file except in
+                compliance with the License. You may obtain a copy of
+                the License at
+                http://www.apache.org/licenses/LICENSE-2.0 Unless
+                required by applicable law or agreed to in writing,
+                software distributed under the License is distributed on
+                an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
+                ANY KIND, either express or implied. See the License for
+                the specific language governing permissions and
+                limitations under the License. </comments>
+        </license>
+    </licenses>
+
+    <build>
+        <finalName>chat</finalName>
+
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.5</source>
+                    <target>1.5</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
