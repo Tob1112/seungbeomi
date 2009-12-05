@@ -6,8 +6,14 @@
 
 	<bean id="simpleSpring" class="simple.spring.SimpleSpring">
 		<property name="helloSpring" ref="helloSpring"/>
+		<property name="messageSource" ref="messageSource"/>
 	</bean>
 
 	<bean id="helloSpring" class="simple.spring.HelloSpring"/>
+
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="messages" />
+	</bean>
 
 </beans>
