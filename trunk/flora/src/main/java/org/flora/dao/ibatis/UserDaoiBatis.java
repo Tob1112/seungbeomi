@@ -14,7 +14,7 @@ import org.springframework.security.userdetails.UserDetails;
 import org.springframework.security.userdetails.UserDetailsService;
 import org.springframework.security.userdetails.UsernameNotFoundException;
 
-public class UserDaoiBatis extends BaseDaoiBatis implements UserDao, UserDetailsService {
+public class UserDaoiBatis extends BaseDao implements UserDao, UserDetailsService {
 
 	/**
 	 * User list 를 구하고 user 의 권한을 setting
