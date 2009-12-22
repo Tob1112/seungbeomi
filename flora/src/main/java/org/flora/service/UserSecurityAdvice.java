@@ -26,6 +26,7 @@ import org.springframework.security.providers.dao.UserCache;
 import org.springframework.security.userdetails.UserDetails;
 
 public class UserSecurityAdvice implements MethodBeforeAdvice, AfterReturningAdvice {
+
     public final static String ACCESS_DENIED = "Access Denied: Only administrators are allowed to modify other users.";
     protected final Log log = LogFactory.getLog(UserSecurityAdvice.class);
     private UserCache userCache;
