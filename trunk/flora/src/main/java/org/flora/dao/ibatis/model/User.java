@@ -15,7 +15,7 @@ public class User implements Serializable, UserDetails{
 	private String id;
 	private String username;
 	private String password;
-	private Set roles = new HashSet();
+	private Set<Role> roles = new HashSet<Role>();
 	private Integer version;
 	private boolean enabled;
 	private boolean accountExpired;
@@ -81,8 +81,8 @@ public class User implements Serializable, UserDetails{
 		return enabled;
 	}
 
-	public List getRoleList() {
-		List userRoles = new ArrayList();
+	public List<LabelValue> getRoleList() {
+		List<LabelValue> userRoles = new ArrayList<LabelValue>();
 
 		if (this.roles != null) {
 			for (Iterator iter = roles.iterator(); iter.hasNext();) {
