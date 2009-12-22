@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.flora.dao.ibatis.model.Role;
 
-public interface RoleManager extends Manager {
+public interface RoleManager extends GenericManager<Role, String> {
 
-    public List getRoles(Role role);
+    public List<Role> getRoles(Role role);
 
     public Role getRole(String rolename);
 

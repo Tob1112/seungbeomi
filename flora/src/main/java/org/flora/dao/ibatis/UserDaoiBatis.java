@@ -14,7 +14,7 @@ import org.springframework.security.userdetails.UserDetails;
 import org.springframework.security.userdetails.UserDetailsService;
 import org.springframework.security.userdetails.UsernameNotFoundException;
 
-public class UserDaoiBatis extends BaseDao implements UserDao, UserDetailsService {
+public class UserDaoiBatis extends GenericDaoiBatis<User, String> implements UserDao, UserDetailsService {
 
 	/**
 	 * User list 를 구하고 user 의 권한을 setting
@@ -23,7 +23,7 @@ public class UserDaoiBatis extends BaseDao implements UserDao, UserDetailsServic
 	 */
 	@Override
 	public List<User> getUsers(User user) {
-		List<User> users = getAll(User.class);
+		List<User> users = getAll(user);
 		// List<User> users = getSqlMapClientTemplate().queryForList("getUsers");
 
 		for (int i = 0; i < users.size(); i++) {
@@ -37,8 +37,8 @@ public class UserDaoiBatis extends BaseDao implements UserDao, UserDetailsServic
 	}
 
 	@Override
-	public User getUser(String userId) {
-		User user = (User) get(User.class, userId);
+	public User getUser(String id) {
+		User user = (User) get(new User(), id);
 
 		if (user == null) {
 			log.warn("user not found!!");
@@ -82,9 +82,9 @@ public class UserDaoiBatis extends BaseDao implements UserDao, UserDetailsServic
 	}
 
 	@Override
-	public void removeUser(String userId) {
-		deleteUserRoles(userId);
-		getSqlMapClientTemplate().update("deleteUserRoles", userId);
+	public void removeUser(String id) {
+		deleteUserRoles(id);
+		getSqlMapClientTemplate().update("deleteUserRoles", id);
 	}
 
 	// ------------------------------------------------
@@ -116,8 +116,8 @@ public class UserDaoiBatis extends BaseDao implements UserDao, UserDetailsServic
 	 *
 	 * @param userId
 	 */
-	private void deleteUserRoles(String userId) {
-		getSqlMapClientTemplate().update("deleteUserRoles", userId);
+	private void deleteUserRoles(String id) {
+		getSqlMapClientTemplate().update("deleteUserRoles", id);
 
 	}
 }

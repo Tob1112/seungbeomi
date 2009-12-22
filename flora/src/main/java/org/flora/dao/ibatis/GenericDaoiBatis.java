@@ -8,44 +8,43 @@ import java.util.List;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.flora.dao.Dao;
-import org.flora.dao.ibatis.model.User;
+import org.flora.dao.GenericDao;
 import org.springframework.orm.ObjectRetrievalFailureException;
 import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 import org.springframework.util.ClassUtils;
 
-public class BaseDao extends SqlMapClientDaoSupport implements Dao {
+public class GenericDaoiBatis<T, PK extends Serializable> extends SqlMapClientDaoSupport implements GenericDao<T, PK> {
 
 	protected final Log log = LogFactory.getLog(getClass());
 
 	@Override
-	public List getAll(Class clazz) {
-		return getSqlMapClientTemplate().queryForList(getSelectQuery(ClassUtils.getShortName(clazz.toString())));
+	public List<T> getAll(T object) {
+		return getSqlMapClientTemplate().queryForList(getSelectQuery(ClassUtils.getShortName(object.getClass())));
 	}
 
 	@Override
-	public Object get(Class clazz, Serializable primaryKey) {
-		Object object = getSqlMapClientTemplate().queryForObject(getFindQuery(ClassUtils.getShortName(clazz)), primaryKey);
-		if (object == null) {
+	public T get(T object, PK id) {
+		T entity = (T) getSqlMapClientTemplate().queryForObject(getFindQuery(ClassUtils.getShortName(object.getClass())), id);
+		if (entity == null) {
 			log.warn("not found!!");
-			throw new ObjectRetrievalFailureException(ClassUtils.getShortName(clazz), primaryKey);
+			throw new ObjectRetrievalFailureException(ClassUtils.getShortName(object.getClass()), id);
 		}
-		return object;
+		return entity;
 	}
 
 	@Override
-	public List getRoles(Object object) {
-		return getSqlMapClientTemplate().queryForList("getRoles", (User) object);
+	public List<T> getRoles(T object) {
+		return getSqlMapClientTemplate().queryForList("getRoles", (T) object);
 	}
 
 	@Override
-	public boolean exists(Class clazz, Serializable primaryKey) {
-		Integer count = (Integer) getSqlMapClientTemplate().queryForObject(getFindQuery(ClassUtils.getShortName(clazz)), primaryKey);
+	public boolean exists(T object, PK id) {
+		Integer count = (Integer) getSqlMapClientTemplate().queryForObject(getFindQuery(ClassUtils.getShortName(object.getClass())), id);
 		return count != 0 ? true : false ;
 	}
 
 	@Override
-	public void save(final Object object) {
+	public void save(final T object) {
 		String className = ClassUtils.getShortName(object.getClass());
 		Object primaryKey = getPrimaryKeyValue(object);
 		String keyId = null;
@@ -77,8 +76,8 @@ public class BaseDao extends SqlMapClientDaoSupport implements Dao {
 	}
 
 	@Override
-	public void remove(Class clazz, Serializable primaryKey) {
-		getSqlMapClientTemplate().delete(getDeleteQuery(ClassUtils.getShortName(clazz)), primaryKey);
+	public void remove(T object, PK id) {
+		getSqlMapClientTemplate().delete(getDeleteQuery(ClassUtils.getShortName(object.getClass())), id);
 
 	}
 
