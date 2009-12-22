@@ -43,7 +43,7 @@
                 #accountLocked#, #credentialsExpired#);
     ]]>
         <selectKey resultClass="java.lang.Long" keyProperty="id" >
-            select last_insert_id();
+            select currval('app_user_seq');
         </selectKey>
     </insert>
 
