@@ -6,13 +6,13 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springmodules.org/validation/bean/validator http://www.springmodules.org/validation/bean/validator.xsd">
 
-	<bean id="simpleSpring" class="simple.spring.SimpleSpring">
+	<bean id="simpleSpring" class="example.SimpleSpring">
 		<property name="helloSpring" ref="helloSpring" />
 		<property name="messageSource" ref="messageSource" />
 		<!--<property name="beanValidator" ref="beanValidator" />-->
 	</bean>
 
-	<bean id="helloSpring" class="simple.spring.HelloSpring" />
+	<bean id="helloSpring" class="example.HelloSpring" />
 
 	<!-- ============================================= -->
 	<!-- MESSAGESOURCE					   			   -->
@@ -22,25 +22,4 @@
 		<property name="basename" value="messages" />
 	</bean>
 
-	<!-- ============================================= -->
-	<!-- VALIDATOR 						   			   -->
-	<!-- ============================================= -->
-	<!-- <vld:xml-based-validator id="beanValidator">
-        <vld:resource location="classpath:validator_rules.xml"/>
-        <vld:resource location="classpath:validation.xml"/>
-    </vld:xml-based-validator> -->
-
-	<bean id="beanValidator"
-		class="org.springmodules.validation.commons.DefaultBeanValidator">
-		<property name="validatorFactory" ref="validatorFactory" />
-	</bean>
-	<bean id="validatorFactory"
-		class="org.springmodules.validation.commons.DefaultValidatorFactory">
-		<property name="validationConfigLocations">
-			<list>
-				<value>classpath:validator-rules.xml</value>
-				<value>classpath:validation.xml</value>
-			</list>
-		</property>
-	</bean>
 </beans>
