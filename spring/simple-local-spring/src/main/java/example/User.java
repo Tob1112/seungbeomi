@@ -1,4 +1,4 @@
-package simple.spring;
+package example;
 
 public class User {
 	private String userId;
