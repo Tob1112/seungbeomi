@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="orm.hibernate.model">
+	<class name="Attachment" table="ATTACHMENT">
+		<id name="id" column="ID">
+			<generator class="sequence">
+				<param name="sequence">SEQ_ATTACHMENT</param>
+			</generator>
+		</id>
+
+		<property name="filename" column="FILENAME"/>
+
+		<many-to-one name="article" column="ARTICLEID"/>
+	</class>
+</hibernate-mapping>
