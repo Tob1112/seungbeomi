@@ -86,12 +86,10 @@
 	<!-- ============================================= -->
     <!-- SERVICE BEAN					   			   -->
     <!-- ============================================= -->
-	<bean id="simpleSpring" class="example.SimpleSpring">
-		<property name="helloSpring" ref="helloSpring" />
-		<property name="messageSource" ref="messageSource" />
+	<bean id="articleDao" class="orm.hibernate.dao.ArticleDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
 
-	<bean id="helloSpring" class="example.HelloSpring" />
 
 
 </beans>
