@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+  	<appender name="console" class="org.apache.log4j.ConsoleAppender">
+    	<param name="Target" value="System.out"/>
+    	<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%-5p] - %c{1}.%M - %m%n" />
+    	</layout>
+		<filter class="org.apache.log4j.varia.StringMatchFilter">
+			<param name="StringToMatch" value="Result" />
+			<param name="AcceptOnMatch" value="false" />
+		</filter>
+  	</appender>
+
+	<logger name="app">
+		<level value="DEBUG"/>
+	</logger>
+	<logger name="manager">
+		<level value="DEBUG"/>
+	</logger>
+	<logger name="model">
+		<level value="DEBUG"/>
+	</logger>
+	<logger name="util">
+		<level value="DEBUG"/>
+	</logger>
+
+ 	<root>
+        <priority value ="OFF" />
+    	<appender-ref ref="console" />
+  	</root>
+
+</log4j:configuration>

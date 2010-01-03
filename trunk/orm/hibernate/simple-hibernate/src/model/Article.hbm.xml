@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="model">
+	<class name="Article" table="ARTICLE">
+		<id name="id" column="ID">
+			<generator class="sequence">
+				<param name="sequence">SEQ_ARTICLE</param>
+			</generator>
+		</id>
+
+		<property name="title" column="TITLE"/>
+		<property name="content" column="CONTENT"/>
+
+		<set name="attachments" table="ATTACHMENT" inverse="true" cascade="all">
+			<key column="ARTICLEID"/>
+			<one-to-many class="Attachment"/>
+		</set>
+	</class>
+</hibernate-mapping>
