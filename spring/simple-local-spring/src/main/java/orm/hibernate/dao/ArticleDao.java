@@ -16,4 +16,5 @@ public interface ArticleDao {
 	public Attachment insertAttachment(Long articleId, String filename);
 
 	public List<Article> listArticles();
+
 }

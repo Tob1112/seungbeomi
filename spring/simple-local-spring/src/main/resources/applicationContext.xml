@@ -40,6 +40,7 @@
             <value>
                 hibernate.format_sql=true
                 hibernate.dialect=org.hibernate.dialect.HSQLDialect
+                hibernate.hbm2ddl.auto=update
             </value>
         </property>
     </bean>
@@ -90,6 +91,8 @@
 		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
 
-
+	<bean id="hibernateUtil" class="orm.hibernate.util.HibernateUtil">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
 
 </beans>

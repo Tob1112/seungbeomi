@@ -32,6 +32,7 @@ public class ArticleDaoImpl implements ArticleDao{
     	Article article = (Article) template.get(Article.class, id);
     	article.setTitle(newTitle);
     	article.setContent(newContent);
+    	template.saveOrUpdate(article);
     	return article;
     }
 
@@ -47,14 +48,13 @@ public class ArticleDaoImpl implements ArticleDao{
 		Attachment attachment = new Attachment();
 		attachment.setFilename(filename);
 		article.addAttachment(attachment);
+		template.save(attachment);
 		return attachment;
 	}
 
 	@Override
 	public List<Article> listArticles() {
-		Criteria criteria = template.getSessionFactory().getCurrentSession().createCriteria(Article.class);
-		criteria.addOrder(Order.asc("id"));
-		return criteria.list();
+		return template.find("from article");
 	}
 
 }
