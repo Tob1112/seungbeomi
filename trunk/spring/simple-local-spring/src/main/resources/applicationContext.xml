@@ -1,18 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:vld="http://www.springmodules.org/validation/bean/validator"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springmodules.org/validation/bean/validator http://www.springmodules.org/validation/bean/validator.xsd">
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<bean id="simpleSpring" class="example.SimpleSpring">
-		<property name="helloSpring" ref="helloSpring" />
-		<property name="messageSource" ref="messageSource" />
-		<!--<property name="beanValidator" ref="beanValidator" />-->
-	</bean>
+	<!-- ============================================ -->
+    <!-- RESOURCES	 								  -->
+    <!-- ============================================ -->
+	<context:property-placeholder location="classpath:database.properties" />
 
-	<bean id="helloSpring" class="example.HelloSpring" />
+	<!-- ============================================ -->
+    <!-- DATASOURCE	 								  -->
+    <!-- ============================================ -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+
+	<!-- ============================================ -->
+    <!-- HIBERNATE SESSION FACTORY					  -->
+    <!-- ============================================ -->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="mappingLocations">
+            <list>
+            	<value>classpath:orm/hibernate/model/Article.hbm.xml</value>
+                <value>classpath:orm/hibernate/model/Attachment.hbm.xml</value>
+            </list>
+        </property>
+        <property name="hibernateProperties">
+            <value>
+                hibernate.format_sql=true
+                hibernate.dialect=org.hibernate.dialect.HSQLDialect
+            </value>
+        </property>
+    </bean>
+
+    <!-- ============================================ -->
+    <!-- IBATIS SQLMAPCLIENT						  -->
+    <!-- ============================================ -->
+    <!--<bean id="sqlMapClient"
+          class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+        <property name="configLocation" value="classpath:sqlMapConfig.xml" />
+        <property name="dataSource" ref="dataSource"/>
+    </bean>-->
+
+    <!-- ============================================= -->
+    <!-- TRANSACTION MANAGER			   			   -->
+    <!-- ============================================= -->
+    <bean id="transactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!-- ============================================= -->
+    <!-- TRANSACTION					   			   -->
+    <!-- ============================================= -->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+    	<tx:attributes>
+    		<tx:method name="save*" propagation="REQUIRED" rollback-for="Exception"/>
+    	</tx:attributes>
+    </tx:advice>
+
+    <aop:config>
+    	<aop:pointcut id="txServiceMethod" expression="execution(public * orm.hibernate..*.*(..))"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="txServiceMethod"/>
+    </aop:config>
 
 	<!-- ============================================= -->
 	<!-- MESSAGESOURCE					   			   -->
@@ -21,5 +82,16 @@
 		class="org.springframework.context.support.ResourceBundleMessageSource">
 		<property name="basename" value="messages" />
 	</bean>
+
+	<!-- ============================================= -->
+    <!-- SERVICE BEAN					   			   -->
+    <!-- ============================================= -->
+	<bean id="simpleSpring" class="example.SimpleSpring">
+		<property name="helloSpring" ref="helloSpring" />
+		<property name="messageSource" ref="messageSource" />
+	</bean>
+
+	<bean id="helloSpring" class="example.HelloSpring" />
+
 
 </beans>
