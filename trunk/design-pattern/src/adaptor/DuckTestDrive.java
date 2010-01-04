@@ -18,6 +18,7 @@ public class DuckTestDrive {
 
 		 System.out.println();
 		 System.out.println(" * The TurkeyAdaptor says...");
+		 // client에서는 중간에 어댑터가 있는지 전혀 알지 못한다.
 		 testDuck(turkeyAdaptor);	//핵심 - duck을 가장한 turkey객체를 넘기자!!
 
 	}
