@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+       	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- ============================================ -->
+    <!-- RESOURCES	 								  -->
+    <!-- ============================================ -->
+    <context:property-placeholder location="classpath:database.properties" />
+
+    <!-- ============================================ -->
+    <!-- DATASOURCE 								  -->
+    <!-- ============================================ -->
+	<bean id="dataSource"
+    	  class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="annotatedClasses">
+        	<list>
+        		<value>bean.Person</value>
+        		<value>bean.Address</value>
+        	</list>
+        </property>
+        <property name="hibernateProperties">
+            <value>
+                hibernate.format_sql=true
+                hibernate.dialect=org.hibernate.dialect.HSQLDialect
+            </value>
+        </property>
+    </bean>
+
+    <bean id="personDao" class="dao.PersonDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
+</beans>
