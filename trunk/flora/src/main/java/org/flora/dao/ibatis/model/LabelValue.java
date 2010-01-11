@@ -15,6 +15,9 @@ public class LabelValue implements Comparable, Serializable{
 	public void setValue(String value) {
 		this.value = value;
 	}
+	public String getLabel() {
+		return this.label;
+	}
 	public void setLabel(String label) {
 		this.label = label;
 	}
@@ -41,10 +44,6 @@ public class LabelValue implements Comparable, Serializable{
 	public int compareTo(Object obj) {
 		String otherLabel = ((LabelValue) obj).getLabel();
 		return this.getLabel().compareTo(otherLabel);
-	}
-
-	private String getLabel() {
-		return this.label;
 	}
 
 }
