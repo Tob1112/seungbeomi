@@ -19,3 +19,4 @@ public interface UserDao extends GenericDao<User, String>{
 	public void removeUser(String id);
 
 }
+

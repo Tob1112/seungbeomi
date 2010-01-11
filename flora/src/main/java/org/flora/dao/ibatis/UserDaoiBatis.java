@@ -14,7 +14,7 @@ import org.springframework.security.userdetails.UserDetails;
 import org.springframework.security.userdetails.UserDetailsService;
 import org.springframework.security.userdetails.UsernameNotFoundException;
 
-public class UserDaoiBatis extends GenericDaoiBatis<User, String> implements UserDao, UserDetailsService {
+public class UserDaoiBatis extends IbatisGenericDao<User, String> implements UserDao, UserDetailsService {
 
 	/**
 	 * User list 를 구하고 user 의 권한을 setting
@@ -41,7 +41,7 @@ public class UserDaoiBatis extends GenericDaoiBatis<User, String> implements Use
 		User user = (User) get(new User(), id);
 
 		if (user == null) {
-			log.warn("user not found!!");
+			logger.warn("user not found!!");
 			throw new ObjectRetrievalFailureException(User.class, user);
 		} else {
 			List roles = getRoles(user);
@@ -55,7 +55,7 @@ public class UserDaoiBatis extends GenericDaoiBatis<User, String> implements Use
 		User user = (User) getSqlMapClientTemplate().queryForObject("getUserByUsername", username);
 
 		if (user == null) {
-			log.warn("user not found!!");
+			logger.warn("user not found!!");
 			throw new UsernameNotFoundException("user '" + username + "' not found...");
 		} else {
 			List roles = getRoles(user);

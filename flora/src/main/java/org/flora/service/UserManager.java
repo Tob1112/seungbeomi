@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.flora.dao.UserDao;
 import org.flora.dao.ibatis.model.User;
-import org.flora.exception.UserExistsException;
+import org.flora.exception.FloraException;
 import org.springframework.security.userdetails.UsernameNotFoundException;
 
 public interface UserManager extends GenericManager<User, String>{
@@ -17,7 +17,7 @@ public interface UserManager extends GenericManager<User, String>{
 
     public List<User> getUsers(User user);
 
-    public void saveUser(User user) throws UserExistsException;
+    public void saveUser(User user) throws FloraException;
 
     public void removeUser(String userId);
 

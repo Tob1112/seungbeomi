@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="testModel">
+
+	<typeAlias alias="testModel" type="org.flora.dao.ibatis.model.TestModel"/>
+
+	<resultMap id="getTestModelListResult" class="testModel">
+		<result property="no" column="NO" />
+		<result property="name" column="NAME" />
+	</resultMap>
+
+
+	<select id="getTestModelList" resultMap="getTestModelListResult">
+		SELECT NO, NAME
+		FROM   TEST_MODEL
+	</select>
+
+	<select id="getTestModel" resultMap="getTestModelListResult" parameterClass="int">
+		SELECT NO, NAME
+		FROM   TEST_MODEL
+		WHERE  NO = #no#
+	</select>
+
+	<select id="existsTestModel" resultClass="int" parameterClass="int">
+		SELECT COUNT(*)
+		FROM   TEST_MODEL
+		WHERE  NO = #no#
+	</select>
+
+	<insert id="addTestModel" parameterClass="testModel">
+		INSERT INTO TEST_MODEL VALUES (#no#, #name#)
+		<selectKey resultClass="int" keyProperty="no" >
+            SELECT NO FROM TEST_MODEL WHERE NO = #no#
+        </selectKey>
+	</insert>
+
+	<update id="updateTestModel" parameterClass="testModel">
+		UPDATE TEST_MODEL
+		SET NAME = #name#
+		WHERE NO = #no#
+	</update>
+
+	<delete id="removeTestModel" parameterClass="int">
+		DELETE FROM TEST_MODEL
+		WHERE NO = #no#
+	</delete>
+
+</sqlMap>
