@@ -1,8 +1,9 @@
 package org.flora.dao.hibernate;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class HibernateGenericDao<T, P> implements HibernateDao<T, P> {
+public class HibernateGenericDao<T, PK extends Serializable> implements HibernateDao<T, PK> {
 
 	//---------------------------------------------------
 	// implements GenericDao method
@@ -15,7 +16,7 @@ public class HibernateGenericDao<T, P> implements HibernateDao<T, P> {
 	}
 
 	@Override
-	public T get(T object, P id) {
+	public T get(T object, PK id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -33,7 +34,7 @@ public class HibernateGenericDao<T, P> implements HibernateDao<T, P> {
 	}
 
 	@Override
-	public boolean exists(T object, P id) {
+	public boolean exists(T object, PK id) {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -45,7 +46,7 @@ public class HibernateGenericDao<T, P> implements HibernateDao<T, P> {
 	}
 
 	@Override
-	public void remove(T object, P id) {
+	public void remove(T object, PK id) {
 		// TODO Auto-generated method stub
 
 	}
