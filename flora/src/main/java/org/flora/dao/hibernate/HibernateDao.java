@@ -1,8 +1,10 @@
 package org.flora.dao.hibernate;
 
+import java.io.Serializable;
+
 import org.flora.dao.GenericDao;
 
-public interface HibernateDao<T, P> extends GenericDao<T, P> {
+public interface HibernateDao<T, PK extends Serializable> extends GenericDao<T, PK> {
 
 	/** Synchronize Hibernate session with database
 	 *	@see org.hibernate.Session#flush()

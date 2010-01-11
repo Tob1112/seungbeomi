@@ -33,6 +33,12 @@ public class GenericDaoiBatis<T, PK extends Serializable> extends SqlMapClientDa
 	}
 
 	@Override
+	public List<T> find(T object, T prameterObject) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
 	public List<T> getRoles(T object) {
 		return getSqlMapClientTemplate().queryForList("getRoles", (T) object);
 	}
