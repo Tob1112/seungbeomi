@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" width="520" height="650">
+	<mx:Script>
+		<![CDATA[
+			private function saveResume():void {
+				fileNameDisplay.text = "당신의 이력서가 " + richTextControl.text + "이라는 이름으로 저장되었습니다.";
+			}
+		]]>
+	</mx:Script>
+
+	<mx:Text id="fileNameDisplay" text="" width="500"/>
+	<mx:RichTextEditor id="richTextControl" width="500" height="400"/>
+	<mx:Button id="labelButton" label="summit" click="saveResume()"/>
+</mx:VBox>
