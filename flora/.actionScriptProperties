@@ -11,6 +11,9 @@
   <applications>
     <application path="flora.mxml"/>
   </applications>
-  <modules/>
+  <modules>
+    <module application="flex_src/flora.mxml" destPath="org/flora/view/FloraMain.swf" optimize="true" sourcePath="flex_src/org/flora/view/FloraMain.mxml"/>
+    <module application="flex_src/flora.mxml" destPath="org/flora/view/FloraContents.swf" optimize="true" sourcePath="flex_src/org/flora/view/FloraContents.mxml"/>
+  </modules>
   <buildCSSFiles/>
 </actionScriptProperties>
