@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="300">
+	<mx:Script>
+		<![CDATA[
+			private function changeAppearance():void {
+				this.imageDisplay.width = int(this.widthInputField.text);
+				this.imageDisplay.height = int(this.heigthInputField.text);
+			}
+		]]>
+	</mx:Script>
+
+	<mx:Image id="imageDisplay" source="http://wstatic.naver.com/w9/lg_naver_v3.gif"/>
+	<mx:Text text="폭을 입력하세요" y="156"/>
+	<mx:TextInput id="widthInputField" y="182"/>
+	<mx:Text text="높이를 입력하세요" y="212"/>
+	<mx:TextInput id="heigthInputField" y="238"/>
+	<mx:Button label="크기변경" click="changeAppearance()" y="268"/>
+
+</mx:Canvas>
