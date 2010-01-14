@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="300" xmlns:chapter01="chapter01.*">
+	<mx:Script>
+		<![CDATA[
+			private function sendClick():void {
+				trace("BubbingComponent : click");
+			}
+		]]>
+	</mx:Script>
+	<mx:Button click="sendClick()"/>
+</mx:HBox>

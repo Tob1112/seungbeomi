@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:chapter01="chapter01.*">
-	<chapter01:Section07 />
+
+	<mx:Object id="person" name="son" age="30" position="500" image="http://www.gstatic.com/codesite/ph/images/defaultlogo.png"/>
+
+	<chapter01:section10_actionscriptComponent data="{person}"/>
 </mx:Application>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="300" xmlns:chapter01="chapter01.*">
+	<mx:Script>
+		<![CDATA[
+			private function handlerClick():void {
+				trace("BubblingComponentHolder : click");
+			}
+		]]>
+	</mx:Script>
+
+	<chapter01:Section11_BubblingComplonent id="bubbler" click="handlerClick()"/>
+</mx:Canvas>
