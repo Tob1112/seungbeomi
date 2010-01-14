@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="300">
+	<mx:Script>
+		<![CDATA[
+
+			import mx.controls.Alert;
+
+			private function buttonClick(e:Event):void {
+				trace(e.target.id);
+				if (e.target.id == "buttonOne") {
+					Alert.show("clicked one");
+				} else if (e.target.id == "buttonTwo") {
+					Alert.show("clicked two");
+				} else {
+					Alert.show("service fail!");
+				}
+			}
+		]]>
+	</mx:Script>
+
+	<mx:Button id="buttonOne" label="One을 클릭하세요." click="buttonClick(event)"/>
+	<mx:Button id="buttonTwo" label="Two를 클릭하세요." click="buttonClick(event)"/>
+</mx:HBox>
