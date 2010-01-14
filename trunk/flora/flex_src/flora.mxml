@@ -1,4 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute">
-	
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute"
+	width="100%" height="100%"
+	horizontalScrollPolicy="off" verticalScrollPolicy="off"
+	creationComplete="creationCompleteHandler()">
+
+	<mx:Style source="assets/style/default.css"/>
+
+	<rds:FloraServices xmlns:rds="org.flora.*"/>
+	<router:FloraController xmlns:router="org.flora.*"/>
+
+	<mx:Script>
+		<![CDATA[
+			import org.flora.Constants;
+			import mx.managers.IPopUpManager;
+            import mx.managers.IHistoryManager;
+
+            private var iPopUpManager:IPopUpManager;
+            private var iHistoryManager :IHistoryManager
+
+			private function creationCompleteHandler():void {
+				floraMainMoudleLoader.url = Constants.FLORA_CONTENTS_SWF;
+			}
+		]]>
+	</mx:Script>
+
+	<mx:ModuleLoader id="floraMainMoudleLoader" left="10" right="10" bottom="10" top="10"/>
+
 </mx:Application>

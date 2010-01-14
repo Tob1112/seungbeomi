@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rds:ServiceLocator xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:rds="com.adobe.cairngorm.business.*">
+
+	<!-- FLORA FACADE SERVICE REMOTE OBJECT -->
+    <mx:RemoteObject id="floraManagerRO" destination="floraManager"/>
+
+</rds:ServiceLocator>
