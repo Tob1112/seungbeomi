@@ -5,6 +5,14 @@ public abstract class Duck {
 	FlyBehavior flyBehavior;
 	QuackBehavior quackBehavior;
 
+	// 동적으로 행동을 지정
+	public void setFlyBehavior(FlyBehavior flyBehavior) {
+		this.flyBehavior = flyBehavior;
+	}
+	public void setQuackBehavior(QuackBehavior quackBehavior) {
+		this.quackBehavior = quackBehavior;
+	}
+
 	public Duck() {}
 
 	public abstract void display();
