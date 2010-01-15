@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="300">
+	<mx:Script>
+		<![CDATA[
+			private function argsTest(e:Event, cnt:int = 0, name:String = ""):void {
+				trace("clicked " + e.target);
+
+				if (cnt != 0) {
+					trace("cnt가 있어요! " + cnt );
+				} else {
+					trace("cnt가 없어요!");
+				}
+
+				if (name != "") {
+					trace("name가 있어요! " + name );
+				} else {
+					trace("name가 없어요!");
+				}
+			}
+
+			private function varargs(e:Event, ...args):void {
+				trace (e.target);
+				if (args.length == 0) {
+					trace ("args가 없어요!");
+					return;
+				}
+				for each(var arg:Object in args) {
+					trace(args);
+				}
+			}
+		]]>
+	</mx:Script>
+
+	<mx:Button id="one" label="one" click="argsTest(event)" />
+	<mx:Button id="two" label="two" click="argsTest(event,1)"  x="55"/>
+	<mx:Button id="three" label="three" click="argsTest(event,1,'son')"  x="110"/>
+
+	<mx:Label text="varargs" x="1" y="30"/>
+	<mx:Button id="varargsOne" label="one" click="varargs(event)"  x="0" y="56"/>
+	<mx:Button id="varargsTwo" label="two" click="varargs(event,1)"  x="55" y="56"/>
+	<mx:Button id="varargsThree" label="three" click="varargs(event,1,'son')"  x="110" y="56"/>
+</mx:Canvas>
