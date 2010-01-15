@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="300" implements="chapter01.section18.IDataInterface">
+
+</mx:HBox>
+
+
