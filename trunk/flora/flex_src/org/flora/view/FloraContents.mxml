@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Module xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="100%" height="100%" backgroundColor="#FFFFFF">
+<mx:Module xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="100%" height="100%" backgroundColor="#FFFFFF" xmlns:view="org.flora.view.*">
+
+	<handlers:FloraContentsHandler id="floraContendsHandler" xmlns:handlers="org.flora.view.handlers.*"/>
 
 	<!--=========================================-->
 	<!-- HEADER									 -->
@@ -22,13 +24,14 @@
 	<!--=========================================-->
 	<!-- CONTENTS								 -->
 	<!--=========================================-->
-	<mx:HDividedBox id="hdbContents" top="30" width="100%" height="100%" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+	<mx:HDividedBox id="hdbContents" top="30" width="100%" height="100%" horizontalScrollPolicy="off" verticalScrollPolicy="off" left="10" right="10" bottom="10">
 		<mx:VDividedBox height="{hdbContents.height}" width="20%" minWidth="100" verticalScrollPolicy="off" horizontalScrollPolicy="off">
 			<!--=========================================-->
 			<!-- NAVIGATION PANEL						 -->
 			<!--=========================================-->
 			<mx:Panel id="pnlNavigation" title="Navigation" width="100%" height="300" minHeight="100" layout="absolute"	horizontalScrollPolicy="off" verticalScrollPolicy="auto" doubleClickEnabled="true">
 				<mx:Label text="Navigation"/>
+				<view:Leaf />
 			</mx:Panel>
 
 			<!--=========================================-->
