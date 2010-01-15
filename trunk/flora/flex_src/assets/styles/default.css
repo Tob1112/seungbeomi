@@ -1,0 +1,24 @@
+/* CSS file */
+.leafTitle
+{
+	font-size: 11px;
+	font-family: arial;
+	font-weight: bold;
+}
+
+.minimizeButton
+{
+	up-skin:        Embed("/assets/flora/minimize_up.png");
+	over-skin:      Embed("/assets/flora/minimize_over.png");
+	down-skin:      Embed("/assets/flora/minimize_up.png");
+}
+
+.maximizeRestoreButton
+{
+	up-skin:        	Embed("/assets/flora/maximize_up.png");
+	over-skin:      	Embed("/assets/flora/maximize_over.png");
+	down-skin:      	Embed("/assets/flora/maximize_up.png");
+	selected-up-skin:   Embed("/assets/flora/restore_up.png");
+	selected-over-skin: Embed("/assets/flora/restore_over.png");
+	selected-down-skin: Embed("/assets/flora/restore_up.png");
+}
