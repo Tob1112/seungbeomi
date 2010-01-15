@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="300" backgroundColor="#0000ff">
+	<mx:Script>
+		<![CDATA[
+
+
+			private function keyHandler(e:KeyboardEvent):void {
+				trace(e.keyCode);
+
+				switch(e.keyCode) {
+					case 13:
+						trace("enter");
+					break;
+					case 32:
+						trace("space");
+					break;
+					case 16:
+						trace("shift");
+					break;
+					case 112:
+						trace("F1");
+					break;
+					case 8:
+						trace("delete");
+					break;
+				}
+			}
+		]]>
+	</mx:Script>
+
+	<mx:TextInput text="keyboard event test" keyUp="keyHandler(event)"/>
+</mx:HBox>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="300">
+	<mx:Script>
+		<![CDATA[
+
+			[Bindable]
+			private var _person:Person = new Person();;
+
+			public function set person(person:Person):void {
+				_person = person;
+			}
+
+			private function creationCompleteHandler():void {
+				if (_person == null) {
+					_person = new Person();
+				}
+				_person.name = "son";
+			}
+
+			private function btnClick():void {
+				_person.name = txtipt.text;
+			}
+		]]>
+	</mx:Script>
+
+	<mx:Label text="{_person.name}"/>
+
+	<mx:TextInput id="txtipt" y="26"/>
+	<mx:Button label="summit" click="btnClick()" x="168" y="26"/>
+</mx:Canvas>
