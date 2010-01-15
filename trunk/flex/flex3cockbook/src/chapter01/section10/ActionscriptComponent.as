@@ -1,17 +1,15 @@
-package chapter01 {
+package chapter01.section10 {
 
     import mx.containers.Canvas;
     import mx.controls.Image;
     import mx.controls.Text;
 
     //----------------------------------
-    //
-    //<mx:Object id="person" name="son" age="30" position="500" image="http://www.gstatic.com/codesite/ph/images/defaultlogo.png"/>
-	//<chapter01:section10_actionscriptComponent data="{person}"/>
-	//
+    //	<mx:Object id="person" name="son" age="30" position="500" image="http://www.gstatic.com/codesite/ph/images/defaultlogo.png"/>
+	//	<section10:ActionscriptComponent data="{person}"/>
 	//----------------------------------
 
-    public class section10_actionscriptComponent extends Canvas {
+    public class ActionscriptComponent extends Canvas {
 
     	private var _data:Object;
     	private var nameText:Text;
@@ -19,7 +17,7 @@ package chapter01 {
     	private var positionText:Text;
     	private var image:Image;
 
-        public function section10_actionscriptComponent() {
+        public function ActionscriptComponent() {
         	super();
         	nameText = new Text();
         	addChild(nameText);

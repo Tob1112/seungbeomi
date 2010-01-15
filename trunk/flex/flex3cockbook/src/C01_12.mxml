@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:chapter01="chapter01.*">
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:section12="chapter01.section12.*">
 
-	<chapter01:Section12_CodeBehindComponent id="codeBehind">
+	<section12:CodeBehindComponent id="codeBehind">
 		<mx:Button id="btn" click="codeBehind.clickHandler(event)"/>
-	</chapter01:Section12_CodeBehindComponent>
+	</section12:CodeBehindComponent>
 
 </mx:Application>

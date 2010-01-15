@@ -1,12 +1,12 @@
-package chapter01 {
+package chapter01.section12 {
 
 	import flash.events.Event;
 
 	import mx.containers.Canvas;
 
-	public class Section12_CodeBehindComponent extends Canvas {
+	public class CodeBehindComponent extends Canvas {
 
-		public function Section12_CodeBehindComponent() {
+		public function CodeBehindComponent() {
 			super();
 			addEventListener(Event.ADDED_TO_STAGE, addedToStageListener);
 		}

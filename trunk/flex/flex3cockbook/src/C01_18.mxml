@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:section18="chapter01.section18.*"
+	creationComplete="creationCompleteHandler()">
+
+	<!--================================================-->
+	<!-- section18 인터페이스								-->
+	<!--================================================-->
+
+	<mx:Script>
+		<![CDATA[
+			private function creationCompleteHandler():void {
+				clientData.dataType = "test";
+				trace("getter true? : " + (clientData.dataType == "test"));
+				clientData.update();
+				clientData.write();
+				clientData.readData();
+			}
+		]]>
+	</mx:Script>
+
+	<!-- interface구현 클래스 테스트 -->
+	<section18:ClientData id="clientData" />
+
+	<!-- mxml구현 클래스 테스트 안된다!!!!!!!-->
+	<!--<section18:IDataInterfaceImpl />-->
+</mx:Application>

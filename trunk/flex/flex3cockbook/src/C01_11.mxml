@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:chapter01="chapter01.*">
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:section11="chapter01.section11.*">
 	<mx:Script>
 		<![CDATA[
 			public function handlerClick():void {
@@ -7,5 +7,5 @@
 			}
 		]]>
 	</mx:Script>
-	<chapter01:section11_BubblingComponentHolder click="handlerClick()"/>
+	<section11:BubblingComponentHolder click="handlerClick()"/>
 </mx:Application>
