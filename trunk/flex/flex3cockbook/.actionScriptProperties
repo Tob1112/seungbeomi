@@ -9,7 +9,14 @@
     <sourceAttachmentPath/>
   </compiler>
   <applications>
+    <application path="C01_12.mxml"/>
     <application path="flex3cockbook.mxml"/>
+    <application path="C01_14.mxml"/>
+    <application path="C01_15.mxml"/>
+    <application path="C01_13.mxml"/>
+    <application path="C01_16.mxml"/>
+    <application path="C01_17.mxml"/>
+    <application path="C01_18.mxml"/>
   </applications>
   <modules/>
   <buildCSSFiles/>
