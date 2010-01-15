@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="300">
+
+	<mx:Script>
+		<![CDATA[
+			import mx.core.UITextField;
+			private function checkType(e:MouseEvent):void {
+				trace("---------------------------")
+				trace(e.currentTarget + " - " + e.target);
+
+				if (e.target is Label) {
+					trace("clicked label");
+				} else if (e.target is Canvas) {
+					trace("clicked Canvas");
+				} else if (e.target is Text) {
+					trace("clicked Text");
+				}
+			}
+		]]>
+	</mx:Script>
+
+	<mx:Label id="lbl" text="label click" click="checkType(event)"/>
+	<mx:Text id="txt" text="text click" click="checkType(event)" y="26"/>
+	<mx:Button id="cnv" label="panel click" click="checkType(event)" y="52"/>
+</mx:Canvas>
