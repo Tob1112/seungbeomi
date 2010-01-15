@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:section17="chapter01.section17.*">
+
+	<!--================================================-->
+	<!-- section17 객체형 알아내기							-->
+	<!--================================================-->
+
+	<section17:TypeTest />
+
+	<!-- component type 알아내기 안된다 체크!!! -->
+	<!--<section17:TypeTest02 />-->
+
+</mx:Application>
