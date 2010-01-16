@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical">
+
+	<mx:Script>
+		<![CDATA[
+			import mx.events.MenuEvent;
+			private function handleMenuClick(e:MenuEvent):void {
+				this.lblDisply.text = e.item.@label + " is selected!!"
+			}
+		]]>
+	</mx:Script>
+
+	<mx:MenuBar labelField="@label" itemClick="handleMenuClick(event)">
+		<mx:XMLList>
+			<menuitem label="file">
+				<menuitem label="new document"/>
+				<menuitem label="open"/>
+				<menuitem label="close" enable="false"/>
+			</menuitem>
+			<menuitem label="edit"/>
+			<menuitem label="source"/>
+			<menuitem label="preview">
+				<menuitem label="50%" type="radio" groupName="one"/>
+				<menuitem label="100%" type="radio" groupName="one"/>
+				<menuitem label="150%" type="radio" groupName="one"/>
+			</menuitem>
+		</mx:XMLList>
+	</mx:MenuBar>
+
+	<mx:Label id="lblDisply"/>
+</mx:Application>

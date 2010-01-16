@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute">
+
+	<mx:Script>
+		<![CDATA[
+			import mx.managers.IFocusManagerContainer;
+			import chapter02.section12.CustomPopUp;
+			import mx.managers.PopUpManager;
+
+			private const POPUP_OFFSET:int = 10;
+			private var popup:CustomPopUp;
+
+			private function showDetail(e:FocusEvent):void {
+				// 팝업 생성
+				popup = CustomPopUp(PopUpManager.createPopUp(this,CustomPopUp,false));
+				popup.message = "this is " + e.target.label + " detail.";
+
+				// 팝업 위치 지정
+				var pt:Point = new Point(0,0);
+				pt = e.target.localToGlobal(pt);
+				popup.x = pt.x + POPUP_OFFSET;
+				popup.y = pt.y + e.target.height + POPUP_OFFSET;
+
+				systemManager.removeFocusManager(IFocusManagerContainer(popup));
+			}
+
+			private function closePopUp():void {
+				PopUpManager.removePopUp(popup);
+			}
+		]]>
+	</mx:Script>
+
+	<mx:Canvas horizontalCenter="0" verticalCenter="0">
+		<mx:LinkButton label="top" x="104" y="10" focusIn="showDetail(event)" focusOut="closePopUp()"/>
+		<mx:LinkButton label="left" x="10" y="100" focusIn="showDetail(event)" focusOut="closePopUp()"/>
+		<mx:LinkButton label="bottom" x="92.5" y="190" focusIn="showDetail(event)" focusOut="closePopUp()"/>
+		<mx:LinkButton label="right" x="200" y="100" focusIn="showDetail(event)" focusOut="closePopUp()"/>
+		<mx:Canvas width="100" height="100" x="125" y="40" backgroundColor="#ff0000" rotation="45"/>
+	</mx:Canvas>
+</mx:Application>

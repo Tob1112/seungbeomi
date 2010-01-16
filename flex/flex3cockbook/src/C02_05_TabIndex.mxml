@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="horizontal">
+	<mx:VBox>
+		<mx:Label text="name : "/>
+		<mx:TextInput tabIndex="1"/>
+		<mx:Label text="home # : "/>
+		<mx:TextInput tabIndex="3"/>
+	</mx:VBox>
+	<mx:VBox>
+		<mx:Label text="sex : "/>
+		<mx:TextInput tabIndex="2"/>
+		<mx:Label text="office # : "/>
+		<mx:TextInput tabIndex="4" text="111-222-3333"/>
+		<mx:Button label="summit" tabIndex="5"/>
+	</mx:VBox>
+</mx:Application>

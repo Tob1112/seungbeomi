@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute">
+
+	<mx:Script>
+		<![CDATA[
+			import chapter02.section12.CustomPopUp;
+			import mx.managers.PopUpManager;
+
+			private const POPUP_OFFSET:int = 10;
+
+			private function showDetail(e:MouseEvent):void {
+				// 팝업 생성
+				var popup:CustomPopUp = CustomPopUp(PopUpManager.createPopUp(this,CustomPopUp,false));
+				popup.message = "this is " + e.target.label + " detail.";
+
+				// 팝업 위치 지정
+				var pt:Point = new Point(0,0);
+				pt = e.target.localToGlobal(pt);
+				popup.x = pt.x + POPUP_OFFSET;
+				popup.y = pt.y + e.target.height + POPUP_OFFSET;
+			}
+		]]>
+	</mx:Script>
+
+	<mx:Canvas horizontalCenter="0" verticalCenter="0">
+		<mx:LinkButton label="Top" x="105" y="10" click="showDetail(event)"/>
+		<mx:LinkButton label="Left" x="10" y="100" click="showDetail(event)"/>
+		<mx:LinkButton label="Bottom" x="93.5" y="200" click="showDetail(event)"/>
+		<mx:LinkButton label="Right" x="200" y="100" click="showDetail(event)"/>
+		<mx:Canvas label="Height" x="126" y="40" width="100" height="100" backgroundColor="#ff0000" rotation="45"/>
+	</mx:Canvas>
+
+</mx:Application>

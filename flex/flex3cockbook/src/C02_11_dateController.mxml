@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical">
+
+	<mx:Script>
+		<![CDATA[
+			import mx.events.CalendarLayoutChangeEvent;
+
+			private static const MILLISECOND:int = 1000;
+			private static const SECOND:int = 60;
+			private static const MINUTES:int = 60;
+			private static const HOURS:int = 24;
+
+			private function update(e:CalendarLayoutChangeEvent):void {
+				try {
+					var diff:Number = endDate.selectedDate.getTime() - startDate.selectedDate.getTime();
+					var days:int = int(diff/(MILLISECOND*SECOND*MINUTES*HOURS));
+					display.text = days.toString();
+				} catch (e:Error) {
+
+				}
+			}
+		]]>
+	</mx:Script>
+
+	<mx:Form>
+		<mx:FormHeading label="calculate date"/>
+		<mx:FormItem label="start date">
+			<mx:DateField id="startDate" change="update(event)"/>
+		</mx:FormItem>
+		<mx:FormItem label="end date">
+			<mx:DateChooser id="endDate" change="update(event)"/>
+		</mx:FormItem>
+		<mx:FormItem label="date ?">
+			<mx:Label id="display"/>
+		</mx:FormItem>
+	</mx:Form>
+
+</mx:Application>

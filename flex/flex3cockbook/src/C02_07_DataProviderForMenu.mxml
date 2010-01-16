@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="horizontal">
+
+	<!--=============================-->
+	<!-- 메뉴에 데이터공급				 -->
+	<!--=============================-->
+
+	<!--
+		menu
+			enabled - 사용자가 이 메뉴에 항목을 선택할 수 있는지를 지정
+			groupName - 형이 radio이고 메뉴항목들에 대한 그룹 이름 역할을 할 경우에 적용
+			icon - 이미지 에셋의 클래스 식별자를 지정
+			label - 메뉴 항목에 표시될 텍스트 지정.정
+			toggled - check나 radio형의 menuitems가 선택되는지 여부를 지정
+			type - 메뉴 항목이 가질 수 있는 3가지 타입(check, radio, separator) 중 하나를 지정
+
+	-->
+
+	<mx:MenuBar labelField="@label">
+		<mx:XMLList>
+			<menuitem label="file">
+				<menuitem label="new document"/>
+				<menuitem label="open"/>
+				<menuitem label="close" enable="false"/>
+			</menuitem>
+			<menuitem label="edit"/>
+			<menuitem label="source"/>
+			<menuitem label="preview">
+				<menuitem label="50%" type="radio" groupName="one"/>
+				<menuitem label="100%" type="radio" groupName="one"/>
+				<menuitem label="150%" type="radio" groupName="one"/>
+			</menuitem>
+		</mx:XMLList>
+	</mx:MenuBar>
+</mx:Application>

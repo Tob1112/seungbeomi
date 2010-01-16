@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" creationComplete="creationCompleteHandler(event)">
+
+	<mx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+
+			import mx.collections.ArrayCollection;
+
+			[Bindable] private var dp:ArrayCollection;
+
+			private function creationCompleteHandler(e:FlexEvent):void {
+				var temp:Array = new Array();
+				var subNodes:ArrayCollection = new ArrayCollection([
+					{label:"new document"},{label:"open"},{label:"close", enabled:false}
+				]);
+				temp.push({label:"file",children:subNodes});
+				temp.push({label:"edit"});
+				temp.push({label:"src"});
+				subNodes = new ArrayCollection([
+					{label:"50%",type:"radio",groupName:"one"},
+					{label:"100%",type:"radio",groupName:"one",selected:true},
+					{label:"150%",type:"radio",groupName:"one"}
+				]);
+				temp.push({label:"view",children:subNodes});
+				dp = new ArrayCollection(temp);
+			}
+
+			private function editMenu():void {
+				var itemToEdit:Object;
+				try {
+					itemToEdit = dp.getItemAt(int(menuIdx.text));	// menuIdx를 입력해서 dp로 부터 item을 얻음
+
+					if (subMenuIdx.text) {
+						itemToEdit = itemToEdit.children.getItemAt(int(subMenuIdx.text));	//subMenuIdx를 입력해서 itemToEdit으로부터 item을 얻음
+					}
+					itemToEdit.label = label_ti.text;	// 새로운 label을 적용
+					dp.itemUpdated(itemToEdit);	// item이 update되었음을 알림
+				} catch (e:Error) {
+					trace("not found menu - " + e.toString())
+				}
+			}
+
+		]]>
+	</mx:Script>
+
+	<mx:MenuBar id="menu" dataProvider="{dp}"/>
+
+	<mx:Form>
+		<mx:FormHeading label="edit menu"/>
+		<mx:FormItem label="menu index">
+			<mx:TextInput id="menuIdx" restrict="0-9" text="0" width="20"/>
+		</mx:FormItem>
+		<mx:FormItem label="sub menu index">
+			<mx:TextInput id="subMenuIdx" restrict="0-9" width="20"/>
+		</mx:FormItem>
+		<mx:FormItem label="menu label">
+			<mx:TextInput id="label_ti"/>
+		</mx:FormItem>
+		<mx:FormItem>
+			<mx:Button label="submit" click="editMenu()"/>
+		</mx:FormItem>
+	</mx:Form>
+
+</mx:Application>
