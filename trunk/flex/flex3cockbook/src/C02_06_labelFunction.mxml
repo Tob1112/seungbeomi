@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="horizontal">
+
+	<mx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+
+			[Bindable] private var dp:ArrayCollection = new ArrayCollection([
+				{id:1,fName:"son",lName:"seungbeom"},
+				{id:2,fName:"kim",lName:"hyungsuk"}
+			]);
+
+			private function getFullName(item:Object):String {
+				return item.fName + " " + item.lName;
+			}
+		]]>
+	</mx:Script>
+
+	<mx:ComboBox dataProvider="{dp}" labelFunction="getFullName"/>
+</mx:Application>

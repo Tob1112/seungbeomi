@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical">
+
+	<mx:Script>
+		<![CDATA[
+			import mx.events.CloseEvent;
+			import mx.controls.Alert;
+
+			private function showAlert(e:MouseEvent):void {
+				var alert:Alert = Alert.show("clicked button", "alert title", Alert.OK|Alert.CANCEL|Alert.NO|Alert.YES, this, onAlertClose);
+			}
+
+			private function onAlertClose(e:CloseEvent):void {
+				switch(e.detail) {
+					case Alert.OK:
+						lbl.text = "click the ok.";
+					break;
+					case Alert.CANCEL:
+						lbl.text = "click the cancel.";
+					break;
+					case Alert.NO:
+						lbl.text = "click the no.";
+					break;
+					case Alert.YES:
+						lbl.text = "click the yes.";
+					break;
+				}
+			}
+		]]>
+	</mx:Script>
+
+	<mx:Button id="btn" label="alert" click="showAlert(event)"/>
+	<mx:Label id="lbl"/>
+
+
+</mx:Application>

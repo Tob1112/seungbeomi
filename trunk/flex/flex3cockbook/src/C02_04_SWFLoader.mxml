@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute">
+
+	<mx:SWFLoader source="@Embed('chapter02/section04/swf_embed.swf')"/>
+
+	<mx:TabNavigator resizeToContent="true" paddingTop="0" top="40">
+		<mx:Canvas label="tab01" width="200" height="200">
+			<mx:SWFLoader source="chapter02/section04/swf01.swf"/>
+		</mx:Canvas>
+		<mx:Canvas label="tab02" width="200" height="200">
+	    	<mx:SWFLoader source="chapter02/section04/swf02.swf"/>
+		</mx:Canvas>
+	</mx:TabNavigator>
+</mx:Application>

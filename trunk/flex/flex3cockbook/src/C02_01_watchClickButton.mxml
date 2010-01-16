@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical">
+	<!--=============================-->
+	<!-- section01 버튼 클릭 감지		 -->
+	<!--=============================-->
+	
+	<mx:Script>
+		<![CDATA[
+			private function showName(e:MouseEvent):void {
+				var temp:Array = new Array("son","kim","lee");
+				trace(temp.toString());
+			}
+		]]>
+	</mx:Script>
+		
+	<mx:Button id="btn" label="이름보기" click="showName(event)"/>
+	
+</mx:Application>

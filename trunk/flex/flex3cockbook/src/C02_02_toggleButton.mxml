@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" initialize="initApp(event)" xmlns:section02="chapter02.section02.*">
+	<!--==========================-->
+	<!-- section02 토글 버튼 제작    -->
+	<!--==========================-->
+
+	<mx:Script>
+		<![CDATA[
+			import mx.events.ItemClickEvent;
+			import mx.events.FlexEvent;
+			import mx.collections.ArrayCollection;
+
+			[Bindable] private var dp:ArrayCollection;
+
+			private function initApp(e:FlexEvent):void {
+				var temp:Array = new Array({label:"이름보기",mode:"labels"},{label:"직위보기",mode:"titles"});
+				dp = new ArrayCollection(temp);
+			}
+
+			private function setMode(e:ItemClickEvent):void {
+				switch (e.item.mode) {
+					case "labels":
+						trace("labels~~~~~!!!");
+					break;
+					case "titles":
+						trace("titles~~~~~!!!");
+					break;
+					default:
+					break;
+				}
+			}
+		]]>
+	</mx:Script>
+
+	<mx:ToggleButtonBar id="toggle" dataProvider="{dp}" itemClick="setMode(event)"/>
+
+	<!-- use custom toggleButtonBar -->
+	<section02:CustomToggleButtonBar id="customToggle" selectedIndex="-1" dataProvider="{dp}" itemClick="setMode(event)"/>
+
+
+</mx:Application>
