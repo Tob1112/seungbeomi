@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:section03="chapter03.section03.*">
+	<!--<section03:MousePosition01 />-->
+	<!--<section03:MousePosition02 />-->
+
+	<mx:Script>
+		<![CDATA[
+			private function traceMousePosition(e:MouseEvent):void {
+				trace();
+				trace("MouseEvent    : " + e.localX + " " + e.localY);
+				trace("MousePosition : " + e.stageX + " " + e.stageY);
+				trace("MouseEvent    : " + this.mouseX + " " + this.mouseY);
+				trace("content mouse : " + this.contentMouseX + " " + this.contentMouseY);
+			}
+		]]>
+	</mx:Script>
+
+	<mx:VBox width="450" height="300" paddingTop="10" paddingLeft="10" verticalGap="15" mouseMove="traceMousePosition(event)" backgroundColor="#ffffff">
+		<mx:Image source="@Embed('assets/images/son.png')"/>
+	</mx:VBox>
+</mx:Application>

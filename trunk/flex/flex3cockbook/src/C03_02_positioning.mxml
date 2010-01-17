@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:section02="chapter03.section02.*">
+
+	<mx:Script>
+		<![CDATA[
+			private function changeWidth():void {
+				this.width = slider.value * 150;
+			}
+		]]>
+	</mx:Script>
+
+	<section02:RelativePositioningParent />
+	<mx:HSlider id="slider" change="changeWidth()"/>
+</mx:Application>
