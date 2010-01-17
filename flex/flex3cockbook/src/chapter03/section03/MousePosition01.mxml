@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="300" mouseMove="trace(event)" backgroundColor="#ffffff">
+	<mx:LinkButton label="MyButton"/>
+</mx:VBox>

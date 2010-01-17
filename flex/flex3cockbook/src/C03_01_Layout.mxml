@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute">
+	<mx:Canvas>
+		<mx:VBox width="400" height="300" verticalGap="20">
+			<mx:Button label="button"/>
+			<mx:ComboBox />
+			<mx:Spacer height="20"/>
+			<mx:LinkButton label="link button"/>
+		</mx:VBox>
+		<mx:HBox x="400" horizontalGap="10" top="15">
+			<mx:Canvas>
+				<mx:Button top="50" label="button" y="20"/>
+			</mx:Canvas>
+			<mx:Panel height="40" width="40"/>
+			<mx:Spacer width="25"/>
+			<mx:LinkButton label="label"/>
+		</mx:HBox>
+	</mx:Canvas>
+</mx:Application>

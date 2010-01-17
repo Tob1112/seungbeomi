@@ -10,27 +10,30 @@
   </compiler>
   <applications>
     <application path="C02_04_SWFLoader.mxml"/>
+    <application path="C03_01_Layout.mxml"/>
+    <application path="C02_07_DataProviderForMenu.mxml"/>
     <application path="flex3cockbook.mxml"/>
     <application path="C01_12.mxml"/>
+    <application path="C02_12_multiPopUp.mxml"/>
     <application path="C02_03_ColorPicker.mxml"/>
     <application path="C01_14.mxml"/>
-    <application path="C01_15.mxml"/>
+    <application path="C02_11_dateController.mxml"/>
     <application path="C02_02_toggleButton.mxml"/>
-    <application path="C01_17.mxml"/>
+    <application path="C02_06_labelFunction.mxml"/>
     <application path="C02_01_watchClickButton.mxml"/>
-    <application path="C01_16.mxml"/>
+    <application path="C02_05_TabIndex.mxml"/>
     <application path="C01_18.mxml"/>
     <application path="C01_13.mxml"/>
-    <application path="C02_05_TabIndex.mxml"/>
-    <application path="C02_06_labelFunction.mxml"/>
-    <application path="C02_07_DataProviderForMenu.mxml"/>
     <application path="C02_08_DynamicMenu.mxml"/>
     <application path="C02_09_menuControlHandler.mxml"/>
     <application path="C02_10_Alert.mxml"/>
-    <application path="C02_11_dateController.mxml"/>
-    <application path="C02_12_multiPopUp.mxml"/>
+    <application path="C01_15.mxml"/>
+    <application path="C01_17.mxml"/>
+    <application path="C01_16.mxml"/>
     <application path="C02_13_popupBorder.mxml"/>
     <application path="C02_14_focusInAndFocusOut.mxml"/>
+    <application path="C03_02_positioning.mxml"/>
+    <application path="C03_03_mousePositioning.mxml"/>
   </applications>
   <modules/>
   <buildCSSFiles/>

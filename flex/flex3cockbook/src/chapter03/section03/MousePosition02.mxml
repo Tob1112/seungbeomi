@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml" width="500" height="300" mouseMove="trace(this.contentMouseX + ' : ' + this.contentMouseY)">
+	<mx:Panel width="400" backgroundColor="#bbbbbb">
+		<mx:Label text="center" horizontalCenter="200"/>
+	</mx:Panel>
+	<mx:Panel width="400" backgroundColor="#bbbbbb">
+		<mx:Label text="center" horizontalCenter="200"/>
+	</mx:Panel>
+</mx:HBox>
