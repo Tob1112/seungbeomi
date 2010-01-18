@@ -19,8 +19,8 @@
             private var iHistoryManager :IHistoryManager
 
 			private function creationCompleteHandler():void {
-				//floraMainMoudleLoader.url = Constants.FLORA_CONTENTS_SWF;
-				floraMainMoudleLoader.url = Constants.FLORA_MAIN_SWF;
+				floraMainMoudleLoader.url = Constants.FLORA_CONTENTS_SWF;
+				//floraMainMoudleLoader.url = Constants.FLORA_MAIN_SWF;
 			}
 		]]>
 	</mx:Script>

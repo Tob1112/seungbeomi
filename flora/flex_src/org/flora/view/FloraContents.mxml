@@ -10,6 +10,7 @@
 		<!-- LOGO -->
 		<mx:Label text="FLORA WAVE NOTE PROJECT"/>
 		<!-- MENU when panel folding -->
+		<!-- TODO window가 minimized 될때 이곳에 addChild된다 -->
 		<mx:HBox id="hboxMenu" width="100%">
 
 		</mx:HBox>
@@ -29,38 +30,37 @@
 			<!--=========================================-->
 			<!-- NAVIGATION PANEL						 -->
 			<!--=========================================-->
-			<mx:Panel id="pnlNavigation" title="Navigation" width="100%" height="300" minHeight="100" layout="absolute"	horizontalScrollPolicy="off" verticalScrollPolicy="auto" doubleClickEnabled="true">
+			<view:Leaf id="pnlNavigation" title="Navigation" width="100%" height="300" minHeight="100" layout="absolute"	horizontalScrollPolicy="off" verticalScrollPolicy="auto" doubleClickEnabled="true">
 				<mx:Label text="Navigation"/>
-				<view:Leaf />
-			</mx:Panel>
+			</view:Leaf>
 
 			<!--=========================================-->
 			<!-- CONTENTS PANEL							 -->
 			<!--=========================================-->
-			<mx:Panel id="pnlContacts" title="Contacts" width="100%" height="300" minHeight="100" layout="absolute" horizontalScrollPolicy="off" verticalScrollPolicy="auto">
+			<view:Leaf id="pnlContacts" title="Contacts" width="100%" height="300" minHeight="100" layout="absolute" horizontalScrollPolicy="off" verticalScrollPolicy="auto">
 				<mx:Label text="Contacts"/>
 				<mx:ControlBar>
 				</mx:ControlBar>
-			</mx:Panel>
+			</view:Leaf>
 		</mx:VDividedBox>
 
 		<!--=========================================-->
 		<!-- SUBNAVIGATION PANEL					 -->
 		<!--=========================================-->
-		<mx:Panel id="pnlSubNavigation" layout="absolute" width="40%" height="100%" minWidth="100" horizontalScrollPolicy="off" verticalScrollPolicy="auto">
+		<view:Leaf id="pnlSubNavigation" layout="absolute" width="40%" height="100%" minWidth="100" horizontalScrollPolicy="off" verticalScrollPolicy="auto">
 			<mx:Label text="sub navigation"/>
 			<mx:ControlBar>
 			</mx:ControlBar>
-		</mx:Panel>
+		</view:Leaf>
 
 		<!--=========================================-->
 		<!-- NOTE PANEL								 -->
 		<!--=========================================-->
-		<mx:Panel id="pnlNote" title="Note" width="40%" height="100%" minWidth="100" layout="absolute" horizontalScrollPolicy="off" verticalScrollPolicy="auto">
+		<view:Leaf id="pnlNote" title="Note" width="40%" height="100%" minWidth="100" layout="absolute" horizontalScrollPolicy="off" verticalScrollPolicy="auto">
 			<mx:Label text="note"/>
 			<mx:ControlBar>
 			</mx:ControlBar>
-		</mx:Panel>
+		</view:Leaf>
 	</mx:HDividedBox>
 
 </mx:Module>
