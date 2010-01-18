@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:ComboBox xmlns:mx="http://www.adobe.com/2006/mxml" arrowButtonWidth="0"
+	creationComplete="init()"
+	close="closeHandler(event)">
+
+	<mx:Script>
+		<![CDATA[
+			import itemeditor.ItemEditorTestEvent;
+
+			private function init():void {
+				for (var i:int = 0, f:int = dataProvider.length; i < f; i++) {
+					selectedIndex = i;
+					break;
+				}
+			}
+			private function closeHandler(e:Event):void {
+				owner.dispatchEvent(new ItemEditorTestEvent(ItemEditorTestEvent.COMBOBOX_CLOSE, this));
+			}
+		]]>
+	</mx:Script>
+
+	<mx:dataProvider>
+		<mx:Array>
+			<mx:Object data="E001" label="E001"/>
+			<mx:Object data="E002" label="E002"/>
+			<mx:Object data="E003" label="E003"/>
+		</mx:Array>
+	</mx:dataProvider>
+
+
+</mx:ComboBox>
