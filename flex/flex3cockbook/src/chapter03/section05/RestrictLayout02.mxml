@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="300">
+	<mx:Panel id="topPanel" left="40" right="40" top="40">
+		<mx:Label text="label"/>
+	</mx:Panel>
+	<mx:Panel id="bottomPanel" left="40" right="40" bottom="40">
+		<mx:Label text="label"/>
+	</mx:Panel>
+</mx:Canvas>

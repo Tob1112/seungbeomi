@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="300" backgroundColor="#bbbbbb">
+	<mx:Canvas id="innerCanvas" left="20" right="20" top="20" bottom="50">
+		<mx:Button label="button" left="20" right="20" top="10"/>
+		<mx:TextInput left="30" right="30" bottom="10"/>
+	</mx:Canvas>
+</mx:Canvas>
