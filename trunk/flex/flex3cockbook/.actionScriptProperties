@@ -31,6 +31,7 @@
     <application path="C03_05_restrictLayout.mxml"/>
     <application path="C03_06_sizingInnerChild.mxml"/>
     <application path="C03_24_manualContainerLayout.mxml"/>
+    <application path="TestApp.mxml"/>
   </applications>
   <modules/>
   <buildCSSFiles/>
