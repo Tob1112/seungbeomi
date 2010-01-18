@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute"
+	creationComplete="creationCompleteHandler()">
+	<mx:Script>
+		<![CDATA[
+			import mx.collections.IViewCursor;
+			import mx.controls.dataGridClasses.DataGridColumn;
+			import mx.collections.ArrayCollection;
+			import itemeditor.ItemEditorTestEvent;
+
+			private var arrayData:Array = [
+				{empNo:"E001", name:"son", time:"0800"},
+				{empNo:"E002", name:"kim", time:"0900"},
+				{empNo:"E003", name:"lee", time:"1000"}
+			];
+
+			[Bindable] private var dp:ArrayCollection = new ArrayCollection(arrayData);
+
+			private function creationCompleteHandler():void {
+				dg.addEventListener(ItemEditorTestEvent.COMBOBOX_CLOSE, closeListener);
+			}
+			private function closeListener(e:ItemEditorTestEvent):void {
+				var item:Object;
+				var empNo:String = e.handler.empNo;
+
+				if (e.currentTarget == dg) {
+					item = dg.selectedItem as Object;
+					if (item.empNo == "E001") {
+						trace("empNo - " + item.empNo);
+						item.name = "son";
+						item.time = "0800";
+					} else if (item.empNo == "E002") {
+						trace("empNo - " + item.empNo);
+						item.name = "kim";
+						item.time = "0900";
+					} else if (item.empNo == "E003") {
+						trace("empNo - " + item.empNo);
+						item.name = "lee";
+						item.time = "1000";
+					}
+				}
+			}
+			private function displayTime(item:Object, column:DataGridColumn):String {
+				var org:String = item.time;
+
+				return org.substr(0,2) + ":" + org.substr(2,2);
+			}
+
+			private function editmode(e:FocusEvent):void {
+				//trace(e.currentTarget);
+			}
+
+			private function cursor():void {
+
+				var cursor:IViewCursor = dp.createCursor();
+
+				while(!cursor.afterLast) {
+					trace(cursor.current.time);
+					cursor.moveNext();
+				}
+			}
+		]]>
+	</mx:Script>
+
+	<mx:DataGrid id="dg" dataProvider="{dp}" editable="true" focusIn="editmode(event)">
+		<mx:columns>
+			<mx:DataGridColumn dataField="empNo" itemEditor="itemeditor.ComboBoxEditor"/>
+			<mx:DataGridColumn dataField="name"/>
+			<mx:DataGridColumn dataField="time" labelFunction="{displayTime}" />
+		</mx:columns>
+	</mx:DataGrid>
+
+	<mx:Button label="click me" click="cursor()" x="108" y="150"/>
+
+</mx:Application>

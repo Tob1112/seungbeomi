@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:validator="validator.*">
+	<validator:Validator_customValidator id="cusomValidator" required="true" source="{txtTest}" property="text"/>
+
+	<mx:Label id="lblTest" x="10" y="10" text="Label"/>
+	<mx:TextInput id="txtTest" x="10" y="36"/>
+</mx:Application>

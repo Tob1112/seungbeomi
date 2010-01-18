@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute">
+	<mx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+
+			var strPattert:String = "[a-z]+";
+
+
+			private function test():void {
+				var pattern:RegExp = new RegExp(strPattert);
+				if (lblRegexp.text.search(pattern) != -1) {
+
+				} else {
+					Alert.show("영소문자만 입력해주세요.");
+				}
+			}
+
+		]]>
+	</mx:Script>
+	<mx:Label x="10" y="10" text="영소문자만가능"/>
+	<mx:TextInput id="lblRegexp" x="10" y="36" keyUp="test()" />
+</mx:Application>
