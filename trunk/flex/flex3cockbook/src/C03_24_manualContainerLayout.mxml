@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:section24="chapter03.section24.*">
+	<!--<section24:SpecialLayoutCanvas />-->
+
+	<mx:Canvas width="800" height="600">
+		<section24:ForceLayout width="400" height="500" backgroundColor="#ffffff">
+			<mx:HBox>
+				<mx:Button label="button"/>
+				<mx:LinkButton label="link"/>
+			</mx:HBox>
+
+			<section24:SpecialLayoutCanvas isSelected="false" backgroundColor="#c0c0cc"/>
+
+			<mx:HBox>
+				<mx:Button label="button"/>
+				<mx:LinkButton label="link"/>
+			</mx:HBox>
+
+			<section24:SpecialLayoutCanvas isSelected="false" backgroundColor="#c0c0cc"/>
+			<section24:SpecialLayoutCanvas isSelected="true" backgroundColor="#c0c0cc"/>
+			<section24:SpecialLayoutCanvas isSelected="false" backgroundColor="#c0c0cc"/>
+		</section24:ForceLayout>
+	</mx:Canvas>
+</mx:Application>
