@@ -11,7 +11,7 @@
 				{name:"orange",cat:"fruit",cost:0.33,total:0}
 			];
 
-			private var dp:ArrayCollection = new ArrayCollection(arrayData);
+			[Bindable] private var dp:ArrayCollection = new ArrayCollection(arrayData);
 
 			public function removeItem():void {
 				Alert.show("click");

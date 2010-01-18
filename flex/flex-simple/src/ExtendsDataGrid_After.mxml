@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:extendsDataGrid="extendsDataGrid.*">
+	 <mx:Script>
+        <![CDATA[
+        	import mx.collections.ArrayCollection;
+
+        	private var arrayData:Array = [
+				{no:1,name:"son",salary:100000,yyyymmdd:"20080101"},
+				{no:2,name:"kim",salary:200000,yyyymmdd:"20090101"},
+				{no:3,name:"lee",salary:300000,yyyymmdd:"20100101"}
+			];
+
+			private var dp:ArrayCollection = new ArrayCollection(arrayData);
+
+        ]]>
+    </mx:Script>
+
+    <mx:VBox width="100%">
+    	<mx:DataGrid id="dg" dataProvider="{dp}" width="100%">
+    		<mx:columns>
+    			<mx:DataGridColumn headerText="NO" dataField="no"/>
+    			<mx:DataGridColumn headerText="NAME" dataField="name"/>
+    			<mx:DataGridColumn headerText="SALARY" dataField="salary"/>
+    			<mx:DataGridColumn headerText="HIREDATE" dataField="yyyymmdd"/>
+    		</mx:columns>
+    	</mx:DataGrid>
+
+    	<mx:DataGrid id="dg2" dataProvider="{dp}" width="100%">
+    		<mx:columns>
+    			<extendsDataGrid:ExtendsDataGridColumn headerText="NO" dataField="no"/>
+    			<extendsDataGrid:ExtendsDataGridColumn headerText="NAME" dataField="name"/>
+    			<extendsDataGrid:ExtendsDataGridColumn headerText="SALARY" dataField="salary" format="money"/>
+    			<extendsDataGrid:ExtendsDataGridColumn headerText="HIREDATE" dataField="yyyymmdd" format="date"/>
+    		</mx:columns>
+    	</mx:DataGrid>
+    </mx:VBox>
+</mx:Application>

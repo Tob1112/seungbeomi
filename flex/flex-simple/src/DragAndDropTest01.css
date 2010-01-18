@@ -1,0 +1,43 @@
+/* CSS file */
+Application {
+    horizontalAlign: center;
+    verticalAlign: middle;
+    paddingTop: 0;
+    paddingRight: 0;
+    paddingBottom: 0;
+    paddingLeft: 0;
+    fontSize: 15;
+    color: black;
+}
+
+Panel {
+    paddingTop: 10;
+    paddingRight: 10;
+    paddingBottom: 10;
+    paddingLeft: 10;
+}
+
+.caption,
+.country,
+.choices {
+    borderStyle: solid;
+    horizontalAlign: center;
+    verticalAlign: middle;
+}
+
+.caption {
+    borderColor: white;
+}
+
+.dropzone {
+    backgroundColor: white;     /* イベントを取得可能にする */
+}
+
+.draggable {
+    borderStyle: solid;
+    borderColor: gray;
+    paddingTop: 5;
+    paddingRight: 5;
+    paddingBottom: 5;
+    paddingLeft: 5;
+}

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute">
+    <mx:Script>
+        <![CDATA[
+        	import mx.collections.ArrayCollection;
+
+        	private var arrayData:Array = [
+				{no:1,name:"son",salary:100000,yyyymmdd:"20080101"},
+				{no:2,name:"kim",salary:200000,yyyymmdd:"20090101"},
+				{no:3,name:"lee",salary:300000,yyyymmdd:"20100101"}
+			];
+
+			private var dp:ArrayCollection = new ArrayCollection(arrayData);
+
+            private function moneyFormat(item:Object, column:DataGridColumn):String {
+                return nf.format(item[column.dataField]);
+            }
+        ]]>
+    </mx:Script>
+
+    <mx:NumberFormatter id="nf" useThousandsSeparator="true"/>
+
+    <mx:DataGrid id="dg" dataProvider="{dp}" width="100%">
+        <mx:columns>
+            <mx:DataGridColumn headerText="NO" dataField="no"/>
+            <mx:DataGridColumn headerText="NAME" dataField="name"/>
+            <mx:DataGridColumn headerText="SALARY" dataField="salary" labelFunction="moneyFormat" textAlign="right">
+                <mx:headerRenderer>
+                    <mx:Component>
+                        <mx:Label textAlign="center"/>
+                    </mx:Component>
+                </mx:headerRenderer>
+            </mx:DataGridColumn>
+            <mx:DataGridColumn headerText="입사일" dataField="yyyymmdd"/>
+        </mx:columns>
+    </mx:DataGrid>
+</mx:Application>
