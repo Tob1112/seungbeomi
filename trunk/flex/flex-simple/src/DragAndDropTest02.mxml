@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%">
+
+    <mx:Script>
+        <![CDATA[
+            import mx.controls.Alert;
+            import mx.collections.ArrayCollection;
+
+            private var arrayData:Array=[{name: "banana"}, {name: "bread"}, {name: "orange"}];
+
+            [Bindable]
+            private var leftdp:ArrayCollection=new ArrayCollection(arrayData);
+            [Bindable]
+            private var rightdp:ArrayCollection=new ArrayCollection();
+        ]]>
+    </mx:Script>
+
+    <mx:Model id="mystates">
+        <states>
+            <state label="Alabama" data="AL"/>
+            <state label="Alaska" data="AK"/>
+            <state label="Arizona" data="AZ"/>
+            <state label="Arkansas" data="AR"/>
+            <state label="California" data="CA"/>
+            <state label="Colorado" data="CO"/>
+            <state label="Connecticut" data="CT"/>
+        </states>
+    </mx:Model>
+
+    <mx:Panel title="Select activities" height="324" width="306">
+        <mx:HBox>
+            <mx:VBox width="50%">
+                <mx:Label text="Available activities"/>
+
+                <!-- Drag initiator -->
+                <mx:List id="srclist" dataProvider="{leftdp}" width="100%" height="100" allowMultipleSelection="true" dragEnabled="true" dragMoveEnabled="true"/>
+            </mx:VBox>
+
+            <mx:VBox width="50%">
+                <mx:Label text="Activities I enjoy"/>
+
+                <!-- Drop target -->
+                <mx:List id="destlist" dataProvider="{rightdp}" width="100%" height="100" dropEnabled="true" />
+            </mx:VBox>
+        </mx:HBox>
+
+        <mx:HBox width="100%">
+            <mx:Label id="leftList" text="length: {leftdp.length}"/>
+            <mx:Spacer width="100%"/>
+            <mx:Label id="rightList" text="length: {rightdp.length}"/>
+        </mx:HBox>
+    </mx:Panel>
+</mx:Application>
