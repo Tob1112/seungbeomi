@@ -18,13 +18,14 @@ package org.flora.view {
 		public static const WINDOW_STATE_DEFAULT:Number = -1;
 		public static const WINDOW_STATE_MINIMIZED:Number = 0;
 		public static const WINDOW_STATE_MAXIMIZED:Number = 1;
+		public static const WINDOW_STATE_EXPANDED:Number = 2;
 
 		private var headerDivider:Sprite;	//header구분선
 
 		public var windowState:Number; // Corresponds to one of the WINDOW_STATE variables.
 		private var controlsHolder:HBox;	// panel의 title부분 최대/최소 버튼등이 위치
-		private var minimizeButton:Button;
-		private var maximizeRestoreButton:Button;
+		private var expandButton:Button;	// 메뉴확대
+		private var minimizeRestoreButton:Button;	// 최소화/복구 버튼
 
 		private var _showControls:Boolean;
 		private var _showControlsChanged:Boolean;
@@ -43,7 +44,7 @@ package org.flora.view {
 		}
 
 		//--------------------------------------------------------------------------
-		//	OVERRIDE METHODS
+		//	OVERRIDE METHODS 자식 컴포넌트 생성
 		//--------------------------------------------------------------------------
 		override protected function createChildren():void {
 			trace("createChildren");
@@ -65,22 +66,22 @@ package org.flora.view {
 				rawChildren.addChild(controlsHolder);
 			}
 
-			// 최소화 버튼
-			if(!minimizeButton) {
-				minimizeButton = new Button();
-				minimizeButton.width = 14;
-				minimizeButton.height = 14;
-				minimizeButton.styleName = "minimizeButton";
-				controlsHolder.addChild(minimizeButton);
+			// 최소화/메뉴확장 버튼
+			if(!expandButton) {
+				expandButton = new Button();
+				expandButton.width = 14;
+				expandButton.height = 14;
+				expandButton.styleName = "expandButton";
+				controlsHolder.addChild(expandButton);
 			}
 
 			// 최대화 버튼
-			if (!maximizeRestoreButton) {
-				maximizeRestoreButton = new Button();
-				maximizeRestoreButton.width = 14;
-				maximizeRestoreButton.height = 14;
-				maximizeRestoreButton.styleName = "maximizeRestoreButton";
-				controlsHolder.addChild(maximizeRestoreButton);
+			if (!minimizeRestoreButton) {
+				minimizeRestoreButton = new Button();
+				minimizeRestoreButton.width = 14;
+				minimizeRestoreButton.height = 14;
+				minimizeRestoreButton.styleName = "minimizeRestoreButton";
+				controlsHolder.addChild(minimizeRestoreButton);
 			}
 
 			addEventListeners();
@@ -109,13 +110,12 @@ package org.flora.view {
 		//--------------------------------------------------------------------------
 		//	PRIVATE METHODS
 		//--------------------------------------------------------------------------
-
 		private function addEventListeners():void {
 			trace("addEventListeners");
 			titleBar.addEventListener(MouseEvent.CLICK, onClickTitleBar);
 
-			minimizeButton.addEventListener(MouseEvent.CLICK, onClickMinimizeButton);
-			maximizeRestoreButton.addEventListener(MouseEvent.CLICK, onClickMaximizeRestoreButton);
+			expandButton.addEventListener(MouseEvent.CLICK, onClickExpandButton);
+			minimizeRestoreButton.addEventListener(MouseEvent.CLICK, onClickMinimizeRestoreButton);
 
 			//addEventListener(MouseEvent.MOUSE_DOWN, onMouseDown);
 		}
@@ -132,7 +132,7 @@ package org.flora.view {
 			if (windowState == WINDOW_STATE_MINIMIZED) {
 				// Add the bottom border back in case we were minimized.
 				setStyle("borderSides", "left top right bottom");
-				onClickMaximizeRestoreButton();
+				onClickMinimizeRestoreButton();
 			}
 		}
 
@@ -143,8 +143,8 @@ package org.flora.view {
 			invalidateProperties();
 		}
 
-		private function onClickMaximizeRestoreButton(event:MouseEvent=null):void {
-			trace("onClickMaximizeRestoreButton");
+		private function onClickMinimizeRestoreButton(event:MouseEvent=null):void {
+			trace("onClickMinimizeRestoreButton");
 			showControls = true;
 
 			if (windowState == WINDOW_STATE_DEFAULT) {
@@ -155,12 +155,12 @@ package org.flora.view {
 				dispatchEvent(new LeafStateChangeEvent(LeafStateChangeEvent.RESTORE));
 				// Set the state after the event is dispatched so the old state is still available.
 				windowState = WINDOW_STATE_DEFAULT;
-				maximizeRestoreButton.selected = false;
+				minimizeRestoreButton.selected = false;
 			}
 		}
 
-		private function onClickMinimizeButton(event:MouseEvent):void {
-			trace("onClickMinimizeButton");
+		private function onClickExpandButton(event:MouseEvent):void {
+			trace("onClickExpandButton");
 			dispatchEvent(new LeafStateChangeEvent(LeafStateChangeEvent.MINIMIZE));
 			// Set the state after the event is dispatched so the old state is still available.
 			minimize();
