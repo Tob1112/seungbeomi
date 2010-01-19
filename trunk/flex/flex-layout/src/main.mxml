@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute"
+	creationComplete="creationCompleteHandler()">
+	<mx:Script>
+		<![CDATA[
+			import vo.Leaf;
+			import manager.LeafLayoutManager;
+			import mx.containers.Canvas;
+			private var leafLayoutManagers:Array = new Array();
+			private var leafDataDictionary:Dictionary = new Dictionary();
+			private var leafHash:Object = new Object();
+
+			private function creationCompleteHandler():void {
+				var len:Number = 7;
+				for (var i:Number = 0; i < len; i++) {
+					var canvas:Canvas = new Canvas();
+					canvas.horizontalScrollPolicy = "off";
+					canvas.verticalScrollPolicy = "off";
+					canvas.label = "canvas(" + i + ")";
+					canvas.percentWidth = 100;
+					canvas.percentHeight = 100;
+					viewStack.addChild(canvas);
+
+					var manager:LeafLayoutManager = new LeafLayoutManager();
+					manager.container = canvas;
+					manager.id = "id(" + i + ")";
+					manager.addEventListener(LayoutChangeEvent.UPDATE, StateManager.setLeafLayout);
+					var leaf:Leaf = new Leaf();
+					leaf.id = "leaf id(" + i + ")";
+					leaf.title = "leaf title(" + i + ")";
+					leafDataDictionary[manager] = leaf;
+
+				}
+			}
+		]]>
+	</mx:Script>
+
+	<mx:ViewStack id="viewStack" paddingTop="15" width="100%" height="100%" />
+
+</mx:Application>
