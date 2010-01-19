@@ -7,11 +7,11 @@
 	background-gradient-colors: #5EA2EB, #5590D2;
 }
 
-.expandButton
+.menuExpandButton
 {
-	selected-up-skin:        	Embed("/assets/flora/expand_up.png");
-	selected-over-skin:      	Embed("/assets/flora/expand_over.png");
-	selected-down-skin:      	Embed("/assets/flora/expand_up.png");
+	up-skin:        	Embed("/assets/flora/expand_up.png");
+	over-skin:      	Embed("/assets/flora/expand_over.png");
+	down-skin:      	Embed("/assets/flora/expand_up.png");
 }
 
 .minimizeRestoreButton

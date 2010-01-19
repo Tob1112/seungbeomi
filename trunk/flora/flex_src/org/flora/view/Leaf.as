@@ -18,17 +18,18 @@ package org.flora.view {
 		public static const WINDOW_STATE_DEFAULT:Number = -1;
 		public static const WINDOW_STATE_MINIMIZED:Number = 0;
 		public static const WINDOW_STATE_MAXIMIZED:Number = 1;
-		public static const WINDOW_STATE_EXPANDED:Number = 2;
+		public static const WINDOW_STATE_MENU_EXPANDED:Number = 2;
 
 		private var headerDivider:Sprite;	//header구분선
 
 		public var windowState:Number; // Corresponds to one of the WINDOW_STATE variables.
 		private var controlsHolder:HBox;	// panel의 title부분 최대/최소 버튼등이 위치
-		private var expandButton:Button;	// 메뉴확대
+		private var menuExpandButton:Button;	// 메뉴확대
 		private var minimizeRestoreButton:Button;	// 최소화/복구 버튼
 
 		private var _showControls:Boolean;
 		private var _showControlsChanged:Boolean;
+		private var _showMenuExpandButton:Boolean;
 
 		private var _maximize:Boolean;
 		private var _maximizeChanged:Boolean;
@@ -39,6 +40,8 @@ package org.flora.view {
 		public function Leaf() {
 			super();
 			setStyle("titleStyleName", "leafTitle");
+			setStyle("borderThicknessLeft",0);
+			setStyle("borderThicknessRight",0);
 			windowState = WINDOW_STATE_DEFAULT;
 			horizontalScrollPolicy = "off";
 		}
@@ -52,12 +55,14 @@ package org.flora.view {
 
 			// title 구분선
 			if (!headerDivider)	{
+				trace("headerDivider");
 				headerDivider = new Sprite();
 				titleBar.addChild(headerDivider);
 			}
 
-			// title control 버듵 박스
+			// title control 버튼 박스
 			if (!controlsHolder) {
+				trace("controlsHolder - " + getStyle("paddingRight"));
 				controlsHolder = new HBox();
 				controlsHolder.setStyle("paddingRight", getStyle("paddingRight"));
 				controlsHolder.setStyle("horizontalAlign", "right");
@@ -66,17 +71,20 @@ package org.flora.view {
 				rawChildren.addChild(controlsHolder);
 			}
 
-			// 최소화/메뉴확장 버튼
-			if(!expandButton) {
-				expandButton = new Button();
-				expandButton.width = 14;
-				expandButton.height = 14;
-				expandButton.styleName = "expandButton";
-				controlsHolder.addChild(expandButton);
+			// 메뉴확장 버튼
+			if(!menuExpandButton) {
+				trace("menuExpandButton");
+				menuExpandButton = new Button();
+				menuExpandButton.width = 14;
+				menuExpandButton.height = 14;
+				menuExpandButton.styleName = "menuExpandButton";
+				controlsHolder.addChild(menuExpandButton);
+				menuExpandButton.visible = false;
 			}
 
 			// 최대화 버튼
 			if (!minimizeRestoreButton) {
+				trace("minimizeRestoreButton");
 				minimizeRestoreButton = new Button();
 				minimizeRestoreButton.width = 14;
 				minimizeRestoreButton.height = 14;
@@ -110,11 +118,11 @@ package org.flora.view {
 		//--------------------------------------------------------------------------
 		//	PRIVATE METHODS
 		//--------------------------------------------------------------------------
+		// 이벤트 리스너 등록
 		private function addEventListeners():void {
 			trace("addEventListeners");
-			titleBar.addEventListener(MouseEvent.CLICK, onClickTitleBar);
 
-			expandButton.addEventListener(MouseEvent.CLICK, onClickExpandButton);
+			menuExpandButton.addEventListener(MouseEvent.CLICK, onClickMenuExpandButton);
 			minimizeRestoreButton.addEventListener(MouseEvent.CLICK, onClickMinimizeRestoreButton);
 
 			//addEventListener(MouseEvent.MOUSE_DOWN, onMouseDown);
@@ -138,32 +146,41 @@ package org.flora.view {
 
 		public function set showControls(value:Boolean):void {
 			trace("showControls");
-			_showControls = value;
-			_showControlsChanged = true;
+			_showControls = value;	// 컨트롤 활성화/비활성화
+			_showControlsChanged = true;	//
+
 			invalidateProperties();
 		}
 
 		private function onClickMinimizeRestoreButton(event:MouseEvent=null):void {
+
+			// 최소화 복구 이벤트
+			// 최소화
+
+
 			trace("onClickMinimizeRestoreButton");
 			showControls = true;
 
-			if (windowState == WINDOW_STATE_DEFAULT) {
-				dispatchEvent(new LeafStateChangeEvent(LeafStateChangeEvent.MAXIMIZE));
+			if (windowState == WINDOW_STATE_DEFAULT) {	//디폴트 상태 > 최소화상태
+				dispatchEvent(new LeafStateChangeEvent(LeafStateChangeEvent.MINIMIZE));
 				// Call after the event is dispatched so the old state is still available.
-				maximize();
-			} else {
+				minimize();
+			} else {	// 최소화 상태 > 복구 상태
 				dispatchEvent(new LeafStateChangeEvent(LeafStateChangeEvent.RESTORE));
 				// Set the state after the event is dispatched so the old state is still available.
 				windowState = WINDOW_STATE_DEFAULT;
 				minimizeRestoreButton.selected = false;
+				menuExpandButton.visible = false;
 			}
 		}
 
-		private function onClickExpandButton(event:MouseEvent):void {
-			trace("onClickExpandButton");
-			dispatchEvent(new LeafStateChangeEvent(LeafStateChangeEvent.MINIMIZE));
+		// 확장 버튼 클릭시 메뉴팝업을 보인다.
+		private function onClickMenuExpandButton(event:MouseEvent):void {
+			trace("onClickMenuExpandButton");
+
+			dispatchEvent(new LeafStateChangeEvent(LeafStateChangeEvent.MENU_EXPAND));
 			// Set the state after the event is dispatched so the old state is still available.
-			minimize();
+			menuExpand();
 		}
 
 		private function onMouseDown(event:Event):void {
@@ -172,20 +189,24 @@ package org.flora.view {
 			parent.setChildIndex(this, parent.numChildren - 1);
 		}
 
-		public function maximize():void	{
-			trace("maximize");
-			windowState = WINDOW_STATE_MAXIMIZED;
-			_maximize = true;
-			_maximizeChanged = true;
+		public function menuExpand():void	{
+			trace("menuExpand");
+			windowState = WINDOW_STATE_MENU_EXPANDED;
+			//_maximize = true;
+			//_maximizeChanged = true;
 		}
 
+		// 최소화 상태
 		public function minimize():void {
 			trace("minimize");
 			// Hide the bottom border if minimized otherwise the headerDivider and bottom border will be staggered.
 			setStyle("borderSides", "left top right");
 			windowState = WINDOW_STATE_MINIMIZED;
-			height = MINIMIZED_HEIGHT;
+			//height = MINIMIZED_HEIGHT;
+			height = 0;
 			showControls = false;
+			minimizeRestoreButton.selected = true;
+			menuExpandButton.visible = true;
 		}
 
 	}

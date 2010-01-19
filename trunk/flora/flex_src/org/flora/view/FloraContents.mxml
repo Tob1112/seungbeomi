@@ -1,53 +1,153 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Module xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="100%" height="100%" backgroundColor="#C3D9FF" xmlns:view="org.flora.view.*">
+<mx:Module xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="100%" height="100%" backgroundColor="#C3D9FF" xmlns:view="org.flora.view.*" verticalScrollPolicy="off" horizontalScrollPolicy="off">
+	<mx:states>
+		<mx:State name="defaultLayout">
+			<mx:SetProperty target="{pnlNavigation}" name="height" value="294"/>
+		</mx:State>
+		<mx:State name="minimizeNavigation" basedOn="defaultLayout">
+			<mx:RemoveChild target="{pnlNavigation}"/>
+			<mx:AddChild position="lastChild" target="{pnlNavigation}"/>
+			<mx:SetProperty target="{pnlNavigation}" name="x" value="145"/>
+			<mx:SetProperty target="{pnlNavigation}" name="y" value="5"/>
+			<mx:SetProperty target="{pnlNavigation}" name="height" value="27"/>
+			<mx:SetProperty target="{pnlNavigation}" name="width" value="127"/>
+			<mx:SetStyle target="{pnlNavigation}" name="fontSize" value="8"/>
+		</mx:State>
+		<mx:State name="minimizeContacts" basedOn="defaultLayout">
+			<mx:SetProperty target="{pnlContacts}" name="height" value="27"/>
+			<mx:RemoveChild target="{pnlContacts}"/>
+			<mx:AddChild position="lastChild" target="{pnlContacts}"/>
+			<mx:SetProperty target="{pnlContacts}" name="x" value="146"/>
+			<mx:SetProperty target="{pnlContacts}" name="y" value="5"/>
+			<mx:SetProperty target="{pnlContacts}" name="width" value="107"/>
+			<mx:SetStyle target="{pnlContacts}" name="fontSize" value="8"/>
+		</mx:State>
+		<mx:State name="minimizeSubNavigation" basedOn="defaultLayout">
+			<mx:RemoveChild target="{pnlSubNavigation}"/>
+			<mx:AddChild position="lastChild" target="{pnlSubNavigation}"/>
+			<mx:SetProperty target="{pnlSubNavigation}" name="x" value="146"/>
+			<mx:SetProperty target="{pnlSubNavigation}" name="y" value="7"/>
+			<mx:SetProperty target="{pnlSubNavigation}" name="height" value="25"/>
+			<mx:SetProperty target="{pnlSubNavigation}" name="width" value="112"/>
+		</mx:State>
+		<mx:State name="minimizeNote" basedOn="defaultLayout">
+			<mx:RemoveChild target="{pnlNote}"/>
+			<mx:AddChild position="lastChild" target="{pnlNote}"/>
+			<mx:SetProperty target="{pnlNote}" name="x" value="146"/>
+			<mx:SetProperty target="{pnlNote}" name="y" value="5"/>
+			<mx:SetProperty target="{pnlNote}" name="height" value="27"/>
+			<mx:SetProperty target="{pnlNote}" name="width" value="127"/>
+			<mx:SetStyle target="{pnlNote}" name="fontSize" value="8"/>
+		</mx:State>
+		<mx:State name="minimizeNavigationAndContacts" basedOn="defaultLayout">
+			<mx:RemoveChild target="{pnlNavigation}"/>
+			<mx:AddChild position="lastChild" target="{pnlNavigation}"/>
+			<mx:SetProperty target="{pnlNavigation}" name="x" value="146"/>
+			<mx:SetProperty target="{pnlNavigation}" name="y" value="5"/>
+			<mx:SetProperty target="{pnlNavigation}" name="height" value="27"/>
+			<mx:SetStyle target="{pnlNavigation}" name="fontSize" value="8"/>
+			<mx:SetProperty target="{pnlNavigation}" name="width" value="120"/>
+			<mx:RemoveChild target="{pnlContacts}"/>
+			<mx:AddChild position="lastChild" target="{pnlContacts}"/>
+			<mx:SetProperty target="{pnlContacts}" name="x" value="274"/>
+			<mx:SetProperty target="{pnlContacts}" name="y" value="4"/>
+			<mx:SetProperty target="{pnlContacts}" name="height" value="29"/>
+			<mx:SetProperty target="{pnlContacts}" name="width" value="118"/>
+			<mx:SetStyle target="{pnlContacts}" name="fontSize" value="8"/>
+			<mx:RemoveChild target="{vdividedbox1}"/>
+			<mx:RemoveChild target="{vbox1}"/>
+		</mx:State>
+		<mx:State name="minimizeNavigationAndContactsAndSubNavigation" basedOn="defaultLayout">
+			<mx:RemoveChild target="{pnlNavigation}"/>
+			<mx:AddChild position="lastChild" target="{pnlNavigation}"/>
+			<mx:SetProperty target="{pnlNavigation}" name="x" value="146"/>
+			<mx:SetProperty target="{pnlNavigation}" name="y" value="4"/>
+			<mx:SetProperty target="{pnlNavigation}" name="height" value="32"/>
+			<mx:SetProperty target="{pnlNavigation}" name="width" value="125"/>
+			<mx:RemoveChild target="{pnlContacts}"/>
+			<mx:AddChild position="lastChild" target="{pnlContacts}"/>
+			<mx:SetProperty target="{pnlContacts}" name="x" value="279"/>
+			<mx:SetProperty target="{pnlContacts}" name="y" value="4"/>
+			<mx:SetProperty target="{pnlContacts}" name="height" value="32"/>
+			<mx:SetProperty target="{pnlContacts}" name="width" value="122"/>
+			<mx:RemoveChild target="{pnlSubNavigation}"/>
+			<mx:AddChild position="lastChild" target="{pnlSubNavigation}"/>
+			<mx:SetProperty target="{pnlSubNavigation}" name="x" value="407"/>
+			<mx:SetProperty target="{pnlSubNavigation}" name="y" value="3"/>
+			<mx:SetProperty target="{pnlSubNavigation}" name="height" value="29"/>
+			<mx:SetProperty target="{pnlSubNavigation}" name="width" value="143"/>
+			<mx:RemoveChild target="{vdividedbox1}"/>
+			<mx:RemoveChild target="{vbox1}"/>
+		</mx:State>
+		<mx:State name="minimizeAll" basedOn="defaultLayout">
+			<mx:RemoveChild target="{pnlNavigation}"/>
+			<mx:AddChild position="lastChild" target="{pnlNavigation}"/>
+			<mx:SetProperty target="{pnlNavigation}" name="x" value="146"/>
+			<mx:SetProperty target="{pnlNavigation}" name="y" value="5"/>
+			<mx:SetProperty target="{pnlNavigation}" name="width" value="149"/>
+			<mx:SetProperty target="{pnlNavigation}" name="height" value="27"/>
+			<mx:SetStyle target="{pnlNavigation}" name="fontSize" value="8"/>
+			<mx:RemoveChild target="{pnlContacts}"/>
+			<mx:AddChild position="lastChild" target="{pnlContacts}"/>
+			<mx:SetProperty target="{pnlContacts}" name="x" value="303"/>
+			<mx:SetProperty target="{pnlContacts}" name="y" value="5"/>
+			<mx:SetProperty target="{pnlContacts}" name="height" value="27"/>
+			<mx:SetProperty target="{pnlContacts}" name="width" value="151"/>
+			<mx:SetStyle target="{pnlContacts}" name="fontSize" value="8"/>
+			<mx:RemoveChild target="{pnlSubNavigation}"/>
+			<mx:AddChild position="lastChild" target="{pnlSubNavigation}"/>
+			<mx:SetProperty target="{pnlSubNavigation}" name="x" value="462"/>
+			<mx:SetProperty target="{pnlSubNavigation}" name="y" value="5"/>
+			<mx:SetProperty target="{pnlSubNavigation}" name="height" value="27"/>
+			<mx:SetProperty target="{pnlSubNavigation}" name="width" value="132"/>
+			<mx:RemoveChild target="{pnlNote}"/>
+			<mx:AddChild position="lastChild" target="{pnlNote}"/>
+			<mx:SetProperty target="{pnlNote}" name="x" value="602"/>
+			<mx:SetProperty target="{pnlNote}" name="y" value="5"/>
+			<mx:SetProperty target="{pnlNote}" name="height" value="27"/>
+			<mx:SetStyle target="{pnlNote}" name="fontSize" value="8"/>
+			<mx:SetProperty target="{pnlNote}" name="width" value="125"/>
+		</mx:State>
+	</mx:states>
 
 	<handlers:FloraContentsHandler id="floraContendsHandler" xmlns:handlers="org.flora.view.handlers.*"/>
 
 	<!--=========================================-->
 	<!-- HEADER									 -->
 	<!--=========================================-->
-	<mx:HBox width="100%">
-		<!-- LOGO -->
-		<mx:Label text="FLORA WAVE NOTE PROJECT"/>
-		<!-- MENU when panel folding -->
-		<!-- TODO window가 minimized 될때 이곳에 addChild된다 -->
-		<mx:HBox id="hboxMenu" width="100%">
-
-		</mx:HBox>
-		<!-- LINK -->
-		<mx:HBox right="0" height="20" verticalAlign="middle">
-			<mx:Text text="seungbeomi"/>
-			<mx:VRule strokeWidth="1" height="70%"/>
-			<mx:Text text="Sign out"/>
-		</mx:HBox>
-	</mx:HBox>
+	<mx:Text text="FLORA NOTE PROJECT" left="10" top="10"/>
+	<mx:Text text="Sign out" right="10" top="10" id="txtSign"/>
+	<mx:VRule top="12" right="70" height="15"/>
+	<mx:Text y="10" text="seungbeomi" right="80" id="txtName"/>
 
 	<!--=========================================-->
 	<!-- CONTENTS								 -->
 	<!--=========================================-->
-	<mx:HDividedBox id="hdbContents" top="30" width="100%" height="100%" horizontalScrollPolicy="off" verticalScrollPolicy="off" left="10" right="10" bottom="10">
-		<mx:VDividedBox height="{hdbContents.height}" width="20%" minWidth="100" verticalScrollPolicy="off" horizontalScrollPolicy="off">
-			<!--=========================================-->
-			<!-- NAVIGATION PANEL						 -->
-			<!--=========================================-->
-			<view:Leaf id="pnlNavigation" title="Navigation" width="100%" height="300" minHeight="100" layout="absolute"	horizontalScrollPolicy="off" verticalScrollPolicy="auto" doubleClickEnabled="true">
-				<mx:Label text="Navigation"/>
-			</view:Leaf>
+	<mx:HDividedBox id="hdbContents" top="40" width="100%" horizontalScrollPolicy="off" verticalScrollPolicy="off" left="10" right="10" bottom="10">
+		<mx:VBox width="180" height="100%" minWidth="100" verticalScrollPolicy="off" horizontalScrollPolicy="off" id="vbox1">
+			<mx:VDividedBox width="100%" height="100%" id="vdividedbox1">
+				<!--=========================================-->
+				<!-- NAVIGATION PANEL						 -->
+				<!--=========================================-->
+				<view:Leaf id="pnlNavigation" title="Navigation" width="100%" height="50%" minHeight="100" layout="absolute" horizontalScrollPolicy="off" verticalScrollPolicy="auto" doubleClickEnabled="true">
+					<mx:Label text="Navigation"/>
+				</view:Leaf>
 
-			<!--=========================================-->
-			<!-- CONTENTS PANEL							 -->
-			<!--=========================================-->
-			<view:Leaf id="pnlContacts" title="Contacts" width="100%" height="300" minHeight="100" layout="absolute" horizontalScrollPolicy="off" verticalScrollPolicy="auto">
-				<mx:Label text="Contacts"/>
-				<mx:ControlBar>
-				</mx:ControlBar>
-			</view:Leaf>
-		</mx:VDividedBox>
+				<!--=========================================-->
+				<!-- CONTENTS PANEL							 -->
+				<!--=========================================-->
+				<view:Leaf id="pnlContacts" title="Contacts" width="100%" height="50%" minHeight="100" layout="absolute" horizontalScrollPolicy="off" verticalScrollPolicy="auto">
+					<mx:Label text="Contacts"/>
+					<mx:ControlBar>
+					</mx:ControlBar>
+				</view:Leaf>
+			</mx:VDividedBox>
+		</mx:VBox>
 
 		<!--=========================================-->
 		<!-- SUBNAVIGATION PANEL					 -->
 		<!--=========================================-->
-		<view:Leaf id="pnlSubNavigation" layout="absolute" width="40%" height="100%" minWidth="100" horizontalScrollPolicy="off" verticalScrollPolicy="auto">
+		<view:Leaf id="pnlSubNavigation" layout="absolute" width="450" height="100%" minWidth="100" horizontalScrollPolicy="off" verticalScrollPolicy="auto">
 			<mx:Label text="sub navigation"/>
 			<mx:ControlBar>
 			</mx:ControlBar>
