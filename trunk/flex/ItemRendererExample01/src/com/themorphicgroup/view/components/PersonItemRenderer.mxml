@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas 
+	height="24" 
+	width="100%" 
+	xmlns:mx="http://www.adobe.com/2006/mxml">
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.controls.listClasses.ListBase;
+			import com.themorphicgroup.vo.Person;
+			
+			public static const DELETE_PERSON_EVENT:String = "deletePerson";
+			
+			//embed images
+            [Embed(source="assets/user.png")]
+            [Bindable]public var imgUserMale:Class;
+            [Embed(source="assets/user_female.png")]
+            [Bindable]public var imgUserFemale:Class;
+            [Embed(source="assets/bin.png")]
+            [Bindable]public var imgTrashOpen:Class;
+            [Embed(source="assets/bin_closed.png")]
+            [Bindable]public var imgTrashClosed:Class;
+			
+			
+			[Bindable]private var person:Person;
+			
+			/**
+			* override set data so we can set data to our known Person VO
+			**/
+			override public function set data(value:Object):void {
+				super.data = value;//very important dont forget to set super.data when overriding set data
+				if (value is Person) {
+					person = Person(value);
+				}
+			}
+			
+			/**
+			* function to get correct gender icon
+			**/
+			private function getGenderImg(gender:String):Class {
+				if (gender == Person.GENDER_FEMALE) {
+					return imgUserFemale;
+				} else {
+					return imgUserMale;
+				}
+			}
+			
+			/**
+			* function to dispatch event to delete this person
+			**/
+			private function deleteClick_handler():void {
+				var dEvt:Event = new Event(DELETE_PERSON_EVENT,true);
+				this.dispatchEvent(dEvt);
+			}
+			
+			/**
+			* override updateDisplayList so we can change properties when this item renderer is selected
+			**/
+			override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
+				super.updateDisplayList(unscaledWidth, unscaledHeight);
+				if(ListBase(owner).isItemSelected(data)) {
+					name_lbl.setStyle("styleName","pnameselected");
+					selected_img.visible = true;
+				} else {
+					name_lbl.setStyle("styleName","pname");
+					selected_img.visible = false;
+				}
+			}
+			
+			
+		]]>
+	</mx:Script>
+	
+	<mx:Image id="selected_img" source="@Embed('assets/bullet_go.png')" width="16" height="16" verticalCenter="0"  left="-2"/>
+	
+	<!-- gender icon -->
+	<mx:Image id="gender_img"
+				source="{getGenderImg(person.gender)}" 
+				width="16" 
+				height="16" 
+				verticalCenter="0" 
+				left="10" 
+				verticalAlign="middle" 
+				horizontalAlign="center"/>
+	
+	
+	<!-- person's name -->
+	<mx:HBox verticalCenter="2" left="30" verticalAlign="bottom">
+		<mx:Label id="name_lbl" text="{person.firstname} {person.lastname}" styleName="pname" />
+		<mx:Label text="{person.email}" styleName="mpro" fontSize="10" color="0x888888"/>
+	</mx:HBox>
+	
+	
+	
+	<!-- delete image/button -->
+	<mx:Image id="trash_img" 
+				click="deleteClick_handler()"
+				source="{imgTrashClosed}" 
+				width="16" 
+				height="16"  
+				verticalCenter="0" 
+				right="6" 
+				toolTip="Delete this person" 
+				mouseOver="trash_img.source=imgTrashOpen;" 
+				mouseOut="trash_img.source=imgTrashClosed;" 
+				buttonMode="true" 
+				useHandCursor="true" />
+	
+</mx:Canvas>

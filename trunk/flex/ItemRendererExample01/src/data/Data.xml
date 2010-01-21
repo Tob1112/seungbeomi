@@ -1,0 +1,76 @@
+<people>
+	
+	<person>
+		<firstname>Bart</firstname>
+		<lastname>Simpson</lastname>
+		<email>hoju@simpsons.com</email>
+		<gender>male</gender>
+		<quote>I didn't think it was physically possible, but this both sucks and blows.</quote>
+	</person>
+	
+	<person>
+		<firstname>Homer</firstname>
+		<lastname>Simpson</lastname>
+		<email>homerj@simpsons.com</email>
+		<gender>male</gender>
+		<quote>Ah, sweet pity.  Where would my love life have been without it?</quote>
+	</person>
+	
+	<person>
+		<firstname>Lisa</firstname>
+		<lastname>Simpson</lastname>
+		<email>lisa@simpsons.com</email>
+		<gender>female</gender>
+		<quote>Poor Krusty. He's like a black velvet painting come to life.</quote>
+	</person>
+	
+	<person>
+		<firstname>Marge</firstname>
+		<lastname>Simpson</lastname>
+		<email>marge@simpsons.com</email>
+		<gender>female</gender>
+		<quote>Is he well enough for me to start mothering him unbearably, doctor?</quote>
+	</person>
+	
+	<person>
+		<firstname>Maggie</firstname>
+		<lastname>Simpson</lastname>
+		<email>maggie@simpsons.com</email>
+		<gender>female</gender>
+		<quote>{sucking sound}</quote>
+	</person>
+	
+	<person>
+		<firstname>Lionel</firstname>
+		<lastname>Hutz</lastname>
+		<email>lh@simpsons.com</email>
+		<gender>male</gender>
+		<quote>If there's one thing America needs, it's more lawyers. Can you imagine a world without lawyers? </quote>
+	</person>
+	
+	<person>
+		<firstname>Moe</firstname>
+		<lastname>Szyslak</lastname>
+		<email>moe@simpsons.com</email>
+		<gender>male</gender>
+		<quote>Looks like it's suicide again for me...</quote>
+	</person>
+	
+	<person>
+		<firstname>Ralph</firstname>
+		<lastname>Wiggum</lastname>
+		<email>bentwookie@simpsons.com</email>
+		<gender>male</gender>
+		<quote>I bent my Wookie</quote>
+	</person>
+	
+	
+	<person>
+		<firstname>Comic Book</firstname>
+		<lastname>Guy</lastname>
+		<email>cbg@simpsons.com</email>
+		<gender>male</gender>
+		<quote>There is no groaning in my store</quote>
+	</person>
+	
+</people>
