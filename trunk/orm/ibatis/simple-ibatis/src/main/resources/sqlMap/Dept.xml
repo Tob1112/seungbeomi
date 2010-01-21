@@ -6,7 +6,7 @@
 	<typeAlias alias="dept" type="domain.Dept"/>
 
 	<resultMap id="getDeptResult" class="dept">
-		<result property="deptNo" column="DEPT_NO" />
+		<result property="deptNo" column="DEPT_NO"/>
 		<result property="deptName" column="DEPT_NAME" />
 		<result property="empList" column="DEPT_NO" select="Emp.getEmp"/>
 	</resultMap>
@@ -17,5 +17,9 @@
 		FROM   DEPT
 		WHERE  DEPT_NO = #value#
 	</select>
+
+	<insert id="addDept" parameterClass="dept">
+		INSERT INTO DEPT VALUES(#deptNo#,#deptName#)
+	</insert>
 
 </sqlMap>
