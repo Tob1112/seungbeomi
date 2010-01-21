@@ -22,10 +22,16 @@ public class TestDAO {
 			SqlMapClient sqlMap = SqlMapClientBuilder.buildSqlMapClient(reader);
 
 			Dept dept = (Dept) sqlMap.queryForObject("Dept.getDept", "D001");
-			System.out.println(dept);
+			System.out.println("    RESULT : " + dept);
 			for(Emp emp: dept.getEmpList()) {
-				System.out.println(emp);
+				System.out.println("    RESULT : " + emp);
 			}
+			/*
+			Dept d = new Dept();
+			d.setDeptNo("111");
+			d.setDeptName("222");
+			sqlMap.insert("Dept.addDept", d);
+			*/
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
