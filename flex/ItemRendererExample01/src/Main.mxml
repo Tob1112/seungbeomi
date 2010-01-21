@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application 
+	creationComplete="onCC()" 
+	layout="absolute" 
+	pageTitle="Graphical ItemRenderer Example"
+	xmlns:mx="http://www.adobe.com/2006/mxml" viewSourceURL="srcview/index.html">
+	
+	<mx:Script>
+		<![CDATA[
+			import com.themorphicgroup.view.components.PersonItemRenderer;
+			import com.themorphicgroup.vo.Person;
+			import mx.utils.ObjectProxy;
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.rpc.events.ResultEvent;
+			
+			[Bindable]private var peopleDataProvider:ArrayCollection = new ArrayCollection();
+			[Bindable]private var selectedPerson:Person;
+			
+			private function onCC():void {
+				//get data
+				httpService.send();
+				
+				//add listener for itemrenders delete event
+				myDG.addEventListener(PersonItemRenderer.DELETE_PERSON_EVENT,deletePerson_handler);
+			}
+			
+			private function httpResult_handler(evt:ResultEvent):void {
+				if (evt.result.people.person) {
+					//result 
+					var resultAC:ArrayCollection = evt.result.people.person as ArrayCollection;
+					//loop through each item in data
+					for (var i:int=0;i<resultAC.length;i++) {
+						//create person VO
+						var person:Person = new Person();
+						//add data
+						person.fill(resultAC[i]);
+						//add person to main data provider
+						peopleDataProvider.addItem(person);
+					}
+				}
+			}
+			
+			private function deletePerson_handler(evt:Event):void {
+				if (myDG.selectedIndex != -1)
+					peopleDataProvider.removeItemAt(myDG.selectedIndex);
+			}
+			
+		]]>
+	</mx:Script>
+	
+	<mx:Style source="css/main.css" />
+	
+	<mx:HTTPService id="httpService" url="data/Data.xml" resultFormat="object" result="httpResult_handler(event)" fault="Alert.show('data load error')" />
+	
+	<mx:DataGrid id="myDG" 
+				dataProvider="{peopleDataProvider}"
+				width="350" 
+				rowHeight="28" 
+				itemClick="selectedPerson=Person(myDG.selectedItem)"
+				left="20" 
+				top="50">
+				
+		<mx:columns>
+			<mx:DataGridColumn itemRenderer="com.themorphicgroup.view.components.PersonItemRenderer" headerText="People ({peopleDataProvider.length})" sortable="false" />
+		</mx:columns>
+		
+	</mx:DataGrid>
+	
+	<mx:VBox width="350" height="200" backgroundColor="#FFFFFF" verticalGap="2" styleName="mpro" fontSize="12" left="20" top="260" borderStyle="solid" borderThickness="2">
+		<mx:Label text="{selectedPerson.firstname} {selectedPerson.lastname}" paddingLeft="4" paddingTop="6"/>
+		<mx:Label text="{selectedPerson.gender}" paddingLeft="4"/>
+		<mx:Label text="{selectedPerson.email}" paddingLeft="4"/>
+		<mx:TextArea htmlText="&quot;{selectedPerson.quote}&quot;" width="100%" editable="false" borderThickness="0" paddingLeft="4" paddingRight="4"/>
+	</mx:VBox>
+	
+	<mx:Label x="10" y="10" text="Graphical ItemRenderer Example" styleName="mprobold" fontSize="20" alpha="0.75"/>
+	
+	<mx:Label x="20" y="468" text="Right click for source view" color="#929292"/>
+
+	
+</mx:Application>
