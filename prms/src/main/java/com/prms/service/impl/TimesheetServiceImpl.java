@@ -325,15 +325,8 @@ public class TimesheetServiceImpl implements TimesheetService {
 				}
 			}
 
-			// 定時情報のお昼休み時間より休憩時間が多い場合
 			// その他休憩時間 ＝ 休憩時間合計 - お昼休み時間
-			if ((timesheetDetail.getBreakTimeTotal()).compareTo(timesheetDetail.getLunchBreakTime())  == 1 ) {
-				System.out.println("<<< line 1");
-				timesheetDetail.setEtcBreakTime(timesheetDetail.getBreakTimeTotal().add(timesheetDetail.getLunchBreakTime().negate()));
-			} else {
-				System.out.println("<<< line 2");
-				timesheetDetail.setEtcBreakTime(new BigDecimal(0.0));
-			}
+			timesheetDetail.setEtcBreakTime(timesheetDetail.getBreakTimeTotal().add(timesheetDetail.getLunchBreakTime().negate()));
 
 			// 実働時間 ＝ 勤務時間合計 ー 休憩時間合計
 			timesheetDetail.setActualTime(timesheetDetail.getWorkTimeTotal().add(timesheetDetail.getBreakTimeTotal().negate()));
@@ -442,5 +435,10 @@ public class TimesheetServiceImpl implements TimesheetService {
 	@Override
 	public Timesheet getTimesheetDetail(Timesheet bean) {
 		return timesheetDao.getTimesheetDetail(bean);
+	}
+
+	@Override
+	public Timesheet getTimesheetSummary(Timesheet bean) {
+		return timesheetDao.getTimesheetSummary(bean);
 	}
 }

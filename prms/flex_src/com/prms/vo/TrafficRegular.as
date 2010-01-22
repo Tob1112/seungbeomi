@@ -3,6 +3,7 @@ package com.prms.vo
 	import mx.collections.ArrayCollection;
 	import mx.formatters.DateFormatter;
 
+	[RemoteClass(alias="com.prms.model.TrafficRegular")]
 	[Bindable]
 	public class TrafficRegular{
 		/** 会社コード */
@@ -77,7 +78,7 @@ package com.prms.vo
 		public function setPeriod():void{
 
 //			this.period = dateFormatter.format(this.startDate) + dateFormatter.format(this.endDate);
-			this.period = this.startDateTypeString + this.endDateTypeString;
+			this.period = this.startDateTypeString + " ~ " + this.endDateTypeString;
 		}
 
 		public function setDeparturePoint(departurePoint:String):void{

@@ -1,4 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
 <sqlMap namespace="trafficRegular">
+	<typeAlias alias="trafficRegular" type="com.prms.model.TrafficRegular"/>
+    <typeAlias alias="account" type="com.prms.model.Account"/>
+
+	<resultMap id="getRegTrainListResult" class="trafficRegular">
+		<result property="empNo" column="emp_no"/>
+		<result property="departurePoint" column="departure_point"/>
+		<result property="arrivalPoint" column="arrival_point"/>
+		<result property="startDate" column="start_Date"/>
+		<result property="endDate" column="end_date"/>
+		<result property="fare" column="fare"/>
+		<result property="note" column="note"/>
+	</resultMap>
+
+	<select id="loadRegTrainList" resultMap="getRegTrainListResult" parameterClass="trafficRegular">
+		SELECT
+			emp_no,
+	        departure_point,
+	        arrival_point,
+	        start_date,
+	        end_date,
+	        fare,
+	        note
+	    FROM
+	        traffic_regular
+	    WHERE
+	        com_code = #comCode#
+	        AND emp_no = #empNo#
+	        AND yyyymm = #yyyymm#
+	        AND division = '01'
+	</select>
+
 </sqlMap>

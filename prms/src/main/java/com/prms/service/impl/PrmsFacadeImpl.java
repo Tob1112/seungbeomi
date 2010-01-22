@@ -8,10 +8,13 @@ import com.prms.model.CodeDetail;
 import com.prms.model.FixTime;
 import com.prms.model.Message;
 import com.prms.model.Timesheet;
+import com.prms.model.Traffic;
+import com.prms.model.TrafficRegular;
 import com.prms.service.AccountService;
 import com.prms.service.PrmsFacade;
 import com.prms.service.SecurityService;
 import com.prms.service.TimesheetService;
+import com.prms.service.TrafficService;
 
 /**
  * PRMS FACADE SERVICE Implement
@@ -22,6 +25,7 @@ public class PrmsFacadeImpl implements PrmsFacade{
 	private SecurityService securityService;
 	private TimesheetService timesheetService;
 	private AccountService accountService;
+	private TrafficService trafficService;
 
 	//-------------------------------------------------------------------------
 	// Setter methods for dependency injection
@@ -34,6 +38,9 @@ public class PrmsFacadeImpl implements PrmsFacade{
 	}
 	public void setAccountService(AccountService accountService) {
 		this.accountService = accountService;
+	}
+	public void setTrafficService(TrafficService trafficService){
+		this.trafficService = trafficService;
 	}
 
 	//-------------------------------------------------------------------------
@@ -137,6 +144,23 @@ public class PrmsFacadeImpl implements PrmsFacade{
 	public Timesheet getTimesheetDetail(Timesheet bean) {
 		return this.timesheetService.getTimesheetDetail(bean);
 	}
+	@Override
+	public Timesheet getTimesheetSummary(Timesheet bean) {
+		return this.timesheetService.getTimesheetSummary(bean);
+	}
 
+	//-------------------------------------------------------- Traffic Service
+	@Override
+	public List<TrafficRegular> loadRegTrainList(TrafficRegular bean) {
+		return this.trafficService.loadRegTrainList(bean);
+	}
+	@Override
+	public Traffic loadRegTotals(Traffic bean) {
+		return this.trafficService.loadRegTotals(bean);
+	}
 
+	@Override
+	public List<Traffic> trafficUserList() {
+		return this.trafficService.trafficUserList();
+	}
 }

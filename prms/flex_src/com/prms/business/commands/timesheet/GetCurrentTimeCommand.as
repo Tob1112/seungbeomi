@@ -37,7 +37,6 @@ package com.prms.business.commands.timesheet {
 		    delegate.getCurrentTime();
         }
 
-
         /**
          * 	現在の日付取得を成功した場合
          */
@@ -50,11 +49,15 @@ package com.prms.business.commands.timesheet {
             currentDayOfMonth = result.currentDate.getDate();
             currentDayOfWeek = dayOfWk(currentDayOfMonth);
 
+
             model.timesheet.currentDate = result.currentDate;
             model.timesheet.currentDateTypeIsString = currentYear + "年 " + currentMonth + "月 " + currentDayOfMonth + "日 （ " + currentDayOfWeek + " ）";
 
             // 管理者勤務表画面のdatechooserに日付を設定
             if (loginModel.account.isAdmin()) {
+				// 今月戻る機能のため
+				model.yyyymm = result.currentDate;
+
             	this.doc.labelCurrentDate.text = model.timesheet.currentDateTypeIsString;
             	this.doc.datechooserYYYYMM.displayedYear = result.currentDate.getFullYear();
            		this.doc.datechooserYYYYMM.displayedMonth = result.currentDate.getMonth();

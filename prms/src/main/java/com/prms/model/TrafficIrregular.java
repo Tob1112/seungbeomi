@@ -11,32 +11,38 @@ public class TrafficIrregular {
 	/** 社員番号 */
 	private String empNo;
 
-	/** 年月 */
-	private Date yyyymm;
-
 	/** 出発地 */
 	private String departurePoint;
 
 	/** 到着地 */
 	private String arrivalPoint;
 
-	/** 開始日 */
-	private Date startDate;
+	/** 年月 */
+	private Date yyyymm;
 
-	/** 終了日 */
-	private Date endDate;
+	/** 年月日 */
+	private Date yyyymmdd;
 
-	/** 金額 */
-	private BigDecimal fare;
+	/** 電車代 */
+	private BigDecimal trainFare;
+
+	/** バス代 */
+	private BigDecimal busFare;
+
+	/** その他 */
+	private BigDecimal otherFare;
 
 	/** 備考 */
 	private String note;
 
-	/** 片道金額（定価） */
-	private BigDecimal oneWayFixedFare;
+	/** タクシー代 */
+	private BigDecimal taxiFare;
 
-	/** 片道金額（バスカード利用金額） */
-	private BigDecimal oneWayDcFare;
+	/** 宿泊費 */
+	private BigDecimal hotelFare;
+
+	/** 区分（01:通勤分, 02:業務分） */
+	private String division;
 
 	/** 更新者ID */
 	private String updateId;
@@ -60,14 +66,6 @@ public class TrafficIrregular {
 		this.empNo = empNo;
 	}
 
-	public Date getYyyymm() {
-		return yyyymm;
-	}
-
-	public void setYyyymm(Date yyyymm) {
-		this.yyyymm = yyyymm;
-	}
-
 	public String getDeparturePoint() {
 		return departurePoint;
 	}
@@ -84,28 +82,44 @@ public class TrafficIrregular {
 		this.arrivalPoint = arrivalPoint;
 	}
 
-	public Date getStartDate() {
-		return startDate;
+	public Date getYyyymm() {
+		return yyyymm;
 	}
 
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
+	public void setYyyymm(Date yyyymm) {
+		this.yyyymm = yyyymm;
 	}
 
-	public Date getEndDate() {
-		return endDate;
+	public Date getYyyymmdd() {
+		return yyyymmdd;
 	}
 
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
+	public void setYyyymmdd(Date yyyymmdd) {
+		this.yyyymmdd = yyyymmdd;
 	}
 
-	public BigDecimal getFare() {
-		return fare;
+	public BigDecimal getTrainFare() {
+		return trainFare;
 	}
 
-	public void setFare(BigDecimal fare) {
-		this.fare = fare;
+	public void setTrainFare(BigDecimal trainFare) {
+		this.trainFare = trainFare;
+	}
+
+	public BigDecimal getBusFare() {
+		return busFare;
+	}
+
+	public void setBusFare(BigDecimal busFare) {
+		this.busFare = busFare;
+	}
+
+	public BigDecimal getOtherFare() {
+		return otherFare;
+	}
+
+	public void setOtherFare(BigDecimal otherFare) {
+		this.otherFare = otherFare;
 	}
 
 	public String getNote() {
@@ -116,20 +130,28 @@ public class TrafficIrregular {
 		this.note = note;
 	}
 
-	public BigDecimal getOneWayFixedFare() {
-		return oneWayFixedFare;
+	public BigDecimal getTaxiFare() {
+		return taxiFare;
 	}
 
-	public void setOneWayFixedFare(BigDecimal oneWayFixedFare) {
-		this.oneWayFixedFare = oneWayFixedFare;
+	public void setTaxiFare(BigDecimal taxiFare) {
+		this.taxiFare = taxiFare;
 	}
 
-	public BigDecimal getOneWayDcFare() {
-		return oneWayDcFare;
+	public BigDecimal getHotelFare() {
+		return hotelFare;
 	}
 
-	public void setOneWayDcFare(BigDecimal oneWayDcFare) {
-		this.oneWayDcFare = oneWayDcFare;
+	public void setHotelFare(BigDecimal hotelFare) {
+		this.hotelFare = hotelFare;
+	}
+
+	public String getDivision() {
+		return division;
+	}
+
+	public void setDivision(String division) {
+		this.division = division;
 	}
 
 	public String getUpdateId() {
@@ -154,15 +176,17 @@ public class TrafficIrregular {
 		buffer.append("Traffic Irregular[");
 		buffer.append(" comCode = ").append(comCode);
 		buffer.append(" empNo = ").append(empNo);
-		buffer.append(" yyyymm = ").append(yyyymm);
 		buffer.append(" departurePoint = ").append(departurePoint);
 		buffer.append(" arrivalPoint = ").append(arrivalPoint);
-		buffer.append(" startDate = ").append(startDate);
-		buffer.append(" endDate = ").append(endDate);
-		buffer.append(" fare = ").append(fare);
+		buffer.append(" yyyymm = ").append(yyyymm);
+		buffer.append(" yyyymmdd = ").append(yyyymmdd);
+		buffer.append(" trainFare = ").append(trainFare);
+		buffer.append(" busFare = ").append(busFare);
+		buffer.append(" otherFare = ").append(otherFare);
 		buffer.append(" note = ").append(note);
-		buffer.append(" oneWayFixedFare = ").append(oneWayFixedFare);
-		buffer.append(" oneWayDcFare = ").append(oneWayDcFare);
+		buffer.append(" taxiFare = ").append(taxiFare);
+		buffer.append(" hotelFare = ").append(hotelFare);
+		buffer.append(" division = ").append(division);
 		buffer.append(" updateId = ").append(updateId);
 		buffer.append(" updateDate = ").append(updateDate);
 		buffer.append("]");

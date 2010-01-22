@@ -8,6 +8,9 @@ import com.prms.model.CodeDetail;
 import com.prms.model.FixTime;
 import com.prms.model.Message;
 import com.prms.model.Timesheet;
+import com.prms.model.Traffic;
+import com.prms.model.TrafficRegular;
+import com.prms.model.Traffic;
 
 /**
  * PRMS FACADE SERVICE INTERFACE
@@ -45,6 +48,8 @@ public interface PrmsFacade {
 
 	public Timesheet getTimesheetDetail(Timesheet bean);
 
+	public Timesheet getTimesheetSummary(Timesheet bean);
+
 	// -------------------------------------- Account Service
 	public boolean updateAccount(AccountUser account);
 
@@ -53,4 +58,12 @@ public interface PrmsFacade {
 	public Message saveAccountAdminUser(AccountUser account);
 
 	public AccountUser accountUserInfo();
+
+
+	// -------------------------------------- Traffic Service
+	public List<TrafficRegular> loadRegTrainList(TrafficRegular bean);
+
+	public Traffic loadRegTotals(Traffic traffic);
+
+	public List<Traffic> trafficUserList();
 }

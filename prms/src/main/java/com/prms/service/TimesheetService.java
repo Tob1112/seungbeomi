@@ -109,4 +109,5 @@ public interface TimesheetService {
 	 */
 	public void calculateTimesheet(Timesheet bean);
 
+	public Timesheet getTimesheetSummary(Timesheet bean);
 }

@@ -12,9 +12,7 @@
     	<property name="securityService" ref="securityService"/>
     	<property name="timesheetService" ref="timesheetService"/>
     	<property name="accountService" ref="accountService"/>
-    	<!--
     	<property name="trafficService" ref="trafficService"/>
-    	 -->
     </bean>
 
     <!-- SECURITY SERVICE -->
@@ -33,9 +31,8 @@
 		<property name="accountAdminDao" ref="accountAdminDao" />
 	</bean>
 
-	<!-- TIMESHEET SERVICE
+	<!-- TIMESHEET SERVICE -->
     <bean id="trafficService" class="com.prms.service.impl.TrafficServiceImpl">
         <property name="trafficDao" ref="trafficDao" />
     </bean>
-	-->
 </beans>

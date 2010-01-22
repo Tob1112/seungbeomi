@@ -13,11 +13,15 @@ package com.prms {
     import com.prms.business.commands.main.UserMainHeaderEmailCommand;
     import com.prms.business.commands.timesheet.GetCurrentTimeCommand;
     import com.prms.business.commands.timesheet.GetEmpNameCommand;
+    import com.prms.business.commands.timesheet.GetTimesheetSummaryCommand;
     import com.prms.business.commands.timesheet.LoadTimesheetDetailsCommand;
     import com.prms.business.commands.timesheet.LoadTimesheetListCommand;
     import com.prms.business.commands.timesheet.LoadWorkPatternCommand;
     import com.prms.business.commands.timesheet.SaveTimesheetCommand;
     import com.prms.business.commands.timesheet.WriteNewUserTimesheetCommand;
+    import com.prms.business.commands.traffic.LoadRegTotalsCommand;
+    import com.prms.business.commands.traffic.LoadRegTrainListCommand;
+    import com.prms.business.commands.traffic.TrafficUserListCommand;
     import com.prms.business.events.account.AccountAdminCurrentTimeEvent;
     import com.prms.business.events.account.AccountAdminListEvent;
     import com.prms.business.events.account.AccountUserEvent;
@@ -30,11 +34,15 @@ package com.prms {
     import com.prms.business.events.main.UserMainHeaderEvent;
     import com.prms.business.events.timesheet.GetCurrentTimeEvent;
     import com.prms.business.events.timesheet.GetEmpNameEvent;
+    import com.prms.business.events.timesheet.GetTimesheetSummaryEvent;
     import com.prms.business.events.timesheet.LoadTimesheetDetailsEvent;
     import com.prms.business.events.timesheet.LoadTimesheetListEvent;
     import com.prms.business.events.timesheet.LoadWorkPatternEvent;
     import com.prms.business.events.timesheet.SaveTimesheetEvent;
     import com.prms.business.events.timesheet.WriteNewUserTimesheetEvent;
+    import com.prms.business.events.traffic.LoadRegTotalsEvent;
+    import com.prms.business.events.traffic.LoadRegTrainListEvent;
+    import com.prms.business.events.traffic.TrafficUserListEvent;
 
     public class PrmsController extends FrontController {
 
@@ -71,7 +79,12 @@ package com.prms {
 			addCommand(UserMainHeaderEmailEvent.USER_MAIN_EMAIL_EVENT, UserMainHeaderEmailCommand);
             // adminMainHeader
             addCommand(AdminMainHeaderEvent.EVENT_ID, AdminMainHeaderCommand);
-            // adminMainLeftMenu
+
+            // ---------------------------------------------------------------------
+            //	TRAFFIC
+            // ---------------------------------------------------------------------
+			// ユーザー交通費リスト
+			addCommand(TrafficUserListEvent.EVENT_ID, TrafficUserListCommand);
 
             // ---------------------------------------------------------------------
             //	TIMESHEET
@@ -92,7 +105,14 @@ package com.prms {
             addCommand(GetCurrentTimeEvent.EVENT_ID, GetCurrentTimeCommand);
 
             //----------------------------------------------------------- TIMESHEET ADMIN
-            //addCommand(TimesheetEvent, TimesheetCommand);
+            addCommand(GetTimesheetSummaryEvent.EVENT_ID, GetTimesheetSummaryCommand);
+
+
+            // ---------------------------------------------------------------------
+            //	TRAFFIC
+            // ---------------------------------------------------------------------
+            addCommand(LoadRegTrainListEvent.EVENT_ID, LoadRegTrainListCommand);
+            addCommand(LoadRegTotalsEvent.EVENT_ID, LoadRegTotalsCommand);
         }
     }
 }

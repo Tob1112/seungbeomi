@@ -35,9 +35,11 @@
     <sqlMap resource="com/prms/dao/sql/MessageUtil.xml"/>
     <sqlMap resource="com/prms/dao/sql/CodeDetailUtil.xml"/>
 
-    <!-- TRAFFIC SQL MAPPING FILE
-	<sqlMap resource="com/prms/dao/sql/Traffic.xml"/>
+	<!-- TRAFFIC SQL MAPPING FILE -->
 	<sqlMap resource="com/prms/dao/sql/TrafficRegular.xml"/>
+	<sqlMap resource="com/prms/dao/sql/Traffic.xml"/>
+
+    <!--
 	<sqlMap resource="com/prms/dao/sql/TrafficIrregular.xml"/>
     -->
 </sqlMapConfig>

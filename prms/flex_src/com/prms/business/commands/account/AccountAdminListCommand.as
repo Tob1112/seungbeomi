@@ -46,7 +46,7 @@ package com.prms.business.commands.account {
             // データ架空処理
             // 処理１：社員の名前を合わせる「姓+名」
             // 処理２：管理者の場合「admin」のデータのみ画面に表示する
-            for (var i:int = Constants.CONST_INT_ZERO; i < event.result.length; i++) {
+            for (var i:int = 0; i < event.result.length; i++) {
 
                 // 最初は前のデータがないため処理しない
                 // 最初ではない場合現在のデータより前のデータを検出する

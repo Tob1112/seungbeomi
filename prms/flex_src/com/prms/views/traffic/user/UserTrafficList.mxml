@@ -15,12 +15,12 @@
         <mx:Button id="trafficNewWriteButton" label="新規作成" enabled="true"/>
     </mx:HBox>
 
-    <mx:DataGrid id="trafficListDataGrid" left="30" right="30" top="100" bottom="10" textAlign="center">
+    <mx:DataGrid id="trafficListDataGrid" doubleClickEnabled="true" left="30" right="30" top="100" bottom="10" textAlign="center">
         <mx:columns>
-            <mx:DataGridColumn headerText="番号" dataField="listSeq" width="70"/>
-            <mx:DataGridColumn headerText="年" dataField="yyyymm" width="120"/>
-            <mx:DataGridColumn headerText="月" dataField="yyyymm" width="120"/>
-            <mx:DataGridColumn headerText="状態" dataField="codeDetailName" width="180"/>
+            <mx:DataGridColumn headerText="番号" labelFunction="{userTrafficListHandler.dispRowNum}" width="70"/>
+            <mx:DataGridColumn headerText="年" dataField="yyyy" width="120"/>
+            <mx:DataGridColumn headerText="月" dataField="mm" width="120"/>
+            <mx:DataGridColumn headerText="状態" dataField="statusCode" width="180"/>
             <mx:DataGridColumn headerText="備考" dataField="note"/>
         </mx:columns>
     </mx:DataGrid>

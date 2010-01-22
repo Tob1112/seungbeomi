@@ -29,10 +29,9 @@
     	<property name="sqlMapClient" ref="sqlMapClient"/>
     </bean>
 
-    <!-- TRAFFIC DAO
+    <!-- TRAFFIC DAO -->
 	<bean id="trafficDao" class="com.prms.dao.impl.TrafficDaoImpl">
     	<property name="sqlMapClient" ref="sqlMapClient"/>
     </bean>
-    -->
 
 </beans>

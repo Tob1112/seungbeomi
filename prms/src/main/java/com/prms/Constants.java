@@ -10,6 +10,9 @@ public class Constants {
 	/** 勤務表ステータス */
 	public static final String WRITE_STATUS = "01";
 
+	/** 最新フラグ*/
+	public static final String LATEST_FLG_Y = "Y";
+
 	/** パスワード初期値(roue!garcon) */
 	public static final String INITIALIZE_PASSWORD = "8f39e291fca896312863f7dfeb1ccc";
 
