@@ -9,38 +9,34 @@
     <sourceAttachmentPath/>
   </compiler>
   <applications>
-    <application path="DragAndDropTest02.mxml"/>
-    <application path="Animation.mxml"/>
-    <application path="DataGridTest08_visible.mxml"/>
+    <application path="DataGridTest07_outerDocument.mxml"/>
     <application path="ItemRendererTest.mxml"/>
     <application path="Layout.mxml"/>
-    <application path="StateTransition01.mxml"/>
-    <application path="ExtendsDataGrid_After.mxml"/>
-    <application path="StatePopupWindow.mxml"/>
-    <application path="StatePopupMain.mxml"/>
-    <application path="DataGridTest06.mxml"/>
-    <application path="Layout01.mxml"/>
-    <application path="ArrayCollectionTest.mxml"/>
-    <application path="LabelFunctionTest.mxml"/>
-    <application path="test.mxml"/>
-    <application path="ItemEditorTest.mxml"/>
-    <application path="DragAndDropTest01.mxml"/>
-    <application path="DataGridTest07_outerDocument.mxml"/>
     <application path="temp.mxml"/>
-    <application path="Validator_customValidator.mxml"/>
+    <application path="StateTransition01.mxml"/>
     <application path="StateTransition02.mxml"/>
-    <application path="HistoryTest01.mxml"/>
-    <application path="ItemEditorTest01.mxml"/>
+    <application path="DataGridTest06.mxml"/>
+    <application path="StatePopupMain.mxml"/>
     <application path="DataGridTest05_search.mxml"/>
-    <application path="ExtendsDataGrid_before.mxml"/>
     <application path="DataGridTest03.mxml"/>
-    <application path="RepeaterTest01.mxml"/>
+    <application path="LabelFunctionTest.mxml"/>
     <application path="OuterDocumentTest.mxml"/>
+    <application path="RepeaterTest01.mxml"/>
+    <application path="DataGridTest04.mxml"/>
     <application path="DataGridTest02.mxml"/>
     <application path="AddChildTestMain.mxml"/>
-    <application path="DataGridTest04.mxml"/>
-    <application path="Validator_regexp.mxml"/>
+    <application path="test.mxml"/>
     <application path="DataGridTest01.mxml"/>
+    <application path="DragAndDropTest01.mxml"/>
+    <application path="DragAndDropTest02.mxml"/>
+    <application path="Validator_regexp.mxml"/>
+    <application path="Validator_customValidator.mxml"/>
+    <application path="HistoryTest01.mxml"/>
+    <application path="ItemEditorTest.mxml"/>
+    <application path="ExtendsDataGrid_before.mxml"/>
+    <application path="ExtendsDataGrid_After.mxml"/>
+    <application path="DragAndDropTest03.mxml"/>
+    <application path="DragAndDrop_DatagridToList.mxml"/>
   </applications>
   <modules/>
   <buildCSSFiles/>
