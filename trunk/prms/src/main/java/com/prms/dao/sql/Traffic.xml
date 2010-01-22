@@ -1,4 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
 <sqlMap namespace="traffic">
+	<typeAlias alias="traffic" type="com.prms.model.Traffic"/>
+    <typeAlias alias="account" type="com.prms.model.Account"/>
+
+	<resultMap id="userTrafficListResult" class="traffic">
+		<result property="yyyymm" column="yyyymm"/>
+		<result property="statusCode" column="code_detail_name"/>
+	</resultMap>
+	<resultMap id="loadRegTotalsResult" class="traffic">
+		<result property="trainTotal" column="train_total"/>
+		<result property="busTotal" column="bus_total"/>
+		<result property="otherTotal" column="other_total"/>
+	</resultMap>
+
+	<select id="userTrafficList" resultMap="userTrafficListResult" parameterClass="account">
+		SELECT
+	        t.YYYYMM,
+	        c.CODE_DETAIL_NAME
+	    FROM
+	        TRAFFIC t LEFT JOIN CODE_DETAIL c ON c.CODE_TYPE = #codeType# AND t.STATUS_CODE = c.CODE_DETAIL AND c.LATEST_FLAG = #latestFlag#
+	    WHERE
+	        t.COM_CODE = #comCode#
+	        AND t.EMP_NO = #empNo#
+	</select>
+	<select id="loadRegTotals" resultMap="loadRegTotalsResult" parameterClass="traffic">
+		SELECT
+	        train_total,
+	        bus_total,
+	        other_total
+	    FROM
+	        traffic
+	    WHERE
+	        com_code = #comCode#
+	        AND emp_no = #empNo#
+	        AND yyyymm = to_date('20091201', 'YYYYMMDD')
+	</select>
+
 </sqlMap>

@@ -39,4 +39,6 @@ public interface TimesheetDao {
 	/** 勤務表詳細情報データーを取得*/
 	Timesheet getTimesheetDetail(Timesheet bean);
 
+	Timesheet getTimesheetSummary(Timesheet bean);
+
 }

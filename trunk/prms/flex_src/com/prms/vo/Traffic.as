@@ -17,6 +17,12 @@ package com.prms.vo
 		/** 年月 */
 		public var yyyymm:Date;
 
+		/** 年 */
+		public var yyyy:String;
+
+		/** 月 */
+		public var mm:String;
+
 		/** ステータスコード */
 		public var statusCode:String;
 

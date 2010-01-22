@@ -64,7 +64,7 @@ package com.prms.business.commands.timesheet {
                 }
             }
 
-            // 会社選択ボタンを活性化
+			//会社選択ボタンを活性化
             if (_loginModel.account.isAdmin()) {
 				if (!this._doc.buttonRoue.enabled) {
 					this._doc.buttonRoue.enabled = true;

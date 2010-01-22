@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" color="black"
-    paddingTop="10" paddingRight="10" paddingBottom="10" paddingLeft="10">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="1000" height="100%" color="black"
+    paddingTop="10" paddingRight="10" paddingBottom="10" paddingLeft="10" currentState="default">
 
     <handler:AdminTimesheetListHandler id="adminTimesheetListsHandler" xmlns:handler = "com.prms.views.timesheet.admin.handlers.*" />
 
@@ -18,28 +18,138 @@
 
 		<mx:Text id="textTimesheetTitle" text="会社を選択してください。" visible="true" />
 
-		<!-- 勤務表一覧 -->
-		<mx:VBox id="vboxTimesheetList" visible="false">
+		<mx:VBox id="vboxTimesheetList" width="100%" height="100%" visible="false">
+			<!-- 年月選択 DateChooser -->
+			<mx:HBox>
+				<mx:DateChooser id="datechooserYYYYMM" height="30"/>
+				<mx:Button id="buttonThisMonth" label="今月" height="30"/>
+			</mx:HBox>
 
-			<mx:DateChooser id="datechooserYYYYMM" height="30"/>
+			<mx:HBox id="hboxTimesheet" width="100%" verticalGap="0" horizontalGap="0">
+				<!-- ======================================= -->
+				<!-- TIMESHEET LIST							 -->
+				<!-- ======================================= -->
+			    <mx:DataGrid id="datagridTimesheetList" width="100%" height="100%" dataProvider="{adminTimesheetListsHandler.model.timesheetAC}"
+			                 editable="false" resizableColumns="false" draggableColumns="false" dragEnabled="true" sortableColumns="false"
+			                 doubleClickEnabled="true" visible="true" textAlign="center" showEffect="{dissolveIn}" hideEffect="{dissolveOut}">
+			        <mx:columns>
+			            <mx:DataGridColumn headerText="番号" dataField="listSeq" width="70"/>
+			            <mx:DataGridColumn headerText="社員番号" dataField="empNo" width="120"/>
+			            <mx:DataGridColumn headerText="名前" dataField="name"  width="120"/>
+			            <mx:DataGridColumn headerText="ステータス" dataField="codeDetailName"  width="180"/>
+			            <mx:DataGridColumn headerText="ステータス" dataField="statusCode" visible="false" width="180"/>
+			            <mx:DataGridColumn headerText="備考" />
+			        </mx:columns>
+			    </mx:DataGrid>
 
-		    <mx:DataGrid id="datagridTimesheetList" left="30" right="30" top="100" bottom="10"
-		    			dataProvider="{adminTimesheetListsHandler.model.timesheetAC}"
-		                 textAlign="center"
-		                 editable="false"
-		                 resizableColumns="false"
-		                 draggableColumns="false"
-		                 sortableColumns="false"
-		                 doubleClickEnabled="true">
-		        <mx:columns>
-		            <mx:DataGridColumn headerText="番号" dataField="listSeq" width="70"/>
-		            <mx:DataGridColumn headerText="社員番号" dataField="empNo" width="120"/>
-		            <mx:DataGridColumn headerText="名前" dataField="name"  width="120"/>
-		            <mx:DataGridColumn headerText="ステータス" dataField="codeDetailName"  width="180"/>
-		            <mx:DataGridColumn headerText="ステータス" dataField="statusCode" visible="false" width="180"/>
-		            <mx:DataGridColumn headerText="備考" />
-		        </mx:columns>
-		    </mx:DataGrid>
+				<!-- ======================================= -->
+				<!-- COMPARE TIMESHEET						 -->
+				<!-- ======================================= -->
+			    <mx:HBox id="hboxCompareTimesheet" width="0" height="0" backgroundColor="#BBBBBB" visible="false" showEffect="{dissolveIn}" hideEffect="{dissolveOut}">
+			    	<mx:Label text="test"/>
+			    </mx:HBox>
+
+			    <mx:Spacer width="10" height="100%"/>
+
+				<!-- ======================================= -->
+				<!-- EXTENTION TIMESHEET					 -->
+				<!-- ======================================= -->
+			    <mx:VBox id="vboxExtendTimesheet" width="260" height="100%" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+				    <!-- ======================================= -->
+					<!-- TIMESHEET SUMMARY						 -->
+					<!-- ======================================= -->
+					<mx:Panel id="panelTimesheetSummary" title="TIMESHEET SUMMARY" visible="true" width="{vboxExtendTimesheet.width -5}" height="100%" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+
+						<mx:Label id="labelNotSelectedTimesheet" text="リストから勤務表を選択してください。" visible="true"/>
+
+						<mx:Form id="formTimesheetSummary" visible="false">
+							<mx:FormItem label="社員番号">
+								<mx:Text text="{adminTimesheetListsHandler.model.timesheetSummary.empNo}"/>
+							</mx:FormItem>
+							<mx:FormItem label="名前">
+								<mx:Text text="{adminTimesheetListsHandler.model.timesheetSummary.name}"/>
+							</mx:FormItem>
+							<mx:FormItem label="年月">
+								<mx:Text text="{adminTimesheetListsHandler.model.timesheetSummary.yyyymm}"/>
+							</mx:FormItem>
+							<mx:FormItem label="実働時間合計">
+								<mx:Text text="{adminTimesheetListsHandler.model.timesheetSummary.actualTimeTotal}"/>
+							</mx:FormItem>
+							<mx:FormItem label="休憩時間合計">
+								<mx:Text text="{adminTimesheetListsHandler.model.timesheetSummary.breakTimeTotal}"/>
+							</mx:FormItem>
+							<mx:FormItem label="超過勤務時間合計">
+								<mx:Text text="{adminTimesheetListsHandler.model.timesheetSummary.overTimeTotal}"/>
+							</mx:FormItem>
+							<mx:FormItem label="深夜勤務時間合計">
+								<mx:Text text="{adminTimesheetListsHandler.model.timesheetSummary.nightTimeTotal}"/>
+							</mx:FormItem>
+							<mx:FormItem label="遅刻時間合計">
+								<mx:Text text="{adminTimesheetListsHandler.model.timesheetSummary.lateTimeTotal}"/>
+							</mx:FormItem>
+							<mx:FormItem label="早退時間合計">
+								<mx:Text text="{adminTimesheetListsHandler.model.timesheetSummary.earlyTimeTotal}"/>
+							</mx:FormItem>
+							<mx:FormItem label="当月有休消合計">
+								<mx:Text text="{adminTimesheetListsHandler.model.timesheetSummary.holidayTimeTotal}"/>
+							</mx:FormItem>
+							<mx:FormItem label="欠勤日数合計">
+								<mx:Text text="{adminTimesheetListsHandler.model.timesheetSummary.absenceDaysTotal}"/>
+							</mx:FormItem>
+						</mx:Form>
+					</mx:Panel>
+
+					<mx:HRule width="100%"/>
+
+					<!-- ======================================= -->
+					<!-- COMPARE TIMESHEET						 -->
+					<!-- ======================================= -->
+					<mx:Label text="Compare (Drag timesheets here to compare)" fontWeight="bold"/>
+					<mx:List id="listCompareTimesheet" height="80" width="{vboxExtendTimesheet.width -5}" backgroundColor="#FFFFFF"	dropEnabled="true" />
+					<mx:HBox>
+						<mx:Button id="buttonCompareAndBackToList" label="compare and backToList"/>
+						<mx:Button id="buttonResetListCompareTimesheet" label="reset"/>
+					</mx:HBox>
+				</mx:VBox>
+			</mx:HBox>
 	    </mx:VBox>
 	</mx:VBox>
+
+	<!-- ======================================= -->
+	<!-- STATES									 -->
+	<!-- ======================================= -->
+	<mx:states>
+        <mx:State name="default">
+        	<mx:SetProperty target="{datagridTimesheetList}" name="width" value="100%"/>
+			<mx:SetProperty target="{vboxExtendTimesheet}" name="visible" value="false"/>
+			<mx:SetProperty target="{vboxExtendTimesheet}" name="width" value="0"/>
+			<mx:SetProperty target="{vboxExtendTimesheet}" name="minWidth" value="0"/>
+        	<mx:SetProperty target="{vboxExtendTimesheet}" name="maxWidth" value="0"/>
+        </mx:State>
+        <mx:State name="expandVboxExtendTimesheet">
+        	<mx:SetProperty target="{datagridTimesheetList}" name="width" value="100%"/>
+        	<mx:SetProperty target="{vboxExtendTimesheet}" name="visible" value="true"/>
+        	<mx:SetProperty target="{vboxExtendTimesheet}" name="width" value="{vboxExtendTimesheet.width}"/>
+        	<mx:SetProperty target="{vboxExtendTimesheet}" name="minWidth" value="{vboxExtendTimesheet.width}"/>
+        	<mx:SetProperty target="{vboxExtendTimesheet}" name="maxWidth" value="{vboxExtendTimesheet.width}"/>
+        </mx:State>
+    </mx:states>
+
+    <!-- ======================================= -->
+	<!-- TRANSITION								 -->
+	<!-- ======================================= -->
+	<mx:transitions>
+		<mx:Transition id="transite" fromState="*" toState="*">
+			<mx:Parallel id="parallelEffect" targets="{[datagridTimesheetList,vboxExtendTimesheet]}">
+				<mx:Move duration="450"/>
+				<mx:Resize duration="450"/>
+			</mx:Parallel>
+		</mx:Transition>
+	</mx:transitions>
+
+	<!-- ======================================= -->
+	<!-- EFFECTS								 -->
+	<!-- ======================================= -->
+    <mx:Dissolve id="dissolveIn" duration="1000" alphaFrom="0.0" alphaTo="1.0"/>
+	<mx:Dissolve id="dissolveOut" duration="1000" alphaFrom="1.0" alphaTo="0.0"/>
 </mx:Canvas>

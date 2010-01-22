@@ -27,6 +27,7 @@ public class Account {
 	private String accountUserPassword;		// ユーザーパスワード
 	private String accountUserNewPassword;	// ユーザー新パスワード
 	private String accountUserId;			// ユーザーid
+	private String codeType;				// codeType
 
 	// default constructor
 	public Account() {}
@@ -34,6 +35,14 @@ public class Account {
 	public Account(String email, String[] roles) {
 		this.email = email;
 		this.roles = roles;
+	}
+
+	public String getCodeType() {
+		return codeType;
+	}
+
+	public void setCodeType(String codeType) {
+		this.codeType = codeType;
 	}
 
 	public String getComCode() {

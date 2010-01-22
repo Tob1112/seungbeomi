@@ -47,13 +47,13 @@
 	<mx:states>
 		<mx:State name="startPeriod">
 			<mx:AddChild relativeTo="{lblStartTo}" position="before">
-				<mx:DateField id="dfStartPeriod" close="startHandler(event);"/>
+				<mx:DateField id="dfStartPeriod" text="{txtDfStartPeriod.text}" close="startHandler(event);"/>
 			</mx:AddChild>
 			<mx:RemoveChild target="{txtDfStartPeriod}"/>
 		</mx:State>
 		<mx:State name="endPeriod">
 			<mx:AddChild relativeTo="{lblStartTo}" position="after">
-				<mx:DateField id="dfEndPeriod" close="endHandler(event)"/>
+				<mx:DateField id="dfEndPeriod" text="{txtDfEndPeriod.text}" close="endHandler(event)"/>
 			</mx:AddChild>
 			<mx:RemoveChild target="{txtDfEndPeriod}"/>
 		</mx:State>

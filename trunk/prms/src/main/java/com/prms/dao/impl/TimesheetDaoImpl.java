@@ -139,7 +139,6 @@ public class TimesheetDaoImpl extends SqlMapClientDaoSupport implements Timeshee
 					executor.insert("timesheet.saveTimesheet",bean);
 
 					for (TimesheetDetail timesheetDetail: bean.getTimesheetDetailList()) {
-						System.out.println(timesheetDetail.getEtcBreakTime());
 						executor.insert("timesheetDetail.saveTimesheetDetail", timesheetDetail);
 					}
 
@@ -239,6 +238,11 @@ public class TimesheetDaoImpl extends SqlMapClientDaoSupport implements Timeshee
 			throw new PrmsException(message.getMsgBody(), e);
 		}
 		return timesheet;
+	}
+
+	@Override
+	public Timesheet getTimesheetSummary(Timesheet bean) {
+		return (Timesheet) getSqlMapClientTemplate().queryForObject("timesheet.getTimesheetSummary", bean);
 	}
 
 }

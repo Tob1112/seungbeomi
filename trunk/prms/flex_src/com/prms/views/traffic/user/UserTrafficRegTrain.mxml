@@ -39,7 +39,9 @@
 			borderThickness="2"
 			borderColor="gray"
 			cornerRadius="8">
-		<mx:Label id="regTrainTotalLabel" textAlign="center"/>
+		<mx:Label id="regTrainTotalLabel"
+			text="{regTrainHandler.model.traffic.trainTotal}"
+			textAlign="center"/>
 	</mx:Box>
 
 	<mx:DataGrid id="regTrainDG"

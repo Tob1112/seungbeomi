@@ -2,6 +2,7 @@ package com.prms.util {
     import com.prms.Constants;
     import com.prms.views.timesheet.admin.AdminTimesheetMain;
     import com.prms.views.timesheet.user.UserTimesheetMain;
+    import com.prms.views.traffic.user.UserTrafficMain;
 
     import mx.containers.ViewStack;
     import mx.controls.Alert;
@@ -43,6 +44,19 @@ package com.prms.util {
 	                parent.adminTimesheetList = null;
 	                createViewStactChild(parent.adminTimesheetMainViewStack,Constants.VIEWSTACK_DETAIL_INDEX);
 	                parent.adminTimesheetMainViewStack.selectedChild = parent.adminTimesheetDetails;
+        		break;
+        		case Constants.USER_TRAFFIC_TOTALS:	// 交通費ユーザー合計画面
+        			parent = UserTrafficMain(parent);
+	                parent.userTrafficList = null;
+	                createViewStactChild(parent.trafficViewStack, Constants.CONST_INT_ONE);
+	                parent.trafficViewStack.selectedChild = parent.userTrafficTotals;
+        		break;
+        		case Constants.USER_TRAFFIC_DETAILS:	// 交通費ユーザー詳細画面
+        			parent = UserTrafficMain(parent);
+	                parent.userTrafficList = null;
+	                parent.userTrafficTotals = null;
+	                createViewStactChild(parent.trafficViewStack, Constants.CONST_INT_TWO);
+	                parent.trafficViewStack.selectedChild = parent.userTrafficDetails;
         		break;
         		default :
         			Alert.show("TimesheetViewStackController.changeViewstack() is fail!!!", "PRMS ERROR");

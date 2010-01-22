@@ -105,6 +105,11 @@ package com.prms.business.delegates {
         	var token:AsyncToken = _service.getTimesheetDetail(vo);
             token.addResponder(_responder);
         }
+
+        public function getTimesheetSummary(vo:Timesheet):void {
+        	var token:AsyncToken = _service.getTimesheetSummary(vo);
+            token.addResponder(_responder);
+        }
     }
 }
 

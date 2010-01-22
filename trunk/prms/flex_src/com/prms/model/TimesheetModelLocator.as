@@ -8,7 +8,7 @@ package com.prms.model {
     [Bindable]
     public class TimesheetModelLocator {
         /** 年月 */
-        public var yyyymm:Date;
+        public var yyyymm:Date;	//今月に戻るため使用（管理者）
 
         //TODO 任意フラグ
         /** 勤務表状態フラグ (新規01、作成中02, 読み取り専用03) */
@@ -31,6 +31,9 @@ package com.prms.model {
 
         /** 勤務表(月) */
         public var timesheet:Timesheet = new Timesheet();
+
+        /** 勤務表さんマーリー */
+        public var timesheetSummary:Timesheet = new Timesheet();
 
         /** 勤務形態 */
         public var codeDetailAC:ArrayCollection = new ArrayCollection();

@@ -1,5 +1,7 @@
 package com.prms.views.traffic.common.handlers
 {
+	import com.prms.business.events.traffic.LoadRegTotalsEvent;
+	import com.prms.business.events.traffic.LoadRegTrainListEvent;
 	import com.prms.model.TrafficModelLocator;
 	import com.prms.views.traffic.common.events.TrafficEvent;
 	import com.prms.views.traffic.user.UserTrafficRegTrain;
@@ -20,7 +22,6 @@ package com.prms.views.traffic.common.handlers
 
 		public function initialized(document:Object, id:String):void{
 			this.document = document as UserTrafficRegTrain;
-
 			this.document.addEventListener(FlexEvent.CREATION_COMPLETE, regTrainComplete);
 		}
 
@@ -28,6 +29,18 @@ package com.prms.views.traffic.common.handlers
 			this.document.addEventListener(TrafficEvent.ADD_ROW, addRow);
 			this.document.regTrainDG.addEventListener(TrafficEvent.DELETE_ROW, deleteRowHandler);
 			this.document.addEventListener(DataGridEvent.ITEM_EDIT_END, editRegTrainFareCell);
+
+			var date:Date = new Date();
+			var trafficRegular:TrafficRegular = new TrafficRegular();
+			trafficRegular.yyyymm = new Date(date.fullYear, 1-1, 01);
+//			model.trafficRegular.yyyymm = new Date(date.fullYear, 1-1, 01);
+			// 定期券一覧ロード
+			var loadRegTrainList:LoadRegTrainListEvent = new LoadRegTrainListEvent(trafficRegular);
+			loadRegTrainList.dispatch();
+
+			// 合計ロード
+			var loadRegTotals:LoadRegTotalsEvent = new LoadRegTotalsEvent();
+			loadRegTotals.dispatch();
 		}
 
 		// 行追加のイベント処理

@@ -37,6 +37,9 @@ package com.prms {
         public static const CONST_INT_ZERO:int = 0;
         /** 定数ステータス ：1(type:int)  */
         public static const CONST_INT_ONE:int = 1;
+        /** 定数ステータス ：2(type:int)  */
+        public static const CONST_INT_TWO:int = 2;
+
 
 		/** VIEWSTACK リストインデクス ：0 (type:int) */
         public static const VIEWSTACK_LIST_INDEX:int = 0;
@@ -56,6 +59,15 @@ package com.prms {
         public static const COMCODE_ROUE:String = "01";
         public static const COMCODE_ROUE_SUITE:String = "02";
         public static const COMCODE_ROUE_LEARNING:String = "03";
+
+        // ---------------------------------------------------------------------
+        //	TRAFFIC CONSTANTS
+        // ---------------------------------------------------------------------
+
+        /** 交通費合計画面（ユーザ） */
+        public static const USER_TRAFFIC_TOTALS:String = "userTrafficTotals";
+        /** 交通費詳細画面（ユーザ） */
+        public static const USER_TRAFFIC_DETAILS:String = "userTrafficDetails";
 
         // ---------------------------------------------------------------------
         //	TIMESHEET CONSTANTS
