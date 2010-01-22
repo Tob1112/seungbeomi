@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" verticalAlign="top"
+    horizontalAlign="center" creationComplete="init()">
+
+    <mx:Script>
+        <![CDATA[
+        	import mx.events.CollectionEvent;
+        	import mx.collections.IViewCursor;
+        	import mx.controls.Alert;
+        	import mx.collections.ArrayCollection;
+
+			[Bindable]
+			private var ac:ArrayCollection = new ArrayCollection([
+				{startA:"0900", endA:"1800", startB:"1200", endB:"1300"}
+				,{startA:"0930", endA:"1830", startB:"1200", endB:"1300"}
+			]);
+
+			private var flag:Boolean = false;
+
+			private function init():void {
+				ac.addEventListener(CollectionEvent.COLLECTION_CHANGE, test);
+			}
+
+			private function test(e:CollectionEvent ):void {
+
+				var temp:Array = ac.getItemAt(0) as Array;
+
+				var cursor:IViewCursor = ac.createCursor();
+
+				while(!cursor.afterLast) {
+					trace(cursor.current.startA);
+
+					cursor.moveNext();
+				}
+
+			}
+
+			private function isValid():void {
+				for (var i:int = 0; i < ac.length; i++) {
+
+				}
+			}
+
+
+        ]]>
+    </mx:Script>
+
+
+
+    <mx:AdvancedDataGrid id="grid" dataProvider="{ac}" editable="true">
+		<mx:columns>
+			<mx:AdvancedDataGridColumn dataField="startA" headerText="始業時間"/>
+			<mx:AdvancedDataGridColumn dataField="endA" headerText="終業時間"/>
+			<mx:AdvancedDataGridColumn dataField="startB" headerText="始業時間"/>
+			<mx:AdvancedDataGridColumn dataField="endB" headerText="終業時間"/>
+		</mx:columns>
+    </mx:AdvancedDataGrid>
+
+    <mx:Button label="test"/>
+
+</mx:Application>
