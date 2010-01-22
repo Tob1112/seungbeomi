@@ -1,0 +1,25 @@
+/*	CSS		write by 孫承範	*/
+Application {
+	/*background-color : #2C4762;*/
+}
+
+.message {
+	color : red;
+    font-weight : bold;
+    /* font-size : 20px; */
+}
+
+Alert {
+	/*
+	border-color: #000000;
+	modal-transparency: 0.3;
+	modal-transparency-blur: 0.0;
+	background-alpha: 1.0;
+	background-color: #000000;
+	*/
+}
+/*	CSS		write by 	*/
+
+ComboBox {
+	background-color : #FFFFFF;
+}

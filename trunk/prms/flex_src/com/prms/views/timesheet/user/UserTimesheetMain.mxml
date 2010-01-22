@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Module xmlns:mx="http://www.adobe.com/2006/mxml"
+           xmlns:child = "com.prms.views.timesheet.user.*"
+           layout="absolute"
+           width="{contentWidth}"
+           height="{contentHeight}"
+           initialize="init()"
+           creationComplete="creationCompleteHandler()">
+
+    <mx:Script>
+        <![CDATA[
+        	import com.prms.util.ViewStackChangeController;
+        	import com.prms.Constants;
+            import mx.controls.Alert;
+            import com.prms.Constants;
+            import mx.core.UIComponentDescriptor;
+            import flash.net.registerClassAlias;
+            import mx.messaging.messages.RemotingMessage;
+
+            [Bindable] private var contentWidth:Number = 0;
+            [Bindable] private var contentHeight:Number = 0;
+
+            private function init():void{
+                Alert.buttonWidth = 100;
+                contentWidth = flash.system.Capabilities.screenResolutionX - 30;
+                contentHeight = flash.system.Capabilities.screenResolutionY - 320;
+                registerClassAlias("flex.messaging.messages.RemotingMessage",RemotingMessage);
+            }
+
+            private function creationCompleteHandler():void {
+                // 勤務表一覧画面に移動
+                ViewStackChangeController.viewstackChange(this, Constants.USER_TIMESHEET_LIST);
+            }
+        ]]>
+    </mx:Script>
+
+    <mx:ViewStack id="userTimesheetMainViewStack" width="100%" height="100%" resizeToContent="true" creationPolicy="none">
+        <child:UserTimesheetList id="userTimesheetList"/>
+        <child:UserTimesheetDetails id="userTimesheetDetails" />
+    </mx:ViewStack>
+</mx:Module>

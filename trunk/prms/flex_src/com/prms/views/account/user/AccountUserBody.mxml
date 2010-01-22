@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Module
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	layout="absolute"
+	creationComplete="creationCompleteHandler()"
+	width="{contentWidth}"
+    height="{contentHeight}"
+	xmlns:controller="com.prms.account.business.*">
+
+	<mx:Script source="./handlers/AccountUserBodyHandler.as" />
+
+    <mx:Validator id="reqValid" required="true"
+        source="{presentPassword}" property="text"
+        valid="handleValid(event)" invalid="handleValid(event)"/>
+
+    <mx:Validator id="reqValid2" required="true"
+        source="{newPassword}" property="text"
+        valid="handleValid(event)" invalid="handleValid(event)"/>
+
+    <mx:Validator id="reqValid3" required="true"
+        source="{newPasswordConfirmed}" property="text"
+        valid="handleValid(event)" invalid="handleValid(event)"/>
+
+	<mx:Label top="10" left="10" text="アカウント管理" fontWeight="bold"/>
+	<mx:VBox x="757" y="10">
+		<mx:Label id="accountUserBodyDateLabel" fontWeight="bold"/>
+		<mx:HBox>
+			<mx:Label id="accountUserBodyEmpNoLabel" fontWeight="bold"/>
+			<mx:Label id="accountUserBodyUserNameLabel" fontWeight="bold"/>
+		</mx:HBox>
+	</mx:VBox>
+
+	<mx:Box top="80" left="10" width="100%">
+		<mx:Label text="●パスワード変更" fontWeight="bold"/>
+		<mx:Label text="注：4～8字の半角英数字で入力してください。"/>
+		<mx:Label text="*現在のパスワード入力:" fontWeight="bold"/>
+		<mx:TextInput displayAsPassword="true" id="presentPassword" width="206"/>
+		<mx:Label text="*新しいパスワード入力:" fontWeight="bold"/>
+		<mx:TextInput displayAsPassword="true" id="newPassword" width="206"/>
+		<mx:Label text="*新しいパスワードの確認入力:" fontWeight="bold"/>
+		<mx:TextInput displayAsPassword="true" id="newPasswordConfirmed" width="206"/>
+		<mx:HBox>
+			<mx:Button label="保存" id="submitButton" enabled="false" click="clickAccountSubmitHandler();"/>
+		</mx:HBox>
+	</mx:Box>
+</mx:Module>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" color="black"
+    paddingTop="10" paddingRight="10" paddingBottom="10" paddingLeft="10">
+
+    <handler:AdminTimesheetListHandler id="adminTimesheetListsHandler" xmlns:handler = "com.prms.views.timesheet.admin.handlers.*" />
+
+	<mx:VBox width="100%">
+
+		<!-- 会社選択 -->
+		<mx:HBox>
+			<mx:Button id="buttonRoue" label="ルウガルソン"/>
+			<mx:Button id="buttonRoueSuite" label="ルウガルソン・スイート"/>
+			<mx:Button id="buttonRoueLearning" label="ルウガルソン・ラーニング" enabled="false"/>
+
+			<!-- 日付表示-->
+			<mx:Label id="labelCurrentDate" top="25" right="30"/>
+		</mx:HBox>
+
+		<mx:Text id="textTimesheetTitle" text="会社を選択してください。" visible="true" />
+
+		<!-- 勤務表一覧 -->
+		<mx:VBox id="vboxTimesheetList" visible="false">
+
+			<mx:DateChooser id="datechooserYYYYMM" height="30"/>
+
+		    <mx:DataGrid id="datagridTimesheetList" left="30" right="30" top="100" bottom="10"
+		    			dataProvider="{adminTimesheetListsHandler.model.timesheetAC}"
+		                 textAlign="center"
+		                 editable="false"
+		                 resizableColumns="false"
+		                 draggableColumns="false"
+		                 sortableColumns="false"
+		                 doubleClickEnabled="true">
+		        <mx:columns>
+		            <mx:DataGridColumn headerText="番号" dataField="listSeq" width="70"/>
+		            <mx:DataGridColumn headerText="社員番号" dataField="empNo" width="120"/>
+		            <mx:DataGridColumn headerText="名前" dataField="name"  width="120"/>
+		            <mx:DataGridColumn headerText="ステータス" dataField="codeDetailName"  width="180"/>
+		            <mx:DataGridColumn headerText="ステータス" dataField="statusCode" visible="false" width="180"/>
+		            <mx:DataGridColumn headerText="備考" />
+		        </mx:columns>
+		    </mx:DataGrid>
+	    </mx:VBox>
+	</mx:VBox>
+</mx:Canvas>

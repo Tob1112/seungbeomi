@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Module xmlns:mx="http://www.adobe.com/2006/mxml">
+	<mx:Label color="white" text="勤務表モジュール" />
+	<mx:Button label="HeaderMessageBox" id="mainHeaderMessageButton" selected="false"/>
+</mx:Module>

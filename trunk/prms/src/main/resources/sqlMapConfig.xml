@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//iBATIS.com//DTD SQL Map Config 2.0//EN"
+"http://www.ibatis.com/dtd/sql-map-config-2.dtd">
+
+<sqlMapConfig>
+
+    <settings
+		useStatementNamespaces="true"
+		cacheModelsEnabled="true"
+		enhancementEnabled="true"
+		lazyLoadingEnabled="true"
+		maxRequests="32"
+		maxSessions="10"
+		maxTransactions="5"
+	/>
+
+    <!-- ============================================= -->
+    <!-- SQL MAPPING FILE				   			   -->
+    <!-- ============================================= -->
+
+	<!-- SECURITY SQL MAPPING FILE -->
+	<sqlMap resource="com/prms/dao/sql/Account.xml"/>
+
+    <!-- TIMESHEET SQL MAPPING FILE -->
+    <sqlMap resource="com/prms/dao/sql/FixTime.xml"/>
+    <sqlMap resource="com/prms/dao/sql/Timesheet.xml"/>
+    <sqlMap resource="com/prms/dao/sql/TimesheetDetail.xml"/>
+
+    <!-- ACCOUNT SQL MAPPING FILE -->
+    <sqlMap resource="com/prms/dao/sql/AccountUserPasswordModify.xml"/>
+    <sqlMap resource="com/prms/dao/sql/AccountAdmin.xml"/>
+
+	<!-- PRMS UTIL SQL MAPPING FILE -->
+    <sqlMap resource="com/prms/dao/sql/DeptUtil.xml"/>
+    <sqlMap resource="com/prms/dao/sql/MessageUtil.xml"/>
+    <sqlMap resource="com/prms/dao/sql/CodeDetailUtil.xml"/>
+
+    <!-- TRAFFIC SQL MAPPING FILE
+	<sqlMap resource="com/prms/dao/sql/Traffic.xml"/>
+	<sqlMap resource="com/prms/dao/sql/TrafficRegular.xml"/>
+	<sqlMap resource="com/prms/dao/sql/TrafficIrregular.xml"/>
+    -->
+</sqlMapConfig>

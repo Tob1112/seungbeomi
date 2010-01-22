@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="timesheet">
+
+    <typeAlias alias="timesheet" type="com.prms.model.Timesheet"/>
+    <typeAlias alias="account" type="com.prms.model.Account"/>
+
+    <resultMap  id="timesheetAndChildResult" class="timesheet">
+        <result property="comCode" column="COM_CODE"/>
+        <result property="empNo" column="EMP_NO"/>
+        <result property="yyyymm" column="YYYYMM"/>
+        <result property="fixFlag" column="FIX_FLAG"/>
+        <result property="statusCode" column="STATUS_CODE" nullValue="0"/>
+        <result property="actualTimeTotal" column="ACTUAL_TIME_TOTAL" nullValue="0"/>
+        <result property="breakTimeTotal" column="BREAK_TIME_TOTAL" nullValue="0"/>
+        <result property="overTimeTotal" column="OVER_TIME_TOTAL" nullValue="0"/>
+        <result property="nightTimeTotal" column="NIGHT_TIME_TOTAL" nullValue="0"/>
+        <result property="holidayTimeTotal" column="HOLIDAY_TIME_TOTAL" nullValue="0"/>
+        <result property="lateTimeTotal" column="LATE_TIME_TOTAL" nullValue="0"/>
+        <result property="earlyTimeTotal" column="EARLY_TIME_TOTAL" nullValue="0"/>
+        <result property="thisMonthPvTotal" column="THIS_MONTH_PV_TOTAL"/>
+        <result property="absenceDaysTotal" column="ABSENCE_DAYS_TOTAL"/>
+        <result property="fixTimeList" column="{ comCode = COM_CODE  empNo = EMP_NO  yyyymm = YYYYMM }" select="fixTime.getFixTimeList"/>
+        <result property="timesheetDetailList" column="{ comCode = COM_CODE  empNo = EMP_NO  yyyymm = YYYYMM }" select="timesheetDetail.getTimesheetDetail"/>
+    </resultMap>
+
+	<!-- 勤務表詳細データ取得結果 -->
+    <resultMap id="getTimesheetDetailForAdminResult" class="timesheet" extends="timesheetAndChildResult">
+		<result property="lastName" column="{ comCode = COM_CODE empNo = EMP_NO }" select="account.getLastName"/>
+    	<result property="firstName" column="{ comCode = COM_CODE empNo = EMP_NO }" select="account.getFirstName"/>
+    </resultMap>
+
+    <resultMap id="getTimesheetListResult" class="timesheet">
+        <result property="comCode" column="COM_CODE"/>
+        <result property="empNo" column="EMP_NO"/>
+ 	    <result property="yyyymm" column="YYYYMM"/>
+        <result property="statusCode" column="STATUS_CODE" nullValue="0"/>
+ 	    <result property="fixFlag" column="FIX_FLAG"/>
+ 	    <result property="statusCode" column="STATUS_CODE" nullValue="0"/>
+    </resultMap>
+
+    <resultMap id="getTimesheetListByComCodeAndYYYYMMResult" class="timesheet">
+    	<result property="empNo" column="EMP_NO"/>
+    	<result property="comCode" column="COM_CODE"/>
+    	<result property="lastName" column="{ comCode = COM_CODE empNo = EMP_NO }" select="account.getLastName"/>
+    	<result property="firstName" column="{ comCode = COM_CODE empNo = EMP_NO }" select="account.getFirstName"/>
+    	<result property="statusCode" column="STATUS_CODE"/>
+    </resultMap>
+
+    <sql id="getTimesheetFragment">
+		SELECT COM_CODE, EMP_NO, YYYYMM, FIX_FLAG, STATUS_CODE, ACTUAL_TIME_TOTAL, BREAK_TIME_TOTAL, OVER_TIME_TOTAL, NIGHT_TIME_TOTAL, HOLIDAY_TIME_TOTAL,
+			   LATE_TIME_TOTAL, EARLY_TIME_TOTAL, THIS_MONTH_PV_TOTAL, ABSENCE_DAYS_TOTAL
+		FROM   TIMESHEET_MM
+    </sql>
+
+    <select id="getTimesheetAndChildByPk" resultMap="timesheetAndChildResult" parameterClass="timesheet" >
+		<include refid="getTimesheetFragment"/>
+		WHERE COM_CODE=  #comCode# AND EMP_NO =  #empNo# AND YYYYMM =  #yyyymm#
+    </select>
+
+	<!-- 勤務表詳細データを取得(管理者) -->
+	<select id="getTimesheetDetail" resultMap="getTimesheetDetailForAdminResult" parameterClass="timesheet" >
+		<include refid="getTimesheetFragment"/>
+		WHERE COM_CODE = #comCode# AND EMP_NO = #empNo# AND YYYYMM = #yyyymm#
+	</select>
+
+	<!-- 勤務表存在有無チェック -->
+    <select id="existTimesheetByYYYYMM" resultClass="java.sql.Date" parameterClass="timesheet" >
+    	SELECT YYYYMM
+	    FROM   TIMESHEET_MM
+	    WHERE  EMP_NO = #empNo#
+	      AND COM_CODE = #comCode#
+   		  AND YYYYMM =  #yyyymm#
+    </select>
+
+    <!-- 勤務表一覧取得 -->
+	<select id="getTimesheetList" resultMap="getTimesheetListResult" parameterClass="account">
+		SELECT EMP_NO, COM_CODE, YYYYMM, STATUS_CODE, FIX_FLAG
+	    FROM   TIMESHEET_MM
+	    WHERE  COM_CODE = #comCode#
+	      AND  EMP_NO = #empNo#
+	    ORDER BY YYYYMM DESC
+	</select>
+
+	<!-- 勤務表登録SQL  -->
+    <!-- @author 孫承範 -->
+    <insert id="saveTimesheet" parameterClass="timesheet">
+    	INSERT INTO TIMESHEET_MM (
+		  COM_CODE, EMP_NO, YYYYMM, FIX_FLAG, STATUS_CODE, ACTUAL_TIME_TOTAL,
+		  BREAK_TIME_TOTAL, OVER_TIME_TOTAL, NIGHT_TIME_TOTAL, HOLIDAY_TIME_TOTAL,
+		  LATE_TIME_TOTAL, EARLY_TIME_TOTAL, THIS_MONTH_PV_TOTAL, ABSENCE_DAYS_TOTAL
+		) VALUES (
+		  #comCode#, #empNo#, #yyyymm#, #fixFlag#, #statusCode#, #actualTimeTotal#,
+		  #breakTimeTotal#, #overTimeTotal#, #nightTimeTotal#, #holidayTimeTotal#,
+		  #lateTimeTotal#, #earlyTimeTotal#, #thisMonthPvTotal#, #absenceDaysTotal#
+		)
+	</insert>
+
+    <!-- 勤務表削除SQL  -->
+    <!-- @author 孫承範 -->
+    <delete id="removeTimesheet" parameterClass="timesheet">
+		DELETE FROM TIMESHEET_MM
+		WHERE COM_CODE = #comCode#
+		  AND EMP_NO = #empNo#
+		  AND YYYYMM = #yyyymm#
+    </delete>
+
+    <select id="getTimesheetListByComCodeAndYYYYMM" resultMap="getTimesheetListByComCodeAndYYYYMMResult" parameterClass="timesheet">
+		SELECT COM_CODE, EMP_NO, STATUS_CODE
+		FROM   TIMESHEET_MM
+		WHERE  COM_CODE = #comCode# AND YYYYMM = #yyyymm#
+		ORDER BY 2
+    </select>
+</sqlMap>

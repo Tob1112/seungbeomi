@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="accountAdmin">
+
+	<typeAlias alias="accountAdmin" type="com.prms.model.AccountUser"/>
+
+	<resultMap id="result" class="accountAdmin">
+		<result property="empNo" column="EMP_NO" />
+		<result property="lastName" column="LAST_NAME" />
+		<result property="firstName" column="FIRST_NAME" />
+		<result property="email" column="EMAIL" />
+		<result property="deptName" column="DEPT_NAME" />
+		<result property="role" column="AUTH" />
+	</resultMap>
+
+	<!-- 社員リスト検索 -->
+	<select id="getAccountAdminList" resultMap="result" parameterClass="accountAdmin">
+		SELECT
+			E.EMP_NO,E.LAST_NAME,E.FIRST_NAME,E.EMAIL,D.DEPT_NAME,A.AUTH
+		FROM
+			COMPANY C LEFT JOIN DEPT D ON C.COM_CODE = D.COM_CODE LEFT JOIN
+			EMP E ON D.COM_CODE = E.COM_CODE AND E.DEPT_CODE = D.DEPT_CODE LEFT JOIN
+			AUTH A ON E.EMAIL = A.ID
+		WHERE
+			C.COM_CODE = #accountAdminCompanyFlg# AND EMP_NO IS NOT NULL
+			ORDER BY E.EMP_NO ,A.AUTH
+	</select>
+
+    <!-- 新規ユーザー登録  -->
+    <insert id="saveAccountAdminUser" parameterClass="accountAdmin">
+		INSERT INTO
+		EMP
+		(
+		  COM_CODE,EMP_NO,REG_DAY,LATEST_FLAG,DEPT_CODE,EMAIL,PASSWD,HIRE_DAY,LAST_NAME,FIRST_NAME
+		)
+		VALUES
+		(
+		  #accountAdminCompanyFlg#,
+		  #empNo#,
+		  sysdate,
+		  'Y',
+		  #deptCode#,
+		  #email#,
+		  #accountUserPassword#,
+		  to_date(#hireDay#,'YYYY-MM-DD HH24:MI:SS'),
+		  #lastName#,
+		  #firstName#
+		)
+    </insert>
+
+    <!-- 新規ユーザー権限登録  -->
+    <insert id="saveAccountAdminUserRole" parameterClass="accountAdmin">
+		INSERT INTO
+		AUTH
+		(
+		  ID,AUTH
+		)
+		VALUES
+		(
+		  #email#,
+		  #role#
+		)
+    </insert>
+
+   	<!-- 社員番号検索 -->
+	<select id="getAccountEmpNo" resultClass="int" parameterClass="accountAdmin">
+		SELECT
+			COUNT(*)
+		FROM
+			EMP
+		WHERE
+			EMP_NO = #empNo# AND COM_CODE=#accountAdminCompanyFlg#
+	</select>
+
+</sqlMap>

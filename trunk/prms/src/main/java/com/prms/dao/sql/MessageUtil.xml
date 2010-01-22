@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="MessageUtil">
+	<typeAlias alias="message" type="com.prms.model.Message"/>
+
+	<select id="getMessageByPk" resultClass="java.lang.String" parameterClass="message">
+		SELECT msg_body
+	    FROM   message
+	    WHERE  msg_type = #msgType# AND msg_id = #msgId#
+	</select>
+</sqlMap>

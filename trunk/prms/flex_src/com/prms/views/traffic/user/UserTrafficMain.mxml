@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Module
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	width="{contentWidth}"
+	height="{contentHeight}"
+	layout="absolute"
+	initialize="init()"
+	xmlns:views = "com.prms.views.traffic.user.*">
+
+    <mx:Script>
+        <![CDATA[
+        	import mx.messaging.messages.RemotingMessage;
+
+            [Bindable] private var contentWidth:Number = 0;
+            [Bindable] private var contentHeight:Number = 0;
+
+            private function init():void{
+                contentWidth = flash.system.Capabilities.screenResolutionX - 30;
+                contentHeight = flash.system.Capabilities.screenResolutionY - 320;
+                registerClassAlias("flex.messaging.messages.RemotingMessage",RemotingMessage);
+            }
+        ]]>
+    </mx:Script>
+
+    <mx:ViewStack id="trafficViewStack" width="100%" height="100%" resizeToContent="true" >
+    <!--
+        <views:UserTrafficList id="userTrafficList"/>
+    -->
+    	<views:UserTrafficDetails/>
+    </mx:ViewStack>
+
+</mx:Module>

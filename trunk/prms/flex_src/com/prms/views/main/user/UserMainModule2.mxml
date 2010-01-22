@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Module xmlns:mx="http://www.adobe.com/2006/mxml">
+
+	<mx:Label color="white" text="このモジュールはヘッダメニューで「有給」ボタンを押すと表示されます。" />
+
+</mx:Module>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="DeptUtil">
+
+	<typeAlias alias="dept" type="com.prms.model.Dept"/>
+
+	<!-- ============================ -->
+	<!-- =	RESULT MAP				= -->
+	<!-- ============================ -->
+
+	<resultMap id="deptList" class="dept">
+		<result property="level" column="level" />
+		<result property="comCode" column="com_code" />
+		<result property="deptCode" column="dept_code" />
+		<result property="deptName" column="dept_name" />
+		<result property="upperDeptCode" column="upper_dept_code" />
+	</resultMap>
+
+	<!-- ============================ -->
+	<!-- =	SQL						= -->
+	<!-- ============================ -->
+
+	<select id="getAllDept" resultMap="deptList" parameterClass="string">
+		SELECT
+			LEVEL, D.COM_CODE, D.DEPT_CODE, D.DEPT_NAME, D.UPPER_DEPT_CODE
+		FROM
+  			DEPT D
+		WHERE
+  			D.LATEST_FLAG='Y'
+		START WITH
+  			D.COM_CODE = #comCode#
+  			AND D.DEPT_CODE IN (SELECT DEPT_CODE FROM DEPT WHERE COM_CODE = #comCode# AND UPPER_DEPT_CODE IS NULL)
+		CONNECT BY
+  			D.UPPER_DEPT_CODE= PRIOR DEPT_CODE
+  			AND COM_CODE = #comCode#
+	</select>
+
+	<select id="getUpperDept" resultMap="deptList" parameterClass="dept">
+		SELECT
+		  LEVEL, D.COM_CODE, D.DEPT_CODE, D.DEPT_NAME, D.UPPER_DEPT_CODE
+		FROM
+		  DEPT D
+		WHERE
+		  D.LATEST_FLAG='Y' AND LEVEL > 1
+		START WITH
+		  COM_CODE=#comCode# AND DEPT_CODE=#deptCode#
+		CONNECT BY
+		  PRIOR UPPER_DEPT_CODE = D.DEPT_CODE
+		  AND COM_CODE = #comCode#
+	</select>
+
+	<select id="getSubDept" resultMap="deptList" parameterClass="dept">
+		SELECT
+		  LEVEL, D.COM_CODE, D.DEPT_CODE, D.DEPT_NAME, D.UPPER_DEPT_CODE
+		FROM
+		  DEPT D
+		WHERE
+		  D.LATEST_FLAG='Y' AND LEVEL > 1
+		START WITH
+		  COM_CODE=#comCode# AND DEPT_CODE=#deptCode#
+		CONNECT BY
+		  PRIOR DEPT_CODE = D.UPPER_DEPT_CODE
+		  AND COM_CODE=#comCode#
+	</select>
+
+</sqlMap>
