@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Module xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute"
+	width="100%" height="100%"
+	fontSize="12">
+
+	<mx:Style>
+		.vacHistoryTitle{
+			font-size:18;
+			font-weight:bold;
+		}
+	</mx:Style>
+
+	<mx:Script>
+		<![CDATA[
+			[Bindable] private var empNo:String = "101";
+			[Bindable] private var empName:String = "あああ かきく";
+			[Bindable] private var vacRenew:String = "2010年12月10日";
+			[Bindable] private var lastRenew:String = "2009年12月10日";
+
+			[Bindable] private var currentDate:Date = new Date();
+
+		]]>
+	</mx:Script>
+
+	<mx:Canvas width="1024" height="768">
+		<mx:Label text="{currentDate.getFullYear()}年 {currentDate.getMonth()}月 {currentDate.getDate()}日 "
+			top="20" right="20"/>
+		<mx:Label text="有給消化履歴" styleName="vacHistoryTitle"
+			left="30" top="45"/>
+		<mx:HBox id="hb" top="75" right="30" textAlign="center">
+			<mx:Label text="社員番号 ： {empNo}" />
+			<mx:Spacer width="20" />
+			<mx:Label text="名前 ： {empName}" />
+		</mx:HBox>
+
+		<!-- まとめ -->
+		<mx:HBox width="350" left="30" top="105" verticalAlign="bottom">
+			<mx:Label text="● まとめ" fontSize="16" />
+			<mx:Spacer width="100%"/>
+			<mx:Label text="次期有給更新日 : {vacRenew} "/>
+		</mx:HBox>
+		<mx:DataGrid width="350" left="30" top="135"
+			rowCount="1"
+			textAlign="center"
+			resizableColumns="false"
+			draggableColumns="false"
+			sortableColumns="false"
+			editable="false"
+			selectable="false">
+			<mx:columns>
+				<mx:DataGridColumn headerText="前年残" dataField="preYear"/>
+				<mx:DataGridColumn headerText="当年残" dataField="currentYear"/>
+				<mx:DataGridColumn headerText="合計" dataField="vacTotal"/>
+			</mx:columns>
+		</mx:DataGrid>
+
+		<!-- 履歴 -->
+		<mx:HBox top="215" left="30" right="30" verticalAlign="bottom">
+			<mx:Label text="● 履歴" fontSize="16"/>
+			<mx:Spacer width="100%" />
+			<mx:Label text="最終更新日 : {lastRenew} "/>
+		</mx:HBox>
+		<mx:DataGrid top="245" left="30" right="30"
+			textAlign="center"
+			resizableColumns="false"
+			draggableColumns="false"
+			sortableColumns="false"
+			editable="false"
+			selectable="false">
+			<mx:columns>
+				<mx:DataGridColumn headerText="取得日" dataField="unrestful1"
+					width="140"/>
+				<mx:DataGridColumn headerText="区分" dataField="unrestful2"
+					width="95"/>
+				<mx:DataGridColumn headerText="日数" dataField="unrestful3"
+					width="95"/>
+				<mx:DataGridColumn headerText="前年残" dataField="unrestful4"
+					width="95"/>
+				<mx:DataGridColumn headerText="当年残" dataField="unrestful5"
+					width="95"/>
+				<mx:DataGridColumn headerText="理由" dataField="unrestful6"/>
+			</mx:columns>
+		</mx:DataGrid>
+
+	</mx:Canvas>
+</mx:Module>

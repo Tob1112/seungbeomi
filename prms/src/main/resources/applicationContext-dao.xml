@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- ============================================= -->
+    <!-- DAO							   			   -->
+    <!-- ============================================= -->
+    <!-- SECURITY DAO -->
+    <bean id="securityDao" class="com.prms.dao.impl.SecurityDaoImpl">
+    	<property name="sqlMapClient" ref="sqlMapClient"/>
+    </bean>
+
+    <!-- TIMESHEET DAO -->
+	<bean id="timesheetDao" class="com.prms.dao.impl.TimesheetDaoImpl">
+    	<property name="sqlMapClient" ref="sqlMapClient"/>
+    </bean>
+
+	<!-- ACCOUNT USER DAO -->
+	<bean id="accountUserDao" class="com.prms.dao.impl.AccountUserDaoImpl">
+    	<property name="sqlMapClient" ref="sqlMapClient"/>
+    </bean>
+
+	<!-- ACCOUNT ADMIN DAO -->
+	<bean id="accountAdminDao" class="com.prms.dao.impl.AccountAdminDaoImpl">
+    	<property name="sqlMapClient" ref="sqlMapClient"/>
+    </bean>
+
+    <!-- TRAFFIC DAO
+	<bean id="trafficDao" class="com.prms.dao.impl.TrafficDaoImpl">
+    	<property name="sqlMapClient" ref="sqlMapClient"/>
+    </bean>
+    -->
+
+</beans>

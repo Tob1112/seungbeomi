@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<mx:VBox
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	initialize="sizeSet()"
+	creationComplete="init()"
+	width="100%"
+	height="100%"
+	xmlns:controller="com.prms.main.business.*"
+	xmlns:service = "com.prms.main.business.*"
+	xmlns:views = "com.prms.main.views.user.*"
+	xmlns:time="com.prms.timesheet.views.user.*">
+
+	<mx:Script source="./handlers/UserMainLayoutHandler.as" />
+
+	<!-- コントローラ登録 -->
+	<!--<controller:UserMainHeaderController id="mainController"/>-->
+
+    <mx:WipeDown id="messageWipeDown" duration="1000"/>
+    <mx:WipeUp id="messageWipeUp" duration="1000"/>
+
+    <!-- ヘッダメニュー -->
+	<mx:Canvas width="100%" height="8%">
+	    <mx:ApplicationControlBar
+	                              dock="true"
+	                              width="100%"
+	                              height="90%"
+	                              id="headerApplicationControlBar"
+	                              backgroundAlpha="1"
+	                              cornerRadius="4"
+	                              borderStyle="solid"
+	                              verticalAlign="middle"
+	                              creationPolicy="all">
+
+	        <mx:LinkButton id="timesheetLinkButton" label="勤務表" fontSize="14" color="white" click="clickHeaderMenuHandler('timesheet')"/>
+	        <mx:LinkButton id="transportationLinkButton" label="交通費" fontSize="14" color="white" click="clickHeaderMenuHandler('transportation')" x="-107" y="-15"/>
+	        <mx:LinkButton id="vacationLinkButton" label="有休" fontSize="14" color="white" click="clickHeaderMenuHandler('vacation')"/>
+	        <mx:LinkButton id="accountLinkButton" label="アカウント" fontSize="14" color="white" click="clickHeaderMenuHandler('account')"/>
+
+	        <!-- メニュー間間隔-->
+	        <mx:Spacer width="100%"/>
+
+	        <!-- ログインユーザーのメールアドレス-->
+	        <mx:Label id="userMailLabel" color="white"/>
+
+	        <mx:LinkButton id="userMainLogoutLinkButton" label="ログアウト" fontSize="14" color="white"/>
+	        <mx:LinkButton id="userMainHelpLinkButton" label="ヘルプ" fontSize="14" color="white"/>
+
+	    </mx:ApplicationControlBar>
+
+	    <mx:HBox
+	             width="100%"
+	             height="100%"
+	             visible="false"
+	             id="headerMessageHBox"
+	             backgroundAlpha="1"
+	             cornerRadius="4"
+	             backgroundColor="#ffffff"
+	             verticalAlign="middle"
+	             horizontalAlign="center"
+	             hideEffect="{messageWipeUp}"
+	             showEffect="{messageWipeDown}">
+
+	        <mx:Label text="正常に保存されました。" />
+	    </mx:HBox>
+	</mx:Canvas>
+	<!-- ヘッダメニュー -->
+
+    <!-- コンテンツ -->
+    <mx:Box id="userMainBodyCanvas"
+            width="{contentWidth}"
+            height="{contentHeight}"
+            verticalScrollPolicy="off"
+            horizontalScrollPolicy="off">
+        <mx:ModuleLoader id="userModuleLoader"/>
+    </mx:Box>
+    <!-- コンテンツ -->
+
+    <!-- 下 -->
+    <mx:Box id="footer" width="100%">
+        <mx:Text width="100%" textAlign="center" id="txtFooter" text="@Copyright" color="#FFFFFF"/>
+    </mx:Box>
+    <!-- 下 -->
+
+</mx:VBox>

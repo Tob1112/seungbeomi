@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="CodeDetailUtil">
+	<typeAlias alias="codeDetail" type="com.prms.model.CodeDetail"/>
+
+	<select id="getCodeDetailNameByPk" resultClass="string" parameterClass="codeDetail">
+		SELECT
+	        code_detail_name
+	    FROM
+	        code_detail
+	    WHERE
+	        code_type = #codeType#
+            AND code_detail = #codeDetail#
+	        AND latest_flag = 'Y'
+	</select>
+</sqlMap>

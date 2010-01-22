@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="fixTime">
+    <typeAlias alias="fixTime" type="com.prms.model.FixTime"/>
+
+    <resultMap  id="fixTimeResult"  class="fixTime">
+        <result property="comCode" column="COM_CODE"/>
+        <result property="empNo" column="EMP_NO"/>
+        <result property="yyyymm" column="YYYYMM"/>
+        <result property="fixTimeName" column="FIX_TIME_NAME"/>
+        <result property="clientName" column="CLIENT_NAME"/>
+        <result property="timeUnit" column="TIME_UNIT"/>
+        <result property="workStartTime" column="WORK_START_TIME"/>
+        <result property="workEndTime" column="WORK_END_TIME"/>
+        <result property="lunchStartTime" column="LUNCH_START_TIME"/>
+        <result property="lunchEndTime" column="LUNCH_END_TIME"/>
+    </resultMap>
+
+    <select id="getFixTimeList" resultMap="fixTimeResult" parameterClass="fixTime">
+        <![CDATA[
+			SELECT COM_CODE,
+						EMP_NO,
+						YYYYMM,
+						FIX_TIME_NAME,
+						CLIENT_NAME,
+						TIME_UNIT,
+						WORK_START_TIME,
+						WORK_END_TIME,
+						LUNCH_START_TIME,
+						LUNCH_END_TIME
+			FROM FIX_TIME
+			WHERE COM_CODE = #comCode#
+				AND EMP_NO = #empNo#
+				AND YYYYMM =  #yyyymm#
+			ORDER BY FIX_TIME_NAME
+			 ]]>
+    </select>
+
+    <!-- 勤務表登録  -->
+    <insert id="saveFixTime" parameterClass="fixTime">
+		INSERT INTO FIX_TIME
+		(
+		  COM_CODE, EMP_NO, YYYYMM, FIX_TIME_NAME, CLIENT_NAME, TIME_UNIT,
+		  WORK_START_TIME, WORK_END_TIME, LUNCH_START_TIME, LUNCH_END_TIME
+		)
+		VALUES
+		(
+		  #comCode#, #empNo#, #yyyymm#, #fixTimeName#, #clientName#, #timeUnit#,
+		  #workStartTime#, #workEndTime#, #lunchStartTime#, #lunchEndTime#
+		)
+    </insert>
+
+    <!-- 勤務表削除     -->
+    <!-- @author 孫承範 -->
+    <delete id="removeFixTime" parameterClass="fixTime">
+		DELETE FROM FIX_TIME
+		WHERE  COM_CODE = #comCode# AND EMP_NO = #empNo# AND YYYYMM = #yyyymm#
+    </delete>
+</sqlMap>

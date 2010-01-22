@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+	layout="absolute"
+	width="100%" height="100%"
+	horizontalScrollPolicy="off"
+	creationComplete="init()"
+	xmlns:user="com.prms.views.main.user.*"
+	xmlns:admin="com.prms.views.main.admin.*">
+
+    <mx:Style source="assets/css/main.css"/>
+
+    <mx:Script>
+        <![CDATA[
+        	import com.prms.Constants;
+            import mx.managers.IPopUpManager;
+            import mx.managers.IHistoryManager;
+
+            private var iPopUpManager:IPopUpManager;
+            private var iHistoryManager :IHistoryManager
+
+            private function init():void {
+                loginModuleLoader.url = Constants.LOGIN_BODY_SWF;
+            }
+        ]]>
+    </mx:Script>
+
+    <rds:PrmsServices xmlns:rds="com.prms.*"/>
+    <router:PrmsController xmlns:router="com.prms.*"/>
+
+    <mx:ViewStack id="indexViewStack" width="100%" height="100%">
+        <mx:ModuleLoader id="loginModuleLoader"/>
+        <user:UserMainLayout id="userMainLayout"/>
+        <admin:AdminMainLayout id="adminMainLayout"/>
+    </mx:ViewStack>
+
+</mx:Application>

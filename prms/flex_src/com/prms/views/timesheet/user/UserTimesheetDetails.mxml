@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml"
+           xmlns:col="com.prms.views.timesheet.common.*"
+           xmlns:val="com.prms.views.timesheet.common.validator.*"
+           width="100%" height="100%" fontSize="12">
+
+    <const:Constants xmlns:const = "com.prms.*" />
+    <handler:UserTimesheetDetailsHandler id="userTimesheetDetailsHandler" xmlns:handler = "com.prms.views.timesheet.user.handlers.*" />
+
+    <mx:constraintColumns>
+        <mx:ConstraintColumn id="col01" width="30%"/>
+        <mx:ConstraintColumn id="col02" width="30%"/>
+        <mx:ConstraintColumn id="col03" width="10%"/>
+        <mx:ConstraintColumn id="col04" width="29%"/>
+    </mx:constraintColumns>
+
+    <mx:constraintRows>
+        <mx:ConstraintRow id="row01" height="20"/>
+        <mx:ConstraintRow id="row02" height="20"/>
+        <mx:ConstraintRow id="row03" height="20"/>
+        <mx:ConstraintRow id="row04" height="25"/>
+        <mx:ConstraintRow id="row05" height="135"/>
+        <mx:ConstraintRow id="row06" height="25"/>
+        <mx:ConstraintRow id="row07" height="85%"/>
+    </mx:constraintRows>
+
+    <!-- 今日の日付 -->
+    <mx:Label id="todayDateLabel"
+              left="col04:0" right="col04:10" top="row01:5" bottom="row01:0"  textAlign="right"/>
+
+    <!-- 勤務表タイトル 形式：タイトル（YYYY年MM月） -->
+    <mx:Label id="titleLabel" left="col01:10" right="col01:30" top="row02:0" bottom="row02:2" fontSize="14" fontWeight="bold" textAlign="left"/>
+
+    <!-- ステータス -->
+    <mx:Label id="statusLabel" text="{userTimesheetDetailsHandler.model.timesheet.codeDetailName}"
+              left="col01:30" right="col01:10" top="row02:2" bottom="row02:2" textAlign="right"/>
+
+    <!-- 社員番号 -->
+    <mx:Label id="empNoLabel" text="社員番号 ： {userTimesheetDetailsHandler.model.timesheet.empNo}"
+              left="col03:10" right="col03:0" top="row03:0" bottom="row03:0" textAlign="right" />
+
+    <!-- 社員名 -->
+    <mx:Label id="empNameLabel" text="社員名 ： {userTimesheetDetailsHandler.model.timesheet.empName}"
+              left="col04:5" right="col04:10" top="row03:0" bottom="row03:0" textAlign="right"/>
+
+    <!-- リンクボタン -->
+    <mx:LinkButton id="fixTimeLinkButton" label="● 定時情報" left="col01:10" right="col04:10" top="row04:0" bottom="row04:0" textAlign="left" />
+    <mx:LinkButton id="timesheetDetailLinkButton"  label="● 勤務表" left="col01:10" right="col04:10" top="row06:0" bottom="row06:0" textAlign="left" />
+
+    <!-- 定時情報 -->
+    <mx:AdvancedDataGrid id="fixTimeAdvancedDataGrid"
+                         left="col01:10"
+                         right="col04:10"
+                         top="row05:5"
+                         bottom="row05:5"
+                         sortExpertMode="true"
+                         rowHeight="25"
+                         sortableColumns="false"
+                         draggableColumns="false"
+                         textAlign="center"
+                         editable="true"
+                         verticalScrollPolicy="off"
+                         dataProvider="{userTimesheetDetailsHandler.model.fixTimeAC}">
+        <mx:groupedColumns>
+            <col:TimesheetDetailsColumn id="fixTimeName" headerText="名称" dataField="fixTimeName" editable="false" width="50" format="default"/>
+            <col:TimesheetDetailsColumn id="clientName" headerText="顧客名" dataField="clientName" format="default"/>
+            <col:TimesheetDetailsColumn id="timeUnit" headerText="{'時間\n単位'}" dataField="timeUnit" format="unitTime"/>
+            <mx:AdvancedDataGridColumnGroup headerText="定時">
+                <col:TimesheetDetailsColumn headerText="開始" dataField="workStartTime" format="time"/>
+                <col:TimesheetDetailsColumn headerText="終了" dataField="workEndTime" format="time"/>
+            </mx:AdvancedDataGridColumnGroup>
+            <mx:AdvancedDataGridColumnGroup headerText="お昼休み">
+                <col:TimesheetDetailsColumn headerText="開始" dataField="lunchStartTime" format="time"/>
+                <col:TimesheetDetailsColumn headerText="終了" dataField="lunchEndTime" format="time"/>
+            </mx:AdvancedDataGridColumnGroup>
+            <col:TimesheetDetailsColumn headerText="{'勤務表\初期値'}" editable="false" format="fixApplyButton"/>
+        </mx:groupedColumns>
+    </mx:AdvancedDataGrid>
+
+    <!-- 勤務表 -->
+    <mx:AdvancedDataGrid id="timesheetDetailAdvancedDataGrid"
+                         left="col01:10"
+                         right="col04:10"
+                         top="row07:5"
+                         bottom="row07:10"
+                         textAlign="center"
+                         sortExpertMode="true"
+                         editable="true"
+                         sortableColumns="false"
+                         draggableColumns="false"
+                         dataProvider="{userTimesheetDetailsHandler.model.timesheetDetailAC}" >
+        <mx:columns>
+            <col:TimesheetDetailsColumn headerText="日付" dataField="yyyymmdd" editable="false" width="50" format="date" />
+            <col:TimesheetDetailsColumn headerText="勤務形態" dataField="workPatternCode" editorDataField="value" format="workType" />
+            <col:TimesheetDetailsColumn headerText="定時情報名称" dataField="fixTimeName" format="fixTime" />
+            <col:TimesheetDetailsColumn headerText="開始" dataField="workStartTime" format="time" />
+            <col:TimesheetDetailsColumn headerText="終了" dataField="workEndTime" format="time"/>
+            <col:TimesheetDetailsColumn headerText="休憩" dataField="breakTimeTotal" format="time" />
+            <col:TimesheetDetailsColumn headerText="{'実動\n時間'}" dataField="actualTime" editable="false" format="default" />
+            <col:TimesheetDetailsColumn headerText="備考" dataField="note" format="default" />
+        </mx:columns>
+    </mx:AdvancedDataGrid>
+
+    <!-- ボタン ControlBar -->
+    <mx:ControlBar left="col01:2" right="col04:2"  bottom="{userTimesheetDetailsHandler.buttonHeight}">
+        <mx:Button id="backButton"  label="戻る" width="100"/>
+        <mx:Spacer width="100%" />
+        <mx:Button id="saveButton" label="保存" width="100"/>
+        <mx:Button id="submitButton" label="提出" width="100"/>
+    </mx:ControlBar>
+
+    <mx:states>
+        <mx:State name="{Constants.OPEN_ALL}">
+            <mx:SetProperty target="{row05}" name="height" value="135"/>
+            <mx:SetProperty target="{row07}" name="height" value="85%"/>
+            <mx:SetProperty target="{fixTimeLinkButton}" name="label" value="● 定時情報"/>
+            <mx:SetProperty target="{timesheetDetailLinkButton}" name="label" value="● 勤務表"/>
+            <mx:SetProperty target="{fixTimeAdvancedDataGrid}" name="visible" value="true"/>
+            <mx:SetProperty target="{timesheetDetailAdvancedDataGrid}" name="visible" value="true"/>
+        </mx:State>
+        <mx:State name="{Constants.CLOSE_ALL}">
+            <mx:SetProperty target="{row05}" name="height" value="0"/>
+            <mx:SetProperty target="{fixTimeLinkButton}" name="label" value="● 定時情報 ............"/>
+            <mx:SetProperty target="{timesheetDetailLinkButton}" name="label" value="● 勤務表 ............"/>
+            <mx:SetProperty target="{fixTimeAdvancedDataGrid}" name="visible" value="false"/>
+            <mx:SetProperty target="{timesheetDetailAdvancedDataGrid}" name="visible" value="false"/>
+        </mx:State>
+        <mx:State name="{Constants.CLOSE_FIXTIME_AND_OPEN_TIMESHEETDETAIL}">
+            <mx:SetProperty target="{row05}" name="height" value="0"/>
+            <mx:SetProperty target="{row07}" name="height" value="90%"/>
+            <mx:SetProperty target="{fixTimeLinkButton}" name="label" value="● 定時情報 ............"/>
+            <mx:SetProperty target="{timesheetDetailLinkButton}" name="label" value="● 勤務表"/>
+            <mx:SetProperty target="{fixTimeAdvancedDataGrid}" name="visible" value="false"/>
+            <mx:SetProperty target="{timesheetDetailAdvancedDataGrid}" name="visible" value="true"/>
+        </mx:State>
+        <mx:State name="{Constants.OEPN_FIXTIME_AND_CLOSE_TIMESHEETDETAIL}">
+            <mx:SetProperty target="{row05}" name="height" value="135"/>
+            <mx:SetProperty target="{fixTimeLinkButton}" name="label" value="● 定時情報"/>
+            <mx:SetProperty target="{timesheetDetailLinkButton}" name="label" value="● 勤務表 ..........."/>
+            <mx:SetProperty target="{fixTimeAdvancedDataGrid}" name="visible" value="true"/>
+            <mx:SetProperty target="{timesheetDetailAdvancedDataGrid}" name="visible" value="false"/>
+        </mx:State>
+    </mx:states>
+</mx:Canvas>

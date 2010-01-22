@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="timesheetDetail">
+    <typeAlias alias="timesheetDetail" type="com.prms.model.TimesheetDetail"/>
+    <typeAlias alias="codeDetail" type="com.prms.model.CodeDetail"/>
+
+    <resultMap id="timesheetDetailResult" class="timesheetDetail">
+        <result property="comCode" column="COM_CODE"/>
+        <result property="empNo" column="EMP_NO"/>
+        <result property="yyyymm" column="YYYYMM"/>
+        <result property="yyyymmdd" column="YYYYMMDD"/>
+        <result property="workPatternCode" column="WORK_PATTERN_CODE"/>
+        <result property="fixTimeName" column="FIX_TIME_NAME"/>
+        <result property="workStartTime" column="WORK_START_TIME"/>
+        <result property="workEndTime" column="WORK_END_TIME"/>
+        <result property="workTimeTotal" column="WORK_TIME_TOTAL" nullValue="0"/>
+        <result property="lunchBreakTime" column="LUNCH_BREAK_TIME" />
+        <result property="etcBreakTime" column="ETC_BREAK_TIME" />
+        <result property="breakTimeTotal" column="BREAK_TIME_TOTAL" nullValue="0"/>
+        <result property="actualTime" column="ACTUAL_TIME" nullValue="0"/>
+        <result property="overWorkTime" column="OVER_WORK_TIME" nullValue="0"/>
+        <result property="nightWorkTime" column="NIGHT_WORK_TIME" nullValue="0"/>
+        <result property="holidayWorkTime" column="HOLIDAY_WORK_TIME" nullValue="0"/>
+        <result property="lateTime" column="LATE_TIME" nullValue="0"/>
+        <result property="earlyTime" column="EARLY_TIME" nullValue="0"/>
+        <result property="note" column="NOTE"/>
+    </resultMap>
+
+    <resultMap id="codeDetailResult" class="codeDetail">
+        <result property="codeDetail" column="CODE_DETAIL"/>
+        <result property="codeDetailName" column="CODE_DETAIL_NAME"/>
+    </resultMap>
+
+    <select id="getTimesheetDetail" resultMap="timesheetDetailResult" parameterClass="timesheetDetail">
+        <![CDATA[
+				      SELECT   COM_CODE,
+									EMP_NO,
+									YYYYMM,
+									YYYYMMDD,
+									WORK_PATTERN_CODE,
+									FIX_TIME_NAME,
+									WORK_START_TIME,
+									WORK_END_TIME ,
+									WORK_TIME_TOTAL,
+									LUNCH_BREAK_TIME,
+								    ETC_BREAK_TIME,
+								    BREAK_TIME_TOTAL,
+								    ACTUAL_TIME,
+								    OVER_WORK_TIME,
+								    NIGHT_WORK_TIME,
+								    HOLIDAY_WORK_TIME,
+						            LATE_TIME,
+						            EARLY_TIME,
+						            NOTE
+				      FROM  TIMESHEET_DD
+				      WHERE COM_CODE = #comCode#
+				      	  AND EMP_NO = #empNo#
+				      	  AND YYYYMM =  #yyyymm#
+				      ORDER BY YYYYMMDD
+      	  ]]>
+    </select>
+
+    <!-- 勤務表登録SQL  -->
+    <!-- @author 孫承範 -->
+    <insert id="saveTimesheetDetail" parameterClass="timesheetDetail">
+		INSERT INTO
+		  TIMESHEET_DD
+		(
+		  COM_CODE, EMP_NO, YYYYMM, YYYYMMDD, WORK_PATTERN_CODE, FIX_TIME_NAME,
+		  WORK_START_TIME, WORK_END_TIME, WORK_TIME_TOTAL, LUNCH_BREAK_TIME, ETC_BREAK_TIME,
+		  BREAK_TIME_TOTAL, ACTUAL_TIME, OVER_WORK_TIME, NIGHT_WORK_TIME, HOLIDAY_WORK_TIME,
+		  LATE_TIME, EARLY_TIME, NOTE
+		)
+		VALUES
+		(
+		  #comCode#, #empNo#, #yyyymm#, #yyyymmdd#, #workPatternCode#, #fixTimeName#,
+		  #workStartTime#, #workEndTime#, #workTimeTotal#, #lunchBreakTime#, #etcBreakTime#,
+		  #breakTimeTotal#, #actualTime#, #overWorkTime#, #nightWorkTime#, #holidayWorkTime#,
+		  #lateTime#, #earlyTime#, #note#
+		)
+	</insert>
+
+    <!-- 勤務表削除SQL  -->
+    <!-- @author 孫承範 -->
+    <delete id="removeTimesheetDetail" parameterClass="timesheetDetail">
+		DELETE FROM TIMESHEET_DD
+		WHERE COM_CODE = #comCode#
+			AND EMP_NO = #empNo#
+			AND YYYYMM = #yyyymm#
+    </delete>
+
+    <!-- 勤務形態取得 -->
+    <select id="getWorkPattern" resultMap="codeDetailResult">
+		SELECT CODE_DETAIL, CODE_DETAIL_NAME
+		FROM CODE_DETAIL
+		WHERE CODE_TYPE = 2
+    </select>
+</sqlMap>

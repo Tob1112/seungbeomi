@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="account">
+
+	<typeAlias alias="account" type="com.prms.model.Account"/>
+	<typeAlias alias="accountUser" type="com.prms.model.AccountUser"/>
+	<typeAlias alias="timesheet" type="com.prms.model.Timesheet"/>
+
+	<resultMap id="accountResult" class="account">
+		<result property="comCode" column="COM_CODE" />
+		<result property="empNo" column="EMP_NO" />
+		<result property="regDay" column="REG_DAY" />
+		<result property="delDay" column="DEL_DAY" />
+		<result property="latestFlag" column="LATEST_FLAG" />
+		<result property="deptCode" column="DEPT_CODE" />
+		<result property="email" column="EMAIL" />
+		<result property="hireDay" column="HIRE_DAY" />
+		<result property="retireDay" column="RETIRE_DAY" />
+		<result property="lastName" column="LAST_NAME" />
+		<result property="firstName" column="FIRST_NAME" />
+	</resultMap>
+
+	<resultMap id="accountUserResult" class="accountUser">
+		<result property="email" column="EMAIL" />
+	</resultMap>
+
+	<select id="getAccountByEmail" resultMap="accountResult" parameterClass="string">
+		SELECT COM_CODE, EMP_NO, REG_DAY, DEL_DAY, LATEST_FLAG, DEPT_CODE, EMAIL, HIRE_DAY, RETIRE_DAY, LAST_NAME, FIRST_NAME
+		FROM   EMP
+		WHERE  EMAIL = #email#
+	</select>
+
+
+	<!-- ユーザーパスワードチェック -->
+	<select id="getAccount" resultMap="accountUserResult" parameterClass="accountUser">
+		SELECT EMAIL
+		FROM   EMP
+		WHERE  EMP_NO = #empNo# AND PASSWD = #accountUserPassword#
+
+	</select>
+
+    <!-- ユーザーパスワード変更  -->
+	<update id="updateAccount" parameterClass="accountUser" >
+		UPDATE EMP
+		SET    PASSWD = #accountUserNewPassword#
+		WHERE  EMP_NO = #empNo#
+	</update>
+
+	<sql id="getNameFragment">
+		FROM   EMP
+		WHERE  EMP_NO = #empNo# AND COM_CODE = #comCode#
+	</sql>
+
+	<select id="getLastName" resultClass="string">
+		SELECT LAST_NAME
+		<include refid="getNameFragment"/>
+	</select>
+
+	<select id="getFirstName" resultClass="string">
+		SELECT FIRST_NAME
+		<include refid="getNameFragment"/>
+	</select>
+
+</sqlMap>
+

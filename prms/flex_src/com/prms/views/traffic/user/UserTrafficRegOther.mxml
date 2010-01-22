@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml"
+	width="99%" height="100%"
+	fontSize="12"
+	horizontalScrollPolicy="off"
+	>
+
+	<mx:Style>
+		.headerStyle {
+			text-align : center;
+		}
+	</mx:Style>
+
+	<mx:VBox width="100%" height="100%" id="etcscroll"
+		paddingTop="10"
+		paddingLeft="10"
+		paddingRight="10">
+		<mx:HBox width="100%" verticalAlign="bottom">
+			<mx:Label text="その他" fontSize="14" fontWeight="bold"/>
+			<mx:Image id="delBtn" scaleContent="false" source="./assets/add.png"/>
+			<mx:Spacer width="100%" />
+			<mx:HBox width="100" height="30" horizontalAlign="right" verticalAlign="middle"
+				borderStyle="solid" borderThickness="2" borderColor="gray" cornerRadius="8">
+				<mx:Label text="Total : 20,000" textAlign="center"/>
+			</mx:HBox>
+		</mx:HBox>
+		<mx:DataGrid id="dg"
+			 width="100%"
+			 draggableColumns="false"
+			 rowCount="5"
+			 rowHeight="30"
+			 lockedRowCount="5"
+			 editable="true"
+			 textAlign="center">
+			<mx:columns>
+				<mx:DataGridColumn headerText="" editable="false" width="40">
+					<mx:itemRenderer>
+						<mx:Component>
+							<mx:Image horizontalAlign="center" verticalAlign="middle"
+								scaleContent="false"
+								/>
+						</mx:Component>
+					</mx:itemRenderer>
+				</mx:DataGridColumn>
+
+				<mx:DataGridColumn headerText="期間" dataField="period" editable="false"
+					  width="260"/>
+
+				<mx:DataGridColumn headerText="金額  (円)" dataField="money" width="200"/>
+
+				<mx:DataGridColumn headerText="備考" dataField="note"
+					headerStyleName="headerStyle" textAlign="left">
+				</mx:DataGridColumn>
+			</mx:columns>
+		</mx:DataGrid>
+		<mx:Spacer height="5%"/>
+	</mx:VBox>
+
+</mx:Canvas>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- ============================================= -->
+    <!-- SERVICES						   			   -->
+    <!-- ============================================= -->
+    <!-- PRMS FACADE SERVICE -->
+    <bean id="prmsFacade" class="com.prms.service.impl.PrmsFacadeImpl">
+    	<property name="securityService" ref="securityService"/>
+    	<property name="timesheetService" ref="timesheetService"/>
+    	<property name="accountService" ref="accountService"/>
+    	<!--
+    	<property name="trafficService" ref="trafficService"/>
+    	 -->
+    </bean>
+
+    <!-- SECURITY SERVICE -->
+    <bean id="securityService" class="com.prms.service.impl.SecurityServiceImpl">
+    	<property name="securityDao" ref="securityDao" />
+    </bean>
+
+    <!-- TIMESHEET SERVICE -->
+    <bean id="timesheetService" class="com.prms.service.impl.TimesheetServiceImpl">
+        <property name="timesheetDao" ref="timesheetDao" />
+    </bean>
+
+    <!-- ACCOUNT SERVICE-->
+	<bean id="accountService" class="com.prms.service.impl.AccountServiceImpl">
+		<property name="accountUserDao" ref="accountUserDao" />
+		<property name="accountAdminDao" ref="accountAdminDao" />
+	</bean>
+
+	<!-- TIMESHEET SERVICE
+    <bean id="trafficService" class="com.prms.service.impl.TrafficServiceImpl">
+        <property name="trafficDao" ref="trafficDao" />
+    </bean>
+	-->
+</beans>
