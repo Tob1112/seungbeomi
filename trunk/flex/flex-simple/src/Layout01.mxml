@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute">
+
+    <mx:Style>
+		Panel {
+			background-alpha: 1.0;
+		    border-alpha: 1.0;
+		    border-thickness-left: 1;
+		    border-thickness-right: 1;
+		    border-color: #E7EFFF;
+		}
+	</mx:Style>
+
+    <mx:states>
+        <mx:State name="expandTwo"/>
+        <mx:State name="expandThree">
+            <mx:SetProperty target="{panelTwo}" name="height" value="38.636364"/>
+            <mx:SetStyle target="{panelTwo}" name="right" value="9.984863"/>
+            <mx:SetProperty target="{panelThree}" name="height" value="347.72726"/>
+            <mx:SetStyle target="{panelThree}" name="bottom" value="10.122742"/>
+        </mx:State>
+    </mx:states>
+
+    <!-- APPLICATION CONTROL BAR -->
+    <mx:ApplicationControlBar width="1024" top="20" horizontalCenter="0">
+        <mx:LinkButton label="all" click="this.currentState=''"/>
+        <mx:LinkButton label="two" click="this.currentState='expandTwo'"/>
+        <mx:LinkButton label="three" click="this.currentState='expandThree'"/>
+    </mx:ApplicationControlBar>
+
+    <!-- LAYOUT -->
+    <mx:Canvas top="50" width="1024" height="600" horizontalCenter="0">
+        <mx:Panel id="panelOne" title="one" layout="absolute" width="100%" x="10" y="20" height="558">
+            <mx:ControlBar/>
+            <mx:Panel id="panelTwo" title="two" layout="absolute" height="180" click="this.currentState='expandTwo'" left="10" right="10" top="100">
+                <mx:ControlBar id="controlbar2"/>
+            </mx:Panel>
+            <mx:Panel id="panelThree" title="three" layout="absolute" height="200" click="this.currentState='expandThree'" left="10" right="10" y="{panelTwo.y + 190}">
+                <mx:ControlBar id="controlbar1"/>
+            </mx:Panel>
+        </mx:Panel>
+    </mx:Canvas>
+
+    <!-- TRANSITION -->
+    <mx:transitions>
+        <mx:Transition id="transiteOne" fromState="*" toState="*">
+            <mx:Parallel id="parallel0ne" targets="{[panelTwo,panelThree]}">
+                <mx:Move duration="450"/>
+                <mx:Resize duration="450"/>
+            </mx:Parallel>
+        </mx:Transition>
+    </mx:transitions>
+
+</mx:Application>

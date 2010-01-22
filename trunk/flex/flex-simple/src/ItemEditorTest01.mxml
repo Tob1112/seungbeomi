@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" creationComplete="init()">
+	<mx:Script>
+		<![CDATA[
+			import mx.events.DropdownEvent;
+			import mx.controls.ComboBox;
+			import mx.events.AdvancedDataGridEvent;
+			import mx.collections.ArrayCollection;
+			import itemeditor.ItemEditorTest;
+
+			private var arrayData:Array = [
+				{name:"banana",cat:"fruit",cost:0.99,total:0},
+				{name:"bread",cat:"bakery",cost:0.52,total:0},
+				{name:"orange",cat:"fruit",cost:0.33,total:0}
+			];
+
+			private var dp:ArrayCollection = new ArrayCollection(arrayData);
+
+			private function init():void {
+				adg.addEventListener(AdvancedDataGridEvent.ITEM_EDIT_BEGIN, editBegin);
+			}
+
+			private function editBegin(e:AdvancedDataGridEvent) {
+				trace("edit begin");
+				new ItemEditorTest().dispatchEvent(new DropdownEvent(DropdownEvent.OPEN));
+			}
+
+		]]>
+	</mx:Script>
+
+	<mx:AdvancedDataGrid id="adg" dataProvider="{dp}" editable="true">
+		<mx:columns>
+			<mx:AdvancedDataGridColumn headerText="Name" dataField="name"/>
+			<mx:AdvancedDataGridColumn id="parentAdg" headerText="Category" dataField="cat" itemEditor="itemeditor.ItemEditorTest"/>
+			<mx:AdvancedDataGridColumn headerText="Cost" dataField="cost"/>
+		</mx:columns>
+	</mx:AdvancedDataGrid>
+
+</mx:Application>

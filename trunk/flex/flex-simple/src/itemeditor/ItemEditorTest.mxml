@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:ComboBox xmlns:mx="http://www.adobe.com/2006/mxml" dataProvider="{dp}" creationComplete="init()" >
+	<mx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			private var arrayData:Array = [
+				{label:"fruit",data:"fruit"},
+				{label:"bakery",data:"bakery"},
+				{label:"bagitable",data:"bagitable"}
+			];
+
+			private var dp:ArrayCollection = new ArrayCollection(arrayData);
+
+			private function init():void {
+			}
+
+			public function openTest():void {
+				trace("open");
+
+			}
+		]]>
+	</mx:Script>
+</mx:ComboBox>
