@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" creationComplete="init()">
+	<mx:Script>
+		<![CDATA[
+			import mx.collections.IList;
+			import mx.events.DragEvent;
+			import mx.collections.ArrayCollection;
+
+			private function init():void {
+				dg.dataProvider = new ArrayCollection([
+					{name:"banana",cat:"fruit",cost:0.99,total:0},
+					{name:"bread",cat:"bakery",cost:0.52,total:0},
+					{name:"orange",cat:"fruit",cost:0.33,total:0}
+				]);
+				lst.dataProvider = new ArrayCollection([]);
+			}
+
+			private function dragDropHandler(e:DragEvent):void {
+				if (e.dragSource.hasFormat("items")) {
+					e.preventDefault();
+					var dropTarget:List = List(e.currentTarget);
+					var itemsArray:Array = e.dragSource.dataForFormat("items") as Array;
+					var tempItem:Object = {
+						label: itemsArray[0].name,
+						data: itemsArray[0].cost
+					};
+					IList(dropTarget.dataProvider).addItem(tempItem);
+				}
+			}
+		]]>
+	</mx:Script>
+	<mx:DataGrid id="dg" dragEnabled="true" dragMoveEnabled="true" height="156">
+		<mx:columns>
+			<mx:DataGridColumn dataField="name"/>
+			<mx:DataGridColumn dataField="cat"/>
+			<mx:DataGridColumn dataField="cost"/>
+		</mx:columns>
+	</mx:DataGrid>
+	<mx:List id="lst" dropEnabled="true" dragDrop="dragDropHandler(event)" x="310"/>
+</mx:Application>
