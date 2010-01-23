@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" creationComplete="init()">
+	<mx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			import mx.collections.IViewCursor;
+			import mx.collections.IList;
+			import mx.events.DragEvent;
+			import mx.collections.ArrayCollection;
+
+			private function init():void {
+				dg.dataProvider = new ArrayCollection([
+					{name:"banana",cat:"fruit",cost:0.99,total:0},
+					{name:"bread",cat:"bakery",cost:0.52,total:0},
+					{name:"orange",cat:"fruit",cost:0.33,total:0}
+				]);
+				dg2.dataProvider = new ArrayCollection([]);
+			}
+
+			private function dragDropHandler(e:DragEvent):void {
+				if (e.dragSource.hasFormat("items")) {
+					e.preventDefault();
+					var dropTarget:DataGrid = DataGrid(e.currentTarget);
+
+					var itemsArray:Array = e.dragSource.dataForFormat("items") as Array;
+
+					var tempAC:ArrayCollection = dg2.dataProvider as ArrayCollection;
+
+					if (tempAC.length >= 0 && tempAC.length < 2) {
+						IList(dropTarget.dataProvider).addItem(itemsArray[0]);
+					} else {
+						trace("dg2 is over!!");
+					}
+				}
+			}
+
+			private function submit():void {
+				trace("<<< click");
+				//Alert.show(dg2.dataProvider.name.toString());
+				var tempAC:ArrayCollection = dg2.dataProvider as ArrayCollection;
+				var cursor:IViewCursor = tempAC.createCursor();
+				while (!cursor.afterLast) {
+					var obj:Object = cursor.current;
+					trace(obj.name + " " + obj.cost);
+					cursor.moveNext();
+				}
+
+
+			}
+		]]>
+	</mx:Script>
+	<mx:DataGrid id="dg" dragEnabled="true" height="156">
+		<mx:columns>
+			<mx:DataGridColumn dataField="name"/>
+			<mx:DataGridColumn dataField="cat"/>
+			<mx:DataGridColumn dataField="cost"/>
+		</mx:columns>
+	</mx:DataGrid>
+
+	<mx:DataGrid id="dg2" dropEnabled="true" dragDrop="dragDropHandler(event)" x="310" height="156">
+		<mx:columns>
+			<mx:DataGridColumn headerText="NAME" dataField="name"/>
+			<mx:DataGridColumn headerText="COST" dataField="cost"/>
+		</mx:columns>
+	</mx:DataGrid>
+
+	<mx:Button label="submit" click="submit()" x="310" y="164"/>
+</mx:Application>
