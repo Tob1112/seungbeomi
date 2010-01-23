@@ -8,6 +8,11 @@
 			import mx.events.DragEvent;
 			import mx.collections.ArrayCollection;
 
+			private var isSetBorderColor:Boolean = false;
+
+			private var tempBorderColor:uint;
+			private var tempBorderThickness:uint;
+
 			private function init():void {
 				dg.dataProvider = new ArrayCollection([
 					{name:"banana",cat:"fruit",cost:0.99,total:0},
@@ -17,9 +22,23 @@
 				dg2.dataProvider = new ArrayCollection([]);
 			}
 
+			private function dragEnterHandler(e:DragEvent):void {
+
+				if (!isSetBorderColor) {
+					tempBorderColor = e.currentTarget.getStyle("borderColor");
+					tempBorderThickness = e.currentTarget.getStyle("borderThickness");
+					trace("tempBorderColor - " + tempBorderColor);
+					isSetBorderColor = true;
+				}
+				e.currentTarget.setStyle("borderColor","red");
+				e.currentTarget.setStyle("borderThickness",2);
+			}
+
 			private function dragDropHandler(e:DragEvent):void {
+
+
+				e.preventDefault();
 				if (e.dragSource.hasFormat("items")) {
-					e.preventDefault();
 					var dropTarget:DataGrid = DataGrid(e.currentTarget);
 
 					var itemsArray:Array = e.dragSource.dataForFormat("items") as Array;
@@ -32,6 +51,13 @@
 						trace("dg2 is over!!");
 					}
 				}
+				dragExitHandler(e);
+			}
+
+			public function dragExitHandler(e:DragEvent):void {
+				e.currentTarget.setStyle("borderColor", tempBorderColor);
+				e.currentTarget.setStyle("borderThickness", tempBorderThickness);
+				isSetBorderColor = false;
 			}
 
 			private function submit():void {
@@ -44,8 +70,6 @@
 					trace(obj.name + " " + obj.cost);
 					cursor.moveNext();
 				}
-
-
 			}
 		]]>
 	</mx:Script>
@@ -57,7 +81,7 @@
 		</mx:columns>
 	</mx:DataGrid>
 
-	<mx:DataGrid id="dg2" dropEnabled="true" dragDrop="dragDropHandler(event)" x="310" height="156">
+	<mx:DataGrid id="dg2" dropEnabled="true" dragEnter="dragEnterHandler(event)" dragDrop="dragDropHandler(event)" dragExit="dragExitHandler(event)"  x="310" height="156">
 		<mx:columns>
 			<mx:DataGridColumn headerText="NAME" dataField="name"/>
 			<mx:DataGridColumn headerText="COST" dataField="cost"/>
