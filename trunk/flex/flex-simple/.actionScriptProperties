@@ -37,6 +37,7 @@
     <application path="ExtendsDataGrid_After.mxml"/>
     <application path="DragAndDropTest03.mxml"/>
     <application path="DragAndDrop_DatagridToList.mxml"/>
+    <application path="DragAndDrop_DatagridToDatagrid.mxml"/>
   </applications>
   <modules/>
   <buildCSSFiles/>
