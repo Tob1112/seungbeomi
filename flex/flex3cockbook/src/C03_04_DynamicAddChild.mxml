@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute">
+	<mx:Script>
+		<![CDATA[
+			import mx.controls.Button;
+
+			private var i:int = 0;
+
+			private function add(e:MouseEvent):void {
+				var btn:Button = new Button();
+				btn.id = "btn" + i;
+				btn.label = "btn" + i;
+				this.pnl.addChild(btn);
+				i++;
+			}
+			private function remove(e:MouseEvent):void {
+				i--;
+				this.pnl.removeChild(this.pnl.getChildAt(i));
+			}
+			private function removeAll(e:MouseEvent):void {
+				this.pnl.removeAllChildren();
+			}
+		]]>
+	</mx:Script>
+
+	<mx:Panel id="pnl" width="400" height="300">
+		<mx:ControlBar>
+			<mx:Button label="add" click="add(event)"/>
+			<mx:Button label="remove" click="remove(event)"/>
+			<mx:Button label="removeAll" click="removeAll(event)"/>
+		</mx:ControlBar>
+	</mx:Panel>
+</mx:Application>
