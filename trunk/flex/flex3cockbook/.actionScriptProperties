@@ -9,29 +9,41 @@
     <sourceAttachmentPath/>
   </compiler>
   <applications>
-    <application path="C02_04_SWFLoader.mxml"/>
-    <application path="C03_01_Layout.mxml"/>
-    <application path="C02_08_DynamicMenu.mxml"/>
-    <application path="C02_09_menuControlHandler.mxml"/>
+    <application path="C02_14_focusInAndFocusOut.mxml"/>
     <application path="C02_07_DataProviderForMenu.mxml"/>
-    <application path="flex3cockbook.mxml"/>
-    <application path="C02_10_Alert.mxml"/>
+    <application path="C03_08_constraintTextLayout.mxml"/>
+    <application path="C02_01_watchClickButton.mxml"/>
     <application path="C02_12_multiPopUp.mxml"/>
+    <application path="C01_13_eventDispatcher.mxml"/>
+    <application path="C02_10_Alert.mxml"/>
+    <application path="C03_04_dynamicChildControl.mxml"/>
+    <application path="C02_08_DynamicMenu.mxml"/>
+    <application path="C01_14_customEvent.mxml"/>
+    <application path="flex3cockbook.mxml"/>
+    <application path="C03_07_constrainLayout.mxml"/>
+    <application path="C01_17_componentType.mxml"/>
+    <application path="C03_03_mousePositioning.mxml"/>
+    <application path="C03_02_positioning.mxml"/>
+    <application path="C02_13_popupBorder.mxml"/>
+    <application path="C01_18_interface.mxml"/>
+    <application path="C03_01_Layout.mxml"/>
+    <application path="C02_09_menuControlHandler.mxml"/>
+    <application path="C03_06_ChildWidthHeight.mxml"/>
+    <application path="C01_11_bubblingComponent.mxml"/>
+    <application path="C02_05_TabIndex.mxml"/>
+    <application path="C02_04_SWFLoader.mxml"/>
+    <application path="C01_16_methodArgs.mxml"/>
+    <application path="C01_12_codeBehindComponent.mxml"/>
+    <application path="C02_06_labelFunction.mxml"/>
+    <application path="C03_24_manualContainerLayout.mxml"/>
+    <application path="C03_04_DynamicAddChild.mxml"/>
     <application path="C02_03_ColorPicker.mxml"/>
     <application path="C02_11_dateController.mxml"/>
+    <application path="TestApp.mxml"/>
+    <application path="C01_15_watchKeyboardEvent.mxml"/>
     <application path="C02_02_toggleButton.mxml"/>
-    <application path="C02_06_labelFunction.mxml"/>
-    <application path="C02_01_watchClickButton.mxml"/>
-    <application path="C02_05_TabIndex.mxml"/>
-    <application path="C02_13_popupBorder.mxml"/>
-    <application path="C03_03_mousePositioning.mxml"/>
-    <application path="C02_14_focusInAndFocusOut.mxml"/>
-    <application path="C03_02_positioning.mxml"/>
-    <application path="C03_04_dynamicChildControl.mxml"/>
     <application path="C03_05_restrictLayout.mxml"/>
     <application path="C03_06_sizingInnerChild.mxml"/>
-    <application path="C03_24_manualContainerLayout.mxml"/>
-    <application path="TestApp.mxml"/>
   </applications>
   <modules/>
   <buildCSSFiles/>
