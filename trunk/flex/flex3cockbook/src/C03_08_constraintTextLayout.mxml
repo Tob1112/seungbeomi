@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="100%" height="100%">
+
+	<mx:Script>
+		<![CDATA[
+			import mx.core.UIComponent;
+			import mx.containers.utilityClasses.ConstraintColumn;
+			import mx.controls.TextArea;
+
+			[Bindable] public var txt:String = "qwertyuiopasdfghjklzxcvbnm";
+
+			private function addText(e:Event):void {
+				var text:TextArea = new TextArea();
+				addChild(text);
+				text.text = txt;
+				var constratintColumn:ConstraintColumn = new ConstraintColumn();
+				constratintColumn.id = "column" + numChildren.toString();
+				constraintColumns.push(constratintColumn);
+
+				if (constraintColumns.length  > 1) {
+					for each (var col:ConstraintColumn in constraintColumns) {
+						col.width = (width / (numChildren - 2));
+					}
+				}
+
+				constratintColumn.width = (width / (numChildren - 2));
+				text.setStyle("top","row:30");
+				text.setStyle("bottom","row:30");
+				text.setStyle("left",constratintColumn.id + ":10");
+				text.setStyle("right",constratintColumn.id + ":10");
+			}
+
+			private function addRow(e:Event):void {
+				var constraintRow:ConstraintRow = new ConstraintRow();
+				constraintRows.push(constraintRow);
+				constraintRow.id = "row" + constraintRows.length;
+
+				for each (var row:ConstraintRow in constraintRows) {
+					row.height = (height / (constraintRows.length - 1));
+				}
+
+				var i:int = Math.round(numChildren - (numChildren - 2) / constraintRows.length);
+
+				while(i < numChildren) {
+					var child:UIComponent = (getChildAt(i) as UIComponent);
+					child.setStyle("top", "row" + constraintRows.length + ":30");
+					child.setStyle("bottom", "row" + constraintRows.length + ":30");
+					child.setStyle("left", (constraintColumns[i-(constraintColumns.length / 2) - 2] as ConstraintColumn).id + ":10");
+					child.setStyle("right", (constraintColumns[i-(constraintColumns.length / 2) - 2] as ConstraintColumn).id + ":10");
+					i++;
+				}
+
+				constraintColumns.length = constraintColumns.length / constraintRows.length;
+			}
+		]]>
+	</mx:Script>
+
+	<mx:constraintRows>
+		<mx:ConstraintRow id="row" height="100%"/>
+	</mx:constraintRows>
+
+	<mx:Button label="add Text" click="addText(event)" />
+	<mx:Button label="add row" click="addRow(event)" x="150"/>
+
+</mx:Application>

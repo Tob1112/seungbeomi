@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" horizontalAlign="left">
+	<mx:Script>
+		<![CDATA[
+			import mx.controls.Image;
+			import mx.containers.HBox;
+
+			[Embed(source="assets/images/son.png")]
+			public var image:Class;
+			private var childCount:int = 0;
+			private var currentHolder:HBox;
+
+			private function addMoreChildren():void {
+
+				var image:Image = new Image();
+
+				image.source = this.image;
+
+				trace(currentHolder.width + image.width + " >= " + this.topHolder.maxWidth);
+
+				if ((currentHolder.width + image.width) >= this.topHolder.maxWidth) {
+					trace("entered!!");
+					var holder:HBox = new HBox();
+					holder.maxWidth = 500;
+					addChild(holder);
+					currentHolder = holder;
+				}
+				currentHolder.addChild(image);
+			}
+		]]>
+	</mx:Script>
+
+	<mx:Button label="addMoreChildren()" click="addMoreChildren()" x="0" y="0"/>
+	<mx:HBox id="topHolder" creationComplete="currentHolder = topHolder" maxWidth="500" y="30"/>
+</mx:Application>

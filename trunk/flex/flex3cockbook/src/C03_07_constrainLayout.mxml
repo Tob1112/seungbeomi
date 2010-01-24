@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute">
+	<mx:Script>
+		<![CDATA[
+			[Bindable]
+			private var txt:String =
+				"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" +
+				"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb" +
+				"ccccccccccccccccccccccccccccccccccccccccccccccc" +
+				"ddddddddddddddddddddddddddddddddddddddddddddddd";
+
+			private function changeColumnProportion():void {
+				this.leftCol.percentWidth = (10 * c_slider.value);
+				this.rightCol.percentWidth = 100 - (10 * c_slider.value);
+			}
+			private function changeRowProportion():void {
+				this.row1.percentHeight = (10 * r_slider.value);
+				this.row2.percentHeight = 100 - (10 * r_slider.value);
+			}
+		]]>
+	</mx:Script>
+
+	<mx:Canvas width="100%" height="100%" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+		<mx:constraintColumns>
+			<mx:ConstraintColumn id="leftCol" width="50%"/>
+			<mx:ConstraintColumn id="rightCol" width="50%"/>
+		</mx:constraintColumns>
+		<mx:constraintRows>
+			<mx:ConstraintRow id="row1" height="20%"/>
+			<mx:ConstraintRow id="row2" height="80%"/>
+		</mx:constraintRows>
+
+		<mx:HSlider id="c_slider" change="changeColumnProportion()" value="5"/>
+		<mx:HSlider id="r_slider" change="changeRowProportion()" value="5" y="20"/>
+
+		<mx:Canvas left="leftCol:0" right="leftCol:0" top="row2:0" bottom="row2:0" backgroundColor="white">
+			<mx:Text text="{txt}"/>
+		</mx:Canvas>
+		<mx:Canvas left="rightCol:0" right="rightCol:0" top="row2:0" bottom="row2:0" backgroundColor="yellow">
+			<mx:Text text="{txt}" />
+		</mx:Canvas>
+	</mx:Canvas>
+</mx:Application>
