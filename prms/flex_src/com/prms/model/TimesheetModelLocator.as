@@ -38,6 +38,9 @@ package com.prms.model {
         /** 勤務形態 */
         public var codeDetailAC:ArrayCollection = new ArrayCollection();
 
+        /** 勤務表比較用 ArrayCollection */
+		public var compareTimesheetAC:ArrayCollection = new ArrayCollection();
+
         static private var _instance:TimesheetModelLocator = null;
 
         static public function getInstance():TimesheetModelLocator {
