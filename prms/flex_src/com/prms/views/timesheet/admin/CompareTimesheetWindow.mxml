@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" title="勤務表比較" width="800" height="400" showCloseButton="true" xmlns:handlers="com.prms.views.timesheet.admin.handlers.*">
+
+	<handlers:CompareTimesheetWindowHandler id="handler"/>
+
+	<!-- ======================================= -->
+	<!-- COMPARE TIMESHEET DATAGRID				 -->
+	<!-- ======================================= -->
+	<mx:DataGrid id="compareTimesheetDataGrid" dataProvider="{handler.model.compareTimesheetAC}" width="100%" height="100%">
+		<mx:columns>
+			<mx:DataGridColumn headerText="社員番号" dataField="empNo"/>
+			<mx:DataGridColumn headerText="名前" dataField="name"/>
+			<mx:DataGridColumn headerText="年月" dataField="yyyymm"/>
+			<mx:DataGridColumn headerText="実働勤務時間" dataField="actualTimeTotal"/>
+			<mx:DataGridColumn headerText="休憩時間" dataField="breakTimeTotal"/>
+			<mx:DataGridColumn headerText="超過勤務時間" dataField="overTimeTotal"/>
+			<mx:DataGridColumn headerText="深夜勤務時間" dataField="nightTimeTotal"/>
+			<mx:DataGridColumn headerText="遅刻時間" dataField="lateTimeTotal"/>
+			<mx:DataGridColumn headerText="早退時間" dataField="earlyTimeTotal"/>
+			<mx:DataGridColumn headerText="当月有休時間" dataField="holidayTimeTotal"/>
+			<mx:DataGridColumn headerText="欠勤日数" dataField="absenceDaysTotal"/>
+		</mx:columns>
+	</mx:DataGrid>
+
+	<!-- ======================================= -->
+	<!-- CONTROL BAR							 -->
+	<!-- ======================================= -->
+
+	<mx:ControlBar horizontalAlign="right">
+		<mx:Button id="closeCompareTimesheetButton" label="閉じる"/>
+	</mx:ControlBar>
+
+</mx:TitleWindow>

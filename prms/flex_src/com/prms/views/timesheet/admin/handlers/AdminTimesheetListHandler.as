@@ -8,6 +8,7 @@ package com.prms.views.timesheet.admin.handlers {
 	import com.prms.business.events.timesheet.LoadTimesheetListEvent;
 	import com.prms.model.TimesheetModelLocator;
 	import com.prms.views.timesheet.admin.AdminTimesheetList;
+	import com.prms.views.timesheet.admin.CompareTimesheetWindow;
 	import com.prms.vo.Timesheet;
 
 	import flash.events.MouseEvent;
@@ -16,104 +17,105 @@ package com.prms.views.timesheet.admin.handlers {
 
 	import mx.collections.ArrayCollection;
 	import mx.collections.IList;
+	import mx.collections.IViewCursor;
 	import mx.controls.Alert;
 	import mx.controls.DataGrid;
 	import mx.core.IMXMLObject;
 	import mx.events.DragEvent;
 	import mx.events.FlexEvent;
 	import mx.events.ListEvent;
+	import mx.managers.PopUpManager;
 
     public class AdminTimesheetListHandler implements IMXMLObject{
 
 		[Bindable] public var currentDate:String;
 		[Bindable] public var model:TimesheetModelLocator = TimesheetModelLocator.getInstance();
-		private var document:AdminTimesheetList;
+		private var view:AdminTimesheetList;
 		private var vo:Timesheet;
 		public var isShowTimesheetSummary:Boolean = false;
 		public var isCompare:Boolean = false;
-		private var isSetBorderColor:Boolean = false;
-		private var tempBorderColor:uint;
-		private var tempBorderThickness:uint;
+		private var isSetBackgroundColor:Boolean = false;
+		private var tempBackgroundColor:uint;
 		private var timer:Timer;
+		private const INITIALIZE_TIMESHEET_EXTENSION_TRUE:Boolean = true;
+		private const INITIALIZE_TIMESHEET_EXTENSION_FALSE:Boolean = false;
 
         public function initialized(document:Object, id:String):void {
-            this.document = document as AdminTimesheetList;
-            this.document.addEventListener(FlexEvent.CREATION_COMPLETE, creationCompleteHandler);
+            view = document as AdminTimesheetList;
+            view.addEventListener(FlexEvent.CREATION_COMPLETE, creationCompleteHandler);
         }
 
+		/**
+		 * イベントリスナー登録
+		 */
         private function creationCompleteHandler(event:FlexEvent):void {
-        	this.document.currentState = "default";
-        	// 会社選択ボタンイベントリスナー
-			this.document.buttonRoue.addEventListener(MouseEvent.CLICK, findTimesheetListHandler);
-			this.document.buttonRoueSuite.addEventListener(MouseEvent.CLICK, findTimesheetListHandler);
-			this.document.buttonRoueLearning.addEventListener(MouseEvent.CLICK, findTimesheetListHandler);
-			//年月選択datechooserイベントリスナー
-			this.document.datechooserYYYYMM.addEventListener(MouseEvent.CLICK, findTimesheetListByDateHandler);
-			//今月に戻る
-			this.document.buttonThisMonth.addEventListener(MouseEvent.CLICK, findTimesheetListByDateHandler);
-			//勤務表クリックイベントリスナー:勤務表サンマーリー表示
-			this.document.datagridTimesheetList.addEventListener(ListEvent.ITEM_CLICK, getTimesheetSummaryHandler);
-			//勤務表ダブルクリックイベントリスナー
-			this.document.datagridTimesheetList.addEventListener(ListEvent.ITEM_DOUBLE_CLICK, getTimesheetDetailHandler);
-			//勤務表比較
-			this.document.buttonCompareAndBackToList.addEventListener(MouseEvent.CLICK, compareTimesheetHandler);
+        	view.currentState = "default";
+			view.buttonRoue.addEventListener(MouseEvent.CLICK, findTimesheetListHandler);	// 会社選択ボタン(roue)
+			view.buttonRoueSuite.addEventListener(MouseEvent.CLICK, findTimesheetListHandler);	// 会社選択ボタン(suite)
+			view.buttonRoueLearning.addEventListener(MouseEvent.CLICK, findTimesheetListHandler);	// 会社選択ボタン(learning)
+			view.datechooserYYYYMM.addEventListener(MouseEvent.CLICK, findTimesheetListByDateHandler);	//datechooserから年月選択
+			view.buttonThisMonth.addEventListener(MouseEvent.CLICK, findTimesheetListByDateHandler);	//今月に戻る
+			view.datagridTimesheetList.addEventListener(ListEvent.ITEM_CLICK, getTimesheetSummaryHandler);	//勤務表クリックイベントリスナー:勤務表サンマーリー表示
+			view.datagridTimesheetList.addEventListener(ListEvent.ITEM_DOUBLE_CLICK, getTimesheetDetailHandler);	//勤務表ダブルクリック
+			view.buttonCompareTimesheet.addEventListener(MouseEvent.CLICK, compareTimesheetHandler);	//勤務表比較
+			view.datagridTimesheetList.addEventListener(DragEvent.DRAG_START, dragStartTimesheetHandler);	//勤務表リストからドラック開始
+			view.datagridCompareTimesheet.addEventListener(DragEvent.DRAG_ENTER, dragEnterListCompareTimesheetHandler);	//勤務表比較リストにitemが入る
+			view.datagridCompareTimesheet.addEventListener(DragEvent.DRAG_EXIT, dragExitListCompareTimesheetHandler);	//勤務表比較リストにitemが出る
+			view.datagridCompareTimesheet.addEventListener(DragEvent.DRAG_DROP, dragDropListCompareTimesheetHandler);	//勤務表比較リストにitemをドロップ
+			view.buttonResetDataGridCompareTimesheet.addEventListener(MouseEvent.CLICK, resetDatagridCompareTimesheetHandler);	//勤務表比較リストを初期化
+			view.datagridCompareTimesheet.dataProvider = this.model.compareTimesheetAC;	//比較勤務表リストのdataProviderとモデルとの連携
 
-			//勤務表比較リストにドラックアンドドロップ
-			this.document.datagridTimesheetList.addEventListener(DragEvent.DRAG_START, dragStartTimesheetHandler);	//ドラック開始
-			this.document.datagridCompareTimesheet.addEventListener(DragEvent.DRAG_ENTER, dragEnterListCompareTimesheetHandler);
-			this.document.datagridCompareTimesheet.addEventListener(DragEvent.DRAG_EXIT, dragExitListCompareTimesheetHandler);
-			this.document.datagridCompareTimesheet.addEventListener(DragEvent.DRAG_DROP, dragDropListCompareTimesheetHandler);	//ドロップ
-			//勤務表比較リストを初期化
-			this.document.buttonResetDataGridCompareTimesheet.addEventListener(MouseEvent.CLICK, resetDatagridCompareTimesheetHandler);
-			//比較勤務表リストのdataProviderとモデルとの連携
-			this.document.datagridCompareTimesheet.dataProvider = this.model.compareTimesheetAC;
-
-			//初期化処理
-			initTimesheetList();
+			initTimesheetList();	//初期化処理
         }
 
-		// 勤務表初期化処理を行う
+		/**
+		 * 勤務表初期化処理
+		 */
         private function initTimesheetList():void {
 			//サーバーから現在時間を取得
-			var getCurrentTimeEvent:GetCurrentTimeEvent = new GetCurrentTimeEvent(this.document);
+			var getCurrentTimeEvent:GetCurrentTimeEvent = new GetCurrentTimeEvent(view);
 			getCurrentTimeEvent.dispatch();
-			initVboxExtendTimesheet(true);
+			initVBoxTimesheetExtension(INITIALIZE_TIMESHEET_EXTENSION_TRUE);
+
+			view.compareTimesheetMessageLabel.height = 0;
         }
 
 		/**
 		 * 会社選択イベントハンドラー
 		 */
         private function findTimesheetListHandler(event:MouseEvent):void {
-        	event.currentTarget.enabled = false;
-			document.vboxTimesheetList.visible = true;
-        	this.document.textTimesheetTitle.text = "勤務表一覧";
+        	event.currentTarget.enabled = false;	// 選択されたボタンを非活性化
+			view.vboxTimesheetList.visible = true;
+        	view.textTimesheetTitle.text = "勤務表一覧";
 
         	// 選択されている年月を取得
-        	var year:int = document.datechooserYYYYMM.displayedYear;
-        	var month:int = document.datechooserYYYYMM.displayedMonth;
+        	var year:int = view.datechooserYYYYMM.displayedYear;
+        	var month:int = view.datechooserYYYYMM.displayedMonth;
 
 			vo = new Timesheet();
 			vo.yyyymm = new Date(year, month);
 
+			// 会社コードの設定
 			switch(event.currentTarget.name) {
 				case "buttonRoue":
-					initVboxExtendTimesheet(true);
 					vo.comCode = Constants.COMCODE_ROUE;
 				break;
 				case "buttonRoueSuite":
-					initVboxExtendTimesheet(true);
 					vo.comCode = Constants.COMCODE_ROUE_SUITE;
 				break;
 				case "buttonRoueLearning":
-					initVboxExtendTimesheet(true);
 					vo.comCode = Constants.COMCODE_ROUE_LEARNING;
 				break;
 				default:
 					Alert.show("もう一度会社を選択してください。", "PRMS ERROR");
+
+				// 勤務表拡張
+				initVBoxTimesheetExtension(INITIALIZE_TIMESHEET_EXTENSION_TRUE);
 			}
 
-			if (vo.comCode == "" || vo.comCode == null) {
-				this.document.textTimesheetTitle.text = "もう一度会社を選択してください。";
+			//会社コードが存在しない
+			if (vo.comCode == null) {
+				view.textTimesheetTitle.text = "もう一度会社を選択してください。";
 				if (!event.currentTarget.enabled) {
 					event.currentTarget.enabled = true;
 				}
@@ -121,7 +123,7 @@ package com.prms.views.timesheet.admin.handlers {
 			}
 
 			// 引数 eventype, vo, comCode, document(処理が終わったら会社選択ボタンを再表示)
-			var loadTimesheetLiveEvent:LoadTimesheetListEvent = new LoadTimesheetListEvent(vo, this.document);
+			var loadTimesheetLiveEvent:LoadTimesheetListEvent = new LoadTimesheetListEvent(vo, view);
 			loadTimesheetLiveEvent.dispatch();
         }
 
@@ -135,25 +137,25 @@ package com.prms.views.timesheet.admin.handlers {
 
 			switch (event.currentTarget.name) {
 				case "datechooserYYYYMM":	//datechooserから年月選択時
-					year = this.document.datechooserYYYYMM.displayedYear;
-		        	month = this.document.datechooserYYYYMM.displayedMonth;
+					year = view.datechooserYYYYMM.displayedYear;
+		        	month = view.datechooserYYYYMM.displayedMonth;
 				break;
 				case "buttonThisMonth":	//今月ボタン押下時
 					year = model.yyyymm.getFullYear();
 					month = model.yyyymm.getMonth();
 					// datechooserYYYYMMを今月に戻る
-					this.document.datechooserYYYYMM.displayedYear = model.yyyymm.getFullYear();
-					this.document.datechooserYYYYMM.displayedMonth = model.yyyymm.getMonth();
+					view.datechooserYYYYMM.displayedYear = model.yyyymm.getFullYear();
+					view.datechooserYYYYMM.displayedMonth = model.yyyymm.getMonth();
 				break;
 			}
 
-			if (vo.comCode == null || vo.comCode == "") {
+			if (vo.comCode == null) {
 	        	Alert.show("会社コードが設定されていません。", "PRMS ERROR");
 			}
 
 			vo.yyyymm = new Date(year, month);
 
-			var loadTimesheetLiveEvent:LoadTimesheetListEvent = new LoadTimesheetListEvent(vo, this.document);
+			var loadTimesheetLiveEvent:LoadTimesheetListEvent = new LoadTimesheetListEvent(vo, view);
 			loadTimesheetLiveEvent.dispatch();
         }
 
@@ -162,13 +164,13 @@ package com.prms.views.timesheet.admin.handlers {
 		 */
         private function getTimesheetSummaryHandler(event:ListEvent):void {
 
-        	initVboxExtendTimesheet(false);
+        	initVBoxTimesheetExtension(INITIALIZE_TIMESHEET_EXTENSION_FALSE);
 
         	var target:DataGrid = event.currentTarget as DataGrid;
         	vo.empNo = target.selectedItem.empNo;
 			vo.statusCode = target.selectedItem.statusCode;
 
-			var getTimesheetSummaryEvent:GetTimesheetSummaryEvent = new GetTimesheetSummaryEvent(vo, this.document);
+			var getTimesheetSummaryEvent:GetTimesheetSummaryEvent = new GetTimesheetSummaryEvent(vo, view);
 			getTimesheetSummaryEvent.dispatch();
         }
 
@@ -180,102 +182,101 @@ package com.prms.views.timesheet.admin.handlers {
 			vo.empNo = target.selectedItem.empNo;
 			vo.statusCode = target.selectedItem.statusCode;
 
-			var loadTimesheetDetailsEvent:LoadTimesheetDetailsEvent = new LoadTimesheetDetailsEvent(vo, null, this.document);
+			var loadTimesheetDetailsEvent:LoadTimesheetDetailsEvent = new LoadTimesheetDetailsEvent(vo, null, view);
 			 loadTimesheetDetailsEvent.dispatch();
         }
 
-		//勤務表拡張機能の初期化
-        private function initVboxExtendTimesheet(isShow:Boolean):void {
-        	if (this.model.timesheetSummary.empNo == null || this.model.timesheetSummary.empNo == "") {
-        		this.document.labelNotSelectedTimesheet.height = 20;
-        		this.document.labelNotSelectedTimesheet.visible = true;
-        		this.document.formTimesheetSummary.visible = false;
+		/**
+		 * 勤務表拡張機能の初期化
+		 */
+        private function initVBoxTimesheetExtension(isShow:Boolean):void {
+        	if (!isShow) {
+        		view.currentState = "expandVboxExtendTimesheet";
+    			isTimesheetSummary();
         	} else {
-        		this.document.labelNotSelectedTimesheet.height = 0;
-        		this.document.labelNotSelectedTimesheet.visible = false;
-        		this.document.formTimesheetSummary.visible = true;
-        	}
-
-        	if (isShow) {
-        		this.document.currentState = "default";
-	        	this.document.labelNotSelectedTimesheet.height = 20;
-        	} else {
-        		this.document.currentState = "expandVboxExtendTimesheet";
-        		this.document.labelNotSelectedTimesheet.height = 0;
+        		view.currentState = "default";
+	        	isTimesheetSummary();
         	}
         }
 
-		//勤務表比較
-        private function compareTimesheetHandler(event:MouseEvent):void {
+		/**
+		 * 勤務表さんマーリー存在有無による画面処理
+		 */
+        public function isTimesheetSummary():void {
+        	var empNo:String = this.model.timesheetSummary.empNo;
+        	if (empNo != null) {	//存在する
+        		view.formTimesheetSummary.visible = true;
+        		view.labelTimesheetSummaryTitle.text = model.timesheetSummary.displayYYYYMM + " / " + empNo + " / " + model.timesheetSummary.name;
+        	} else {	//存在しない
+        		view.formTimesheetSummary.visible = false;
+        		view.labelTimesheetSummaryTitle.text = "リストから勤務表を選択してください。";
+        	}
+        }
 
-        	if (this.model.compareTimesheetAC.length == 0) {
-        		timer = new Timer(2000);
+		/**
+		 * 勤務表比較
+		 */
+        private function compareTimesheetHandler(event:MouseEvent):void {
+			// 二重実行防止
+    		view.buttonCompareTimesheet.enabled = false;
+    		view.buttonResetDataGridCompareTimesheet.enabled = false;
+
+			//比較する勤務表がない場合 - メッセージ表示
+        	if (this.model.compareTimesheetAC.length < 2) {
+        		timer = new Timer(3000);
         		timer.addEventListener(TimerEvent.TIMER,  showMessageHandler);
         		timer.start();
-        		this.document.hboxCompareControl.height = 0;
-        		this.document.hboxCompareControl.visible = false;
-        		this.document.compareTimesheetMessageLabel.text = "勤務表を選択してください。";
-        		this.document.compareTimesheetMessageLabel.visible = true;
-
+        		view.hboxCompareControl.height = 0;
+        		view.hboxCompareControl.visible = false;
+        		view.compareTimesheetMessageLabel.text = "勤務表を２個以上選択してください。";
+        		view.compareTimesheetMessageLabel.setStyle("color","red");
+        		view.compareTimesheetMessageLabel.height = 20;
+        		view.compareTimesheetMessageLabel.visible = true;
         		return;
         	}
 
-    		this.document.buttonCompareAndBackToList.enabled = false;
-    		this.document.buttonResetDataGridCompareTimesheet.enabled = false;
 
-        	if (!isCompare) {	//compare
-        		var compareTimesheetEvent:CompareTimesheetEvent = new CompareTimesheetEvent(this.document);
+        	if (!isCompare) {	//比較
+
+        		var compareTimesheetEvent:CompareTimesheetEvent = new CompareTimesheetEvent(view);
         		compareTimesheetEvent.dispatch();
-//	        	this.document.datagridTimesheetList.visible = false;
-//	        	this.document.datagridTimesheetList.width = 0;
-//	        	this.document.datagridTimesheetList.height = 0;
-//				this.document.hboxCompareTimesheet.visible = true;
-//				this.document.hboxCompareTimesheet.percentWidth = 100;
-//				this.document.hboxCompareTimesheet.percentHeight = 100;
+
+				var compareTimesheetWindow:CompareTimesheetWindow = PopUpManager.createPopUp(view, CompareTimesheetWindow, true) as CompareTimesheetWindow;
+				PopUpManager.centerPopUp(compareTimesheetWindow);
+
 				isCompare = true;
-        	} else {	// back to list
-        		compareTimesheetBackToList();
+        	} else {
+        		afterCompareTimesheet();
         	}
         }
 
-        private function compareTimesheetBackToList():void {
-        	this.document.datagridTimesheetList.visible = true;
-        	this.document.datagridTimesheetList.percentWidth = 100;
-        	this.document.datagridTimesheetList.percentHeight = 100;
-			this.document.compareTimesheetHDividedBox.visible = false;
-			this.document.compareTimesheetHDividedBox.width = 0;
-			this.document.compareTimesheetHDividedBox.height = 0;
-			//this.model.compareTimesheetAC.removeAll();
+        public function afterCompareTimesheet():void {
 			this.model.compareTimesheetAC.refresh();
-			this.document.buttonCompareAndBackToList.label = "compare";
-			this.document.buttonCompareAndBackToList.enabled = true;
-    		this.document.buttonResetDataGridCompareTimesheet.enabled = true;
+			view.buttonCompareTimesheet.enabled = true;
+    		view.buttonResetDataGridCompareTimesheet.enabled = true;
 			isCompare = false;
         }
 
 		//ドラック開始
         private function dragStartTimesheetHandler(event:DragEvent):void {
-        	if (this.document.currentState == "default") {
-        		initVboxExtendTimesheet(false);
+        	if (view.currentState == "default") {
+        		initVBoxTimesheetExtension(INITIALIZE_TIMESHEET_EXTENSION_FALSE);
         	}
         }
 
 		//勤務表比較リストにドラックが入る際
         private function dragEnterListCompareTimesheetHandler(event:DragEvent):void {
-			if (!isSetBorderColor) {
-				tempBorderColor = event.currentTarget.getStyle("borderColor");
-				tempBorderThickness = event.currentTarget.getStyle("borderThickness");
-				isSetBorderColor = true;
+			if (!isSetBackgroundColor) {
+				tempBackgroundColor = event.currentTarget.getStyle("backgroundColor");
+				isSetBackgroundColor = true;
 			}
-			event.currentTarget.setStyle("borderColor","red");
-			event.currentTarget.setStyle("borderThickness",2);
+			event.currentTarget.setStyle("backgroundColor","red");
         }
 
 		//勤務表比較リストにドラックが出る際
         private function dragExitListCompareTimesheetHandler(event:DragEvent):void {
-			event.currentTarget.setStyle("borderColor", tempBorderColor);
-			event.currentTarget.setStyle("borderThickness", tempBorderThickness);
-			isSetBorderColor = false;
+			event.currentTarget.setStyle("backgroundColor", tempBackgroundColor);
+			isSetBackgroundColor = false;
         }
 
 		//勤務表比較リストにドラックアンドドロップする際
@@ -287,16 +288,22 @@ package com.prms.views.timesheet.admin.handlers {
 				var itemsArray:Array = event.dragSource.dataForFormat("items") as Array;
 				var tempAC:ArrayCollection = this.model.compareTimesheetAC as ArrayCollection;
 
-				if (tempAC.length >= 0 && tempAC.length < 2) {
-					// 比較対処の値を設定
-					itemsArray[0].comCode = vo.comCode;
-					//itemsArray[0].empNo = event.currentTarget.empNo;
-					var year:Number = this.document.datechooserYYYYMM.displayedYear;
-		        	var month:Number = this.document.datechooserYYYYMM.displayedMonth;
-					itemsArray[0].yyyymm = new Date(year, month);
-					IList(dropTarget.dataProvider).addItem(itemsArray[0]);
+				// 比較対処の値を設定
+				itemsArray[0].comCode = vo.comCode;
+				var year:Number = view.datechooserYYYYMM.displayedYear;
+	        	var month:Number = view.datechooserYYYYMM.displayedMonth;
+				itemsArray[0].yyyymm = new Date(year, month);
+
+				//compareTimesheetACに存在する勤務表なのかを検証
+				if (isExistTimesheet(itemsArray[0])) {	//存在する
+					Alert.show(
+					"すでに存在する勤務表です。\n\n" +
+					"社員番号 : " + itemsArray[0].empNo + "\n" +
+					"名前 : " + itemsArray[0].name + "\n" +
+					"年月 : " + itemsArray[0].yyyymm
+					, "PRMS ERROR");
 				} else {
-					trace("is over!!");
+					IList(dropTarget.dataProvider).addItem(itemsArray[0]);
 				}
 			}
 			dragExitListCompareTimesheetHandler(event);
@@ -306,15 +313,39 @@ package com.prms.views.timesheet.admin.handlers {
         private function resetDatagridCompareTimesheetHandler(event:MouseEvent):void {
 			this.model.compareTimesheetAC.removeAll();
 			this.model.compareTimesheetAC.refresh();
-        	this.document.datagridCompareTimesheet.dataProvider = this.model.compareTimesheetAC;
-			compareTimesheetBackToList();
+        	view.datagridCompareTimesheet.dataProvider = this.model.compareTimesheetAC;
+			afterCompareTimesheet();
         }
 
 		private function showMessageHandler(event:TimerEvent):void {
 			timer.stop();
-			this.document.hboxCompareControl.height = 30;
-    		this.document.compareTimesheetMessageLabel.visible = false;
-			this.document.hboxCompareControl.visible = true;
+			view.hboxCompareControl.height = 20;
+    		view.compareTimesheetMessageLabel.visible = false;
+    		view.compareTimesheetMessageLabel.height = 0;
+			view.hboxCompareControl.visible = true;
+			view.buttonCompareTimesheet.enabled = true;
+    		view.buttonResetDataGridCompareTimesheet.enabled = true;
+		}
+
+		/**
+		 * 追加されたitemがcompareTimesheetAC内部で存在するか確認
+		 */
+		private function isExistTimesheet(vo:Timesheet):Boolean {
+			var ac:ArrayCollection = model.compareTimesheetAC;
+			var cursor:IViewCursor = ac.createCursor();
+			var temp:Timesheet = new Timesheet();
+			while(!cursor.afterLast) {
+				temp = Timesheet(cursor.current);
+				trace(ac.length + " -> " + vo.empNo + " == " + temp.empNo + " && " + vo.comCode + " == " + temp.comCode + " && " + vo.yyyymm + " == " + temp.yyyymm);
+				if (vo.empNo == temp.empNo && vo.comCode == temp.comCode && vo.yyyymm == temp.yyyymm) {
+					trace("true");
+					return true;
+				}
+
+				cursor.moveNext();
+			}
+			trace("false");
+			return false;
 		}
     }
 }

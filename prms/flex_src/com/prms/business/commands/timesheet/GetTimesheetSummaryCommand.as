@@ -17,11 +17,11 @@ package com.prms.business.commands.timesheet
 	{
 		private var model:TimesheetModelLocator = TimesheetModelLocator.getInstance();
 		private var vo:Timesheet;
-		private var doc:AdminTimesheetList;
+		private var view:AdminTimesheetList;
 		private var isShowTimesheetSummary:Boolean;
 
 		public function execute(event:CairngormEvent):void {
-			this.doc = GetTimesheetSummaryEvent(event).doc;
+			view = GetTimesheetSummaryEvent(event).doc;
 			var responder:Responder = new Responder(getTimesheetSummaryResultHandler, serviceFaultHandler);
             var delegate:TimesheetDelegate = new TimesheetDelegate(responder);
             delegate.getTimesheetSummary(GetTimesheetSummaryEvent(event).vo);
@@ -30,12 +30,11 @@ package com.prms.business.commands.timesheet
 		private function getTimesheetSummaryResultHandler(event:ResultEvent):void {
 
 			model.timesheetSummary = Timesheet(event.result);
-			this.isShowTimesheetSummary = doc.adminTimesheetListsHandler.isShowTimesheetSummary;
+			this.isShowTimesheetSummary = view.adminTimesheetListsHandler.isShowTimesheetSummary;
 			if (!isShowTimesheetSummary) {
-				this.doc.currentState = "expandVboxExtendTimesheet";
-				this.doc.adminTimesheetListsHandler.isShowTimesheetSummary = true;
-				this.doc.labelNotSelectedTimesheet.visible = false;
-				this.doc.formTimesheetSummary.visible = true;
+				view.currentState = "expandVboxExtendTimesheet";
+				view.adminTimesheetListsHandler.isShowTimesheetSummary = true;
+				view.adminTimesheetListsHandler.isTimesheetSummary();
 			}
 		}
 
