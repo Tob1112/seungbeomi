@@ -99,18 +99,18 @@ package com.prms.views.timesheet.admin.handlers {
 			switch(event.currentTarget.name) {
 				case "buttonRoue":
 					vo.comCode = Constants.COMCODE_ROUE;
+					initVBoxTimesheetExtension(INITIALIZE_TIMESHEET_EXTENSION_TRUE);
 				break;
 				case "buttonRoueSuite":
 					vo.comCode = Constants.COMCODE_ROUE_SUITE;
+					initVBoxTimesheetExtension(INITIALIZE_TIMESHEET_EXTENSION_TRUE);
 				break;
 				case "buttonRoueLearning":
 					vo.comCode = Constants.COMCODE_ROUE_LEARNING;
+					initVBoxTimesheetExtension(INITIALIZE_TIMESHEET_EXTENSION_TRUE);
 				break;
 				default:
 					Alert.show("もう一度会社を選択してください。", "PRMS ERROR");
-
-				// 勤務表拡張
-				initVBoxTimesheetExtension(INITIALIZE_TIMESHEET_EXTENSION_TRUE);
 			}
 
 			//会社コードが存在しない
@@ -190,12 +190,16 @@ package com.prms.views.timesheet.admin.handlers {
 		 * 勤務表拡張機能の初期化
 		 */
         private function initVBoxTimesheetExtension(isShow:Boolean):void {
-        	if (!isShow) {
+        	if (!isShow) {	//拡張する
+        		trace(" - expandVboxExtendTimesheet");
         		view.currentState = "expandVboxExtendTimesheet";
     			isTimesheetSummary();
-        	} else {
+    			isShow = true;
+        	} else {	//拡張しない
+        		trace(" - default");
         		view.currentState = "default";
 	        	isTimesheetSummary();
+	        	isShow = false;
         	}
         }
 
