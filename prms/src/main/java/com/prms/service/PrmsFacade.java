@@ -50,6 +50,8 @@ public interface PrmsFacade {
 
 	public Timesheet getTimesheetSummary(Timesheet bean);
 
+	public List<Timesheet> compareTimesheet(List<Timesheet> list);
+
 	// -------------------------------------- Account Service
 	public boolean updateAccount(AccountUser account);
 

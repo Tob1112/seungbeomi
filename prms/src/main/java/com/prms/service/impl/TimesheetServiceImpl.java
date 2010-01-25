@@ -441,4 +441,9 @@ public class TimesheetServiceImpl implements TimesheetService {
 	public Timesheet getTimesheetSummary(Timesheet bean) {
 		return timesheetDao.getTimesheetSummary(bean);
 	}
+
+	@Override
+	public List<Timesheet> compareTimesheet(List<Timesheet> list) {
+		return timesheetDao.compareTimesheet(list);
+	}
 }

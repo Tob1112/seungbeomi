@@ -149,6 +149,11 @@ public class PrmsFacadeImpl implements PrmsFacade{
 		return this.timesheetService.getTimesheetSummary(bean);
 	}
 
+	@Override
+	public List<Timesheet> compareTimesheet(List<Timesheet> list) {
+		return timesheetService.compareTimesheet(list);
+	}
+
 	//-------------------------------------------------------- Traffic Service
 	@Override
 	public List<TrafficRegular> loadRegTrainList(TrafficRegular bean) {
