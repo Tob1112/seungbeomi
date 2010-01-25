@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:util="util.*">
+
+    <mx:ApplicationControlBar width="137" top="15" left="15">
+        <mx:Button label="ファイルアップロード" click="fileUploader.upload()"/>
+    </mx:ApplicationControlBar>
+    <mx:ProgressBar id="progressBar1" x="10" y="71" mode="manual"/>
+
+    <util:FileUploader id="fileUploader" fileUploadProgressBar="{progressBar1}"/>
+
+</mx:Application>
