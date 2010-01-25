@@ -110,4 +110,6 @@ public interface TimesheetService {
 	public void calculateTimesheet(Timesheet bean);
 
 	public Timesheet getTimesheetSummary(Timesheet bean);
+
+	public List<Timesheet> compareTimesheet(List<Timesheet> list);
 }

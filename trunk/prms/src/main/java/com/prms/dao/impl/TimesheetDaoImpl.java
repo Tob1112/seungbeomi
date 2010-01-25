@@ -245,4 +245,33 @@ public class TimesheetDaoImpl extends SqlMapClientDaoSupport implements Timeshee
 		return (Timesheet) getSqlMapClientTemplate().queryForObject("timesheet.getTimesheetSummary", bean);
 	}
 
+	/**
+	 * 勤務表比較
+	 */
+	@Override
+	public List<Timesheet> compareTimesheet(final List<Timesheet> list) {
+		try {
+			getSqlMapClientTemplate().execute(new SqlMapClientCallback() {
+				@Override
+				public Object doInSqlMapClient(SqlMapExecutor executor) throws SQLException {
+					executor.startBatch();
+
+					for (int i=0; i < list.size(); i++) {
+						Timesheet bean = (Timesheet) executor.queryForObject("timesheet.getTimesheetSummary", list.get(i));
+						logger.debug("<<< " + bean);
+						list.set(i, bean) ;
+					}
+
+					executor.executeBatch();
+					return null;
+				}
+			});
+		} catch (Exception e) {
+			logger.error(e.toString());
+			Message message = MessageUtil.getMessage("E", "0001");
+			throw new PrmsException(message.getMsgBody(), e);
+		}
+		return list;
+	}
+
 }

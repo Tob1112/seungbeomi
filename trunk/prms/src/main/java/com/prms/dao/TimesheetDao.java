@@ -41,4 +41,5 @@ public interface TimesheetDao {
 
 	Timesheet getTimesheetSummary(Timesheet bean);
 
+	List<Timesheet> compareTimesheet(List<Timesheet> list);
 }
