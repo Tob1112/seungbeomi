@@ -11,6 +11,7 @@ package com.prms {
     import com.prms.business.commands.main.AdminMainHeaderCommand;
     import com.prms.business.commands.main.UserMainHeaderCommand;
     import com.prms.business.commands.main.UserMainHeaderEmailCommand;
+    import com.prms.business.commands.timesheet.CompareTimesheetCommand;
     import com.prms.business.commands.timesheet.GetCurrentTimeCommand;
     import com.prms.business.commands.timesheet.GetEmpNameCommand;
     import com.prms.business.commands.timesheet.GetTimesheetSummaryCommand;
@@ -32,6 +33,7 @@ package com.prms {
     import com.prms.business.events.main.AdminMainHeaderEvent;
     import com.prms.business.events.main.UserMainHeaderEmailEvent;
     import com.prms.business.events.main.UserMainHeaderEvent;
+    import com.prms.business.events.timesheet.CompareTimesheetEvent;
     import com.prms.business.events.timesheet.GetCurrentTimeEvent;
     import com.prms.business.events.timesheet.GetEmpNameEvent;
     import com.prms.business.events.timesheet.GetTimesheetSummaryEvent;
@@ -106,6 +108,8 @@ package com.prms {
 
             //----------------------------------------------------------- TIMESHEET ADMIN
             addCommand(GetTimesheetSummaryEvent.EVENT_ID, GetTimesheetSummaryCommand);
+            addCommand(CompareTimesheetEvent.EVENT_ID, CompareTimesheetCommand);
+
 
 
             // ---------------------------------------------------------------------

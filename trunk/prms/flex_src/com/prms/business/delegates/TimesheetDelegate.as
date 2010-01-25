@@ -4,6 +4,7 @@ package com.prms.business.delegates {
     import com.prms.vo.FixTime;
     import com.prms.vo.Timesheet;
 
+    import mx.collections.ArrayCollection;
     import mx.rpc.AsyncToken;
     import mx.rpc.IResponder;
     import mx.rpc.remoting.RemoteObject;
@@ -108,6 +109,11 @@ package com.prms.business.delegates {
 
         public function getTimesheetSummary(vo:Timesheet):void {
         	var token:AsyncToken = _service.getTimesheetSummary(vo);
+            token.addResponder(_responder);
+        }
+
+        public function compareTimesheet(ac:ArrayCollection):void {
+        	var token:AsyncToken = _service.compareTimesheet(ac);
             token.addResponder(_responder);
         }
     }

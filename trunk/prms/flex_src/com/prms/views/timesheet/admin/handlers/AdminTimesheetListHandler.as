@@ -1,6 +1,7 @@
 package com.prms.views.timesheet.admin.handlers {
 
 	import com.prms.Constants;
+	import com.prms.business.events.timesheet.CompareTimesheetEvent;
 	import com.prms.business.events.timesheet.GetCurrentTimeEvent;
 	import com.prms.business.events.timesheet.GetTimesheetSummaryEvent;
 	import com.prms.business.events.timesheet.LoadTimesheetDetailsEvent;
@@ -10,7 +11,11 @@ package com.prms.views.timesheet.admin.handlers {
 	import com.prms.vo.Timesheet;
 
 	import flash.events.MouseEvent;
+	import flash.events.TimerEvent;
+	import flash.utils.Timer;
 
+	import mx.collections.ArrayCollection;
+	import mx.collections.IList;
 	import mx.controls.Alert;
 	import mx.controls.DataGrid;
 	import mx.core.IMXMLObject;
@@ -26,6 +31,10 @@ package com.prms.views.timesheet.admin.handlers {
 		private var vo:Timesheet;
 		public var isShowTimesheetSummary:Boolean = false;
 		public var isCompare:Boolean = false;
+		private var isSetBorderColor:Boolean = false;
+		private var tempBorderColor:uint;
+		private var tempBorderThickness:uint;
+		private var timer:Timer;
 
         public function initialized(document:Object, id:String):void {
             this.document = document as AdminTimesheetList;
@@ -48,14 +57,16 @@ package com.prms.views.timesheet.admin.handlers {
 			this.document.datagridTimesheetList.addEventListener(ListEvent.ITEM_DOUBLE_CLICK, getTimesheetDetailHandler);
 			//勤務表比較
 			this.document.buttonCompareAndBackToList.addEventListener(MouseEvent.CLICK, compareTimesheetHandler);
-			//勤務表比較リストを初期化
-			this.document.buttonResetListCompareTimesheet.addEventListener(MouseEvent.CLICK, resetListCompareTimesheetHandler);
 
 			//勤務表比較リストにドラックアンドドロップ
-			this.document.datagridTimesheetList.addEventListener(DragEvent.DRAG_START, dragStartTimesheetHandler);
-			this.document.listCompareTimesheet.addEventListener(DragEvent.DRAG_ENTER, dragEnterListCompareTimesheetHandler);
-			this.document.listCompareTimesheet.addEventListener(DragEvent.DRAG_EXIT, dragExitListCompareTimesheetHandler);
-			this.document.listCompareTimesheet.addEventListener(DragEvent.DRAG_DROP, dragDropListCompareTimesheetHandler);
+			this.document.datagridTimesheetList.addEventListener(DragEvent.DRAG_START, dragStartTimesheetHandler);	//ドラック開始
+			this.document.datagridCompareTimesheet.addEventListener(DragEvent.DRAG_ENTER, dragEnterListCompareTimesheetHandler);
+			this.document.datagridCompareTimesheet.addEventListener(DragEvent.DRAG_EXIT, dragExitListCompareTimesheetHandler);
+			this.document.datagridCompareTimesheet.addEventListener(DragEvent.DRAG_DROP, dragDropListCompareTimesheetHandler);	//ドロップ
+			//勤務表比較リストを初期化
+			this.document.buttonResetDataGridCompareTimesheet.addEventListener(MouseEvent.CLICK, resetDatagridCompareTimesheetHandler);
+			//比較勤務表リストのdataProviderとモデルとの連携
+			this.document.datagridCompareTimesheet.dataProvider = this.model.compareTimesheetAC;
 
 			//初期化処理
 			initTimesheetList();
@@ -124,8 +135,8 @@ package com.prms.views.timesheet.admin.handlers {
 
 			switch (event.currentTarget.name) {
 				case "datechooserYYYYMM":	//datechooserから年月選択時
-					year = document.datechooserYYYYMM.displayedYear;
-		        	month = document.datechooserYYYYMM.displayedMonth;
+					year = this.document.datechooserYYYYMM.displayedYear;
+		        	month = this.document.datechooserYYYYMM.displayedMonth;
 				break;
 				case "buttonThisMonth":	//今月ボタン押下時
 					year = model.yyyymm.getFullYear();
@@ -175,14 +186,11 @@ package com.prms.views.timesheet.admin.handlers {
 
 		//勤務表拡張機能の初期化
         private function initVboxExtendTimesheet(isShow:Boolean):void {
-        	trace("this.model.timesheetSummary - " + this.model.timesheetSummary.empNo);
-        	if (this.model.timesheetSummary.empNo == null) {
-        		trace("enter null")
+        	if (this.model.timesheetSummary.empNo == null || this.model.timesheetSummary.empNo == "") {
         		this.document.labelNotSelectedTimesheet.height = 20;
         		this.document.labelNotSelectedTimesheet.visible = true;
         		this.document.formTimesheetSummary.visible = false;
         	} else {
-        		trace("enter not null")
         		this.document.labelNotSelectedTimesheet.height = 0;
         		this.document.labelNotSelectedTimesheet.visible = false;
         		this.document.formTimesheetSummary.visible = true;
@@ -195,39 +203,57 @@ package com.prms.views.timesheet.admin.handlers {
         		this.document.currentState = "expandVboxExtendTimesheet";
         		this.document.labelNotSelectedTimesheet.height = 0;
         	}
-
-        	//this.document.labelNotSelectedTimesheet.visible = isShow;
-        	//this.document.formTimesheetSummary.visible = !isShow;
         }
 
 		//勤務表比較
         private function compareTimesheetHandler(event:MouseEvent):void {
 
-        	if (!isCompare) {
-	        	this.document.datagridTimesheetList.visible = false;
-	        	this.document.datagridTimesheetList.width = 0;
-	        	this.document.datagridTimesheetList.height = 0;
-				this.document.hboxCompareTimesheet.visible = true;
-				this.document.hboxCompareTimesheet.percentWidth = 100;
-				this.document.hboxCompareTimesheet.percentHeight = 100;
-				isCompare = true;
-        	} else {
-        		this.document.datagridTimesheetList.visible = true;
-	        	this.document.datagridTimesheetList.percentWidth = 100;
-	        	this.document.datagridTimesheetList.percentHeight = 100;
-				this.document.hboxCompareTimesheet.visible = false;
-				this.document.hboxCompareTimesheet.width = 0;
-				this.document.hboxCompareTimesheet.height = 0;
-				isCompare = false;
+        	if (this.model.compareTimesheetAC.length == 0) {
+        		timer = new Timer(2000);
+        		timer.addEventListener(TimerEvent.TIMER,  showMessageHandler);
+        		timer.start();
+        		this.document.hboxCompareControl.height = 0;
+        		this.document.hboxCompareControl.visible = false;
+        		this.document.compareTimesheetMessageLabel.text = "勤務表を選択してください。";
+        		this.document.compareTimesheetMessageLabel.visible = true;
+
+        		return;
         	}
 
+    		this.document.buttonCompareAndBackToList.enabled = false;
+    		this.document.buttonResetDataGridCompareTimesheet.enabled = false;
+
+        	if (!isCompare) {	//compare
+        		var compareTimesheetEvent:CompareTimesheetEvent = new CompareTimesheetEvent(this.document);
+        		compareTimesheetEvent.dispatch();
+//	        	this.document.datagridTimesheetList.visible = false;
+//	        	this.document.datagridTimesheetList.width = 0;
+//	        	this.document.datagridTimesheetList.height = 0;
+//				this.document.hboxCompareTimesheet.visible = true;
+//				this.document.hboxCompareTimesheet.percentWidth = 100;
+//				this.document.hboxCompareTimesheet.percentHeight = 100;
+				isCompare = true;
+        	} else {	// back to list
+        		compareTimesheetBackToList();
+        	}
         }
 
-		//勤務表リスト初期化
-        private function resetListCompareTimesheetHandler(event:MouseEvent):void {
-
+        private function compareTimesheetBackToList():void {
+        	this.document.datagridTimesheetList.visible = true;
+        	this.document.datagridTimesheetList.percentWidth = 100;
+        	this.document.datagridTimesheetList.percentHeight = 100;
+			this.document.compareTimesheetHDividedBox.visible = false;
+			this.document.compareTimesheetHDividedBox.width = 0;
+			this.document.compareTimesheetHDividedBox.height = 0;
+			//this.model.compareTimesheetAC.removeAll();
+			this.model.compareTimesheetAC.refresh();
+			this.document.buttonCompareAndBackToList.label = "compare";
+			this.document.buttonCompareAndBackToList.enabled = true;
+    		this.document.buttonResetDataGridCompareTimesheet.enabled = true;
+			isCompare = false;
         }
 
+		//ドラック開始
         private function dragStartTimesheetHandler(event:DragEvent):void {
         	if (this.document.currentState == "default") {
         		initVboxExtendTimesheet(false);
@@ -236,17 +262,59 @@ package com.prms.views.timesheet.admin.handlers {
 
 		//勤務表比較リストにドラックが入る際
         private function dragEnterListCompareTimesheetHandler(event:DragEvent):void {
-
+			if (!isSetBorderColor) {
+				tempBorderColor = event.currentTarget.getStyle("borderColor");
+				tempBorderThickness = event.currentTarget.getStyle("borderThickness");
+				isSetBorderColor = true;
+			}
+			event.currentTarget.setStyle("borderColor","red");
+			event.currentTarget.setStyle("borderThickness",2);
         }
 
 		//勤務表比較リストにドラックが出る際
         private function dragExitListCompareTimesheetHandler(event:DragEvent):void {
-
+			event.currentTarget.setStyle("borderColor", tempBorderColor);
+			event.currentTarget.setStyle("borderThickness", tempBorderThickness);
+			isSetBorderColor = false;
         }
 
 		//勤務表比較リストにドラックアンドドロップする際
         private function dragDropListCompareTimesheetHandler(event:DragEvent):void {
+			event.preventDefault();
+			if (event.dragSource.hasFormat("items")) {
+				var dropTarget:DataGrid = DataGrid(event.currentTarget);
 
+				var itemsArray:Array = event.dragSource.dataForFormat("items") as Array;
+				var tempAC:ArrayCollection = this.model.compareTimesheetAC as ArrayCollection;
+
+				if (tempAC.length >= 0 && tempAC.length < 2) {
+					// 比較対処の値を設定
+					itemsArray[0].comCode = vo.comCode;
+					//itemsArray[0].empNo = event.currentTarget.empNo;
+					var year:Number = this.document.datechooserYYYYMM.displayedYear;
+		        	var month:Number = this.document.datechooserYYYYMM.displayedMonth;
+					itemsArray[0].yyyymm = new Date(year, month);
+					IList(dropTarget.dataProvider).addItem(itemsArray[0]);
+				} else {
+					trace("is over!!");
+				}
+			}
+			dragExitListCompareTimesheetHandler(event);
         }
+
+		//勤務表比較リストを初期化
+        private function resetDatagridCompareTimesheetHandler(event:MouseEvent):void {
+			this.model.compareTimesheetAC.removeAll();
+			this.model.compareTimesheetAC.refresh();
+        	this.document.datagridCompareTimesheet.dataProvider = this.model.compareTimesheetAC;
+			compareTimesheetBackToList();
+        }
+
+		private function showMessageHandler(event:TimerEvent):void {
+			timer.stop();
+			this.document.hboxCompareControl.height = 30;
+    		this.document.compareTimesheetMessageLabel.visible = false;
+			this.document.hboxCompareControl.visible = true;
+		}
     }
 }
