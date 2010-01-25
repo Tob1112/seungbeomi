@@ -2,6 +2,28 @@
 Application {
 	/*background-color : #2C4762;*/
 }
+TitleWindow {
+    modal-transparency: 0.3;
+    modal-transparency-blur : 0.0;
+    background-alpha: 1.0;
+    border-alpha: 1.0;
+    corner-radius: 20;
+    /* border-color: #666699; */
+    border-color: #B2CADC;
+    border-thickness-left: 0;
+    border-thickness-right: 0;
+}
+Alert {
+    border-color: #FF00FF;
+    modal-transparency: 0.3;
+    modal-transparency-blur : 0.0;
+    background-alpha: 1.0;
+    border-alpha: 1.0;
+    background-color: #696969;
+    border-thickness-left: 0;
+    border-thickness-right: 0;
+}
+
 
 .message {
 	color : red;
@@ -9,17 +31,9 @@ Application {
     /* font-size : 20px; */
 }
 
-Alert {
-	/*
-	border-color: #000000;
-	modal-transparency: 0.3;
-	modal-transparency-blur: 0.0;
-	background-alpha: 1.0;
-	background-color: #000000;
-	*/
-}
 /*	CSS		write by 	*/
 
 ComboBox {
 	background-color : #FFFFFF;
 }
+

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="1100" height="800" color="black"
-    paddingTop="10" paddingRight="10" paddingBottom="10" paddingLeft="10" currentState="default">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" currentState="default">
 
     <handler:AdminTimesheetListHandler id="adminTimesheetListsHandler" xmlns:handler = "com.prms.views.timesheet.admin.handlers.*" />
 
@@ -16,7 +15,7 @@
 			<mx:Label id="labelCurrentDate" top="25" right="30"/>
 		</mx:HBox>
 
-		<mx:Text id="textTimesheetTitle" text="会社を選択してください。" visible="true" />
+		<mx:Text id="textTimesheetTitle" text="会社を選択してください。" visible="true" fontWeight="bold"/>
 
 		<mx:VBox id="vboxTimesheetList" width="100%" height="100%" visible="false">
 			<!-- 年月選択 DateChooser -->
@@ -31,7 +30,7 @@
 				<!-- ======================================= -->
 			    <mx:DataGrid id="datagridTimesheetList" width="100%" height="100%" dataProvider="{adminTimesheetListsHandler.model.timesheetAC}"
 			                 editable="false" resizableColumns="false" draggableColumns="false" dragEnabled="true" sortableColumns="false"
-			                 doubleClickEnabled="true" visible="true" textAlign="center" showEffect="{dissolveIn}" hideEffect="{dissolveOut}">
+			                 doubleClickEnabled="true" visible="true" textAlign="center">
 			        <mx:columns>
 			            <mx:DataGridColumn headerText="番号" dataField="listSeq" width="70"/>
 			            <mx:DataGridColumn headerText="社員番号" dataField="empNo" width="120"/>
@@ -42,87 +41,6 @@
 			        </mx:columns>
 			    </mx:DataGrid>
 
-				<!-- ======================================= -->
-				<!-- COMPARE TIMESHEET						 -->
-				<!-- ======================================= -->
-			    <mx:HDividedBox id="compareTimesheetHDividedBox" width="0" height="0" visible="false" showEffect="{dissolveIn}" hideEffect="{dissolveOut}">
-			    	<mx:Panel id="leftComparePanel" width="50%" height="100%" title="{adminTimesheetListsHandler.model.compareTimesheetAC.getItemAt(0).yyyymm} - {adminTimesheetListsHandler.model.compareTimesheetAC.getItemAt(0).name}">
-						<mx:Form id="leftCompareForm">
-							<mx:FormItem label="社員番号">
-								<mx:Text text="{adminTimesheetListsHandler.model.compareTimesheetAC.getItemAt(0).empNo}"/>
-							</mx:FormItem>
-							<mx:FormItem label="名前">
-								<mx:Text text="{adminTimesheetListsHandler.model.compareTimesheetAC.getItemAt(0).name}"/>
-							</mx:FormItem>
-							<mx:FormItem label="年月">
-								<mx:Text text="{adminTimesheetListsHandler.model.compareTimesheetAC.getItemAt(0).yyyymm}"/>
-							</mx:FormItem>
-							<mx:FormItem label="実働時間合計">
-								<mx:Text text="{adminTimesheetListsHandler.model.compareTimesheetAC.getItemAt(0).actualTimeTotal}"/>
-							</mx:FormItem>
-							<mx:FormItem label="休憩時間合計">
-								<mx:Text text="{adminTimesheetListsHandler.model.compareTimesheetAC.getItemAt(0).breakTimeTotal}"/>
-							</mx:FormItem>
-							<mx:FormItem label="超過勤務時間合計">
-								<mx:Text text="{adminTimesheetListsHandler.model.compareTimesheetAC.getItemAt(0).overTimeTotal}"/>
-							</mx:FormItem>
-							<mx:FormItem label="深夜勤務時間合計">
-								<mx:Text text="{adminTimesheetListsHandler.model.compareTimesheetAC.getItemAt(0).nightTimeTotal}"/>
-							</mx:FormItem>
-							<mx:FormItem label="遅刻時間合計">
-								<mx:Text text="{adminTimesheetListsHandler.model.compareTimesheetAC.getItemAt(0).lateTimeTotal}"/>
-							</mx:FormItem>
-							<mx:FormItem label="早退時間合計">
-								<mx:Text text="{adminTimesheetListsHandler.model.compareTimesheetAC.getItemAt(0).earlyTimeTotal}"/>
-							</mx:FormItem>
-							<mx:FormItem label="当月有休消合計">
-								<mx:Text text="{adminTimesheetListsHandler.model.compareTimesheetAC.getItemAt(0).holidayTimeTotal}"/>
-							</mx:FormItem>
-							<mx:FormItem label="欠勤日数合計">
-								<mx:Text text="{adminTimesheetListsHandler.model.compareTimesheetAC.getItemAt(0).absenceDaysTotal}"/>
-							</mx:FormItem>
-						</mx:Form>
-			    	</mx:Panel>
-
-			    	<mx:Panel id="rightComparePanel" width="50%" height="100%" title="{adminTimesheetListsHandler.model.compareTimesheetAC.getItemAt(1).yyyymm} - {adminTimesheetListsHandler.model.compareTimesheetAC.getItemAt(1).name}">
-						<mx:Form id="rightCompareForm">
-							<mx:FormItem label="社員番号">
-								<mx:Text text="{adminTimesheetListsHandler.model.compareTimesheetAC.getItemAt(1).empNo}"/>
-							</mx:FormItem>
-							<mx:FormItem label="名前">
-								<mx:Text text="{adminTimesheetListsHandler.model.compareTimesheetAC.getItemAt(1).name}"/>
-							</mx:FormItem>
-							<mx:FormItem label="年月">
-								<mx:Text text="{adminTimesheetListsHandler.model.compareTimesheetAC.getItemAt(1).yyyymm}"/>
-							</mx:FormItem>
-							<mx:FormItem label="実働時間合計">
-								<mx:Text text="{adminTimesheetListsHandler.model.compareTimesheetAC.getItemAt(1).actualTimeTotal}"/>
-							</mx:FormItem>
-							<mx:FormItem label="休憩時間合計">
-								<mx:Text text="{adminTimesheetListsHandler.model.compareTimesheetAC.getItemAt(1).breakTimeTotal}"/>
-							</mx:FormItem>
-							<mx:FormItem label="超過勤務時間合計">
-								<mx:Text text="{adminTimesheetListsHandler.model.compareTimesheetAC.getItemAt(1).overTimeTotal}"/>
-							</mx:FormItem>
-							<mx:FormItem label="深夜勤務時間合計">
-								<mx:Text text="{adminTimesheetListsHandler.model.compareTimesheetAC.getItemAt(1).nightTimeTotal}"/>
-							</mx:FormItem>
-							<mx:FormItem label="遅刻時間合計">
-								<mx:Text text="{adminTimesheetListsHandler.model.compareTimesheetAC.getItemAt(1).lateTimeTotal}"/>
-							</mx:FormItem>
-							<mx:FormItem label="早退時間合計">
-								<mx:Text text="{adminTimesheetListsHandler.model.compareTimesheetAC.getItemAt(1).earlyTimeTotal}"/>
-							</mx:FormItem>
-							<mx:FormItem label="当月有休消合計">
-								<mx:Text text="{adminTimesheetListsHandler.model.compareTimesheetAC.getItemAt(1).holidayTimeTotal}"/>
-							</mx:FormItem>
-							<mx:FormItem label="欠勤日数合計">
-								<mx:Text text="{adminTimesheetListsHandler.model.compareTimesheetAC.getItemAt(1).absenceDaysTotal}"/>
-							</mx:FormItem>
-						</mx:Form>
-			    	</mx:Panel>
-			    </mx:HDividedBox>
-
 			    <mx:Spacer width="10" height="100%"/>
 
 				<!-- ======================================= -->
@@ -132,20 +50,12 @@
 				    <!-- ======================================= -->
 					<!-- TIMESHEET SUMMARY						 -->
 					<!-- ======================================= -->
-					<mx:Panel id="panelTimesheetSummary" title="TIMESHEET SUMMARY" visible="true" width="{vboxExtendTimesheet.width -5}" height="100%" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+					<mx:Panel id="panelTimesheetSummary" title="TIMESHEET SUMMARY" width="{vboxExtendTimesheet.width -5}" height="100%" horizontalScrollPolicy="off" verticalScrollPolicy="off" verticalGap="0">
 
-						<mx:Label id="labelNotSelectedTimesheet" text="リストから勤務表を選択してください。" visible="true"/>
+						<mx:Text id="labelTimesheetSummaryTitle" text="リストから勤務表を選択してください。"/>
 
-						<mx:Form id="formTimesheetSummary" visible="false">
-							<mx:FormItem label="社員番号">
-								<mx:Text text="{adminTimesheetListsHandler.model.timesheetSummary.empNo}"/>
-							</mx:FormItem>
-							<mx:FormItem label="名前">
-								<mx:Text text="{adminTimesheetListsHandler.model.timesheetSummary.name}"/>
-							</mx:FormItem>
-							<mx:FormItem label="年月">
-								<mx:Text text="{adminTimesheetListsHandler.model.timesheetSummary.yyyymm}"/>
-							</mx:FormItem>
+						<mx:Form id="formTimesheetSummary" visible="false" height="100%" horizontalGap="0" verticalGap="0">
+							<!--<mx:Text text="{adminTimesheetListsHandler.model.timesheetSummary.yyyymm} / {adminTimesheetListsHandler.model.timesheetSummary.empNo} / {adminTimesheetListsHandler.model.timesheetSummary.name}"/>-->
 							<mx:FormItem label="実働時間合計">
 								<mx:Text text="{adminTimesheetListsHandler.model.timesheetSummary.actualTimeTotal}"/>
 							</mx:FormItem>
@@ -173,23 +83,23 @@
 						</mx:Form>
 					</mx:Panel>
 
-					<mx:HRule width="100%"/>
+					<mx:Spacer height="10"/>
 
 					<!-- ======================================= -->
 					<!-- COMPARE TIMESHEET						 -->
 					<!-- ======================================= -->
 					<mx:Label text="Compare (Drag timesheets here to compare)" fontWeight="bold"/>
-					<mx:DataGrid id="datagridCompareTimesheet" height="80" width="{vboxExtendTimesheet.width -5}" backgroundColor="#FFFFFF"	dropEnabled="true">
+					<mx:DataGrid id="datagridCompareTimesheet" height="150" width="{vboxExtendTimesheet.width -5}" backgroundColor="#FFFFFF" dropEnabled="true">
 						<mx:columns>
 							<mx:DataGridColumn headerText="年月" dataField="yyyymm"/>
 							<mx:DataGridColumn headerText="名前" dataField="name"/>
 						</mx:columns>
 					</mx:DataGrid>
 					<mx:HBox id="hboxCompareControl">
-						<mx:Button id="buttonCompareAndBackToList" label="compare"/>
+						<mx:Button id="buttonCompareTimesheet" label="compare"/>
 						<mx:Button id="buttonResetDataGridCompareTimesheet" label="reset"/>
 					</mx:HBox>
-					<mx:Label id="compareTimesheetMessageLabel" visible="false"/>
+					<mx:Label id="compareTimesheetMessageLabel" visible="false" fontWeight="bold"/>
 				</mx:VBox>
 			</mx:HBox>
 	    </mx:VBox>

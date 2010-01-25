@@ -17,17 +17,10 @@ package com.prms.business.commands.timesheet
 	public class CompareTimesheetCommand implements ICommand
 	{
 		private var model:TimesheetModelLocator = TimesheetModelLocator.getInstance();
-		private var doc:AdminTimesheetList;
+		private var view:AdminTimesheetList;
 
 		public function execute(event:CairngormEvent):void {
-			trace("CompareTimesheetCommand");
-			var cursor:IViewCursor = this.model.compareTimesheetAC.createCursor();
-			while (!cursor.afterLast) {
-				trace ("## " + cursor.current.empNo + " - " + cursor.current.comCode + " - " + cursor.current.yyyymm);
-				cursor.moveNext();
-			}
-
-			this.doc = CompareTimesheetEvent(event).doc;
+			view = CompareTimesheetEvent(event).doc;
 			var responder:Responder = new Responder(compareTimesheetResultHandler, serviceFaultHandler);
 	        var delegate:TimesheetDelegate = new TimesheetDelegate(responder);
 		    delegate.compareTimesheet(model.compareTimesheetAC);
@@ -38,15 +31,7 @@ package com.prms.business.commands.timesheet
 			this.model.compareTimesheetAC = event.result as ArrayCollection;
 
 			//画面コントーロル
-			this.doc.datagridTimesheetList.visible = false;
-        	this.doc.datagridTimesheetList.width = 0;
-        	this.doc.datagridTimesheetList.height = 0;
-			this.doc.compareTimesheetHDividedBox.visible = true;
-			this.doc.compareTimesheetHDividedBox.percentWidth = 100;
-			this.doc.compareTimesheetHDividedBox.percentHeight = 100;
-			this.doc.buttonCompareAndBackToList.label = "back to list";
-			this.doc.buttonCompareAndBackToList.enabled = true;
-    		this.doc.buttonResetDataGridCompareTimesheet.enabled = true;
+			view.adminTimesheetListsHandler.afterCompareTimesheet();
 		}
 
 		private function serviceFaultHandler(event:FaultEvent):void {
