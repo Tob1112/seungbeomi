@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<flexProperties flexServerType="8" flexWarLocation="/development/ide/eclipse/workspace/blazeds.war" serverContextRoot="/blazeds-dashboard" serverRoot="/development/ide/eclipse/workspace/blazeds-dashboard/WebContent" serverRootURL="http://localhost:8080/blazeds-dashboard" toolCompile="true" useServerFlexSDK="false" version="1"/>
