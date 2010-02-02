@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml"
+		   width="99%"
+		   height="100%"
+		   fontSize="12"
+		   horizontalScrollPolicy="off">
+	<handler:UserTrafficRegTrainHandler id="regTrainHandler"
+		xmlns:handler="com.prms.client.flex.views.traffic.common.handlers.*"/>
+
+	<mx:Script>
+		<![CDATA[
+			import com.prms.client.flex.views.traffic.common.events.TrafficEvent;
+		]]>
+	</mx:Script>
+
+	<mx:Style>
+		.headerTextStyle{
+			text-align:center;
+		}
+	</mx:Style>
+
+	<mx:CurrencyFormatter id="cfregTrainfare" currencySymbol=" "/>
+
+	<mx:Label top="12" left="10"
+			  text="定期券金額編集"
+			  fontSize="14" fontWeight="bold"/>
+
+	<!-- 電車定期券の行追加 -->
+	<mx:Image id="btnAddRow"
+			  top="16" left="128"
+			  scaleContent="false"
+			  source="assets/images/add.png"
+			  click="dispatchEvent(new TrafficEvent(TrafficEvent.ADD_ROW, this))"/>
+	<mx:Box width="100" height="30"
+			top="5" right="10"
+			horizontalAlign="right"
+			verticalAlign="middle"
+			borderStyle="solid"
+			borderThickness="2"
+			borderColor="gray"
+			cornerRadius="8">
+		<mx:Label id="regTrainTotalLabel"
+			text="{regTrainHandler.model.traffic.trainTotal}"
+			textAlign="right"/>
+	</mx:Box>
+
+	<mx:DataGrid id="regTrainDG"
+				 top="40" right="10" left="10"
+				 dataProvider="{regTrainHandler.model.regTrainAC}"
+				 editable="true"
+				 textAlign="center"
+				 rowCount="4"
+				 rowHeight="30"
+				 resizableColumns="false"
+				 draggableColumns="false"
+				 sortableColumns="false"
+				 allowMultipleSelection="false"
+				 verticalScrollPolicy="off">
+
+		<mx:columns>
+			<!-- 削除ボタン -->
+			<mx:DataGridColumn headerText="  "
+							   width="40"
+							   dataField="seq"
+							   editable="false"
+							   itemRenderer="com.prms.client.flex.views.traffic.common.renderer.DeleteButtonRenderer"/>
+
+			<!-- 期間 -->
+			<mx:DataGridColumn headerText="期間"
+							   width="300"
+							   dataField="period"
+							   editable="false"
+							   rendererIsEditor="false"
+							   itemRenderer="com.prms.client.flex.views.traffic.common.renderer.PeriodEditRenderer"/>
+
+			<!-- 区間 -->
+			<mx:DataGridColumn headerText="区間"
+							   width="300"
+							   dataField="section"
+							   editable="false"
+							   itemRenderer="com.prms.client.flex.views.traffic.common.renderer.SectionEditRenderer"/>
+
+			<!-- 電車定期券の金額入力 -->
+			<mx:DataGridColumn id="regTrainFare"
+							   headerText="金額  (円)"
+							   dataField="fare"/>
+
+			<!-- 電車定期券の備考入力 -->
+			<mx:DataGridColumn id="regTrainNote"
+							   headerText="備考"
+							   dataField="note"
+							   textAlign="left"
+							   headerStyleName="headerTextStyle"/>
+		</mx:columns>
+	</mx:DataGrid>
+</mx:Canvas>

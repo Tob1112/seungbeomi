@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml">
+
+    <handler:LoginBodyHandler xmlns:handler="com.prms.client.flex.views.login.handlers.*" id="loginBodyHandler"/>
+
+    <mx:Canvas id="login" backgroundColor="#EDF6FC" width="510" height="289" horizontalCenter="0" verticalCenter="0">
+        <mx:Label text="User ID" fontSize="20" color="#7F93A9" left="30" top="20"/>
+        <mx:TextInput id="txtUserId" fontSize="20" width="450" left="30" top="60"/>
+        <mx:Label text="Password" fontSize="20" color="#7F93A9" left="30" top="100"/>
+        <mx:TextInput id="txtPassword" displayAsPassword="true" fontSize="20" width="450" left="30" top="140"/>
+        <mx:Label id="lblMessage" styleName="message" left="30" top="200"/>
+        <mx:Button id="btnLogin" label="Log in" fontSize="20" color="#33C715" right="30" top="200"/>
+    </mx:Canvas>
+
+    <!-- VALIDATORS -->
+    <mx:Array id="validators">
+        <mx:Validator id="validateTxtUserId" source="{txtUserId}" property="text" required="true"/>
+        <mx:Validator id="validateTxtPasswordValidator" source="{txtPassword}" property="text" required="true"/>
+    </mx:Array>
+
+    <!-- EFFECTS -->
+    <mx:Move id="loginFaultEffect" target="{login}" repeatCount="4" duration="50" xFrom="{login.x - 10}" xTo="{login.x}"/>
+
+</mx:Canvas>

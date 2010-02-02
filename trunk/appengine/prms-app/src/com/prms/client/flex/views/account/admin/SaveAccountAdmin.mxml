@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	width="100%"
+	height="100%"
+    creationComplete="init()">
+
+	<mx:Script source="./handlers/SaveAccountAdminHandler.as" />
+
+	<mx:Label top="10" left="10" text="新規登録" fontWeight="bold"/>
+	<mx:Label id="saveAccountDateLabel" text="2010年01月" top="10" right="10" fontWeight="bold"/>
+
+	<mx:Canvas top="50" left="10" width="100%" height="100%">
+		<mx:Label text="●社員情報作成" fontWeight="bold" x="10" y="10"/>
+
+		<!-- 会社コード -->
+		<mx:Label text="会社:" fontWeight="bold" x="10" y="36"/>
+		<mx:ComboBox id="companyNameCombBox" dataProvider="{companyName}" close="companyNameCloseHandler(event);" width="200" x="89" y="34"/>
+
+		<!-- 上位部署-->
+		<mx:Label text="上位部署：" fontWeight="bold" x="10" y="58"/>
+		<mx:ComboBox id="highDeptNameComboBox" dataProvider="{highDeptName}" close="highDeptNameCloseHandler(event);" width="100" x="89" y="56"/>
+
+		<!-- 下位部署 -->
+		<mx:Label text="下位部署：" fontWeight="bold" x="197" y="58"/>
+		<mx:ComboBox id="rowDeptNameComboBox" dataProvider="{rowDeptName}" close="rowDeptNameCloseHandler(event);" width="100" x="260" y="56"/>
+
+		<!-- 社員番号 -->
+		<mx:Label text="社員番号：" fontWeight="bold" x="10" y="86"/>
+		<mx:TextInput id="empNoTextInput" width="100" x="89" y="84"/>
+
+		<!-- 名前(姓) -->
+		<mx:Label text="名前（姓）：" x="10" y="112"/>
+		<mx:TextInput id="userLastNameTextInput" width="100" x="89" y="108"/>
+
+		<!-- 名前(名) -->
+		<mx:Label text="名前（名）：" x="202" y="112"/>
+		<mx:TextInput id="userFirstNameTextInput" width="100" x="260" y="110"/>
+
+		<!-- 入社日 -->
+		<mx:Label text="入社日：" x="10" y="138"/>
+        <mx:DateField id="userHireDayDateField" yearNavigationEnabled="true" color="0x000000" x="89" y="140"/>
+
+		<!-- メールアドレス -->
+		<mx:Label text="メールアドレス：" x="10" y="170"/>
+		<mx:TextInput id="userMailAddressTextInput" width="100" x="89" y="168"/>
+		<mx:Label text="@roue.co.jp" x="197" y="170"/>
+
+		<!-- 権限 -->
+		<mx:Label text="権限" x="10" y="196"/>
+		<mx:ComboBox id="roleNameComboBox" dataProvider="{rolesName}" close="roleNameCloseHandler(event);" width="100" x="89" y="194"/>
+
+		<mx:HBox x="764" y="241">
+		</mx:HBox>
+		<mx:Button label="保存" id="saveAccountAdminUserButton" x="68" y="239" click="clickSaveAccountUserHandler()"/>
+		<mx:Button label="戻る" id="backButton" x="13" y="239" click="clickAccountBackHandler()"/>
+	</mx:Canvas>
+
+</mx:Canvas>

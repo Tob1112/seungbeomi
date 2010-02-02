@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml" width="100%"
+	horizontalAlign="center"
+	horizontalScrollPolicy="off"
+	verticalAlign="middle">
+
+
+	<mx:Script>
+		<![CDATA[
+			import com.prms.client.flex.vo.TrafficRegular;
+
+			private function fromSectionHandler(event:Event):void{
+				currentState = "";
+				var departure:String = event.target.text;
+				TrafficRegular(mx.controls.DataGrid(owner).selectedItem).setDeparturePoint(departure);
+			}
+
+			private function toSectionHandler(event:Event):void{
+				currentState = "";
+				var arrival:String = event.target.text;
+				TrafficRegular(mx.controls.DataGrid(owner).selectedItem).setArrivalPoint(arrival);
+			}
+		]]>
+	</mx:Script>
+
+
+	<!--
+		****************************************************************
+		****** DataGridに表示されるデータ。データ修正不可能。Read only    ******
+		****************************************************************
+	-->
+
+	<mx:Text id="txtFromSection" width="100"
+		text="{data.departurePoint}"
+		click="currentState='section';txtIptFromSection.getFocus();"
+		focusOut="currentState=''"/>
+	<mx:Label id="lblFromTo" text=" ⇔ "/>
+	<mx:Text id="txtToSection" width="100"
+		text="{data.arrivalPoint}"
+		click="currentState='section'"
+		focusOut="currentState=''"/>
+
+
+	<!--
+		****************************************************************
+		****** DataGridをクリックしたときに表示される。データ修正可能になる。******
+		****************************************************************
+	-->
+
+	<mx:states>
+		<mx:State name="section">
+			<mx:AddChild relativeTo="{lblFromTo}" position="before">
+				<mx:TextInput id="txtIptFromSection" width="100"
+					text="{data.departurePoint}"
+					mouseFocusChange="fromSectionHandler(event)"
+					focusOut="fromSectionHandler(event)"/>
+			</mx:AddChild>
+			<mx:AddChild relativeTo="{lblFromTo}" position="after">
+				<mx:TextInput id="txtIptToSection" width="100"
+					 text="{data.arrivalPoint}"
+					 mouseFocusChange="toSectionHandler(event)"
+					 focusOut="toSectionHandler(event)"/>
+			</mx:AddChild>
+			<mx:RemoveChild target="{txtFromSection}" />
+			<mx:RemoveChild target="{txtToSection}"/>
+		</mx:State>
+	</mx:states>
+</mx:HBox>

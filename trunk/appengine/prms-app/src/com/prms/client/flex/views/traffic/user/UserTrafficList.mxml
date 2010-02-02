@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" xmlns:fommater="com.prms.client.flex.util.fommater.*">
+
+    <handler:UserTrafficListHandler id="userTrafficListHandler" xmlns:handler = "com.prms.client.flex.views.traffic.common.handlers.*" />
+
+    <fommater:LabelDateFormatter id="formatter"/>
+
+    <!-- 勤務表一覧 -->
+    <mx:Label id="currentDateLabel" text="{userTrafficListHandler.model.traffic.currentDate}" top="25" right="30"/>
+    <mx:Label text="交通費一覧" left="30" top="20"/>
+
+    <mx:HBox id="userTrafficListHBox" top="60" right="30" textAlign="center">
+        <mx:TextInput id="trafficListYearTextInput" maxChars="4" editable="true" restrict="0-9"/>
+        <mx:Label text="年" />
+        <mx:TextInput id="trafficListMonthTextInput" maxChars="2" editable="true" restrict="0-9"/>
+        <mx:Label text="月分" />
+        <mx:Button id="trafficNewWriteButton" label="新規作成" enabled="true"/>
+    </mx:HBox>
+
+    <mx:DataGrid id="trafficListDataGrid" doubleClickEnabled="true" left="30" right="30" top="100" bottom="10" textAlign="center">
+        <mx:columns>
+            <mx:DataGridColumn headerText="番号" labelFunction="{userTrafficListHandler.dispRowNum}" width="70"/>
+            <mx:DataGridColumn headerText="年" dataField="yyyymm" labelFunction="{formatter.formatYYYY}" width="120"/>
+            <mx:DataGridColumn headerText="月" dataField="yyyymm" labelFunction="{formatter.formatMM}" width="120"/>
+            <mx:DataGridColumn headerText="状態" dataField="codeDetailName" width="180"/>
+            <mx:DataGridColumn headerText="備考" dataField="note"/>
+        </mx:columns>
+    </mx:DataGrid>
+</mx:Canvas>

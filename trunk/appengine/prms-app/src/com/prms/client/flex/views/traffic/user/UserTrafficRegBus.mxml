@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml"
+	width="99%" height="100%"
+	fontSize="12">
+
+
+
+	<mx:XMLList id="busFare">
+		<busFare>
+			<date1>1 (木)</date1>
+			<kubun1></kubun1>
+			<money1>344</money1>
+			<date2>16 (金)</date2>
+			<kubun2>往復</kubun2>
+			<money2>344</money2>
+		</busFare>
+		<busFare>
+			<date1>2 (金)</date1>
+			<kubun1></kubun1>
+			<money1>172</money1>
+			<date2>17 (土)</date2>
+			<kubun2>---</kubun2>
+			<money2>---</money2>
+		</busFare>
+		<busFare>
+			<date1>3 (土)</date1>
+			<kubun1>---</kubun1>
+			<money1>---</money1>
+		</busFare>
+	</mx:XMLList>
+
+	<mx:Script>
+		<![CDATA[
+			private function clickHome():void{
+				this.parentDocument.trafficDetailCanvas.verticalScrollPosition = 0;
+			}
+		]]>
+	</mx:Script>
+
+	<mx:VBox width="100%" height="100%" paddingLeft="10" paddingRight="10">
+		<mx:TabNavigator id="bus" width="100%" height="100%"
+			paddingLeft="10" paddingRight="10" >
+
+			<mx:Canvas label="バスA" width="100%" height="100%"
+				horizontalScrollPolicy="off"
+				verticalScrollPolicy="off">
+				<mx:Image source="assets/up_16.png" top="7" right="10"
+					click="clickHome()" />
+				<mx:VBox width="100%" height="100%">
+					<mx:Label text="バス金額編集　(2009.10)" paddingBottom="5" paddingTop="5"/>
+					<mx:HBox borderStyle="solid" borderThickness="2" borderColor="gray"
+						width="100%" height="7%" cornerRadius="8" verticalAlign="middle"
+						paddingTop="5" paddingLeft="10" paddingBottom="5" paddingRight="10">
+						<mx:Label text="区間　：　"/>
+						<mx:TextInput maxChars="7" textAlign="center" text="上野"/>
+						<mx:Label text="～"/>
+						<mx:TextInput maxChars="7" textAlign="center" text="浅草"/>
+						<mx:Label text="    片道の金額　：　"/>
+						<mx:TextInput maxChars="3" textAlign="right" text="200"/>
+						<mx:Label text="円   ( 単価　：　"/>
+						<mx:Text textAlign="right" text="174"/>
+						<mx:Label text="円 )"/>
+					</mx:HBox>
+
+					<mx:HBox width="100%" height="100%"
+						paddingTop="15"
+						textAlign="center"
+						paddingBottom="10">
+						<mx:DataGrid width="100%" rowCount="16"
+							dataProvider="{busFare}"
+							draggableColumns="false">
+							<mx:columns>
+								<mx:DataGridColumn headerText="日付" dataField="date1" sortable="false"/>
+								<mx:DataGridColumn headerText="区分" dataField="kubun1" sortable="false"
+									>
+								</mx:DataGridColumn>
+								<mx:DataGridColumn headerText="金額 (円)" dataField="money1" sortable="false"/>
+							</mx:columns>
+						</mx:DataGrid>
+
+						<mx:DataGrid width="100%" rowCount="16"
+							dataProvider="{busFare}"
+							draggableColumns="false">
+							<mx:columns>
+								<mx:DataGridColumn headerText="日付" dataField="date2" sortable="false"/>
+								<mx:DataGridColumn headerText="区分" dataField="kubun2" sortable="false"/>
+								<mx:DataGridColumn headerText="金額(円)" dataField="money2" sortable="false"/>
+							</mx:columns>
+						</mx:DataGrid>
+					</mx:HBox>
+				</mx:VBox>
+			</mx:Canvas>
+		</mx:TabNavigator>
+	</mx:VBox>
+
+</mx:Canvas>

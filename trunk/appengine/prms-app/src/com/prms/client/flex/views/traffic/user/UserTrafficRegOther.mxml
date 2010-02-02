@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml"
+	width="99%" height="100%"
+	fontSize="12"
+	horizontalScrollPolicy="off">
+	<handler:UserTrafficRegOtherHandler id="regOtherHandler"
+		xmlns:handler="com.prms.client.flex.views.traffic.common.handlers.*"/>
+
+	<mx:Script>
+		<![CDATA[
+			import com.prms.client.flex.views.traffic.common.events.TrafficEvent;
+		]]>
+	</mx:Script>
+
+	<mx:Style>
+		.headerTextStyle {
+			text-align : center;
+		}
+	</mx:Style>
+
+	<mx:Label left="10" bottom="165"
+		text="その他" fontSize="12" fontWeight="bold"/>
+	<mx:Image id="btnAddRow"
+			  bottom="165" left="60"
+			  scaleContent="false"
+			  source="assets/images/add.png"
+			  click="dispatchEvent(new TrafficEvent(TrafficEvent.OTHER_ADD_ROW, this))"/>
+	<mx:Box width="100" height="30" bottom="165" right="10"
+			horizontalAlign="right"
+			verticalAlign="middle"
+			borderStyle="solid"
+			borderThickness="2"
+			borderColor="gray"
+			cornerRadius="8">
+		<mx:Label id="regOtherTotalLabel"
+			text="{regOtherHandler.model.traffic.otherTotal}"
+			textAlign="right"/>
+	</mx:Box>
+	<mx:DataGrid id="regOtherDG"
+		 bottom="15" right="10" left="10"
+		 dataProvider="{regOtherHandler.model.regOtherAC}"
+		 editable="true"
+		 textAlign="center"
+		 rowCount="4"
+		 rowHeight="30"
+		 resizableColumns="false"
+		 draggableColumns="false"
+		 sortableColumns="false"
+		 allowMultipleSelection="false"
+		 verticalScrollPolicy="off">
+
+		<mx:columns>
+			<!-- 削除ボタン -->
+			<mx:DataGridColumn headerText="  "
+							   width="40"
+							   dataField="seq"
+							   editable="false"
+							   itemRenderer="com.prms.client.flex.views.traffic.common.renderer.DeleteButtonRenderer"/>
+
+			<!-- 期間 -->
+			<mx:DataGridColumn headerText="期間"
+							   width="300"
+							   dataField="period"
+							   editable="false"
+							   rendererIsEditor="false"
+							   itemRenderer="com.prms.client.flex.views.traffic.common.renderer.PeriodEditRenderer"/>
+
+			<!-- 電車定期券の金額入力 -->
+			<mx:DataGridColumn id="regOtherFare"
+							   headerText="金額  (円)"
+							   dataField="fare"/>
+
+			<!-- 電車定期券の備考入力 -->
+			<mx:DataGridColumn id="regOtherNote"
+							   headerText="備考"
+							   dataField="note"
+							   textAlign="left"
+							   headerStyleName="headerTextStyle"/>
+		</mx:columns>
+	</mx:DataGrid>
+
+</mx:Canvas>

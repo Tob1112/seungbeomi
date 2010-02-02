@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml"
+         xmlns:col="com.prms.client.flex.views.timesheet.common.*"
+         xmlns:val="com.prms.client.flex.views.timesheet.common.validator.*"
+         xmlns:util="com.prms.client.flex.util.*"
+         width="100%"
+         height="100%"
+         verticalAlign="middle"
+         horizontalAlign="center"
+         verticalScrollPolicy="off"
+         horizontalScrollPolicy="off">
+    <mx:Style>
+.Dtgrd
+{       border-color: #d0d7e5;
+       color: #000000;
+       header-colors: #edf2f7, #cdddf1;
+      <!--  alternating-row-colors: #333366, #9999ff, #ffffff;
+             v-grid-line-color: #6666CC; -->
+       backgroundColor: #ffffff;
+       horizontalGridLines: true;
+       letterSpacing: 0;
+       horizontalGridLineColor: #d0d7e5;
+        verticalGridLineColor: #d0d7e5;
+       verticalGridLines: true;
+       rollOverColor: #c6cdd7;
+       <!-- textRollOverColor: #00ffff; -->
+        <!-- borderThickness: 8;-->
+       textIndent: 6;
+}
+         </mx:Style>
+
+    <const:Constants xmlns:const = "com.prms.client.flex.*" />
+    <handler:UserTimesheetDetailsHandler id="userTimesheetDetailsHandler" xmlns:handler = "com.prms.client.flex.views.timesheet.user.handlers.*" />
+
+
+    <!-- タイトル -->
+    <mx:HBox width="98%">
+        <mx:HBox width="50%" horizontalAlign="left" verticalAlign="middle">
+            <!-- 勤務表タイトル 形式：タイトル（YYYY年MM月） -->
+            <mx:Label id="titleLabel" fontSize="22" fontWeight="bold" textAlign="left"/>
+            <!-- ステータス -->
+            <mx:VBox  backgroundColor="#a9c4e9" cornerRadius="8" width="100" height="30" backgroundAlpha="0.5"
+                     borderColor="#bfdbff" borderStyle="solid" verticalAlign="middle" horizontalAlign="center">
+                <mx:Label id="statusLabel" text="{userTimesheetDetailsHandler.model.timesheet.codeDetailName}" width="100%" textAlign="center"/>
+            </mx:VBox>
+		    <!-- ファイルアップロード -->
+			<mx:Button id="fileuploadButton" icon="@Embed('com/prms/client/flex/assets/images/up.png')"/>
+        </mx:HBox>
+        <mx:VBox width="50%" horizontalAlign="right">
+            <!-- 今日の日付 -->
+            <mx:HBox backgroundColor="#215b90" textAlign="center" verticalAlign="middle" color="#ffffff" height="25" width="200" cornerRadius="8"  borderStyle="solid">
+                <mx:Label id="todayDateLabel" width="100%" />
+            </mx:HBox>
+            <mx:HBox color="#17365d">
+                <!-- 社員番号 -->
+                <mx:VBox backgroundColor="#215b90" backgroundAlpha="0.7" textAlign="center" height="25" width="150" verticalAlign="middle"
+                         cornerRadius="8" borderStyle="solid">
+                    <mx:Label color="#f2f2f2" width="100%" textAlign="center" id="empNoLabel" text="社員番号 ： {userTimesheetDetailsHandler.model.timesheet.empNo}"/>
+                </mx:VBox>
+                <!-- 社員名 -->
+                <mx:VBox backgroundColor="#215b90" backgroundAlpha="0.4" textAlign="center" height="25" width="200" verticalAlign="middle"
+                         cornerRadius="8" borderStyle="solid">
+                    <mx:Label width="100%" textAlign="center" id="empNameLabel" text="社員名 ： {userTimesheetDetailsHandler.model.timesheet.name}"/>
+                </mx:VBox>
+                <!-- 定時情報設定ボタン-->
+                <mx:VBox backgroundColor="#215b90" backgroundAlpha="0.85" textAlign="center" height="25" width="150" verticalAlign="middle"
+                         cornerRadius="8" borderStyle="solid">
+                    <mx:Label color="#ffffff" text="定時情報設定" width="100%" textAlign="center" />
+                </mx:VBox>
+            </mx:HBox>
+        </mx:VBox>
+    </mx:HBox>
+    <!-- エラーメッセージ -->
+    <mx:VBox width="98%" height="25" textAlign="left" backgroundColor="#215b90" borderStyle="solid"
+             backgroundAlpha="0.12" borderColor="#ffffff" cornerRadius="8" verticalAlign="middle">
+        <mx:Label paddingLeft="5" paddingRight="5" width="100%" text="error message!!!" color="#ff0000"/>
+    </mx:VBox>
+    <!-- 勤務表 -->
+    <mx:HBox width="98%" height="580" >
+        <!--<mx:VBox width="100%"  verticalScrollPolicy="auto" paddingBottom="5" paddingTop="5">-->
+        <mx:AdvancedDataGrid id="timesheetDetailAdvancedDataGrid"
+                             left="col01:10"
+                             right="col04:10"
+                             top="row07:5"
+                             bottom="row07:10"
+                             textAlign="center"
+                             sortExpertMode="true"
+                             editable="true"
+                             sortableColumns="false"
+                             draggableColumns="false"
+                             dataProvider="{userTimesheetDetailsHandler.model.timesheetDetailAC}"
+                             width="100%"
+                             height="100%"
+                             styleName = "Dtgrd"
+                             verticalScrollPolicy="auto"
+                             rowCount="{userTimesheetDetailsHandler.model.timesheetDetailAC.length + 2}">
+            <mx:columns>
+                <col:TimesheetDetailsColumn headerText="日付" dataField="yyyymmdd" editable="false" width="50" format="date" />
+                <col:TimesheetDetailsColumn headerText="勤務形態" dataField="workPatternCode" editorDataField="value" format="workType" />
+                <col:TimesheetDetailsColumn headerText="定時情報名称" dataField="fixTimeName" format="fixTime" />
+                <col:TimesheetDetailsColumn headerText="* 開始" dataField="workStartTime" format="time" />
+                <col:TimesheetDetailsColumn headerText="* 終了" dataField="workEndTime" format="time"/>
+                <col:TimesheetDetailsColumn headerText="* 休憩" dataField="breakTimeTotal" format="time" />
+                <col:TimesheetDetailsColumn headerText="{'実動\n時間'}" dataField="actualTime" editable="false" format="default" />
+                <col:TimesheetDetailsColumn headerText="備考" dataField="note" format="default" />
+            </mx:columns>
+        </mx:AdvancedDataGrid>
+        <!-- </mx:VBox>-->
+    </mx:HBox>
+    <!-- ボタン -->
+    <mx:ControlBar width="100%">
+        <mx:Button id="backButton"  label="戻る" width="100" cornerRadius="10" />
+        <mx:Spacer width="100%" />
+        <mx:Button id="saveButton" label="保存" width="100" cornerRadius="10" />
+        <mx:Button id="submitButton" label="提出" width="100" cornerRadius="10"/>
+    </mx:ControlBar>
+    <!-- 定時情報 -->
+    <!--
+         <mx:AdvancedDataGrid id="fixTimeAdvancedDataGrid"
+         left="col01:10"
+         right="col04:10"
+         top="row05:5"
+         bottom="row05:5"
+         sortExpertMode="true"
+         rowHeight="25"
+         sortableColumns="false"
+         draggableColumns="false"
+         textAlign="center"
+         editable="true"
+         verticalScrollPolicy="off"
+         dataProvider="{userTimesheetDetailsHandler.model.fixTimeAC}">
+         <mx:groupedColumns>
+         <col:TimesheetDetailsColumn id="fixTimeName" headerText="名称" dataField="fixTimeName" editable="false" width="50" format="default"/>
+         <col:TimesheetDetailsColumn id="clientName" headerText="顧客名" dataField="clientName" format="default"/>
+         <col:TimesheetDetailsColumn id="timeUnit" headerText="{'時間\n単位'}" dataField="timeUnit" format="unitTime"/>
+         <mx:AdvancedDataGridColumnGroup headerText="定時">
+         <col:TimesheetDetailsColumn headerText="開始" dataField="workStartTime" format="time"/>
+         <col:TimesheetDetailsColumn headerText="終了" dataField="workEndTime" format="time"/>
+         </mx:AdvancedDataGridColumnGroup>
+         <mx:AdvancedDataGridColumnGroup headerText="お昼休み">
+         <col:TimesheetDetailsColumn headerText="開始" dataField="lunchStartTime" format="time"/>
+         <col:TimesheetDetailsColumn headerText="終了" dataField="lunchEndTime" format="time"/>
+         </mx:AdvancedDataGridColumnGroup>
+         <col:TimesheetDetailsColumn headerText="{'勤務表\初期値'}" editable="false" format="fixApplyButton"/>
+         </mx:groupedColumns>
+         </mx:AdvancedDataGrid>
+    -->
+</mx:VBox>
