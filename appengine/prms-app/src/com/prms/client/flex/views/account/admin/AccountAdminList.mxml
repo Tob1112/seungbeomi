@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	width="100%"
+	height="100%"
+	color="black"
+    creationComplete="init()">
+
+	<mx:Script source="./handlers/AccountAdminListHandler.as" />
+
+	<mx:VBox width="100%" height="100%">
+
+		<mx:HBox id="accountAdminCompanySelectHBox" visible="true" width="100%">
+			<mx:Button id="accountAdminBodyRoueButton" label="ルウガルソン" click="clickButtonCompanySelectHandler('01')"/>
+			<mx:Button id="accountAdminBodySuiteButton" label="ルウガルソン・スイート" click="clickButtonCompanySelectHandler('02')"/>
+			<mx:Button id="accountAdminBodyRunningButton" enabled="false" label="ルウガルソン・ラーニング" click="clickButtonCompanySelectHandler('03')"/>
+
+			<mx:Spacer width="100%" />
+
+			<!-- 日付表示-->
+			<mx:Label id="accountListDateLabel" fontWeight="bold"/>
+
+		</mx:HBox>
+
+		<mx:Text id="accountAdminBodyCompanySelectedMessageText" text="会社を選択してください。" visible="true" />
+
+        <mx:Box id="accountAdminBodyEmployeeListHBox" visible="false" width="100%" height="100%" horizontalAlign="left">
+
+			<!--新規作成ボタン-->
+            <mx:Button id="accountAdminBodyContentsRunningButton" label="新規作成" click="clickButtonNewAccountHandler()" />
+
+			<!--社員リストデータグリッド-->
+            <mx:DataGrid id="accountAdminBodyEmployeeListDataGrid" width="100%" height="89%" textAlign="center" bottom="10%">
+                <mx:columns>
+                    <mx:DataGridColumn headerText="番号" labelFunction="dispRowNum"/>
+                    <mx:DataGridColumn headerText="部署" dataField="deptName"/>
+                    <mx:DataGridColumn headerText="社員番号" dataField="empNo"/>
+                    <mx:DataGridColumn headerText="名前" dataField="accountUserName"/>
+                    <mx:DataGridColumn headerText="アカウント名" dataField="email"/>
+                    <mx:DataGridColumn headerText="権限" dataField="role"/>
+                    <mx:DataGridColumn headerText="備考" dataField="col7"/>
+                </mx:columns>
+            </mx:DataGrid>
+        </mx:Box>
+	</mx:VBox>
+</mx:Canvas>

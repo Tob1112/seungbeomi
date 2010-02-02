@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox
+         xmlns:mx="http://www.adobe.com/2006/mxml"
+         creationComplete="init()"
+         width="100%"
+         height="100%"
+         xmlns:navigator="com.prms.client.flex.views.main.admin.*"
+         xmlns:views = "com.prms.client.flex.views.main.admin.*">
+
+    <mx:Script source="./handlers/AdminMainLayoutHandler.as" />
+
+    <mx:WipeDown id="messageWipeDown" duration="1000"/>
+    <mx:WipeUp id="messageWipeUp" duration="1000"/>
+
+    <mx:Canvas width="100%" height="8%">
+        <!-- トップメニュー -->
+        <mx:ApplicationControlBar width="100%" height="100%" backgroundAlpha="1" cornerRadius="4" borderStyle="solid">
+
+            <mx:LinkButton id="adminWorkLinkButton" label="勤怠管理" fontSize="14" color="white" click="clickAdminHeaderMenuHandler('adminWork')"/>
+            <mx:LinkButton id="adminSalaryLinkButton" label="給与管理" fontSize="14" color="white" click="clickAdminHeaderMenuHandler('adminSalary')"/>
+            <mx:LinkButton id="adminPersonnelLinkButton" label="人事管理" fontSize="14" color="white" click="clickAdminHeaderMenuHandler('adminPersonnel')"/>
+
+            <!-- メニュー間間隔-->
+            <mx:Spacer width="100%"/>
+
+            <!-- ログインユーザーのメールアドレス-->
+            <mx:Label id="userMainLabel" color="white" text="admin@roue.co.jp"/>
+
+            <mx:LinkButton id="userMainLogoutLinkButton" label="ログアウト" fontSize="14" color="white"/>
+            <mx:LinkButton id="userMainHelpLinkButton" label="ヘルプ" fontSize="14" color="white"/>
+
+        </mx:ApplicationControlBar>
+        <!-- トップメニュー -->
+
+        <!-- ヘッダ成功メッセージ-->
+        <mx:HBox
+                 visible="false"
+                 id="headerMessageHBox"
+                 width="100%"
+                 height="100%"
+                 backgroundAlpha="1"
+                 cornerRadius="4"
+                 backgroundColor="#ffffff"
+                 verticalAlign="middle"
+                 horizontalAlign="center"
+                 maxHeight="50"
+                 hideEffect="{messageWipeUp}"
+                 showEffect="{messageWipeDown}">
+
+            <mx:Label text="正常に保存されました。" />
+
+        </mx:HBox>
+        <!-- ヘッダ成功メッセージ-->
+    </mx:Canvas>
+
+    <!-- ボディー -->
+    <mx:HBox width="100%" height="90%">
+
+        <!-- 左メニュー-->
+        <mx:Box id="adminMainLeftMenuBox" backgroundAlpha="1" cornerRadius="4" borderStyle="solid" borderColor="red" width="{menuWidth}" height="100%">
+
+            <mx:Image source="{isClosed == false?(closeNav):openNav}" useHandCursor="true" buttonMode="true" mouseChildren="false"
+                      click="discloseNav()" id="closeNavBtn" right="5" top="5" />
+
+            <mx:ViewStack width="100%" height="100%" left="5" top="35" bottom="30" right="5" id="navStack" visible="true">
+                <navigator:treeNav id="treeNav"/>
+                <navigator:miniNav id="miniNav"/>
+            </mx:ViewStack>
+
+        </mx:Box>
+        <!-- 左メニュー-->
+
+        <!-- コンテンツ -->
+        <mx:Box
+                width="100%"
+                height="100%"
+                id = "adminMainContentsBox"
+                label="Contents"
+                cornerRadius="4"
+                borderStyle="solid"
+                borderColor="blue">
+
+            <mx:ModuleLoader width="100%" height="100%" id="adminModuleLoader"/>
+
+        </mx:Box>
+        <!-- コンテンツ -->
+    </mx:HBox>
+    <!-- ボディー -->
+
+    <!-- 下 -->
+    <mx:Box id="footer" width="100%" cornerRadius="4" borderStyle="solid" borderColor="yellow">
+        <mx:Text width="100%" textAlign="center" id="txtFooter" text="@Copyright" color="#FFFFFF"/>
+    </mx:Box>
+    <!-- 下 -->
+
+    <!-- 左メニューのサイズ -->
+    <mx:Resize id="shrink" widthTo="{menuWidthMini}" target="{adminMainLeftMenuBox}" duration="1000" effectEnd="navStack.visible = true;" />
+    <mx:Resize id="grow" widthTo="{menuWidth}" target="{adminMainLeftMenuBox}" duration="1000" effectEnd="navStack.visible = true;"/>
+
+</mx:VBox>

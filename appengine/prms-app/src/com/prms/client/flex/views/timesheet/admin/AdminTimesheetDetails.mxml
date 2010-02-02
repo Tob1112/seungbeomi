@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml"
+           width="700" height="100%"
+           xmlns:handlers="com.prms.client.flex.views.timesheet.admin.handlers.*"
+           xmlns:col="com.prms.client.flex.views.timesheet.common.*">
+
+    <handlers:AdminTimesheetDetailsHandler id="adminTimesheetDetailsHandler"/>
+
+    <!-- 今日の日付 -->
+    <mx:Label id="currentDateLabel" text="{adminTimesheetDetailsHandler.model.timesheet.currentDateTypeIsString}" right="20" top="10"/>
+
+    <mx:HBox height="20" left="20" top="20">
+        <mx:Label id="titleLabel" text="勤務表作成 ( {adminTimesheetDetailsHandler.model.timesheet.displayYYYYMM} )"/>
+        <mx:Label id="statusLabel" text="{adminTimesheetDetailsHandler.model.timesheet.codeDetailName}"/>
+    </mx:HBox>
+    <mx:HBox left="20" right="20" height="20" top="50" horizontalAlign="right">
+        <mx:Label text="社員番号 : {adminTimesheetDetailsHandler.model.timesheet.empNo}"/>
+        <mx:Label text="名前 : {adminTimesheetDetailsHandler.model.timesheet.name}"/>
+    </mx:HBox>
+
+    <mx:VBox right="20" left="20" top="80" bottom="40">
+        <!--=================================================================-->
+        <!-- まとめ 														 -->
+        <!--=================================================================-->
+        <mx:Label id="summaryLabel" text="● まとめ" width="100%"/>
+        <mx:HBox id="summaryHBox" width="100%" height="95" borderColor="#FFFFFF" borderThickness="1" borderStyle="solid">
+            <mx:VBox width="50%">
+                <mx:Label text="実動 : {adminTimesheetDetailsHandler.model.timesheet.actualTimeTotal}"/>
+                <mx:Label text="超過 : {adminTimesheetDetailsHandler.model.timesheet.overTimeTotal} 深夜 : {adminTimesheetDetailsHandler.model.timesheet.nightTimeTotal} 休日 : {adminTimesheetDetailsHandler.model.timesheet.holidayTimeTotal}"/>
+                <mx:Label text="休憩 : {adminTimesheetDetailsHandler.model.timesheet.breakTimeTotal}"/>
+                <mx:Label text="早退 : {adminTimesheetDetailsHandler.model.timesheet.earlyTimeTotal}"/>
+                <mx:Label text="遅退 : {adminTimesheetDetailsHandler.model.timesheet.lateTimeTotal}"/>
+            </mx:VBox>
+            <mx:VBox width="50%">
+                <mx:Label text="所定 : 日"/>
+                <mx:Label text="勤務 : ００日"/>
+                <mx:Label text="欠勤 : {adminTimesheetDetailsHandler.model.timesheet.absenceDaysTotal} 日"/>
+                <mx:Label text="有休 : ００日(前年残 : ０.０ 当年残 : ０．０)"/>
+            </mx:VBox>
+        </mx:HBox>
+
+        <!--=================================================================-->
+        <!-- 定時情報 													 	 -->
+        <!--=================================================================-->
+        <mx:Label id="patternLabel" text="● 定時情報" width="100%"/>
+        <mx:AdvancedDataGrid id="fixTimeAdvancedDataGrid"
+                             width="100%" height="100"
+                             draggableColumns="false" editable="true"
+                             dataProvider="{adminTimesheetDetailsHandler.model.fixTimeAC}">
+            <mx:groupedColumns>
+                <col:TimesheetDetailsColumn id="fixTimeName" headerText="名称" dataField="fixTimeName" editable="false" width="50" format="default"/>
+                <col:TimesheetDetailsColumn id="clientName" headerText="顧客名" dataField="clientName" format="default"/>
+                <col:TimesheetDetailsColumn id="timeUnit" headerText="{'時間\n単位'}" dataField="timeUnit" format="unitTime"/>
+                <mx:AdvancedDataGridColumnGroup headerText="定時">
+                    <col:TimesheetDetailsColumn headerText="開始" dataField="workStartTime" format="time"/>
+                    <col:TimesheetDetailsColumn headerText="終了" dataField="workEndTime" format="time"/>
+                </mx:AdvancedDataGridColumnGroup>
+                <mx:AdvancedDataGridColumnGroup headerText="お昼休み">
+                    <col:TimesheetDetailsColumn headerText="開始" dataField="lunchStartTime" format="time"/>
+                    <col:TimesheetDetailsColumn headerText="終了" dataField="lunchEndTime" format="time"/>
+                </mx:AdvancedDataGridColumnGroup>
+                <col:TimesheetDetailsColumn headerText="{'勤務表\初期値'}" editable="false" format="fixApplyButton"/>
+            </mx:groupedColumns>
+        </mx:AdvancedDataGrid>
+
+        <!--=================================================================-->
+        <!-- 勤務表 													 	 -->
+        <!--=================================================================-->
+        <mx:HBox width="100%">
+            <mx:Label id="timesheetLabel" text="● 勤務表" width="100%"/>
+            <mx:CheckBox id="detailCheckBox" label="詳細を見る" right="20"/>
+        </mx:HBox>
+        <mx:AdvancedDataGrid id="timesheetDetailAdvancedDataGrid"
+                             width="100%" height="100%"
+                             rowCount="31" textAlign="center" draggableColumns="false" editable="true"
+                             sortExpertMode="true" sortableColumns="false"
+                             dataProvider="{adminTimesheetDetailsHandler.model.timesheetDetailAC}" >
+            <mx:columns>
+                <col:TimesheetDetailsColumn headerText="日付" dataField="yyyymmdd" editable="false" width="50" format="date" />
+                <col:TimesheetDetailsColumn headerText="勤務形態" dataField="workPatternCode" editorDataField="value" format="workType" />
+                <col:TimesheetDetailsColumn headerText="定時情報名称" dataField="fixTimeName" format="fixTime" />
+                <col:TimesheetDetailsColumn headerText="開始" dataField="workStartTime" format="time" />
+                <col:TimesheetDetailsColumn headerText="終了" dataField="workEndTime" format="time"/>
+                <col:TimesheetDetailsColumn headerText="休憩" dataField="breakTimeTotal" format="time" />
+                <col:TimesheetDetailsColumn headerText="{'実動\n時間'}" dataField="actualTime" editable="false" format="default" />
+                <col:TimesheetDetailsColumn headerText="超過" dataField="overWorkTime" format="time"/>
+                <col:TimesheetDetailsColumn headerText="深夜" dataField="nightWorkTime" format="time"/>
+                <col:TimesheetDetailsColumn headerText="休日" dataField="holidayWorkTime" format="time"/>
+                <col:TimesheetDetailsColumn headerText="遅退" dataField="lateTime" format="time"/>
+                <col:TimesheetDetailsColumn headerText="早退" dataField="earlyTime" format="time"/>
+                <col:TimesheetDetailsColumn headerText="備考" dataField="note" format="default" />
+            </mx:columns>
+        </mx:AdvancedDataGrid>
+    </mx:VBox>
+
+    <!--=================================================================-->
+    <!-- コントロールボタン											 	 -->
+    <!--=================================================================-->
+    <mx:HBox width="100%" bottom="10">
+        <mx:Button id="returnButton" label="戻る" width="100"/>
+        <mx:Spacer width="100%"/>
+        <mx:Button id="saveButton" label="保存" width="100"/>
+        <mx:Button id="submitButton" label="提出" width="100"/>
+    </mx:HBox>
+
+</mx:Canvas>

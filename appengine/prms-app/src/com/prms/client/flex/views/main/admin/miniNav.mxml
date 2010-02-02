@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml">
+
+	<mx:Script>
+		<![CDATA[
+
+			import mx.events.FlexEvent;
+			import com.prms.client.flex.Constants;
+
+			public function moduleChanged(moduleID:String):void {
+
+				// 勤務表
+				if (moduleID == Constants.STATUS_ADMIN_TIMESHEET) {
+					parentDocument.adminModuleLoader.url = Constants.ADMIN_TIMESHEET_MAIN_SWF;
+				}
+				// 交通費
+				else if (moduleID == Constants.STATUS_ADMIN_TRAFFIC) {
+					parentDocument.adminModuleLoader.url = Constants.ADMIN_TRAFFIC_MAIN_SWF;
+				}
+				// 有給
+				else if (moduleID == Constants.STATUS_ADMIN_VACATION) {
+					parentDocument.adminModuleLoader.url = Constants.ADMIN_VACATION_MAIN_SWF;
+				}
+				// 給料1
+				else if (moduleID == Constants.STATUS_ADMIN_SALARY1) {
+					parentDocument.adminModuleLoader.url = Constants.ADMIN_TIMESHEET_MAIN_SWF;
+				}
+				// 給料2
+				else if (moduleID == Constants.STATUS_ADMIN_SALARY2) {
+					parentDocument.adminModuleLoader.url = Constants.ADMIN_TRAFFIC_MAIN_SWF;
+				}
+				// 給料3
+				else if (moduleID == Constants.STATUS_ADMIN_SALARY3) {
+					parentDocument.adminModuleLoader.url = Constants.ADMIN_VACATION_MAIN_SWF;
+				}
+				// 社員管理
+				else if (moduleID == Constants.STATUS_ADMIN_MEMBER) {
+					parentDocument.adminModuleLoader.url = Constants.ACCOUNT_ADMIN_BODY_SWF;
+				}
+			}
+
+		]]>
+	</mx:Script>
+
+	<mx:Box id="miniWork" visible="true">
+		<mx:Button label="勤" width="100%" click="moduleChanged(Constants.STATUS_ADMIN_TIMESHEET)" />
+		<mx:Button label="交" width="100%" click="moduleChanged(Constants.STATUS_ADMIN_TRAFFIC)" />
+		<mx:Button label="有" width="100%" click="moduleChanged(Constants.STATUS_ADMIN_VACATION)" />
+	</mx:Box>
+
+	<mx:Box id="miniSalary" visible="false">
+		<mx:Button label="給1" width="100%" click="moduleChanged(Constants.STATUS_ADMIN_SALARY1)" />
+		<mx:Button label="給2" width="100%" click="moduleChanged(Constants.STATUS_ADMIN_SALARY2)" />
+		<mx:Button label="給3" width="100%" click="moduleChanged(Constants.STATUS_ADMIN_SALARY3)" />
+	</mx:Box>
+
+	<mx:Box id="miniPersonnel" visible="false">
+		<mx:Button label="社" width="100%" click="moduleChanged(Constants.STATUS_ADMIN_MEMBER)" />
+	</mx:Box>
+
+</mx:Canvas>

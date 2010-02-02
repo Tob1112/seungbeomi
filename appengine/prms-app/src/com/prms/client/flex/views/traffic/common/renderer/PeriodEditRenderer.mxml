@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml" width="100%"
+	horizontalAlign="center"
+	verticalAlign="middle"
+	>
+
+	<mx:Script>
+		<![CDATA[
+			import com.prms.client.flex.vo.TrafficRegular;
+
+			private function startHandler(event:Event):void{
+//			    var start:String = DateField.dateToString(event.target.selectedDate, "YYYY/MM/DD");
+				var start:Date = event.target.selectedDate;
+			    TrafficRegular(mx.controls.DataGrid(owner).selectedItem).setStartDate(start);
+			}
+
+			private function endHandler(event:Event):void{
+//			    var end:String = DateField.dateToString(event.target.selectedDate, "YYYY/MM/DD");
+				var end:Date = event.target.selectedDate;
+			    TrafficRegular(mx.controls.DataGrid(owner).selectedItem).setEndDate(end);
+			}
+
+		]]>
+	</mx:Script>
+
+	<!--
+		****************************************************************
+		****** DataGridに表示されるデータ。データ修正不可能。Read only    ******
+		****************************************************************
+	-->
+
+	<mx:Text id="txtDfStartPeriod" text="{data.startDateTypeString}" width="100"
+		click="currentState='startPeriod'"
+		valueCommit="currentState=''"/>
+	<mx:Label id="lblStartTo" text=" ～ " />
+	<mx:Text id="txtDfEndPeriod" text="{data.endDateTypeString}" width="100"
+		click="currentState='endPeriod'"
+		valueCommit="currentState=''"/>
+
+
+	<!--
+		****************************************************************
+		****** DataGridをクリックしたときに表示される。データ修正可能になる。         ******
+		****************************************************************
+	-->
+
+	<mx:states>
+		<mx:State name="startPeriod">
+			<mx:AddChild relativeTo="{lblStartTo}" position="before">
+				<mx:DateField id="dfStartPeriod" text="{txtDfStartPeriod.text}" close="startHandler(event);"/>
+			</mx:AddChild>
+			<mx:RemoveChild target="{txtDfStartPeriod}"/>
+		</mx:State>
+		<mx:State name="endPeriod">
+			<mx:AddChild relativeTo="{lblStartTo}" position="after">
+				<mx:DateField id="dfEndPeriod" text="{txtDfEndPeriod.text}" close="endHandler(event)"/>
+			</mx:AddChild>
+			<mx:RemoveChild target="{txtDfEndPeriod}"/>
+		</mx:State>
+	</mx:states>
+</mx:HBox>

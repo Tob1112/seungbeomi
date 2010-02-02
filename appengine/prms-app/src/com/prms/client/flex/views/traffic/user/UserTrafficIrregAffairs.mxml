@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml"
+	width="99%" height="100%"
+	verticalScrollPolicy="off"
+	horizontalScrollPolicy="off"
+	fontSize="12">
+
+	<handler:UserTrafficIrregAffairsHandler id="userTrafficIrregAffairsHandler" xmlns:handler = "com.prms.client.flex.views.traffic.common.handlers.*" />
+
+    <mx:Style>
+		.workListTitle{
+			font-size:13;
+			font-weight:bold;
+		}
+	</mx:Style>
+
+		<mx:VBox height="100%" left="20" right="30" >
+			<mx:HBox width="100%" height="4%"
+				paddingLeft="10" paddingTop="10" paddingBottom="10"
+				cornerRadius="8" verticalAlign="middle" horizontalAlign="right"
+				borderStyle="solid" borderThickness="2" borderColor="gray">
+				<mx:Label text="電車 ： "/>
+				<mx:Label id="affairsTrainTotalLabel" textAlign="right" text="{userTrafficIrregAffairsHandler.model.trafficIrregAffair.trainFare}"/>
+				<mx:Label text="バス ： "/>
+				<mx:Label id="affairsBusTotalLabel" textAlign="right" text="{userTrafficIrregAffairsHandler.model.trafficIrregAffair.busFare}"/>
+				<mx:Label text="タクシー ： "/>
+				<mx:Label id="affairsTaxiTotalLabel" textAlign="right" text="{userTrafficIrregAffairsHandler.model.trafficIrregAffair.taxiFare}"/>
+				<mx:Label text="宿泊費 ： "/>
+				<mx:Label id="affairsHotelTotalLabel" textAlign="right" text="{userTrafficIrregAffairsHandler.model.trafficIrregAffair.hotelFare}"/>
+				<mx:Label text="その他 ： "/>
+				<mx:Label id="affairsOtherTotalLabel" textAlign="right" text="{userTrafficIrregAffairsHandler.model.trafficIrregAffair.otherFare}"/>
+				<mx:Label styleName="workListTitle" text="全体合計 ： " fontSize="12"/>
+				<mx:Label id="affairsTotalLabel" styleName="workListTitle" textAlign="right"/>
+			</mx:HBox>
+			<mx:Spacer width="20"/>
+			<mx:DataGrid id="commutationDG"
+				width="100%"
+				rowHeight="30"
+				textAlign="center"
+				editable="true"
+				horizontalScrollPolicy="off"
+				resizableColumns="false"
+				draggableColumns="false"
+				sortableColumns="false" height="630">
+				<mx:columns>
+					<mx:DataGridColumn id="dayOfWeekCol"
+						dataField="day"
+						width="100"
+						headerText="日付"
+						editable="false"/>
+					<mx:DataGridColumn headerText="区間" dataField="trainSection"
+						width="300"
+						editable="false"/>
+					<mx:DataGridColumn headerText="電車" dataField="trainFare"/>
+					<mx:DataGridColumn headerText="バス" dataField="busFare"/>
+					<mx:DataGridColumn headerText="タクシー" dataField="taxiFare"/>
+					<mx:DataGridColumn headerText="宿泊費" dataField="hotelFare"/>
+					<mx:DataGridColumn headerText="その他" dataField="otherIrregFare"/>
+					<mx:DataGridColumn headerText="備考" dataField="note"/>
+				</mx:columns>
+			</mx:DataGrid>
+		</mx:VBox>
+
+</mx:Canvas>

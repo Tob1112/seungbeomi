@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml">
+    <handler:UserTimesheetListHandler id="handler" xmlns:handler = "com.prms.client.flex.views.timesheet.user.handlers.*" />
+    <fommater:LabelDateFormatter id="formatter" xmlns:fommater="com.prms.client.flex.util.fommater.*"/>
+
+    <!-- Validators
+         <mx:Validator id="reqVaildYear" required="true" source="{txtYear}" property="text"/>
+         <mx:Validator id="reqVaildMonth" required="true" source="{txtMonth}" property="text"/>
+
+         <mx:StringValidator id="strValidator"
+         source="{txtYear}" property="text"
+         minLength="4" tooShortError="４桁で入力してください。"
+         trigger="{txtYear}" triggerEvent="focusOut" />
+
+         <mx:NumberValidator source="{txtMonth}" property="text" required="true"
+         minValue="1" maxValue="12" domain="int"
+         trigger="{txtMonth}" triggerEvent="focusOut" />-->
+
+    <!-- header(title) -->
+    <mx:Label id="titleLabel"/>
+    <mx:VBox id="topOutBox">
+        <mx:HBox id="currentDateBox">
+            <mx:Label id="currentDateLabel" text="{handler.model.timesheet.currentDateTypeIsString}"/>
+        </mx:HBox>
+        <mx:HBox id="topInnerBox">
+            <mx:TextInput id="txtYear" maxChars="4" editable="true" restrict="0-9" text="2010"/>
+            <mx:Label text="年"/>
+            <mx:TextInput id="txtMonth" maxChars="2" editable="true" restrict="0-9" text="02"/>
+            <mx:Label text="月分"/>
+            <mx:Button id="newWriteButton" enabled="true"/>
+        </mx:HBox>
+    </mx:VBox>
+
+    <mx:HBox id="bodyBox" >
+        <mx:DataGrid id="dataGrid"
+                     dataProvider="{handler.model.timesheetAC}"
+                     editable="false"
+                     resizableColumns="false"
+                     draggableColumns="false"
+                     sortableColumns="false"
+                     doubleClickEnabled="true">
+            <mx:columns>
+                <mx:DataGridColumn headerText="番号" dataField="listSeq" width="70"/>
+                <mx:DataGridColumn headerText="年" dataField="yyyymm" labelFunction="{formatter.formatYYYY}" width="120"/>
+                <mx:DataGridColumn headerText="月" dataField="yyyymm" labelFunction="{formatter.formatMM}" width="120"/>
+                <mx:DataGridColumn headerText="状態" dataField="codeDetailName" width="180"/>
+                <mx:DataGridColumn headerText="備考" dataField="note"/>
+            </mx:columns>
+        </mx:DataGrid>
+    </mx:HBox>
+
+    <mx:HBox id="footerBox">
+        <mx:Label id="pagingLabel" text="1 | 2 | 3"/>
+    </mx:HBox>
+
+    <!-- 勤務表一覧
+         <mx:Label id="currentDateLabel" text="{userTimesheetListsHandler.model.timesheet.currentDateTypeIsString}" top="25" right="30"/>
+         <mx:Label text="勤務表一覧" styleName="workListTitle" left="30" top="20"/>
+
+         <mx:HBox id="hb" top="60" right="30" textAlign="center">
+         <mx:TextInput id="txtYear" maxChars="4" editable="true" restrict="0-9"
+         text="{userTimesheetListsHandler.model.timesheet.currentDate.getFullYear()}"/>
+         <mx:Label text="年" />
+         <mx:TextInput id="txtMonth" maxChars="2" editable="true" restrict="0-9"
+         text="{userTimesheetListsHandler.model.timesheet.currentDate.getMonth()+1}"/>
+         <mx:Label text="月分" />
+         <mx:Button id="timesheetNewWriteButton" label="新規作成"
+         enabled="true"/>
+         </mx:HBox>
+
+         <mx:DataGrid id="timesheetListDataGrid" left="30" right="30" top="100" bottom="20"
+         dataProvider="{userTimesheetListsHandler.model.timesheetAC}"
+         textAlign="center"
+         editable="false"
+         resizableColumns="false"
+         draggableColumns="false"
+         sortableColumns="false"
+         doubleClickEnabled="true">
+         <mx:columns>
+         <mx:DataGridColumn headerText="番号" dataField="listSeq" width="70"/>
+         <mx:DataGridColumn headerText="年" dataField="yyyymm" labelFunction="{formatter.formatYYYY}" width="120"/>
+         <mx:DataGridColumn headerText="月" dataField="yyyymm" labelFunction="{formatter.formatMM}" width="120"/>
+         <mx:DataGridColumn headerText="状態" dataField="codeDetailName" width="180"/>
+         <mx:DataGridColumn headerText="備考" dataField="note"/>
+         </mx:columns>
+         </mx:DataGrid>-->
+    <!--	</mx:Canvas> -->
+</mx:Canvas>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Box xmlns:mx="http://www.adobe.com/2006/mxml" width="40"
+	click="deleteRow()"
+	verticalAlign="middle" horizontalAlign="center">
+	<mx:Script>
+		<![CDATA[
+			import com.prms.client.flex.views.traffic.common.events.TrafficEvent;
+			import mx.controls.DataGrid;
+
+			public function deleteRow():void{
+				trace(this.owner.name);
+				owner.dispatchEvent(new TrafficEvent(TrafficEvent.DELETE_ROW, this));
+			}
+		]]>
+	</mx:Script>
+	<mx:Image source="assets/images/trash_delete.gif"/>
+</mx:Box>

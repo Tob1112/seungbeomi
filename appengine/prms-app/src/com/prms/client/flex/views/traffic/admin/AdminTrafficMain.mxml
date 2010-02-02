@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Module xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="100%" height="100%">
+
+	<mx:Text textAlign="center" fontSize="30" text="交通費_Admin" />
+
+</mx:Module>

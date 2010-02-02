@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml">
+
+    <handler:UserMainLayoutHandler id="handler" xmlns:handler="com.prms.client.flex.views.main.user.handlers.*" />
+
+    <!-- ヘッダメニュー  -->
+    <mx:ApplicationControlBar id="applicationControlBar">
+        <!-- 勤務表ボタン -->
+        <mx:LinkButton id="timesheetLinkButton"/>
+        <mx:VRule height="50%"/>
+        <!-- 勤務表ボタン -->
+        <mx:LinkButton id="trafficLinkButton"/>
+        <mx:VRule height="50%"/>
+        <!-- 勤務表ボタン -->
+        <mx:LinkButton id="vacationLinkButton"/>
+        <mx:VRule height="50%"/>
+        <!-- アカウントボタン -->
+        <mx:LinkButton id="accountLinkButton"/>
+        <mx:Spacer width="100%"/>
+        <!-- メールラベル -->
+        <mx:Label id="userMailLabel"/>
+        <!-- ログアウトボタン -->
+        <mx:LinkButton id="logoutLinkButton"/>
+        <mx:VRule height="50%"/>
+        <!-- ヘルプボタン -->
+        <mx:LinkButton id="helpLinkButton"/>
+    </mx:ApplicationControlBar>
+
+    <!-- コンテンツ -->
+    <mx:Canvas id="canvas">
+        <mx:ModuleLoader id="moduleLoader"/>
+    </mx:Canvas>
+</mx:VBox>
