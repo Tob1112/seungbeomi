@@ -9,13 +9,13 @@
 
 			public function clickBtnVirtualSettingModeHandler():void {
 				this.parentDocument.currentState = "settingState";
-				this.parentDocument.lblState.text = "ITパスポート問題集(模擬試験モード)";
+				this.parentDocument.pnl.title = "ITパスポート問題集(模擬試験モード)";
 				this.parentDocument.viewStack.selectedChild = this.parentDocument.virtualSettingView;
 			}
 
 			public function clickBtnPracticeSettingModeHandler():void {
 				this.parentDocument.currentState = "settingState";
-				this.parentDocument.lblState.text = "ITパスポート問題集(分野別モード)";
+				this.parentDocument.pnl.title = "ITパスポート問題集(分野別モード)";
 				this.parentDocument.viewStack.selectedChild = this.parentDocument.practiceSettingView;
 			}
 		]]>
