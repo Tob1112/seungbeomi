@@ -1,0 +1,165 @@
+/*	CSS		write by 孫承範	*/
+
+/* アプリケーション */
+Application {
+	background-color: #a9bacf;
+	font-size: 12;
+}
+
+
+/* 外側 */
+.outerLayout {
+	horizontal-align: center;
+	vertical-align: middle;
+	vertical-gap: 12;
+	padding-top: 5;
+	padding-bottom: 5;
+}
+
+/* メニュー */
+ApplicationControlBar {
+	background-color: #215b90;
+	color: #f7f7f7;
+	font-size: 14;
+	border-style: solid;
+	border-color: #215b90;
+	corner-radius: 15;
+}
+
+/* コンテンツ (メニューを除く部分) */
+.contentsLayout {
+	background-color: #ffffff;
+	border-style: solid;
+	corner-radius: 20;
+}
+
+/* モジュール */
+Module {
+	border-style: solid;
+	border-color: #a9bacf;
+	vertical-align: middle;
+	horizontal-align: center;
+	corner-radius: 20;
+}
+
+/* モジュール属するコンテンツのレイアウト */
+.moduleContents {
+	vertical-gap: 12;
+	padding-left: 5;
+	padding-right: 5;
+	padding-top: 5;
+	padding-bottom: 5;
+	vertical-align: middle;
+	horizontal-align: center;
+	text-align: center;
+}
+
+/* ラベル */
+Label {
+	text-align: center;
+	font-size: 12;
+}
+
+/* DATA GRID*/
+DataGrid {
+	text-align: center;
+	border-color: #d0d7e5;
+    color: #000000;
+    header-colors: #b1c5d8, #b1c5d8;
+    backgroundColor: #ffffff;
+    horizontalGridLines: true;
+    letterSpacing: 0;
+    horizontalGridLineColor: #d0d7e5;
+    verticalGridLineColor: #d0d7e5;
+    verticalGridLines: true;
+    rollOverColor: #c6cdd7;
+    textIndent: 6;
+}
+
+.message {
+	color : red;
+    font-weight : bold;
+    /* font-size : 20px; */
+}
+
+TitleWindow {
+    modal-transparency: 0.3;
+    modal-transparency-blur : 0.0;
+    background-alpha: 1.0;
+    border-alpha: 1.0;
+    corner-radius: 20;
+    /* border-color: #666699; */
+    border-color: #B2CADC;
+    border-thickness-left: 0;
+    border-thickness-right: 0;
+}
+
+Alert {
+    border-color: #FF00FF;
+    modal-transparency: 0.3;
+    modal-transparency-blur : 0.0;
+    background-alpha: 1.0;
+    border-alpha: 1.0;
+    background-color: #696969;
+    border-thickness-left: 0;
+    border-thickness-right: 0;
+}
+
+ComboBox {
+	background-color : #FFFFFF;
+}
+
+/* -------- timesheet --------------- */
+/* user timesheet */
+.utTitleText {
+	font-size: 22;
+	font-weight: bold;
+	text-align: left;
+	top: 10;
+	left: 20;
+}
+
+.utTopOutBox {
+	horizontal-align: right;
+	vertical-gap: 22;
+	top: 10;
+	right: 20;
+}
+
+.utCurrentDateBox {
+	border-style: solid;
+	background-color: #215b90;
+	background-alpha: 0.25;
+	border-color: #ffffff;
+	vertical-align: middle;
+	corner-radius: 8;
+}
+
+.utTopInnerBox {
+	horizontal-align: right;
+}
+
+.utBodyBox {
+	border-color: #ffffff;
+	background-color: #215b90;
+	background-alpha: 0.1;
+	border-style: solid;
+	horizontal-align:center;
+	padding-top:10;
+	corner-radius: 20;
+	left: 20;
+	right: 20;
+}
+
+.utFooterBox {
+	background-color: #215b90;
+	background-alpha: 0.2;
+	border-color: #ffffff;
+	horizontal-align: center;
+	vertical-align: middle;
+	border-style: solid;
+	corner-radius: 8;
+	bottom: 10;
+	left: 20;
+	right: 20;
+}
