@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute">
+
+	<mx:Script>
+		<![CDATA[
+			//ファイルをアップロードしたりダウンロードしたりするクラス
+	        private var _fileRef:FileReference = new FileReference();
+
+	        public function upload():void {
+
+	            _fileRef.addEventListener(Event.SELECT, selectHandler);
+	            _fileRef.addEventListener(Event.COMPLETE, completeHandler);
+	            _fileRef.addEventListener(DataEvent.UPLOAD_COMPLETE_DATA, uploadDataHandler);
+	            _fileRef.addEventListener(ProgressEvent.PROGRESS, fileUploadProgressHandler);
+	            //ファイル選択ダイアログを起動しましょう。
+	            _fileRef.browse();
+	        }
+
+	        private function fileUploadProgressHandler(event:ProgressEvent):void {
+	            progressBar1.setProgress(event.bytesLoaded, event.bytesTotal);
+	        }
+
+	        //ファイル選択ダイアログでファイルを選択するとコールされます。
+	        private function selectHandler(event:Event):void {
+
+	            var params:URLVariables = new URLVariables();
+	            params.comCode = "01";
+				params.empNo = "02";
+				params.yyyymm = "03";
+				params.name = "04";
+
+	            //リクエストオブジェクトを生成
+	            var request:URLRequest = new URLRequest("http://localhost:8080/prms/upload");
+	            request.method = URLRequestMethod.POST;
+	            request.data = params;
+
+	            //アップロード
+	            _fileRef.upload(request, "formFile");
+	        }
+
+	        private function completeHandler(e:Event):void {
+	            //このイベントだとサーバーの処理結果データが受け取れないんですよね〜
+	            //なので、DataEvent.UPLOAD_COMPLETE_DATAで処理結果判定します。
+	        }
+
+	        private function uploadDataHandler(event:DataEvent):void {
+				trace("uploadDataHandler");
+	        }
+
+		]]>
+	</mx:Script>
+
+    <mx:ApplicationControlBar width="137" top="15" left="15">
+        <mx:Button label="ファイルアップロード" click="upload()"/>
+    </mx:ApplicationControlBar>
+    <mx:ProgressBar id="progressBar1" x="10" y="71" mode="manual"/>
+
+</mx:Application>
+

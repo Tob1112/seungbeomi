@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- PrmsDelegate.java を RemoteObjectで登録する-->
+<rds:ServiceLocator xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:rds="com.adobe.cairngorm.business.*">
+
+	<!-- PRMS FACADE SERVICE REMOTE OBJECT -->
+    <mx:RemoteObject id="prmsFacadeRO" destination="prmsFacade"/>
+
+	<!--
+	    <mx:RemoteObject id="accountRO" destination="accountService"/>
+	    <mx:RemoteObject id="securityRO" destination="securityService"/>
+	    <mx:RemoteObject id="timesheetServiceRO" destination="timesheetService"/>
+	-->
+</rds:ServiceLocator>
