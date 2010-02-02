@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="422" height="230" showCloseButton="true"
+	horizontalScrollPolicy="off" verticalScrollPolicy="off" currentState="" creationPolicy="all"
+	xmlns:col="com.prms.client.flex.views.timesheet.common.*">
+
+	<mx:Script>
+		<![CDATA[
+			import mx.effects.easing.*;
+		]]>
+	</mx:Script>
+
+	<!-- =============================== -->
+	<!-- HANDLER						 -->
+	<!-- =============================== -->
+	<handler:FileLoadWindowHandler id="handler" xmlns:handler="com.prms.client.flex.util.*"/>
+
+	<!-- =============================== -->
+	<!-- UPLOAD							 -->
+	<!-- =============================== -->
+	<mx:VBox id="fileLoadVBox" x="0" y="0" width="488" height="100%" horizontalScrollPolicy="off"
+		paddingBottom="10" paddingLeft="10" paddingRight="10" paddingTop="10">
+		<mx:ProgressBar id="uploadProgressBar" mode="manual" width="400" left="10" right="10"/>
+		<mx:HBox y="46" right="10" left="10" id="fileReferenceHBox" width="400">
+			<mx:TextInput id="fileUploadTextInput" editable="false" width="100%"/>
+			<mx:Button id="fileBrowseButton" y="50" label="参照" right="10"/>
+		</mx:HBox>
+		<mx:Button id="downloadFormButton" label="フォームダウンロード" right="10" bottom="10"/>
+		<mx:Text id="nofityFileUpload" x="10" y="80" text="※ アップロード可能なファイルは97-2003書式で保存されたExcelファイルのみです。"/>
+	</mx:VBox>
+	<mx:ControlBar horizontalAlign="center" id="controlbar1">
+		<mx:Button id="fileUploadButton" label="アップロード" enabled="false" mouseDown="{seq}"/>
+		<mx:Button id="cancelButton" label="キャンセル"/>
+	</mx:ControlBar>
+
+	<!-- =============================== -->
+	<!-- STATES							 -->
+	<!-- =============================== -->
+	<mx:states>
+		<mx:State name="previewUpload">
+			<mx:RemoveChild target="{uploadProgressBar}"/>
+			<mx:RemoveChild target="{fileReferenceHBox}"/>
+			<mx:RemoveChild target="{nofityFileUpload}"/>
+			<mx:RemoveChild target="{downloadFormButton}"/>
+			<mx:SetProperty name="height" value="800"/>
+			<mx:SetProperty name="width" value="750"/>
+			<mx:AddChild relativeTo="{controlbar1}" position="before">
+				<mx:VBox id="previewTimesheetVBox" x="0" y="0" width="100%" height="100%" paddingLeft="10" paddingRight="10">
+					<mx:Label text="● 定時情報"/>
+					<mx:AdvancedDataGrid id="fixTimeDataGrid" designViewDataType="tree" width="100%">
+						<mx:columns>
+							<mx:AdvancedDataGridColumn headerText="Column 1" dataField="col1"/>
+							<mx:AdvancedDataGridColumn headerText="Column 2" dataField="col2"/>
+							<mx:AdvancedDataGridColumn headerText="Column 3" dataField="col3"/>
+						</mx:columns>
+					</mx:AdvancedDataGrid>
+					<mx:Label text="● 勤務表詳細"/>
+					<mx:AdvancedDataGrid x="10" y="232" id="timesheetDetailDataGrid" editable="false" sortableColumns="false" draggableColumns="false"
+						dataProvider="{handler.model.previewTimesheet.timesheetDetailList}" styleName="Dtgrd" width="100%" height="100%" verticalScrollPolicy="auto">
+					<mx:columns>
+						<col:TimesheetDetailsColumn headerText="日付" dataField="yyyymmdd" width="50" format="date" />
+		                <col:TimesheetDetailsColumn headerText="勤務形態" dataField="workPatternCode" format="workType" />
+		                <col:TimesheetDetailsColumn headerText="定時情報名称" dataField="fixTimeName" format="fixTime" />
+		                <col:TimesheetDetailsColumn headerText="* 開始" dataField="workStartTime" format="time" />
+		                <col:TimesheetDetailsColumn headerText="* 終了" dataField="workEndTime" format="time"/>
+		                <col:TimesheetDetailsColumn headerText="* 休憩" dataField="breakTimeTotal" format="time" />
+		                <col:TimesheetDetailsColumn headerText="{'実動\n時間'}" dataField="actualTime" format="default" />
+		                <col:TimesheetDetailsColumn headerText="備考" dataField="note" format="default" />
+					</mx:columns>
+				</mx:AdvancedDataGrid>
+				</mx:VBox>
+			</mx:AddChild>
+			<mx:RemoveChild target="{fileUploadButton}"/>
+			<mx:AddChild relativeTo="{cancelButton}" position="before" creationPolicy="all">
+				<mx:Button id="saveUploadTimesheetButton" label="勤務表登録"/>
+			</mx:AddChild>
+		</mx:State>
+	</mx:states>
+
+	<mx:Sequence id="seq">
+        <mx:Move xBy="150" duration="2000" easingFunction="Bounce.easeOut"/>
+    </mx:Sequence>
+
+</mx:TitleWindow>
