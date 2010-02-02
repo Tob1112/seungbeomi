@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:contents="contents.*" xmlns:handler="handler.*" width="100%" height="100%" minWidth="800" minHeight="600">
+
+	<handler:MainHandler id="handler"/>
+
+	<mx:Panel width="100%" height="100%" horizontalCenter="0" verticalCenter="0" title="ITパスポート問題集">
+		<!-- ================================= -->
+		<!-- HEADER							   -->
+		<!-- ================================= -->
+		<mx:HBox width="100%">
+			<mx:Label id="lblTitle" text="ITパスポート問題集" fontWeight="bold" fontSize="25"/>
+			<mx:Label id="lblState" fontWeight="bold" fontSize="25"/>
+		</mx:HBox>
+
+		<!-- ================================= -->
+		<!-- CONTENTS						   -->
+		<!-- ================================= -->
+		<mx:VBox id="contentsVBox" width="100%" height="100%">
+			<mx:ViewStack id="viewStack" width="100%" height="100%">
+				<contents:MainView id="mainView" />
+				<!-- 設定 -->
+				<contents:VirtualSettingView id="virtualSettingView"/>
+				<contents:PracticeSettingView id="practiceSettingView"/>
+				<!-- テスト -->
+				<contents:TestView id="testView"/>
+				<!-- チェックレビュー -->
+				<contents:CheckReviewView id="checkReviewView"/>
+				<!-- 結果 -->
+				<contents:VirtualResultView id="virtualResultView"/>
+				<contents:PracticeResultView id="practiceResultView"/>
+				<!-- 履歴 -->
+				<contents:HistoryView id="historyView"/>
+			</mx:ViewStack>
+		</mx:VBox>
+
+		<!-- ================================= -->
+		<!-- SUB MENU						   -->
+		<!-- ================================= -->
+		<mx:HBox id="subMenuBox" width="100%" backgroundColor="#bbbbbb" height="40" verticalAlign="middle" horizontalAlign="center"  paddingLeft="10" paddingRight="10">
+		</mx:HBox>
+
+		<!-- ================================= -->
+		<!-- CONTROLLER						   -->
+		<!-- ================================= -->
+		<mx:ControlBar id="controlbar">
+			<mx:Spacer width="100%" id="controlSpacer"/>
+			<mx:Button id="btnHistory" label="学習履歴" width="100" height="30"/>
+			<mx:Button id="btnClose" label="閉じる" width="100" height="30"/>
+		</mx:ControlBar>
+
+	</mx:Panel>
+
+
+	<!-- ================================ -->
+	<!-- STATES							  -->
+	<!-- ================================ -->
+	<mx:states>
+
+		<!-- ================================ -->
+		<!-- SETTING STATE					  -->
+		<!-- ================================ -->
+		<mx:State name="settingState">
+			<mx:AddChild relativeTo="{subMenuBox}" position="lastChild" creationPolicy="all">
+				<mx:Button label="スタート" id="btnTestStart" width="100"/>
+			</mx:AddChild>
+			<mx:RemoveChild target="{btnClose}"/>
+			<mx:AddChild relativeTo="{controlbar}" position="lastChild" creationPolicy="all">
+				<mx:Button label="終了" id="btnReturnToMain" width="100" height="30"/>
+			</mx:AddChild>
+		</mx:State>
+
+		<!-- ================================ -->
+		<!-- TEST STATE						  -->
+		<!-- ================================ -->
+		<mx:State name="testState">
+			<mx:AddChild relativeTo="{controlSpacer}" position="before" creationPolicy="all">
+				<mx:Label text="残り時間 : 2:59:59"/>
+			</mx:AddChild>
+			<mx:AddChild relativeTo="{subMenuBox}" position="lastChild" creationPolicy="all">
+				<mx:CheckBox label="チェックボックス"/>
+			</mx:AddChild>
+			<mx:AddChild relativeTo="{subMenuBox}" position="lastChild" creationPolicy="all">
+				<mx:Button label="メモ" id="btnMemo"/>
+			</mx:AddChild>
+			<mx:AddChild relativeTo="{subMenuBox}" position="lastChild" creationPolicy="all">
+				<mx:HBox width="80" height="70%" backgroundColor="#FFFFFF" horizontalAlign="center" verticalAlign="middle" id="hbox1">
+					<mx:Label text="9 / 20"/>
+				</mx:HBox>
+			</mx:AddChild>
+			<mx:AddChild relativeTo="{subMenuBox}" position="lastChild" creationPolicy="all">
+				<mx:Button label="前へ" width="80" height="30" id="button1"/>
+			</mx:AddChild>
+			<mx:AddChild relativeTo="{subMenuBox}" position="lastChild" creationPolicy="all">
+				<mx:Button label="次へ" width="80" height="30" id="btnNext"/>
+			</mx:AddChild>
+			<mx:AddChild relativeTo="{hbox1}" position="before" creationPolicy="all">
+				<mx:Spacer width="50%"/>
+			</mx:AddChild>
+			<mx:AddChild relativeTo="{button1}" position="before" creationPolicy="all">
+				<mx:Spacer width="50%"/>
+			</mx:AddChild>
+			<mx:RemoveChild target="{btnHistory}"/>
+			<mx:AddChild relativeTo="{controlbar}" position="lastChild" creationPolicy="all">
+				<mx:Button id="btnCheckReview" label="問題一覧" width="100" height="30"/>
+			</mx:AddChild>
+			<mx:RemoveChild target="{btnClose}"/>
+			<mx:AddChild relativeTo="{controlbar}" position="lastChild" creationPolicy="all">
+				<mx:Button label="試験を終了" id="btnEndTestFromTest" width="100" height="30"/>
+			</mx:AddChild>
+
+		</mx:State>
+
+		<!-- ================================ -->
+		<!-- RESULT STATE					  -->
+		<!-- ================================ -->
+		<mx:State name="resultState">
+			<mx:AddChild relativeTo="{controlSpacer}" position="before">
+				<mx:Label text="残り時間 : 2:59:59"/>
+			</mx:AddChild>
+		</mx:State>
+
+		<!-- ================================ -->
+		<!-- CHECK REVIEW STATE				  -->
+		<!-- ================================ -->
+		<mx:State name="checkReviewState">
+			<mx:AddChild relativeTo="{controlSpacer}" position="before">
+				<mx:Label text="残り時間 : 2:59:59"/>
+			</mx:AddChild>
+			<mx:RemoveChild target="{btnHistory}"/>
+			<mx:AddChild relativeTo="{controlbar}" position="lastChild">
+				<mx:Button label="問題へ戻る" id="btnReturnToTest"/>
+			</mx:AddChild>
+			<mx:RemoveChild target="{btnClose}"/>
+			<mx:AddChild relativeTo="{controlbar}" position="lastChild">
+				<mx:Button label="試験を終了" id="btnEndTestFromCheckReview"/>
+			</mx:AddChild>
+		</mx:State>
+
+		<!-- ================================ -->
+		<!-- HISTORY STATE					  -->
+		<!-- ================================ -->
+		<mx:State name="historyState">
+			<mx:AddChild relativeTo="{subMenuBox}" position="lastChild">
+				<mx:Button label="履歴を初期化" id="btnInitCheckReview"/>
+			</mx:AddChild>
+		</mx:State>
+
+	</mx:states>
+</mx:Application>
