@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" creationComplete="creationCompleteHandler()">
+
+	<mx:Script>
+		<![CDATA[
+			private function creationCompleteHandler():void {
+
+			}
+
+			public function clickBtnVirtualSettingModeHandler():void {
+				this.parentDocument.currentState = "settingState";
+				this.parentDocument.lblState.text = "ITパスポート問題集(模擬試験モード)";
+				this.parentDocument.viewStack.selectedChild = this.parentDocument.virtualSettingView;
+			}
+
+			public function clickBtnPracticeSettingModeHandler():void {
+				this.parentDocument.currentState = "settingState";
+				this.parentDocument.lblState.text = "ITパスポート問題集(分野別モード)";
+				this.parentDocument.viewStack.selectedChild = this.parentDocument.practiceSettingView;
+			}
+		]]>
+	</mx:Script>
+
+
+	<mx:Button id="btnVirtualSetting" label="模擬試験モード" verticalCenter="0" horizontalCenter="-133" height="100" width="250" fontSize="30" click="clickBtnVirtualSettingModeHandler()"/>
+
+	<mx:VRule horizontalCenter="0" verticalCenter="0"/>
+
+	<mx:Button id="btnPracticeSetting" label="分野別モード" verticalCenter="0" horizontalCenter="134" height="100" width="250" fontSize="30" click="clickBtnPracticeSettingModeHandler()"/>
+
+
+</mx:Canvas>
