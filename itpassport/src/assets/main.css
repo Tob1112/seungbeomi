@@ -1,0 +1,30 @@
+/* CSS file */
+Application {
+	background-color: #000000;
+}
+
+Button {
+	width: 100px;
+	font-size: 15px;
+}
+
+Label {
+	font-size: 15px;
+}
+
+HBox {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+VBox {
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+	padding-top: 10px;
+}
+
+
+
+.title {
+	font-size: 30px;
+}
