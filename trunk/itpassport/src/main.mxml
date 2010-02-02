@@ -114,7 +114,7 @@
 		<!-- RESULT STATE					  -->
 		<!-- ================================ -->
 		<mx:State name="resultState">
-			<mx:AddChild relativeTo="{controlSpacer}" position="before">
+			<mx:AddChild relativeTo="{controlSpacer}" position="before" creationPolicy="all">
 				<mx:Label text="残り時間 : 2:59:59"/>
 			</mx:AddChild>
 		</mx:State>
@@ -123,15 +123,15 @@
 		<!-- CHECK REVIEW STATE				  -->
 		<!-- ================================ -->
 		<mx:State name="checkReviewState">
-			<mx:AddChild relativeTo="{controlSpacer}" position="before">
+			<mx:AddChild relativeTo="{controlSpacer}" position="before" creationPolicy="all">
 				<mx:Label text="残り時間 : 2:59:59"/>
 			</mx:AddChild>
 			<mx:RemoveChild target="{btnHistory}"/>
-			<mx:AddChild relativeTo="{controlbar}" position="lastChild">
+			<mx:AddChild relativeTo="{controlbar}" position="lastChild" creationPolicy="all">
 				<mx:Button label="問題へ戻る" id="btnReturnToTest"/>
 			</mx:AddChild>
 			<mx:RemoveChild target="{btnClose}"/>
-			<mx:AddChild relativeTo="{controlbar}" position="lastChild">
+			<mx:AddChild relativeTo="{controlbar}" position="lastChild" creationPolicy="all">
 				<mx:Button label="試験を終了" id="btnEndTestFromCheckReview"/>
 			</mx:AddChild>
 		</mx:State>
@@ -140,9 +140,14 @@
 		<!-- HISTORY STATE					  -->
 		<!-- ================================ -->
 		<mx:State name="historyState">
-			<mx:AddChild relativeTo="{subMenuBox}" position="lastChild">
-				<mx:Button label="履歴を初期化" id="btnInitCheckReview"/>
+			<mx:AddChild relativeTo="{subMenuBox}" position="lastChild" creationPolicy="all">
+				<mx:Button label="履歴を初期化" id="btnInitHistory"/>
 			</mx:AddChild>
+			<mx:RemoveChild target="{btnHistory}"/>
+			<mx:AddChild relativeTo="{controlbar}" position="lastChild"  creationPolicy="all">
+				<mx:Button label="終了" id="btnReturnToMainFromHistory"/>
+			</mx:AddChild>
+			<mx:RemoveChild target="{btnClose}"/>
 		</mx:State>
 
 	</mx:states>
