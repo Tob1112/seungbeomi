@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%">
+
+	<mx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+
+			private var isShowResultSearch:Boolean = false;
+
+			[Bindable] private var dp:ArrayCollection = new ArrayCollection([
+				{col1:"企業と法務（３５問）",col2:"開発技術（６０問）",col3:"基礎理論（４０問）"},
+				{col1:"経営戦略（６０問）",col2:"プロジェクトマネジメント（３５問）",col3:"コンピュータシステム（３５問）"},
+				{col1:"システム戦略（４０問）",col2:"サービスマネジメント（４０問）",col3:"技術要素（６０問）"}
+			]);
+
+			[Bindable] private var searchAC:ArrayCollection = new ArrayCollection([
+				{num:123,box:"金",check:true,memo:"○",range:"21年度　秋期",field:"ストラテジ　企業と法務",question:"次のべン図の黒色で塗りつぶした部分の検索条件はどれか",note:"ITパスポート　21年度　秋期"},
+				{num:456,box:"金",check:true,memo:"",range:"21年度　春期",field:"ストラテジ　企業と法務",question:"次のべン図の黒色で塗りつぶした部分の検索条件はどれか",note:"ITパスポート　21年度　春期"},
+				{num:789,box:"銀",check:false,memo:"",range:"21年度　春期",field:"ストラテジ　企業と法務",question:"次のべン図の黒色で塗りつぶした部分の検索条件はどれか",note:"ITパスポート　21年度　春期"},
+				{num:147,box:"金",check:false,memo:"○",range:"予想問題集",field:"ストラテジ　企業と法務",question:"次のべン図の黒色で塗りつぶした部分の検索条件はどれか",note:"ITパスポート　予想問題集"},
+				{num:258,box:"銅",check:true,memo:"○",range:"予想問題集",field:"ストラテジ　企業と法務",question:"次のべン図の黒色で塗りつぶした部分の検索条件はどれか",note:"ITパスポート　予想問題集"},
+				{num:369,box:"銀",check:true,memo:"",range:"21年度　秋期",field:"ストラテジ　企業と法務",question:"次のべン図の黒色で塗りつぶした部分の検索条件はどれか",note:"ITパスポート　21年度　秋期"},
+				{num:159,box:"金",check:true,memo:"",range:"21年度　春期",field:"ストラテジ　企業と法務",question:"次のべン図の黒色で塗りつぶした部分の検索条件はどれか",note:"ITパスポート　21年度　春期"},
+				{num:357,box:"銅",check:false,memo:"○",range:"予想問題集",field:"ストラテジ　企業と法務",question:"次のべン図の黒色で塗りつぶした部分の検索条件はどれか",note:"ITパスポート　予想問題集"}
+			]);
+
+			public function startSearch():void {
+				if (!isShowResultSearch) {
+					resultSearchHBox.percentHeight = 100;
+					isShowResultSearch = true;
+				} else {
+					resultSearchHBox.height = 0;
+					isShowResultSearch = false;
+				}
+			}
+
+			private function clickItem():void {
+				this.parentDocument.handler.showTestView();
+			}
+
+		]]>
+	</mx:Script>
+
+	<mx:VBox width="100%" height="100%" paddingLeft="10" paddingRight="10" paddingTop="10">
+		<mx:Text text="問題検索" fontWeight="bold" fontSize="20"/>
+		<mx:HRule width="100%"/>
+		<mx:HBox>
+			<mx:Text text="キーワード : "/>
+			<mx:TextInput/>
+			<mx:Text text="を含む問題"/>
+		</mx:HBox>
+		<mx:HBox>
+			<mx:Text text="試験範囲 : "/>
+			<mx:CheckBox label="21年度　春期"/>
+			<mx:CheckBox label="21年度　秋期"/>
+			<mx:CheckBox label="予想問題集" selected="true"/>
+		</mx:HBox>
+		<mx:HBox>
+			<mx:Text text="金銀銅BOX : "/>
+			<mx:CheckBox label="銅" selected="true"/>
+			<mx:CheckBox label="銀"/>
+			<mx:CheckBox label="金"/>
+		</mx:HBox>
+		<mx:HBox width="100%">
+			<mx:DataGrid id="dg" width="100%" dataProvider="{dp}" rowCount="3" styleName="dgStyle">
+				<mx:columns>
+					<mx:DataGridColumn headerText="ストラテジ系" dataField="col1">
+						<mx:itemRenderer>
+								<mx:Component>
+									<mx:CheckBox fontSize="10">
+								        <mx:creationComplete>
+								            <![CDATA[
+												label = data.col1;
+								            ]]>
+								        </mx:creationComplete>
+									</mx:CheckBox>
+								</mx:Component>
+						</mx:itemRenderer>
+					</mx:DataGridColumn>
+					<mx:DataGridColumn headerText="マネジメント系" dataField="col2">
+						<mx:itemRenderer>
+							<mx:Component>
+									<mx:CheckBox fontSize="10">
+								        <mx:creationComplete>
+								            <![CDATA[
+												label = data.col2;
+								            ]]>
+								        </mx:creationComplete>
+									</mx:CheckBox>
+								</mx:Component>
+						</mx:itemRenderer>
+					</mx:DataGridColumn>
+					<mx:DataGridColumn headerText="テクノロジ系" dataField="col3">
+						<mx:itemRenderer>
+							<mx:Component>
+									<mx:CheckBox fontSize="10">
+								        <mx:creationComplete>
+								            <![CDATA[
+												label = data.col3;
+								            ]]>
+								        </mx:creationComplete>
+									</mx:CheckBox>
+								</mx:Component>
+						</mx:itemRenderer>
+					</mx:DataGridColumn>
+				</mx:columns>
+			</mx:DataGrid>
+		</mx:HBox>
+		<mx:HBox>
+			<mx:CheckBox label="チェックした問題" selected="true"/>
+			<mx:CheckBox label="メモした問題"/>
+		</mx:HBox>
+		<mx:HRule width="100%"/>
+
+		<mx:HBox id="resultSearchHBox" width="100%" height="0">
+			<mx:VBox width="100%" height="100%">
+				<mx:Text text="検索結果" fontSize="20" fontWeight="bold"/>
+				<mx:DataGrid dataProvider="{searchAC}" width="100%" height="100%" textAlign="center" itemClick="clickItem()">
+					<mx:columns>
+						<mx:DataGridColumn headerText="番号" dataField="num" width="40" textAlign="center"/>
+						<mx:DataGridColumn headerText="BOX" dataField="box"  width="40"  textAlign="center"/>
+						<mx:DataGridColumn headerText="チェック" dataField="check" itemRenderer="mx.controls.CheckBox"  width="50"  textAlign="center"/>
+						<mx:DataGridColumn headerText="メモ" dataField="memo"  width="40"  textAlign="center"/>
+						<mx:DataGridColumn headerText="試験範囲" dataField="range" textAlign="left"/>
+						<mx:DataGridColumn headerText="分野" dataField="field" textAlign="left"/>
+						<mx:DataGridColumn headerText="問題" dataField="question" textAlign="left"/>
+						<mx:DataGridColumn headerText="備考" dataField="note" textAlign="left"/>
+					</mx:columns>
+				</mx:DataGrid>
+			</mx:VBox>
+		</mx:HBox>
+	</mx:VBox>
+</mx:Canvas>

@@ -23,6 +23,8 @@
 				<contents:PracticeResultView id="practiceResultView"/>
 				<!-- 履歴 -->
 				<contents:HistoryView id="historyView"/>
+				<!-- 検索 -->
+				<contents:SearchView id="searchView"/>
 			</mx:ViewStack>
 		</mx:VBox>
 
@@ -37,8 +39,9 @@
 		<!-- ================================= -->
 		<mx:ControlBar id="controlbar">
 			<mx:Spacer width="100%" id="controlSpacer"/>
-			<mx:Button id="btnHistory" label="学習履歴" width="100" height="30"/>
-			<mx:Button id="btnClose" label="閉じる" width="100" height="30"/>
+			<mx:Button label="検索" id="btnSearch" width="120" height="30"/>
+			<mx:Button id="btnHistory" label="学習履歴" width="120" height="30"/>
+			<mx:Button id="btnClose" label="閉じる" width="120" height="30"/>
 		</mx:ControlBar>
 
 	</mx:Panel>
@@ -54,11 +57,11 @@
 		<!-- ================================ -->
 		<mx:State name="settingState">
 			<mx:AddChild relativeTo="{subMenuBox}" position="lastChild" creationPolicy="all">
-				<mx:Button label="スタート" id="btnTestStart" width="100"/>
+				<mx:Button label="スタート" id="btnTestStart" width="150" height="30"/>
 			</mx:AddChild>
 			<mx:RemoveChild target="{btnClose}"/>
 			<mx:AddChild relativeTo="{controlbar}" position="lastChild" creationPolicy="all">
-				<mx:Button label="終了" id="btnReturnToMain" width="100" height="30"/>
+				<mx:Button label="終了" id="btnReturnToMain" width="120" height="30"/>
 			</mx:AddChild>
 		</mx:State>
 
@@ -73,7 +76,7 @@
 				<mx:CheckBox label="チェック"/>
 			</mx:AddChild>
 			<mx:AddChild relativeTo="{subMenuBox}" position="lastChild" creationPolicy="all">
-				<mx:Button label="メモ" id="btnMemo"/>
+				<mx:Button label="メモ" id="btnMemo" width="80" height="20" />
 			</mx:AddChild>
 			<mx:AddChild relativeTo="{subMenuBox}" position="lastChild" creationPolicy="all">
 				<mx:HBox width="80" height="70%" backgroundColor="#FFFFFF" horizontalAlign="center" verticalAlign="middle" id="hbox1">
@@ -94,12 +97,13 @@
 			</mx:AddChild>
 			<mx:RemoveChild target="{btnHistory}"/>
 			<mx:AddChild relativeTo="{controlbar}" position="lastChild" creationPolicy="all">
-				<mx:Button id="btnCheckReview" label="問題一覧" width="100" height="30"/>
+				<mx:Button id="btnCheckReview" label="問題一覧" width="120" height="30"/>
 			</mx:AddChild>
 			<mx:RemoveChild target="{btnClose}"/>
 			<mx:AddChild relativeTo="{controlbar}" position="lastChild" creationPolicy="all">
-				<mx:Button label="試験を終了" id="btnEndTestFromTest" width="100" height="30"/>
+				<mx:Button label="試験を終了" id="btnEndTestFromTest" width="120" height="30"/>
 			</mx:AddChild>
+			<mx:RemoveChild target="{btnSearch}"/>
 
 		</mx:State>
 
@@ -108,11 +112,11 @@
 		<!-- ================================ -->
 		<mx:State name="resultState">
 			<mx:AddChild relativeTo="{controlSpacer}" position="before" creationPolicy="all">
-				<mx:Label text="残り時間 : 2:59:59"/>
+				<mx:Label text="経過時間 : 2:59:59"/>
 			</mx:AddChild>
 			<mx:RemoveChild target="{btnClose}"/>
 			<mx:AddChild relativeTo="{controlbar}" position="lastChild" creationPolicy="all">
-				<mx:Button label="終了" id="btnEndTestFromResult"/>
+				<mx:Button label="終了" id="btnEndTestFromResult" width="120" height="30"/>
 			</mx:AddChild>
 		</mx:State>
 
@@ -125,12 +129,13 @@
 			</mx:AddChild>
 			<mx:RemoveChild target="{btnHistory}"/>
 			<mx:AddChild relativeTo="{controlbar}" position="lastChild" creationPolicy="all">
-				<mx:Button label="問題へ戻る" id="btnReturnToTest"/>
+				<mx:Button label="問題へ戻る" id="btnReturnToTest" width="120" height="30"/>
 			</mx:AddChild>
 			<mx:RemoveChild target="{btnClose}"/>
 			<mx:AddChild relativeTo="{controlbar}" position="lastChild" creationPolicy="all">
-				<mx:Button label="試験を終了" id="btnEndTestFromCheckReview"/>
+				<mx:Button label="試験を終了" id="btnEndTestFromCheckReview" width="120" height="30"/>
 			</mx:AddChild>
+			<mx:RemoveChild target="{btnSearch}"/>
 		</mx:State>
 
 		<!-- ================================ -->
@@ -138,14 +143,28 @@
 		<!-- ================================ -->
 		<mx:State name="historyState">
 			<mx:AddChild relativeTo="{subMenuBox}" position="lastChild" creationPolicy="all">
-				<mx:Button label="履歴を初期化" id="btnInitHistory"/>
+				<mx:Button label="履歴を初期化" id="btnInitHistory" width="150" height="30"/>
 			</mx:AddChild>
 			<mx:RemoveChild target="{btnHistory}"/>
-			<mx:AddChild relativeTo="{controlbar}" position="lastChild"  creationPolicy="all">
-				<mx:Button label="終了" id="btnReturnToMainFromHistory"/>
+			<mx:AddChild relativeTo="{controlbar}" position="lastChild" creationPolicy="all">
+				<mx:Button label="終了" id="btnReturnToMainFromHistory" width="120" height="30"/>
 			</mx:AddChild>
 			<mx:RemoveChild target="{btnClose}"/>
 		</mx:State>
 
+		<!-- ================================ -->
+		<!-- SEARCH STATE					  -->
+		<!-- ================================ -->
+		<mx:State name="searchState">
+			<mx:RemoveChild target="{btnSearch}"/>
+			<mx:RemoveChild target="{btnClose}"/>
+			<mx:AddChild relativeTo="{controlbar}" position="lastChild" creationPolicy="all">
+				<mx:Button label="終了" id="btnEndSearch" width="120"/>
+			</mx:AddChild>
+			<mx:AddChild relativeTo="{subMenuBox}" position="lastChild" creationPolicy="all">
+				<mx:Button label="検索" id="btnStartSearch" width="150"/>
+			</mx:AddChild>
+
+		</mx:State>
 	</mx:states>
 </mx:Application>

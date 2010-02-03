@@ -1,4 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%">
-	<mx:Label text="履歴"/>
+
+	<mx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+
+			[Bindable] private var dp:ArrayCollection = new ArrayCollection([
+				{no:"1",date:"02/28(火) 00:22",qNum:"10",aNum:"5",percentANum:"50%"},
+				{no:"2",date:"02/10(金) 00:23",qNum:"30",aNum:"30",percentANum:"100%"},
+				{no:"3",date:"02/02(土) 00:22",qNum:"10",aNum:"5",percentANum:"50%"},
+				{no:"4",date:"01/01(火) 10:50",qNum:"10",aNum:"5",percentANum:"50%"},
+				{no:"5",date:"01/29(月) 11:50",qNum:"20",aNum:"10",percentANum:"50%"}
+			]);
+
+			[Bindable]
+	         private var ac:ArrayCollection = new ArrayCollection( [
+	            { FieldName: "金", Gold: 35, Silver:39, Bronze: 29 , name:"gold"},
+	            { FieldName: "銀", Gold: 32, Silver:17, Bronze: 14 , name:"silver"},
+	            { FieldName: "銅", Gold: 27, Silver:27, Bronze: 38 , name:"bronze"}
+	        ]);
+
+	        private function displayName(data:Object, field:String, index:Number, percentValue:Number):String {
+	        	var returnValue:String = null;
+	        	if (data.name == "gold") {
+	        		returnValue = "【 金 : " + data.Gold + " % 】\nストラテジ系 : 10問\nマネジメント系 : 40問\nテクノロジ系 : 20問";
+	        	} else if (data.name == "silver") {
+	        		returnValue = "【 銀 : " + data.Silver + " % 】\nストラテジ系 : 30問\nマネジメント系 : 30問\nテクノロジ系 : 50問";
+	        	} else if (data.name == "bronze") {
+	        		returnValue = "【 銅 : " + data.Bronze + " % 】\nストラテジ系 : 20問\nマネジメント系 : 10問\nテクノロジ系 : 30問";
+	        	}
+	            return returnValue;
+	        }
+
+		]]>
+	</mx:Script>
+
+	<mx:VBox width="100%" height="100%" paddingTop="10" paddingLeft="10" paddingRight="10">
+		<mx:Label text="学習履歴" fontSize="20" fontWeight="bold"/>
+		<mx:Text text="■　分野別モード"/>
+		<mx:Text text="●　金銀銅BOX比率"/>
+		<mx:HBox>
+			<mx:PieChart id="chart" height="200"
+	            paddingRight="5" paddingLeft="5"
+	            showDataTips="true" dataProvider="{ac}" >
+	            <mx:series>
+	                <mx:PieSeries labelPosition="callout" field="Gold" labelFunction="displayName"/>
+	            </mx:series>
+	        </mx:PieChart>
+
+			<mx:Legend dataProvider="{chart}"/>
+			<mx:VBox>
+				<mx:Text text="金　：　050　問　　10.33%"/>
+				<mx:Text text="銀　：　100　問　　20.12%"/>
+				<mx:Text text="銅　：　400　問　　70.02%"/>
+			</mx:VBox>
+		</mx:HBox>
+		<mx:Text text="●　これまでの学習結果"/>
+		<mx:DataGrid id="dg" width="100%" height="100%" dataProvider="{dp}" textAlign="center">
+			<mx:columns>
+				<mx:DataGridColumn headerText="番号" dataField="no" width="30"/>
+				<mx:DataGridColumn headerText="出題日時" dataField="date"/>
+				<mx:DataGridColumn headerText="出題数" dataField="qNum" width="150"/>
+				<mx:DataGridColumn headerText="正答数" dataField="aNum" width="150" />
+				<mx:DataGridColumn headerText="正答率" dataField="percentANum" width="150" />
+			</mx:columns>
+		</mx:DataGrid>
+	</mx:VBox>
 </mx:Canvas>

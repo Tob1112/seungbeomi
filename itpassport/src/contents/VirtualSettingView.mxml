@@ -1,4 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%">
-	<mx:Label text="模擬設定"/>
+
+	<mx:Script>
+		<![CDATA[
+
+            [Bindable] public var cb: Array = [
+            	{label:"22年度　春期", data:1},
+                {label:"21年度　秋期", data:2}
+            ];
+
+		]]>
+	</mx:Script>
+
+	<mx:VBox width="100%" height="100%" paddingLeft="10" paddingTop="10">
+		<mx:Label text="絞り込み条件" fontSize="20" fontWeight="bold"/>
+
+		<mx:HRule width="100%"/>
+
+		<mx:HBox>
+			<mx:Label text="試験範囲 : "/>
+			<mx:ComboBox dataProvider="{cb}"/>
+		</mx:HBox>
+		<mx:HBox>
+			<mx:CheckBox label="回答の位置をランダムで出題"/>
+		</mx:HBox>
+		<mx:HBox>
+			<mx:CheckBox label="制限時間を設定する "/>
+			<mx:TextInput width="40"/>
+			<mx:Text text="分"/>
+		</mx:HBox>
+	</mx:VBox>
 </mx:Canvas>
