@@ -46,6 +46,12 @@ package handler
 			doc.btnEndTestFromCheckReview.addEventListener(MouseEvent.CLICK, clickBtnEndTestFromCheckReview);
 			//結果画面から終了 - メイン画面表示
 			doc.btnEndTestFromResult.addEventListener(MouseEvent.CLICK, clickBtnEndTestFromResult);
+			//検索
+			doc.btnSearch.addEventListener(MouseEvent.CLICK, clickBtnSearch);
+			//検索から終了 - メイン画面表示
+			doc.btnEndSearch.addEventListener(MouseEvent.CLICK, clickBtnEndSearch);
+			//検索開始
+			doc.btnStartSearch.addEventListener(MouseEvent.CLICK, clickBtnStartSearch);
 
 			//画面設定
 		   	doc.viewStack.selectedChild = doc.mainView;
@@ -53,7 +59,7 @@ package handler
 
 		//終了 - メインに戻る
         private function clickBtnReturnToMain(e:MouseEvent):void {
-			shoowMainView();
+			showMainView();
         }
 
         //テストスタート
@@ -63,23 +69,22 @@ package handler
 
         //履歴
         private function clickBtnHistory(e:MouseEvent):void {
-			doc.currentState = "historyState";
-			doc.viewStack.selectedChild = doc.historyView;
+			showHistoryView();
         }
 
 		//履歴を初期化
         private function clickBtnInitHistory(e:MouseEvent):void {
-			Alert.show("履歴を初期化");
+			Alert.show("履歴を初期化","ITパスポート");
         }
 
         //履歴からメインに戻る
 		private function clickBtnReturnToMainFromHistory(e:MouseEvent):void {
-			shoowMainView();
+			showMainView();
 		}
 
 		//アプリケーション終了
 		private function clickBtnClose(e:MouseEvent):void {
-			Alert.show("アプリケーション終了");
+			Alert.show("アプリケーション終了","ITパスポート");
 		}
 
 		//メモ
@@ -95,12 +100,12 @@ package handler
 
 		// 前へ
 		private function clickBtnPrev(e:MouseEvent):void {
-			Alert.show("前の問題");
+			Alert.show("前の問題","ITパスポート");
 		}
 
 		// 次へ
 		private function clickBtnNext(e:MouseEvent):void {
-			Alert.show("次の問題");
+			Alert.show("次の問題","ITパスポート");
 		}
 
 		//問題一覧
@@ -127,11 +132,29 @@ package handler
 
 		//結果画面から終了 - メイン画面表示
 		private function clickBtnEndTestFromResult(e:MouseEvent):void {
-			shoowMainView();
+			showMainView();
 		}
 
+		//検索
+		private function clickBtnSearch(e:MouseEvent):void {
+			showSearchView();
+		}
+
+		//検索から終了 - メイン画面表示
+		private function clickBtnEndSearch(e:MouseEvent):void {
+			showMainView();
+		}
+
+		//検索開始
+		private function clickBtnStartSearch(e:MouseEvent):void {
+			doc.searchView.startSearch();
+		}
+
+
+		//-------------------------------------------------------------------------------
+
 		//メイン画面表示
-		private function shoowMainView():void {
+		private function showMainView():void {
 			doc.currentState = "";
 			doc.pnl.title = "ITパスポート問題集";
 			doc.viewStack.selectedChild = doc.mainView;
@@ -145,10 +168,24 @@ package handler
 		}
 
 		//テスト画面表示
-		private function showTestView():void {
+		public function showTestView():void {
 			doc.currentState = "testState";
         	doc.pnl.title = "ITパスポート問題集 テスト中";
         	doc.viewStack.selectedChild = doc.testView;
+		}
+
+		//学習履歴
+		private function showHistoryView():void {
+			doc.currentState = "historyState";
+			doc.pnl.title = "ITパスポート問題集 （学習履歴）";
+			doc.viewStack.selectedChild = doc.historyView;
+		}
+
+		//検索画面表示
+		private function showSearchView():void {
+			doc.currentState = "searchState";
+			doc.pnl.title = "ITパスポート問題集 （検索）";
+			doc.viewStack.selectedChild = doc.searchView;
 		}
 
 	}

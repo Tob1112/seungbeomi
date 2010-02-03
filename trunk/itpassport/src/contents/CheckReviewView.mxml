@@ -1,4 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%">
-	<mx:Label text="チェックレビュー"/>
+
+	<mx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+
+			[Bindable] private var dp:ArrayCollection = new ArrayCollection([
+				{no:"1",answer:"●",field:"大分類　中分類",question:"次のべン図の黒色で塗りつぶした部分の検索条件はどれか…",memo:"●",check:true},
+				{no:"2",answer:"",field:"ストラテジ　システム戦略",question:"次のべン図の黒色で塗りつぶした部分の検索条件はどれか…",memo:"",check:true},
+				{no:"3",answer:"",field:"テクノロジ　技術要素",question:"次のべン図の黒色で塗りつぶした部分の検索条件はどれか…",memo:"",check:false},
+				{no:"4",answer:"●",field:"テクノロジ　技術要素",question:"次のべン図の黒色で塗りつぶした部分の検索条件はどれか…",memo:"●",check:false},
+				{no:"5",answer:"●",field:"テクノロジ　技術要素",question:"次のべン図の黒色で塗りつぶした部分の検索条件はどれか…",memo:"●",check:true},
+				{no:"6",answer:"●",field:"テクノロジ　技術要素",question:"次のべン図の黒色で塗りつぶした部分の検索条件はどれか…",memo:"",check:true},
+				{no:"7",answer:"",field:"テクノロジ　技術要素",question:"次のべン図の黒色で塗りつぶした部分の検索条件はどれか…",memo:"",check:false},
+				{no:"8",answer:"●",field:"テクノロジ　技術要素",question:"次のべン図の黒色で塗りつぶした部分の検索条件はどれか…",memo:"",check:true},
+				{no:"9",answer:"●",field:"テクノロジ　技術要素",question:"次のべン図の黒色で塗りつぶした部分の検索条件はどれか…",memo:"●",check:false},
+				{no:"10",answer:"●",field:"テクノロジ　技術要素",question:"次のべン図の黒色で塗りつぶした部分の検索条件はどれか…",memo:"●",check:true},
+				{no:"11",answer:"●",field:"テクノロジ　技術要素",question:"次のべン図の黒色で塗りつぶした部分の検索条件はどれか…",memo:"",check:true},
+				{no:"12",answer:"",field:"テクノロジ　技術要素",question:"次のべン図の黒色で塗りつぶした部分の検索条件はどれか…",memo:"●",check:false}
+			]);
+
+			private function clickItem():void {
+				this.parentDocument.handler.showTestView();
+			}
+		]]>
+	</mx:Script>
+
+	<mx:VBox width="100%" height="100%" paddingLeft="10" paddingTop="10">
+		<mx:Label text="問題一覧" fontSize="20" fontWeight="bold"/>
+		<mx:Label text="●　チェックした問題数　：　３問     ●　未回答問題数　：　２問"/>
+		<mx:DataGrid id="dg" width="100%" height="100%" dataProvider="{dp}" itemClick="clickItem()">
+			<mx:columns>
+				<mx:DataGridColumn headerText="番号" dataField="no" width="30" textAlign="center"/>
+				<mx:DataGridColumn headerText="チェック" dataField="check" itemRenderer="mx.controls.CheckBox" width="50" textAlign="center"/>
+				<mx:DataGridColumn headerText="回答" dataField="answer" width="30" textAlign="center"/>
+				<mx:DataGridColumn headerText="分野" dataField="field" width="130"/>
+				<mx:DataGridColumn headerText="問題" dataField="question"/>
+				<mx:DataGridColumn headerText="メモ" dataField="memo" width="30" textAlign="center"/>
+			</mx:columns>
+		</mx:DataGrid>
+	</mx:VBox>
 </mx:Canvas>

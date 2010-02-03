@@ -1,4 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%">
-	<mx:Label text="模擬結果"/>
+
+	<mx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+
+			[Bindable] private var dp:ArrayCollection = new ArrayCollection([
+				{no:"1",answer:"○",field:"大分類　中分類",question:"次のべン図の黒色で塗りつぶした部分の検索条件はどれか…",memo:"●",check:true},
+				{no:"2",answer:"×",field:"ストラテジ　システム戦略",question:"次のべン図の黒色で塗りつぶした部分の検索条件はどれか…",memo:"",check:true},
+				{no:"3",answer:"×",field:"テクノロジ　技術要素",question:"次のべン図の黒色で塗りつぶした部分の検索条件はどれか…",memo:"",check:false},
+				{no:"4",answer:"○",field:"テクノロジ　技術要素",question:"次のべン図の黒色で塗りつぶした部分の検索条件はどれか…",memo:"●",check:false},
+				{no:"5",answer:"○",field:"テクノロジ　技術要素",question:"次のべン図の黒色で塗りつぶした部分の検索条件はどれか…",memo:"●",check:true},
+				{no:"6",answer:"○",field:"テクノロジ　技術要素",question:"次のべン図の黒色で塗りつぶした部分の検索条件はどれか…",memo:"",check:true},
+				{no:"7",answer:"×",field:"テクノロジ　技術要素",question:"次のべン図の黒色で塗りつぶした部分の検索条件はどれか…",memo:"",check:false},
+				{no:"8",answer:"○",field:"テクノロジ　技術要素",question:"次のべン図の黒色で塗りつぶした部分の検索条件はどれか…",memo:"",check:true},
+				{no:"9",answer:"○",field:"テクノロジ　技術要素",question:"次のべン図の黒色で塗りつぶした部分の検索条件はどれか…",memo:"●",check:false},
+				{no:"10",answer:"○",field:"テクノロジ　技術要素",question:"次のべン図の黒色で塗りつぶした部分の検索条件はどれか…",memo:"●",check:true},
+				{no:"11",answer:"○",field:"テクノロジ　技術要素",question:"次のべン図の黒色で塗りつぶした部分の検索条件はどれか…",memo:"",check:true},
+				{no:"12",answer:"×",field:"テクノロジ　技術要素",question:"次のべン図の黒色で塗りつぶした部分の検索条件はどれか…",memo:"●",check:false}
+			]);
+
+
+	        [Bindable]private var ac:ArrayCollection = new ArrayCollection( [
+	        	{ FieldName: "ストラテジ系", Gold: 35, Silver:39, Bronze: 29 },
+	            { FieldName: "マネジメント系", Gold: 32, Silver:17, Bronze: 14 },
+	            { FieldName: "テクノロジ系", Gold: 27, Silver:27, Bronze: 38 }
+	         ]);
+
+	        private function clickItem():void {
+				this.parentDocument.handler.showTestView();
+			}
+		]]>
+	</mx:Script>
+
+	<mx:VBox width="100%" height="100%">
+		<mx:Label text="試験結果" fontSize="20" fontWeight="bold"/>
+		<mx:Label text="●　問題数　：　１０問 　正答数　：　５問　　　　●　正答率　：　５０％"/>
+		<mx:HBox width="100%">
+			<mx:BarChart id="bar" height="150" width="45%"
+	            paddingLeft="5" paddingRight="5"
+	            showDataTips="true" dataProvider="{ac}">
+
+	            <mx:verticalAxis>
+	                <mx:CategoryAxis categoryField="FieldName"/>
+	            </mx:verticalAxis>
+
+	            <mx:series>
+	                <mx:BarSeries yField="FieldName" xField="Gold" displayName="金"/>
+	                <mx:BarSeries yField="FieldName" xField="Silver" displayName="銀"/>
+	                <mx:BarSeries yField="FieldName" xField="Bronze" displayName="銅"/>
+	            </mx:series>
+	        </mx:BarChart>
+			<mx:Legend dataProvider="{bar}"/>
+			<mx:Image source="@Embed('assets/images/resultTest.png')"/>
+		</mx:HBox>
+		<mx:DataGrid id="dg" width="100%" height="100%" dataProvider="{dp}" itemClick="clickItem()">
+			<mx:columns>
+				<mx:DataGridColumn headerText="番号" dataField="no" width="30" textAlign="center"/>
+				<mx:DataGridColumn headerText="チェック" dataField="check" itemRenderer="mx.controls.CheckBox" width="50" textAlign="center"/>
+				<mx:DataGridColumn headerText="正誤" dataField="answer" width="30" textAlign="center"/>
+				<mx:DataGridColumn headerText="分野" dataField="field" width="130"/>
+				<mx:DataGridColumn headerText="問題" dataField="question"/>
+				<mx:DataGridColumn headerText="メモ" dataField="memo" width="30" textAlign="center"/>
+			</mx:columns>
+		</mx:DataGrid>
+	</mx:VBox>
 </mx:Canvas>

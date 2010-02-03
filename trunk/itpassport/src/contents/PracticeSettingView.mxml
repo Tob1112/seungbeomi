@@ -1,4 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%">
-	<mx:Label text="分野別設定"/>
+
+	<mx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+
+			[Bindable] private var dp:ArrayCollection = new ArrayCollection([
+				{col1:"企業と法務（３５問）",col2:"開発技術（６０問）",col3:"基礎理論（４０問）"},
+				{col1:"経営戦略（６０問）",col2:"プロジェクトマネジメント（３５問）",col3:"コンピュータシステム（３５問）"},
+				{col1:"システム戦略（４０問）",col2:"サービスマネジメント（４０問）",col3:"技術要素（６０問）"}
+			]);
+
+
+            [Bindable] public var arrBox:Array = [
+            	{label:"全て", data:1},
+                {label:"金", data:2},
+                {label:"銀", data:3},
+                {label:"銅", data:4}
+            ];
+
+            [Bindable] public var randomMethod:Array = [
+            	{label:"チェックした問題", data:1},
+                {label:"メモした問題", data:2}
+            ];
+		]]>
+	</mx:Script>
+
+
+	<mx:VBox width="100%" height="100%" paddingLeft="10" paddingTop="10">
+		<mx:Label text="絞り込み条件" fontSize="20" fontWeight="bold"/>
+
+		<mx:HRule width="100%"/>
+
+		<mx:HBox>
+			<mx:Label text="試験範囲"/>
+			<mx:CheckBox label="21年度　春期（１００問）" selected="true"/>
+			<mx:CheckBox label="21年度　秋期（１００問）"/>
+			<mx:CheckBox label="予想問題集（４００問）"/>
+		</mx:HBox>
+		<mx:HBox width="100%">
+			<mx:Label text="BOXの選択"/>
+			<mx:CheckBox label="銅（３００問）"/>
+			<mx:CheckBox label="銀（２００問）" selected="true"/>
+			<mx:CheckBox label="金（１００問）"/>
+			<mx:Spacer width="100%"/>
+			<mx:LinkButton label="金銀銅BOXとは" fontSize="10" toolTip="{'金銀銅BOXとは、問題集を解く際の仕組みです。\n沢山の問題の中から、自分の不得意な問題を集中的に学習できます。\n未出題の問題、直前に間違えた問題は銅のBOXに入ります。\n1回正解すると銀、2回正解すると金のBOXに入ります。'}"/>
+			<!--
+			<mx:Link text="金銀銅BOXとは" toolTip="{'金銀銅BOXとは、問題集を解く際の仕組みです。\n沢山の問題の中から、自分の不得意な問題を集中的に学習できます。\n未出題の問題、直前に間違えた問題は銅のBOXに入ります。\n1回正解すると銀、2回正解すると金のBOXに入ります。'}"/>
+			-->
+			<mx:ComboBox dataProvider="{arrBox}" height="30"/>
+			<mx:Button label="初期化"/>
+		</mx:HBox>
+
+		<mx:HBox width="100%">
+			<mx:Button label="全選択"/>
+			<mx:Button label="全解除"/>
+			<mx:Spacer width="100%"/>
+			<mx:Text text="出題数 / 問題数　:　"/>
+			<mx:TextInput width="40" text="30"/>
+			<mx:Text text=" / 50"/>
+		</mx:HBox>
+		<mx:HBox width="100%">
+			<mx:DataGrid id="dg" width="100%" dataProvider="{dp}" rowCount="3" styleName="dgStyle">
+				<mx:columns>
+					<mx:DataGridColumn headerText="ストラテジ系" dataField="col1">
+						<mx:itemRenderer>
+								<mx:Component>
+									<mx:CheckBox fontSize="10">
+								        <mx:creationComplete>
+								            <![CDATA[
+												label = data.col1;
+								            ]]>
+								        </mx:creationComplete>
+									</mx:CheckBox>
+								</mx:Component>
+						</mx:itemRenderer>
+					</mx:DataGridColumn>
+					<mx:DataGridColumn headerText="マネジメント系" dataField="col2">
+						<mx:itemRenderer>
+							<mx:Component>
+									<mx:CheckBox fontSize="10">
+								        <mx:creationComplete>
+								            <![CDATA[
+												label = data.col2;
+								            ]]>
+								        </mx:creationComplete>
+									</mx:CheckBox>
+								</mx:Component>
+						</mx:itemRenderer>
+					</mx:DataGridColumn>
+					<mx:DataGridColumn headerText="テクノロジ系" dataField="col3">
+						<mx:itemRenderer>
+							<mx:Component>
+									<mx:CheckBox fontSize="10">
+								        <mx:creationComplete>
+								            <![CDATA[
+												label = data.col3;
+								            ]]>
+								        </mx:creationComplete>
+									</mx:CheckBox>
+								</mx:Component>
+						</mx:itemRenderer>
+					</mx:DataGridColumn>
+				</mx:columns>
+			</mx:DataGrid>
+		</mx:HBox>
+
+		<mx:Label text="さらに、絞る"/>
+
+		<mx:HBox width="100%">
+			<mx:RadioButton label="チェックした問題のみ出題（３０問）" selected="true"/>
+			<mx:RadioButton label="メモした問題のみ出題（２０問）"/>
+			<mx:Spacer width="100%"/>
+			<mx:ComboBox dataProvider="{randomMethod}" height="30"/>
+			<mx:Button label="初期化"/>
+		</mx:HBox>
+
+		<mx:HRule width="100%"/>
+
+		<mx:HBox width="100%">
+			<mx:CheckBox label="問題をランダムで出題"/>
+			<mx:CheckBox label="回答の位置をランダムで出題" selected="true"/>
+		</mx:HBox>
+		<mx:HBox>
+			<mx:CheckBox label="制限時間を設定する" selected="true"/>
+			<mx:TextInput width="40" text="40"/>
+			<mx:Text text="分"/>
+		</mx:HBox>
+	</mx:VBox>
 </mx:Canvas>
