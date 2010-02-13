@@ -25,11 +25,12 @@
 	</appender>-->
 
 	<!-- PRMS logger -->
-	<logger name="com.prms">
+	<logger name="net.sourceforge.pebble">
 		<level value="DEBUG"/>
 	</logger>
 
 	<!-- iBatis logger -->
+	<!--
     <logger name="java.sql.Connection">
         <level value="DEBUG" />
     </logger>
@@ -49,9 +50,10 @@
     <logger name="org.springframework.security">
         <level value="WARN" />
     </logger>
+	-->
 
  	<root>
-        <priority value ="DEBUG" />
+        <priority value ="INFO" />
     	<appender-ref ref="console" />
     	<!--<appender-ref ref="dailyPrmsLog" />-->
   	</root>
