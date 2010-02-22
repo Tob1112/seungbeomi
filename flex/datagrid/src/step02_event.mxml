@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute">
+	<mx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			import mx.events.DataGridEvent;
+			import mx.events.ListEvent;
+			import mx.controls.Alert;
+			import mx.collections.ArrayCollection;
+
+			[Bindable] private var dp:ArrayCollection = new ArrayCollection([
+				{name:"banana",category:"fruit",cost:0.99,total:0},
+				{name:"bread",category:"bakery",cost:0.52,total:0},
+				{name:"orange",category:"fruit",cost:0.33,total:0}
+			]);
+
+			private function itemClickHandler(e:ListEvent):void {
+				trace("itemClickHandler : " + e.target.selectedItem.category);
+			}
+
+			private function itemEditBeginHandler(e:DataGridEvent):void {
+				trace("itemEditBeginHandler : " + e.target.selectedItem.category);
+			}
+
+			private function itemEditBeginningHandler(e:DataGridEvent):void {
+				trace("itemEditBeginningHandler : " + e.target.selectedItem.category);
+			}
+
+			private function itemEditEndHandler(e:DataGridEvent):void {
+				trace("itemEditEndHandler : " + e.target.selectedItem.category);
+			}
+
+			private function itemFocusInHandler(e:DataGridEvent):void {
+				trace("itemFocusInHandler : " + e.target.selectedItem.category);
+			}
+
+			private function itemFocusOutHandler(e:DataGridEvent):void {
+				trace("itemFocusOutHandler : " + e.target.selectedItem.category);
+				trace("--------------------------");
+			}
+
+			// ユーザーの操作によって、selectedIndex プロパティまたは selectedItem プロパティが変更されたときに送出されます。
+			// ListEvent.CHANGE 定数は、ListEvent オブジェクトの type プロパティ値を change イベント用に定義し、
+			// ユーザー操作の結果として選択が変更されたことを示します。
+			private function changeHandler(e:ListEvent):void {
+				trace("changeHandler : " + e.target.selectedItem.category);
+			}
+
+			// 	コンポーネントをアイテムレンダラーとして使用する場合、表示するデータは data プロパティに格納されます。このイベントを受け取って、
+			// data プロパティが変更されたときにコンポーネントを更新することができます。
+			private function dataChangeHandler(e:FlexEvent):void {
+				trace("dataChangeHandler????");
+			}
+
+			private function updateCompleteHandler(e:FlexEvent):void {
+				if (e.target.selectedItem == null) {
+					trace("updateCompleteHandler");
+				} else {
+					trace("updateCompleteHandler : " + e.target.selectedItem.category);
+				}
+			}
+
+		]]>
+	</mx:Script>
+
+	<mx:DataGrid dataProvider="{dp}" editable="true"
+		itemClick="itemClickHandler(event)"
+		itemEditBegin="itemEditBeginHandler(event)"
+		itemEditBeginning="itemEditBeginningHandler(event)"
+		itemEditEnd="itemEditEndHandler(event)"
+		itemFocusIn="itemFocusInHandler(event)"
+		itemFocusOut="itemFocusOutHandler(event)"
+		dataChange="dataChangeHandler(event)"
+		change="changeHandler(event)"
+		updateComplete="updateCompleteHandler(event)">
+		<mx:columns>
+			<mx:DataGridColumn headerText="category" dataField="category"/>
+			<mx:DataGridColumn headerText="name" dataField="name"/>
+			<mx:DataGridColumn headerText="cost" dataField="cost"/>
+		</mx:columns>
+	</mx:DataGrid>
+</mx:Application>
