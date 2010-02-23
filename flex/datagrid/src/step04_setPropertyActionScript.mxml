@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute">
+	<mx:Script>
+		<![CDATA[
+			import itemRenderer.RendererState;
+
+			// cast the value of the itemrenderer property to classfactory
+			public function initCellEditor():void {
+				myList.itemRenderer = new ClassFactory(RendererState);
+			}
+		]]>
+	</mx:Script>
+
+	<mx:List id="myList" variableRowHeight="true" height="250" width="250" backgroundColor="white"
+		initialize="initCellEditor();">
+		<mx:dataProvider>
+			<mx:Object label="google" data="google" webPage="http://www.google.co.jp"/>
+			<mx:Object label="naver" data="naver" webPage="http://www.naver.com"/>
+		</mx:dataProvider>
+	</mx:List>
+</mx:Application>

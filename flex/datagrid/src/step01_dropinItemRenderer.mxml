@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute">
+	<mx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+
+			[Bindable]
+			private var myDP:ArrayCollection = new ArrayCollection ([
+				{label1:"Order #1234", quant:3, Sent:true},
+				{label1:"Order #4321", quant:3, Sent:false}
+			]);
+		]]>
+	</mx:Script>
+
+	<mx:DataGrid id="myDG" dataProvider="{myDP}" editable="true">
+		<mx:columns>
+			<mx:DataGridColumn dataField="label1" headerText="Order #"/>
+			<mx:DataGridColumn dataField="quant" headerText="Qty"
+				itemRenderer="mx.controls.NumericStepper" editorDataField="value"/>
+		</mx:columns>
+	</mx:DataGrid>
+</mx:Application>
