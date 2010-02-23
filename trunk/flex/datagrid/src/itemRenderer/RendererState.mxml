@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml">
+	<mx:Script>
+		<![CDATA[
+			import flash.net.navigateToURL;
+			// import event and urlrequest classes
+
+			private var u:URLRequest;
+
+			// event handler to open url using navigateToUrl
+			private function handleClick(e:Event):void {
+				u = new URLRequest(data.webPage);
+				navigateToURL(u);
+			}
+		]]>
+	</mx:Script>
+
+	<mx:HBox>
+		<mx:Label id="State" text="State : {data.label}"/>
+		<mx:Label id="Statecapital" text="Capital : {data.data}"/>
+	</mx:HBox>
+	<mx:LinkButton id="webPage" label="Official {data.label} web page" click="handleClick(event);" color="blue"/>
+</mx:VBox>
