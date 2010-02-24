@@ -6,17 +6,24 @@
 
 			[Bindable]
 			private var myDP:ArrayCollection = new ArrayCollection ([
-				{label1:"Order #1234", quant:3, Sent:true},
-				{label1:"Order #4321", quant:3, Sent:false}
+				{label1:"Order #1234", contact:"son", quant:3, solddate:new Date(2005,0,1), Sent:true},
+				{label1:"Order #4321", contact:"kim", quant:3, solddate:new Date(2005,0,5), Sent:false}
 			]);
 		]]>
 	</mx:Script>
 
-	<mx:DataGrid id="myDG" dataProvider="{myDP}" editable="true">
+	<mx:DataGrid id="myDG" dataProvider="{myDP}" editable="true" variableRowHeight="true" width="500" height="250">
 		<mx:columns>
-			<mx:DataGridColumn dataField="label1" headerText="Order #"/>
-			<mx:DataGridColumn dataField="quant" headerText="Qty"
-				itemRenderer="mx.controls.NumericStepper" editorDataField="value"/>
+			<mx:DataGridColumn dataField="label1" headerText="Order #" editable="false"/>
+			<mx:DataGridColumn dataField="quant" headerText="Qty" editorDataField="value">
+				<mx:itemEditor>
+					<mx:Component>
+						<mx:NumericStepper stepSize="1" maximum="50"/>
+					</mx:Component>
+				</mx:itemEditor>
+			</mx:DataGridColumn>
+			<mx:DataGridColumn dataField="solddate" headerText="Date" itemRenderer="mx.controls.DateField" editorDataField="selectedDate" rendererIsEditor="true"/>
+			<mx:DataGridColumn dataField="Sent" itemRenderer="mx.controls.CheckBox" editorDataField="selected" rendererIsEditor="true"/>
 		</mx:columns>
 	</mx:DataGrid>
 </mx:Application>

@@ -16,7 +16,7 @@
 	</mx:Script>
 
 	<mx:HBox>
-		<mx:Label id="State" text="State : {data.label}"/>
+		<mx:Text id="State" text="State : {data.label}" selectable="false"/>
 		<mx:Label id="Statecapital" text="Capital : {data.data}"/>
 	</mx:HBox>
 	<mx:LinkButton id="webPage" label="Official {data.label} web page" click="handleClick(event);" color="blue"/>

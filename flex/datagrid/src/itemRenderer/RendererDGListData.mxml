@@ -1,4 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:TextArea xmlns:mx="http://www.adobe.com/2006/mxml">
-	
+<mx:TextArea xmlns:mx="http://www.adobe.com/2006/mxml" preinitialize="initTA();">
+	<mx:Script>
+		<![CDATA[
+			import mx.controls.dataGridClasses.DataGridListData;
+
+			public function initTA():void {
+				addEventListener("dataChange", handleDataChanged);
+			}
+
+			public function handleDataChanged(e:Event):void {
+				// cast listData to dataGridListData
+				var myListData:DataGridListData = DataGridListData(listData);
+
+				// access information about the data passed to the cell renderer
+				text = "row index: " + String(myListData.rowIndex) +
+					" column index: " + String(myListData.columnIndex);
+			}
+		]]>
+	</mx:Script>
 </mx:TextArea>
