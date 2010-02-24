@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="600" height="600">
+	<mx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+
+			[Bindable]
+			private var initDG:ArrayCollection = new ArrayCollection([
+				{Monday:12, Tuesday:22, Wednesday:452, Thursday:90},
+				{Monday:258, Tuesday:22, Wednesday:45, Thursday:46},
+				{Monday:4, Tuesday:123, Wednesday:50, Thursday:95},
+				{Monday:12, Tuesday:52, Wednesday:12, Thursday:20},
+				{Monday:22, Tuesday:78, Wednesday:4, Thursday:51}
+			]);
+		]]>
+	</mx:Script>
+
+	<mx:Text text="All cell over 100 are RED"/>
+
+	<mx:DataGrid id="myDataGrid" dataProvider="{initDG}" variableRowHeight="true">
+		<mx:columns>
+			<mx:DataGridColumn dataField="Monday" itemRenderer="itemRenderer.CellField"/>
+			<mx:DataGridColumn dataField="Tuesday" itemRenderer="itemRenderer.CellField"/>
+			<mx:DataGridColumn dataField="Wednesday" itemRenderer="itemRenderer.CellField"/>
+			<mx:DataGridColumn dataField="Thursday" itemRenderer="itemRenderer.CellField"/>
+		</mx:columns>
+	</mx:DataGrid>
+</mx:Application>
