@@ -9,13 +9,14 @@
     <sourceAttachmentPath/>
   </compiler>
   <applications>
-    <application path="step01_dropinItemRenderer.mxml"/>
     <application path="step01_getMultiDataFromItemeditor.mxml"/>
+    <application path="step01_dropinItemRenderer.mxml"/>
+    <application path="step06_actionScriptRenderer.mxml"/>
     <application path="step05_accessListDataProperty.mxml"/>
     <application path="step04_setPropertyActionScript.mxml"/>
+    <application path="ItemEditorTest.mxml"/>
     <application path="step03_componentItemRenderer.mxml"/>
     <application path="step02_inlineItemRenderer.mxml"/>
-    <application path="step06_actionScriptRenderer.mxml"/>
   </applications>
   <modules/>
   <buildCSSFiles/>
