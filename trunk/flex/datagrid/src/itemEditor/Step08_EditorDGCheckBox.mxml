@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" backgroundColor="yellow"
+	implements="mx.managers.IFocusManagerComponent">
+	<mx:Script>
+		<![CDATA[
+			public var cbSelected:Boolean;
+
+			override public function drawFocus(isFocused:Boolean):void {
+			     trace("Enter key!!");
+			}
+		]]>
+	</mx:Script>
+
+	<mx:CheckBox id="followUpCB" label="Follow up needed"
+	   height="100%" width="100%"
+	   selected="{data.FollowUp as Boolean}"
+	   click="cbSelected=followUpCB.selected"
+	   updateComplete="cbSelected=followUpCB.selected"/>
+</mx:VBox>

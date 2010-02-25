@@ -19,10 +19,10 @@
 
 	<mx:DataGrid id="myDataGrid" dataProvider="{initDG}" variableRowHeight="true">
 		<mx:columns>
-			<mx:DataGridColumn dataField="Monday" itemRenderer="itemRenderer.CellField"/>
-			<mx:DataGridColumn dataField="Tuesday" itemRenderer="itemRenderer.CellField"/>
-			<mx:DataGridColumn dataField="Wednesday" itemRenderer="itemRenderer.CellField"/>
-			<mx:DataGridColumn dataField="Thursday" itemRenderer="itemRenderer.CellField"/>
+			<mx:DataGridColumn dataField="Monday" itemRenderer="itemRenderer.Step06_CellField"/>
+			<mx:DataGridColumn dataField="Tuesday" itemRenderer="itemRenderer.Step06_CellField"/>
+			<mx:DataGridColumn dataField="Wednesday" itemRenderer="itemRenderer.Step06_CellField"/>
+			<mx:DataGridColumn dataField="Thursday" itemRenderer="itemRenderer.Step06_CellField"/>
 		</mx:columns>
 	</mx:DataGrid>
 </mx:Application>

@@ -3,9 +3,9 @@ package itemRenderer
 	import mx.controls.TextInput;
 	import mx.controls.dataGridClasses.DataGridListData;
 
-	public class CellField extends TextInput
+	public class Step06_CellField extends TextInput
 	{
-		public function CellField()
+		public function Step06_CellField()
 		{
 			super();
 			height = 60;
