@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute">
+	<mx:Script>
+		<![CDATA[
+			import mx.collections.IViewCursor;
+			import mx.events.DataGridEvent;
+			import mx.events.ListEvent;
+			import mx.collections.ArrayCollection;
+
+			[Bindable]
+			private var myDP:ArrayCollection = new ArrayCollection ([
+				{label1:"Order #1234", contact:"son", quant:3, solddate:new Date(2005,0,1), Sent:true},
+				{label1:"Order #4321", contact:"kim", quant:4, solddate:new Date(2005,0,5), Sent:false}
+			]);
+
+			private function handleItemEditBeginning(e:DataGridEvent):void {
+				//for (var i:int=0; i < e.currentTarget.columnCount; i++ ) {
+				//	trace(e.currentTarget.columns[i].dataField);
+				//}
+				//trace("[1] itemEditBeginning : 특정 cell의 편집을 무효화 시킬 수 있다");
+				//e.preventDefault();
+			}
+
+			private function handleItemEditBegin():void {
+				//trace("[2] itemEditBegin : itemEditor에 넘기는 data를 변경가능");
+			}
+
+			private function handleItemEditEnd():void {
+				//trace("[3] itemEditEnd : cell에 반환되는 data를 변경, 변경된 data를 검증, itemEditor으로 부터 반환되는 형식과는 다른 형식으로 data를 반환시키는 처리가 가능");
+
+				//trace("ArrayColection ==================");
+				//var cursor:IViewCursor = myDP.createCursor();
+				//while(!cursor.afterLast) {
+				//	trace(cursor.current.Sent);
+				//	cursor.moveNext();
+				//}
+				//trace("");
+			}
+
+			private function handleUpdateComplete():void {
+				//trace("[4] handleUpdateComplete");
+			}
+		]]>
+	</mx:Script>
+
+	<mx:DataGrid id="myDG" dataProvider="{myDP}" editable="true" variableRowHeight="true" width="500" height="250"
+		itemEditBeginning="handleItemEditBeginning(event)"
+		itemEditBegin="handleItemEditBegin()"
+		itemEditEnd="handleItemEditEnd()"
+		updateComplete="handleUpdateComplete()">
+		<mx:columns>
+			<mx:DataGridColumn dataField="label1" headerText="Order #" editable="false"/>
+			<mx:DataGridColumn dataField="quant" headerText="Qty"
+				itemEditor="mx.controls.NumericStepper" editorDataField="value"
+				editorXOffset="15" editorYOffset="15"/>
+			<mx:DataGridColumn dataField="solddate" headerText="Date" itemRenderer="mx.controls.DateField" editorDataField="selectedDate" rendererIsEditor="true"/>
+			<mx:DataGridColumn dataField="Sent" itemRenderer="itemEditor.EditorDGCheckBox" editorDataField="cbSelected" rendererIsEditor="true"/>
+		</mx:columns>
+	</mx:DataGrid>
+</mx:Application>

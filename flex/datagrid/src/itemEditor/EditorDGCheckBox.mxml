@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" backgroundColor="yellow">
+	<mx:Script>
+		<![CDATA[
+			public var cbSelected:Boolean;
+		]]>
+	</mx:Script>
+
+	<mx:CheckBox id="followUpCB" label="Sent"
+		height="100%" width="100%" selected="{data.Sent}"
+		click="cbSelected=followUpCB.selected"
+		updateComplete="cbSelected=followUpCB.selected"/>
+</mx:VBox>

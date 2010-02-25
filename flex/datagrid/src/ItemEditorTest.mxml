@@ -42,7 +42,7 @@
 
 				if (e.reason == DataGridEventReason.CANCELLED)	return;	// do not update cell
 
-				//e.preventDefault();	// prevent default event
+				e.preventDefault();	// prevent default event
 
 				//trace(IDropInListItemRenderer(e.itemRenderer).listData.label);	// 이벤트가 발생한 값을 취득
 
@@ -54,15 +54,15 @@
 
 				trace("old : " + oldVal + ", new : " + newVal);
 
-
 				// 무효한 값 입력시 에러표시
 				if (newVal == "") {
 					e.preventDefault();
+					myEditor.setStyle("backgroundColor",0xFF0000);
 					myEditor.errorString = "Enter a valid string.";
 				}
 
 				// 새로운 값을 dataGrid에 적용
-				myDG.editedItemRenderer.data.bbb = TextInput(DataGrid(e.target).itemEditorInstance).text;
+				myDG.editedItemRenderer.data.bbb = newVal;
 
 				// --------------------------------------
 				// calculate
@@ -84,11 +84,9 @@
 				// itemEditor에서 dataGrid로 data를 변경시켜 반환
 				if (newVal != "") TextInput(myDG.itemEditorInstance).text = newVal.substr(0,2) + ":" + newVal.substr(2,4);
 
-				//myDG.editedItemRenderer.data.bbb = TextInput(DataGrid(e.target).itemEditorInstance).text;
+				myDG.destroyItemEditor(); // close itemEditor
 
-				//myDG.destroyItemEditor(); // close itemEditor
-
-				//myDG.dataProvider.itemUpdated(e.itemRenderer.data);
+				myDG.dataProvider.itemUpdated(e.itemRenderer.data);
 
 			}
 		]]>
