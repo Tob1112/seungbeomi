@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute">
+	<mx:Script>
+		<![CDATA[
+			import mx.collections.IViewCursor;
+			import mx.controls.TextInput;
+			import mx.events.DataGridEventReason;
+			import mx.controls.listClasses.IDropInListItemRenderer;
+			import mx.events.DataGridEvent;
+			import mx.collections.ArrayCollection;
+
+			[Bindable]
+			private var sumBBB:int;
+
+			[Bindable]
+			private var myDP:ArrayCollection = new ArrayCollection ([
+				{aaa:"08:00", bbb:"18:00", total:""},
+				{aaa:"09:00", bbb:"19:00", total:""}
+			]);
+
+			// 이벤트 발생을 방지가능
+			private function itemEditBeginningHandler(e:DataGridEvent):void {
+				// prevent editting
+				if (e.columnIndex==0) e.preventDefault();
+			}
+
+			// datagrid 에서 itemRenderer나 itemEditor로 전달되는 값을 제어
+			private function itemEditBeginHandler(e:DataGridEvent):void {
+
+				//var colName:String = myDG.columns[e.columnIndex].dataField;		// 이벤트가 발생한 컬럼명을 취득
+				//trace(colName + " ; " + e.rowIndex + " - " + e.columnIndex + );	// 해당 열과 행을 취득
+				//trace(IDropInListItemRenderer(e.itemRenderer).listData.label);	// 이벤트가 발생한 값을 취득
+
+				// itemEditor에 전단하는 값을 변경 - colon을 제거
+				IDropInListItemRenderer(e.itemRenderer).listData.label =
+					(IDropInListItemRenderer(e.itemRenderer).listData.label).replace(":","");
+			}
+
+
+			// itemRenderer나 itemEditor에서 datagrid로 전달되는 값을 제어
+			private function itemEditEndHandler(e:DataGridEvent):void {
+
+				if (e.reason == DataGridEventReason.CANCELLED)	return;	// do not update cell
+
+				//e.preventDefault();	// prevent default event
+
+				//trace(IDropInListItemRenderer(e.itemRenderer).listData.label);	// 이벤트가 발생한 값을 취득
+
+				var oldVal:String = IDropInListItemRenderer(e.itemRenderer).listData.label;	// old value
+
+				var myEditor:TextInput = TextInput(myDG.itemEditorInstance);	// get itemEditor instance
+
+				var newVal:String = myEditor.text;	// new value
+
+				trace("old : " + oldVal + ", new : " + newVal);
+
+
+				// 무효한 값 입력시 에러표시
+				if (newVal == "") {
+					e.preventDefault();
+					myEditor.errorString = "Enter a valid string.";
+				}
+
+				// 새로운 값을 dataGrid에 적용
+				myDG.editedItemRenderer.data.bbb = TextInput(DataGrid(e.target).itemEditorInstance).text;
+
+				// --------------------------------------
+				// calculate
+				// --------------------------------------
+				var aaa:int = int(String(e.itemRenderer.data.aaa).replace(":",""));
+				e.itemRenderer.data.total = String(aaa + int(newVal));
+
+				if (oldVal != newVal) {
+					sumBBB = 0;
+					var cursor:IViewCursor = myDP.createCursor();
+					while (!cursor.afterLast) {
+						sumBBB = sumBBB + int(cursor.current.bbb.replace(":",""));
+						cursor.moveNext();
+					}
+				}
+				//----------------------------------------
+
+
+				// itemEditor에서 dataGrid로 data를 변경시켜 반환
+				if (newVal != "") TextInput(myDG.itemEditorInstance).text = newVal.substr(0,2) + ":" + newVal.substr(2,4);
+
+				//myDG.editedItemRenderer.data.bbb = TextInput(DataGrid(e.target).itemEditorInstance).text;
+
+				//myDG.destroyItemEditor(); // close itemEditor
+
+				//myDG.dataProvider.itemUpdated(e.itemRenderer.data);
+
+			}
+		]]>
+	</mx:Script>
+
+	<mx:DataGrid id="myDG" dataProvider="{myDP}" editable="true" variableRowHeight="true" width="500" height="250"
+		itemEditBeginning="itemEditBeginningHandler(event)"
+		itemEditBegin="itemEditBeginHandler(event)"
+		itemEditEnd="itemEditEndHandler(event)">
+		<mx:columns>
+			<mx:DataGridColumn dataField="aaa" headerText="AAA"/>
+			<mx:DataGridColumn dataField="bbb" headerText="BBB" />
+			<mx:DataGridColumn dataField="total" headerText="TATAL" editable="false"/>
+		</mx:columns>
+	</mx:DataGrid>
+	<mx:Text x="0" y="268" text="sum BBB column : {sumBBB}" selectable="false"/>
+</mx:Application>
