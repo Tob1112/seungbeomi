@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:customComponet="customComponet.*">
+
+    <mx:Style source="assets/styles.css"/>
+
+    <customComponet:MyComponent title="custom component" width="200" height="200"/>
+
+</mx:Application>
