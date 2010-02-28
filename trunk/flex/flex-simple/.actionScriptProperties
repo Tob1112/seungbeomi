@@ -38,6 +38,7 @@
     <application path="DragAndDropTest03.mxml"/>
     <application path="DragAndDrop_DatagridToList.mxml"/>
     <application path="DragAndDrop_DatagridToDatagrid.mxml"/>
+    <application path="CustomComponent.mxml"/>
   </applications>
   <modules/>
   <buildCSSFiles/>
