@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:customComponet="customComponet.*">
+	<mx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+
+			[Bindable]
+            private var myDP:ArrayCollection = new ArrayCollection ([
+                {aaa:"08:00", bbb:"18:00", ccc:true},
+                {aaa:"09:00", bbb:"19:00", ccc:false}
+            ]);
+		]]>
+	</mx:Script>
+	<mx:DataGrid id="myDG" dataProvider="{myDP}" editable="true">
+		<mx:columns>
+			<customComponet:CustomDataGridColumn dataField="aaa" type="textInput"/>
+			<customComponet:CustomDataGridColumn dataField="bbb" type="textInput"/>
+			<customComponet:CustomDataGridColumn dataField="ccc" type="checkBox" editable="false"/>
+		</mx:columns>
+	</mx:DataGrid>
+</mx:Application>
