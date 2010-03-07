@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rds:ServiceLocator xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:rds="com.adobe.cairngorm.business.*">
+
+    <!-- APRIL27 SERVICE REMOTE OBJECT -->
+    <mx:RemoteObject id="hormRO" destination="homeService"/>
+    <mx:RemoteObject id="employeeRO" destination="employeeService"/>
+
+</rds:ServiceLocator>
