@@ -1,0 +1,19 @@
+/* CSS file */
+Application {
+	background-color: #ffffff;
+}
+
+.logo {
+    color: #00ff00;
+    font-weight: bold;
+}
+
+.april27ControlBar {
+    background-color: #343B47;
+    color: #ffffff;
+}
+
+.warning {
+    color: #00ff00;
+    font-weight: bold;
+}
