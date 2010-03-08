@@ -14,9 +14,9 @@ package org.april27.home {
     	private var responder:IResponder;
 
         public function HomeDelegate(responder:IResponder) {
-        	if (locator == null) locator = ServiceLocator.getInstance();
+        	//if (locator == null) locator = ServiceLocator.getInstance();
 
-        	service = locator.getRemoteObject("homeRO");
+        	//service = locator.getRemoteObject("homeRO");
         	this.responder = responder;
         }
 
@@ -30,6 +30,8 @@ package org.april27.home {
         	var params:Object = new Object();
         	params.j_username = empName;
         	params.j_password = password;
+
+			trace("authenticateUser : " + empName + " - " + password);
 
             var token:AsyncToken = httpService.send(params);
             token.addResponder(responder);

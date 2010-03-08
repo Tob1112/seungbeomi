@@ -43,6 +43,8 @@ package org.april27.home {
         private function authenticateUserFaultHandler(e:FaultEvent):void {
             CursorManager.removeBusyCursor();
             view.authenticationMessage.text = "problem while authentication...";
+            //view.authenticationMessage.text = e.fault.toString();
+            trace(e.fault.toString());
             view.authenticationMessage.visible = true;
             view.loginButton.enabled = true;
             AlertMessage.warn(e.fault.faultString);

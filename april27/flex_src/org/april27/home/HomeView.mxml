@@ -37,10 +37,10 @@
         <!-- ========================================== -->
 	    <mx:Form id="authenticationForm" defaultButton="{loginButton}">
 	        <mx:FormItem label="Username">
-	            <mx:TextInput id="userName"/>
+	            <mx:TextInput id="userName" text="admin"/>
 	        </mx:FormItem>
 	        <mx:FormItem label="Password">
-	            <mx:TextInput id="password" displayAsPassword="true"/>
+	            <mx:TextInput id="password" displayAsPassword="true" text="admin"/>
 	        </mx:FormItem>
 	        <mx:FormItem>
 	        	<mx:CheckBox id="rememberMeCheckBox" label="remember me"/>
