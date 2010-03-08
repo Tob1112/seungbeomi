@@ -3,6 +3,18 @@ Application {
 	background-color: #ffffff;
 }
 
+Alert {
+    border-color: #FF00FF;
+    modal-transparency: 0.3;
+    modal-transparency-blur : 0.0;
+    background-alpha: 1.0;
+    border-alpha: 1.0;
+    background-color: #696969;
+    border-thickness-left: 0;
+    border-thickness-right: 0;
+    button-width:200;
+}
+
 .logo {
     color: #00ff00;
     font-weight: bold;
@@ -14,6 +26,6 @@ Application {
 }
 
 .warning {
-    color: #00ff00;
+    color: #ff00ff;
     font-weight: bold;
 }
