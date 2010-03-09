@@ -3,7 +3,6 @@ package org.april27.home {
     import com.adobe.cairngorm.commands.ICommand;
     import com.adobe.cairngorm.control.CairngormEvent;
 
-    import mx.core.Application;
     import mx.managers.CursorManager;
     import mx.rpc.Responder;
     import mx.rpc.events.FaultEvent;
@@ -36,17 +35,17 @@ package org.april27.home {
         // -----------------------------------------------------------
         private function authenticateUserResultHandler(e:ResultEvent):void {
             CursorManager.removeBusyCursor();
-            view.loginButton.enabled = true;
-            Application.application.initComponent();
+            //view.loginButton.enabled = true;
+            AlertMessage.info("login success!!");
         }
 
         private function authenticateUserFaultHandler(e:FaultEvent):void {
             CursorManager.removeBusyCursor();
-            view.authenticationMessage.text = "problem while authentication...";
+            //view.authenticationMessage.text = "problem while authentication...";
             //view.authenticationMessage.text = e.fault.toString();
             trace(e.fault.toString());
-            view.authenticationMessage.visible = true;
-            view.loginButton.enabled = true;
+            //view.authenticationMessage.visible = true;
+            //view.loginButton.enabled = true;
             AlertMessage.warn(e.fault.faultString);
         }
     }

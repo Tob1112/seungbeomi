@@ -42,7 +42,7 @@
         <level value="WARN" />
     </logger>
     <logger name="org.springframework.security">
-        <level value="DEBUG" />
+        <level value="WARN" />
     </logger>
 
 	<!-- APRIL27 logger -->
