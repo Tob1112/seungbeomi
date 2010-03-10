@@ -67,10 +67,22 @@
     		<tx:method name="save*" propagation="REQUIRED" rollback-for="Exception"/>
     	</tx:attributes>
     </tx:advice>
+    <aop:config>
+    	<aop:pointcut id="txServiceMethod" expression="execution(public * org.april27..*.*(..))"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="txServiceMethod"/>
+    </aop:config>
+
+    <!-- ============================================= -->
+    <!-- AOP                                           -->
+    <!-- ============================================= -->
+    <bean id="loggingAspect" class="org.april27.util.LoggingAspect"/>
 
     <aop:config>
-    	<aop:pointcut id="txServiceMethod" expression="execution(public * com.prms..*.*(..))"/>
-		<aop:advisor advice-ref="txAdvice" pointcut-ref="txServiceMethod"/>
+        <aop:aspect id="logging" ref="loggingAspect">
+            <aop:pointcut id="loggingPointcut" expression="execution(public * org.april27..*.*(..))"/>
+            <aop:around pointcut-ref="loggingPointcut" method="logging"/>
+        </aop:aspect>
+
     </aop:config>
 
 
