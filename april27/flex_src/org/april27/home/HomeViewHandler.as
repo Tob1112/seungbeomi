@@ -5,7 +5,7 @@ package org.april27.home {
     import mx.core.IMXMLObject;
     import mx.events.FlexEvent;
 
-    import org.april27.common.AuthenticationForm;
+    import org.april27.security.AuthenticationForm;
     import org.april27.model.locator.EmployeeModelLocator;
 
     public class HomeViewHandler implements IMXMLObject {

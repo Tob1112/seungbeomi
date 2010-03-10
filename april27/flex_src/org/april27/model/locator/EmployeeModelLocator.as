@@ -17,6 +17,5 @@ package org.april27.model.locator {
         	if (instance == null) instance = new EmployeeModelLocator();
         	return instance;
         }
-
     }
 }
