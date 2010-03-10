@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<actionScriptProperties mainApplicationPath="mian.mxml" version="3">
+<actionScriptProperties mainApplicationPath="index.mxml" version="3">
   <compiler additionalCompilerArguments="-services &quot;/development/ide/eclipse/workspace/april27/WebContent/WEB-INF/flex/services-config.xml&quot; -locale ja_JP" copyDependentFiles="true" enableModuleDebug="true" generateAccessible="false" htmlExpressInstall="true" htmlGenerate="true" htmlHistoryManagement="true" htmlPlayerVersion="9.0.124" htmlPlayerVersionCheck="true" outputFolderPath="bin-debug" rootURL="http://localhost:8080/april27" sourceFolderPath="flex_src" strict="true" useApolloConfig="false" verifyDigests="true" warn="true">
     <compilerSourcePath/>
     <libraryPath defaultLinkType="1">
@@ -9,16 +9,8 @@
     <sourceAttachmentPath/>
   </compiler>
   <applications>
-    <application path="mian.mxml"/>
+    <application path="index.mxml"/>
   </applications>
-  <modules>
-    <module application="flex_src/index.mxml" destPath="com/prms/views/timesheet/user/UserTimesheetMain.swf" optimize="true" sourcePath="flex_src/com/prms/views/timesheet/user/UserTimesheetMain.mxml"/>
-    <module application="flex_src/index.mxml" destPath="com/prms/views/account/user/AccountUserBody.swf" optimize="true" sourcePath="flex_src/com/prms/views/account/user/AccountUserBody.mxml"/>
-    <module application="flex_src/index.mxml" destPath="com/prms/views/login/Login.swf" optimize="true" sourcePath="flex_src/com/prms/views/security/Login.mxml"/>
-    <module application="flex_src/index.mxml" destPath="com/prms/views/account/admin/AccountAdminBody.swf" optimize="true" sourcePath="flex_src/com/prms/views/account/admin/AccountAdminBody.mxml"/>
-    <module application="flex_src/index.mxml" destPath="com/prms/views/timesheet/admin/AdminTimesheetMain.swf" optimize="true" sourcePath="flex_src/com/prms/views/timesheet/admin/AdminTimesheetMain.mxml"/>
-    <module application="flex_src/index.mxml" destPath="com/prms/views/traffic/admin/AdminTrafficMain.swf" optimize="true" sourcePath="flex_src/com/prms/views/traffic/admin/AdminTrafficMain.mxml"/>
-    <module application="flex_src/index.mxml" destPath="com/prms/views/traffic/user/UserTrafficMain.swf" optimize="true" sourcePath="flex_src/com/prms/views/traffic/user/UserTrafficMain.mxml"/>
-  </modules>
+  <modules/>
   <buildCSSFiles/>
 </actionScriptProperties>
