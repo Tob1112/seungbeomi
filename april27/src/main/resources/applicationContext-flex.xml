@@ -11,6 +11,7 @@
     <!-- ============================================= -->
     <!-- REMOTING DESTINATION			   			   -->
     <!-- ============================================= -->
+    <flex:remoting-destination ref="authenticationService"/>
     <flex:remoting-destination ref="homeService"/>
     <flex:remoting-destination ref="employeeService"/>
 
