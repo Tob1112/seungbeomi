@@ -2,8 +2,8 @@ package org.april27 {
 
 	import com.adobe.cairngorm.control.FrontController;
 
-	import org.april27.security.AuthenticationCommand;
-	import org.april27.security.AuthenticationEvent;
+	import org.april27.authentication.AuthenticationCommand;
+	import org.april27.authentication.AuthenticationEvent;
 
     public class April27Controller extends FrontController {
 

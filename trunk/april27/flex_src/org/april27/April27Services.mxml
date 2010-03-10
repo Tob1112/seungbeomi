@@ -2,7 +2,8 @@
 <rds:ServiceLocator xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:rds="com.adobe.cairngorm.business.*">
 
     <!-- APRIL27 SERVICE REMOTE OBJECT -->
-    <mx:RemoteObject id="hormRO" destination="homeService"/>
+    <mx:RemoteObject id="authenticationRO" destination="authenticationService"/>
+    <mx:RemoteObject id="homeRO" destination="homeService"/>
     <mx:RemoteObject id="employeeRO" destination="employeeService"/>
 
 </rds:ServiceLocator>
