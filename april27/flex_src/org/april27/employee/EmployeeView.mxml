@@ -3,7 +3,29 @@
 
 	<employee:EmployeeViewHandler id="handler"/>
 
-	<mx:VBox id="employeeVBox">
-	    <mx:Text text="employee"/>
-	</mx:VBox>
+	<mx:HDividedBox id="employeeView" width="100%" height="100%">
+
+        <!-- ============================================= -->
+        <!--                                               -->
+        <!-- EMPLOYEEVIEW CONTROL                          -->
+        <!--                                               -->
+        <!-- ============================================= -->
+        <mx:VBox id="controlBox" width="200" height="100%" minWidth="200" maxWidth="200" backgroundColor="#bbbbbb">
+        	<mx:HBox width="100%" horizontalAlign="center">
+	        	<mx:Button label="New Employee" cornerRadius="0"/>
+        	</mx:HBox>
+
+        </mx:VBox>
+
+        <!-- ============================================= -->
+        <!--                                               -->
+        <!-- EMPLOYEEVIEW CONTENTS                         -->
+        <!--                                               -->
+        <!-- ============================================= -->
+        <mx:VBox id="contentsBox" width="100%" height="100%" backgroundColor="#bbbbbb">
+
+        </mx:VBox>
+
+
+	</mx:HDividedBox>
 </mx:Canvas>

@@ -22,10 +22,10 @@ package org.april27.employee {
 
         public function initComponent():void {
         	if (!model.authorizationData.isAuthorized()) {
-				view.employeeVBox.visible = false;
+				view.employeeView.visible = false;
 				view.addChild(new AuthenticationForm());
         	} else {
-				view.employeeVBox.visible = true;
+				view.employeeView.visible = true;
         	}
         }
 

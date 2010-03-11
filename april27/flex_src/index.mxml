@@ -1,35 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute"
 	width="100%" height="100%" pageTitle="April27" xmlns:employee="org.april27.employee.*" xmlns:home="org.april27.home.*"
-	horizontalScrollPolicy="off" verticalScrollPolicy="off">
-
-	<mx:Script>
-		<![CDATA[
-			import org.april27.model.locator.AuthorizationDataModelLocator;
-			import org.april27.authentication.AuthenticationForm;
-			import org.april27.model.AuthorizationData;
-			import mx.events.IndexChangedEvent;
-			import org.april27.util.AlertMessage;
-
-
-
-            // if change the viewstack, ask authentication
-            /*
-            private function changeViewStackHandler(e:IndexChangedEvent):void {
-                if (!model.authorizationData.isAuthorized()) {
-                	e.currentTarget.selectedChild.removeAllChildren();
-                	//e.currentTarget.selectedChild.visible = false;
-                	e.currentTarget.selectedChild.addChild(new AuthenticationForm());
-                }
-            }
-            */
-		]]>
-	</mx:Script>
+	horizontalScrollPolicy="off" verticalScrollPolicy="off" xmlns:authentication="org.april27.authentication.*" xmlns:local="*">
 
 	<mx:Style source="assets/style/main.css"/>
 
 	<rds:April27Services xmlns:rds="org.april27.*"/>
     <router:April27Controller xmlns:router="org.april27.*"/>
+    <local:indexHandler id="handler"/>
 
     <!-- =========================================== -->
     <!-- APPLICATION CONTROL BAR                     -->
@@ -38,17 +16,19 @@
         <mx:Label text="April27" styleName="logo"/>
         <mx:ToggleButtonBar height="100%" dataProvider="{april27Views}" styleName="april27ButtonBar"/>
         <mx:Spacer width="100%"/>
-        <mx:Text id="userName" text="" selectable="false"/>
+        <mx:Text id="userName" text="{handler.model.authorizationData.username}" selectable="false"/>
         <mx:Button id="logInOutButton" label="LOGIN"/>
 	</mx:ApplicationControlBar>
 
     <!-- =========================================== -->
     <!-- APRIL27 VIEW STATCK                         -->
     <!-- =========================================== -->
-	<mx:ViewStack id="april27Views" top="35" left="0" right="0" bottom="25" creationPolicy="all" minHeight="300" minWidth="400">
+	<mx:ViewStack id="april27Views" top="35" left="0" right="0" bottom="25" creationPolicy="all" minHeight="300" minWidth="400" visible="true">
         <home:HomeView id="homeView" label="Home"/>
         <employee:EmployeeView id="employeeView" label="人事管理"/>
 	</mx:ViewStack>
+
+	<authentication:AuthenticationForm id="authenticationForm" top="35" left="0" right="0" bottom="25" minHeight="300" minWidth="400" visible="false"/>
 
 	<mx:HBox width="100%" height="20" bottom="0" horizontalAlign="center">
 		<mx:Text text="Copyrightⓒ"/>
