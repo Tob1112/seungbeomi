@@ -14,7 +14,7 @@
         <security:intercept-url pattern="/main.html" filters="none" />
         <security:intercept-url pattern="*.swf" filters="none" />
         <security:intercept-url pattern="*.html" access="IS_AUTHENTICATED_ANONYMOUSLY,ROLE_USER" />
-        <security:intercept-url pattern="/**" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+        <!--<security:intercept-url pattern="/**" access="IS_AUTHENTICATED_ANONYMOUSLY"/>-->
 
         <security:form-login login-page="/error.html" authentication-failure-url="/error.html"/>
         <security:logout logout-success-url="/main.html"/>

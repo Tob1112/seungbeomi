@@ -44,6 +44,7 @@ public class SecurityServiceImpl implements SecurityService {
 		for (int i = 0; i < rolesCount; i++) {
 			grantedRoles[i] = grantedAuthorities[i].getAuthority();
 		}
+
 		return new AuthorizationData(username, grantedRoles);
 	}
 }

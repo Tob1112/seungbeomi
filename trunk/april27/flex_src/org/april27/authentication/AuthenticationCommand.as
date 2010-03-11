@@ -8,6 +8,8 @@ package org.april27.authentication {
 	import mx.rpc.events.FaultEvent;
 	import mx.rpc.events.ResultEvent;
 
+	import org.april27.employee.EmployeeView;
+	import org.april27.model.AuthorizationData;
 	import org.april27.model.locator.AuthorizationDataModelLocator;
 	import org.april27.util.AlertMessage;
 
@@ -22,7 +24,7 @@ package org.april27.authentication {
             var delegate:AuthenticationDelegate = null;
 
             switch (e.type) {
-            case AuthenticationEvent.AUTHENTICATE_USER:       // login
+            case AuthenticationEvent.AUTHENTICATE_USER:       // authentication
                 responder = new Responder(authenticateUserResultHandler, authenticateUserFaultHandler);
                 delegate = new AuthenticationDelegate(responder);
                 delegate.authenticateUser(model.authorizationData);
@@ -30,13 +32,22 @@ package org.april27.authentication {
             }
 		}
         // -----------------------------------------------------------
-        // login
+        // authentication
         // -----------------------------------------------------------
         private function authenticateUserResultHandler(e:ResultEvent):void {
+            model.authorizationData = AuthorizationData(e.result);
             CursorManager.removeBusyCursor();
             view.removeAllChildren();
-            //trace("<<< " + view.parent);
-            //view.parentApplication.april27Views.addChild(view.parent.selectedChild);
+
+			trace ("<<< " + view.parentApplication.april27Views.selectedChild);
+            //switch (view.parentApplication.april27Views.selectedChild) {
+            //case "employeeView":
+            //	var eView:EmployeeView = new EmployeeView();
+
+//            	eView.crea
+            	view.parentApplication.april27Views.selectedChild.handler.initComponent();
+            //	break;
+            //}
             //view.loginButton.enabled = true;
             //AlertMessage.info("login success!!");
         }
