@@ -65,6 +65,10 @@ public class BaseDao extends SqlMapClientDaoSupport implements Dao {
 		}
 	}
 
+	public void update(Class clazz) {
+		getSqlMapClientTemplate().update(getUpdateQuery(ClassUtils.getShortName(clazz)));
+	}
+
 	public void remove(Class clazz, Serializable primaryKey) {
 		getSqlMapClientTemplate().delete(getDeleteQuery(ClassUtils.getShortName(clazz)), primaryKey);
 
