@@ -6,9 +6,9 @@ package org.april27.authentication {
 
 		public static const AUTHENTICATE_USER:String = "authenticateUser";   // login
 
-		public var view:AuthenticationForm;
+		public var view:Object;
 
-		public function AuthenticationEvent(type:String, view:AuthenticationForm) {
+		public function AuthenticationEvent(type:String, view:Object=null) {
 			super(type);
 			this.view = view;
 		}

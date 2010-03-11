@@ -15,7 +15,7 @@ package org.april27.authentication {
 
 	public class AuthenticationCommand implements ICommand {
 
-		private var view:AuthenticationForm;
+		private var view:Object;
 		private var model:AuthorizationDataModelLocator = AuthorizationDataModelLocator.getInstance();
 
 		public function execute(e:CairngormEvent):void {
@@ -38,18 +38,7 @@ package org.april27.authentication {
             model.authorizationData = AuthorizationData(e.result);
             CursorManager.removeBusyCursor();
             view.removeAllChildren();
-
-			trace ("<<< " + view.parentApplication.april27Views.selectedChild);
-            //switch (view.parentApplication.april27Views.selectedChild) {
-            //case "employeeView":
-            //	var eView:EmployeeView = new EmployeeView();
-
-//            	eView.crea
-            	view.parentApplication.april27Views.selectedChild.handler.initComponent();
-            //	break;
-            //}
-            //view.loginButton.enabled = true;
-            //AlertMessage.info("login success!!");
+        	view.parentApplication.april27Views.selectedChild.handler.initComponent();
         }
 
         private function authenticateUserFaultHandler(e:FaultEvent):void {
