@@ -10,7 +10,7 @@ package org.april27.model.locator {
         public var authorizationData:AuthorizationData = new AuthorizationData();
 
         public var authorizationDataAC:ArrayCollection = new ArrayCollection();
-
+        
         public static var instance:AuthorizationDataModelLocator = null;
 
 		public static function getInstance():AuthorizationDataModelLocator {

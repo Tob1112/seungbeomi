@@ -5,18 +5,24 @@
 
 	<mx:Script>
 		<![CDATA[
+			import org.april27.model.locator.AuthorizationDataModelLocator;
 			import org.april27.authentication.AuthenticationForm;
 			import org.april27.model.AuthorizationData;
 			import mx.events.IndexChangedEvent;
 			import org.april27.util.AlertMessage;
 
+
+
             // if change the viewstack, ask authentication
+            /*
             private function changeViewStackHandler(e:IndexChangedEvent):void {
-                if (!AuthorizationData.isAuthorized()) {
+                if (!model.authorizationData.isAuthorized()) {
                 	e.currentTarget.selectedChild.removeAllChildren();
+                	//e.currentTarget.selectedChild.visible = false;
                 	e.currentTarget.selectedChild.addChild(new AuthenticationForm());
                 }
             }
+            */
 		]]>
 	</mx:Script>
 
@@ -39,7 +45,7 @@
     <!-- =========================================== -->
     <!-- APRIL27 VIEW STATCK                         -->
     <!-- =========================================== -->
-	<mx:ViewStack id="april27Views" top="35" left="0" right="0" bottom="25" creationPolicy="all" minHeight="300" minWidth="400" change="changeViewStackHandler(event)">
+	<mx:ViewStack id="april27Views" top="35" left="0" right="0" bottom="25" creationPolicy="all" minHeight="300" minWidth="400">
         <home:HomeView id="homeView" label="Home"/>
         <employee:EmployeeView id="employeeView" label="人事管理"/>
 	</mx:ViewStack>
