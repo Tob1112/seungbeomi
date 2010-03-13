@@ -3,7 +3,7 @@
 
 <sqlMap namespace="Employee">
 
-	<typeAlias alias="employee" type="org.april27.model.Employee"/>
+	<typeAlias alias="employee" type="org.april.model.Employee"/>
 
 	<resultMap id="employeeResult" class="employee">
 		<result property="empName" column="EMP_NAME" />

@@ -1,6 +1,6 @@
-package org.april27.home;
+package org.april.home;
 
-import org.april27.orm.ibatis.BaseDao;
+import org.april.orm.ibatis.BaseDao;
 
 public class HomeDaoImpl extends BaseDao implements HomeDao {
 

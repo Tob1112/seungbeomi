@@ -1,6 +1,6 @@
-package org.april27.security;
+package org.april.security;
 
-import org.april27.model.AuthorizationData;
+import org.april.model.AuthorizationData;
 
 public interface SecurityService {
 

@@ -1,6 +1,6 @@
-package org.april27.security;
+package org.april.security;
 
-import org.april27.model.AuthorizationData;
+import org.april.model.AuthorizationData;
 import org.springframework.context.ApplicationContext;
 import org.springframework.security.Authentication;
 import org.springframework.security.AuthenticationManager;
