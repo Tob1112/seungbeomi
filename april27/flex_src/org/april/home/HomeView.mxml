@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" xmlns:home="org.april.home.*">
+
+    <mx:Style>
+    	.loginButton {
+		   fillAlphas: 1, 1, 1, 1;
+		   fillColors: #0b333c, #0b333c, #0b333c, #0b333c;
+		   textRollOverColor: #00ff00;
+		   textSelectedColor: #0b333c;
+		   borderColor: #0b333c;
+		   themeColor: #0b333c;
+		}
+    </mx:Style>
+
+    <!--
+    <mx:HTTPService id="loginService" showBusyCursor="true">
+        <mx:request>
+            <j_username>{userName.text}</j_username>
+            <j_password>{password.text}</j_password>
+        </mx:request>
+    </mx:HTTPService>
+    -->
+
+    <home:HomeViewHandler id="handler"/>
+
+    <mx:VBox id="authenticationVBox" width="100%" height="100%" horizontalCenter="0" verticalCenter="0" horizontalAlign="center">
+	    <!--
+	    <mx:HBox width="100%" height="50" backgroundColor="#192C3E" verticalAlign="middle" horizontalAlign="center" paddingLeft="30">
+	        <mx:Text id="logInOutText" text="April27 LOGIN" color="#ffffff" fontSize="30" selectable="false"/>
+	    </mx:HBox>
+
+	    <mx:Label id="authenticationMessage" styleName="warning" visible="false" left="30" top="264"/>
+		-->
+        <!-- ========================================== -->
+        <!-- LOGIN FORM                                 -->
+        <!-- ========================================== -->
+        <!--
+	    <mx:Form id="authenticationForm" defaultButton="{loginButton}">
+	        <mx:FormItem label="Username">
+	            <mx:TextInput id="userName" text="admin"/>
+	        </mx:FormItem>
+	        <mx:FormItem label="Password">
+	            <mx:TextInput id="password" displayAsPassword="true" text="admin"/>
+	        </mx:FormItem>
+	        <mx:FormItem>
+	        	<mx:CheckBox id="rememberMeCheckBox" label="remember me"/>
+	        </mx:FormItem>
+	        <mx:FormItem>
+	            <mx:Button id="loginButton" label="LOGIN" color="#00ff00" styleName="loginButton"/>
+	        </mx:FormItem>
+	    </mx:Form>
+	    -->
+    </mx:VBox>
+
+    <!-- ========================================== -->
+    <!-- STATE                                      -->
+    <!-- ========================================== -->
+    <!--
+    <mx:states>
+        <mx:State name="authenticated">
+            <mx:RemoveChild target="{authenticationForm}"/>
+            <mx:SetProperty target="{logInOutText}" name="text" value="April27 LOGOUT"/>
+            <mx:AddChild relativeTo="{authenticationVBox}" position="lastChild">
+                <mx:Text id="userNameText"/>
+            </mx:AddChild>
+        </mx:State>
+    </mx:states>
+    -->
+</mx:Canvas>

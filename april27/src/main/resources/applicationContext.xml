@@ -68,18 +68,18 @@
     	</tx:attributes>
     </tx:advice>
     <aop:config>
-    	<aop:pointcut id="txServiceMethod" expression="execution(public * org.april27..*.*(..))"/>
+    	<aop:pointcut id="txServiceMethod" expression="execution(public * org.april..*.*(..))"/>
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="txServiceMethod"/>
     </aop:config>
 
     <!-- ============================================= -->
     <!-- AOP                                           -->
     <!-- ============================================= -->
-    <bean id="loggingAspect" class="org.april27.util.LoggingAspect"/>
+    <bean id="loggingAspect" class="org.april.util.LoggingAspect"/>
 
     <aop:config>
         <aop:aspect id="logging" ref="loggingAspect">
-            <aop:pointcut id="loggingPointcut" expression="execution(public * org.april27..*.*(..))"/>
+            <aop:pointcut id="loggingPointcut" expression="execution(public * org.april..*.*(..))"/>
             <aop:around pointcut-ref="loggingPointcut" method="logging"/>
         </aop:aspect>
 
