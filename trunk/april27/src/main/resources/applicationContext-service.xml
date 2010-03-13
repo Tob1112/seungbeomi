@@ -13,22 +13,22 @@
     <!-- ======================= -->
     <!-- AUTHENTICATION          -->
     <!-- ======================= -->
-    <bean id="authenticationService" class="org.april27.security.SecurityServiceImpl"/>
+    <bean id="authenticationService" class="org.april.security.SecurityServiceImpl"/>
 
     <!-- ======================= -->
     <!-- HOME                    -->
     <!-- ======================= -->
-    <bean id="homeService" class="org.april27.home.HomeServiceImpl">
+    <bean id="homeService" class="org.april.home.HomeServiceImpl">
         <!--<property name="homeDao" ref="employeeDao"/>-->
     </bean>
 
     <!-- ======================= -->
     <!-- EMPLOYEE                -->
     <!-- ======================= -->
-    <bean id="employeeService" class="org.april27.employee.EmployeeServiceImpl">
+    <bean id="employeeService" class="org.april.employee.EmployeeServiceImpl">
         <property name="employeeDao" ref="employeeDao"/>
     </bean>
-    <bean id="employeeDao" class="org.april27.employee.EmployeeDaoImpl">
+    <bean id="employeeDao" class="org.april.employee.EmployeeDaoImpl">
         <property name="sqlMapClient" ref="sqlMapClient"/>
     </bean>
 

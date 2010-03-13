@@ -45,8 +45,8 @@
         <level value="WARN" />
     </logger>
 
-	<!-- APRIL27 logger -->
-	<logger name="org.april27">
+	<!-- APRIL logger -->
+	<logger name="org.april">
 		<level value="DEBUG"/>
 	</logger>
 

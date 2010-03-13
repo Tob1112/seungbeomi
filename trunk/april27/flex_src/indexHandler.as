@@ -5,14 +5,13 @@ package {
     import mx.core.IMXMLObject;
     import mx.events.FlexEvent;
 
-    import org.april27.authentication.AuthenticationEvent;
-    import org.april27.model.locator.AuthorizationDataModelLocator;
+    import org.april.model.locator.AuthorizationDataModelLocator;
 
     public class indexHandler implements IMXMLObject {
 
         private var view:index;
         [Bindable]
-        public var model:AuthorizationDataModelLocator=AuthorizationDataModelLocator.getInstance();
+        public var model:AuthorizationDataModelLocator = AuthorizationDataModelLocator.getInstance();
 
 
         public function initialized(document:Object, id:String):void {
@@ -26,8 +25,8 @@ package {
         }
 
         private function clickLogInOutButtonHandler(e:MouseEvent):void {
-            view.logInOutButton.enabled=false;
-            view.april27Views.visible=false;
+            view.logInButton.enabled=false;
+            view.aprilViews.visible=false;
             view.authenticationForm.visible=true;
         }
     }

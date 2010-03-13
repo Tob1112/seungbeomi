@@ -1,31 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute"
-	width="100%" height="100%" pageTitle="April27" xmlns:employee="org.april27.employee.*" xmlns:home="org.april27.home.*"
-	horizontalScrollPolicy="off" verticalScrollPolicy="off" xmlns:authentication="org.april27.authentication.*" xmlns:local="*">
+	width="100%" height="100%" pageTitle="April"
+	horizontalScrollPolicy="off" verticalScrollPolicy="off" xmlns:authentication="org.april.authentication.*" xmlns:local="*" xmlns:home="org.april.home.*" xmlns:employee="org.april.employee.*">
 
 	<mx:Style source="assets/style/main.css"/>
 
-	<rds:April27Services xmlns:rds="org.april27.*"/>
-    <router:April27Controller xmlns:router="org.april27.*"/>
+	<rds:AprilServices xmlns:rds="org.april.*"/>
+    <router:AprilController xmlns:router="org.april.*"/>
     <local:indexHandler id="handler"/>
 
     <!-- =========================================== -->
     <!-- APPLICATION CONTROL BAR                     -->
     <!-- =========================================== -->
-	<mx:ApplicationControlBar id="acb" width="100%" styleName="april27ControlBar">
-        <mx:Label text="April27" styleName="logo"/>
-        <mx:ToggleButtonBar height="100%" dataProvider="{april27Views}" styleName="april27ButtonBar"/>
-        <mx:Spacer width="100%"/>
-        <mx:Text id="userName" text="{handler.model.authorizationData.username}" selectable="false"/>
-        <mx:Button id="logInOutButton" label="LOGIN"/>
+	<mx:ApplicationControlBar id="acb" width="100%" styleName="aprilControlBar" cornerRadius="0" height="76" >
+        <mx:VBox width="100%" verticalGap="0">
+        	<mx:HBox width="100%" horizontalGap="0">
+		        <mx:LinkBar dataProvider="{aprilViews}" styleName="aprilButtonBar"/>
+		        <mx:Spacer width="100%"/>
+		        <mx:Text id="userName" text="{handler.model.authorizationData.username}" selectable="false"/>
+		        <mx:LinkButton id="logInButton" label="LOGIN"/>
+        	</mx:HBox>
+        	<mx:HBox width="100%" horizontalGap="0">
+		        <mx:Label text="April" styleName="logo"/>
+		        <mx:Spacer width="100%"/>
+		        <mx:Label text="search : "/>
+                <mx:TextInput/>
+        	</mx:HBox>
+        	<mx:HBox width="100%">
+        		 <mx:TabBar dataProvider="{aprilViews}"/>
+        	</mx:HBox>
+        </mx:VBox>
 	</mx:ApplicationControlBar>
 
     <!-- =========================================== -->
-    <!-- APRIL27 VIEW STATCK                         -->
+    <!-- APRIL VIEW STATCK                         -->
     <!-- =========================================== -->
-	<mx:ViewStack id="april27Views" top="35" left="0" right="0" bottom="25" creationPolicy="all" minHeight="300" minWidth="400" visible="true">
+	<mx:ViewStack id="aprilViews" top="35" left="0" right="0" bottom="25" creationPolicy="all" minHeight="300" minWidth="400" visible="true">
         <home:HomeView id="homeView" label="Home"/>
-        <employee:EmployeeView id="employeeView" label="人事管理"/>
+        <employee:EmployeeView id="employeeView" label="Employee"/>
 	</mx:ViewStack>
 
 	<authentication:AuthenticationForm id="authenticationForm" top="35" left="0" right="0" bottom="25" minHeight="300" minWidth="400" visible="false"/>
