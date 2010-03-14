@@ -20,13 +20,11 @@ package {
         }
 
         private function creationCompleteHandler(e:FlexEvent):void {
-            //view.logInOutButton.addEventListener(MouseEvent.CLICK, clickLogInOutButtonHandler);
+            view.logInButton.addEventListener(MouseEvent.CLICK, clickLogInButtonHandler);
             //IFocusManagerComponent(view.userName).setFocus();
         }
 
-        private function clickLogInOutButtonHandler(e:MouseEvent):void {
-            view.logInButton.enabled=false;
-            view.aprilViews.visible=false;
+        private function clickLogInButtonHandler(e:MouseEvent):void {
             view.authenticationForm.visible=true;
         }
     }

@@ -51,10 +51,11 @@ public class AuthorizationData {
 		StringBuffer buffer = new StringBuffer();
 		buffer.append("AuthorizationData[");
 		buffer.append(" username = ").append(username);
+		//buffer.append(" password = ").append(password);
 		if (roles == null) {
 			buffer.append(" roles = ").append("null");
 		} else {
-			buffer.append("roles = ").append(
+			buffer.append(" roles = ").append(
 					Arrays.asList(roles).toString());
 		}
 		buffer.append("]");
