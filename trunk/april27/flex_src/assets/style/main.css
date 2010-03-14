@@ -18,6 +18,7 @@ Alert {
 .logo {
     color: #00ff00;
     font-weight: bold;
+    font-size: 20px;
 }
 
 .aprilControlBar {

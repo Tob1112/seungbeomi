@@ -6,9 +6,9 @@ package org.april.authentication {
 
 		public static const AUTHENTICATE_USER:String = "authenticateUser";   // login
 
-		public var view:Object;
+		public var view:AuthenticationForm;
 
-		public function AuthenticationEvent(type:String, view:Object=null) {
+		public function AuthenticationEvent(type:String, view:AuthenticationForm=null) {
 			super(type);
 			this.view = view;
 		}

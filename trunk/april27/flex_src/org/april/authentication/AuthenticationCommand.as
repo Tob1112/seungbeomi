@@ -38,7 +38,7 @@ package org.april.authentication {
             model.authorizationData = AuthorizationData(e.result);
             CursorManager.removeBusyCursor();
             view.removeAllChildren();
-        	view.parentApplication.aprilViews.selectedChild.handler.initComponent();
+        	view.parentApplication.currentState = "authorizedAdmin";
         }
 
         private function authenticateUserFaultHandler(e:FaultEvent):void {

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute"
 	width="100%" height="100%" pageTitle="April"
-	horizontalScrollPolicy="off" verticalScrollPolicy="off" xmlns:authentication="org.april.authentication.*" xmlns:local="*" xmlns:home="org.april.home.*" xmlns:employee="org.april.employee.*">
+	horizontalScrollPolicy="off" verticalScrollPolicy="off" xmlns:authentication="org.april.authentication.*" xmlns:local="*" xmlns:home="org.april.home.*" xmlns:employee="org.april.employee.*" xmlns:administration="org.april.administration.*" xmlns:mypage="org.april.mypage.*" xmlns:projects="org.april.projects.*">
 
 	<mx:Style source="assets/style/main.css"/>
 
@@ -12,33 +12,34 @@
     <!-- =========================================== -->
     <!-- APPLICATION CONTROL BAR                     -->
     <!-- =========================================== -->
-	<mx:ApplicationControlBar id="acb" width="100%" styleName="aprilControlBar" cornerRadius="0" height="76" >
+	<mx:ApplicationControlBar id="acb" width="100%" styleName="aprilControlBar" cornerRadius="0" height="78" verticalAlign="top" paddingBottom="0">
         <mx:VBox width="100%" verticalGap="0">
-        	<mx:HBox width="100%" horizontalGap="0">
-		        <mx:LinkBar dataProvider="{aprilViews}" styleName="aprilButtonBar"/>
+        	<mx:HBox width="100%" horizontalGap="0" id="hbox1">
+		        <mx:LinkBar dataProvider="{aprilViews}" styleName="aprilButtonBar" id="linkbar1"/>
 		        <mx:Spacer width="100%"/>
-		        <mx:Text id="userName" text="{handler.model.authorizationData.username}" selectable="false"/>
 		        <mx:LinkButton id="logInButton" label="LOGIN"/>
         	</mx:HBox>
-        	<mx:HBox width="100%" horizontalGap="0">
+        	<mx:HBox width="100%" horizontalGap="0" verticalAlign="middle">
 		        <mx:Label text="April" styleName="logo"/>
 		        <mx:Spacer width="100%"/>
 		        <mx:Label text="search : "/>
-                <mx:TextInput/>
+                <mx:TextInput color="#000000"/>
         	</mx:HBox>
         	<mx:HBox width="100%">
-        		 <mx:TabBar dataProvider="{aprilViews}"/>
+        		 <mx:TabBar dataProvider="{projectViews}" />
         	</mx:HBox>
         </mx:VBox>
 	</mx:ApplicationControlBar>
 
     <!-- =========================================== -->
-    <!-- APRIL VIEW STATCK                         -->
+    <!-- APRIL VIEW STATCK                           -->
     <!-- =========================================== -->
-	<mx:ViewStack id="aprilViews" top="35" left="0" right="0" bottom="25" creationPolicy="all" minHeight="300" minWidth="400" visible="true">
+	<mx:ViewStack id="aprilViews" top="77" left="0" right="0" bottom="25" creationPolicy="all" minHeight="300" minWidth="400" visible="true">
         <home:HomeView id="homeView" label="Home"/>
-        <employee:EmployeeView id="employeeView" label="Employee"/>
 	</mx:ViewStack>
+
+	<mx:ViewStack id="projectViews" top="77" left="0" right="0" bottom="25" creationPolicy="all" minHeight="300" minWidth="400" visible="true">
+    </mx:ViewStack>
 
 	<authentication:AuthenticationForm id="authenticationForm" top="35" left="0" right="0" bottom="25" minHeight="300" minWidth="400" visible="false"/>
 
@@ -47,4 +48,41 @@
 		<mx:Text text="seungbeomi" fontWeight="bold" color="#00ff00"/>
 		<mx:Text text="All Rights Reserved."/>
 	</mx:HBox>
+
+	<!-- =========================================== -->
+	<!--                                             -->
+    <!-- STATES                                      -->
+    <!--                                             -->
+    <!-- =========================================== -->
+	<mx:states>
+        <mx:State name="authorizedAdmin">
+            <mx:RemoveChild target="{logInButton}"/>
+            <mx:AddChild relativeTo="{hbox1}" position="lastChild">
+                <mx:LinkButton label="LOGOUT" id="linkbutton1"/>
+            </mx:AddChild>
+            <mx:SetProperty target="{linkbar1}" name="dataProvider" value="aprilViews"/>
+            <mx:AddChild relativeTo="{aprilViews}" position="lastChild">
+                <mypage:MypageView />
+            </mx:AddChild>
+            <mx:AddChild relativeTo="{aprilViews}" position="lastChild">
+                <projects:ProjectsView />
+            </mx:AddChild>
+            <mx:AddChild relativeTo="{aprilViews}" position="lastChild">
+                <administration:AdministrationView />
+            </mx:AddChild>
+            <mx:AddChild relativeTo="{aprilViews}" position="lastChild">
+                <mx:Canvas label="help" width="100%" height="100%">
+                </mx:Canvas>
+            </mx:AddChild>
+            <mx:AddChild relativeTo="{linkbutton1}" position="before">
+                <mx:LinkButton label="My account" id="linkbutton2"/>
+            </mx:AddChild>
+            <mx:AddChild relativeTo="{linkbutton2}" position="before">
+                <mx:Label text="Logged in as" id="loggedInLabel" paddingTop="3"/>
+            </mx:AddChild>
+            <mx:AddChild relativeTo="{loggedInLabel}" position="after">
+                <mx:Label text="{handler.model.authorizationData.username}" paddingTop="3" fontWeight="bold"/>
+            </mx:AddChild>
+        </mx:State>
+    </mx:states>
 </mx:Application>

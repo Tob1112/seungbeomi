@@ -18,11 +18,11 @@ package org.april.authentication {
 		}
 
 		private function creationCompleteHandler(e:FlexEvent):void {
-			view.loginButton.addEventListener(MouseEvent.CLICK, clickLoginButtonHandler);
+			view.loginButton.addEventListener(MouseEvent.CLICK, clickLogInButtonHandler);
 			//IFocusManagerComponent(view.userName).setFocus();
 		}
 
-		private function clickLoginButtonHandler(e:MouseEvent):void {
+		private function clickLogInButtonHandler(e:MouseEvent):void {
 			view.loginButton.enabled = false;
 			model.authorizationData.username = view.username.text;
 			model.authorizationData.password = view.password.text;
