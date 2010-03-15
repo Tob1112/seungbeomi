@@ -3,14 +3,19 @@ package org.chronos.authentication {
 	import com.adobe.cairngorm.commands.ICommand;
 	import com.adobe.cairngorm.control.CairngormEvent;
 
+	import mx.controls.Label;
+	import mx.controls.LinkButton;
 	import mx.managers.CursorManager;
 	import mx.rpc.Responder;
 	import mx.rpc.events.FaultEvent;
 	import mx.rpc.events.ResultEvent;
 
-	import org.chronos.employee.EmployeeView;
+	import org.chronos.administration.AdministrationView;
+	import org.chronos.help.HelpView;
 	import org.chronos.model.AuthorizationData;
 	import org.chronos.model.locator.AuthorizationDataModelLocator;
+	import org.chronos.mypage.MypageView;
+	import org.chronos.projects.ProjectsView;
 	import org.chronos.util.AlertMessage;
 
 	public class AuthenticationCommand implements ICommand {
@@ -38,7 +43,41 @@ package org.chronos.authentication {
             model.authorizationData = AuthorizationData(e.result);
             CursorManager.removeBusyCursor();
             view.removeAllChildren();
-        	view.parentApplication.currentState = "authorizedAdmin";
+
+            createAuthorizedView();
+
+        }
+
+        private function createAuthorizedView():void {
+
+            // MENUVIEWS
+            if (model.authorizationData.isAdmin()) {
+                view.parentApplication.menuViews.addChild(new MypageView);
+                view.parentApplication.menuViews.addChild(new ProjectsView);
+                view.parentApplication.menuViews.addChild(new AdministrationView);      // admin menu
+                view.parentApplication.menuViews.addChild(new HelpView);
+            } else {
+                view.parentApplication.menuViews.addChild(new MypageView);
+                view.parentApplication.menuViews.addChild(new ProjectsView);
+                view.parentApplication.menuViews.addChild(new HelpView);
+            }
+
+            // ACCOUNTBOX
+            view.parentApplication.accountBox.removeAllChildren();
+
+            var authorizedUsernameLabel:Label = new Label();
+            //authorizedUserLabel.setStyle("fontWeight","bold");
+            authorizedUsernameLabel.text = "Logged in as " + model.authorizationData.username;
+            view.parentApplication.accountBox.addChild(authorizedUsernameLabel);
+
+            var myAccountButton:LinkButton = new LinkButton();
+            myAccountButton.label = "My account";
+            view.parentApplication.accountBox.addChild(myAccountButton);
+
+            var logOutButton:LinkButton = new LinkButton();
+            logOutButton.label = "LOGOUT";
+            view.parentApplication.accountBox.addChild(logOutButton);
+
         }
 
         private function authenticateUserFaultHandler(e:FaultEvent):void {

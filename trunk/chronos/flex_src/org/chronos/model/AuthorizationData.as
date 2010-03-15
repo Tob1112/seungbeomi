@@ -1,5 +1,7 @@
 package org.chronos.model {
 
+	import org.chronos.Constants;
+
     [RemoteClass(alias="org.chronos.model.AuthorizationData")]
     [Bindable]
 	public class AuthorizationData {
@@ -9,7 +11,7 @@ package org.chronos.model {
         public var roles:Array = new Array();
 
         public function isAdmin():Boolean {
-            return hasRole("ADMIN");
+            return hasRole(Constants.ADMIN);
         }
 
         public function hasRole(role:String):Boolean {
