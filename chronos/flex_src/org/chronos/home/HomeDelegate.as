@@ -1,29 +1,29 @@
-package org.april.authentication {
+package org.chronos.home {
 
 	import com.adobe.cairngorm.business.ServiceLocator;
 
 	import mx.rpc.AsyncToken;
 	import mx.rpc.IResponder;
+	import mx.rpc.http.HTTPService;
 	import mx.rpc.remoting.RemoteObject;
 
-	import org.april.model.AuthorizationData;
-
-    public class AuthenticationDelegate {
+    public class HomeDelegate {
 
     	private var locator:ServiceLocator;
     	private var service:RemoteObject;
     	private var responder:IResponder;
 
-        public function AuthenticationDelegate(responder:IResponder) {
-        	if (locator == null) locator = ServiceLocator.getInstance();
+        public function HomeDelegate(responder:IResponder) {
+        	//if (locator == null) locator = ServiceLocator.getInstance();
 
-        	service = locator.getRemoteObject("authenticationRO");
+        	//service = locator.getRemoteObject("homeRO");
         	this.responder = responder;
         }
 
         /** login */
-        public function authenticateUser(authorizationData:AuthorizationData):void {
-            /*
+        public function authenticateUser(empName:String, password:String):void {
+            trace(empName + " : " + password);
+
             var httpService:HTTPService = new HTTPService();
         	httpService.url = "j_spring_security_check";
         	httpService.method = "POST";
@@ -34,10 +34,6 @@ package org.april.authentication {
 			trace("authenticateUser : " + empName + " - " + password);
 
             var token:AsyncToken = httpService.send(params);
-            token.addResponder(responder);
-            */
-            trace("authenticateUser : " + authorizationData.username + " - " + authorizationData.password);
-            var token:AsyncToken = service.authenticateUser(authorizationData);
             token.addResponder(responder);
         }
 

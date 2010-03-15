@@ -1,4 +1,4 @@
-package org.april.authentication {
+package org.chronos.authentication {
 
 	import com.adobe.cairngorm.control.CairngormEvent;
 

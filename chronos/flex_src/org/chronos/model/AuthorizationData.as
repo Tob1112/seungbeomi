@@ -1,6 +1,6 @@
-package org.april.model {
+package org.chronos.model {
 
-    [RemoteClass(alias="org.april.model.AuthorizationData")]
+    [RemoteClass(alias="org.chronos.model.AuthorizationData")]
     [Bindable]
 	public class AuthorizationData {
 

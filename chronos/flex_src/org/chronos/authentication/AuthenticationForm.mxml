@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" horizontalAlign="center" verticalAlign="middle" xmlns:authentication="org.april.authentication.*">
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" horizontalAlign="center" verticalAlign="middle" xmlns:authentication="org.chronos.authentication.*">
 
     <authentication:AuthenticationFormHandler id="handler"/>
 
 	<mx:VBox width="322" height="242" borderColor="#192C3E" borderThickness="1" borderStyle="solid"  backgroundColor="#ffffff" horizontalAlign="center">
 		<mx:HBox width="100%" height="50" backgroundColor="#192C3E" verticalAlign="middle" horizontalAlign="center" paddingLeft="30">
-		    <mx:Text id="logInOutText" text="APRIL LOGIN" color="#ffffff" fontSize="30" selectable="false"/>
+		    <mx:Text id="logInOutText" text="CHONOS LOGIN" color="#ffffff" fontSize="30" selectable="false"/>
 		</mx:HBox>
 
 		<mx:Label id="authenticationMessage" styleName="warning" visible="false" left="30" top="264"/>

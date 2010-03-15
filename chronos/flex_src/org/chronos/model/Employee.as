@@ -1,6 +1,6 @@
-package org.april.model {
+package org.chronos.model {
 
-    [RemoteClass(alias="org.april.model.Employee")]
+    [RemoteClass(alias="org.chronos.model.Employee")]
     [Bindable]
     public class Employee {
 

@@ -5,7 +5,7 @@ package {
     import mx.core.IMXMLObject;
     import mx.events.FlexEvent;
 
-    import org.april.model.locator.AuthorizationDataModelLocator;
+    import org.chronos.model.locator.AuthorizationDataModelLocator;
 
     public class indexHandler implements IMXMLObject {
 

@@ -1,11 +1,11 @@
-package org.april.home {
+package org.chronos.home {
 
     import flash.events.MouseEvent;
 
     import mx.core.IMXMLObject;
     import mx.events.FlexEvent;
 
-    import org.april.model.locator.EmployeeModelLocator;
+    import org.chronos.model.locator.EmployeeModelLocator;
 
     public class HomeViewHandler implements IMXMLObject {
 

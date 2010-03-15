@@ -1,8 +1,8 @@
-package org.april.model.locator {
+package org.chronos.model.locator {
 
 	import mx.collections.ArrayCollection;
 
-	import org.april.model.Employee;
+	import org.chronos.model.Employee;
 
     [Bindable]
     public class EmployeeModelLocator {
