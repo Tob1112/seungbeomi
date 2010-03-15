@@ -19,6 +19,6 @@
     <!-- ============================================= -->
 
 	<!-- EMPLOYEE SQL MAPPING FILE -->
-	<sqlMap resource="org/april/model/sql/Employee.xml"/>
+	<sqlMap resource="org/chronos/model/sql/Employee.xml"/>
 
 </sqlMapConfig>

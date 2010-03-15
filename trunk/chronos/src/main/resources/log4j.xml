@@ -45,8 +45,8 @@
         <level value="WARN" />
     </logger>
 
-	<!-- APRIL logger -->
-	<logger name="org.april">
+	<!-- CHRONOS logger -->
+	<logger name="org.chronos">
 		<level value="DEBUG"/>
 	</logger>
 
