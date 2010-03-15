@@ -13,22 +13,22 @@
     <!-- ======================= -->
     <!-- AUTHENTICATION          -->
     <!-- ======================= -->
-    <bean id="authenticationService" class="org.april.security.SecurityServiceImpl"/>
+    <bean id="authenticationService" class="org.chronos.security.SecurityServiceImpl"/>
 
     <!-- ======================= -->
     <!-- HOME                    -->
     <!-- ======================= -->
-    <bean id="homeService" class="org.april.home.HomeServiceImpl">
+    <bean id="homeService" class="org.chronos.home.HomeServiceImpl">
         <!--<property name="homeDao" ref="employeeDao"/>-->
     </bean>
 
     <!-- ======================= -->
     <!-- EMPLOYEE                -->
     <!-- ======================= -->
-    <bean id="employeeService" class="org.april.employee.EmployeeServiceImpl">
+    <bean id="employeeService" class="org.chronos.employee.EmployeeServiceImpl">
         <property name="employeeDao" ref="employeeDao"/>
     </bean>
-    <bean id="employeeDao" class="org.april.employee.EmployeeDaoImpl">
+    <bean id="employeeDao" class="org.chronos.employee.EmployeeDaoImpl">
         <property name="sqlMapClient" ref="sqlMapClient"/>
     </bean>
 
