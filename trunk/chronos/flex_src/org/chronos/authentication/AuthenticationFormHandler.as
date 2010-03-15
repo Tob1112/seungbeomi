@@ -1,11 +1,11 @@
-package org.april.authentication {
+package org.chronos.authentication {
 
 	import flash.events.MouseEvent;
 
 	import mx.core.IMXMLObject;
 	import mx.events.FlexEvent;
 
-	import org.april.model.locator.AuthorizationDataModelLocator;
+	import org.chronos.model.locator.AuthorizationDataModelLocator;
 
 	public class AuthenticationFormHandler implements IMXMLObject{
 

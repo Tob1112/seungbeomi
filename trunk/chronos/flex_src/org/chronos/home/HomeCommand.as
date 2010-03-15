@@ -1,4 +1,4 @@
-package org.april.home {
+package org.chronos.home {
 
     import com.adobe.cairngorm.commands.ICommand;
     import com.adobe.cairngorm.control.CairngormEvent;
@@ -8,8 +8,8 @@ package org.april.home {
     import mx.rpc.events.FaultEvent;
     import mx.rpc.events.ResultEvent;
 
-    import org.april.model.locator.EmployeeModelLocator;
-    import org.april.util.AlertMessage;
+    import org.chronos.model.locator.EmployeeModelLocator;
+    import org.chronos.util.AlertMessage;
 
     public class HomeCommand implements ICommand {
 

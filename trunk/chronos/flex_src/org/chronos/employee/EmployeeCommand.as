@@ -1,4 +1,4 @@
-package org.april.employee
+package org.chronos.employee
 {
 	public class EmployeeCommand
 	{

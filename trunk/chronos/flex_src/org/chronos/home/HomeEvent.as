@@ -1,4 +1,4 @@
-package org.april.home {
+package org.chronos.home {
 
     import com.adobe.cairngorm.control.CairngormEvent;
 

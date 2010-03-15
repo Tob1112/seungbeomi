@@ -1,10 +1,10 @@
-package org.april.employee {
+package org.chronos.employee {
 
 	import mx.core.IMXMLObject;
 	import mx.events.FlexEvent;
 
-	import org.april.authentication.AuthenticationForm;
-	import org.april.model.locator.AuthorizationDataModelLocator;
+	import org.chronos.authentication.AuthenticationForm;
+	import org.chronos.model.locator.AuthorizationDataModelLocator;
 
     public class EmployeeViewHandler implements IMXMLObject {
 

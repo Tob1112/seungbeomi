@@ -1,4 +1,4 @@
-package org.april.authentication {
+package org.chronos.authentication {
 
 	import com.adobe.cairngorm.commands.ICommand;
 	import com.adobe.cairngorm.control.CairngormEvent;
@@ -8,10 +8,10 @@ package org.april.authentication {
 	import mx.rpc.events.FaultEvent;
 	import mx.rpc.events.ResultEvent;
 
-	import org.april.employee.EmployeeView;
-	import org.april.model.AuthorizationData;
-	import org.april.model.locator.AuthorizationDataModelLocator;
-	import org.april.util.AlertMessage;
+	import org.chronos.employee.EmployeeView;
+	import org.chronos.model.AuthorizationData;
+	import org.chronos.model.locator.AuthorizationDataModelLocator;
+	import org.chronos.util.AlertMessage;
 
 	public class AuthenticationCommand implements ICommand {
 
