@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas label="Projects" xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="300">
-
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" label="Projects" width="100%" height="100%">
+    <mx:Text text="projects"/>
 </mx:Canvas>
