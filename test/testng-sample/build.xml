@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<project name="testng" default="test">
+
+	<!--
+	<path id="run.cp">
+	  <fileset dir="実行に必要なライブラリを格納したディレクトリへのパス" includes="*.jar"/>
+	</path>
+
+	<target name="run-tests">
+	  <testng classpathref="run.cp" haltOnfailure="true">
+	    <classpath>
+	      <pathelement
+	        location="クラスファイルを格納したディレクトリへのパス"/>
+	    </classpath>
+	    <xmlfileset dir="XMLファイルを格納したディレクトリへのパス"       includes="testng.xml" />
+	  </testng>
+	</target>
+	-->
+	<taskdef resource="testngtasks" classpath="lib/testng-5.11-jdk15.jar" />
+
+	<path id="cp">
+	   <pathelement location="lib/testng-5.11-jdk15.jar"/>
+	 </path>
+
+	<target name="test">
+	  <testng classpathref="cp" haltOnfailure="true">
+	    <xmlfileset dir="src" includes="testng.xml" />
+	  </testng>
+	</target>
+</project>
