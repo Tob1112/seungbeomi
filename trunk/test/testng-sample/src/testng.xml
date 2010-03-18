@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="SampleSuite">
+	<test name="SampleTest">
+		<!--
+		<groups>
+			<run>
+				<include name="broken"></include>
+			</run>
+		</groups>
+		-->
+		<packages>
+			<package name="test.*"></package>
+		</packages>
+		<classes>
+			<!--<class name="test.TargetTest"></class>-->
+			<class name="test.TargetTest">
+				<methods>
+					<exclude name="test.*"></exclude>
+				</methods>
+			</class>
+		</classes>
+	</test>
+</suite>
