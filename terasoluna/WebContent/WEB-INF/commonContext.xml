@@ -20,7 +20,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
     BLogicに対するトランザクションの設定を有効にする。
     モジュール毎のmoduleContext.xmlで定義されたBeanのみ対象となるので注意すること。
    -->
-  <!--  
+  <!--
   <aop:config>
     <aop:pointcut id="blogicBeans"  expression="bean(*BLogic)"/>
     <aop:advisor 
@@ -28,4 +28,5 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
          advice-ref="transactionInterceptor"/>
   </aop:config>
   -->
+  
 </beans>

@@ -17,12 +17,15 @@
 package jp.terasoluna.fw.web.thin;
 
 import java.io.IOException;
+
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+
 import jp.terasoluna.fw.web.RequestUtil;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -99,7 +102,6 @@ import org.apache.commons.logging.LogFactory;
  * @see jp.terasoluna.fw.web.thin.ServerBlockageController
  *
  */
-
 public class AuthenticationControlFilter
         extends AbstractControlFilter<AuthenticationController> {
 
@@ -208,10 +210,10 @@ public class AuthenticationControlFilter
             req.setAttribute(AUTHENTICATION_THRU_KEY, "true");
 
             // 別業務に移ったかどうかパスチェックをする。
-            if (controller.isCheckRequired(req)) {
+            if (!controller.isCheckRequired(req)) {
 
                 // ログオン済みチェック
-                if (!controller
+                if (controller
                     .isAuthenticated(RequestUtil.getPathInfo(req), req)) {
                     if (log.isDebugEnabled()) {
                         log.debug("isAuthenticated() failed.");
@@ -254,4 +256,5 @@ public class AuthenticationControlFilter
     public String getDefaultControllerBeanId() {
         return DEFAULT_AUTHENTICATION_BEAN_ID;
     }
+
 }

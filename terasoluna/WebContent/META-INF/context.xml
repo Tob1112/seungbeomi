@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
+<!-- 
    - JNDI用プロパティの設定。
    - OracleとPostgreSQL環境用の設定を準備しているので、自端末の環境に合った方を利用する。
    - 【記述書式】を参考にして、自端末の環境に合った値に【設定例】を書き換える。
-   -
+   - 
    - JNDIを使用しない場合は、「/webapps/WEB-INF/applicationContext.xml」の
    - データソースのBean定義を書き換える。
 -->
 
-<!--
+<!-- 
    - 「データベースがOracleの場合の設定」
    - 【記述書式】
    - driverClassName=[ドライバ名称]
@@ -17,6 +17,7 @@
    - url=jdbc:oracle:thin:@[データベースサーバIPアドレス]:[ポート番号]:[インスタンス名]
    - 【設定例】
 -->
+<!-- 
 <Context>
   <Resource
      name="jdbc/TerasolunaSampleDataSource"
@@ -29,8 +30,9 @@
      maxWait="5000"
      maxActive="4"/>
 </Context>
+-->
 
-<!--
+<!-- 
    - 「データベースがPostgreSQLの場合の設定」
    - 【記述書式】
    - driverClassName=[ドライバ名称]
@@ -39,7 +41,7 @@
    - url=jdbc:postgresql://[データベースサーバIPアドレス]:[ポート番号]/[データベース名称]
    - 【設定例】
 -->
-<!--
+<!-- 
 <Context>
   <Resource
      name="jdbc/TerasolunaSampleDataSource"
@@ -54,7 +56,7 @@
 </Context>
 -->
 
-<!--
+<!-- 
    - 「データベースがhsqldbの場合の設定」
    - 【記述書式】
    - driverClassName=[ドライバ名称]
@@ -78,7 +80,7 @@
 </Context>
 -->
 
-<!--
+<!-- 
    - 「データベースがH2DBの場合の設定」
    - 【記述書式】
    - driverClassName=[ドライバ名称]
@@ -87,17 +89,15 @@
    - url=jdbc:h2:tcp://[データベースサーバIPアドレス]:[ポート番号]/[データベース名称]
    - 【設定例】
 -->
-<!--
 <Context>
   <Resource
      name="jdbc/TerasolunaSampleDataSource"
      type="javax.sql.DataSource"
      driverClassName="org.h2.Driver"
      username="sa"
-     password="sa"
+     password=""
      url="jdbc:h2:tcp://localhost/~/terasoluna"
      maxIdle="2"
      maxWait="5000"
      maxActive="4"/>
 </Context>
--->

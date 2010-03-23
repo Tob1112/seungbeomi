@@ -10,13 +10,14 @@
 <html:html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
-<title>-</title>
+<title>初期画面</title>
 </head>
 <body>
-<div style="text-align: center">
-welcome
+<div style="text-align:center">
+
 -- ようこそTERASOLUNAへ --
 
 </div>
+<ts:link action="/logon/logonSCR">ログオン画面へ</ts:link>
 </body>
 </html:html>

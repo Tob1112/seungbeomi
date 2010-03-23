@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE blogic-io PUBLIC "-//NTTDATA//DTD TERASOLUNA for Spring blogic-io 1.0//JA"
+                           "dtd/blogic-io.dtd">
+
+<blogic-io>
+
+<!-- ビジネスロジック入出力定義 -->
+   <action path="/userManager/insertBL">
+     <blogic-params
+       bean-name="jp.terasoluna.thin.tutorial.web.usermanager.dto.InsertInput">
+       <set-property property="id" blogic-property="id" source="form" />
+       <set-property property="name" blogic-property="name" source="form" />
+       <set-property property="age" blogic-property="age" source="form" />
+       <set-property property="birth" blogic-property="birth" source="form" />
+     </blogic-params>
+   </action>
+
+   <action path="/userManager/listBL">
+     <blogic-params
+       bean-name="jp.terasoluna.thin.tutorial.web.usermanager.dto.ListInput">
+       <set-property property="row" blogic-property="row" source="form" />
+       <set-property property="startIndex" blogic-property="startIndex" source="form" />
+     </blogic-params>
+	 <blogic-result>
+	   <set-property property="totalCount" blogic-property="totalCount" dest="form" />
+       <set-property property="users" blogic-property="users" dest="form" />
+	 </blogic-result>
+   </action>
+   
+</blogic-io>

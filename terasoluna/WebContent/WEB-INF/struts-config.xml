@@ -7,7 +7,7 @@
 
 <!-- ======================================== フォームビーン定義 -->
     <!-- 設定例
-    <form-beans>
+    <form-beans/>
       <form-bean name="_userForm"
                  type="jp.terasoluna.sample.common.form.UserForm" />
       <form-bean name="_dynaValidatorForm"
@@ -59,9 +59,10 @@
     parameter="messageSource" />
 
 <!-- ======================================== プラグイン定義 -->
+  <!-- SpringBean設定ファイル -->
   <plug-in className="org.springframework.web.struts.ContextLoaderPlugIn">
     <set-property property="contextConfigLocation"
-                  value="/WEB-INF/moduleContext.xml"/>
+                  value="/WEB-INF/moduleContext.xml,/WEB-INF/logon/logonContext.xml,/WEB-INF/userManager/userManagerContext.xml"/>
   </plug-in>
 
   <plug-in className="jp.terasoluna.fw.web.struts.plugins.ResetterPlugIn">
@@ -76,19 +77,21 @@
       value="/WEB-INF/reset-rules.xml"/>
   </plug-in>
 
+  <!-- バリデーション設定ファイル -->
   <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
     <set-property
       property="pathnames"
-      value="/WEB-INF/validator-rules.xml,/WEB-INF/validator-rules-ex.xml,/WEB-INF/validation.xml"/>
+      value="/WEB-INF/validator-rules.xml,/WEB-INF/validator-rules-ex.xml,/WEB-INF/validation.xml,/WEB-INF/logon/validation-logon.xml,/WEB-INF/userManager/validation-userManager.xml"/>
     <set-property
       property="stopOnFirstError"
       value="false"/>
   </plug-in>
 
+  <!-- 入出力設定ファイル -->
   <plug-in className="jp.terasoluna.fw.web.struts.plugins.BLogicIOPlugIn">
     <set-property
       property="resources"
-      value="/WEB-INF/blogic-io.xml"/>
+      value="/WEB-INF/blogic-io.xml,/WEB-INF/logon/blogic-logon-io.xml,/WEB-INF/userManager/blogic-userManager-io.xml"/>
     <set-property
       property="digesterRules"
       value="/WEB-INF/blogic-io-rules.xml"/>

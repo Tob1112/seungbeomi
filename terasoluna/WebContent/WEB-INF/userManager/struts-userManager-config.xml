@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+
+<!-- ======================================== フォームビーン定義 -->
+  <form-beans>
+
+    <!-- ユーザ管理用アクションフォーム -->
+    <form-bean name="_userManagerForm"
+               type="jp.terasoluna.thin.tutorial.web.usermanager.form.UserManagerForm" />
+
+  </form-beans>
+
+<!-- ======================================== アクションマッピング定義 -->
+  <action-mappings type="jp.terasoluna.fw.web.struts.action.ActionMappingEx">
+
+	<!-- 登録画面表示用アクション -->
+    <action path="/userManager/insertSCR"
+    		name="_userManagerForm" scope="session"
+    		parameter="/userManager/insert.jsp"/>
+
+	<!-- 登録処理用アクション -->
+	<action path="/userManager/insertBL"
+			name="_userManagerForm" scope="session"
+			validate="true" input="/userManager/insertSCR.do">
+			<!-- 
+            <exception key="errors.insert.error"
+                       path="/error.jsp"
+                       className="jp.terasoluna.fw.web.struts.action.ExceptionConfigEx"
+                       handler="jp.terasoluna.fw.web.struts.action.DefaultExceptionHandler"
+                       type="jp.terasoluna.thin.tutorial.web.usermanager.exception.InsertException">
+                       <set-property property="logLevel" value="error"/>
+            </exception>
+            -->
+			<forward name="success" path="/userManager/resultSCR.do" />
+			<forward name="failure" path="/userManager/insertSCR.do" />
+	</action>
+	
+	<!-- 登録結果画面表示用アクション -->
+	<action path="/userManager/resultSCR"
+			name="_userManagerForm" scope="session"
+			parameter="/userManager/result.jsp"/>
+		
+	<!-- 一覧画面表示用アクション -->
+	<action path="/userManager/listSCR"
+			name="_userManagerForm" scope="session"
+			parameter="/userManager/list.jsp" />
+	
+	<!-- 一覧データ取得処理用アクション -->
+	<action path="/userManager/listBL"
+			name="_userManagerForm" scope="session">
+			<forward name="success" path="/userManager/listSCR.do"/>
+	</action>
+
+  </action-mappings>
+
+</struts-config>

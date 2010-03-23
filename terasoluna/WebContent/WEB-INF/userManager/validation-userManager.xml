@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE form-validation PUBLIC
+          "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.3.0//EN"
+          "http://jakarta.apache.org/commons/dtds/validator_1_3_0.dtd">
+
+<form-validation>
+
+    <formset>
+
+      <!-- 登録情報確認 -->
+      <form name="/userManager/insertBL">
+        <field property="id"
+            depends="required,numericString,maxlength">
+          <arg key="insert.id" position="0"/>
+          <arg key="${var:maxlength}" resource="false" position="1"/>
+          <var>
+            <var-name>maxlength</var-name>
+            <var-value>10</var-value>
+          </var>
+        </field>
+          
+        <field property="name"
+            depends="required,maxlength">
+          <arg key="insert.name" position="0"/>
+          <arg key="${var:maxlength}" resource="false" position="1"/>
+          <var>
+            <var-name>maxlength</var-name>
+            <var-value>20</var-value>
+          </var>
+        </field>
+        <field property="age"
+            depends="required,numericString,maxlength">
+          <arg key="insert.age" position="0"/>
+          <arg key="${var:maxlength}" resource="false" position="1"/>
+          <var>
+            <var-name>maxlength</var-name>
+            <var-value>3</var-value>
+          </var>
+        </field>
+
+        <field property="birth"
+            depends="date,maxlength">
+          <arg key="insert.birth" position="0"/>
+          <arg key="${var:maxlength}" name="maxlength" resource="false" position="1"/>
+          <arg key="${var:datePattern}" name="date" resource="false" position="1"/>
+          <var>
+            <var-name>datePattern</var-name>
+            <var-value>yyyy/MM/dd</var-value>
+          </var>
+          <var>
+            <var-name>maxlength</var-name>
+            <var-value>10</var-value>
+          </var>
+        </field>
+
+        <field property="birth"
+            depends="multiField">
+          <msg key="errors.multiField" name="multiField"/>
+          <arg key="insert.birth" position="0" />
+          <arg key="insert.age"   position="1" />
+          <var>
+            <var-name>fields</var-name>
+            <var-value>age</var-value>
+          </var>
+          <var>
+            <var-name>multiFieldValidator</var-name>
+            <var-value>
+              jp.terasoluna.thin.tutorial.web.usermanager.form.AgeValidator
+            </var-value>
+          </var>
+        </field>
+
+      </form>
+      
+    </formset>
+
+</form-validation>

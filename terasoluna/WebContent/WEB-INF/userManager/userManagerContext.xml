@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- ユーザ管理業務のBean定義 -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd">
+
+    <!-- アクション定義 -->
+    <!-- 登録画面表示用アクション定義 -->
+    <bean name="/userManager/insertSCR" scope="singleton"
+          class="jp.terasoluna.fw.web.struts.actions.ForwardAction" />
+
+	<!-- 登録処理用アクション定義 -->
+    <bean name="/userManager/insertBL" scope="singleton"
+          class="jp.terasoluna.fw.web.struts.actions.BLogicAction" >
+          <property name="businessLogic" ref="InsertBLogic" />
+    </bean>
+    
+    <!-- 登録結果画面表示用アクション定義 -->
+    <bean name="/userManager/resultSCR" scope="singleton"
+          class="jp.terasoluna.fw.web.struts.actions.ForwardAction" />
+
+	<!-- 一覧画面表示用アクション定義 -->
+    <bean name="/userManager/listSCR" scope="singleton"
+          class="jp.terasoluna.fw.web.struts.actions.ForwardAction" />
+
+	<!-- 一覧データ取得処理用アクション定義 -->
+    <bean name="/userManager/listBL" scope="singleton"
+          class="jp.terasoluna.fw.web.struts.actions.BLogicAction" >
+          <property name="businessLogic" ref="ListBLogic" />
+    </bean>
+    
+    <!-- 登録処理ビジネスロジック定義 -->
+	<bean id="InsertBLogic" scope="singleton"
+	      class="jp.terasoluna.thin.tutorial.web.usermanager.blogic.InsertBLogic">
+	      <property name="queryDAO" ref="queryDAO" />
+	      <property name="updateDAO" ref="updateDAO" />
+	</bean>
+	      
+	<!-- 一覧データ取得処理ビジネスロジック定義 -->
+	<bean id="ListBLogic" scope="singleton"
+	      class="jp.terasoluna.thin.tutorial.web.usermanager.blogic.ListBLogic">
+	      <property name="queryDAO" ref="queryDAO" />
+	</bean>
+
+</beans>
