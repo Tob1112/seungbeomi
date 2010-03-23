@@ -1,4 +1,4 @@
-SET H2URL=jdbc:h2:~/terasoluna
+SET H2URL=jdbc:h2:tcp://localhost/~/terasoluna
 SET H2USER=sa
 
 REM restore
