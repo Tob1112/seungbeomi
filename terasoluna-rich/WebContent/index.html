@@ -1,0 +1,58 @@
+<html>
+<script language="javascript">
+function load() {
+  try {
+    xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+  } catch (e) {
+    try {
+      xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    } catch (e) {
+      xmlhttp = false;
+    }
+  }
+  if (!xmlhttp && typeof XMLHttpRequest!='undefined') {
+    xmlhttp = new XMLHttpRequest();
+  }
+
+  if (xmlhttp) {
+    xmlhttp.onreadystatechange = function() {
+      if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+         form1.res_xml.value = xmlhttp.responseText ;
+      }else if (xmlhttp.readyState == 4 && xmlhttp.status == 500) {
+          form1.res_xml.value = xmlhttp.responseText ;
+      }else if (xmlhttp.readyState == 4 && xmlhttp.status == 401) {
+          form1.res_xml.value = xmlhttp.responseText ;
+      }
+      else if (xmlhttp.readyState == 4) {
+         alert(xmlhttp.status);
+      }
+    }
+  xmlhttp.open("POST", form1.input_url.value, true);
+  xmlhttp.setRequestHeader(form1.hname.value, form1.hvalue.value);
+  xmlhttp.send(form1.req_xml.value);
+}
+}
+</script>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<title>TERASOLUNAテストクライアント</title>
+</head>
+
+<body>
+<form name="form1">
+リクエストヘッダ<input name="hname" value="requestName">値<input name="hvalue" value="test"><br>
+要求電文：<br>
+<textarea name="req_xml" COLS="100" ROWS="20">
+</textarea>
+
+<p>URL:<input type="text" name="input_url" value="http://localhost:8080/terasoluna-spring-rich-blank/secure/blogic.do" size="100">
+
+<p><button type="button" onclick="load();">送信</button><br>
+<p>
+応答電文：<br>
+<textarea name="res_xml" COLS="100" ROWS="20">
+</textarea>
+</p>
+</form>
+</body></html>

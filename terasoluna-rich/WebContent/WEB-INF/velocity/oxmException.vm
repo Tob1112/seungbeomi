@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<errors>
+  <error>
+    <error-code>$!{errorCode}</error-code>
+    <error-message>$!{rc.getMessage("${errorCode}")}</error-message>
+  </error>
+</errors>

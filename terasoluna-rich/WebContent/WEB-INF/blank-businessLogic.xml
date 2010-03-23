@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd">
+
+<!-- サービス層のBean定義 -->
+<!--
+  業務ロジックやサービス層で利用するクラスのBean定義などを記述する。
+  サービス層共通のBean定義はapplicationContext.xmlに記述すること。 
+-->
+
+  <!-- 共通定義のインポート -->
+  <import resource="/commonContext.xml"/>
+
+<!-- ======================================== 業務ロジック定義 -->
+
+  <!-- 業務ロジック設定例 -->
+  <!-- 
+  <bean id="sumService" 
+        class="jp.terasoluna.sample.service.SumServiceImpl" 
+        scope="singleton"/>
+  -->
+</beans>

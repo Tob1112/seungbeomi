@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+         version="2.4">
+
+<!-- ======================================== リスナ定義 -->
+
+  <!--
+    起動時にルートアプリケーションコンテキストを読み込むローダクラス。
+    (デフォルトでは、"/WEB-INF/applicationContext.xml"から読み込む)
+    Servlet2.4の初期化順序に従わないJ2EEサーバの場合、
+    SpringのContextLoaderServletを利用する必要があるので注意すること。
+    WebApplicationContextUtils.getWebApplicationContext(servletContext)を
+    使用することで、Webアプリケーション内の任意のクラスから
+    アプリケーションコンテキストにアクセスすることが可能。
+  -->
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <!-- ルートアプリケーションコンテキストを定義するXMLファイルのロケーション -->
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>
+      /WEB-INF/applicationContext.xml,
+      /WEB-INF/blank-businessLogic.xml,
+      /WEB-INF/dataAccessContext-local.xml,
+      /WEB-INF/applicationAOP.xml
+    </param-value>
+  </context-param>
+
+  <!--
+    コンテキストパラメータ"log4jConfigLocation"で指定されたロケーションの
+    Log4j設定ファイルを読み込むリスナ。
+    Log4jConfigListenerの初期化が完了した時点で上記設定ファイルが有効となる。
+  -->
+  <listener>
+    <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+  </listener>
+  <!-- Log4j設定ファイルのロケーション -->
+  <context-param>
+    <param-name>log4jConfigLocation</param-name>
+    <param-value>classpath'log4j.properties</param-value>
+  </context-param>
+
+  <context-param>
+    <!--
+      上記"log4jConfigLocation"の値が同一である複数のWebアプリケーションを
+      同時にデプロイする場合は、webAppRootKeyパラメータを一意に設定すること。
+     -->
+    <param-name>webAppRootKey</param-name>
+    <param-value>TERASOLUNA Server Framework for Java(Rich)</param-value>
+  </context-param>
+
+<!-- ======================================== フィルタ定義 -->
+
+  <!-- 禁止URLフィルタ -->
+  <filter>
+    <filter-name>forbiddenURIFilter</filter-name>
+    <filter-class>jp.terasoluna.fw.web.rich.ForbiddenURIFilter</filter-class>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>forbiddenURIFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+  <!-- 制御情報の生成・破棄を行うサーブレットフィルタ -->
+  <!--
+    TERASOLUNA Server Framework for Java(Rich)のハンドラマッピング機能を
+    使用する際に設定が必要となる。 -->
+  <filter>
+    <filter-name>requestContextHandlingFilter</filter-name>
+    <filter-class>jp.terasoluna.fw.web.rich.RequestContextHandlingFilter</filter-class>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>requestContextHandlingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+<!-- ======================================== サーブレット定義 -->
+  <!-- Spring WebMVC サーブレット -->
+  <!--
+    TERASOLUNA Server Framework for Java(Rich)のリクエスト処理を行う。
+    Webアプリケーションごとにアプリケーションコンテキストを保持する。
+    デフォルトでは"<サーブレット名>-servlet.xml"が使用される。
+  -->
+  <servlet>
+    <servlet-name>blank</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>/WEB-INF/blank-servlet.xml, /WEB-INF/blank-controller.xml</param-value>
+    </init-param>
+    <load-on-startup>2</load-on-startup>
+  </servlet>
+
+  <!-- サーブレットマッピング定義 -->
+  <servlet-mapping>
+    <servlet-name>blank</servlet-name>
+    <url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+
+  <mime-mapping>
+    <extension>xml</extension>
+    <mime-type>text/xml;charset=UTF-8</mime-type>
+  </mime-mapping>
+
+  <!-- ウェルカムページ定義 -->
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+
+<!-- ======================================== エラーリソース定義 -->
+  <!-- グローバルエラーリソース -->
+  <error-page>
+    <exception-type>java.lang.Exception</exception-type>
+    <location>/error/error.xml</location>
+  </error-page>
+
+  <!-- 禁止URLアクセス時のエラーリソース -->
+  <error-page>
+    <exception-type>jp.terasoluna.fw.web.rich.exception.ForbiddenURIException</exception-type>
+    <location>/secure/exception.do</location>
+  </error-page>
+
+  <!-- メッセージが存在しない場合のエラーリソース -->
+  <error-page>
+    <exception-type>org.springframework.context.NoSuchMessageException</exception-type>
+    <location>/error/noSuchMessageError.xml</location>
+  </error-page>
+
+</web-app>

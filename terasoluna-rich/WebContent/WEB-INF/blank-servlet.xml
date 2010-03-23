@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd">
+
+<!-- プレゼンテーション層の共通Bean定義 -->
+
+<!-- ======================================== 例外ハンドラ定義 -->
+  <bean id="handlerExceptionResolver"
+        class="jp.terasoluna.fw.web.rich.springmvc.servlet.handler.SimpleMappingExceptionResolverEx">
+    <property name="linkedExceptionMappings">
+      <map>
+        <entry key="jp.terasoluna.fw.web.rich.exception.ForbiddenURIException">
+          <value>exception,exception,errors.8004C012</value>
+        </entry>
+        <entry key="jp.terasoluna.fw.oxm.exception.OXMappingException">
+          <value>oxmException,exception,errors.8004C028</value>
+        </entry>
+        <entry key="jp.terasoluna.fw.web.rich.springmvc.exception.UnknownRequestNameException">
+          <value>exception,exception,errors.8004C003</value>
+        </entry>
+        <entry key="org.springframework.validation.BindException">
+          <value>bindException,validateException</value>
+        </entry>
+        <entry key="jp.terasoluna.fw.exception.SystemException">
+          <value>systemException,exception</value>
+        </entry>
+        <entry key="jp.terasoluna.fw.service.rich.exception.ServiceException">
+          <value>serviceException,exception</value>
+        </entry>
+        <entry key="org.springframework.dao.DataAccessException">
+          <value>exception,exception,errors.8004C010</value>
+        </entry>
+        <entry key="java.io.FileNotFoundException">
+          <value>exception,exception,errors.8004C018</value>
+        </entry>
+        <entry key="java.lang.Exception">
+          <value>exception,exception,errors.8004C999</value>
+        </entry>
+      </map>
+    </property>
+    <property name="exceptionResolveDelegatorClass" 
+              value="jp.terasoluna.fw.web.rich.springmvc.servlet.handler.ExceptionResolveDelegatorImpl"/>
+  </bean>
+
+<!-- ======================================== ビュー定義 -->
+<!--
+  リソースバンドルやXMLファイルでビューリゾルバを構成することも可能。
+  ロケールによって異なったView解決が必要な場合、
+  リソースバンドルリゾルバを使用しなければならない。
+  使用するビューリゾルバの順序をorder属性（int型）で指定する。
+  数値の小さいビューリゾルバからソートされる。
+-->
+  
+  <!-- Castor用ビューリゾルバ -->
+  <bean id="castorViewResolver" 
+        class="jp.terasoluna.fw.web.rich.springmvc.servlet.view.castor.CastorViewResolver">
+    <property name="cache" value="true"/>
+    <property name="requestContextAttribute" value="rc"/>
+    <property name="contentType" value="text/xml;charset=UTF-8"/>
+    <property name="order" value="2"/>
+    <property name="oxmapper" ref="oxmapper"/>
+  </bean>
+  
+  <!-- Velocity用ビューリゾルバ -->
+  <bean id="velocityViewResolver" 
+        class="jp.terasoluna.fw.web.rich.springmvc.servlet.view.velocity.VelocityViewResolverEx">
+  <property name="cache" value="true"/>
+  <property name="requestContextAttribute" value="rc"/>
+  <property name="prefix" value=""/>
+  <property name="suffix" value=".vm"/>
+  <property name="exposeSpringMacroHelpers" value="true"/>
+  <property name="encoding" value="UTF-8"/>
+  <property name="contentType" value="text/xml;charset=UTF-8"/>
+  <property name="toolboxConfigLocation" value="/WEB-INF/velocity/toolbox.xml"/>
+  </bean>
+  
+  <!-- Velocity環境をセットアップするクラス。 -->
+  <bean id="velocityConfig" 
+        class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+  <property name="resourceLoaderPath" value="/WEB-INF/velocity/"/>
+  </bean>
+  
+  <!-- ファイルダウンロード用 View解決クラス-->
+  <bean id="fileDownloadViewResolver" 
+        class="org.springframework.web.servlet.view.ResourceBundleViewResolver">
+    <property name="basename" value="views"/>
+    <property name="order" value="1"/>
+  </bean>
+    
+<!-- ======================================== オブジェクト-XMLマッピング定義 -->
+  
+  <!-- オブジェクト-XMLマッピングクラス -->
+  <bean id="oxmapper" 
+        class="jp.terasoluna.fw.oxm.mapper.castor.CastorOXMapperImpl" />
+
+<!-- ======================================== リクエストデータバインダ定義 -->
+  
+  <!-- XMLデータの形式チェッククラス -->
+  <bean id="schemaValidator" 
+        class="jp.terasoluna.fw.oxm.xsd.xerces.SchemaValidatorImpl" />
+    
+  <!-- クエリ形式データバインダ生成クラス -->
+  <bean id="queryDataBinderCreator" 
+        class="jp.terasoluna.fw.web.rich.springmvc.bind.creator.QueryServletRequestDataBinderCreator"/>
+
+  <!-- XML形式データバインダ生成クラス -->
+  <bean id="xmlDataBinderCreator"
+        class="jp.terasoluna.fw.web.rich.springmvc.bind.creator.XMLServletRequestDataBinderCreator">
+    <property name="oxmapper" ref="oxmapper"/>
+  </bean>
+
+  <!-- XML形式データバインダ生成クラス(形式チェック) -->
+  <!--
+    形式チェックを行う場合は、schemaValidatorの定義のコメントアウトを解除すること。
+  -->
+  <bean id="xmlSchemaValidatorDataBinderCreator"
+        class="jp.terasoluna.fw.web.rich.springmvc.bind.creator.XMLServletRequestDataBinderCreator">
+    <property name="oxmapper" ref="oxmapper"/>
+    <!--
+    <property name="schemaValidator" ref="schemaValidator"/>
+    -->
+  </bean>
+  
+  <!-- クエリ形式データバインダ用マルチパート解決クラス -->
+  <!-- 
+  <bean id="multipartResolver"
+      class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    <!- - 最大ファイルサイズ(単位：バイト) - ->
+    <property name="maxUploadSize" value="100000"/>
+  </bean>
+  -->
+  
+<!-- ======================================== ハンドラマッピング定義 -->
+  
+  <!-- デフォルトのハンドラマッピング -->
+  <bean id="defaultHandlerMapping" 
+        class="jp.terasoluna.fw.web.rich.springmvc.servlet.handler.BeanNameUrlHandlerMappingEx">
+  <property name="ctxSupport" ref="ctxSupport"/>
+  <property name="prefix" value="/"/>
+  <property name="suffix" value="Controller"/>
+  <property name="defaultHandler" ref="unknownCommandController"/>
+  </bean>
+  
+  <!-- web.xmlのエラーページで発生した例外を使用するハンドラマッピング -->
+  <bean id="errorPageHandlerMapping" 
+        class="jp.terasoluna.fw.web.rich.springmvc.servlet.handler.ErrorPageHandlerMapping">
+  <property name="order" value="1"/>
+  </bean>
+  
+<!-- ======================================== コントローラ定義 -->
+  
+  <!-- 禁止URLアクセス用コントローラ -->
+  <bean name="/exceptionController" 
+        class="jp.terasoluna.fw.web.rich.springmvc.controller.ErrorPageHandlingController"/>
+  
+  <!-- 不正コマンド名用リクエストコントローラ -->
+  <bean id="unknownCommandController"
+        class="jp.terasoluna.fw.web.rich.springmvc.controller.UnkownRequestNameController"/>
+
+<!-- ======================================== POJOコントローラ定義 -->
+
+  <!-- コントローラ抽象Bean定義
+  （ビジネスロジック：POJO） 
+  -->
+  <bean id="pojoController" abstract="true">
+    <property name="ctxSupport" ref="ctxSupport"/>
+    <!-- 
+    <property name="validator" ref="beanValidator" />
+    -->
+    </bean>
+
+  <!-- コントローラの抽象Bean定義
+  （ビジネスロジック：POJO、受信リクエスト：XML形式） 
+  -->
+  <bean id="pojoXmlRequestController" abstract="true" parent="pojoController">
+    <property name="dataBinderCreator" ref="xmlDataBinderCreator"/>
+  </bean>
+
+  <!-- コントローラの抽象Bean定義
+  （ビジネスロジック：POJO、受信リクエスト：XML形式、ビュー：Castor） 
+  -->
+  <bean id="pojoXmlRequestCastorViewController" abstract="true" parent="pojoXmlRequestController"/>
+
+  <!-- コントローラの抽象Bean定義
+  （ビジネスロジック：POJO、受信リクエスト：XML形式、ビュー：Velocity） 
+  -->
+  <bean id="pojoXmlRequestVelocityViewController" abstract="true" parent="pojoXmlRequestController">
+        <property name="useRequestNameView" value="true"/>
+  </bean>
+
+  <!-- コントローラの抽象Bean定義
+  （ビジネスロジック：POJO、受信リクエスト：XML形式、ビュー：DefaultFileDownloadView） 
+  -->
+  <bean id="pojoXmlRequestDefaultFileDownloadViewController" abstract="true" parent="pojoXmlRequestController">
+      <property name="viewName" value="FileDownloadSample" />
+  </bean>
+
+  <!-- コントローラの抽象Bean定義
+  （ビジネスロジック：POJO、受信リクエスト：クエリ形式） 
+  -->
+  <bean id="pojoQueryRequestController" abstract="true" parent="pojoController">
+    <property name="dataBinderCreator" ref="queryDataBinderCreator"/>
+  </bean>
+
+  <!-- コントローラの抽象Bean定義
+  （ビジネスロジック：POJO、受信リクエスト：クエリ形式、ビュー：Castor） 
+  -->
+  <bean id="pojoQueryRequestCastorViewController" abstract="true" parent="pojoQueryRequestController"/>
+
+  <!-- コントローラの抽象Bean定義
+  （ビジネスロジック：POJO、受信リクエスト：クエリ形式、ビュー：Velocity） 
+  -->
+  <bean id="pojoQueryRequestVelocityViewController" abstract="true" parent="pojoQueryRequestController">
+        <property name="useRequestNameView" value="true"/>
+  </bean>
+
+  <!-- コントローラの抽象Bean定義
+  （ビジネスロジック：POJO、受信リクエスト：クエリ形式、ビュー：DefaultFileDownloadView） 
+  -->
+  <bean id="pojoQueryRequestDefaultFileDownloadViewController" abstract="true" parent="pojoQueryRequestController">
+      <property name="viewName" value="FileDownloadSample" />
+  </bean>
+
+<!-- ======================================== BLogicコントローラ定義 -->
+
+  <!-- コントローラ抽象Bean定義
+  （ビジネスロジック：BLogic） 
+  -->
+  <bean id="blogicController" abstract="true" class="jp.terasoluna.fw.web.rich.springmvc.controller.BLogicController">
+    <property name="ctxSupport" ref="ctxSupport"/>
+    <!-- 
+    <property name="validator" ref="beanValidator" />
+    -->
+    </bean>
+
+  <!-- コントローラの抽象Bean定義
+  （ビジネスロジック：BLogic、受信リクエスト：XML形式） 
+  -->
+  <bean id="blogicXmlRequestController" abstract="true" parent="blogicController">
+    <property name="dataBinderCreator" ref="xmlDataBinderCreator"/>
+  </bean>
+
+  <!-- コントローラの抽象Bean定義
+  （ビジネスロジック：BLogic、受信リクエスト：XML形式、ビュー：Castor） 
+  -->
+  <bean id="blogicXmlRequestCastorViewController" abstract="true" parent="blogicXmlRequestController"/>
+
+  <!-- コントローラの抽象Bean定義
+  （ビジネスロジック：BLogic、受信リクエスト：XML形式、ビュー：Velocity） 
+  -->
+  <bean id="blogicXmlRequestVelocityViewController" abstract="true" parent="blogicXmlRequestController">
+        <property name="useRequestNameView" value="true"/>
+  </bean>
+
+  <!-- コントローラの抽象Bean定義
+  （ビジネスロジック：BLogic、受信リクエスト：XML形式、ビュー：DefaultFileDownloadView） 
+  -->
+  <bean id="blogicXmlRequestDefaultFileDownloadViewController" abstract="true" parent="blogicXmlRequestController">
+      <property name="viewName" value="FileDownloadSample" />
+  </bean>
+  
+  <!-- コントローラの抽象Bean定義
+  （ビジネスロジック：BLogic、受信リクエスト：クエリ形式） 
+  -->
+  <bean id="blogicQueryRequestController" abstract="true" parent="blogicController">
+    <property name="dataBinderCreator" ref="queryDataBinderCreator"/>
+  </bean>
+
+  <!-- コントローラの抽象Bean定義
+  （ビジネスロジック：BLogic、受信リクエスト：クエリ形式、ビュー：Castor） 
+  -->
+  <bean id="blogicQueryRequestCastorViewController" abstract="true" parent="blogicQueryRequestController"/>
+
+  <!-- コントローラの抽象Bean定義
+  （ビジネスロジック：BLogic、受信リクエスト：クエリ形式、ビュー：Velocity） 
+  -->
+  <bean id="blogicQueryRequestVelocityViewController" abstract="true" parent="blogicQueryRequestController">
+        <property name="useRequestNameView" value="true"/>
+  </bean>
+
+  <!-- コントローラの抽象Bean定義
+  （ビジネスロジック：BLogic、受信リクエスト：クエリ形式、ビュー：DefaultFileDownloadView） 
+  -->
+  <bean id="blogicQueryRequestDefaultFileDownloadViewController" abstract="true" parent="blogicQueryRequestController">
+      <property name="viewName" value="FileDownloadSample" />
+  </bean>
+
+  <!-- コントローラの抽象Bean定義
+  （ビジネスロジック：POJO、受信リクエスト：XML形式） 
+  -->
+  <bean id="pojoXmlSchemaValidatorRequestController" abstract="true" parent="pojoController">
+    <property name="dataBinderCreator" ref="xmlSchemaValidatorDataBinderCreator"/>
+  </bean>
+
+  <!-- コントローラの抽象Bean定義
+  （ビジネスロジック：POJO、受信リクエスト：XML形式、ビュー：Castor） 
+  -->
+  <bean id="pojoXmlSchemaValidatorRequestCastorViewController" abstract="true" parent="pojoXmlSchemaValidatorRequestController"/>
+</beans>

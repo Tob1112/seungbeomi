@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<errors>
+  <error>
+    <error-code>$!{exception.errorCode}</error-code>
+#if(!${exception.options})    <error-message>$!{rc.getMessage("${exception.errorCode}")}</error-message>
+#else    <error-message>$!{rc.getMessage("${exception.errorCode}", ${exception.options})}</error-message>
+#end
+  </error>
+</errors>
