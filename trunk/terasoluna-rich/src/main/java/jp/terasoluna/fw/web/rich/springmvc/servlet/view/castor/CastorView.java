@@ -32,41 +32,41 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.web.servlet.view.AbstractUrlBasedView;
 
 /**
- * Castor‚ğ—˜—p‚µ‚ÄHTTPƒŒƒXƒ|ƒ“ƒX¶¬‚ğs‚¤ƒNƒ‰ƒXB
- * ‹Æ–±ˆ—Œ‹‰Ê‚Å‚ ‚éƒ‚ƒfƒ‹ƒIƒuƒWƒFƒNƒg‚©‚çXMLŒ`®‚Ìƒf[ƒ^‚ğì¬‚µA
- * HTTPƒŒƒXƒ|ƒ“ƒX‚Éİ’è‚·‚éB
- * 
+ * Castorã‚’åˆ©ç”¨ã—ã¦HTTPãƒ¬ã‚¹ãƒãƒ³ã‚¹ç”Ÿæˆã‚’è¡Œã†ã‚¯ãƒ©ã‚¹ã€‚
+ * æ¥­å‹™å‡¦ç†çµæœã§ã‚ã‚‹ãƒ¢ãƒ‡ãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‹ã‚‰XMLå½¢å¼ã®ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã—ã€
+ * HTTPãƒ¬ã‚¹ãƒãƒ³ã‚¹ã«è¨­å®šã™ã‚‹ã€‚
+ *
  * @see jp.terasoluna.fw.web.rich.springmvc.servlet.view.castor.CastorViewResolver
  */
 public class CastorView extends AbstractUrlBasedView {
 
     /**
-     * ƒƒOƒNƒ‰ƒXB
+     * ãƒ­ã‚°ã‚¯ãƒ©ã‚¹ã€‚
      */
     private static Log log = LogFactory.getLog(CastorView.class);
-    
+
     /**
-     * XML¨ƒIƒuƒWƒFƒNƒg•ÏŠ·ƒNƒ‰ƒXB
+     * XMLâ†’ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå¤‰æ›ã‚¯ãƒ©ã‚¹ã€‚
      */
     private OXMapper oxmapper = null;
-    
+
     /**
-     * Castorƒrƒ…[‚Ì•\¦ˆ—‚ğs‚È‚¤B
-     * @param model ‹Æ–±ˆ—‚ÌŒ‹‰Ê
-     * @param request HTTPƒŠƒNƒGƒXƒg
-     * @param response HTTPƒŒƒXƒ|ƒ“ƒX
-     * @throws Exception —áŠOB
+     * Castorãƒ“ãƒ¥ãƒ¼ã®è¡¨ç¤ºå‡¦ç†ã‚’è¡Œãªã†ã€‚
+     * @param model æ¥­å‹™å‡¦ç†ã®çµæœ
+     * @param request HTTPãƒªã‚¯ã‚¨ã‚¹ãƒˆ
+     * @param response HTTPãƒ¬ã‚¹ãƒãƒ³ã‚¹
+     * @throws Exception ä¾‹å¤–ã€‚
      */
     @Override
-    protected void renderMergedOutputModel(Map model, 
-            HttpServletRequest request, HttpServletResponse response) 
+    protected void renderMergedOutputModel(Map model,
+            HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        
-        // Object¨XML
+
+        // Objectâ†’XML
         StringWriter stringWriter = new StringWriter();
         oxmapper.marshal(model.get(Constants.RESULT_KEY), stringWriter);
-        
-        // XMLƒf[ƒ^‚ğHTTPƒŒƒXƒ|ƒ“ƒX‚É‘‚«o‚·
+
+        // XMLãƒ‡ãƒ¼ã‚¿ã‚’HTTPãƒ¬ã‚¹ãƒãƒ³ã‚¹ã«æ›¸ãå‡ºã™
         Writer responseWriter = null;
         try {
             response.setContentType(this.getContentType());
@@ -88,30 +88,30 @@ public class CastorView extends AbstractUrlBasedView {
     }
 
     /**
-     * ƒŒƒXƒ|ƒ“ƒXƒwƒbƒ_‚ğ’Ç‰Á‚·‚éB
-     * ƒŒƒXƒ|ƒ“ƒXƒwƒbƒ_‚ğ’Ç‰Á‚·‚éê‡A‚±‚Ìƒƒ\ƒbƒh‚ğƒI[ƒoƒ‰ƒCƒh‚·‚éB
+     * ãƒ¬ã‚¹ãƒãƒ³ã‚¹ãƒ˜ãƒƒãƒ€ã‚’è¿½åŠ ã™ã‚‹ã€‚
+     * ãƒ¬ã‚¹ãƒãƒ³ã‚¹ãƒ˜ãƒƒãƒ€ã‚’è¿½åŠ ã™ã‚‹å ´åˆã€ã“ã®ãƒ¡ã‚½ãƒƒãƒ‰ã‚’ã‚ªãƒ¼ãƒãƒ©ã‚¤ãƒ‰ã™ã‚‹ã€‚
      *
-     * @param model ‹Æ–±ˆ—‚ÌŒ‹‰Ê
-     * @param request HTTPƒŠƒNƒGƒXƒg
-     * @param response HTTPƒŒƒXƒ|ƒ“ƒX
+     * @param model æ¥­å‹™å‡¦ç†ã®çµæœ
+     * @param request HTTPãƒªã‚¯ã‚¨ã‚¹ãƒˆ
+     * @param response HTTPãƒ¬ã‚¹ãƒãƒ³ã‚¹
      */
-    protected void addResponseHeader(Map model, 
+    protected void addResponseHeader(Map model,
             HttpServletRequest request, HttpServletResponse response) {
     }
 
     /**
-     * oxmapper‚ğæ“¾‚·‚éB
+     * oxmapperã‚’å–å¾—ã™ã‚‹ã€‚
      *
-     * @return oxmapper‘®«
+     * @return oxmapperå±æ€§
      */
     public OXMapper getOxmapper() {
         return oxmapper;
     }
 
     /**
-     * oxmapper‚ğİ’è‚·‚éB
+     * oxmapperã‚’è¨­å®šã™ã‚‹ã€‚
      *
-     * @param oxmapper oxmapper‚Éİ’è‚·‚é’l
+     * @param oxmapper oxmapperã«è¨­å®šã™ã‚‹å€¤
      */
     public void setOxmapper(OXMapper oxmapper) {
         this.oxmapper = oxmapper;

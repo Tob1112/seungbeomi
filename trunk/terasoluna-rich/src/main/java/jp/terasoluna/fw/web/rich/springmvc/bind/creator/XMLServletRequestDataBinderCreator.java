@@ -28,21 +28,21 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.web.bind.ServletRequestDataBinder;
 
 /**
- * XMLŒ`®‚Å’è‹`‚³‚ê‚½ƒŠƒNƒGƒXƒgƒf[ƒ^‚ğƒoƒCƒ“ƒh‚·‚éƒNƒ‰ƒX‚ğ¶¬‚·‚é–ğŠ„‚ğ‚ÂƒNƒ‰ƒXB
+ * XMLå½¢å¼ã§å®šç¾©ã•ã‚ŒãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’ãƒã‚¤ãƒ³ãƒ‰ã™ã‚‹ã‚¯ãƒ©ã‚¹ã‚’ç”Ÿæˆã™ã‚‹å½¹å‰²ã‚’æŒã¤ã‚¯ãƒ©ã‚¹ã€‚
  * <p>
- * Spring‚É’è‹`‚³‚ê‚Ä‚¢‚éServletRequestDataBinder‚ğÀ‘•ƒNƒ‰ƒX‚Æ‚µ‚Ä•Ô‹p‚·‚éB
+ * Springã«å®šç¾©ã•ã‚Œã¦ã„ã‚‹ServletRequestDataBinderã‚’å®Ÿè£…ã‚¯ãƒ©ã‚¹ã¨ã—ã¦è¿”å´ã™ã‚‹ã€‚
  * </p>
  * <p>
- * –{ƒNƒ‰ƒX‚ğg—p‚·‚éê‡‚ÍAƒoƒCƒ“ƒhˆ—‚ğs‚¤{@link jp.terasoluna.fw.oxm.mapper.OXMapper}‚ÌÀ‘•ƒNƒ‰ƒX‚ğDI‚·‚é‚±‚ÆB<br>
- * XMLƒXƒL[ƒ}‚ğg—p‚µ‚½Œ`®ƒ`ƒFƒbƒN‚ğs‚¤ê‡‚ÍA{@link jp.terasoluna.fw.oxm.xsd.SchemaValidator}‚ÌÀ‘•ƒNƒ‰ƒX‚ğDI‚·‚é‚±‚ÆB
+ * æœ¬ã‚¯ãƒ©ã‚¹ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã¯ã€ãƒã‚¤ãƒ³ãƒ‰å‡¦ç†ã‚’è¡Œã†{@link jp.terasoluna.fw.oxm.mapper.OXMapper}ã®å®Ÿè£…ã‚¯ãƒ©ã‚¹ã‚’DIã™ã‚‹ã“ã¨ã€‚<br>
+ * XMLã‚¹ã‚­ãƒ¼ãƒã‚’ä½¿ç”¨ã—ãŸå½¢å¼ãƒã‚§ãƒƒã‚¯ã‚’è¡Œã†å ´åˆã¯ã€{@link jp.terasoluna.fw.oxm.xsd.SchemaValidator}ã®å®Ÿè£…ã‚¯ãƒ©ã‚¹ã‚’DIã™ã‚‹ã“ã¨ã€‚
  * </p>
  * <p>
- * yBean’è‹`ƒtƒ@ƒCƒ‹‚Ìİ’è—áiŒ`®ƒ`ƒFƒbƒN‚ğs‚¤ê‡jz<br>
+ * ã€Beanå®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã®è¨­å®šä¾‹ï¼ˆå½¢å¼ãƒã‚§ãƒƒã‚¯ã‚’è¡Œã†å ´åˆï¼‰ã€‘<br>
  * <code><pre>
  * &lt;bean id=&quot;oxmapper&quot; class=&quot;jp.terasoluna.fw.oxm.mapper.castor.CastorOXMapperImpl&quot; /&gt;
- * 
+ *
  * &lt;bean id=&quot;schemaValidator&quot; class=&quot;jp.terasoluna.fw.oxm.xsdvalidator.impl.SchemaValidatorImpl&quot; /&gt;
- * 
+ *
  * &lt;bean id=&quot;xmlDataBinderCreator&quot;
  *   class=&quot;jp.terasoluna.fw.web.rich.springmvc.bind.creator.XMLServletRequestDataBinderCreator&quot;&gt;
  *   &lt;property name=&quot;oxmapper&quot;&gt;&lt;ref local=&quot;oxmapper&quot;/&gt;&lt;/property&gt;
@@ -51,36 +51,36 @@ import org.springframework.web.bind.ServletRequestDataBinder;
  * </pre></code>
  * </p>
  * <p>
- * –{ƒNƒ‰ƒX‚Ìg—p•û–@‚ÍA{@link jp.terasoluna.fw.web.rich.springmvc.controller.TerasolunaController}‚ğQÆ‚·‚é‚±‚ÆB
+ * æœ¬ã‚¯ãƒ©ã‚¹ã®ä½¿ç”¨æ–¹æ³•ã¯ã€{@link jp.terasoluna.fw.web.rich.springmvc.controller.TerasolunaController}ã‚’å‚ç…§ã™ã‚‹ã“ã¨ã€‚
  * </p>
- * 
+ *
  * @see jp.terasoluna.fw.web.rich.springmvc.controller.TerasolunaController
  * @see jp.terasoluna.fw.web.rich.springmvc.bind.XMLServletRequestDataBinder
  */
 public class XMLServletRequestDataBinderCreator implements
         ServletRequestDataBinderCreator, InitializingBean {
     /**
-     * ƒƒOƒNƒ‰ƒXB
+     * ãƒ­ã‚°ã‚¯ãƒ©ã‚¹ã€‚
      */
     private static Log log = LogFactory
             .getLog(XMLServletRequestDataBinderCreator.class);
 
     /**
-     * OXMapperB
+     * OXMapperã€‚
      */
     private OXMapper oxmapper = null;
 
     /**
-     * SchemaValidatorB
+     * SchemaValidatorã€‚
      */
     private SchemaValidator schemaValidator = null;
 
     /**
-     * XMLŒ`®‚ÌƒŠƒNƒGƒXƒgƒf[ƒ^‚É‘Î‰‚µ‚½ServletRequestDataBinderÀ‘•ƒNƒ‰ƒX‚ğ•Ô‹p‚·‚éB
-     * 
-     * @param request XMLŒ`®‚ÌƒŠƒNƒGƒXƒg
-     * @param command ƒRƒ}ƒ“ƒhƒIƒuƒWƒFƒNƒg
-     * @param requestName ƒŠƒNƒGƒXƒg–¼
+     * XMLå½¢å¼ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã«å¯¾å¿œã—ãŸServletRequestDataBinderå®Ÿè£…ã‚¯ãƒ©ã‚¹ã‚’è¿”å´ã™ã‚‹ã€‚
+     *
+     * @param request XMLå½¢å¼ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
+     * @param command ã‚³ãƒãƒ³ãƒ‰ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+     * @param requestName ãƒªã‚¯ã‚¨ã‚¹ãƒˆå
      * @return XMLServletRequestDataBinder
      */
     public ServletRequestDataBinder create(HttpServletRequest request,
@@ -88,13 +88,13 @@ public class XMLServletRequestDataBinderCreator implements
         return new XMLServletRequestDataBinder(command, oxmapper,
                 schemaValidator, requestName);
     }
-    
+
     /**
-     * DIƒRƒ“ƒeƒi‹N“®A–{ƒNƒ‰ƒX‚ªƒCƒ“ƒXƒ^ƒ“ƒX‰»‚³‚ê‚½’¼Œã‚ÉŒÄ‚Î‚ê‚éƒƒ\ƒbƒhB
-     * OXMapperiXMLŒ`®‚Ìƒf[ƒ^‚ğƒoƒCƒ“ƒh‚·‚éƒNƒ‰ƒXj‚ªİ’è‚³‚ê‚Ä‚¢‚È‚¢ê‡A —áŠO‚ğ“Š‚°‚éB
+     * DIã‚³ãƒ³ãƒ†ãƒŠèµ·å‹•æ™‚ã€æœ¬ã‚¯ãƒ©ã‚¹ãŒã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹åŒ–ã•ã‚ŒãŸç›´å¾Œã«å‘¼ã°ã‚Œã‚‹ãƒ¡ã‚½ãƒƒãƒ‰ã€‚
+     * OXMapperï¼ˆXMLå½¢å¼ã®ãƒ‡ãƒ¼ã‚¿ã‚’ãƒã‚¤ãƒ³ãƒ‰ã™ã‚‹ã‚¯ãƒ©ã‚¹ï¼‰ãŒè¨­å®šã•ã‚Œã¦ã„ãªã„å ´åˆã€ ä¾‹å¤–ã‚’æŠ•ã’ã‚‹ã€‚
      */
     public void afterPropertiesSet() {
-        // XMLDataBinder‚ªİ’è‚³‚ê‚Ä‚¢‚È‚¢ê‡A—áŠO‚Æ‚·‚é
+        // XMLDataBinderãŒè¨­å®šã•ã‚Œã¦ã„ãªã„å ´åˆã€ä¾‹å¤–ã¨ã™ã‚‹
         if (oxmapper == null) {
             log.error("OXMapper isn't set in ServletRequestDataBinder. "
                     + "Check Spring Bean definition file.");
@@ -105,8 +105,8 @@ public class XMLServletRequestDataBinderCreator implements
     }
 
     /**
-     * OXMapper‚ğæ“¾‚·‚éB
-     * 
+     * OXMapperã‚’å–å¾—ã™ã‚‹ã€‚
+     *
      * @return OXMapper OXMapper
      */
     public OXMapper getOxmapper() {
@@ -114,8 +114,8 @@ public class XMLServletRequestDataBinderCreator implements
     }
 
     /**
-     * OXMapper‚ğİ’è‚·‚éB
-     * 
+     * OXMapperã‚’è¨­å®šã™ã‚‹ã€‚
+     *
      * @param oxmapper OXMapper
      */
     public void setOxmapper(OXMapper oxmapper) {
@@ -123,8 +123,8 @@ public class XMLServletRequestDataBinderCreator implements
     }
 
     /**
-     * SchemaValidator‚ğæ“¾‚·‚éB
-     * 
+     * SchemaValidatorã‚’å–å¾—ã™ã‚‹ã€‚
+     *
      * @return SchemaValidator SchemaValidator
      */
     public SchemaValidator getSchemaValidator() {
@@ -132,12 +132,12 @@ public class XMLServletRequestDataBinderCreator implements
     }
 
     /**
-     * SchemaValidator‚ğİ’è‚·‚é
-     * 
+     * SchemaValidatorã‚’è¨­å®šã™ã‚‹
+     *
      * @param schemaValidator SchemaValidator
      */
     public void setSchemaValidator(SchemaValidator schemaValidator) {
         this.schemaValidator = schemaValidator;
     }
-            
+
 }

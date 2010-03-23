@@ -30,18 +30,18 @@ import org.springframework.web.servlet.view.AbstractUrlBasedView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 /**
- * Castor—p‚ÌViewResolverÀ‘•ƒNƒ‰ƒXB
- * ƒrƒ…[–¼‚ª‹ó•¶šA‚Ü‚½‚ÍNull‚Ìê‡ACastorƒrƒ…[‚ğg—p‚·‚éB
- * 
- * <p>DispacherServletã‚É‚Ä•¡”‚ÌViewResolver‚ğg—p‚·‚éê‡‚ª‚ ‚é‚½‚ßA
- * g—p‚·‚éViewResolver‚Ì‡˜‚ğ’è‹`‚·‚éOrderedƒCƒ“ƒ^ƒtƒF[ƒX‚ğÀ‘•‚µ‚Ä‚¢‚éB
- * ˆÈ‰º‚Ì‚æ‚¤‚ÉABean’è‹`ƒtƒ@ƒCƒ‹‚É‚ÄintŒ^‚Ì{@link #order}‘®«‚ğİ’è‚·‚é‚ÆA
- * DispacherServlet‚Í{@link #order}’l‚Ì¸‡‚ÅViewResolver‚ğg—p‚·‚éB
- * 
- * <p><strong>Bean’è‹`ƒtƒ@ƒCƒ‹‚Ìİ’è—á</strong>
+ * Castorç”¨ã®ViewResolverå®Ÿè£…ã‚¯ãƒ©ã‚¹ã€‚
+ * ãƒ“ãƒ¥ãƒ¼åãŒç©ºæ–‡å­—ã€ã¾ãŸã¯Nullã®å ´åˆã€Castorãƒ“ãƒ¥ãƒ¼ã‚’ä½¿ç”¨ã™ã‚‹ã€‚
+ *
+ * <p>DispacherServletä¸Šã«ã¦è¤‡æ•°ã®ViewResolverã‚’ä½¿ç”¨ã™ã‚‹å ´åˆãŒã‚ã‚‹ãŸã‚ã€
+ * ä½¿ç”¨ã™ã‚‹ViewResolverã®é †åºã‚’å®šç¾©ã™ã‚‹Orderedã‚¤ãƒ³ã‚¿ãƒ•ã‚§ãƒ¼ã‚¹ã‚’å®Ÿè£…ã—ã¦ã„ã‚‹ã€‚
+ * ä»¥ä¸‹ã®ã‚ˆã†ã«ã€Beanå®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã«ã¦intå‹ã®{@link #order}å±æ€§ã‚’è¨­å®šã™ã‚‹ã¨ã€
+ * DispacherServletã¯{@link #order}å€¤ã®æ˜‡é †ã§ViewResolverã‚’ä½¿ç”¨ã™ã‚‹ã€‚
+ *
+ * <p><strong>Beanå®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã®è¨­å®šä¾‹</strong>
  * <pre><code>
  * &lt;!--
- *    Castor—pView Resolver
+ *    Castorç”¨View Resolver
  *  --&gt;
  * &lt;bean id="castorViewResolver" class="jp.terasoluna.fw.web.rich.springmvc.servlet.view.castor.CastorViewResolver"&gt;
  *   &lt;property name="cache"&gt;&lt;value&gt;true&lt;/value&gt;&lt;/property&gt;
@@ -50,37 +50,37 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
  *   &lt;property name="order"&gt;&lt;value&gt;2&lt;/value&gt;&lt;/property&gt;
  * &lt;/bean&gt;
  * </code></pre>
- * 
+ *
  * @see org.springframework.web.servlet.DispatcherServlet
  */
-public class CastorViewResolver extends UrlBasedViewResolver 
+public class CastorViewResolver extends UrlBasedViewResolver
     implements Ordered, InitializingBean {
 
     /**
-     * ƒƒOƒNƒ‰ƒXB
+     * ãƒ­ã‚°ã‚¯ãƒ©ã‚¹ã€‚
      */
     private static Log log = LogFactory.getLog(CastorViewResolver.class);
-    
+
     /**
-     * ‚±‚ÌViewResolverƒNƒ‰ƒX‚ªg—p‚³‚ê‚é‡”ÔB
+     * ã“ã®ViewResolverã‚¯ãƒ©ã‚¹ãŒä½¿ç”¨ã•ã‚Œã‚‹é †ç•ªã€‚
      */
     private int order = Integer.MAX_VALUE;
-    
+
     /**
-     * XML¨ƒIƒuƒWƒFƒNƒg•ÏŠ·ƒNƒ‰ƒXB
+     * XMLâ†’ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå¤‰æ›ã‚¯ãƒ©ã‚¹ã€‚
      */
     private OXMapper oxmapper = null;
-    
+
     /**
-     * ƒrƒ…[ƒNƒ‰ƒX‚Æ‚µ‚ÄCastorViewƒNƒ‰ƒX‚ğİ’è‚·‚éƒRƒ“ƒXƒgƒ‰ƒNƒ^B
+     * ãƒ“ãƒ¥ãƒ¼ã‚¯ãƒ©ã‚¹ã¨ã—ã¦CastorViewã‚¯ãƒ©ã‚¹ã‚’è¨­å®šã™ã‚‹ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã€‚
      */
     public CastorViewResolver() {
         setViewClass(CastorView.class);
     }
-    
+
     /**
-     * order‚ğİ’è‚·‚éB
-     * @param order ‚±‚ÌViewResolverƒNƒ‰ƒX‚ªg—p‚³‚ê‚é‡”ÔB
+     * orderã‚’è¨­å®šã™ã‚‹ã€‚
+     * @param order ã“ã®ViewResolverã‚¯ãƒ©ã‚¹ãŒä½¿ç”¨ã•ã‚Œã‚‹é †ç•ªã€‚
      */
     @Override
     public void setOrder(int order) {
@@ -88,52 +88,52 @@ public class CastorViewResolver extends UrlBasedViewResolver
     }
 
     /**
-     * order‚ğæ“¾‚·‚éB
-     * @return ‚±‚ÌViewResolverƒNƒ‰ƒX‚ªg—p‚³‚ê‚é‡”ÔB
+     * orderã‚’å–å¾—ã™ã‚‹ã€‚
+     * @return ã“ã®ViewResolverã‚¯ãƒ©ã‚¹ãŒä½¿ç”¨ã•ã‚Œã‚‹é †ç•ªã€‚
      */
     @Override
     public int getOrder() {
         return order;
     }
-    
+
     /**
-     * oxmapper‚ğæ“¾‚·‚éB
+     * oxmapperã‚’å–å¾—ã™ã‚‹ã€‚
      *
-     * @return oxmapper‘®«
+     * @return oxmapperå±æ€§
      */
     public OXMapper getOxmapper() {
         return oxmapper;
     }
 
     /**
-     * oxmapper‚ğİ’è‚·‚éB
+     * oxmapperã‚’è¨­å®šã™ã‚‹ã€‚
      *
-     * @param oxmapper oxmapper‚Éİ’è‚·‚é’l
+     * @param oxmapper oxmapperã«è¨­å®šã™ã‚‹å€¤
      */
     public void setOxmapper(OXMapper oxmapper) {
         this.oxmapper = oxmapper;
     }
-    
+
     /**
-     * DIƒRƒ“ƒeƒi‹N“®A–{ƒNƒ‰ƒX‚ªƒCƒ“ƒXƒ^ƒ“ƒX‰»‚³‚ê‚½’¼Œã‚ÉŒÄ‚Î‚ê‚éƒƒ\ƒbƒhB
-     * OXMapperiƒIƒuƒWƒFƒNƒg|XML•ÏŠ·ƒNƒ‰ƒXj‚ªİ’è‚³‚ê‚Ä‚¢‚È‚¢ê‡A
-     * —áŠO‚ğ“Š‚°‚éB
+     * DIã‚³ãƒ³ãƒ†ãƒŠèµ·å‹•æ™‚ã€æœ¬ã‚¯ãƒ©ã‚¹ãŒã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹åŒ–ã•ã‚ŒãŸç›´å¾Œã«å‘¼ã°ã‚Œã‚‹ãƒ¡ã‚½ãƒƒãƒ‰ã€‚
+     * OXMapperï¼ˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆï¼XMLå¤‰æ›ã‚¯ãƒ©ã‚¹ï¼‰ãŒè¨­å®šã•ã‚Œã¦ã„ãªã„å ´åˆã€
+     * ä¾‹å¤–ã‚’æŠ•ã’ã‚‹ã€‚
      */
     public void afterPropertiesSet() {
-        // OXMapper‚ªİ’è‚³‚ê‚Ä‚¢‚È‚¢ê‡A—áŠO‚Æ‚·‚é
+        // OXMapperãŒè¨­å®šã•ã‚Œã¦ã„ãªã„å ´åˆã€ä¾‹å¤–ã¨ã™ã‚‹
         if (oxmapper == null) {
-            log.error("OXMapper class isn't set in CastorViewResolver. " 
+            log.error("OXMapper class isn't set in CastorViewResolver. "
                     + "Check Spring Bean definition file.");
             throw new IllegalStateException(
-                    "OXMapper class isn't set in CastorViewResolver. " 
+                    "OXMapper class isn't set in CastorViewResolver. "
                     + "Check Spring Bean definition file.");
-        }   
+        }
     }
 
     /**
-     * ¶¬‚·‚é‚×‚«ƒrƒ…[ƒNƒ‰ƒX‚ğ•Ô‚·B
+     * ç”Ÿæˆã™ã‚‹ã¹ããƒ“ãƒ¥ãƒ¼ã‚¯ãƒ©ã‚¹ã‚’è¿”ã™ã€‚
      * @see CastorView
-     * @return CastorViewƒNƒ‰ƒXB
+     * @return CastorViewã‚¯ãƒ©ã‚¹ã€‚
      */
     @Override
     protected Class requiredViewClass() {
@@ -141,31 +141,31 @@ public class CastorViewResolver extends UrlBasedViewResolver
     }
 
     /**
-     * ƒrƒ…[‚ğ“Ç‚İ‚ŞB
-     * ƒrƒ…[ƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‰»‚ğ{@link #buildView(String)}ƒƒ\ƒbƒh‚É
-     * ˆÏ÷‚µADIƒRƒ“ƒeƒi‚É‚ÄˆÈ‰º‚Ìƒƒ\ƒbƒh‚ğŒÄ‚Ño‚·B
+     * ãƒ“ãƒ¥ãƒ¼ã‚’èª­ã¿è¾¼ã‚€ã€‚
+     * ãƒ“ãƒ¥ãƒ¼ã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹åŒ–ã‚’{@link #buildView(String)}ãƒ¡ã‚½ãƒƒãƒ‰ã«
+     * å§”è­²ã—ã€DIã‚³ãƒ³ãƒ†ãƒŠã«ã¦ä»¥ä¸‹ã®ãƒ¡ã‚½ãƒƒãƒ‰ã‚’å‘¼ã³å‡ºã™ã€‚
      * <ul>
-     * <li>ApplicationContextAwareƒNƒ‰ƒX‚Ì<code>setApplicationContext</code>
-     * <li>InitializingBeanƒNƒ‰ƒX‚Ì<code>afterPropertiesSet</code>
+     * <li>ApplicationContextAwareã‚¯ãƒ©ã‚¹ã®<code>setApplicationContext</code>
+     * <li>InitializingBeanã‚¯ãƒ©ã‚¹ã®<code>afterPropertiesSet</code>
      * </ul>
-     * ƒrƒ…[–¼‚ª“ü—Í‚³‚ê‚Ä‚¢‚éê‡ANull‚ğ•Ô‚·B
+     * ãƒ“ãƒ¥ãƒ¼åãŒå…¥åŠ›ã•ã‚Œã¦ã„ã‚‹å ´åˆã€Nullã‚’è¿”ã™ã€‚
      * @see #buildView(String)
      * @see org.springframework.context.ApplicationContextAware#setApplicationContext
      * @see org.springframework.beans.factory.InitializingBean#afterPropertiesSet
-     * @param viewName ƒrƒ…[–¼
-     * @param locale ƒƒP[ƒ‹
-     * @return Castorƒrƒ…[
-     * @throws Exception —áŠO
+     * @param viewName ãƒ“ãƒ¥ãƒ¼å
+     * @param locale ãƒ­ã‚±ãƒ¼ãƒ«
+     * @return Castorãƒ“ãƒ¥ãƒ¼
+     * @throws Exception ä¾‹å¤–
      */
     @Override
     protected View loadView(String viewName, Locale locale) throws Exception {
         CastorView view = (CastorView) buildView(viewName);
-        
-        // CastorView‚ªæ“¾‚Å‚«‚È‚¢ê‡ANull‚ğ•Ô‚·
+
+        // CastorViewãŒå–å¾—ã§ããªã„å ´åˆã€Nullã‚’è¿”ã™
         if (view == null) {
             return null;
         }
-        
+
         view.setOxmapper(this.oxmapper);
         view.setApplicationContext(getApplicationContext());
         view.afterPropertiesSet();
@@ -173,18 +173,18 @@ public class CastorViewResolver extends UrlBasedViewResolver
     }
 
     /**
-     * ƒrƒ…[‚ğ¶¬‚·‚éB
-     * ƒrƒ…[–¼‚ª“ü—Í‚³‚ê‚Ä‚¢‚È‚¢ê‡‚Ì‚İACastorƒrƒ…[‚ğ¶¬‚·‚éB
-     * ƒrƒ…[–¼‚ª“ü—Í‚³‚ê‚Ä‚¢‚éê‡A‘¼‚Ìƒrƒ…[‚ğg—p‚·‚é‚à‚Ì‚Æ”»’f‚µA
-     * Null‚ğ•Ô‚·B
-     * @param viewName ƒrƒ…[–¼
-     * @return ƒrƒ…[ƒCƒ“ƒXƒ^ƒ“ƒX
-     * @throws Exception —áŠO
+     * ãƒ“ãƒ¥ãƒ¼ã‚’ç”Ÿæˆã™ã‚‹ã€‚
+     * ãƒ“ãƒ¥ãƒ¼åãŒå…¥åŠ›ã•ã‚Œã¦ã„ãªã„å ´åˆã®ã¿ã€Castorãƒ“ãƒ¥ãƒ¼ã‚’ç”Ÿæˆã™ã‚‹ã€‚
+     * ãƒ“ãƒ¥ãƒ¼åãŒå…¥åŠ›ã•ã‚Œã¦ã„ã‚‹å ´åˆã€ä»–ã®ãƒ“ãƒ¥ãƒ¼ã‚’ä½¿ç”¨ã™ã‚‹ã‚‚ã®ã¨åˆ¤æ–­ã—ã€
+     * Nullã‚’è¿”ã™ã€‚
+     * @param viewName ãƒ“ãƒ¥ãƒ¼å
+     * @return ãƒ“ãƒ¥ãƒ¼ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹
+     * @throws Exception ä¾‹å¤–
      */
     @Override
-    protected AbstractUrlBasedView buildView(String viewName) 
+    protected AbstractUrlBasedView buildView(String viewName)
         throws Exception {
-        // ƒrƒ…[–¼‚ª“ü—Í‚³‚ê‚Ä‚¢‚éê‡ANull‚ğ•Ô‚·
+        // ãƒ“ãƒ¥ãƒ¼åãŒå…¥åŠ›ã•ã‚Œã¦ã„ã‚‹å ´åˆã€Nullã‚’è¿”ã™
         if (StringUtils.hasText(viewName)) {
             return null;
         }

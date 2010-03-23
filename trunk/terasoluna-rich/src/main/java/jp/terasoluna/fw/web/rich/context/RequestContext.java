@@ -20,118 +20,118 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * ƒŠƒNƒGƒXƒg–¼E‹Æ–±ƒvƒƒpƒeƒB‚ğ•Û‚·‚é‚½‚ß‚ÌƒNƒ‰ƒXB
+ * ãƒªã‚¯ã‚¨ã‚¹ãƒˆåãƒ»æ¥­å‹™ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚’ä¿æŒã™ã‚‹ãŸã‚ã®ã‚¯ãƒ©ã‚¹ã€‚
  *
  * <p>
- * ‹Æ–±ˆ—‚ğs‚¤ã‚Å•K—v‚Æ‚È‚é§Œäî•ñ‚ğ•Û‚·‚éB
- * §Œäî•ñ‚Æ‚ÍˆÈ‰º‚ğ‚ ‚ç‚í‚·B
+ * æ¥­å‹™å‡¦ç†ã‚’è¡Œã†ä¸Šã§å¿…è¦ã¨ãªã‚‹åˆ¶å¾¡æƒ…å ±ã‚’ä¿æŒã™ã‚‹ã€‚
+ * åˆ¶å¾¡æƒ…å ±ã¨ã¯ä»¥ä¸‹ã‚’ã‚ã‚‰ã‚ã™ã€‚
  * </p>
- * 
+ *
  * <ol>
- * <li>ƒŠƒNƒGƒXƒg–¼B</li>
- * <li>‹Æ–±ƒvƒƒpƒeƒBB</li>
+ * <li>ãƒªã‚¯ã‚¨ã‚¹ãƒˆåã€‚</li>
+ * <li>æ¥­å‹™ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã€‚</li>
  * </ol>
- * 
+ *
  * <p>
- * ƒŠƒNƒGƒXƒg–¼‚Æ‚ÍAƒŠƒNƒGƒXƒg‚ğ¯•Ê‚·‚é‚½‚ß‚Ì•¶š—ñ‚Å‚ ‚èAƒtƒŒ[ƒ€ƒ[ƒN‚©‚ç—˜—p‚³‚ê‚éB
+ * ãƒªã‚¯ã‚¨ã‚¹ãƒˆåã¨ã¯ã€ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’è­˜åˆ¥ã™ã‚‹ãŸã‚ã®æ–‡å­—åˆ—ã§ã‚ã‚Šã€ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ¯ãƒ¼ã‚¯ã‹ã‚‰åˆ©ç”¨ã•ã‚Œã‚‹ã€‚
  * </p>
- * 
+ *
  * <p>
- * ‹Æ–±ƒvƒƒpƒeƒB‚ÍAƒŠƒNƒGƒXƒgŠÔ‚Å‹¤’Ê“I‚Éˆµ‚¤î•ñ‚ğ•Û‚·‚é‚à‚Ì‚Å‚ ‚èA
- * ƒfƒtƒHƒ‹ƒg‚Å‚ÍƒtƒŒ[ƒ€ƒ[ƒN‚©‚ç—˜—p‚³‚ê‚È‚¢B
- * ‹Æ–±‚Ì—vŒ‚É‚ ‚í‚¹‚Ä•K—v‚É‰‚¶‚Ä—˜—p‚·‚é‚±‚ÆB
+ * æ¥­å‹™ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã¯ã€ãƒªã‚¯ã‚¨ã‚¹ãƒˆé–“ã§å…±é€šçš„ã«æ‰±ã†æƒ…å ±ã‚’ä¿æŒã™ã‚‹ã‚‚ã®ã§ã‚ã‚Šã€
+ * ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã§ã¯ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ¯ãƒ¼ã‚¯ã‹ã‚‰åˆ©ç”¨ã•ã‚Œãªã„ã€‚
+ * æ¥­å‹™ã®è¦ä»¶ã«ã‚ã‚ã›ã¦å¿…è¦ã«å¿œã˜ã¦åˆ©ç”¨ã™ã‚‹ã“ã¨ã€‚
  * </p>
- * 
+ *
  * @see jp.terasoluna.fw.web.rich.context.support.AbstractRequestContextSupport
- * 
+ *
  */
 public class RequestContext  {
     /**
-     * ƒŠƒNƒGƒXƒg–¼B
+     * ãƒªã‚¯ã‚¨ã‚¹ãƒˆåã€‚
      */
     private String requestName = null;
-    
+
     /**
-     * ‹Æ–±ƒvƒƒpƒeƒBB
+     * æ¥­å‹™ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã€‚
      */
     private Map<String, Object> propertyMap = new HashMap<String, Object>();
 
     /**
-     * ƒŠƒNƒGƒXƒg–¼‚ğæ“¾‚·‚éB
-     * @return ƒŠƒNƒGƒXƒg–¼
+     * ãƒªã‚¯ã‚¨ã‚¹ãƒˆåã‚’å–å¾—ã™ã‚‹ã€‚
+     * @return ãƒªã‚¯ã‚¨ã‚¹ãƒˆå
      */
     public String getRequestName() {
         return requestName;
     }
 
     /**
-     * ƒŠƒNƒGƒXƒg–¼‚ğİ’è‚·‚éB
-     * @param requestName ƒŠƒNƒGƒXƒg–¼
+     * ãƒªã‚¯ã‚¨ã‚¹ãƒˆåã‚’è¨­å®šã™ã‚‹ã€‚
+     * @param requestName ãƒªã‚¯ã‚¨ã‚¹ãƒˆå
      */
     public void setRequestName(String requestName) {
         this.requestName = requestName;
     }
-    
+
     /**
-     * ‹Æ–±ƒvƒƒpƒeƒB‚ğæ“¾‚·‚éB
-     * @param key ƒvƒƒpƒeƒBƒL[
-     * @return ƒvƒƒpƒeƒB’l
+     * æ¥­å‹™ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚’å–å¾—ã™ã‚‹ã€‚
+     * @param key ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚­ãƒ¼
+     * @return ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£å€¤
      */
     public Object getProperty(String key) {
         return propertyMap.get(key);
     }
-    
+
     /**
-     * ‹Æ–±ƒvƒƒpƒeƒB‚ğİ’è‚·‚éB
-     * @param key ƒvƒƒpƒeƒBƒL[
-     * @param value ƒvƒƒpƒeƒB’l
+     * æ¥­å‹™ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚’è¨­å®šã™ã‚‹ã€‚
+     * @param key ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚­ãƒ¼
+     * @param value ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£å€¤
      */
     public void setProperty(String key, Object value) {
     	propertyMap.put(key, value);
     }
-    
+
     /**
-     * ‹Æ–±ƒvƒƒpƒeƒB‚ğæ“¾‚·‚éB
-     * ƒvƒƒpƒeƒB’l‚ªStringŒ^‚Å‚È‚¢ê‡‚Ínull‚ğ•Ô‚·B
-     * @param key ƒvƒƒpƒeƒBƒL[
-     * @return ƒvƒƒpƒeƒB’l
+     * æ¥­å‹™ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚’å–å¾—ã™ã‚‹ã€‚
+     * ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£å€¤ãŒStringå‹ã§ãªã„å ´åˆã¯nullã‚’è¿”ã™ã€‚
+     * @param key ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚­ãƒ¼
+     * @return ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£å€¤
      */
     public String getPropertyString(String key) {
     	Object object = getProperty(key);
-    	
+
     	if (object instanceof String) {
     		return (String) object;
         }
-    	
+
         return null;
     }
-    
+
     /**
-     * ‹Æ–±ƒvƒƒpƒeƒB‚ğİ’è‚·‚éB
-     * @param key ƒvƒƒpƒeƒBƒL[
-     * @param value ƒvƒƒpƒeƒB’l
+     * æ¥­å‹™ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚’è¨­å®šã™ã‚‹ã€‚
+     * @param key ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚­ãƒ¼
+     * @param value ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£å€¤
      */
     public void setPropertyString(String key, String value) {
     	setProperty(key, value);
     }
-    
+
     /**
-     * “–ƒCƒ“ƒXƒ^ƒ“ƒX‚Ì•¶š—ñ•\Œ»‚ğ•Ô‚·B
-     * @return “–ƒCƒ“ƒXƒ^ƒ“ƒX‚Ì•¶š—ñ•\Œ»B
+     * å½“ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®æ–‡å­—åˆ—è¡¨ç¾ã‚’è¿”ã™ã€‚
+     * @return å½“ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®æ–‡å­—åˆ—è¡¨ç¾ã€‚
      */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        
-        // ƒŠƒNƒGƒXƒg–¼‚Ì•¶š—ñ‰»
+
+        // ãƒªã‚¯ã‚¨ã‚¹ãƒˆåã®æ–‡å­—åˆ—åŒ–
         sb.append("requestName:");
         sb.append(requestName);
         sb.append(",");
-        
-        // ‹Æ–±ƒvƒƒpƒeƒB‚Ì•¶š—ñ‰»
+
+        // æ¥­å‹™ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã®æ–‡å­—åˆ—åŒ–
         sb.append("properties:");
         sb.append(propertyMap.toString());
-        
+
         return sb.toString();
     }
 }

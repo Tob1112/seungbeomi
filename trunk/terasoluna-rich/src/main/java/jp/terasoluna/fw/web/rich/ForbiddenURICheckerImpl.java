@@ -22,41 +22,41 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
- * �����񂪋�����URI�����肷��`�F�b�J�̃f�t�H���g�����N���X�B
- * 
+ * 文字列が許可するURIか判定するチェッカのデフォルト実装クラス。
+ *
  * <p>
- * �������̕����񂪁A
- * ���炩���ߐݒ肳�ꂽ��������̃��X�g�ɂ��Ă͂܂邪�ǂ������`�F�b�N����B
+ * 引き数の文字列が、
+ * あらかじめ設定された許可文字列のリストにあてはまるがどうかをチェックする。
  * </p>
- * 
+ *
  * <p>
- * �{�N���X�ł́A�V�X�e���̗v���𖞂����Ȃ��ꍇ�̂݁A
- * �{�N���X���g�p����ForbiddenURIChecker�̎����N���X��V�K�쐬���A
- * �`�F�b�N���\�b�h���������邱�ƁB
- * �ڍׂ́AForbiddenURIChecker���Q�Ƃ��邱�ƁB
+ * 本クラスでは、システムの要件を満たせない場合のみ、
+ * 本クラスを使用せずForbiddenURICheckerの実装クラスを新規作成し、
+ * チェックメソッドを実装すること。
+ * 詳細は、ForbiddenURICheckerを参照すること。
  * </p>
- * 
+ *
  * <p>
- * �{�N���X�𗘗p����ꍇ�ABean��`���邱�ƁB
- * ��`���@�́AForbiddenURIChecker���Q�Ƃ��邱�ƁB
- * �܂��A�ȉ��̃v���p�e�B��K���ݒ肷�邱�ƁB
+ * 本クラスを利用する場合、Bean定義すること。
+ * 定義方法は、ForbiddenURICheckerを参照すること。
+ * また、以下のプロパティを必ず設定すること。
  * </p>
  * <p>
  *   <table border="1" CELLPADDING="8">
- *     <th>������</th>
- *     <th>�K�{</th>
- *     <th>����</th>
- *     
+ *     <th>属性名</th>
+ *     <th>必須</th>
+ *     <th>説明</th>
+ *
  *     <tr>
  *       <td align=center><b>allowedURISet</b></td>
- *       <td>��</td>
- *       <td>������URI(�Z�b�g�`��)</td>
+ *       <td>○</td>
+ *       <td>許可するURI(セット形式)</td>
  *     </tr>
  *  </table>
  * </p>
- * 
+ *
  * <p>
- * �y<code>Bean��`�t�@�C��</code>�̐ݒ��z<br>
+ * 【<code>Bean定義ファイル</code>の設定例】<br>
  * <code><pre>
  * &lt;bean id="forbiddenURIChecker"
  *      class="jp.terasoluna.fw.web.rich.ForbiddenURICheckerImpl"&gt;
@@ -68,34 +68,34 @@ import org.apache.commons.logging.LogFactory;
  * &lt;/bean&gt;
  * </pre></code>
  * </p>
- * 
+ *
  */
 public class ForbiddenURICheckerImpl implements ForbiddenURIChecker {
     /**
-     * ���O�B
+     * ログ。
      */
     private static Log logger
         = LogFactory.getLog(ForbiddenURICheckerImpl.class);
 
     /**
-     * ������URI�̃Z�b�g�B
+     * 許可するURIのセット。
      */
     private Set<String> allowedURISet = null;
-    
+
     /**
-     * ������URI�̃��X�g��ݒ肷��B
-     * 
-     * @param allowedURISet ������URI�̃��X�g
+     * 許可するURIのリストを設定する。
+     *
+     * @param allowedURISet 許可するURIのリスト
      */
     public void setAllowedURISet(Set<String> allowedURISet) {
         this.allowedURISet = allowedURISet;
     }
-    
+
     /**
-     * ������Ă���URI���`�F�b�N����B
-     * 
-     * @param requestURI �`�F�b�N�Ώۂ�URI
-     * @return �`�F�b�N���ʁi������Ă����true�j
+     * 許可されているURIかチェックする。
+     *
+     * @param requestURI チェック対象のURI
+     * @return チェック結果（許可されていればtrue）
      */
     public boolean isAllowedURI(String requestURI) {
         if (allowedURISet == null) {
@@ -104,8 +104,8 @@ public class ForbiddenURICheckerImpl implements ForbiddenURIChecker {
             }
             return false;
         }
-        
-        // URI�̋��۔��菈��
+
+        // URIの許否判定処理
         return allowedURISet.contains(requestURI);
     }
 }

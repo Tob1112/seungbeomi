@@ -17,32 +17,32 @@
 package jp.terasoluna.fw.oxm.exception;
 
 /**
- *  Œ`®ƒ`ƒFƒbƒN‚¨‚æ‚ÑƒoƒCƒ“ƒhˆ—“à‚Å”­¶‚µ‚½—áŠO‚ğƒ‰ƒbƒv‚·‚éƒNƒ‰ƒXB
- *  
+ *  å½¢å¼ãƒã‚§ãƒƒã‚¯ãŠã‚ˆã³ãƒã‚¤ãƒ³ãƒ‰å‡¦ç†å†…ã§ç™ºç”Ÿã—ãŸä¾‹å¤–ã‚’ãƒ©ãƒƒãƒ—ã™ã‚‹ã‚¯ãƒ©ã‚¹ã€‚
+ *
  * <p>
- *  ÀÛ‚É”­¶‚µ‚½—áŠO‚É‚Â‚¢‚Ä‚Í{@link java.lang.Throwable#getCause}ƒƒ\ƒbƒh‚©‚çæ“¾‚·‚éB
+ *  å®Ÿéš›ã«ç™ºç”Ÿã—ãŸä¾‹å¤–ã«ã¤ã„ã¦ã¯{@link java.lang.Throwable#getCause}ãƒ¡ã‚½ãƒƒãƒ‰ã‹ã‚‰å–å¾—ã™ã‚‹ã€‚
  * </p>
- * 
+ *
  */
 public class OXMappingException extends RuntimeException {
 
     /**
-     * ƒVƒŠƒAƒ‹ƒo[ƒWƒ‡ƒ“IDB
+     * ã‚·ãƒªã‚¢ãƒ«ãƒãƒ¼ã‚¸ãƒ§ãƒ³IDã€‚
      */
     private static final long serialVersionUID = -5964737290418496214L;
 
     /**
-     * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-     * 
+     * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+     *
      */
     public OXMappingException() {
         super();
     }
 
     /**
-     * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-     * 
-     * @param cause ƒXƒL[ƒ}‚É‚æ‚éŒ`®ƒ`ƒFƒbƒNA‚¨‚æ‚ÑCastor‚É‚æ‚éƒoƒCƒ“ƒhˆ—‚Å”­¶‚µ‚½—áŠO
+     * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+     *
+     * @param cause ã‚¹ã‚­ãƒ¼ãƒã«ã‚ˆã‚‹å½¢å¼ãƒã‚§ãƒƒã‚¯ã€ãŠã‚ˆã³Castorã«ã‚ˆã‚‹ãƒã‚¤ãƒ³ãƒ‰å‡¦ç†ã§ç™ºç”Ÿã—ãŸä¾‹å¤–
      */
     public OXMappingException(Throwable cause) {
         super(cause);

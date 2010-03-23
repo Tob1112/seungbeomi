@@ -36,169 +36,169 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractCommandController;
 
 /**
- * ƒT[ƒrƒX‘w‚ÌƒNƒ‰ƒX‚ğÀs‚·‚éƒŠƒNƒGƒXƒgƒRƒ“ƒgƒ[ƒ‰’ŠÛƒNƒ‰ƒXB
+ * ã‚µãƒ¼ãƒ“ã‚¹å±¤ã®ã‚¯ãƒ©ã‚¹ã‚’å®Ÿè¡Œã™ã‚‹ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©æŠ½è±¡ã‚¯ãƒ©ã‚¹ã€‚
  *
- * <p>–{ƒRƒ“ƒgƒ[ƒ‰‚ÍA<code>DispachServlet</code>‚©‚ç‹N“®‚³‚êA
- * ˆÈ‰º‚Ì‹@”\‚ğ’ñ‹Ÿ‚·‚éB
+ * <p>æœ¬ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã¯ã€<code>DispachServlet</code>ã‹ã‚‰èµ·å‹•ã•ã‚Œã€
+ * ä»¥ä¸‹ã®æ©Ÿèƒ½ã‚’æä¾›ã™ã‚‹ã€‚
  * </p>
  * <ul>
- * <li>HTTPƒŠƒNƒGƒXƒg‚ğJavaBeaniƒRƒ}ƒ“ƒhj‚ÉƒoƒCƒ“ƒh</li>
- * <li>“ü—Íƒ`ƒFƒbƒNÀs</li>
- * <li>POJO‚Ì‹Æ–±ƒƒWƒbƒNƒNƒ‰ƒXÀs</li>
- * <li>JavaBan(ƒ‚ƒfƒ‹)‚ÆView‚ğ•Ô‹p</li>
+ * <li>HTTPãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’JavaBeanï¼ˆã‚³ãƒãƒ³ãƒ‰ï¼‰ã«ãƒã‚¤ãƒ³ãƒ‰</li>
+ * <li>å…¥åŠ›ãƒã‚§ãƒƒã‚¯å®Ÿè¡Œ</li>
+ * <li>POJOã®æ¥­å‹™ãƒ­ã‚¸ãƒƒã‚¯ã‚¯ãƒ©ã‚¹å®Ÿè¡Œ</li>
+ * <li>JavaBan(ãƒ¢ãƒ‡ãƒ«)ã¨Viewã‚’è¿”å´</li>
  * </ul>
- * 
+ *
  * <p>
- * –{ƒNƒ‰ƒX‚ÍA’ŠÛƒNƒ‰ƒX‚Å‚ ‚éB
- * ‹Æ–±ŠJ”­Ò‚ªAƒŠƒNƒGƒXƒg‚²‚Æ‚É–{ƒNƒ‰ƒX‚ÌÀ‘•ƒNƒ‰ƒX‚ğì¬‚·‚é‚±‚ÆB
- * –{ƒNƒ‰ƒX‚ÍAŒ^ƒpƒ‰ƒ[ƒ^‚ğ—˜—p‚µ‚ÄéŒ¾‚³‚ê‚Ä‚¢‚éB
- * Œ^ƒpƒ‰ƒ[ƒ^P‚ÍAHTTPƒŠƒNƒGƒXƒg‚ğƒoƒCƒ“ƒh‚µ‚½JavaBeaniƒRƒ}ƒ“ƒh)A
- * Œ^ƒpƒ‰ƒ[ƒ^R‚ÍAView‚É”½‰f‚³‚¹‚éî•ñ‚ğ•Û‚·‚éJavaBean(ƒ‚ƒfƒ‹)‚ÌŒ^‚ğ‚ ‚ç‚í‚µ‚Ä‚¢‚éB
- * À‘•ƒNƒ‰ƒXéŒ¾‚ÉAŒ^ƒpƒ‰ƒ[ƒ^‚ÉÀÛ‚ÌŒ^‚ğw’è‚µA
- * ’ŠÛƒƒ\ƒbƒh‚ÌŒ^•Ï”‚àw’è‚µ‚½Œ^‚É‚ ‚í‚¹‚ÄÀ‘•‚·‚é‚±‚Æ‚Å
- * À‘•ƒNƒ‰ƒX‚ÌŒ^‚ÌˆÀ‘S«‚ğ•Ûá‚³‚¹‚Ä‚¢‚éB
- * Œ^ƒpƒ‰ƒ[ƒ^‚ÉP,R‚É‚ÍA•K‚¸ˆø‚«”‚È‚µƒRƒ“ƒXƒgƒ‰ƒNƒ^‚ğ‚ÂJavaBean‚ğw’è‚·‚é‚±‚ÆB
- * ƒCƒ“ƒ^ƒtƒF[ƒXA’ŠÛƒNƒ‰ƒXAˆø‚«”‚È‚µƒRƒ“ƒXƒgƒ‰ƒNƒ^‚ğ‚½‚È‚¢ƒNƒ‰ƒX‚Ìw’è‚Ío—ˆ‚È‚¢B
- * </p>
- * 
- * <p>
- * <u>ƒT[ƒrƒX‘w‚ÌƒNƒ‰ƒX‚ÌÀs</u><br>
- * ƒT[ƒrƒX‘w‚ÌƒNƒ‰ƒX‚ÍADIƒRƒ“ƒeƒi‚ğ—˜—p‚µ‚Ä–{ƒRƒ“ƒgƒ[ƒ‰‚Éİ’è‚³‚ê‚é‚±‚Æ‚ğ‘O’ñ‚Æ‚·‚é‚Ì‚ÅA
- * ‹Æ–±ŠJ”­Ò‚ÍƒT[ƒrƒX‘w‚ÌƒNƒ‰ƒX‚ğ‘®«‚Æ‚µ‚Ä—pˆÓ‚µAsetter/getterƒƒ\ƒbƒh‚ğİ‚¯‚é‚±‚ÆB
- * ‚Ü‚½AŒÄ‚Ño‚µˆ—‚ÍA’ŠÛƒƒ\ƒbƒh‚Å‚ ‚éexecuteServiceƒƒ\ƒbƒh‚ÉÀ‘•‚·‚é‚±‚ÆB
- * </p>
- * 
- * <p> 
- * ‹Æ–±ˆ—‚Å—áŠO‚ª”­¶‚µ‚½ê‡A
- * Spring MVC‚Ì—áŠOˆ—‹@\‚Åƒnƒ“ƒhƒŠƒ“ƒO‚³‚ê‚éB
+ * æœ¬ã‚¯ãƒ©ã‚¹ã¯ã€æŠ½è±¡ã‚¯ãƒ©ã‚¹ã§ã‚ã‚‹ã€‚
+ * æ¥­å‹™é–‹ç™ºè€…ãŒã€ãƒªã‚¯ã‚¨ã‚¹ãƒˆã”ã¨ã«æœ¬ã‚¯ãƒ©ã‚¹ã®å®Ÿè£…ã‚¯ãƒ©ã‚¹ã‚’ä½œæˆã™ã‚‹ã“ã¨ã€‚
+ * æœ¬ã‚¯ãƒ©ã‚¹ã¯ã€å‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’åˆ©ç”¨ã—ã¦å®£è¨€ã•ã‚Œã¦ã„ã‚‹ã€‚
+ * å‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿Pã¯ã€HTTPãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’ãƒã‚¤ãƒ³ãƒ‰ã—ãŸJavaBeanï¼ˆã‚³ãƒãƒ³ãƒ‰)ã€
+ * å‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿Rã¯ã€Viewã«åæ˜ ã•ã›ã‚‹æƒ…å ±ã‚’ä¿æŒã™ã‚‹JavaBean(ãƒ¢ãƒ‡ãƒ«)ã®å‹ã‚’ã‚ã‚‰ã‚ã—ã¦ã„ã‚‹ã€‚
+ * å®Ÿè£…ã‚¯ãƒ©ã‚¹å®£è¨€æ™‚ã«ã€å‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«å®Ÿéš›ã®å‹ã‚’æŒ‡å®šã—ã€
+ * æŠ½è±¡ãƒ¡ã‚½ãƒƒãƒ‰ã®å‹å¤‰æ•°ã‚‚æŒ‡å®šã—ãŸå‹ã«ã‚ã‚ã›ã¦å®Ÿè£…ã™ã‚‹ã“ã¨ã§
+ * å®Ÿè£…ã‚¯ãƒ©ã‚¹ã®å‹ã®å®‰å…¨æ€§ã‚’ä¿éšœã•ã›ã¦ã„ã‚‹ã€‚
+ * å‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«P,Rã«ã¯ã€å¿…ãšå¼•ãæ•°ãªã—ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã‚’æŒã¤JavaBeanã‚’æŒ‡å®šã™ã‚‹ã“ã¨ã€‚
+ * ã‚¤ãƒ³ã‚¿ãƒ•ã‚§ãƒ¼ã‚¹ã€æŠ½è±¡ã‚¯ãƒ©ã‚¹ã€å¼•ãæ•°ãªã—ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã‚’æŒãŸãªã„ã‚¯ãƒ©ã‚¹ã®æŒ‡å®šã¯å‡ºæ¥ãªã„ã€‚
  * </p>
  *
  * <p>
- * <u>ƒoƒCƒ“ƒhˆ—</u><br>
- * ServletRequestDataBinderŒp³ƒNƒ‰ƒX‚ªs‚¤B
- * ServletRequestDataBinder‚ğ¶¬‚·‚é‚½‚ß‚ÌƒNƒ‰ƒX‚Å‚ ‚éDataBinderCreator‚ğ
- * DIƒRƒ“ƒeƒi‚ğ—˜—p‚µ‚Ä–{ƒRƒ“ƒgƒ[ƒ‰‚Éİ’è‚·‚é‚±‚ÆB
- * DataBinderCreator‚ÍAƒŠƒNƒGƒXƒg‚ÌŒ`®(XML or Query)‚É‚æ‚èg‚¢‚í‚¯‚éB
- * ƒoƒCƒ“ƒhˆ—‚ÅAƒoƒCƒ“ƒhƒGƒ‰[‚ª”­¶‚µ‚½ê‡ABindException‚ªƒXƒ[‚³‚êA
- * Spring MVC‚Ì—áŠOˆ—‹@\‚Åƒnƒ“ƒhƒŠƒ“ƒO‚³‚ê‚éB
+ * <u>ã‚µãƒ¼ãƒ“ã‚¹å±¤ã®ã‚¯ãƒ©ã‚¹ã®å®Ÿè¡Œ</u><br>
+ * ã‚µãƒ¼ãƒ“ã‚¹å±¤ã®ã‚¯ãƒ©ã‚¹ã¯ã€DIã‚³ãƒ³ãƒ†ãƒŠã‚’åˆ©ç”¨ã—ã¦æœ¬ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã«è¨­å®šã•ã‚Œã‚‹ã“ã¨ã‚’å‰æã¨ã™ã‚‹ã®ã§ã€
+ * æ¥­å‹™é–‹ç™ºè€…ã¯ã‚µãƒ¼ãƒ“ã‚¹å±¤ã®ã‚¯ãƒ©ã‚¹ã‚’å±æ€§ã¨ã—ã¦ç”¨æ„ã—ã€setter/getterãƒ¡ã‚½ãƒƒãƒ‰ã‚’è¨­ã‘ã‚‹ã“ã¨ã€‚
+ * ã¾ãŸã€å‘¼ã³å‡ºã—å‡¦ç†ã¯ã€æŠ½è±¡ãƒ¡ã‚½ãƒƒãƒ‰ã§ã‚ã‚‹executeServiceãƒ¡ã‚½ãƒƒãƒ‰ã«å®Ÿè£…ã™ã‚‹ã“ã¨ã€‚
  * </p>
- * 
+ *
  * <p>
- * <u>“ü—Íƒ`ƒFƒbƒNˆ—</u><br>
- * ValidatorƒCƒ“ƒ^ƒtƒF[ƒXÀ‘•ƒNƒ‰ƒX‚ªs‚¤B
- * ValidatorƒCƒ“ƒ^ƒtƒF[ƒXÀ‘•ƒNƒ‰ƒX‚ğ
- * DIƒRƒ“ƒeƒi‚ğ—˜—p‚µ‚Ä–{ƒRƒ“ƒgƒ[ƒ‰‚Éİ’è‚·‚é‚±‚ÆB
- * “ü—Íƒ`ƒFƒbƒNˆ—‚ÅA“ü—Íƒ`ƒFƒbƒNƒGƒ‰[‚ª”­¶‚µ‚½ê‡A
- * BindException‚ªƒXƒ[‚³‚êA
- * Spring MVC‚Ì—áŠOˆ—‹@\‚Åƒnƒ“ƒhƒŠƒ“ƒO‚³‚ê‚éB
+ * æ¥­å‹™å‡¦ç†ã§ä¾‹å¤–ãŒç™ºç”Ÿã—ãŸå ´åˆã€
+ * Spring MVCã®ä¾‹å¤–å‡¦ç†æ©Ÿæ§‹ã§ãƒãƒ³ãƒ‰ãƒªãƒ³ã‚°ã•ã‚Œã‚‹ã€‚
  * </p>
- * 
+ *
  * <p>
- * <u>ƒrƒ…[–¼‚Ìİ’è</u><br>
- * <code>DispachServlet</code>‚Å‚Ìƒrƒ…[‰ğŒˆ‚Ég—p‚³‚ê‚éƒrƒ…[–¼‚ğ
+ * <u>ãƒã‚¤ãƒ³ãƒ‰å‡¦ç†</u><br>
+ * ServletRequestDataBinderç¶™æ‰¿ã‚¯ãƒ©ã‚¹ãŒè¡Œã†ã€‚
+ * ServletRequestDataBinderã‚’ç”Ÿæˆã™ã‚‹ãŸã‚ã®ã‚¯ãƒ©ã‚¹ã§ã‚ã‚‹DataBinderCreatorã‚’
+ * DIã‚³ãƒ³ãƒ†ãƒŠã‚’åˆ©ç”¨ã—ã¦æœ¬ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã«è¨­å®šã™ã‚‹ã“ã¨ã€‚
+ * DataBinderCreatorã¯ã€ãƒªã‚¯ã‚¨ã‚¹ãƒˆã®å½¢å¼(XML or Query)ã«ã‚ˆã‚Šä½¿ã„ã‚ã‘ã‚‹ã€‚
+ * ãƒã‚¤ãƒ³ãƒ‰å‡¦ç†ã§ã€ãƒã‚¤ãƒ³ãƒ‰ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸå ´åˆã€BindExceptionãŒã‚¹ãƒ­ãƒ¼ã•ã‚Œã€
+ * Spring MVCã®ä¾‹å¤–å‡¦ç†æ©Ÿæ§‹ã§ãƒãƒ³ãƒ‰ãƒªãƒ³ã‚°ã•ã‚Œã‚‹ã€‚
+ * </p>
+ *
+ * <p>
+ * <u>å…¥åŠ›ãƒã‚§ãƒƒã‚¯å‡¦ç†</u><br>
+ * Validatorã‚¤ãƒ³ã‚¿ãƒ•ã‚§ãƒ¼ã‚¹å®Ÿè£…ã‚¯ãƒ©ã‚¹ãŒè¡Œã†ã€‚
+ * Validatorã‚¤ãƒ³ã‚¿ãƒ•ã‚§ãƒ¼ã‚¹å®Ÿè£…ã‚¯ãƒ©ã‚¹ã‚’
+ * DIã‚³ãƒ³ãƒ†ãƒŠã‚’åˆ©ç”¨ã—ã¦æœ¬ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã«è¨­å®šã™ã‚‹ã“ã¨ã€‚
+ * å…¥åŠ›ãƒã‚§ãƒƒã‚¯å‡¦ç†ã§ã€å…¥åŠ›ãƒã‚§ãƒƒã‚¯ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸå ´åˆã€
+ * BindExceptionãŒã‚¹ãƒ­ãƒ¼ã•ã‚Œã€
+ * Spring MVCã®ä¾‹å¤–å‡¦ç†æ©Ÿæ§‹ã§ãƒãƒ³ãƒ‰ãƒªãƒ³ã‚°ã•ã‚Œã‚‹ã€‚
+ * </p>
+ *
+ * <p>
+ * <u>ãƒ“ãƒ¥ãƒ¼åã®è¨­å®š</u><br>
+ * <code>DispachServlet</code>ã§ã®ãƒ“ãƒ¥ãƒ¼è§£æ±ºã«ä½¿ç”¨ã•ã‚Œã‚‹ãƒ“ãƒ¥ãƒ¼åã‚’
  * {@link #handle(HttpServletRequest, HttpServletResponse, Object, BindException)}
- * ƒƒ\ƒbƒh“à‚Åİ’è‚µ‚Ä‚¢‚éB
- * ƒrƒ…[–¼‚ÍAˆÈ‰º‚Ì‡”Ô‚ÅŒˆ’è‚³‚ê‚éB
+ * ãƒ¡ã‚½ãƒƒãƒ‰å†…ã§è¨­å®šã—ã¦ã„ã‚‹ã€‚
+ * ãƒ“ãƒ¥ãƒ¼åã¯ã€ä»¥ä¸‹ã®é †ç•ªã§æ±ºå®šã•ã‚Œã‚‹ã€‚
  * <ul>
- * <li>–{ƒRƒ“ƒgƒ[ƒ‰‚Ì{@link #viewName}‘®«‚ª“ü—Í‚³‚ê‚Ä‚¢‚ê‚ÎA‚»‚Ì‘®«’l</li>
- * <li>–{ƒRƒ“ƒgƒ[ƒ‰‚Ì{@link #useRequestNameView}‘®«‚ªtrue‚È‚ç‚ÎA
- *     h/h{uƒŠƒNƒGƒXƒg–¼v@</li>
- * <li>ã‹L‚É‚ ‚Ä‚Í‚Ü‚ç‚È‚¢ê‡A‹ó•¶š@¦</li>
+ * <li>æœ¬ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã®{@link #viewName}å±æ€§ãŒå…¥åŠ›ã•ã‚Œã¦ã„ã‚Œã°ã€ãã®å±æ€§å€¤</li>
+ * <li>æœ¬ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã®{@link #useRequestNameView}å±æ€§ãŒtrueãªã‚‰ã°ã€
+ *     â€/â€ï¼‹ã€Œãƒªã‚¯ã‚¨ã‚¹ãƒˆåã€ã€€</li>
+ * <li>ä¸Šè¨˜ã«ã‚ã¦ã¯ã¾ã‚‰ãªã„å ´åˆã€ç©ºæ–‡å­—ã€€â€»</li>
  * </ul>
- * ¦¥¥¥TERASOLUNA‚Ì‰Šúİ’è‚Å‚ÍAƒrƒ…[–¼‚É‹ó•¶š‚ª“ü‚Á‚Ä‚¢‚é‚Æ
- * Castorƒrƒ…[‚ğg—p‚·‚éd—l‚É‚È‚Á‚Ä‚¢‚éB
- * </p>
- * 
- * <p>
- * ƒgƒ‰ƒ“ƒUƒNƒVƒ‡ƒ“ŠÇ—‚ÌÓ–±‚ÍAƒT[ƒrƒX‘w‚ªó‚¯‚ÂB
- * i‚½‚¾‚µAAOP‚É‚æ‚ééŒ¾“Iƒgƒ‰ƒ“ƒUƒNƒVƒ‡ƒ“‚ğ—˜—p‚·‚é‚Ì‚ÅA
- * ƒT[ƒrƒX‘w‚ÌƒNƒ‰ƒX‚ªˆÓ¯‚·‚é•K—v‚Í‚È‚¢Bj
+ * â€»ï½¥ï½¥ï½¥TERASOLUNAã®åˆæœŸè¨­å®šã§ã¯ã€ãƒ“ãƒ¥ãƒ¼åã«ç©ºæ–‡å­—ãŒå…¥ã£ã¦ã„ã‚‹ã¨
+ * Castorãƒ“ãƒ¥ãƒ¼ã‚’ä½¿ç”¨ã™ã‚‹ä»•æ§˜ã«ãªã£ã¦ã„ã‚‹ã€‚
  * </p>
  *
  * <p>
- * ì¬‚µ‚½À‘•ƒNƒ‰ƒX‚ğ—˜—p‚·‚é‚É‚ÍABean‚Ì’è‹`‚ğs‚¤‚±‚ÆB
+ * ãƒˆãƒ©ãƒ³ã‚¶ã‚¯ã‚·ãƒ§ãƒ³ç®¡ç†ã®è²¬å‹™ã¯ã€ã‚µãƒ¼ãƒ“ã‚¹å±¤ãŒå—ã‘æŒã¤ã€‚
+ * ï¼ˆãŸã ã—ã€AOPã«ã‚ˆã‚‹å®£è¨€çš„ãƒˆãƒ©ãƒ³ã‚¶ã‚¯ã‚·ãƒ§ãƒ³ã‚’åˆ©ç”¨ã™ã‚‹ã®ã§ã€
+ * ã‚µãƒ¼ãƒ“ã‚¹å±¤ã®ã‚¯ãƒ©ã‚¹ãŒæ„è­˜ã™ã‚‹å¿…è¦ã¯ãªã„ã€‚ï¼‰
  * </p>
  *
  * <p>
- * y<code>xxx-servlet.xml</code>‚Ì’è‹`—áz<br>
+ * ä½œæˆã—ãŸå®Ÿè£…ã‚¯ãƒ©ã‚¹ã‚’åˆ©ç”¨ã™ã‚‹ã«ã¯ã€Beanã®å®šç¾©ã‚’è¡Œã†ã“ã¨ã€‚
+ * </p>
+ *
+ * <p>
+ * ã€<code>xxx-servlet.xml</code>ã®å®šç¾©ä¾‹ã€‘<br>
  * <code><pre>
  *   &lt;bean name="/secure/blogic/sum.do"
  *       class="jp.terasoluna.sample2.web.controller.SumController"
  *       parent="xmlRequestController" singleton ="false"&gt;
  *     &lt;property name="sumService" ref="sumService"/&gt;
- *     &lt;property name="ctxSupport" ref="ctxSupport"/&gt;  
+ *     &lt;property name="ctxSupport" ref="ctxSupport"/&gt;
  *     &lt;property name="dataBinderCreator" ref="xmlDataBinderCreator"/&gt;
  *     &lt;property name="validator" ref="sumValidator"/&gt;
  *   &lt;/bean&gt;
  * </pre></code>
  * </p>
- * 
+ *
  * <p>
- * ˆÈ‰º‚ÌƒvƒƒpƒeƒB‚ğİ’è‚·‚é‚±‚ÆB
+ * ä»¥ä¸‹ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚’è¨­å®šã™ã‚‹ã“ã¨ã€‚
  *   <table border="1" CELLPADDING="8">
- *     <th>‘®«–¼</th>
- *     <th>•K{</th>
- *     <th>à–¾</th>
- *  
+ *     <th>å±æ€§å</th>
+ *     <th>å¿…é ˆ</th>
+ *     <th>èª¬æ˜</th>
+ *
  *     <tr>
  *       <td align=center><b>ctxSupport</b></td>
- *       <td>›</td>
- *       <td>§Œäî•ñƒTƒ|[ƒgƒNƒ‰ƒXB</td>
+ *       <td>â—‹</td>
+ *       <td>åˆ¶å¾¡æƒ…å ±ã‚µãƒãƒ¼ãƒˆã‚¯ãƒ©ã‚¹ã€‚</td>
  *     </tr>
- *     
+ *
  *     <tr>
  *       <td align=center><b>dataBinderCreator</b></td>
- *       <td>›</td>
- *       <td>ƒŠƒNƒGƒXƒgƒf[ƒ^ƒoƒCƒ“ƒ_¶¬ƒNƒ‰ƒXB</td>
+ *       <td>â—‹</td>
+ *       <td>ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ãƒ€ç”Ÿæˆã‚¯ãƒ©ã‚¹ã€‚</td>
  *     </tr>
- *   
+ *
  *     <tr>
  *       <td align=center><b>validator</b></td>
- *       <td>~</td>
- *       <td>“ü—Íƒ`ƒFƒbƒNƒNƒ‰ƒXB</td>
- *     </tr> 
- *     
+ *       <td>Ã—</td>
+ *       <td>å…¥åŠ›ãƒã‚§ãƒƒã‚¯ã‚¯ãƒ©ã‚¹ã€‚</td>
+ *     </tr>
+ *
  *     <tr>
  *       <td align=center><b>viewName</b></td>
- *       <td>~</td>
- *       <td>ƒrƒ…[–¼B
- *           ƒfƒtƒHƒ‹ƒgˆÈŠO‚ÌView‹Zp(Velocity,ƒoƒCƒiƒŠƒf[ƒ^, PDF, Excel“™)‚ğ
- *           —˜—p‚·‚éê‡‚Éİ’è‚·‚éB</td>
+ *       <td>Ã—</td>
+ *       <td>ãƒ“ãƒ¥ãƒ¼åã€‚
+ *           ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆä»¥å¤–ã®ViewæŠ€è¡“(Velocity,ãƒã‚¤ãƒŠãƒªãƒ‡ãƒ¼ã‚¿, PDF, Excelç­‰)ã‚’
+ *           åˆ©ç”¨ã™ã‚‹å ´åˆã«è¨­å®šã™ã‚‹ã€‚</td>
  *     </tr>
  *     <tr>
  *       <td align=center><b>useRequestNameView</b></td>
- *       <td>~</td>
- *       <td>ƒrƒ…[–¼‚ÉƒŠƒNƒGƒXƒg–¼‚ğg—p‚·‚é‚©”»’f‚·‚éƒtƒ‰ƒOB
- *           ƒfƒtƒHƒ‹ƒg‚ÍfalseBƒŠƒNƒGƒXƒg–¼‚ğg—p‚µ‚½‚¢ê‡Atrue‚ğİ’è‚·‚éB
- *           true‚ªİ’è‚³‚ê‚Ä‚¢‚Ä‚àAviewName‚ª“ü—Í‚³‚ê‚Ä‚¢‚ê‚ÎviewName‚É
- *           ‘Î‰‚·‚éƒrƒ…[‚ªg—p‚³‚ê‚éB
+ *       <td>Ã—</td>
+ *       <td>ãƒ“ãƒ¥ãƒ¼åã«ãƒªã‚¯ã‚¨ã‚¹ãƒˆåã‚’ä½¿ç”¨ã™ã‚‹ã‹åˆ¤æ–­ã™ã‚‹ãƒ•ãƒ©ã‚°ã€‚
+ *           ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã¯falseã€‚ãƒªã‚¯ã‚¨ã‚¹ãƒˆåã‚’ä½¿ç”¨ã—ãŸã„å ´åˆã€trueã‚’è¨­å®šã™ã‚‹ã€‚
+ *           trueãŒè¨­å®šã•ã‚Œã¦ã„ã¦ã‚‚ã€viewNameãŒå…¥åŠ›ã•ã‚Œã¦ã„ã‚Œã°viewNameã«
+ *           å¯¾å¿œã™ã‚‹ãƒ“ãƒ¥ãƒ¼ãŒä½¿ç”¨ã•ã‚Œã‚‹ã€‚
  *       </td>
- *     </tr> 
+ *     </tr>
  *  </table>
- *  ‚±‚Ì‚Ù‚©‚ÉÀs‚·‚éƒT[ƒrƒX‘w‚ÌƒNƒ‰ƒX‚ğƒvƒƒpƒeƒB‚Éİ’è‚·‚é‚±‚ÆB
- *  ƒRƒ}ƒ“ƒhƒNƒ‰ƒX–¼‚ğw’è‚·‚éAcommandclass‘®«‚Ìw’è‚Í•s—v‚Å‚ ‚éB
- *  ƒRƒ}ƒ“ƒhƒNƒ‰ƒX‚ÌŒ^‚ÍA–{ƒNƒ‰ƒX‚ÌŒ^ƒpƒ‰ƒ[ƒ^‚æ‚èA©“®“I‚É”»’f‚·‚é‚½‚ß‚Å‚ ‚éB
+ *  ã“ã®ã»ã‹ã«å®Ÿè¡Œã™ã‚‹ã‚µãƒ¼ãƒ“ã‚¹å±¤ã®ã‚¯ãƒ©ã‚¹ã‚’ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã«è¨­å®šã™ã‚‹ã“ã¨ã€‚
+ *  ã‚³ãƒãƒ³ãƒ‰ã‚¯ãƒ©ã‚¹åã‚’æŒ‡å®šã™ã‚‹ã€commandclasså±æ€§ã®æŒ‡å®šã¯ä¸è¦ã§ã‚ã‚‹ã€‚
+ *  ã‚³ãƒãƒ³ãƒ‰ã‚¯ãƒ©ã‚¹ã®å‹ã¯ã€æœ¬ã‚¯ãƒ©ã‚¹ã®å‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚ˆã‚Šã€è‡ªå‹•çš„ã«åˆ¤æ–­ã™ã‚‹ãŸã‚ã§ã‚ã‚‹ã€‚
  * </p>
- * 
- * 
+ *
+ *
  * <p>
- * ‚Ü‚½A§Œäî•ñƒTƒ|[ƒgƒNƒ‰ƒXAƒŠƒNƒGƒXƒgƒf[ƒ^ƒoƒCƒ“ƒ_¶¬ƒNƒ‰ƒX‚Ìİ’è‚ÍA
- * •¡”‚ÌƒRƒ“ƒgƒ[ƒ‰’è‹`‚Å“¯ˆê‚É‚È‚éB
- * ‚æ‚Á‚ÄA’ŠÛBean’è‹`‚ğ‚ ‚ç‚©‚¶‚ßİ’è‚µ‚Ä‚¨‚«A
- * À‘•ƒNƒ‰ƒX‚ÌBean’è‹`‚ÍA’ŠÛBean’è‹`‚ğŒp³‚µ‚Äs‚¤‚Æ
- * İ’èƒtƒ@ƒCƒ‹‚Ì‹Lq‚ªƒVƒ“ƒvƒ‹‚É‚È‚éB
+ * ã¾ãŸã€åˆ¶å¾¡æƒ…å ±ã‚µãƒãƒ¼ãƒˆã‚¯ãƒ©ã‚¹ã€ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ãƒ€ç”Ÿæˆã‚¯ãƒ©ã‚¹ã®è¨­å®šã¯ã€
+ * è¤‡æ•°ã®ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©å®šç¾©ã§åŒä¸€ã«ãªã‚‹ã€‚
+ * ã‚ˆã£ã¦ã€æŠ½è±¡Beanå®šç¾©ã‚’ã‚ã‚‰ã‹ã˜ã‚è¨­å®šã—ã¦ãŠãã€
+ * å®Ÿè£…ã‚¯ãƒ©ã‚¹ã®Beanå®šç¾©ã¯ã€æŠ½è±¡Beanå®šç¾©ã‚’ç¶™æ‰¿ã—ã¦è¡Œã†ã¨
+ * è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã®è¨˜è¿°ãŒã‚·ãƒ³ãƒ—ãƒ«ã«ãªã‚‹ã€‚
  * </p>
- * 
+ *
  * <p>
- * y’ŠÛBean’è‹`‚ğ—˜—p‚µ‚½<code>xxx-servlet.xml</code>‚Ì’è‹`—áz<br>
+ * ã€æŠ½è±¡Beanå®šç¾©ã‚’åˆ©ç”¨ã—ãŸ<code>xxx-servlet.xml</code>ã®å®šç¾©ä¾‹ã€‘<br>
  * <code><pre>
- *   &lt;!-- ƒRƒ“ƒgƒ[ƒ‰‚Ì’ŠÛBean’è‹` --&gt;
+ *   &lt;!-- ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã®æŠ½è±¡Beanå®šç¾© --&gt;
  *   &lt;bean id="xmlRequestController" abstract="true"&gt;
- *     &lt;property name="cxtSupport" ref="ctxSupport"/&gt;  
+ *     &lt;property name="cxtSupport" ref="ctxSupport"/&gt;
  *     &lt;property name="dataBinderCreator" ref="xmlDataBinderCreator"/&gt;
  *   &lt;/bean&gt;
  *
- *   &lt;!-- ’ŠÛBean’è‹`‚ğŒp³‚µ‚½ƒRƒ“ƒgƒ[ƒ‰‚Ì’è‹` --&gt;
+ *   &lt;!-- æŠ½è±¡Beanå®šç¾©ã‚’ç¶™æ‰¿ã—ãŸã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã®å®šç¾© --&gt;
  *   &lt;bean name="/secure/blogic/sum.do"
  *       class="jp.terasoluna.sample2.web.controller.SumController"
  *       parent="xmlRequestController" scope="singleton"&gt;
@@ -207,115 +207,115 @@ import org.springframework.web.servlet.mvc.AbstractCommandController;
  *   &lt;/bean&gt;
  * </code></pre>
  * </p>
- * 
+ *
  * <p>
- * TERASOLUNA‚Å‚ÍA
- * ‚ ‚ç‚©‚¶‚ß‚¢‚­‚Â‚©‚Ì’ŠÛBean’è‹`‚ª—pˆÓ‚³‚ê‚Ä‚¢‚éB•K—v‚É‰‚¶‚Ä—˜—p‚·‚é‚±‚ÆB
+ * TERASOLUNAã§ã¯ã€
+ * ã‚ã‚‰ã‹ã˜ã‚ã„ãã¤ã‹ã®æŠ½è±¡Beanå®šç¾©ãŒç”¨æ„ã•ã‚Œã¦ã„ã‚‹ã€‚å¿…è¦ã«å¿œã˜ã¦åˆ©ç”¨ã™ã‚‹ã“ã¨ã€‚
  *   <table border="1" CELLPADDING="8">
- *     <th>’ŠÛBean–¼</th>
- *     <th>óMƒŠƒNƒGƒXƒg</th>
- *     <th>‹N“®ƒT[ƒrƒX</th>
- *  
+ *     <th>æŠ½è±¡Beanå</th>
+ *     <th>å—ä¿¡ãƒªã‚¯ã‚¨ã‚¹ãƒˆ</th>
+ *     <th>èµ·å‹•ã‚µãƒ¼ãƒ“ã‚¹</th>
+ *
  *     <tr>
  *       <td align=center><b>xmlRequestController</b></td>
- *       <td>XMLŒ`®</td>
+ *       <td>XMLå½¢å¼</td>
  *       <td>POJO</td>
  *     </tr>
- *     
+ *
  *     <tr>
  *       <td align=center><b>queryRequestController</b></td>
- *       <td>ƒNƒGƒŠŒ`®</td>
+ *       <td>ã‚¯ã‚¨ãƒªå½¢å¼</td>
  *       <td>POJO</td>
  *     </tr>
- *   
+ *
  *     <tr>
  *       <td align=center><b>xmlRequestBLogicExecuteController</b></td>
- *       <td>XMLŒ`®</td>
+ *       <td>XMLå½¢å¼</td>
  *       <td>BLogic</td>
- *     </tr> 
- *     
+ *     </tr>
+ *
  *     <tr>
  *       <td align=center><b>queryRequestBLogicExecuteController</b></td>
- *       <td>ƒNƒGƒŠŒ`®</td>
+ *       <td>ã‚¯ã‚¨ãƒªå½¢å¼</td>
  *       <td>BLogic</td>
- *     </tr>   
+ *     </tr>
  *  </table>
- * 
+ *
  * </p>
- *   
+ *
  * </pre></code>
  * </p>
  *
  * <p>
- * “K—pæƒVƒXƒeƒ€‚É“Á‰»‚µ‚½‹Æ–±‘Oˆ—AŒãˆ—‚ğ’Ç‰Á‚µ‚½‚¢ê‡
- * i—á‚¦‚Î‹Æ–±ˆ—ƒpƒ‰ƒ[ƒ^‚â‹Æ–±ˆ—Œ‹‰Ê‚É
- * ƒZƒbƒVƒ‡ƒ“‚Ìî•ñ‚ğ”½‰f‚µ‚½‚¢ê‡“™jA
- * preServiceApostServiceƒƒ\ƒbƒh‚ğƒI[ƒo[ƒ‰ƒCƒh‚µ‚½À‘•ƒNƒ‰ƒX‚ğì¬‚µA
- * —˜—p‚·‚é‚±‚ÆB<br>
- * ƒTƒuƒNƒ‰ƒX‚Å’ŠÛƒNƒ‰ƒX‚ğg—p‚·‚éê‡A{@link #getCommandType()}ƒƒ\ƒbƒh‚ğ
- * ƒI[ƒo[ƒ‰ƒCƒh‚·‚é•K—v‚ª‚ ‚éB
+ * é©ç”¨å…ˆã‚·ã‚¹ãƒ†ãƒ ã«ç‰¹åŒ–ã—ãŸæ¥­å‹™å‰å‡¦ç†ã€å¾Œå‡¦ç†ã‚’è¿½åŠ ã—ãŸã„å ´åˆ
+ * ï¼ˆä¾‹ãˆã°æ¥­å‹™å‡¦ç†ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚„æ¥­å‹™å‡¦ç†çµæœã«
+ * ã‚»ãƒƒã‚·ãƒ§ãƒ³ã®æƒ…å ±ã‚’åæ˜ ã—ãŸã„å ´åˆç­‰ï¼‰ã€
+ * preServiceã€postServiceãƒ¡ã‚½ãƒƒãƒ‰ã‚’ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰ã—ãŸå®Ÿè£…ã‚¯ãƒ©ã‚¹ã‚’ä½œæˆã—ã€
+ * åˆ©ç”¨ã™ã‚‹ã“ã¨ã€‚<br>
+ * ã‚µãƒ–ã‚¯ãƒ©ã‚¹ã§æŠ½è±¡ã‚¯ãƒ©ã‚¹ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã€{@link #getCommandType()}ãƒ¡ã‚½ãƒƒãƒ‰ã‚’
+ * ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰ã™ã‚‹å¿…è¦ãŒã‚ã‚‹ã€‚
  * </p>
- * 
+ *
  * <p>
- * ‹N“®‚·‚éƒT[ƒrƒX‘w‚ÌƒNƒ‰ƒX‚Æ‚µ‚ÄPOJO‚Å‚Í‚È‚­A
- * BLogicƒCƒ“ƒ^ƒtƒF[ƒXÀ‘•ƒNƒ‰ƒX‚ğ—˜—p‚·‚é‚±‚Æ‚à‰Â”\‚Å‚ ‚éB
- * Ú×‚ÍBLogicController‚ğQÆ‚Ì‚±‚ÆB
+ * èµ·å‹•ã™ã‚‹ã‚µãƒ¼ãƒ“ã‚¹å±¤ã®ã‚¯ãƒ©ã‚¹ã¨ã—ã¦POJOã§ã¯ãªãã€
+ * BLogicã‚¤ãƒ³ã‚¿ãƒ•ã‚§ãƒ¼ã‚¹å®Ÿè£…ã‚¯ãƒ©ã‚¹ã‚’åˆ©ç”¨ã™ã‚‹ã“ã¨ã‚‚å¯èƒ½ã§ã‚ã‚‹ã€‚
+ * è©³ç´°ã¯BLogicControllerã‚’å‚ç…§ã®ã“ã¨ã€‚
  * </p>
- * 
- * 
- * @param <P> ƒRƒ}ƒ“ƒhƒNƒ‰ƒXBƒT[ƒrƒX‘w‚ÌƒNƒ‰ƒX‚Ö“n‚·ƒNƒ‰ƒXB
- * @param <R> ƒ‚ƒfƒ‹ƒNƒ‰ƒXBƒT[ƒrƒX‘w‚ÌƒNƒ‰ƒX‚©‚ç•Ô‚³‚ê‚éƒNƒ‰ƒXB
+ *
+ *
+ * @param <P> ã‚³ãƒãƒ³ãƒ‰ã‚¯ãƒ©ã‚¹ã€‚ã‚µãƒ¼ãƒ“ã‚¹å±¤ã®ã‚¯ãƒ©ã‚¹ã¸æ¸¡ã™ã‚¯ãƒ©ã‚¹ã€‚
+ * @param <R> ãƒ¢ãƒ‡ãƒ«ã‚¯ãƒ©ã‚¹ã€‚ã‚µãƒ¼ãƒ“ã‚¹å±¤ã®ã‚¯ãƒ©ã‚¹ã‹ã‚‰è¿”ã•ã‚Œã‚‹ã‚¯ãƒ©ã‚¹ã€‚
  * @see jp.terasoluna.fw.web.rich.springmvc.controller.BLogicController
- * 
+ *
  */
 public abstract class TerasolunaController<P, R>
         extends AbstractCommandController implements InitializingBean {
-    
+
     /**
-     * Œ^ƒpƒ‰ƒ[ƒ^<P, R>‚ğ’è‹`‚µ‚Ä‚¢‚éƒRƒ“ƒgƒ[ƒ‰ƒNƒ‰ƒXB
+     * å‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿<P, R>ã‚’å®šç¾©ã—ã¦ã„ã‚‹ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã‚¯ãƒ©ã‚¹ã€‚
      */
     protected Class parameterizedControllerClass = TerasolunaController.class;
 
     /**
-     * ƒƒOƒNƒ‰ƒXB
+     * ãƒ­ã‚°ã‚¯ãƒ©ã‚¹ã€‚
      */
     private static Log log = LogFactory.getLog(TerasolunaController.class);
-    
+
     /**
-     * §Œäî•ñ‚ğˆµ‚¤ƒTƒ|[ƒgƒƒWƒbƒNƒNƒ‰ƒXB
+     * åˆ¶å¾¡æƒ…å ±ã‚’æ‰±ã†ã‚µãƒãƒ¼ãƒˆãƒ­ã‚¸ãƒƒã‚¯ã‚¯ãƒ©ã‚¹ã€‚
      */
     protected RequestContextSupport ctxSupport = null;
-    
+
     /**
-     * ServletRequestDataBinderŒp³ƒNƒ‰ƒX‚ğ¶¬‚·‚éƒNƒ‰ƒXB
+     * ServletRequestDataBinderç¶™æ‰¿ã‚¯ãƒ©ã‚¹ã‚’ç”Ÿæˆã™ã‚‹ã‚¯ãƒ©ã‚¹ã€‚
      */
     protected ServletRequestDataBinderCreator dataBinderCreator = null;
-    
+
     /**
-     * ƒfƒtƒHƒ‹ƒgˆÈŠO‚Ìƒrƒ…[‹Zp(Velocity,ƒoƒCƒiƒŠƒf[ƒ^, PDF, Excel)‚ğ
-     * —˜—p‚·‚éê‡‚Éİ’è‚·‚éƒrƒ…[–¼B
+     * ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆä»¥å¤–ã®ãƒ“ãƒ¥ãƒ¼æŠ€è¡“(Velocity,ãƒã‚¤ãƒŠãƒªãƒ‡ãƒ¼ã‚¿, PDF, Excel)ã‚’
+     * åˆ©ç”¨ã™ã‚‹å ´åˆã«è¨­å®šã™ã‚‹ãƒ“ãƒ¥ãƒ¼åã€‚
      */
     protected String viewName = null;
-    
+
     /**
-     * ƒrƒ…[–¼‚ÉƒŠƒNƒGƒXƒg–¼‚ğg—p‚·‚é‚©”»’f‚·‚éƒtƒ‰ƒOB
-     * <p>true‚ğİ’è‚µ‚½ê‡Aƒrƒ…[–¼‚ÉƒŠƒNƒGƒXƒg–¼‚ğİ’è‚·‚éB
+     * ãƒ“ãƒ¥ãƒ¼åã«ãƒªã‚¯ã‚¨ã‚¹ãƒˆåã‚’ä½¿ç”¨ã™ã‚‹ã‹åˆ¤æ–­ã™ã‚‹ãƒ•ãƒ©ã‚°ã€‚
+     * <p>trueã‚’è¨­å®šã—ãŸå ´åˆã€ãƒ“ãƒ¥ãƒ¼åã«ãƒªã‚¯ã‚¨ã‚¹ãƒˆåã‚’è¨­å®šã™ã‚‹ã€‚
      */
     protected boolean useRequestNameView = false;
 
     /**
-     * ƒRƒ“ƒeƒLƒXƒg‚ğˆµ‚¤ƒTƒ|[ƒgƒƒWƒbƒNƒNƒ‰ƒX‚ğİ’è‚·‚éB
+     * ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã‚’æ‰±ã†ã‚µãƒãƒ¼ãƒˆãƒ­ã‚¸ãƒƒã‚¯ã‚¯ãƒ©ã‚¹ã‚’è¨­å®šã™ã‚‹ã€‚
      *
-     * @param ctxSupport §Œäî•ñ‚ğˆµ‚¤ƒTƒ|[ƒgƒƒWƒbƒNƒNƒ‰ƒX
+     * @param ctxSupport åˆ¶å¾¡æƒ…å ±ã‚’æ‰±ã†ã‚µãƒãƒ¼ãƒˆãƒ­ã‚¸ãƒƒã‚¯ã‚¯ãƒ©ã‚¹
      */
     public void setCtxSupport(RequestContextSupport ctxSupport) {
         this.ctxSupport = ctxSupport;
     }
-    
+
     /**
-     * DataBinder¶¬‚·‚éƒNƒ‰ƒX‚ğİ’è‚·‚éB
-     * 
-     * @param dataBinderCreator DataBinder¶¬‚·‚éƒNƒ‰ƒX
+     * DataBinderç”Ÿæˆã™ã‚‹ã‚¯ãƒ©ã‚¹ã‚’è¨­å®šã™ã‚‹ã€‚
+     *
+     * @param dataBinderCreator DataBinderç”Ÿæˆã™ã‚‹ã‚¯ãƒ©ã‚¹
      */
     public void setDataBinderCreator(
             ServletRequestDataBinderCreator dataBinderCreator) {
@@ -323,34 +323,34 @@ public abstract class TerasolunaController<P, R>
     }
 
     /**
-     * ƒrƒ…[–¼‚ğİ’è‚·‚éB
-     * 
-     * @param viewName ƒfƒtƒHƒ‹ƒgˆÈŠO‚ÌView‹Zp‚ğ—˜—p‚·‚éê‡‚É
-     * İ’è‚·‚éView–¼
+     * ãƒ“ãƒ¥ãƒ¼åã‚’è¨­å®šã™ã‚‹ã€‚
+     *
+     * @param viewName ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆä»¥å¤–ã®ViewæŠ€è¡“ã‚’åˆ©ç”¨ã™ã‚‹å ´åˆã«
+     * è¨­å®šã™ã‚‹Viewå
      */
     public void setViewName(String viewName) {
         this.viewName = viewName;
     }
-    
+
     /**
-     * ƒrƒ…[–¼‚ÉƒŠƒNƒGƒXƒg–¼‚ğg—p‚·‚é‚©”»’f‚·‚éƒtƒ‰ƒO‚ğİ’è‚·‚éB
+     * ãƒ“ãƒ¥ãƒ¼åã«ãƒªã‚¯ã‚¨ã‚¹ãƒˆåã‚’ä½¿ç”¨ã™ã‚‹ã‹åˆ¤æ–­ã™ã‚‹ãƒ•ãƒ©ã‚°ã‚’è¨­å®šã™ã‚‹ã€‚
      *
-     * @param useRequestNameView ƒrƒ…[–¼‚ÉƒŠƒNƒGƒXƒg–¼‚ğg—p‚·‚é‚©”»’f‚·‚éƒtƒ‰ƒOB
+     * @param useRequestNameView ãƒ“ãƒ¥ãƒ¼åã«ãƒªã‚¯ã‚¨ã‚¹ãƒˆåã‚’ä½¿ç”¨ã™ã‚‹ã‹åˆ¤æ–­ã™ã‚‹ãƒ•ãƒ©ã‚°ã€‚
      */
     public void setUseRequestNameView(boolean useRequestNameView) {
         this.useRequestNameView = useRequestNameView;
     }
-    
+
     /**
-     * DIƒRƒ“ƒeƒi‚É‚æ‚Á‚ÄƒCƒ“ƒXƒ^ƒ“ƒX‰»‚³‚ê‚½’¼Œã‚ÉŒÄ‚Î‚ê‚éƒƒ\ƒbƒhB
-     * •K{‘®«‚ÌNullƒ`ƒFƒbƒN‚ğs‚¤B
+     * DIã‚³ãƒ³ãƒ†ãƒŠã«ã‚ˆã£ã¦ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹åŒ–ã•ã‚ŒãŸç›´å¾Œã«å‘¼ã°ã‚Œã‚‹ãƒ¡ã‚½ãƒƒãƒ‰ã€‚
+     * å¿…é ˆå±æ€§ã®Nullãƒã‚§ãƒƒã‚¯ã‚’è¡Œã†ã€‚
      */
     public void afterPropertiesSet() {
         if (this.dataBinderCreator == null) {
             log.error("DataBinderCreator is Null.");
             throw new IllegalStateException("DataBinderCreator is Null.");
         }
-        
+
         if (this.ctxSupport == null) {
             log.error("ContextSupport is Null.");
             throw new IllegalStateException("ContextSupport is Null.");
@@ -358,37 +358,37 @@ public abstract class TerasolunaController<P, R>
     }
 
     /**
-     * ƒŠƒNƒGƒXƒg‚Ìî•ñ‚ğŠi”[‚·‚é‚½‚ß‚ÌJavaBean(ƒRƒ}ƒ“ƒh)‚ğæ“¾‚·‚éB
-     * Œ^ƒpƒ‰ƒ[ƒ^‚©‚çÀ‘•ƒRƒ“ƒgƒ[ƒ‰‚É‘Î‰‚·‚éJavaBean(ƒRƒ}ƒ“ƒh)‚ÌŒ^‚ğ”»’è‚µA
-     * ƒCƒ“ƒXƒ^ƒ“ƒX‰»‚·‚éB
-     * 
-     * @param request HTTPƒŠƒNƒGƒXƒg
-     * @return object ‹ó‚ÌƒRƒ}ƒ“ƒhƒIƒuƒWƒFƒNƒg
-     * @throws Exception —áŠO
+     * ãƒªã‚¯ã‚¨ã‚¹ãƒˆã®æƒ…å ±ã‚’æ ¼ç´ã™ã‚‹ãŸã‚ã®JavaBean(ã‚³ãƒãƒ³ãƒ‰)ã‚’å–å¾—ã™ã‚‹ã€‚
+     * å‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‹ã‚‰å®Ÿè£…ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã«å¯¾å¿œã™ã‚‹JavaBean(ã‚³ãƒãƒ³ãƒ‰)ã®å‹ã‚’åˆ¤å®šã—ã€
+     * ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹åŒ–ã™ã‚‹ã€‚
+     *
+     * @param request HTTPãƒªã‚¯ã‚¨ã‚¹ãƒˆ
+     * @return object ç©ºã®ã‚³ãƒãƒ³ãƒ‰ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+     * @throws Exception ä¾‹å¤–
      */
     @Override
     protected Object getCommand(
             HttpServletRequest request) throws Exception {
-        // ƒRƒ}ƒ“ƒhƒNƒ‰ƒX‚ÌŒ^ƒpƒ‰ƒ[ƒ^‚ğæ“¾‚·‚é
+        // ã‚³ãƒãƒ³ãƒ‰ã‚¯ãƒ©ã‚¹ã®å‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
         Type commandType = getCommandType();
-            
+
         if (logger.isDebugEnabled()) {
             logger.debug(
                 "Creating new command of class ["
                     + ((Class) commandType).getName() + "]");
         }
-        
-        // Œ^ƒpƒ‰ƒ[ƒ^‚ªObjectŒ^iw’è‚³‚ê‚Ä‚¢‚È‚¢j
-        if (commandType == Object.class) { 
+
+        // å‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒObjectå‹ï¼ˆæŒ‡å®šã•ã‚Œã¦ã„ãªã„ï¼‰
+        if (commandType == Object.class) {
             String message = "Cannot get Command type. "
                 + "Controller cannot specify the Object type "
                 + "for parameterized type P.";
             log.error(message);
             throw new IllegalStateException(message);
         }
-        
+
         try {
-            // ƒRƒ}ƒ“ƒhƒNƒ‰ƒX‚ğƒCƒ“ƒXƒ^ƒ“ƒX‰»‚·‚é
+            // ã‚³ãƒãƒ³ãƒ‰ã‚¯ãƒ©ã‚¹ã‚’ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹åŒ–ã™ã‚‹
             return ClassUtil.create(((Class) commandType).getName());
         } catch (Exception e) {
             log.error("Invalid Command type.", e);
@@ -397,20 +397,20 @@ public abstract class TerasolunaController<P, R>
     }
 
     /**
-     * –{ƒNƒ‰ƒX‚ÌƒTƒuƒNƒ‰ƒX’è‹`‚³‚ê‚½AƒRƒ}ƒ“ƒhƒNƒ‰ƒX‚ÌÀƒ^ƒCƒv‚ğæ“¾‚·‚éB
-     * 
-     * @return ƒRƒ}ƒ“ƒhƒNƒ‰ƒX‚Ìƒ^ƒCƒvB
+     * æœ¬ã‚¯ãƒ©ã‚¹ã®ã‚µãƒ–ã‚¯ãƒ©ã‚¹å®šç¾©ã•ã‚ŒãŸã€ã‚³ãƒãƒ³ãƒ‰ã‚¯ãƒ©ã‚¹ã®å®Ÿã‚¿ã‚¤ãƒ—ã‚’å–å¾—ã™ã‚‹ã€‚
+     *
+     * @return ã‚³ãƒãƒ³ãƒ‰ã‚¯ãƒ©ã‚¹ã®ã‚¿ã‚¤ãƒ—ã€‚
      */
     protected Type getCommandType() {
         Class childClass = this.getClass();
-        
-        // ‚Q¢‘ãˆÈã‚ÌŒp³‚ğ‚µ‚Ä‚¢‚éê‡A
-        // TerasolunaController‚Ìq‚É‚ ‚½‚éƒNƒ‰ƒX‚ğæ“¾‚·‚é
+
+        // ï¼’ä¸–ä»£ä»¥ä¸Šã®ç¶™æ‰¿ã‚’ã—ã¦ã„ã‚‹å ´åˆã€
+        // TerasolunaControllerã®å­ã«ã‚ãŸã‚‹ã‚¯ãƒ©ã‚¹ã‚’å–å¾—ã™ã‚‹
         while (childClass.getSuperclass() != parameterizedControllerClass) {
             childClass = childClass.getSuperclass();
         }
-        
-        // TerasolunaController‚ÌŒ^î•ñiŒ^ƒpƒ‰ƒ[ƒ^‚Ìî•ñ•t‚«j
+
+        // TerasolunaControllerã®å‹æƒ…å ±ï¼ˆå‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æƒ…å ±ä»˜ãï¼‰
         Type terasolunaControllerType = childClass.getGenericSuperclass();
         if (!(terasolunaControllerType instanceof ParameterizedType)) {
             log.error("Controller class must be set ParameterizedType");
@@ -418,34 +418,34 @@ public abstract class TerasolunaController<P, R>
                     "Controller class must be set ParameterizedType");
         }
         ParameterizedType pt = (ParameterizedType) terasolunaControllerType;
-        
-        // Œ^ƒpƒ‰ƒ[ƒ^
+
+        // å‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
         return pt.getActualTypeArguments()[0];
-    } 
-   
+    }
+
     /**
-     *  ƒŠƒNƒGƒXƒg‚Ìî•ñ‚ğJavaBean(ƒRƒ}ƒ“ƒh)‚ÉŠi”[‚·‚é‚½‚ß‚Ì
-     *  ƒf[ƒ^ƒoƒCƒ“ƒ_‚ğ¶¬‚·‚éB
-     *  <code>bindAndValidate</code>ƒƒ\ƒbƒh‚æ‚èŒÄ‚Ño‚³‚ê‚éB
-     *  
-     * @param request HTTPƒŠƒNƒGƒXƒg
-     * @param command ƒoƒCƒ“ƒh‚³‚ê‚éƒRƒ}ƒ“ƒhƒIƒuƒWƒFƒNƒg
-     * @return ¶¬‚³‚ê‚½ƒf[ƒ^ƒoƒCƒ“ƒ_
-     * @throws Exception —áŠO
-     * 
+     *  ãƒªã‚¯ã‚¨ã‚¹ãƒˆã®æƒ…å ±ã‚’JavaBean(ã‚³ãƒãƒ³ãƒ‰)ã«æ ¼ç´ã™ã‚‹ãŸã‚ã®
+     *  ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ãƒ€ã‚’ç”Ÿæˆã™ã‚‹ã€‚
+     *  <code>bindAndValidate</code>ãƒ¡ã‚½ãƒƒãƒ‰ã‚ˆã‚Šå‘¼ã³å‡ºã•ã‚Œã‚‹ã€‚
+     *
+     * @param request HTTPãƒªã‚¯ã‚¨ã‚¹ãƒˆ
+     * @param command ãƒã‚¤ãƒ³ãƒ‰ã•ã‚Œã‚‹ã‚³ãƒãƒ³ãƒ‰ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+     * @return ç”Ÿæˆã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ãƒ€
+     * @throws Exception ä¾‹å¤–
+     *
      */
     @Override
     protected ServletRequestDataBinder createBinder(
             HttpServletRequest request, Object command) throws Exception {
-        // ƒf[ƒ^ƒoƒCƒ“ƒ_‚Ì¶¬
+        // ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ãƒ€ã®ç”Ÿæˆ
         ServletRequestDataBinder binder = dataBinderCreator.create(
                       request, command, ctxSupport.getRequestName());
-        
+
         if (binder == null) {
             log.error("DataBinder is Null.");
             throw new IllegalStateException("DataBinder is Null.");
         }
-        
+
         if (this.getMessageCodesResolver() != null) {
             binder.setMessageCodesResolver(this.getMessageCodesResolver());
         }
@@ -460,18 +460,18 @@ public abstract class TerasolunaController<P, R>
         initBinder(request, binder);
         return binder;
     }
-    
+
     /**
-     * ƒŠƒNƒGƒXƒg‚Ìî•ñ‚ğJavaBean(ƒRƒ}ƒ“ƒh)‚ÉŠi”[‚µ‚½Œã‚ÉÀs‚³‚ê‚éˆ—B
-     * ƒoƒCƒ“ƒhŒãA“ü—Íƒ`ƒFƒbƒNˆ—‘O‚Ìƒ^ƒCƒ~ƒ“ƒO‚ÅŒÄ‚Ño‚³‚ê‚éB
-     * 
-     * ƒoƒCƒ“ƒhˆ—‚ÅƒGƒ‰[î•ñ‚ªŠi”[‚³‚ê‚½ê‡A
-     * BindException‚ğƒXƒ[‚·‚éB
-     * 
-     * @param request HTTPƒŠƒNƒGƒXƒg
-     * @param command ƒoƒCƒ“ƒhÏ‚İ‚ÌJavaBeaniƒRƒ}ƒ“ƒhj
-     * @param errors ƒoƒCƒ“ƒhE“ü—Íƒ`ƒFƒbƒNƒGƒ‰[•ÛƒNƒ‰ƒX
-     * @throws Exception —áŠO
+     * ãƒªã‚¯ã‚¨ã‚¹ãƒˆã®æƒ…å ±ã‚’JavaBean(ã‚³ãƒãƒ³ãƒ‰)ã«æ ¼ç´ã—ãŸå¾Œã«å®Ÿè¡Œã•ã‚Œã‚‹å‡¦ç†ã€‚
+     * ãƒã‚¤ãƒ³ãƒ‰å¾Œã€å…¥åŠ›ãƒã‚§ãƒƒã‚¯å‡¦ç†å‰ã®ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã§å‘¼ã³å‡ºã•ã‚Œã‚‹ã€‚
+     *
+     * ãƒã‚¤ãƒ³ãƒ‰å‡¦ç†ã§ã‚¨ãƒ©ãƒ¼æƒ…å ±ãŒæ ¼ç´ã•ã‚ŒãŸå ´åˆã€
+     * BindExceptionã‚’ã‚¹ãƒ­ãƒ¼ã™ã‚‹ã€‚
+     *
+     * @param request HTTPãƒªã‚¯ã‚¨ã‚¹ãƒˆ
+     * @param command ãƒã‚¤ãƒ³ãƒ‰æ¸ˆã¿ã®JavaBeanï¼ˆã‚³ãƒãƒ³ãƒ‰ï¼‰
+     * @param errors ãƒã‚¤ãƒ³ãƒ‰ãƒ»å…¥åŠ›ãƒã‚§ãƒƒã‚¯ã‚¨ãƒ©ãƒ¼ä¿æŒã‚¯ãƒ©ã‚¹
+     * @throws Exception ä¾‹å¤–
      */
     @Override
     protected void onBind(
@@ -482,18 +482,18 @@ public abstract class TerasolunaController<P, R>
             throw errors;
         }
     }
-    
+
     /**
-     * “ü—Íƒ`ƒFƒbƒN‚ÌŒãˆ—B
-     * ’—Íƒ`ƒFƒbƒNˆ—ŒãA‹Æ–±ƒƒWƒbƒNÀs‘O‚Ìƒ^ƒCƒ~ƒ“ƒO‚ÅŒÄ‚Ño‚³‚ê‚éB
-     * 
-     * “ü—Íƒ`ƒFƒbƒNˆ—‚ÅƒGƒ‰[î•ñ‚ªŠi”[‚³‚ê‚½ê‡A
-     * BindException‚ğƒXƒ[‚·‚éB
-     * 
-     * @param request HTTPƒŠƒNƒGƒXƒg
-     * @param command ƒoƒCƒ“ƒhÏ‚İ‚ÌƒRƒ}ƒ“ƒhƒIƒuƒWƒFƒNƒg
-     * @param errors ƒoƒCƒ“ƒhE“ü—Íƒ`ƒFƒbƒNƒGƒ‰[•ÛƒNƒ‰ƒX
-     * @throws Exception —áŠO
+     * å…¥åŠ›ãƒã‚§ãƒƒã‚¯ã®å¾Œå‡¦ç†ã€‚
+     * æ³¨åŠ›ãƒã‚§ãƒƒã‚¯å‡¦ç†å¾Œã€æ¥­å‹™ãƒ­ã‚¸ãƒƒã‚¯å®Ÿè¡Œå‰ã®ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã§å‘¼ã³å‡ºã•ã‚Œã‚‹ã€‚
+     *
+     * å…¥åŠ›ãƒã‚§ãƒƒã‚¯å‡¦ç†ã§ã‚¨ãƒ©ãƒ¼æƒ…å ±ãŒæ ¼ç´ã•ã‚ŒãŸå ´åˆã€
+     * BindExceptionã‚’ã‚¹ãƒ­ãƒ¼ã™ã‚‹ã€‚
+     *
+     * @param request HTTPãƒªã‚¯ã‚¨ã‚¹ãƒˆ
+     * @param command ãƒã‚¤ãƒ³ãƒ‰æ¸ˆã¿ã®ã‚³ãƒãƒ³ãƒ‰ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+     * @param errors ãƒã‚¤ãƒ³ãƒ‰ãƒ»å…¥åŠ›ãƒã‚§ãƒƒã‚¯ã‚¨ãƒ©ãƒ¼ä¿æŒã‚¯ãƒ©ã‚¹
+     * @throws Exception ä¾‹å¤–
      */
     @Override
     protected void onBindAndValidate(
@@ -506,15 +506,15 @@ public abstract class TerasolunaController<P, R>
     }
 
     /**
-     * ‹Æ–±ƒƒWƒbƒNÀsƒƒ\ƒbƒh‚ğŒÄ‚Ño‚µAƒ‚ƒfƒ‹‚Æƒrƒ…[‚ğ•Ô‹p‚·‚éB
-     * 
-     * 
-     * @param request HTTPƒŠƒNƒGƒXƒg
-     * @param response HTTPƒŒƒXƒ|ƒ“ƒX
-     * @param command ƒRƒ}ƒ“ƒhƒIƒuƒWƒFƒNƒg
-     * @param errors ƒoƒCƒ“ƒhE“ü—Íƒ`ƒFƒbƒNƒGƒ‰[•ÛƒNƒ‰ƒX
-     * @return ƒ‚ƒfƒ‹‚Æƒrƒ…[
-     * @throws Exception —áŠO
+     * æ¥­å‹™ãƒ­ã‚¸ãƒƒã‚¯å®Ÿè¡Œãƒ¡ã‚½ãƒƒãƒ‰ã‚’å‘¼ã³å‡ºã—ã€ãƒ¢ãƒ‡ãƒ«ã¨ãƒ“ãƒ¥ãƒ¼ã‚’è¿”å´ã™ã‚‹ã€‚
+     *
+     *
+     * @param request HTTPãƒªã‚¯ã‚¨ã‚¹ãƒˆ
+     * @param response HTTPãƒ¬ã‚¹ãƒãƒ³ã‚¹
+     * @param command ã‚³ãƒãƒ³ãƒ‰ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+     * @param errors ãƒã‚¤ãƒ³ãƒ‰ãƒ»å…¥åŠ›ãƒã‚§ãƒƒã‚¯ã‚¨ãƒ©ãƒ¼ä¿æŒã‚¯ãƒ©ã‚¹
+     * @return ãƒ¢ãƒ‡ãƒ«ã¨ãƒ“ãƒ¥ãƒ¼
+     * @throws Exception ä¾‹å¤–
      */
     @SuppressWarnings("unchecked")
     @Override
@@ -526,55 +526,55 @@ public abstract class TerasolunaController<P, R>
         R model = executeService(request, response, (P) command);
 
         if (this.viewName != null) {
-            // ƒrƒ…[–¼‚ğ’¼Úw’è‚·‚éê‡
+            // ãƒ“ãƒ¥ãƒ¼åã‚’ç›´æ¥æŒ‡å®šã™ã‚‹å ´åˆ
             return new ModelAndView(viewName, Constants.RESULT_KEY, model);
         } else if (this.useRequestNameView) {
-            // Velocityƒrƒ…[‚ğ—˜—p‚·‚éê‡
+            // Velocityãƒ“ãƒ¥ãƒ¼ã‚’åˆ©ç”¨ã™ã‚‹å ´åˆ
             return new ModelAndView(
                 "/" + ctxSupport.getRequestName(), Constants.RESULT_KEY, model);
         } else {
-            // ƒrƒ…[–¼‚È‚µ‚ÍCastorƒrƒ…[‚ğ—˜—p‚·‚é
+            // ãƒ“ãƒ¥ãƒ¼åãªã—ã¯Castorãƒ“ãƒ¥ãƒ¼ã‚’åˆ©ç”¨ã™ã‚‹
             return new ModelAndView("", Constants.RESULT_KEY, model);
         }
     }
-    
+
     /**
-     * ‹Æ–±ƒƒWƒbƒN‚ğÀs‚·‚éB
-     * 
-     * @param request HTTPƒŠƒNƒGƒXƒg
-     * @param response HTTPƒŒƒXƒ|ƒ“ƒX
-     * @param command ƒRƒ}ƒ“ƒhƒIƒuƒWƒFƒNƒg
-     * @return ƒ‚ƒfƒ‹ƒIƒuƒWƒFƒNƒg
-     * @throws Exception —áŠO
+     * æ¥­å‹™ãƒ­ã‚¸ãƒƒã‚¯ã‚’å®Ÿè¡Œã™ã‚‹ã€‚
+     *
+     * @param request HTTPãƒªã‚¯ã‚¨ã‚¹ãƒˆ
+     * @param response HTTPãƒ¬ã‚¹ãƒãƒ³ã‚¹
+     * @param command ã‚³ãƒãƒ³ãƒ‰ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+     * @return ãƒ¢ãƒ‡ãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+     * @throws Exception ä¾‹å¤–
      */
     protected R executeService(
             HttpServletRequest request,
             HttpServletResponse response,
             P command) throws Exception {
-        // ‘Oˆ—
+        // å‰å‡¦ç†
         preService(request, response, command);
 
-        // ‹Æ–±ƒƒWƒbƒNÀsˆ—
+        // æ¥­å‹™ãƒ­ã‚¸ãƒƒã‚¯å®Ÿè¡Œå‡¦ç†
         R model = executeService(command);
-        
-        // Œãˆ—
+
+        // å¾Œå‡¦ç†
         postService(request, response, command, model);
         return model;
     }
 
     /**
-     * ‹Æ–±ƒƒWƒbƒNÀsŒãˆ—B
-     * 
-     * ƒZƒbƒVƒ‡ƒ“ƒXƒR[ƒv‚ÌƒŠƒNƒGƒXƒg‚É‘Î‰‚·‚é‚½‚ß‚ÌŠg’£“_B
-     * ƒTƒuƒNƒ‰ƒX‚É‚Ä•K—v‚É‰‚¶‚ÄƒI[ƒo[ƒ‰ƒCƒh‚·‚é‚±‚ÆB
-     * 
-     * ‹Æ–±ƒƒWƒbƒNˆ—‚É‚Ä—áŠO‚ª”­¶‚µ‚½ê‡‚ÍÀs‚³‚ê‚È‚¢B
-     * 
-     * @param request HTTPƒŠƒNƒGƒXƒg
-     * @param response HTTPƒŒƒXƒ|ƒ“ƒX
-     * @param command ƒRƒ}ƒ“ƒhƒIƒuƒWƒFƒNƒg
-     * @param modelAndView ƒ‚ƒfƒ‹‚Æƒrƒ…[
-     * @throws Exception —áŠO
+     * æ¥­å‹™ãƒ­ã‚¸ãƒƒã‚¯å®Ÿè¡Œå¾Œå‡¦ç†ã€‚
+     *
+     * ã‚»ãƒƒã‚·ãƒ§ãƒ³ã‚¹ã‚³ãƒ¼ãƒ—ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆã«å¯¾å¿œã™ã‚‹ãŸã‚ã®æ‹¡å¼µç‚¹ã€‚
+     * ã‚µãƒ–ã‚¯ãƒ©ã‚¹ã«ã¦å¿…è¦ã«å¿œã˜ã¦ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰ã™ã‚‹ã“ã¨ã€‚
+     *
+     * æ¥­å‹™ãƒ­ã‚¸ãƒƒã‚¯å‡¦ç†ã«ã¦ä¾‹å¤–ãŒç™ºç”Ÿã—ãŸå ´åˆã¯å®Ÿè¡Œã•ã‚Œãªã„ã€‚
+     *
+     * @param request HTTPãƒªã‚¯ã‚¨ã‚¹ãƒˆ
+     * @param response HTTPãƒ¬ã‚¹ãƒãƒ³ã‚¹
+     * @param command ã‚³ãƒãƒ³ãƒ‰ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+     * @param modelAndView ãƒ¢ãƒ‡ãƒ«ã¨ãƒ“ãƒ¥ãƒ¼
+     * @throws Exception ä¾‹å¤–
      */
     protected void postService(
             HttpServletRequest request,
@@ -584,15 +584,15 @@ public abstract class TerasolunaController<P, R>
     }
 
     /**
-     * ‹Æ–±ƒƒWƒbƒNÀs‘Oˆ—B
-     * 
-     * ƒZƒbƒVƒ‡ƒ“ƒXƒR[ƒv‚ÌƒŠƒNƒGƒXƒg‚É‘Î‰‚·‚é‚½‚ß‚ÌŠg’£“_B
-     * ƒTƒuƒNƒ‰ƒX‚É‚Ä•K—v‚É‰‚¶‚ÄƒI[ƒo[ƒ‰ƒCƒh‚·‚é‚±‚ÆB
-     * 
-     * @param request HTTPƒŠƒNƒGƒXƒg
-     * @param response HTTPƒŒƒXƒ|ƒ“ƒX
-     * @param command ƒRƒ}ƒ“ƒhƒIƒuƒWƒFƒNƒg
-     * @throws Exception —áŠO
+     * æ¥­å‹™ãƒ­ã‚¸ãƒƒã‚¯å®Ÿè¡Œå‰å‡¦ç†ã€‚
+     *
+     * ã‚»ãƒƒã‚·ãƒ§ãƒ³ã‚¹ã‚³ãƒ¼ãƒ—ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆã«å¯¾å¿œã™ã‚‹ãŸã‚ã®æ‹¡å¼µç‚¹ã€‚
+     * ã‚µãƒ–ã‚¯ãƒ©ã‚¹ã«ã¦å¿…è¦ã«å¿œã˜ã¦ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰ã™ã‚‹ã“ã¨ã€‚
+     *
+     * @param request HTTPãƒªã‚¯ã‚¨ã‚¹ãƒˆ
+     * @param response HTTPãƒ¬ã‚¹ãƒãƒ³ã‚¹
+     * @param command ã‚³ãƒãƒ³ãƒ‰ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+     * @throws Exception ä¾‹å¤–
      */
     protected void preService(
             HttpServletRequest request,
@@ -601,10 +601,10 @@ public abstract class TerasolunaController<P, R>
     }
 
     /**
-     * ‹Æ–±ŠJ”­Ò‚ªÀ‘•‚·‚×‚«A‹Æ–±ƒƒWƒbƒN‚ÌÀsˆ—B
-     * @param command ƒRƒ}ƒ“ƒhi‹Æ–±ƒpƒ‰ƒ[ƒ^j
-     * @return ƒ‚ƒfƒ‹
-     * @throws Exception —áŠO
+     * æ¥­å‹™é–‹ç™ºè€…ãŒå®Ÿè£…ã™ã¹ãã€æ¥­å‹™ãƒ­ã‚¸ãƒƒã‚¯ã®å®Ÿè¡Œå‡¦ç†ã€‚
+     * @param command ã‚³ãƒãƒ³ãƒ‰ï¼ˆæ¥­å‹™ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼‰
+     * @return ãƒ¢ãƒ‡ãƒ«
+     * @throws Exception ä¾‹å¤–
      */
     protected abstract R executeService (
             P command) throws Exception;

@@ -17,23 +17,23 @@
 package jp.terasoluna.fw.service.rich;
 
 /**
- * TERASOLUNA����`����
- * �T�[�r�X�w�̃N���X���������邱�Ƃ��o����C���^�t�F�[�X�B
- * 
+ * TERASOLUNAが定義する
+ * サービス層のクラスが実装することが出来るインタフェース。
+ *
  * <p>
- * �Ɩ��J���҂́A�Ɩ����W�b�N�̃p�����[�^�ł���C�ӂ̌^��JavaBean���󂯎��A
- * �Ɩ����W�b�N���ʂ̔C�ӂ̌^��JavaBean��ԋp���鏈�����������邱�ƁB
+ * 業務開発者は、業務ロジックのパラメータである任意の型のJavaBeanを受け取り、
+ * 業務ロジック結果の任意の型のJavaBeanを返却する処理を実装すること。
  * </p>
- * 
+ *
  * <p>
- * �g�����U�N�V�������E�ƂȂ邽�߁A���炩���ߒ�`����
- * �g�����U�N�V�����v���L�V�̒��ے�`���p������Bean��`���s�����ƁB
- * �܂��A�񕜕s�\�ȃG���[�����������ꍇ�́A
- * �v���W�F�N�g�Œ�߂�ꂽ���[���ŔC�ӂ̗�O���X���[���邱�ƁB
+ * トランザクション境界となるため、あらかじめ定義した
+ * トランザクションプロキシの抽象定義を継承してBean定義を行うこと。
+ * また、回復不可能なエラーが発生した場合は、
+ * プロジェクトで定められたルールで任意の例外をスローすること。
  * </p>
- * 
+ *
  * <p>
- * �yBean��`��z<br>
+ * 【Bean定義例】<br>
  * <code><pre>
  *   &lt;bean id="maxBLogic" parent="baseTransactionProxy"&gt;
  *     &lt;property name="target"&gt;
@@ -41,47 +41,47 @@ package jp.terasoluna.fw.service.rich;
  *     &lt;/property&gt;
  *   &lt;/bean&gt;
  * </pre></code>
- *   ���@baseTransactionProxy�́A�g�����U�N�V�����v���L�V�̃x�[�X��`�B
+ *   ※　baseTransactionProxyは、トランザクションプロキシのベース定義。
  * </p>
- * 
+ *
  * <p>
- * �ʏ�A�T�[�r�X�w�̃N���X�́A
- * DI�R���e�i�𗘗p�����ꍇ�A1�̃T�[�r�X�ɑ΂���1�̃C���^�t�F�[�X�Ƃ���A
- * �t���[�����[�N����̃C���^�t�F�[�X�Ɉˑ����Ȃ�POJO�ł��邱�Ƃ��]�܂������A
- * TERASOLUNA�ł́A1�̃C���^�t�F�[�X�ŕ����̃T�[�r�X����������d�g�݂��p�ӂ��Ă���B
- * <code>BLogic</code>�C���^�t�F�[�X�����������N���X�𗘗p����ƁA
- * �v���[���e�[�V�����w�́A�T�[�r�X�w�̃N���X�𓝈�I�Ɉ������Ƃ��o���邽�߁A
- * ���N�G�X�g���ƂɃv���[���e�[�V�����w�̌Ăяo���N���X����������K�v���Ȃ��Ȃ郁���b�g������B
+ * 通常、サービス層のクラスは、
+ * DIコンテナを利用した場合、1つのサービスに対して1つのインタフェースとする、
+ * フレームワーク特定のインタフェースに依存しないPOJOであることが望ましいが、
+ * TERASOLUNAでは、1つのインタフェースで複数のサービスを実現する仕組みも用意している。
+ * <code>BLogic</code>インタフェースを実装したクラスを利用すると、
+ * プレゼンテーション層は、サービス層のクラスを統一的に扱うことが出来るため、
+ * リクエストごとにプレゼンテーション層の呼び出しクラスを実装する必要がなくなるメリットがある。
  * </p>
- * 
+ *
  * <p>
- * �v���[���e�[�V�����w����̌Ăяo���ɂ��ẮA
- * <code>BLogicController</code>���Q�l�ɂ��邱�ƁB
+ * プレゼンテーション層からの呼び出しについては、
+ * <code>BLogicController</code>を参考にすること。
  * </p>
  * <p>
  * {@link jp.terasoluna.fw.web.rich.springmvc.controller.BLogicController}
- * �N���X�ł́A�����N���X��execute���\�b�h�̈������̌^�����ƂɁA�R�}���h�I�u�W�F�N�g�̌^���������肵�Ă���B
- * ����Ď����N���X�ł́A�uexecute�v�Ƃ������̂̃��\�b�h�́A�{�C���^�t�F�[�X����������1���\�b�h�̂ݒ�`���A
- * �I�[�o�[���[�h(���\�b�h��������ň����̌^�A���A���я����قȂ郁�\�b�h�𕡐���`)���Ȃ����ƁB
+ * クラスでは、実装クラスのexecuteメソッドの引き数の型をもとに、コマンドオブジェクトの型を自動判定している。
+ * よって実装クラスでは、「execute」という名称のメソッドは、本インタフェースを実装した1メソッドのみ定義し、
+ * オーバーロード(メソッド名が同一で引数の型、数、並び順が異なるメソッドを複数定義)しないこと。
  * </p>
- * 
+ *
  * @see jp.terasoluna.fw.web.rich.springmvc.controller.BLogicController
- * 
- * @param <P> �Ɩ��p�����[�^
- * @param <R> �Ɩ�����
+ *
+ * @param <P> 業務パラメータ
+ * @param <R> 業務結果
  */
 public interface BLogic < P , R > {
 
     /**
-     * �Ɩ����W�b�N�����s����B
-     * 
+     * 業務ロジックを実行する。
+     *
      * <p>
-     * �����N���X�ɂĖ{���\�b�h�ȊO��
-     * �����̌^�A�����قȂ�execute���\�b�h���`���Ă͂Ȃ�Ȃ��B
+     * 実装クラスにて本メソッド以外に
+     * 引数の型、数が異なるexecuteメソッドを定義してはならない。
      * </p>
-     * 
-     * @param params �Ɩ������p�����[�^
-     * @return �Ɩ���������
+     *
+     * @param params 業務処理パラメータ
+     * @return 業務処理結果
      */
      R execute(P params);
 }

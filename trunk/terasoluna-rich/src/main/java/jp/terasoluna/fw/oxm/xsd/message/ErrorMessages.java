@@ -23,30 +23,30 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
- * ƒGƒ‰[ƒƒbƒZ[ƒW‚ÌƒŠƒXƒg‚ğ•Û‚·‚éƒNƒ‰ƒXB
- * 
+ * ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ãƒªã‚¹ãƒˆã‚’ä¿æŒã™ã‚‹ã‚¯ãƒ©ã‚¹ã€‚
+ *
  * @see jp.terasoluna.fw.oxm.xsd.SchemaValidator
  * @see jp.terasoluna.fw.oxm.xsd.xerces.SchemaValidatorImpl
  * @see jp.terasoluna.fw.oxm.xsd.xerces.XMLErrorReporterEx
  * @see jp.terasoluna.fw.web.rich.springmvc.bind.XMLServletRequestDataBinder
- * 
+ *
  */
 public class ErrorMessages {
-    
+
     /**
-     * ƒƒOB
+     * ãƒ­ã‚°ã€‚
      */
     private static Log log = LogFactory.getLog(ErrorMessages.class);
 
     /**
-     * ƒGƒ‰[ƒƒbƒZ[ƒW‚ÌƒŠƒXƒgB
+     * ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ãƒªã‚¹ãƒˆã€‚
      */
     private List<ErrorMessage> errorMessages = new ArrayList<ErrorMessage>();
 
     /**
-     * ƒGƒ‰[ƒƒbƒZ[ƒW‚ğ’Ç‰Á‚·‚éB
-     * Null‚ğ’Ç‰Á‚µ‚æ‚¤‚Æ‚µ‚½ê‡A—áŠO‚ª”­¶‚·‚éB
-     * @param errorMessage ƒGƒ‰[ƒƒbƒZ[ƒW
+     * ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¿½åŠ ã™ã‚‹ã€‚
+     * Nullã‚’è¿½åŠ ã—ã‚ˆã†ã¨ã—ãŸå ´åˆã€ä¾‹å¤–ãŒç™ºç”Ÿã™ã‚‹ã€‚
+     * @param errorMessage ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
      */
     public void add(ErrorMessage errorMessage) {
         if (errorMessage == null) {
@@ -58,19 +58,19 @@ public class ErrorMessages {
     }
 
     /**
-     * ƒGƒ‰[ƒƒbƒZ[ƒW‚ÌƒŠƒXƒg‚ğæ“¾‚·‚éB
-     * ƒGƒ‰[ƒƒbƒZ[ƒW‚ÉNull‚Í‘¶İ‚µ‚È‚¢B
-     * 
-     * @return ƒGƒ‰[ƒƒbƒZ[ƒW‚ÌƒŠƒXƒg
+     * ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ãƒªã‚¹ãƒˆã‚’å–å¾—ã™ã‚‹ã€‚
+     * ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã«Nullã¯å­˜åœ¨ã—ãªã„ã€‚
+     *
+     * @return ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ãƒªã‚¹ãƒˆ
      */
     public List<ErrorMessage> getErrorMessages() {
         return errorMessages;
     }
 
     /**
-     * ƒGƒ‰[ƒƒbƒZ[ƒW‚ğ•Û‚µ‚Ä‚¢‚éê‡Atrue‚ğ•Ô‹p‚·‚éB
-     * 
-     * @return ƒƒbƒZ[ƒW‚ğ‚Á‚Ä‚¢‚éê‡Atrue‚ğ•Ô‚·B‚»‚êˆÈŠO‚Ífalse‚ğ•Ô‚·B
+     * ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’ä¿æŒã—ã¦ã„ã‚‹å ´åˆã€trueã‚’è¿”å´ã™ã‚‹ã€‚
+     *
+     * @return ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’æŒã£ã¦ã„ã‚‹å ´åˆã€trueã‚’è¿”ã™ã€‚ãã‚Œä»¥å¤–ã¯falseã‚’è¿”ã™ã€‚
      */
     public boolean hasErrorMessage() {
         return !this.errorMessages.isEmpty();

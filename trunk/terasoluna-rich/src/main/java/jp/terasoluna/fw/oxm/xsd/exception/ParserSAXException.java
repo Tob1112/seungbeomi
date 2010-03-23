@@ -19,24 +19,24 @@ package jp.terasoluna.fw.oxm.xsd.exception;
 import jp.terasoluna.fw.oxm.exception.OXMappingException;
 
 /**
- * XMLƒf[ƒ^‚Ìƒp[ƒX‚É¸”s‚µ‚½ê‡‚ÉAƒXƒ[‚³‚ê‚éŒ`®ƒ`ƒFƒbƒN—áŠOB
- * 
+ * XMLãƒ‡ãƒ¼ã‚¿ã®ãƒ‘ãƒ¼ã‚¹ã«å¤±æ•—ã—ãŸå ´åˆã«ã€ã‚¹ãƒ­ãƒ¼ã•ã‚Œã‚‹å½¢å¼ãƒã‚§ãƒƒã‚¯ä¾‹å¤–ã€‚
+ *
  * <p>
- * OXMappingException‚ÌƒTƒuƒNƒ‰ƒX‚Æ‚µ‚Ä’ñ‹Ÿ‚µ‚Ä‚¢‚éB
+ * OXMappingExceptionã®ã‚µãƒ–ã‚¯ãƒ©ã‚¹ã¨ã—ã¦æä¾›ã—ã¦ã„ã‚‹ã€‚
  * </p>
- * 
+ *
  */
 public class ParserSAXException extends OXMappingException {
 
     /**
-     * ƒVƒŠƒAƒ‹ƒo[ƒWƒ‡ƒ“IDB
+     * ã‚·ãƒªã‚¢ãƒ«ãƒãƒ¼ã‚¸ãƒ§ãƒ³IDã€‚
      */
     private static final long serialVersionUID = -765955666266378791L;
 
     /**
-     * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-     * 
-     * @param cause —áŠO
+     * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+     *
+     * @param cause ä¾‹å¤–
      */
     public ParserSAXException(Throwable cause) {
         super(cause);

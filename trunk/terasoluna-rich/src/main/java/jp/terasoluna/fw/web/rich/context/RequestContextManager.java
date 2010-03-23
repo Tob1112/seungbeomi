@@ -20,38 +20,38 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
- * §Œäî•ñ‚ğŠÇ—‚·‚éƒ}ƒl[ƒWƒƒB
- * 
+ * åˆ¶å¾¡æƒ…å ±ã‚’ç®¡ç†ã™ã‚‹ãƒãƒãƒ¼ã‚¸ãƒ£ã€‚
+ *
  * <p>
- * §Œäî•ñ‚ğƒXƒŒƒbƒh’PˆÊ‚ÅŠÇ—‚·‚éB
- * ’ÊíAWebƒRƒ“ƒeƒi‚Å‚ÍA1‚Â‚ÌƒŠƒNƒGƒXƒg‚É‘Î‚·‚éˆ—‚Í1‚Â‚ÌƒXƒŒƒbƒh‚ªs‚¤‚½‚ßA
- * “¯‚¶ƒŠƒNƒGƒXƒgƒXƒR[ƒv‚©‚çŒÄ‚Ño‚³‚ê‚½ê‡A•K‚¸“¯‚¶§Œäî•ñ‚É‘Î‚µ‚Äˆ—‚ğs‚¤‚±‚Æ‚ªo—ˆ‚éB
+ * åˆ¶å¾¡æƒ…å ±ã‚’ã‚¹ãƒ¬ãƒƒãƒ‰å˜ä½ã§ç®¡ç†ã™ã‚‹ã€‚
+ * é€šå¸¸ã€Webã‚³ãƒ³ãƒ†ãƒŠã§ã¯ã€1ã¤ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆã«å¯¾ã™ã‚‹å‡¦ç†ã¯1ã¤ã®ã‚¹ãƒ¬ãƒƒãƒ‰ãŒè¡Œã†ãŸã‚ã€
+ * åŒã˜ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚¹ã‚³ãƒ¼ãƒ—ã‹ã‚‰å‘¼ã³å‡ºã•ã‚ŒãŸå ´åˆã€å¿…ãšåŒã˜åˆ¶å¾¡æƒ…å ±ã«å¯¾ã—ã¦å‡¦ç†ã‚’è¡Œã†ã“ã¨ãŒå‡ºæ¥ã‚‹ã€‚
  * </p>
- * 
+ *
  * @see jp.terasoluna.fw.web.rich.context.RequestContext
  * @see jp.terasoluna.fw.web.rich.context.support.AbstractRequestContextSupport
  *
  */
 public class RequestContextManager {
     /**
-     * ƒƒOB
+     * ãƒ­ã‚°ã€‚
      */
     private static Log logger
         = LogFactory.getLog(RequestContextManager.class);
 
     /**
-     * ƒXƒŒƒbƒh’PˆÊ‚ÅƒRƒ“ƒeƒLƒXƒg‚ğŠÇ—‚·‚éThreadLocalB
+     * ã‚¹ãƒ¬ãƒƒãƒ‰å˜ä½ã§ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã‚’ç®¡ç†ã™ã‚‹ThreadLocalã€‚
      */
     private static ThreadLocal<RequestContext> resources
         = new ThreadLocal<RequestContext>();
 
     /**
-     * ÀsƒXƒŒƒbƒh‚É‘Î‰‚·‚é§Œäî•ñ‚ğæ“¾‚·‚éB
-     * §Œäî•ñ‚ªİ’è‚È‚¢ê‡A—áŠO‚ª”­¶‚·‚éB
-     * @return §Œäî•ñ
+     * å®Ÿè¡Œã‚¹ãƒ¬ãƒƒãƒ‰ã«å¯¾å¿œã™ã‚‹åˆ¶å¾¡æƒ…å ±ã‚’å–å¾—ã™ã‚‹ã€‚
+     * åˆ¶å¾¡æƒ…å ±ãŒè¨­å®šãªã„å ´åˆã€ä¾‹å¤–ãŒç™ºç”Ÿã™ã‚‹ã€‚
+     * @return åˆ¶å¾¡æƒ…å ±
      */
     public static RequestContext getRequestContext() {
-        RequestContext ctx = resources.get(); 
+        RequestContext ctx = resources.get();
         if (ctx == null) {
             logger.error("No RequestContext bound to thread!");
             throw new IllegalStateException(
@@ -62,16 +62,16 @@ public class RequestContextManager {
     }
 
     /**
-     * ÀsƒXƒŒƒbƒh‚É‘Î‰‚·‚é§Œäî•ñ‚ª“o˜^‚³‚ê‚Ä‚¢‚é‚©”»’è‚·‚éB
-     * @return “o˜^‚³‚ê‚Ä‚¢‚½‚çtrue
+     * å®Ÿè¡Œã‚¹ãƒ¬ãƒƒãƒ‰ã«å¯¾å¿œã™ã‚‹åˆ¶å¾¡æƒ…å ±ãŒç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ã‹åˆ¤å®šã™ã‚‹ã€‚
+     * @return ç™»éŒ²ã•ã‚Œã¦ã„ãŸã‚‰true
      */
     public static boolean hasRequestContext() {
         return (resources.get() != null);
     }
 
     /**
-     * ÀsƒXƒŒƒbƒh‚É‘Î‰‚·‚é§Œäî•ñ‚ğ“o˜^‚·‚éB
-     * @param ctx §Œäî•ñB
+     * å®Ÿè¡Œã‚¹ãƒ¬ãƒƒãƒ‰ã«å¯¾å¿œã™ã‚‹åˆ¶å¾¡æƒ…å ±ã‚’ç™»éŒ²ã™ã‚‹ã€‚
+     * @param ctx åˆ¶å¾¡æƒ…å ±ã€‚
      */
     public static void bindRequestContext(
             RequestContext ctx) {
@@ -80,10 +80,10 @@ public class RequestContextManager {
             throw new IllegalArgumentException(
                     "RequestContext cannot set null.");
         }
-        
+
         RequestContext alreadyBoundCtx = resources.get();
-        
-        // ƒXƒŒƒbƒh‚É§Œäî•ñ‚ªİ’è‚³‚ê‚Ä‚¢‚È‚¯‚ê‚ÎAˆø”‚Ì§Œäî•ñ‚ğİ’è‚·‚é
+
+        // ã‚¹ãƒ¬ãƒƒãƒ‰ã«åˆ¶å¾¡æƒ…å ±ãŒè¨­å®šã•ã‚Œã¦ã„ãªã‘ã‚Œã°ã€å¼•æ•°ã®åˆ¶å¾¡æƒ…å ±ã‚’è¨­å®šã™ã‚‹
         if (alreadyBoundCtx == null) {
             resources.set(ctx);
             if (logger.isDebugEnabled()) {
@@ -100,7 +100,7 @@ public class RequestContextManager {
     }
 
     /**
-     * ÀsƒXƒŒƒbƒh‚É‘Î‰‚·‚é§Œäî•ñ‚ğíœ‚·‚éB
+     * å®Ÿè¡Œã‚¹ãƒ¬ãƒƒãƒ‰ã«å¯¾å¿œã™ã‚‹åˆ¶å¾¡æƒ…å ±ã‚’å‰Šé™¤ã™ã‚‹ã€‚
      */
     public static void unbindRequestContext() {
         RequestContext ctx = resources.get();
@@ -110,7 +110,7 @@ public class RequestContextManager {
                     "No RequestContext  bound to thread ["
                         + Thread.currentThread().getName() + "]");
         }
-        
+
         resources.remove();
 
         if (logger.isDebugEnabled()) {

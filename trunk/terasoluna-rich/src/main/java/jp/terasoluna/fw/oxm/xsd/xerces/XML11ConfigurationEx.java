@@ -23,46 +23,46 @@ import org.apache.xerces.parsers.XML11Configuration;
 import org.apache.xerces.xni.grammars.XMLGrammarPool;
 
 /**
- * XMLSchemaValidatorExƒCƒ“ƒXƒ^ƒ“ƒX‚ğƒp[ƒT‚Éİ’è‚·‚é‚½‚ß‚ÉAXML11Configuration‚ğŠg’£‚µ‚½ƒNƒ‰ƒXB
+ * XMLSchemaValidatorExã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’ãƒ‘ãƒ¼ã‚µã«è¨­å®šã™ã‚‹ãŸã‚ã«ã€XML11Configurationã‚’æ‹¡å¼µã—ãŸã‚¯ãƒ©ã‚¹ã€‚
  * <p>
- * XMLSchemaValidatorEx‚ÌÚ×‚ÍA{@link jp.terasoluna.fw.oxm.xsd.xerces.XMLSchemaValidatorEx}‚ğQÆ‚·‚é‚±‚ÆB
+ * XMLSchemaValidatorExã®è©³ç´°ã¯ã€{@link jp.terasoluna.fw.oxm.xsd.xerces.XMLSchemaValidatorEx}ã‚’å‚ç…§ã™ã‚‹ã“ã¨ã€‚
  * </p>
- * 
+ *
  * @see jp.terasoluna.fw.oxm.xsd.xerces.XMLSchemaValidatorEx
  * @see jp.terasoluna.fw.oxm.xsd.xerces.SchemaValidatorImpl
- * 
+ *
  */
 public class XML11ConfigurationEx extends XML11Configuration {
 
     /**
-     * ƒRƒ“ƒXƒgƒ‰ƒNƒ^B
+     * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã€‚
      */
     public XML11ConfigurationEx() {
         super();
     }
 
     /**
-     * ƒRƒ“ƒXƒgƒ‰ƒNƒ^B
-     * 
-     * @param grammarPool –¼‘O‹óŠÔ‚Ì•¶–@ƒv[ƒ‹
+     * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã€‚
+     *
+     * @param grammarPool åå‰ç©ºé–“ã®æ–‡æ³•ãƒ—ãƒ¼ãƒ«
      */
     public XML11ConfigurationEx(XMLGrammarPool grammarPool) {
         super(null, grammarPool);
     }
 
     /**
-     * XMLSchemaValidatorExƒCƒ“ƒXƒ^ƒ“ƒX‚ğƒp[ƒT‚ÉƒZƒbƒg‚·‚éB
+     * XMLSchemaValidatorExã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’ãƒ‘ãƒ¼ã‚µã«ã‚»ãƒƒãƒˆã™ã‚‹ã€‚
      * <p>
-     * ƒX[ƒp[ƒNƒ‰ƒX‚ÌconfigurePipelineƒƒ\ƒbƒh‚ğƒI[ƒo[ƒ‰ƒCƒh‚µ‚ÄAXMLSchemaValidatorExƒCƒ“ƒXƒ^ƒ“ƒX‚ğİ’è‚·‚éB
+     * ã‚¹ãƒ¼ãƒ‘ãƒ¼ã‚¯ãƒ©ã‚¹ã®configurePipelineãƒ¡ã‚½ãƒƒãƒ‰ã‚’ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰ã—ã¦ã€XMLSchemaValidatorExã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’è¨­å®šã™ã‚‹ã€‚
      * </p>
      */
     @Override
     protected void configurePipeline() {
 
-        // ƒX[ƒp[ƒNƒ‰ƒX‚ÌconfigurePipelineƒƒ\ƒbƒh‚ğŒÄ‚Ño‚·‘O‚ÉAXMLSchemaValidatorExƒCƒ“ƒXƒ^ƒ“ƒX‚ğƒp[ƒT‚Éİ’è‚·‚éB
-        // ƒX[ƒp[ƒNƒ‰ƒX‚ÌconfigurePipelineƒƒ\ƒbƒh‚ÅXMLSchemaValidator‚ğİ’è‚·‚éƒR[ƒh‚ğ‚»‚Ì‚Ü‚Üg—p‚·‚éB
+        // ã‚¹ãƒ¼ãƒ‘ãƒ¼ã‚¯ãƒ©ã‚¹ã®configurePipelineãƒ¡ã‚½ãƒƒãƒ‰ã‚’å‘¼ã³å‡ºã™å‰ã«ã€XMLSchemaValidatorExã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’ãƒ‘ãƒ¼ã‚µã«è¨­å®šã™ã‚‹ã€‚
+        // ã‚¹ãƒ¼ãƒ‘ãƒ¼ã‚¯ãƒ©ã‚¹ã®configurePipelineãƒ¡ã‚½ãƒƒãƒ‰ã§XMLSchemaValidatorã‚’è¨­å®šã™ã‚‹ã‚³ãƒ¼ãƒ‰ã‚’ãã®ã¾ã¾ä½¿ç”¨ã™ã‚‹ã€‚
         if (fFeatures.get(XMLSCHEMA_VALIDATION) == Boolean.TRUE) {
-            // XMLSchemaValidatorEx‚ğ¶¬‚·‚é
+            // XMLSchemaValidatorExã‚’ç”Ÿæˆã™ã‚‹
             fSchemaValidator = new XMLSchemaValidatorEx(
                     (XMLErrorReporterEx) getProperty(
                             Constants.XERCES_PROPERTY_PREFIX
@@ -78,7 +78,7 @@ public class XML11ConfigurationEx extends XML11Configuration {
             }
         }
 
-        // XMLSchemaValidatorExƒCƒ“ƒXƒ^ƒ“ƒX‚ğİ’è‚µ‚½Œã‚ÅAƒX[ƒp[ƒNƒ‰ƒX‚Ìƒƒ\ƒbƒh‚ğŒÄ‚Ño‚·B
+        // XMLSchemaValidatorExã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’è¨­å®šã—ãŸå¾Œã§ã€ã‚¹ãƒ¼ãƒ‘ãƒ¼ã‚¯ãƒ©ã‚¹ã®ãƒ¡ã‚½ãƒƒãƒ‰ã‚’å‘¼ã³å‡ºã™ã€‚
         super.configurePipeline();
 
     }

@@ -27,18 +27,18 @@ import org.apache.xerces.xni.XMLAttributes;
 import org.apache.xerces.xni.XNIException;
 
 /**
- * ‰ğÍ’†‚ÌXML‚Ì—v‘fî•ñ‚ğXMLErrorReporterEx‚ÌƒXƒ^ƒbƒN‚ÉŠi”[‚·‚é‚½‚ß‚ÉAXMLSchemaValidator‚ÌŠg’£‚ğs‚Á‚½ƒNƒ‰ƒXB
- * 
+ * è§£æä¸­ã®XMLã®è¦ç´ æƒ…å ±ã‚’XMLErrorReporterExã®ã‚¹ã‚¿ãƒƒã‚¯ã«æ ¼ç´ã™ã‚‹ãŸã‚ã«ã€XMLSchemaValidatorã®æ‹¡å¼µã‚’è¡Œã£ãŸã‚¯ãƒ©ã‚¹ã€‚
+ *
  * <p>
- * —v‘f‚ÌŠJn‚ÉA—v‘f–¼‚ÉƒCƒ“ƒfƒbƒNƒX‚ğ•t‰Á‚µ‚½•¶š—ñ‚ğAXMLErrorReporterEx‚ÌƒXƒ^ƒbƒN‚ÉƒvƒbƒVƒ…‚·‚éB<br>
- * —v‘f‚ÌI—¹‚ÉAƒXƒ^ƒbƒN‚©‚çƒ|ƒbƒv‚·‚éB<br>
- * —v‘f‚Ìî•ñ‚ª“ü‚Á‚½ƒXƒ^ƒbƒN‚ğ—˜—p‚·‚é‚±‚Æ‚ÅAƒGƒ‰[‚ª”­¶‚µ‚½‰ÓŠ‚ğ“Á’è‚·‚é‚±‚Æ‚ª‚Å‚«‚éB
+ * è¦ç´ ã®é–‹å§‹æ™‚ã«ã€è¦ç´ åã«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ä»˜åŠ ã—ãŸæ–‡å­—åˆ—ã‚’ã€XMLErrorReporterExã®ã‚¹ã‚¿ãƒƒã‚¯ã«ãƒ—ãƒƒã‚·ãƒ¥ã™ã‚‹ã€‚<br>
+ * è¦ç´ ã®çµ‚äº†æ™‚ã«ã€ã‚¹ã‚¿ãƒƒã‚¯ã‹ã‚‰ãƒãƒƒãƒ—ã™ã‚‹ã€‚<br>
+ * è¦ç´ ã®æƒ…å ±ãŒå…¥ã£ãŸã‚¹ã‚¿ãƒƒã‚¯ã‚’åˆ©ç”¨ã™ã‚‹ã“ã¨ã§ã€ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸç®‡æ‰€ã‚’ç‰¹å®šã™ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚
  * </p>
  * <p>
- * XML‚Ì—v‘fî•ñ‚ª‚Ç‚Ì‚æ‚¤‚ÉƒXƒ^ƒbƒN‚ÉŠi”[‚³‚ê‚é‚©‚ğˆÈ‰º‚É‹L‚·B
+ * XMLã®è¦ç´ æƒ…å ±ãŒã©ã®ã‚ˆã†ã«ã‚¹ã‚¿ãƒƒã‚¯ã«æ ¼ç´ã•ã‚Œã‚‹ã‹ã‚’ä»¥ä¸‹ã«è¨˜ã™ã€‚
  * </p>
  * <p>
- * yXMLƒf[ƒ^‚ÌƒTƒ“ƒvƒ‹z<br>
+ * ã€XMLãƒ‡ãƒ¼ã‚¿ã®ã‚µãƒ³ãƒ—ãƒ«ã€‘<br>
  * <code><pre>
  * &lt;sample-dto&gt;
  *   &lt;param-a&gt;
@@ -57,10 +57,10 @@ import org.apache.xerces.xni.XNIException;
  * </pre></code>
  * </p>
  * <p>
- * yã‹L‚ÌXMLƒf[ƒ^‚ª“ü—Í‚³‚ê‚½ê‡‚ÌAƒXƒ^ƒbƒN‚Ìó‘Ô‚Ì•Ï‰»z
+ * ã€ä¸Šè¨˜ã®XMLãƒ‡ãƒ¼ã‚¿ãŒå…¥åŠ›ã•ã‚ŒãŸå ´åˆã®ã€ã‚¹ã‚¿ãƒƒã‚¯ã®çŠ¶æ…‹ã®å¤‰åŒ–ã€‘
  * <code><pre>
  * <ol>
- * <li>i‹ój</li>
+ * <li>ï¼ˆç©ºï¼‰</li>
  * <li>{sample-dto[0]}</li>
  * <li>{sample-dto[0]}{param-a[0]}</li>
  * <li>{sample-dto[0]}{param-a[0]}{param-b[0]}</li>
@@ -78,58 +78,58 @@ import org.apache.xerces.xni.XNIException;
  * <li>{sample-dto[0]}{param-e[1]}{param-f[0]}</li>
  * <li>{sample-dto[0]}{param-e[1]}</li>
  * <li>{sample-dto[0]}</li>
- * <li>i‹ój</li>
+ * <li>ï¼ˆç©ºï¼‰</li>
  * </ol>
  * </pre></code>
  * </p>
- * 
+ *
  * <p>
- * —á‚¦‚ÎAã‹LƒTƒ“ƒvƒ‹‚Åparam-c—v‘f‚É•s³‚È’l‚ª“ü‚Á‚Ä‚¢‚½ê‡AƒGƒ‰[”­¶‚ÌƒXƒ^ƒbƒN‚Ìó‘Ô‚ÍˆÈ‰º‚Ì’Ê‚è‚Å‚ ‚éB<br>
- * ƒXƒ^ƒbƒN‚Ìó‘ÔF<code><b>{sample-dto[0]}{param-a[0]}{param-b[0]}{param-c[0]}</b></code>
+ * ä¾‹ãˆã°ã€ä¸Šè¨˜ã‚µãƒ³ãƒ—ãƒ«ã§param-cè¦ç´ ã«ä¸æ­£ãªå€¤ãŒå…¥ã£ã¦ã„ãŸå ´åˆã€ã‚¨ãƒ©ãƒ¼ç™ºç”Ÿæ™‚ã®ã‚¹ã‚¿ãƒƒã‚¯ã®çŠ¶æ…‹ã¯ä»¥ä¸‹ã®é€šã‚Šã§ã‚ã‚‹ã€‚<br>
+ * ã‚¹ã‚¿ãƒƒã‚¯ã®çŠ¶æ…‹ï¼š<code><b>{sample-dto[0]}{param-a[0]}{param-b[0]}{param-c[0]}</b></code>
  * </p>
- * 
+ *
  * <p>
- * XMLErrorReporterEx‚ÍˆÈ‰º‚Ì‚æ‚¤‚ÉƒXƒ^ƒbƒN‚Ì’l‚ğƒhƒbƒgi"."j‚Å˜AŒ‹‚µ‚ÄAƒGƒ‰[‚ÌƒtƒB[ƒ‹ƒhî•ñ‚ğ¶¬‚·‚éB<br>
- * ƒtƒB[ƒ‹ƒhî•ñF<code><b>sample-dto[0].param-a[0].param-b[0].param-c[0]</b></code>
+ * XMLErrorReporterExã¯ä»¥ä¸‹ã®ã‚ˆã†ã«ã‚¹ã‚¿ãƒƒã‚¯ã®å€¤ã‚’ãƒ‰ãƒƒãƒˆï¼ˆ"."ï¼‰ã§é€£çµã—ã¦ã€ã‚¨ãƒ©ãƒ¼ã®ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰æƒ…å ±ã‚’ç”Ÿæˆã™ã‚‹ã€‚<br>
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰æƒ…å ±ï¼š<code><b>sample-dto[0].param-a[0].param-b[0].param-c[0]</b></code>
  * </p>
- * 
+ *
  * <p>
- * ‰ğÍ’†‚ÌXML‚Ì‘®«‚Ìî•ñ‚Í“Á’è‚·‚é‚±‚Æ‚ª‚Å‚«‚È‚¢B<br>
- * ƒGƒ‰[‚ª”­¶‚µ‚½‘®«–¼‚ÍƒGƒ‰[î•ñ‚Ì’uŠ·•¶š—ñ‚©‚çæ“¾‚·‚é‚±‚Æ‚ª‚Å‚«‚éB<br>
- * Ú×‚ÍA{@link jp.terasoluna.fw.oxm.xsd.xerces.XMLErrorReporterEx}‚ğQÆ‚·‚é‚±‚ÆB
+ * è§£æä¸­ã®XMLã®å±æ€§ã®æƒ…å ±ã¯ç‰¹å®šã™ã‚‹ã“ã¨ãŒã§ããªã„ã€‚<br>
+ * ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸå±æ€§åã¯ã‚¨ãƒ©ãƒ¼æƒ…å ±ã®ç½®æ›æ–‡å­—åˆ—ã‹ã‚‰å–å¾—ã™ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚<br>
+ * è©³ç´°ã¯ã€{@link jp.terasoluna.fw.oxm.xsd.xerces.XMLErrorReporterEx}ã‚’å‚ç…§ã™ã‚‹ã“ã¨ã€‚
  * </p>
- * 
+ *
  * @see jp.terasoluna.fw.oxm.xsd.xerces.XMLErrorReporterEx
- * 
+ *
  */
 public class XMLSchemaValidatorEx extends XMLSchemaValidator {
 
     /**
-     * ƒƒOƒNƒ‰ƒXB
+     * ãƒ­ã‚°ã‚¯ãƒ©ã‚¹ã€‚
      */
     private static Log log = LogFactory.getLog(XMLSchemaValidatorEx.class);
-    
+
     /**
-     * XMLErrorReporterExƒCƒ“ƒXƒ^ƒ“ƒX
+     * XMLErrorReporterExã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹
      */
     private XMLErrorReporterEx reporter = null;
 
     /**
-     * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-     * 
-     * @param reporter XMLErrorReporterExƒCƒ“ƒXƒ^ƒ“ƒX
+     * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+     *
+     * @param reporter XMLErrorReporterExã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹
      */
     public XMLSchemaValidatorEx(XMLErrorReporterEx reporter) {
         this.reporter = reporter;
     }
 
     /**
-     * —v‘f‚ÌŠJn‚ÉA‰ğÍ’†‚ÌƒtƒB[ƒ‹ƒhî•ñ‚ğXMLErrorReporterEx‚ÌƒXƒ^ƒbƒN‚ÉƒvƒbƒVƒ…‚·‚éB
-     * 
-     * @param element XML—v‘f‚Ìî•ñ‚ğ‚ÂƒCƒ“ƒXƒ^ƒ“ƒX
-     * @param attributes XML‘®«‚Ìî•ñ‚ğ‚ÂƒCƒ“ƒXƒ^ƒ“ƒX
-     * @param augs ‘Ã“–«ŒŸØ‚ÌŒ‹‰Ê‚ªŠi”[‚³‚ê‚éƒCƒ“ƒXƒ^ƒ“ƒX
-     * @throws XNIException ƒp[ƒT“à‚Å”­¶‚·‚éÀs—áŠO
+     * è¦ç´ ã®é–‹å§‹æ™‚ã«ã€è§£æä¸­ã®ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰æƒ…å ±ã‚’XMLErrorReporterExã®ã‚¹ã‚¿ãƒƒã‚¯ã«ãƒ—ãƒƒã‚·ãƒ¥ã™ã‚‹ã€‚
+     *
+     * @param element XMLè¦ç´ ã®æƒ…å ±ã‚’æŒã¤ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹
+     * @param attributes XMLå±æ€§ã®æƒ…å ±ã‚’æŒã¤ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹
+     * @param augs å¦¥å½“æ€§æ¤œè¨¼ã®çµæœãŒæ ¼ç´ã•ã‚Œã‚‹ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹
+     * @throws XNIException ãƒ‘ãƒ¼ã‚µå†…ã§ç™ºç”Ÿã™ã‚‹å®Ÿè¡Œæ™‚ä¾‹å¤–
      */
     @Override
     public void startElement(QName element, XMLAttributes attributes,
@@ -139,19 +139,19 @@ public class XMLSchemaValidatorEx extends XMLSchemaValidator {
             log.error("ErrorReporterEx is not found.");
             throw new ErrorReporterNotFoundException();
         }
-        // —v‘f–¼‚ÉƒCƒ“ƒfƒbƒNƒX‚ğ•t‰Á‚µ‚½•¶š—ñ‚ğ•Ô‹p‚·‚é
+        // è¦ç´ åã«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ä»˜åŠ ã—ãŸæ–‡å­—åˆ—ã‚’è¿”å´ã™ã‚‹
         String pushStr = reporter.indexResolve(element.rawname);
-        // XMLErrorReporterEx‚ÌƒXƒ^ƒbƒN‚É‰ğÍ’†‚ÌƒtƒB[ƒ‹ƒhî•ñ‚ğƒvƒbƒVƒ…‚·‚é
+        // XMLErrorReporterExã®ã‚¹ã‚¿ãƒƒã‚¯ã«è§£æä¸­ã®ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰æƒ…å ±ã‚’ãƒ—ãƒƒã‚·ãƒ¥ã™ã‚‹
         reporter.getTagStack().push(pushStr);
         super.startElement(element, attributes, augs);
     }
-    
+
     /**
-     * —v‘f‚ÌI—¹‚ÉAXMLErrorReporterEx‚ÌƒXƒ^ƒbƒN‚©‚çƒ|ƒbƒv‚·‚éB
-     * 
-     * @param element XML—v‘f‚Ìî•ñ‚ğ‚ÂƒCƒ“ƒXƒ^ƒ“ƒX
-     * @param augs ‘Ã“–«ŒŸØ‚ÌŒ‹‰Ê‚ªŠi”[‚³‚ê‚éƒCƒ“ƒXƒ^ƒ“ƒX
-     * @throws XNIException ƒp[ƒT“à‚Å”­¶‚·‚éÀs—áŠO
+     * è¦ç´ ã®çµ‚äº†æ™‚ã«ã€XMLErrorReporterExã®ã‚¹ã‚¿ãƒƒã‚¯ã‹ã‚‰ãƒãƒƒãƒ—ã™ã‚‹ã€‚
+     *
+     * @param element XMLè¦ç´ ã®æƒ…å ±ã‚’æŒã¤ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹
+     * @param augs å¦¥å½“æ€§æ¤œè¨¼ã®çµæœãŒæ ¼ç´ã•ã‚Œã‚‹ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹
+     * @throws XNIException ãƒ‘ãƒ¼ã‚µå†…ã§ç™ºç”Ÿã™ã‚‹å®Ÿè¡Œæ™‚ä¾‹å¤–
      */
     @Override
     public void endElement(QName element, Augmentations augs)
@@ -162,7 +162,7 @@ public class XMLSchemaValidatorEx extends XMLSchemaValidator {
             log.error("ErrorReporterEx is not found.");
             throw new ErrorReporterNotFoundException();
         }
-        // —v‘f‚ÌI‚í‚è‚ÅAXMLErrorReporterEx‚ÌƒXƒ^ƒbƒN‚©‚çƒ|ƒbƒv‚·‚é
+        // è¦ç´ ã®çµ‚ã‚ã‚Šã§ã€XMLErrorReporterExã®ã‚¹ã‚¿ãƒƒã‚¯ã‹ã‚‰ãƒãƒƒãƒ—ã™ã‚‹
         reporter.getTagStack().pop();
     }
 

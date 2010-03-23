@@ -29,38 +29,38 @@ import org.xml.sax.helpers.AttributeListImpl;
 import org.xml.sax.helpers.AttributesImpl;
 
 /**
- * XMLSerializer‚ğŒp³ƒNƒ‰ƒXB
- * 
- * <p>ƒ‹[ƒgƒm[ƒh‚Éxml:space="preserve"‚ğİ’è‚·‚éB</p>
- * 
+ * XMLSerializerã‚’ç¶™æ‰¿ã‚¯ãƒ©ã‚¹ã€‚
+ *
+ * <p>ãƒ«ãƒ¼ãƒˆãƒãƒ¼ãƒ‰ã«xml:space="preserve"ã‚’è¨­å®šã™ã‚‹ã€‚</p>
+ *
  */
 @SuppressWarnings("deprecation")
 public class XMLSerializerEx extends XMLSerializer {
-    
+
     /**
-     * <code>Sax</code>‚Å—˜—p‚·‚é<code>CDATA</code>Œ^B
+     * <code>Sax</code>ã§åˆ©ç”¨ã™ã‚‹<code>CDATA</code>å‹ã€‚
      */
     public static final String CDATA = "CDATA";
 
     /**
-     * <code>xml:space</code>‚Ì’lA<code>preserve</code>B
+     * <code>xml:space</code>ã®å€¤ã€<code>preserve</code>ã€‚
      */
     public static final String PRESERVE_OPTION = "preserve";
 
     /**
-     * ƒ‹[ƒgƒm[ƒh‚ğ’Ê‰ß‚µ‚½‚©‚Ç‚¤‚©”»•Ê‚·‚é‚½‚ß‚Ìƒtƒ‰ƒOB<br>
-     * ƒ‹[ƒgƒm[ƒh‚Éxml:space="preserve"‚ğİ’èŒãA‚±‚Ìƒtƒ‰ƒO‚Ífalse‚É‚È‚éB
+     * ãƒ«ãƒ¼ãƒˆãƒãƒ¼ãƒ‰ã‚’é€šéã—ãŸã‹ã©ã†ã‹åˆ¤åˆ¥ã™ã‚‹ãŸã‚ã®ãƒ•ãƒ©ã‚°ã€‚<br>
+     * ãƒ«ãƒ¼ãƒˆãƒãƒ¼ãƒ‰ã«xml:space="preserve"ã‚’è¨­å®šå¾Œã€ã“ã®ãƒ•ãƒ©ã‚°ã¯falseã«ãªã‚‹ã€‚
      */
     protected boolean atRoot = true;
 
     /**
-     * ƒ‹[ƒgƒm[ƒh‚Éxml:space="preserve"‚ğİ’è‚·‚é‚©‚Ç‚¤‚©B
-     * true‚Ìê‡‚Éİ’è‚·‚éB
+     * ãƒ«ãƒ¼ãƒˆãƒãƒ¼ãƒ‰ã«xml:space="preserve"ã‚’è¨­å®šã™ã‚‹ã‹ã©ã†ã‹ã€‚
+     * trueã®å ´åˆã«è¨­å®šã™ã‚‹ã€‚
      */
     protected boolean preserveWhitespace = true;
 
     /**
-     * ƒRƒ“ƒXƒgƒ‰ƒNƒ^B
+     * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã€‚
      */
     @SuppressWarnings("deprecation")
     public XMLSerializerEx() {
@@ -68,11 +68,11 @@ public class XMLSerializerEx extends XMLSerializer {
     }
 
     /**
-     * ƒRƒ“ƒXƒgƒ‰ƒNƒ^B
-     * 
-     * @param writer ‘‚«o‚µ‚Ég—p‚·‚é<code>Writer</code>ƒCƒ“ƒXƒ^ƒ“ƒXB
-     * @param format o—ÍƒtƒH[ƒ}ƒbƒgB
-     *          <code>null</code>‚ğw’è‚µ‚½ê‡‚ÍƒfƒtƒHƒ‹ƒg’l‚ªg—p‚³‚ê‚éB
+     * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã€‚
+     *
+     * @param writer æ›¸ãå‡ºã—ã«ä½¿ç”¨ã™ã‚‹<code>Writer</code>ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã€‚
+     * @param format å‡ºåŠ›ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã€‚
+     *          <code>null</code>ã‚’æŒ‡å®šã—ãŸå ´åˆã¯ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ãŒä½¿ç”¨ã•ã‚Œã‚‹ã€‚
      */
     @SuppressWarnings("deprecation")
     public XMLSerializerEx(Writer writer, OutputFormat format) {
@@ -81,17 +81,17 @@ public class XMLSerializerEx extends XMLSerializer {
 
 
     /**
-     * ƒ‹[ƒgƒm[ƒh‚Ìê‡‚Ì‚İAxml:space="preserve"‚ğ•t—^‚·‚éB
-     * 
-     * @param tagName ƒ^ƒO–¼B
-     * @param attrs ‘®«B
-     * @throws SAXException SAXƒGƒ‰[B
+     * ãƒ«ãƒ¼ãƒˆãƒãƒ¼ãƒ‰ã®å ´åˆã®ã¿ã€xml:space="preserve"ã‚’ä»˜ä¸ã™ã‚‹ã€‚
+     *
+     * @param tagName ã‚¿ã‚°åã€‚
+     * @param attrs å±æ€§ã€‚
+     * @throws SAXException SAXã‚¨ãƒ©ãƒ¼ã€‚
      */
     @SuppressWarnings({ "deprecation", "static-access" })
     @Override
     public void startElement(String tagName, AttributeList attrs)
             throws SAXException {
-        
+
         if(atRoot && isPreserveWhitespace()){
             if (attrs instanceof AttributeListImpl) {
                 AttributeListImpl attr = (AttributeListImpl)attrs;
@@ -104,13 +104,13 @@ public class XMLSerializerEx extends XMLSerializer {
     }
 
     /**
-     * ƒ‹[ƒgƒm[ƒh‚Ìê‡‚Ì‚İAxml:space="preserve"‚ğ•t—^‚·‚éB
-     * 
-     * @param namespaceURI ƒl[ƒ€ƒXƒy[ƒX<code>URI</code>B
-     * @param localName ƒƒP[ƒ‹–¼B
-     * @param rawName –¼‘OB
-     * @param attrs ‘®«B
-     * @throws SAXException SAXƒGƒ‰[B
+     * ãƒ«ãƒ¼ãƒˆãƒãƒ¼ãƒ‰ã®å ´åˆã®ã¿ã€xml:space="preserve"ã‚’ä»˜ä¸ã™ã‚‹ã€‚
+     *
+     * @param namespaceURI ãƒãƒ¼ãƒ ã‚¹ãƒšãƒ¼ã‚¹<code>URI</code>ã€‚
+     * @param localName ãƒ­ã‚±ãƒ¼ãƒ«åã€‚
+     * @param rawName åå‰ã€‚
+     * @param attrs å±æ€§ã€‚
+     * @throws SAXException SAXã‚¨ãƒ©ãƒ¼ã€‚
      * @see org.apache.xml.serialize.XMLSerializer#startElement(java.lang.String, java.lang.String, java.lang.String, org.xml.sax.Attributes)
      */
     @SuppressWarnings("static-access")
@@ -123,7 +123,7 @@ public class XMLSerializerEx extends XMLSerializer {
                 attr.addAttribute(Namespaces.XML_NAMESPACE,
                         Marshaller.SPACE_ATTR,
                         Marshaller.XML_SPACE_ATTR,
-                        CDATA, 
+                        CDATA,
                         PRESERVE_OPTION);
             }
             atRoot = false;
@@ -132,23 +132,23 @@ public class XMLSerializerEx extends XMLSerializer {
     }
 
     /**
-     * ƒ‹[ƒgƒm[ƒh‚Éxml:space="preserve"‚ğİ’è‚·‚é‚©‚ğæ“¾‚·‚éB
+     * ãƒ«ãƒ¼ãƒˆãƒãƒ¼ãƒ‰ã«xml:space="preserve"ã‚’è¨­å®šã™ã‚‹ã‹ã‚’å–å¾—ã™ã‚‹ã€‚
      * <p>
-     * ƒfƒtƒHƒ‹ƒg’l‚Ítrue‚Å‚ ‚éB
+     * ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã¯trueã§ã‚ã‚‹ã€‚
      *
-     * @return ƒ‹[ƒgƒm[ƒh‚Éxml:space="preserve"‚ğİ’è‚·‚éê‡‚ÍtrueB
+     * @return ãƒ«ãƒ¼ãƒˆãƒãƒ¼ãƒ‰ã«xml:space="preserve"ã‚’è¨­å®šã™ã‚‹å ´åˆã¯trueã€‚
      */
     public boolean isPreserveWhitespace() {
         return preserveWhitespace;
     }
 
     /**
-     * ƒ‹[ƒgƒm[ƒh‚Éxml:space="preserve"‚ğ•t—^‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚éB
+     * ãƒ«ãƒ¼ãƒˆãƒãƒ¼ãƒ‰ã«xml:space="preserve"ã‚’ä»˜ä¸ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹ã€‚
      * <p>
-     * ƒfƒtƒHƒ‹ƒg’l‚Ítrue‚Å‚ ‚éB
-     * 
-     * @param preserveWhitespace ƒ‹[ƒgƒm[ƒh‚Éxml:space="preserve"‚ğ
-     *      •t—^‚·‚éê‡‚ÍtrueB
+     * ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã¯trueã§ã‚ã‚‹ã€‚
+     *
+     * @param preserveWhitespace ãƒ«ãƒ¼ãƒˆãƒãƒ¼ãƒ‰ã«xml:space="preserve"ã‚’
+     *      ä»˜ä¸ã™ã‚‹å ´åˆã¯trueã€‚
      */
     public void setPreserveWhitespace(boolean preserveWhitespace) {
         this.preserveWhitespace = preserveWhitespace;

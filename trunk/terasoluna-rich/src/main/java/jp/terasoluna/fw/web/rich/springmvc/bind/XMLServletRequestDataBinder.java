@@ -35,56 +35,56 @@ import org.springframework.web.bind.ServletRequestDataBinder;
 import org.w3c.dom.Document;
 
 /**
- * XMLŒ`®‚ÌƒŠƒNƒGƒXƒgƒf[ƒ^‚ğƒRƒ}ƒ“ƒhƒIƒuƒWƒFƒNƒg‚ÉƒoƒCƒ“ƒh‚·‚éƒNƒ‰ƒXB
+ * XMLå½¢å¼ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’ã‚³ãƒãƒ³ãƒ‰ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ãƒã‚¤ãƒ³ãƒ‰ã™ã‚‹ã‚¯ãƒ©ã‚¹ã€‚
  * <p>
- * ˆÈ‰º‚Ìˆ—‚ğ‡”Ô‚És‚¤B
+ * ä»¥ä¸‹ã®å‡¦ç†ã‚’é †ç•ªã«è¡Œã†ã€‚
  * <ol>
- * <li>XMLƒf[ƒ^‚ÌŒ`®ƒ`ƒFƒbƒNi¦È—ª‰Â”\j</li>
- * <li>XML¨ƒIƒuƒWƒFƒNƒg‚Ö‚Ì•ÏŠ·ˆ—</li>
+ * <li>XMLãƒ‡ãƒ¼ã‚¿ã®å½¢å¼ãƒã‚§ãƒƒã‚¯ï¼ˆâ€»çœç•¥å¯èƒ½ï¼‰</li>
+ * <li>XMLâ†’ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¸ã®å¤‰æ›å‡¦ç†</li>
  * </ol>
  * </p>
  * <p>
- * XMLƒf[ƒ^‚ÌŒ`®ƒ`ƒFƒbƒN‚É‚ÍXMLƒXƒL[ƒ}‚ğg—p‚·‚éB <br>
- * ÀÛ‚ÌŒ`®ƒ`ƒFƒbƒN•”•ª‚ÍSchemaValidator‚Éˆ—‚ğˆÏ÷‚·‚éB<br>
- * Ú×‚Í{@link jp.terasoluna.fw.oxm.xsd.SchemaValidator}‚ğQÆ‚·‚é‚±‚ÆB
+ * XMLãƒ‡ãƒ¼ã‚¿ã®å½¢å¼ãƒã‚§ãƒƒã‚¯ã«ã¯XMLã‚¹ã‚­ãƒ¼ãƒã‚’ä½¿ç”¨ã™ã‚‹ã€‚ <br>
+ * å®Ÿéš›ã®å½¢å¼ãƒã‚§ãƒƒã‚¯éƒ¨åˆ†ã¯SchemaValidatorã«å‡¦ç†ã‚’å§”è­²ã™ã‚‹ã€‚<br>
+ * è©³ç´°ã¯{@link jp.terasoluna.fw.oxm.xsd.SchemaValidator}ã‚’å‚ç…§ã™ã‚‹ã“ã¨ã€‚
  * </p>
  * <p>
- * XMLƒf[ƒ^‚ğƒIƒuƒWƒFƒNƒg‚É•ÏŠ·‚·‚é‹@”\‚ÍCastor‚ğg—p‚·‚éB Ú×‚ÍCastorOXMapperImplƒNƒ‰ƒX‚ğQÆ‚·‚é‚±‚ÆB
- * ÀÛ‚ÌXML‚©‚çƒIƒuƒWƒFƒNƒg‚Ö•ÏŠ·‚·‚é•”•ª‚ÍOXMapper‚Éˆ—‚ğˆÏ÷‚·‚éB<br>
- * Ú×‚Í{@link jp.terasoluna.fw.oxm.mapper.OXMapper}‚ğQÆ‚·‚é‚±‚ÆB
+ * XMLãƒ‡ãƒ¼ã‚¿ã‚’ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«å¤‰æ›ã™ã‚‹æ©Ÿèƒ½ã¯Castorã‚’ä½¿ç”¨ã™ã‚‹ã€‚ è©³ç´°ã¯CastorOXMapperImplã‚¯ãƒ©ã‚¹ã‚’å‚ç…§ã™ã‚‹ã“ã¨ã€‚
+ * å®Ÿéš›ã®XMLã‹ã‚‰ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¸å¤‰æ›ã™ã‚‹éƒ¨åˆ†ã¯OXMapperã«å‡¦ç†ã‚’å§”è­²ã™ã‚‹ã€‚<br>
+ * è©³ç´°ã¯{@link jp.terasoluna.fw.oxm.mapper.OXMapper}ã‚’å‚ç…§ã™ã‚‹ã“ã¨ã€‚
  * </p>
  * <p>
- * ƒf[ƒ^ƒoƒCƒ“ƒhˆ—‚Å”­¶‚·‚éƒGƒ‰[‚Í‚Qí—Ş‚ ‚èA“KØ‚ÈƒGƒ‰[ƒnƒ“ƒhƒŠƒ“ƒO‚ğs‚¤•K—v‚ª‚ ‚éB<br>
- * ƒGƒ‰[‚Ìˆê——‚ğˆÈ‰º‚É‹L‚·<br>
+ * ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ãƒ‰å‡¦ç†ã§ç™ºç”Ÿã™ã‚‹ã‚¨ãƒ©ãƒ¼ã¯ï¼’ç¨®é¡ã‚ã‚Šã€é©åˆ‡ãªã‚¨ãƒ©ãƒ¼ãƒãƒ³ãƒ‰ãƒªãƒ³ã‚°ã‚’è¡Œã†å¿…è¦ãŒã‚ã‚‹ã€‚<br>
+ * ã‚¨ãƒ©ãƒ¼ã®ä¸€è¦§ã‚’ä»¥ä¸‹ã«è¨˜ã™<br>
  * <ol>
- * <li>Œ`®ƒ`ƒFƒbƒNƒGƒ‰[</li>
+ * <li>å½¢å¼ãƒã‚§ãƒƒã‚¯ã‚¨ãƒ©ãƒ¼</li>
  * <li>OXMappingException</li>
  * </ol>
  * </p>
  * <p>
- * <u>Œ`®ƒ`ƒFƒbƒNƒGƒ‰[‚Ìƒnƒ“ƒhƒŠƒ“ƒO</u><br>
- * Œ`®ƒ`ƒFƒbƒNƒGƒ‰[‚Å¶¬‚³‚ê‚éƒGƒ‰[ƒƒbƒZ[ƒW‚ğABindException‚ÉŠi”[‚·‚éB<br>
- * ƒGƒ‰[‚ÌÚ×‚Í{@link jp.terasoluna.fw.oxm.xsd.xerces.XMLErrorReporterEx}‚ğQÆ‚·‚é‚±‚ÆB
+ * <u>å½¢å¼ãƒã‚§ãƒƒã‚¯ã‚¨ãƒ©ãƒ¼ã®ãƒãƒ³ãƒ‰ãƒªãƒ³ã‚°</u><br>
+ * å½¢å¼ãƒã‚§ãƒƒã‚¯ã‚¨ãƒ©ãƒ¼ã§ç”Ÿæˆã•ã‚Œã‚‹ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’ã€BindExceptionã«æ ¼ç´ã™ã‚‹ã€‚<br>
+ * ã‚¨ãƒ©ãƒ¼ã®è©³ç´°ã¯{@link jp.terasoluna.fw.oxm.xsd.xerces.XMLErrorReporterEx}ã‚’å‚ç…§ã™ã‚‹ã“ã¨ã€‚
  * </p>
  * <p>
- * yŒ`®ƒ`ƒFƒbƒN‚ÌƒŠƒ\[ƒXƒoƒ“ƒhƒ‹İ’è—áz<br>
+ * ã€å½¢å¼ãƒã‚§ãƒƒã‚¯ã®ãƒªã‚½ãƒ¼ã‚¹ãƒãƒ³ãƒ‰ãƒ«è¨­å®šä¾‹ã€‘<br>
  * <code><pre>
- *           typeMismatch.number= {0}‚É‚Í{1}’l‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢.
- *           typeMismatch.boolean= {0}‚É‚Íboolean’l‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢.
- *           typeMismatch.date= {0}‚É‚Í³‚µ‚¢“ú•t‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢.
- *           typeMismatch.numberMinRange= {0}‚É‚Í{1}ˆÈã‚Ì{2}’l‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢.
- *           typeMismatch.numberMaxRange= {0}‚É‚Í{1}ˆÈ‰º‚Ì{2}’l‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢.
+ *           typeMismatch.number= {0}ã«ã¯{1}å€¤ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„.
+ *           typeMismatch.boolean= {0}ã«ã¯booleanå€¤ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„.
+ *           typeMismatch.date= {0}ã«ã¯æ­£ã—ã„æ—¥ä»˜ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„.
+ *           typeMismatch.numberMinRange= {0}ã«ã¯{1}ä»¥ä¸Šã®{2}å€¤ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„.
+ *           typeMismatch.numberMaxRange= {0}ã«ã¯{1}ä»¥ä¸‹ã®{2}å€¤ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„.
  * </pre></code>
  * </p>
  * <p>
- * <u>OXMappingException‚Ìƒnƒ“ƒhƒŠƒ“ƒO</u><br>
- * ƒf[ƒ^ƒoƒCƒ“ƒhˆ—‚Å”­¶‚·‚é—áŠO‚Í‚·‚×‚ÄÀs—áŠO‚Å‚ ‚èA Šî–{“I‚Éƒnƒ“ƒhƒŠƒ“ƒO‚·‚é•K—v‚Í‚È‚¢B<br>
- * •K—v‚É‰‚¶‚ÄA—áŠOƒnƒ“ƒhƒ‰‚Ì’è‹`‚ÉOXMappingExceptionA ‚Ü‚½‚Í‚»‚ÌƒTƒuƒNƒ‰ƒX‚ğƒGƒ“ƒgƒŠ‚·‚é‚±‚ÆB
- * OXMappingException‚ÌÚ×‚Í{@link jp.terasoluna.fw.oxm.exception.OXMappingException}‚ğQÆ‚·‚é‚±‚ÆB
- * —áŠOƒnƒ“ƒhƒŠƒ“ƒO‚ÌÚ×‚Í{@link org.springframework.web.servlet.handler.SimpleMappingExceptionResolver}‚ğQÆ‚·‚é‚±‚ÆB
+ * <u>OXMappingExceptionã®ãƒãƒ³ãƒ‰ãƒªãƒ³ã‚°</u><br>
+ * ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ãƒ‰å‡¦ç†ã§ç™ºç”Ÿã™ã‚‹ä¾‹å¤–ã¯ã™ã¹ã¦å®Ÿè¡Œæ™‚ä¾‹å¤–ã§ã‚ã‚Šã€ åŸºæœ¬çš„ã«ãƒãƒ³ãƒ‰ãƒªãƒ³ã‚°ã™ã‚‹å¿…è¦ã¯ãªã„ã€‚<br>
+ * å¿…è¦ã«å¿œã˜ã¦ã€ä¾‹å¤–ãƒãƒ³ãƒ‰ãƒ©ã®å®šç¾©ã«OXMappingExceptionã€ ã¾ãŸã¯ãã®ã‚µãƒ–ã‚¯ãƒ©ã‚¹ã‚’ã‚¨ãƒ³ãƒˆãƒªã™ã‚‹ã“ã¨ã€‚
+ * OXMappingExceptionã®è©³ç´°ã¯{@link jp.terasoluna.fw.oxm.exception.OXMappingException}ã‚’å‚ç…§ã™ã‚‹ã“ã¨ã€‚
+ * ä¾‹å¤–ãƒãƒ³ãƒ‰ãƒªãƒ³ã‚°ã®è©³ç´°ã¯{@link org.springframework.web.servlet.handler.SimpleMappingExceptionResolver}ã‚’å‚ç…§ã™ã‚‹ã“ã¨ã€‚
  * </p>
  * <p>
- * yOXMappingException‚ÌBean’è‹`—áz <br>
+ * ã€OXMappingExceptionã®Beanå®šç¾©ä¾‹ã€‘ <br>
  * <code><pre>
  *          &lt;bean id=&quot;handlerExceptionResolver&quot;
  *                class=&quot;jp.terasoluna.fw.web.rich.springmvc.servlet.handler.SimpleMappingExceptionResolverEx&quot;&gt;
@@ -93,15 +93,15 @@ import org.w3c.dom.Document;
  *                     &lt;entry key=&quot;jp.terasoluna.fw.oxm.exception.OXMappingException&quot;&gt;
  *                          &lt;value&gt;oxmException,8004C028&lt;/value&gt;
  *                      &lt;/entry&gt;
- *                                      E
- *                                      E
- *                                      E
+ *                                      ãƒ»
+ *                                      ãƒ»
+ *                                      ãƒ»
  *                  &lt;/map&gt;
  *              &lt;/property&gt;
  *          &lt;/bean&gt;
  * </pre></code>
  * </p>
- * 
+ *
  * @see jp.terasoluna.fw.web.rich.springmvc.bind.creator.XMLServletRequestDataBinderCreator
  * @see jp.terasoluna.fw.oxm.xsd.message.ErrorMessage
  * @see jp.terasoluna.fw.oxm.xsd.message.ErrorMessages
@@ -111,30 +111,30 @@ import org.w3c.dom.Document;
  * @see org.springframework.web.servlet.handler.SimpleMappingExceptionResolver
  */
 public class XMLServletRequestDataBinder extends ServletRequestDataBinder {
-    
+
     /**
-     * ƒƒOƒNƒ‰ƒXB
+     * ãƒ­ã‚°ã‚¯ãƒ©ã‚¹ã€‚
      */
     private static Log log = LogFactory
             .getLog(XMLServletRequestDataBinder.class);
 
     /**
-     * OXMapperB
+     * OXMapperã€‚
      */
     private OXMapper oxmapper = null;
 
     /**
-     * SchemaValidatorB
+     * SchemaValidatorã€‚
      */
     private SchemaValidator schemaValidator = null;
 
     /**
-     * XMLServletRequestDataBinder‚ğ¶¬‚·‚éB
-     * 
-     * @param target ƒRƒ}ƒ“ƒhƒIƒuƒWƒFƒNƒg
+     * XMLServletRequestDataBinderã‚’ç”Ÿæˆã™ã‚‹ã€‚
+     *
+     * @param target ã‚³ãƒãƒ³ãƒ‰ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
      * @param oxmapper OXMapper
      * @param schemaValidator SchemaValidator
-     * @param objectName ƒIƒuƒWƒFƒNƒg–¼
+     * @param objectName ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå
      */
     public XMLServletRequestDataBinder(Object target, OXMapper oxmapper,
             SchemaValidator schemaValidator,String objectName) {
@@ -142,44 +142,44 @@ public class XMLServletRequestDataBinder extends ServletRequestDataBinder {
         this.oxmapper = oxmapper;
         this.schemaValidator = schemaValidator;
     }
-    
+
     /**
-     * XMLŒ`®‚Å’è‹`‚³‚ê‚½ƒŠƒNƒGƒXƒgƒf[ƒ^‚ğƒoƒCƒ“ƒh‚·‚éB
+     * XMLå½¢å¼ã§å®šç¾©ã•ã‚ŒãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’ãƒã‚¤ãƒ³ãƒ‰ã™ã‚‹ã€‚
      * <p>
-     * ÀÛ‚Ìƒf[ƒ^ƒoƒCƒ“ƒh•”•ª‚ÍAOXMapper‚Éˆ—‚ğˆÏ÷‚·‚éB
+     * å®Ÿéš›ã®ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ãƒ‰éƒ¨åˆ†ã¯ã€OXMapperã«å‡¦ç†ã‚’å§”è­²ã™ã‚‹ã€‚
      * </p>
      * <p>
-     * SchemaValidator‚ªDI‚³‚ê‚Ä‚¢‚éê‡AŒ`®ƒ`ƒFƒbƒN‚ğÀs‚·‚éB
+     * SchemaValidatorãŒDIã•ã‚Œã¦ã„ã‚‹å ´åˆã€å½¢å¼ãƒã‚§ãƒƒã‚¯ã‚’å®Ÿè¡Œã™ã‚‹ã€‚
      * </p>
-     * 
-     * @param request XMLŒ`®‚Å’è‹`‚³‚ê‚½ƒŠƒNƒGƒXƒgƒf[ƒ^
+     *
+     * @param request XMLå½¢å¼ã§å®šç¾©ã•ã‚ŒãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿
      */
     @Override
     public void bind(ServletRequest request) {
 
-        // XMLŒ`®‚Å’è‹`‚³‚ê‚½ƒŠƒNƒGƒXƒgƒf[ƒ^‚Ì“ü—ÍƒXƒgƒŠ[ƒ€‚ğæ“¾‚·‚é
+        // XMLå½¢å¼ã§å®šç¾©ã•ã‚ŒãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã®å…¥åŠ›ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚’å–å¾—ã™ã‚‹
         InputStream in = null;
 
         try {
             in = request.getInputStream();
 
-            // SchemaValidator‚ªDI‚³‚ê‚Ä‚¢‚éê‡AŒ`®ƒ`ƒFƒbƒN‚ğÀs‚·‚éB
+            // SchemaValidatorãŒDIã•ã‚Œã¦ã„ã‚‹å ´åˆã€å½¢å¼ãƒã‚§ãƒƒã‚¯ã‚’å®Ÿè¡Œã™ã‚‹ã€‚
             if (schemaValidator != null) {
 
                 Document doc = validate(in);
 
-                // Œ`®ƒ`ƒFƒbƒN‚ÅƒGƒ‰[‚ª”­¶‚µ‚½ê‡Aˆ—‚ğ’†~‚·‚é
+                // å½¢å¼ãƒã‚§ãƒƒã‚¯ã§ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸå ´åˆã€å‡¦ç†ã‚’ä¸­æ­¢ã™ã‚‹
                 if (getBindingResult().hasErrors()) {
                     return;
                 }
-                // Œ`®ƒ`ƒFƒbƒNÏ‚İ‚ÌDOMƒcƒŠ[‚ğg—p‚µ‚ÄAƒAƒ“ƒ}[ƒVƒƒƒ‹‚ğÀs‚·‚é
+                // å½¢å¼ãƒã‚§ãƒƒã‚¯æ¸ˆã¿ã®DOMãƒ„ãƒªãƒ¼ã‚’ä½¿ç”¨ã—ã¦ã€ã‚¢ãƒ³ãƒãƒ¼ã‚·ãƒ£ãƒ«ã‚’å®Ÿè¡Œã™ã‚‹
                 oxmapper.unmarshal(doc, getTarget());
             } else {
                 oxmapper.unmarshal(in, request.getCharacterEncoding(),
                         getTarget());
             }
         } catch (IOException e) {
-            // ƒXƒgƒŠ[ƒ€æ“¾‚ÌÛ‚ÉA“üo—Í—áŠO‚ª”­¶‚µ‚½ê‡
+            // ã‚¹ãƒˆãƒªãƒ¼ãƒ å–å¾—ã®éš›ã«ã€å…¥å‡ºåŠ›ä¾‹å¤–ãŒç™ºç”Ÿã—ãŸå ´åˆ
             log.error("Request stream error.", e);
             throw new XMLRequestIOException(e);
         } finally {
@@ -195,16 +195,16 @@ public class XMLServletRequestDataBinder extends ServletRequestDataBinder {
     }
 
     /**
-     * ƒŠƒNƒGƒXƒgƒf[ƒ^‚ÌŒ`®ƒ`ƒFƒbƒN‚ğs‚¤B
+     * ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã®å½¢å¼ãƒã‚§ãƒƒã‚¯ã‚’è¡Œã†ã€‚
      * <p>
-     * ÀÛ‚ÌŒ`®ƒ`ƒFƒbƒN•”•ª‚ÍASchemaValidator‚Éˆ—‚ğˆÏ÷‚·‚éB
+     * å®Ÿéš›ã®å½¢å¼ãƒã‚§ãƒƒã‚¯éƒ¨åˆ†ã¯ã€SchemaValidatorã«å‡¦ç†ã‚’å§”è­²ã™ã‚‹ã€‚
      * </p>
      * <p>
-     * Œ`®ƒ`ƒFƒbƒNƒGƒ‰[‚ª”­¶‚µ‚½ê‡A BindException‚ÉƒGƒ‰[‚ğŠi”[‚·‚éB
+     * å½¢å¼ãƒã‚§ãƒƒã‚¯ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸå ´åˆã€ BindExceptionã«ã‚¨ãƒ©ãƒ¼ã‚’æ ¼ç´ã™ã‚‹ã€‚
      * </p>
-     * 
-     * @param in XMLƒf[ƒ^
-     * @return Document DOMƒcƒŠ[
+     *
+     * @param in XMLãƒ‡ãƒ¼ã‚¿
+     * @return Document DOMãƒ„ãƒªãƒ¼
      */
     protected Document validate(InputStream in) {
 
@@ -212,25 +212,25 @@ public class XMLServletRequestDataBinder extends ServletRequestDataBinder {
             log.error("InputStream is null.");
             throw new IllegalArgumentException("InputStream is null.");
         }
-        
-        // ƒXƒL[ƒ}’è‹`‚É‚æ‚éŒ`®ƒ`ƒFƒbƒN
+
+        // ã‚¹ã‚­ãƒ¼ãƒå®šç¾©ã«ã‚ˆã‚‹å½¢å¼ãƒã‚§ãƒƒã‚¯
         ErrorMessages errorMessages = new ErrorMessages();
 
         Document doc = schemaValidator.validate(in, getTarget(), errorMessages);
 
         BindingResult errors = this.getBindingResult();
 
-        // ƒGƒ‰[ƒƒbƒZ[ƒW‚ª‚ ‚éê‡ABindingResult‚ÉƒGƒ‰[î•ñ‚ğ‹l‚ß‘Ö‚¦‚é
+        // ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒã‚ã‚‹å ´åˆã€BindingResultã«ã‚¨ãƒ©ãƒ¼æƒ…å ±ã‚’è©°ã‚æ›¿ãˆã‚‹
         for (ErrorMessage errorMessage : errorMessages.getErrorMessages()) {
-            
-            // BindingResult‚ÉŠi”[‚·‚é‚½‚ß‚ÌƒGƒ‰[‚ğ¶¬‚·‚é
+
+            // BindingResultã«æ ¼ç´ã™ã‚‹ãŸã‚ã®ã‚¨ãƒ©ãƒ¼ã‚’ç”Ÿæˆã™ã‚‹
             FieldError fe = new FieldError(getObjectName(), errorMessage
                     .getField(), null, false, errors.resolveMessageCodes(
                     errorMessage.getKey(), errorMessage.getField()),
                     createReplaceValues(errorMessage.getField(), errorMessage
                             .getReplaceValues()), null);
-            
-            // BindingResult‚ÉƒGƒ‰[‚ğƒZƒbƒg‚·‚é
+
+            // BindingResultã«ã‚¨ãƒ©ãƒ¼ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
             errors.addError(fe);
         }
 
@@ -239,39 +239,39 @@ public class XMLServletRequestDataBinder extends ServletRequestDataBinder {
     }
 
     /**
-     * ’uŠ·•¶š—ñ‚ğ¶¬‚·‚éB
+     * ç½®æ›æ–‡å­—åˆ—ã‚’ç”Ÿæˆã™ã‚‹ã€‚
      * <p>
-     * ’uŠ·•¶š—ñ‚ÌÅ‰‚ÉƒtƒB[ƒ‹ƒhî•ñ‚ğ’Ç‰Á‚µAÅŒã‚ÉƒGƒ‰[’l‚ğŠi”[‚·‚éB
+     * ç½®æ›æ–‡å­—åˆ—ã®æœ€åˆã«ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰æƒ…å ±ã‚’è¿½åŠ ã—ã€æœ€å¾Œã«ã‚¨ãƒ©ãƒ¼å€¤ã‚’æ ¼ç´ã™ã‚‹ã€‚
      * </p>
-     * 
-     * @param field ƒtƒB[ƒ‹ƒh’l
-     * @param replaceValues ’uŠ·•¶š—ñ
-     * @return ”z—ñ‚Ì‚O”Ô–Ú‚ÉƒtƒB[ƒ‹ƒhî•ñ‚ª•t‰Á‚³‚ê‚½’uŠ·•¶š—ñ
+     *
+     * @param field ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰å€¤
+     * @param replaceValues ç½®æ›æ–‡å­—åˆ—
+     * @return é…åˆ—ã®ï¼ç•ªç›®ã«ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰æƒ…å ±ãŒä»˜åŠ ã•ã‚ŒãŸç½®æ›æ–‡å­—åˆ—
      */
     protected String[] createReplaceValues(
             String field, String[] replaceValues) {
 
-        // ƒtƒB[ƒ‹ƒh’l‚ªnull‚Ìê‡‚Í‹ó•¶š‚É•ÏŠ·‚·‚é
+        // ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰å€¤ãŒnullã®å ´åˆã¯ç©ºæ–‡å­—ã«å¤‰æ›ã™ã‚‹
         if (field == null) {
             field = "";
         }
 
-        // ’uŠ·•¶š—ñ‚ªnull‚Ü‚½‚Í‹ó‚ÌƒŠƒXƒg‚Ìê‡A
-        // ƒtƒB[ƒ‹ƒh’l‚Ì‚İ‚ğŠi”[‚µ‚½’uŠ·•¶š—ñ‚ğ•Ô‹p‚·‚é
+        // ç½®æ›æ–‡å­—åˆ—ãŒnullã¾ãŸã¯ç©ºã®ãƒªã‚¹ãƒˆã®å ´åˆã€
+        // ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰å€¤ã®ã¿ã‚’æ ¼ç´ã—ãŸç½®æ›æ–‡å­—åˆ—ã‚’è¿”å´ã™ã‚‹
         if (replaceValues == null || replaceValues.length == 0) {
             return new String[] { field };
         }
 
         String[] resultReplaceValues = new String[replaceValues.length + 1];
 
-        // ”z—ñ‚ÌƒRƒs[
+        // é…åˆ—ã®ã‚³ãƒ”ãƒ¼
         System.arraycopy(replaceValues, 0, resultReplaceValues, 0,
                 replaceValues.length);
 
-        // ƒtƒB[ƒ‹ƒhî•ñ‚Í’uŠ·•¶š—ñ‚ÌÅ‰‚ÉŠi”[‚·‚é
+        // ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰æƒ…å ±ã¯ç½®æ›æ–‡å­—åˆ—ã®æœ€åˆã«æ ¼ç´ã™ã‚‹
         resultReplaceValues[0] = field;
 
-        // ƒGƒ‰[’l‚Í’uŠ·•¶š—ñ‚ÌÅŒã‚ÉŠi”[‚·‚é
+        // ã‚¨ãƒ©ãƒ¼å€¤ã¯ç½®æ›æ–‡å­—åˆ—ã®æœ€å¾Œã«æ ¼ç´ã™ã‚‹
         resultReplaceValues[resultReplaceValues.length - 1] = replaceValues[0];
 
         return resultReplaceValues;

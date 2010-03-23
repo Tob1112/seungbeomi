@@ -21,37 +21,37 @@ import org.springframework.validation.Errors;
 import org.springmodules.validation.commons.DefaultValidatorFactory;
 
 /**
- * terasoluna-validator-spring‚ÌCommonsValidatorExƒCƒ“ƒXƒ^ƒ“ƒX‚ğ¶¬‚·‚éƒtƒ@ƒNƒgƒŠƒNƒ‰ƒXB
- * 
- * <p>{@link jp.terasoluna.fw.validation.FieldChecks}ƒNƒ‰ƒX‚É‚Ä
- * g—p‚³‚ê‚éƒGƒ‰[ƒCƒ“ƒ^ƒtƒF[ƒX‚ÌÀ‘•‚É
- * SpringƒtƒŒ[ƒ€ƒ[ƒN‚Ì{@link org.springframework.validation.Errors}ƒNƒ‰ƒX‚ğ
- * ˆµ‚¤‚½‚ß‚ÌƒNƒ‰ƒXB
- * SpringƒtƒŒ[ƒ€ƒ[ƒNASpring-Modules‚ğg—p‚·‚é‚±‚Æ‚ğ‘O’ñ‚Æ‚µ‚Ä‚¨‚èA
- * Bean’è‹`ƒtƒ@ƒCƒ‹‚ÉˆÈ‰º‚Ì‚æ‚¤‚Èİ’è‚ª•K—v‚Æ‚È‚éB</p>
- * 
+ * terasoluna-validator-springã®CommonsValidatorExã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’ç”Ÿæˆã™ã‚‹ãƒ•ã‚¡ã‚¯ãƒˆãƒªã‚¯ãƒ©ã‚¹ã€‚
+ *
+ * <p>{@link jp.terasoluna.fw.validation.FieldChecks}ã‚¯ãƒ©ã‚¹ã«ã¦
+ * ä½¿ç”¨ã•ã‚Œã‚‹ã‚¨ãƒ©ãƒ¼ã‚¤ãƒ³ã‚¿ãƒ•ã‚§ãƒ¼ã‚¹ã®å®Ÿè£…ã«
+ * Springãƒ•ãƒ¬ãƒ¼ãƒ ãƒ¯ãƒ¼ã‚¯ã®{@link org.springframework.validation.Errors}ã‚¯ãƒ©ã‚¹ã‚’
+ * æ‰±ã†ãŸã‚ã®ã‚¯ãƒ©ã‚¹ã€‚
+ * Springãƒ•ãƒ¬ãƒ¼ãƒ ãƒ¯ãƒ¼ã‚¯ã€Spring-Modulesã‚’ä½¿ç”¨ã™ã‚‹ã“ã¨ã‚’å‰æã¨ã—ã¦ãŠã‚Šã€
+ * Beanå®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã«ä»¥ä¸‹ã®ã‚ˆã†ãªè¨­å®šãŒå¿…è¦ã¨ãªã‚‹ã€‚</p>
+ *
  * <hr>
- * 
- * <h5>Bean’è‹`ƒtƒ@ƒCƒ‹İ’è—á</h5>
+ *
+ * <h5>Beanå®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«è¨­å®šä¾‹</h5>
  * <code><pre>
- * &lt;!-- Validatorƒtƒ@ƒNƒgƒŠİ’è --&gt;
- * &lt;bean id="validatorFactory" 
- *   class="jp.terasoluna.fw.validation.springmodules.DefaultValidatorFactoryEx"&gt; 
- *   &lt;property name="validationConfigLocations"&gt; 
- *     &lt;list&gt; 
+ * &lt;!-- Validatorãƒ•ã‚¡ã‚¯ãƒˆãƒªè¨­å®š --&gt;
+ * &lt;bean id="validatorFactory"
+ *   class="jp.terasoluna.fw.validation.springmodules.DefaultValidatorFactoryEx"&gt;
+ *   &lt;property name="validationConfigLocations"&gt;
+ *     &lt;list&gt;
  *       &lt;value&gt;/WEB-INF/validation/validator-rules.xml&lt;/value&gt;
  *       &lt;value&gt;/WEB-INF/validation/validator-rules-ex.xml&lt;/value&gt;
- *       &lt;value&gt;/WEB-INF/validation/validation.xml&lt;/value&gt; 
- *     &lt;/list&gt; 
- *   &lt;/property&gt; 
- * &lt;/bean&gt; 
- *   
- * &lt;!-- Validatorİ’è --&gt;
- * &lt;bean id="beanValidator" class="jp.terasoluna.fw.validation.springmodules.DefaultBeanValidatorEx"&gt; 
- *   &lt;property name="validatorFactory"&gt;&lt;ref local="validatorFactory"/&gt;&lt;/property&gt; 
+ *       &lt;value&gt;/WEB-INF/validation/validation.xml&lt;/value&gt;
+ *     &lt;/list&gt;
+ *   &lt;/property&gt;
+ * &lt;/bean&gt;
+ *
+ * &lt;!-- Validatorè¨­å®š --&gt;
+ * &lt;bean id="beanValidator" class="jp.terasoluna.fw.validation.springmodules.DefaultBeanValidatorEx"&gt;
+ *   &lt;property name="validatorFactory"&gt;&lt;ref local="validatorFactory"/&gt;&lt;/property&gt;
  * &lt;/bean&gt;
  * </pre></code>
- * 
+ *
  * @see jp.terasoluna.fw.validation.ValidationErrors
  * @see jp.terasoluna.fw.validation.springmodules.SpringValidationErrors
  *
@@ -59,37 +59,37 @@ import org.springmodules.validation.commons.DefaultValidatorFactory;
 public class DefaultValidatorFactoryEx extends DefaultValidatorFactory {
 
     /**
-     * ValidatorƒCƒ“ƒXƒ^ƒ“ƒX‚Éİ’è‚·‚éƒGƒ‰[ƒIƒuƒWƒFƒNƒg‚ÌƒL[B
+     * Validatorã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã«è¨­å®šã™ã‚‹ã‚¨ãƒ©ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ã‚­ãƒ¼ã€‚
      */
-    public static final String TERASOLUNA_ERRORS_KEY = 
+    public static final String TERASOLUNA_ERRORS_KEY =
         "jp.terasoluna.fw.validation.ValidationErrors";
-    
+
     /**
-     * ValidatorƒCƒ“ƒXƒ^ƒ“ƒX‚ğæ“¾‚·‚éB
-     * 
-     * @param beanName ŒŸØ‚·‚éJavaBean‚Ì–¼‘OB
-     * @param bean ŒŸØ‘ÎÛ‚ÌJavaBeanB
-     * @param errors SpringƒtƒŒ[ƒ€ƒ[ƒN‚ÌƒGƒ‰[î•ñB
-     * @return ValidatorƒCƒ“ƒXƒ^ƒ“ƒXB
+     * Validatorã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’å–å¾—ã™ã‚‹ã€‚
+     *
+     * @param beanName æ¤œè¨¼ã™ã‚‹JavaBeanã®åå‰ã€‚
+     * @param bean æ¤œè¨¼å¯¾è±¡ã®JavaBeanã€‚
+     * @param errors Springãƒ•ãƒ¬ãƒ¼ãƒ ãƒ¯ãƒ¼ã‚¯ã®ã‚¨ãƒ©ãƒ¼æƒ…å ±ã€‚
+     * @return Validatorã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã€‚
      */
     @Override
     public Validator getValidator(
             String beanName, Object bean, Errors errors) {
-        Validator validator = 
+        Validator validator =
             new CommonsValidatorEx(getValidatorResources(), beanName);
-        
-        // BindException‚ğƒ‰ƒbƒv‚µ‚½ƒGƒ‰[ƒNƒ‰ƒX‚ğValidator‚Éİ’è‚·‚é
+
+        // BindExceptionã‚’ãƒ©ãƒƒãƒ—ã—ãŸã‚¨ãƒ©ãƒ¼ã‚¯ãƒ©ã‚¹ã‚’Validatorã«è¨­å®šã™ã‚‹
         SpringValidationErrors commonErrors = createSpringValidationErrors();
         commonErrors.setErrors(errors);
         validator.setParameter(TERASOLUNA_ERRORS_KEY, commonErrors);
-        
+
         validator.setParameter(Validator.BEAN_PARAM, bean);
         return validator;
     }
-    
+
     /**
-     * ‹¤’Ê“ü—Í’lŒŸØƒGƒ‰[ƒIƒuƒWƒFƒNƒg‚ğ¶¬‚·‚éB
-     * @return ‹¤’Ê“ü—Í’lŒŸØƒGƒ‰[ƒIƒuƒWƒFƒNƒgB
+     * å…±é€šå…¥åŠ›å€¤æ¤œè¨¼ã‚¨ãƒ©ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆã™ã‚‹ã€‚
+     * @return å…±é€šå…¥åŠ›å€¤æ¤œè¨¼ã‚¨ãƒ©ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‚
      */
     protected SpringValidationErrors createSpringValidationErrors() {
         return new SpringValidationErrors();

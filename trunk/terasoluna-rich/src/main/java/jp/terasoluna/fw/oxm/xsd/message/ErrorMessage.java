@@ -17,48 +17,48 @@
 package jp.terasoluna.fw.oxm.xsd.message;
 
 /**
- * ƒGƒ‰[ƒƒbƒZ[ƒW‚ğ•Û‚·‚éƒNƒ‰ƒXB
- * 
+ * ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’ä¿æŒã™ã‚‹ã‚¯ãƒ©ã‚¹ã€‚
+ *
  * <p>
- * ˆÈ‰º‚Ìî•ñ‚ğ•Û‚·‚éB
- * <li>ƒGƒ‰[ƒR[ƒh</li>
- * <li>’uŠ·•¶š—ñ</li>
- * <li>ƒGƒ‰[‚ª”­¶‚µ‚½ƒtƒB[ƒ‹ƒhî•ñ</li>
+ * ä»¥ä¸‹ã®æƒ…å ±ã‚’ä¿æŒã™ã‚‹ã€‚
+ * <li>ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰</li>
+ * <li>ç½®æ›æ–‡å­—åˆ—</li>
+ * <li>ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰æƒ…å ±</li>
  * </p>
- * 
+ *
  * <p>
- * ’ÊíA‚±‚ÌƒNƒ‰ƒX‚ÍƒƒbƒZ[ƒWƒoƒ“ƒhƒ‹‚Ég—p‚³‚ê‚éB
+ * é€šå¸¸ã€ã“ã®ã‚¯ãƒ©ã‚¹ã¯ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ«ã«ä½¿ç”¨ã•ã‚Œã‚‹ã€‚
  * </p>
- * 
+ *
  * @see jp.terasoluna.fw.oxm.xsd.SchemaValidator
  * @see jp.terasoluna.fw.oxm.xsd.xerces.SchemaValidatorImpl
  * @see jp.terasoluna.fw.oxm.xsd.xerces.XMLErrorReporterEx
  * @see jp.terasoluna.fw.web.rich.springmvc.bind.XMLServletRequestDataBinder
- * 
+ *
  */
 public class ErrorMessage {
 
     /**
-     * ƒGƒ‰[ƒR[ƒhB
-     */ 
+     * ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ã€‚
+     */
     private String key = null;
 
     /**
-     * ’uŠ·•¶š—ñB
+     * ç½®æ›æ–‡å­—åˆ—ã€‚
      */
     private String[] replaceValues = null;
 
     /**
-     * ƒGƒ‰[‚ª”­¶‚µ‚½ƒtƒB[ƒ‹ƒhB
+     * ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã€‚
      */
     private String field = null;
 
     /**
-     * ErrorMessage‚ğ¶¬‚·‚éB
-     * 
-     * @param key ƒGƒ‰[ƒR[ƒh
-     * @param field ƒGƒ‰[‚ª”­¶‚µ‚½ƒtƒB[ƒ‹ƒh
-     * @param values ’uŠ·•¶š—ñ
+     * ErrorMessageã‚’ç”Ÿæˆã™ã‚‹ã€‚
+     *
+     * @param key ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
+     * @param field ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
+     * @param values ç½®æ›æ–‡å­—åˆ—
      */
     public ErrorMessage(String key, String field, String... values) {
         this.key = key;
@@ -67,54 +67,54 @@ public class ErrorMessage {
     }
 
     /**
-     * ƒGƒ‰[ƒR[ƒh‚ğ•Ô‹p‚·‚éB
-     * 
-     * @return ƒGƒ‰[ƒR[ƒh
+     * ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ã‚’è¿”å´ã™ã‚‹ã€‚
+     *
+     * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
      */
     public String getKey() {
         return key;
     }
 
     /**
-     * ƒGƒ‰[ƒR[ƒh‚ğİ’è‚·‚éB
-     * 
-     * @param key ƒGƒ‰[ƒR[ƒh
+     * ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹ã€‚
+     *
+     * @param key ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
      */
     public void setKey(String key) {
         this.key = key;
     }
 
     /**
-     * ’uŠ·•¶š—ñ‚ğ•Ô‹p‚·‚éB
-     * 
-     * @return ’uŠ·•¶š—ñ
+     * ç½®æ›æ–‡å­—åˆ—ã‚’è¿”å´ã™ã‚‹ã€‚
+     *
+     * @return ç½®æ›æ–‡å­—åˆ—
      */
     public String[] getReplaceValues() {
         return replaceValues;
     }
 
     /**
-     * ’uŠ·•¶š—ñ‚ğ•Ô‹p‚·‚éB
-     * 
-     * @param replaceValues ’uŠ·•¶š—ñ
+     * ç½®æ›æ–‡å­—åˆ—ã‚’è¿”å´ã™ã‚‹ã€‚
+     *
+     * @param replaceValues ç½®æ›æ–‡å­—åˆ—
      */
     public void setReplaceValues(String[] replaceValues) {
         this.replaceValues = replaceValues;
     }
 
     /**
-     * ƒGƒ‰[‚ª”­¶‚µ‚½ƒtƒB[ƒ‹ƒh‚ğ•Ô‹p‚·‚éB
-     * 
-     * @return ƒGƒ‰[‚ª”­¶‚µ‚½ƒtƒB[ƒ‹ƒh
+     * ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚’è¿”å´ã™ã‚‹ã€‚
+     *
+     * @return ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
      */
     public String getField() {
         return field;
     }
 
     /**
-     * ƒGƒ‰[‚ª”­¶‚µ‚½ƒtƒB[ƒ‹ƒh‚ğİ’è‚·‚éB
-     * 
-     * @param field ƒGƒ‰[‚ª”­¶‚µ‚½ƒtƒB[ƒ‹ƒh
+     * ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚’è¨­å®šã™ã‚‹ã€‚
+     *
+     * @param field ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
      */
     public void setField(String field) {
         this.field = field;

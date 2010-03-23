@@ -23,91 +23,91 @@ import jp.terasoluna.fw.dao.UpdateDAO;
 
 
 /**
- * DAO�̃A�N�Z�T���\�b�h������BLogic�̒��ۃN���X�B
- * 
+ * DAOのアクセサメソッドを持つBLogicの抽象クラス。
+ *
  * <p>
- * DAO��getter/setter���\�b�h�����B
- * �����N���X�́A�{�N���X���p�ӂ���getter���\�b�h�𗘗p���āA
- * DAO���Q�Ƃ��邱�Ƃ��o����B
+ * DAOのgetter/setterメソッドを持つ。
+ * 実装クラスは、本クラスが用意したgetterメソッドを利用して、
+ * DAOを参照することが出来る。
  * </p>
- * 
+ *
  * <p>
- * �ʏ�͖{�N���X�𗘗p�����A
- * BLogic�C���^�t�F�[�X�𒼐ڎ�������BLogic�N���X���쐬���A
- * DI�R���e�i���K�v��DAO����ѐ�����T�|�[�g�N���X��ݒ肷�邱�ƁB
- * DAO��getter/setter���\�b�h���Ɩ��J���҂ɋL�q���������Ȃ��ꍇ�̂݁A
- * �{�N���X����������BLogic���쐬�����p���邱�ƁB
+ * 通常は本クラスを利用せず、
+ * BLogicインタフェースを直接実装したBLogicクラスを作成し、
+ * DIコンテナより必要なDAOおよび制御情報サポートクラスを設定すること。
+ * DAOのgetter/setterメソッドを業務開発者に記述させたくない場合のみ、
+ * 本クラスを実装したBLogicを作成し利用すること。
  * </p>
- * 
+ *
  * <p>
- * �{�N���X�𗘗p����ۂ�Bean��`���K�v�ł���B
- * ������DAO��DI�R���e�i���ݒ肷�邱�ƁB
- * �P��̃f�[�^�x�[�X�𗘗p���邱�Ƃ�O��Ƃ��Ă��邽�߁A�ݒ�ł���DAO�͊e��ł���B
+ * 本クラスを利用する際はBean定義が必要である。
+ * 属性にDAOをDIコンテナより設定すること。
+ * 単一のデータベースを利用することを前提としているため、設定できるDAOは各一つである。
  * </p>
- * 
- * @param <P> �r�W�l�X���W�b�N�̈����̌^�B
- * @param <R> �r�W�l�X���W�b�N�̖߂�l�̌^�B
+ *
+ * @param <P> ビジネスロジックの引数の型。
+ * @param <R> ビジネスロジックの戻り値の型。
  *
  */
 public abstract class AbstractBLogic<P, R> implements BLogic<P, R> {
     /**
-     * �Q�ƌnDAO�B
+     * 参照系DAO。
      */
     private QueryDAO queryDAO = null;
-    
+
     /**
-     * �X�V�nDAO
+     * 更新系DAO
      */
     private UpdateDAO updateDAO = null;
 
     /**
-     * �X�g�A�h�v���V�[�W��DAO�B
+     * ストアドプロシージャDAO。
      */
     private StoredProcedureDAO storedProcedureDAO = null;
 
     /**
-     * �Q�ƌnDAO��ݒ肷��B
-     * @param queryDAO �Q�ƌnDAO�B
+     * 参照系DAOを設定する。
+     * @param queryDAO 参照系DAO。
      */
     public void setQueryDAO(QueryDAO queryDAO) {
         this.queryDAO = queryDAO;
     }
 
     /**
-     * �Q�ƌnDAO���擾����B
-     * @return queryDAO �Q�ƌnDAO�B
+     * 参照系DAOを取得する。
+     * @return queryDAO 参照系DAO。
      */
     protected QueryDAO getQueryDAO() {
         return queryDAO;
     }
 
     /**
-     * �X�V�nDAO��ݒ肷��B
-     * @param updateDAO �X�V�nDAO�B
+     * 更新系DAOを設定する。
+     * @param updateDAO 更新系DAO。
      */
     public void setUpdateDAO(UpdateDAO updateDAO) {
         this.updateDAO = updateDAO;
     }
 
     /**
-     * �X�V�nDAO���擾����B
-     * @return updateDAO �X�V�nDAO�B
+     * 更新系DAOを取得する。
+     * @return updateDAO 更新系DAO。
      */
     protected UpdateDAO getUpdateDAO() {
         return updateDAO;
     }
 
     /**
-     * �X�g�A�h�v���V�[�W��DAO��ݒ肷��B
-     * @param storedProcedureDAO �X�g�A�h�v���V�[�W��DAO�B
+     * ストアドプロシージャDAOを設定する。
+     * @param storedProcedureDAO ストアドプロシージャDAO。
      */
     public void setStoredProcedureDAO(StoredProcedureDAO storedProcedureDAO) {
         this.storedProcedureDAO = storedProcedureDAO;
     }
 
     /**
-     * �X�g�A�h�v���V�[�W��DAO���擾����B
-     * @return storedProcedureDAO �X�g�A�h�v���V�[�W��DAO�B
+     * ストアドプロシージャDAOを取得する。
+     * @return storedProcedureDAO ストアドプロシージャDAO。
      */
     protected StoredProcedureDAO getStoredProcedureDAO() {
         return storedProcedureDAO;

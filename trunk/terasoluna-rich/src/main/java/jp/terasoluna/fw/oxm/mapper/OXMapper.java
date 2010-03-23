@@ -23,39 +23,39 @@ import java.io.Writer;
 import org.w3c.dom.Document;
 
 /**
- * ƒIƒuƒWƒFƒNƒg-XML•ÏŠ·‚ğs‚¤‚½‚ß‚ÌƒCƒ“ƒ^ƒtƒF[ƒXB
- * 
+ * ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ-XMLå¤‰æ›ã‚’è¡Œã†ãŸã‚ã®ã‚¤ãƒ³ã‚¿ãƒ•ã‚§ãƒ¼ã‚¹ã€‚
+ *
  * @see jp.terasoluna.fw.web.rich.springmvc.bind.XMLServletRequestDataBinder
- * 
+ *
  */
 public interface OXMapper {
     /**
-     * DOMƒcƒŠ[‚©‚çƒIƒuƒWƒFƒNƒg‚É•ÏŠ·‚·‚éƒƒ\ƒbƒhB
-     * @param doc DOMƒcƒŠ[
-     * @param out •ÏŠ·‘ÎÛ‚ÌƒIƒuƒWƒFƒNƒg
+     * DOMãƒ„ãƒªãƒ¼ã‹ã‚‰ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«å¤‰æ›ã™ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰ã€‚
+     * @param doc DOMãƒ„ãƒªãƒ¼
+     * @param out å¤‰æ›å¯¾è±¡ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
      */
     void unmarshal(Document doc, Object out);
-    
+
     /**
-     * ƒXƒgƒŠ[ƒ€‚©‚çXMLƒf[ƒ^‚ğæ‚èo‚µAƒIƒuƒWƒFƒNƒg‚É•ÏŠ·‚·‚éB
-     * @param reader XMLƒf[ƒ^B•¶šƒZƒbƒg‚ªw’è‚³‚ê‚Ä‚¢‚È‚¢ê‡A
-     * VM‚ÌƒfƒtƒHƒ‹ƒg•¶šƒZƒbƒg‚ªg—p‚³‚ê‚éB
-     * @param out XML‚©‚ç•ÏŠ·‚³‚ê‚½ƒIƒuƒWƒFƒNƒgB
+     * ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‹ã‚‰XMLãƒ‡ãƒ¼ã‚¿ã‚’å–ã‚Šå‡ºã—ã€ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«å¤‰æ›ã™ã‚‹ã€‚
+     * @param reader XMLãƒ‡ãƒ¼ã‚¿ã€‚æ–‡å­—ã‚»ãƒƒãƒˆãŒæŒ‡å®šã•ã‚Œã¦ã„ãªã„å ´åˆã€
+     * VMã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆæ–‡å­—ã‚»ãƒƒãƒˆãŒä½¿ç”¨ã•ã‚Œã‚‹ã€‚
+     * @param out XMLã‹ã‚‰å¤‰æ›ã•ã‚ŒãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‚
      */
     void unmarshal(Reader reader, Object out);
-    
+
     /**
-     * ƒXƒgƒŠ[ƒ€‚©‚çXMLƒf[ƒ^‚ğæ‚èo‚µAƒIƒuƒWƒFƒNƒg‚É•ÏŠ·‚·‚éB
-     * @param is XMLƒf[ƒ^B
-     * @param argCharset •¶šƒZƒbƒgBNull‚Ü‚½‚Í‹ó•¶š‚Ìê‡AUTF-8‚ªw’è‚³‚ê‚éB
-     * @param out XML‚©‚ç•ÏŠ·‚³‚ê‚½ƒIƒuƒWƒFƒNƒgB
+     * ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‹ã‚‰XMLãƒ‡ãƒ¼ã‚¿ã‚’å–ã‚Šå‡ºã—ã€ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«å¤‰æ›ã™ã‚‹ã€‚
+     * @param is XMLãƒ‡ãƒ¼ã‚¿ã€‚
+     * @param argCharset æ–‡å­—ã‚»ãƒƒãƒˆã€‚Nullã¾ãŸã¯ç©ºæ–‡å­—ã®å ´åˆã€UTF-8ãŒæŒ‡å®šã•ã‚Œã‚‹ã€‚
+     * @param out XMLã‹ã‚‰å¤‰æ›ã•ã‚ŒãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‚
      */
     void unmarshal(InputStream is, String argCharset, Object out);
 
     /**
-     * ƒIƒuƒWƒFƒNƒg‚©‚çXML‚É•ÏŠ·‚ğs‚¢AƒXƒgƒŠ[ƒ€‚Éo—Í‚·‚éƒƒ\ƒbƒhB
-     * @param in •ÏŠ·‘ÎÛ‚ÌƒIƒuƒWƒFƒNƒg
-     * @param writer ƒ‰ƒCƒ^[
+     * ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‹ã‚‰XMLã«å¤‰æ›ã‚’è¡Œã„ã€ã‚¹ãƒˆãƒªãƒ¼ãƒ ã«å‡ºåŠ›ã™ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰ã€‚
+     * @param in å¤‰æ›å¯¾è±¡ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+     * @param writer ãƒ©ã‚¤ã‚¿ãƒ¼
      */
     void marshal(Object in, Writer writer);
 }

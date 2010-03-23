@@ -23,62 +23,62 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
 
 /**
- * Servlet‚âFilter“à‚Å”­¶‚µ‚½—áŠO‚È‚ÇA
- * web.xml‚Ìerror-pageİ’è‚É‚æ‚é—áŠOƒnƒ“ƒhƒŠƒ“ƒO‚ğ
- * s‚¤‚Æ‚«‚Ég—p‚·‚éƒRƒ“ƒgƒ[ƒ‰B
- * 
- * <p>‚±‚ÌƒNƒ‰ƒX‚Å‚ÍServlet‚âFilter‚Å”­¶‚µ‚½—áŠO‚ğƒXƒ[‚µA
- * Spring-MVC‚Ì—áŠOƒnƒ“ƒhƒŠƒ“ƒO‹@”\‚Éˆ—‚ğ“Š‚°‚é‚±‚Æ‚ğÓ–±‚Æ‚·‚éB
- * ƒXƒ[‚µ‚½—áŠO‚ÍA{@link jp.terasoluna.fw.web.rich.springmvc.servlet.handler.SimpleMappingExceptionResolverEx}
- * ‚Å“KØ‚Éƒnƒ“ƒhƒŠƒ“ƒO‚³‚ê‚é‚±‚Æ‚ğ‘z’è‚µ‚Ä‚¢‚éB</p>
- * 
- * <p>Bean’è‹`ƒtƒ@ƒCƒ‹‚ÉˆÈ‰º‚Ìİ’è‚ğ‚·‚é‚±‚ÆB</p>
- * 
+ * Servletã‚„Filterå†…ã§ç™ºç”Ÿã—ãŸä¾‹å¤–ãªã©ã€
+ * web.xmlã®error-pageè¨­å®šã«ã‚ˆã‚‹ä¾‹å¤–ãƒãƒ³ãƒ‰ãƒªãƒ³ã‚°ã‚’
+ * è¡Œã†ã¨ãã«ä½¿ç”¨ã™ã‚‹ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã€‚
+ *
+ * <p>ã“ã®ã‚¯ãƒ©ã‚¹ã§ã¯Servletã‚„Filterã§ç™ºç”Ÿã—ãŸä¾‹å¤–ã‚’ã‚¹ãƒ­ãƒ¼ã—ã€
+ * Spring-MVCã®ä¾‹å¤–ãƒãƒ³ãƒ‰ãƒªãƒ³ã‚°æ©Ÿèƒ½ã«å‡¦ç†ã‚’æŠ•ã’ã‚‹ã“ã¨ã‚’è²¬å‹™ã¨ã™ã‚‹ã€‚
+ * ã‚¹ãƒ­ãƒ¼ã—ãŸä¾‹å¤–ã¯ã€{@link jp.terasoluna.fw.web.rich.springmvc.servlet.handler.SimpleMappingExceptionResolverEx}
+ * ã§é©åˆ‡ã«ãƒãƒ³ãƒ‰ãƒªãƒ³ã‚°ã•ã‚Œã‚‹ã“ã¨ã‚’æƒ³å®šã—ã¦ã„ã‚‹ã€‚</p>
+ *
+ * <p>Beanå®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã«ä»¥ä¸‹ã®è¨­å®šã‚’ã™ã‚‹ã“ã¨ã€‚</p>
+ *
  * <hr>
  * <p>
- *  y<code>Bean’è‹`ƒtƒ@ƒCƒ‹</code>‚Ìİ’è—áz<br>
+ *  ã€<code>Beanå®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«</code>ã®è¨­å®šä¾‹ã€‘<br>
  *  <code><pre>
- *  &lt;bean name="/exceptionController" 
+ *  &lt;bean name="/exceptionController"
         class="jp.terasoluna.fw.web.rich.springmvc.controller.ErrorPageHandlingController"/&gt;
  * </pre></code>
  * </p>
  * <hr>
- * 
- * ‚Ü‚½A‚±‚ÌƒNƒ‰ƒX‚ğg—p‚·‚é‚É‚Í
+ *
+ * ã¾ãŸã€ã“ã®ã‚¯ãƒ©ã‚¹ã‚’ä½¿ç”¨ã™ã‚‹ã«ã¯
  * {@link jp.terasoluna.fw.web.rich.springmvc.servlet.handler.ErrorPageHandlerMapping}
- * ƒNƒ‰ƒX‚ğBean’è‹`ƒtƒ@ƒCƒ‹‚Éİ’è‚µ‚Ä‚¨‚­•K—v‚ª‚ ‚éBÚ×‚Í
+ * ã‚¯ãƒ©ã‚¹ã‚’Beanå®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã«è¨­å®šã—ã¦ãŠãå¿…è¦ãŒã‚ã‚‹ã€‚è©³ç´°ã¯
  * {@link jp.terasoluna.fw.web.rich.springmvc.servlet.handler.ErrorPageHandlerMapping}
- * ƒNƒ‰ƒX‚ÌJavaDoc‚ğQÆ‚·‚é‚±‚ÆB
- * 
+ * ã‚¯ãƒ©ã‚¹ã®JavaDocã‚’å‚ç…§ã™ã‚‹ã“ã¨ã€‚
+ *
  * @see jp.terasoluna.fw.web.rich.springmvc.servlet.handler.ErrorPageHandlerMapping
  * @see jp.terasoluna.fw.web.rich.springmvc.servlet.handler.SimpleMappingExceptionResolverEx
- * 
+ *
  */
 public class ErrorPageHandlingController implements Controller {
 
     /**
-     * HTTPƒŠƒNƒGƒXƒg“à‚Å”­¶‚µ‚½—áŠO‚ğ•Û‚µ‚Ä‚¢‚éƒL[B
+     * HTTPãƒªã‚¯ã‚¨ã‚¹ãƒˆå†…ã§ç™ºç”Ÿã—ãŸä¾‹å¤–ã‚’ä¿æŒã—ã¦ã„ã‚‹ã‚­ãƒ¼ã€‚
      */
-    private static final String JAVAX_SERVLET_ERROR_EXCEPTION = 
+    private static final String JAVAX_SERVLET_ERROR_EXCEPTION =
         "javax.servlet.error.exception";
 
     /**
-     * ƒŠƒNƒGƒXƒgˆ—‚ğs‚¤B
-     * ƒŠƒNƒGƒXƒg‚ª•Û‚µ‚Ä‚¢‚é—áŠO‚ğƒXƒ[‚·‚éB
-     * ƒŠƒNƒGƒXƒg‚É—áŠO‚ª‚È‚¢ê‡A{@link java.lang.IllegalArgumentException}
-     * ‚ªƒXƒ[‚³‚ê‚éB
-     * 
-     * @param request HTTPƒŠƒNƒGƒXƒgB
-     * @param response HTTPƒŒƒXƒ|ƒ“ƒXB
-     * @return ƒŒƒXƒ|ƒ“ƒX‚ğƒŒƒ“ƒ_ƒŠƒ“ƒO‚·‚é‚½‚ß‚ÌModelAndViewB
-     * @throws Exception —áŠOB
+     * ãƒªã‚¯ã‚¨ã‚¹ãƒˆå‡¦ç†ã‚’è¡Œã†ã€‚
+     * ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒä¿æŒã—ã¦ã„ã‚‹ä¾‹å¤–ã‚’ã‚¹ãƒ­ãƒ¼ã™ã‚‹ã€‚
+     * ãƒªã‚¯ã‚¨ã‚¹ãƒˆã«ä¾‹å¤–ãŒãªã„å ´åˆã€{@link java.lang.IllegalArgumentException}
+     * ãŒã‚¹ãƒ­ãƒ¼ã•ã‚Œã‚‹ã€‚
+     *
+     * @param request HTTPãƒªã‚¯ã‚¨ã‚¹ãƒˆã€‚
+     * @param response HTTPãƒ¬ã‚¹ãƒãƒ³ã‚¹ã€‚
+     * @return ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚’ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã™ã‚‹ãŸã‚ã®ModelAndViewã€‚
+     * @throws Exception ä¾‹å¤–ã€‚
      */
     public ModelAndView handleRequest(
-            HttpServletRequest request, 
+            HttpServletRequest request,
             HttpServletResponse response) throws Exception {
-        Exception e = 
+        Exception e =
             (Exception) request.getAttribute(JAVAX_SERVLET_ERROR_EXCEPTION);
-        
+
         if (e == null) {
             String message = "ErrorPageHandlingController must be set "
                 + "Exception in Request Data.";

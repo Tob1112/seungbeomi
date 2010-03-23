@@ -34,66 +34,66 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
- * ƒvƒƒpƒeƒBƒtƒ@ƒCƒ‹‚©‚çƒvƒƒpƒeƒB‚ğæ“¾‚·‚éƒ†[ƒeƒBƒŠƒeƒBƒNƒ‰ƒXB
+ * ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚’å–å¾—ã™ã‚‹ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£ã‚¯ãƒ©ã‚¹ã€‚
  *
- * <p>ƒfƒtƒHƒ‹ƒg‚Å‚Í ApplicationResources ƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚Ş‚ªA
- * ApplicationResources ƒtƒ@ƒCƒ‹‚ÅˆÈ‰º‚Ì‚æ‚¤‚Éw’è‚·‚é‚±‚Æ‚É‚æ‚èA
- * ‘¼‚ÌƒvƒƒpƒeƒBƒtƒ@ƒCƒ‹‚ğ’Ç‰Á‚Å“Ç‚İ‚Ş‚±‚Æ‚à‚Å‚«‚éB</p>
- * <strong>ApplicationResources.properties‚Ìİ’è‘®</strong><br>
+ * <p>ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã§ã¯ ApplicationResources ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚€ãŒã€
+ * ApplicationResources ãƒ•ã‚¡ã‚¤ãƒ«ã§ä»¥ä¸‹ã®ã‚ˆã†ã«æŒ‡å®šã™ã‚‹ã“ã¨ã«ã‚ˆã‚Šã€
+ * ä»–ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãƒ•ã‚¡ã‚¤ãƒ«ã‚’è¿½åŠ ã§èª­ã¿è¾¼ã‚€ã“ã¨ã‚‚ã§ãã‚‹ã€‚</p>
+ * <strong>ApplicationResources.propertiesã®è¨­å®šæ›¸å¼</strong><br>
  * <code><pre>
- *   add.property.file.1 = <i>&lt;’Ç‰ÁƒvƒƒpƒeƒBƒtƒ@ƒCƒ‹–¼1&gt;</i>
- *   add.property.file.2 = <i>&lt;’Ç‰ÁƒvƒƒpƒeƒBƒtƒ@ƒCƒ‹–¼2&gt;</i>
+ *   add.property.file.1 = <i>&lt;è¿½åŠ ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãƒ•ã‚¡ã‚¤ãƒ«å1&gt;</i>
+ *   add.property.file.2 = <i>&lt;è¿½åŠ ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãƒ•ã‚¡ã‚¤ãƒ«å2&gt;</i>
  *   ...
  * </pre></code>
- * 
+ *
  * <p>
- * ‚Ü‚½AƒvƒƒpƒeƒBƒtƒ@ƒCƒ‹‚ğŒÂ•Ê‚Éw’è‚µ‚½ˆÈ‰º‚Ì‹@”\‚ª‚ ‚é
+ * ã¾ãŸã€ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å€‹åˆ¥ã«æŒ‡å®šã—ãŸä»¥ä¸‹ã®æ©Ÿèƒ½ãŒã‚ã‚‹
  * <ol>
- *  <li>•”•ªƒL[ŒŸõ‚É‚æ‚é’læ“¾</li>
- *  <li>•”•ªƒL[æ“¾</li>
+ *  <li>éƒ¨åˆ†ã‚­ãƒ¼æ¤œç´¢ã«ã‚ˆã‚‹å€¤å–å¾—</li>
+ *  <li>éƒ¨åˆ†ã‚­ãƒ¼å–å¾—</li>
  * </ol>
- * Ú×‚ÍA
- * getPropertyNames() ƒƒ\ƒbƒhA
- * getPropertiesValues() ƒƒ\ƒbƒh‚ğQÆB
+ * è©³ç´°ã¯ã€
+ * getPropertyNames() ãƒ¡ã‚½ãƒƒãƒ‰ã€
+ * getPropertiesValues() ãƒ¡ã‚½ãƒƒãƒ‰ã‚’å‚ç…§ã€‚
  * </p>
  *
  */
 public class PropertyUtil {
 
     /**
-     * ƒƒOƒNƒ‰ƒXB
+     * ãƒ­ã‚°ã‚¯ãƒ©ã‚¹ã€‚
      */
     private static Log log = LogFactory.getLog(PropertyUtil.class);
 
     /**
-     * ƒfƒtƒHƒ‹ƒgƒvƒƒpƒeƒBƒtƒ@ƒCƒ‹–¼B
+     * ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãƒ•ã‚¡ã‚¤ãƒ«åã€‚
      */
     public static final String DEFAULT_PROPERTY_FILE
         = "ApplicationResources.properties";
 
     /**
-     * ’Ç‰ÁƒvƒƒpƒeƒBƒtƒ@ƒCƒ‹w’è‚ÌƒvƒŠƒtƒBƒbƒNƒXB
+     * è¿½åŠ ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãƒ•ã‚¡ã‚¤ãƒ«æŒ‡å®šã®ãƒ—ãƒªãƒ•ã‚£ãƒƒã‚¯ã‚¹ã€‚
      */
     private static final String ADD_PROPERTY_PREFIX = "add.property.file.";
-    
+
     /**
-     * ƒvƒƒpƒeƒBƒtƒ@ƒCƒ‹‚ÌŠg’£qB
+     * ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãƒ•ã‚¡ã‚¤ãƒ«ã®æ‹¡å¼µå­ã€‚
      */
     private static final String PROPERTY_EXTENSION = ".properties";
 
     /**
-     * ƒvƒƒpƒeƒB‚ÌƒL[‚Æ’l‚ğ•Û‚·‚éƒIƒuƒWƒFƒNƒgB
+     * ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã®ã‚­ãƒ¼ã¨å€¤ã‚’ä¿æŒã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‚
      */
     private static TreeMap<String, String> props =
             new TreeMap<String, String>();
-    
+
     /**
-     * “Ç‚İ‚ñ‚¾ƒvƒƒpƒeƒBƒtƒ@ƒCƒ‹–¼ƒŠƒXƒgB
+     * èª­ã¿è¾¼ã‚“ã ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãƒ•ã‚¡ã‚¤ãƒ«åãƒªã‚¹ãƒˆã€‚
      */
     private static Set<String> files = new HashSet<String>();
 
     /**
-     * ƒNƒ‰ƒXƒ[ƒh‚ÉƒvƒƒpƒeƒBƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚İ‰Šú‰»‚·‚éB
+     * ã‚¯ãƒ©ã‚¹ãƒ­ãƒ¼ãƒ‰æ™‚ã«ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã¿åˆæœŸåŒ–ã™ã‚‹ã€‚
      */
     static {
         StringBuilder key = new StringBuilder();
@@ -114,20 +114,20 @@ public class PropertyUtil {
     }
 
     /**
-     * w’è‚³‚ê‚½ƒvƒƒpƒeƒBƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚ŞB
-     * 
+     * æŒ‡å®šã•ã‚ŒãŸãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚€ã€‚
+     *
      * <p>
-     *  “Ç‚İ‚Ü‚ê‚½ƒvƒƒpƒeƒBƒtƒ@ƒCƒ‹‚ÍA
-     *  ˆÈ‘O“Ç‚İ‚ñ‚¾“à—e‚É’Ç‰Á‚³‚ê‚éB
+     *  èª­ã¿è¾¼ã¾ã‚ŒãŸãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãƒ•ã‚¡ã‚¤ãƒ«ã¯ã€
+     *  ä»¥å‰èª­ã¿è¾¼ã‚“ã å†…å®¹ã«è¿½åŠ ã•ã‚Œã‚‹ã€‚
      * </p>
      *
-     * @param name ƒvƒƒpƒeƒBƒtƒ@ƒCƒ‹–¼
+     * @param name ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãƒ•ã‚¡ã‚¤ãƒ«å
      */
     private static void load(String name) {
         StringBuilder key = new StringBuilder();
         Properties p = readPropertyFile(name);
         for (Map.Entry e : p.entrySet()) {
-            // “Ç‚İ‚ñ‚¾‚à‚Ì‚ğ‚·‚×‚Äprops‚É’Ç‰Á‚·‚éB
+            // èª­ã¿è¾¼ã‚“ã ã‚‚ã®ã‚’ã™ã¹ã¦propsã«è¿½åŠ ã™ã‚‹ã€‚
             props.put((String) e.getKey(), (String) e.getValue());
         }
 
@@ -147,25 +147,25 @@ public class PropertyUtil {
     }
 
     /**
-     * w’è‚³‚ê‚½ƒvƒƒpƒeƒBƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚ŞB
-     * 
+     * æŒ‡å®šã•ã‚ŒãŸãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚€ã€‚
+     *
      * <p>
-     * ˆÈ‘O“Ç‚İ‚ñ‚¾“à—e‚É’Ç‰Á‚³‚ê‚éB
+     * ä»¥å‰èª­ã¿è¾¼ã‚“ã å†…å®¹ã«è¿½åŠ ã•ã‚Œã‚‹ã€‚
      * </p>
-     * @param name ƒvƒƒpƒeƒBƒtƒ@ƒCƒ‹–¼
-     * @return ƒvƒƒpƒeƒBƒŠƒXƒg
+     * @param name ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãƒ•ã‚¡ã‚¤ãƒ«å
+     * @return ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãƒªã‚¹ãƒˆ
      */
     private static Properties readPropertyFile(String name) {
-        // ƒJƒŒƒ“ƒgƒXƒŒƒbƒh‚ÌƒRƒ“ƒeƒLƒXƒgƒNƒ‰ƒXƒ[ƒ_‚ğg—p‚·‚é‚Æ
-        // WEB-INF/classes‚ÌƒvƒƒpƒeƒBƒtƒ@ƒCƒ‹‚ğ“Ç‚Ş‚±‚Æ‚ª‚Å‚«‚È‚¢ê‡‚ª‚ ‚éB
-        // ‚¾‚ªJNLP‚ÅƒŠƒ\[ƒX‚ğæ“¾‚·‚é‚É‚ÍAƒƒCƒ“ƒXƒŒƒbƒh‚ÌƒRƒ“ƒeƒLƒXƒg
-        // ƒNƒ‰ƒXƒ[ƒ_‚ğ—˜—p‚µ‚È‚¯‚ê‚Î‚È‚ç‚È‚¢‚½‚ß—¼•û‚ğ•¹—p‚·‚éB
+        // ã‚«ãƒ¬ãƒ³ãƒˆã‚¹ãƒ¬ãƒƒãƒ‰ã®ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã‚¯ãƒ©ã‚¹ãƒ­ãƒ¼ãƒ€ã‚’ä½¿ç”¨ã™ã‚‹ã¨
+        // WEB-INF/classesã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã‚€ã“ã¨ãŒã§ããªã„å ´åˆãŒã‚ã‚‹ã€‚
+        // ã ãŒJNLPã§ãƒªã‚½ãƒ¼ã‚¹ã‚’å–å¾—ã™ã‚‹ã«ã¯ã€ãƒ¡ã‚¤ãƒ³ã‚¹ãƒ¬ãƒƒãƒ‰ã®ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆ
+        // ã‚¯ãƒ©ã‚¹ãƒ­ãƒ¼ãƒ€ã‚’åˆ©ç”¨ã—ãªã‘ã‚Œã°ãªã‚‰ãªã„ãŸã‚ä¸¡æ–¹ã‚’ä½µç”¨ã™ã‚‹ã€‚
         InputStream is = Thread.currentThread()
                 .getContextClassLoader().getResourceAsStream(name);
         if (is == null) {
             is = PropertyUtil.class.getResourceAsStream("/" + name);
         }
-        
+
         Properties p = new Properties();
         try {
             try {
@@ -192,12 +192,12 @@ public class PropertyUtil {
     }
 
     /**
-     * ƒvƒƒpƒeƒBƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚Ü‚ê‚½“à—e‚ğA
-     * ƒRƒ}ƒ“ƒhƒ‰ƒCƒ“‚Ì &quot;-D&quot; ƒIƒvƒVƒ‡ƒ““™‚Åw’è‚³‚ê‚½
-     * ƒVƒXƒeƒ€ƒvƒƒpƒeƒB‚Åã‘‚«‚·‚éB
+     * ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰èª­ã¿è¾¼ã¾ã‚ŒãŸå†…å®¹ã‚’ã€
+     * ã‚³ãƒãƒ³ãƒ‰ãƒ©ã‚¤ãƒ³ã® &quot;-D&quot; ã‚ªãƒ—ã‚·ãƒ§ãƒ³ç­‰ã§æŒ‡å®šã•ã‚ŒãŸ
+     * ã‚·ã‚¹ãƒ†ãƒ ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã§ä¸Šæ›¸ãã™ã‚‹ã€‚
      */
     private static void overrideProperties() {
-        Enumeration<String> enumeration = 
+        Enumeration<String> enumeration =
             Collections.enumeration(props.keySet());
         while (enumeration.hasMoreElements()) {
             String name = enumeration.nextElement();
@@ -209,14 +209,14 @@ public class PropertyUtil {
     }
 
     /**
-     * w’è‚³‚ê‚½ƒvƒƒpƒeƒBƒtƒ@ƒCƒ‹‚ğ’Ç‰Á‚Å“Ç‚İ‚ŞB
-     * 
+     * æŒ‡å®šã•ã‚ŒãŸãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãƒ•ã‚¡ã‚¤ãƒ«ã‚’è¿½åŠ ã§èª­ã¿è¾¼ã‚€ã€‚
+     *
      * <p>
-     *  •¡”‰ñŒÄ‚Ño‚µ‚Ä‚à1“x‚µ‚©“Ç‚İ‚Ü‚ê‚È‚¢B
-     *  ƒvƒƒpƒeƒBƒtƒ@ƒCƒ‹–¼‚Ì ".properties" ‚ÍÈ—ª‚Å‚«‚éB
+     *  è¤‡æ•°å›å‘¼ã³å‡ºã—ã¦ã‚‚1åº¦ã—ã‹èª­ã¿è¾¼ã¾ã‚Œãªã„ã€‚
+     *  ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãƒ•ã‚¡ã‚¤ãƒ«åã® ".properties" ã¯çœç•¥ã§ãã‚‹ã€‚
      * </p>
-     * 
-     * @param name ƒvƒƒpƒeƒBƒtƒ@ƒCƒ‹–¼
+     *
+     * @param name ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãƒ•ã‚¡ã‚¤ãƒ«å
      */
     public static void addPropertyFile(String name) {
         if (!name.endsWith(PROPERTY_EXTENSION)) {
@@ -231,30 +231,30 @@ public class PropertyUtil {
     }
 
     /**
-     * w’è‚³‚ê‚½ƒL[‚ÌƒvƒƒpƒeƒB‚ğæ“¾‚·‚éB
+     * æŒ‡å®šã•ã‚ŒãŸã‚­ãƒ¼ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚’å–å¾—ã™ã‚‹ã€‚
      *
      * <p>
-     *  QÆ’l‚ª &quot;@&quot; •t‚«‚Ì•¶š—ñ‚Å‚ ‚éAŠÔÚƒL[‚Æ‚İ‚È‚µ
-     *  ‚à‚¤ˆê“x &quot;@&quot; ‚ğŠO‚µ‚½•¶š—ñ‚ğƒL[‚Æ‚µ‚ÄŒŸõ‚·‚éB
+     *  å‚ç…§å€¤ãŒ &quot;@&quot; ä»˜ãã®æ–‡å­—åˆ—ã§ã‚ã‚‹æ™‚ã€é–“æ¥ã‚­ãƒ¼ã¨ã¿ãªã—
+     *  ã‚‚ã†ä¸€åº¦ &quot;@&quot; ã‚’å¤–ã—ãŸæ–‡å­—åˆ—ã‚’ã‚­ãƒ¼ã¨ã—ã¦æ¤œç´¢ã™ã‚‹ã€‚
      *  <code>key=@key</code>
-     *  ‚Æ‚¢‚¤Œ`‚Å’è‹`‚³‚ê‚Ä‚¢‚éA–³ŒÀƒ‹[ƒv‚ğ‰ñ”ğ‚·‚é‚½‚ßA
-     *  <code>@key</code>‚ğ’¼Ú•Ô‹p‚·‚éB
-     *  æ“ª‚ª &quot;@&quot; ‚Å‚ ‚é•¶š—ñ‚ğ’l‚Æ‚µ‚Äİ’è‚·‚éÛ‚É‚Í
-     *  æ“ª‚Ì &quot;@@&quot; ‚ğ &quot;@&quot; ‚É•ÏX‚µƒvƒƒpƒeƒBƒtƒ@ƒCƒ‹
-     *  ‚Éİ’è‚·‚é–‚ÅAŠÔÚƒL[ŒŸõ‚Ì‹@”\‚ğ‰ñ”ğ‚Å‚«‚éB
+     *  ã¨ã„ã†å½¢ã§å®šç¾©ã•ã‚Œã¦ã„ã‚‹æ™‚ã€ç„¡é™ãƒ«ãƒ¼ãƒ—ã‚’å›é¿ã™ã‚‹ãŸã‚ã€
+     *  <code>@key</code>ã‚’ç›´æ¥è¿”å´ã™ã‚‹ã€‚
+     *  å…ˆé ­ãŒ &quot;@&quot; ã§ã‚ã‚‹æ–‡å­—åˆ—ã‚’å€¤ã¨ã—ã¦è¨­å®šã™ã‚‹éš›ã«ã¯
+     *  å…ˆé ­ã® &quot;@@&quot; ã‚’ &quot;@&quot; ã«å¤‰æ›´ã—ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãƒ•ã‚¡ã‚¤ãƒ«
+     *  ã«è¨­å®šã™ã‚‹äº‹ã§ã€é–“æ¥ã‚­ãƒ¼æ¤œç´¢ã®æ©Ÿèƒ½ã‚’å›é¿ã§ãã‚‹ã€‚
      * </p>
-     * 
-     * @param key ƒvƒƒpƒeƒB‚ÌƒL[
-     * @return w’è‚³‚ê‚½ƒL[‚ÌƒvƒƒpƒeƒB‚Ì’l
+     *
+     * @param key ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã®ã‚­ãƒ¼
+     * @return æŒ‡å®šã•ã‚ŒãŸã‚­ãƒ¼ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã®å€¤
      */
     public static String getProperty(String key) {
         String result = props.get(key);
-            
-        // (ƒL[)=@(ƒL[)‚ÌA–³ŒÀƒ‹[ƒv‰ñ”ğ
+
+        // (ã‚­ãƒ¼)=@(ã‚­ãƒ¼)ã®æ™‚ã€ç„¡é™ãƒ«ãƒ¼ãƒ—å›é¿
         if (result != null && result.equals("@" + key)) {
             return result;
         }
-        // @@‚Ìê‡‚ÍŠÔÚƒL[ŒŸõ‚ğ‰ñ”ğ‚µA@‚ÆŒ©‚È‚·B
+        // @@ã®å ´åˆã¯é–“æ¥ã‚­ãƒ¼æ¤œç´¢ã‚’å›é¿ã—ã€@ã¨è¦‹ãªã™ã€‚
         if (result != null && result.startsWith("@@")) {
             return result.substring(1);
         }
@@ -266,15 +266,15 @@ public class PropertyUtil {
     }
 
     /**
-     * w’è‚³‚ê‚½ƒL[‚ÌƒvƒƒpƒeƒB‚ğæ“¾‚·‚éB
-     * 
+     * æŒ‡å®šã•ã‚ŒãŸã‚­ãƒ¼ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚’å–å¾—ã™ã‚‹ã€‚
+     *
      * <p>
-     *  ƒvƒƒpƒeƒB‚ªŒ©‚Â‚©‚ç‚È‚©‚Á‚½ê‡‚É‚ÍAw’è‚³‚ê‚½ƒfƒtƒHƒ‹ƒg‚ª•Ô‚³‚ê‚éB
+     *  ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãŒè¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸå ´åˆã«ã¯ã€æŒ‡å®šã•ã‚ŒãŸãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãŒè¿”ã•ã‚Œã‚‹ã€‚
      * </p>
-     * 
-     * @param key ƒvƒƒpƒeƒB‚ÌƒL[
-     * @param defaultValue ƒvƒƒpƒeƒB‚ÌƒfƒtƒHƒ‹ƒg’l
-     * @return w’è‚³‚ê‚½ƒL[‚ÌƒvƒƒpƒeƒB‚Ì’l
+     *
+     * @param key ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã®ã‚­ãƒ¼
+     * @param defaultValue ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤
+     * @return æŒ‡å®šã•ã‚ŒãŸã‚­ãƒ¼ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã®å€¤
      */
     public static String getProperty(String key, String defaultValue) {
         String result = props.get(key);
@@ -285,19 +285,19 @@ public class PropertyUtil {
     }
 
     /**
-     * ƒvƒƒpƒeƒB‚Ì‚·‚×‚Ä‚ÌƒL[‚ÌƒŠƒXƒg‚ğæ“¾‚·‚éB
+     * ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã®ã™ã¹ã¦ã®ã‚­ãƒ¼ã®ãƒªã‚¹ãƒˆã‚’å–å¾—ã™ã‚‹ã€‚
      *
-     * @return ƒvƒƒpƒeƒB‚Ì‚·‚×‚Ä‚ÌƒL[‚ÌƒŠƒXƒg
+     * @return ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã®ã™ã¹ã¦ã®ã‚­ãƒ¼ã®ãƒªã‚¹ãƒˆ
      */
     public static Enumeration getPropertyNames() {
         return Collections.enumeration(props.keySet());
     }
 
     /**
-     * w’è‚³‚ê‚½ƒvƒŠƒtƒBƒbƒNƒX‚©‚çn‚Ü‚éƒL[‚ÌƒŠƒXƒg‚ğæ“¾‚·‚éB
-     * 
-     * @param keyPrefix ƒL[‚ÌƒvƒŠƒtƒBƒbƒNƒX
-     * @return w’è‚³‚ê‚½ƒvƒŠƒtƒBƒbƒNƒX‚©‚çn‚Ü‚éƒL[‚ÌƒŠƒXƒg
+     * æŒ‡å®šã•ã‚ŒãŸãƒ—ãƒªãƒ•ã‚£ãƒƒã‚¯ã‚¹ã‹ã‚‰å§‹ã¾ã‚‹ã‚­ãƒ¼ã®ãƒªã‚¹ãƒˆã‚’å–å¾—ã™ã‚‹ã€‚
+     *
+     * @param keyPrefix ã‚­ãƒ¼ã®ãƒ—ãƒªãƒ•ã‚£ãƒƒã‚¯ã‚¹
+     * @return æŒ‡å®šã•ã‚ŒãŸãƒ—ãƒªãƒ•ã‚£ãƒƒã‚¯ã‚¹ã‹ã‚‰å§‹ã¾ã‚‹ã‚­ãƒ¼ã®ãƒªã‚¹ãƒˆ
      */
     public static Enumeration<String> getPropertyNames(String keyPrefix) {
         Map<String, String> map = props.tailMap(keyPrefix);
@@ -309,16 +309,16 @@ public class PropertyUtil {
                             props.subMap(keyPrefix, name).keySet());
             }
         }
-        return Collections.enumeration(map.keySet());  
+        return Collections.enumeration(map.keySet());
     }
 
     /**
-     * ƒvƒƒpƒeƒBƒtƒ@ƒCƒ‹–¼A•”•ªƒL[•¶š—ñ‚ğw’è‚·‚é‚±‚Æ‚É‚æ‚è
-     * ’lƒZƒbƒg‚ğæ“¾‚·‚éB
-     * 
-     * @param propertyName ƒvƒƒpƒeƒBƒtƒ@ƒCƒ‹–¼
-     * @param keyPrefix •”•ªƒL[•¶š—ñ
-     * @return ’lƒZƒbƒg
+     * ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãƒ•ã‚¡ã‚¤ãƒ«åã€éƒ¨åˆ†ã‚­ãƒ¼æ–‡å­—åˆ—ã‚’æŒ‡å®šã™ã‚‹ã“ã¨ã«ã‚ˆã‚Š
+     * å€¤ã‚»ãƒƒãƒˆã‚’å–å¾—ã™ã‚‹ã€‚
+     *
+     * @param propertyName ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãƒ•ã‚¡ã‚¤ãƒ«å
+     * @param keyPrefix éƒ¨åˆ†ã‚­ãƒ¼æ–‡å­—åˆ—
+     * @return å€¤ã‚»ãƒƒãƒˆ
      */
     public static Set getPropertiesValues(String propertyName ,
             String keyPrefix) {
@@ -338,12 +338,12 @@ public class PropertyUtil {
 
 
     /**
-     * ƒvƒƒpƒeƒB‚ğw’è‚µA•”•ªƒL[ƒvƒŠƒtƒBƒbƒNƒX‚É‡’v‚·‚é
-     *  ƒL[ˆê——‚ğæ“¾‚·‚éB
-     * 
-     * @param localProps ƒvƒƒpƒeƒB
-     * @param keyPrefix •”•ªƒL[ƒvƒŠƒtƒBƒbƒNƒX
-     * @return •”•ªƒL[ƒvƒŠƒtƒBƒbƒNƒX‚É‡’v‚·‚éƒL[ˆê——
+     * ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚’æŒ‡å®šã—ã€éƒ¨åˆ†ã‚­ãƒ¼ãƒ—ãƒªãƒ•ã‚£ãƒƒã‚¯ã‚¹ã«åˆè‡´ã™ã‚‹
+     *  ã‚­ãƒ¼ä¸€è¦§ã‚’å–å¾—ã™ã‚‹ã€‚
+     *
+     * @param localProps ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
+     * @param keyPrefix éƒ¨åˆ†ã‚­ãƒ¼ãƒ—ãƒªãƒ•ã‚£ãƒƒã‚¯ã‚¹
+     * @return éƒ¨åˆ†ã‚­ãƒ¼ãƒ—ãƒªãƒ•ã‚£ãƒƒã‚¯ã‚¹ã«åˆè‡´ã™ã‚‹ã‚­ãƒ¼ä¸€è¦§
      */
     public static Enumeration<String> getPropertyNames(
             Properties localProps , String keyPrefix) {
@@ -360,15 +360,15 @@ public class PropertyUtil {
                 matchedNames.add(name);
             }
         }
-        return Collections.enumeration(matchedNames);      
+        return Collections.enumeration(matchedNames);
     }
 
     /**
-     * ƒL[ˆê——‚É‘Î‚µAƒvƒƒpƒeƒB‚æ‚èæ“¾‚µ‚½’l‚ğæ“¾‚·‚éB
-     * 
-     * @param localProps ƒvƒƒpƒeƒB
-     * @param propertyNames ƒL[‚Ìˆê——
-     * @return ’lƒZƒbƒg
+     * ã‚­ãƒ¼ä¸€è¦§ã«å¯¾ã—ã€ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚ˆã‚Šå–å¾—ã—ãŸå€¤ã‚’å–å¾—ã™ã‚‹ã€‚
+     *
+     * @param localProps ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
+     * @param propertyNames ã‚­ãƒ¼ã®ä¸€è¦§
+     * @return å€¤ã‚»ãƒƒãƒˆ
      */
     public static Set<String> getPropertiesValues(Properties localProps,
              Enumeration<String> propertyNames) {
@@ -387,28 +387,28 @@ public class PropertyUtil {
 
 
     /**
-     * w’è‚µ‚½ƒvƒƒpƒeƒBƒtƒ@ƒCƒ‹–¼‚ÅAƒvƒƒpƒeƒBƒIƒuƒWƒFƒNƒg‚ğæ“¾‚·‚éB
-     * 
-     * @param propertyName ƒvƒƒpƒeƒBƒtƒ@ƒCƒ‹
-     * @return ƒvƒƒpƒeƒBƒIƒuƒWƒFƒNƒg
+     * æŒ‡å®šã—ãŸãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãƒ•ã‚¡ã‚¤ãƒ«åã§ã€ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—ã™ã‚‹ã€‚
+     *
+     * @param propertyName ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãƒ•ã‚¡ã‚¤ãƒ«
+     * @return ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
      */
     public static Properties loadProperties(String propertyName) {
-        // propertyName‚ªnull‚Ü‚½‚Í‹ó•¶š‚ÌAnull‚ğ•Ô‹p‚·‚éB
+        // propertyNameãŒnullã¾ãŸã¯ç©ºæ–‡å­—ã®æ™‚ã€nullã‚’è¿”å´ã™ã‚‹ã€‚
         if (propertyName == null || "".equals(propertyName)) {
             return null;
         }
         Properties retProps = new Properties();
-        
+
         StringBuilder resourceName = new StringBuilder();
         resourceName.append(propertyName);
         if (!propertyName.endsWith(PROPERTY_EXTENSION)) {
             resourceName.append(PROPERTY_EXTENSION);
         }
-        
-        //ƒJƒŒƒ“ƒgƒXƒŒƒbƒh‚ÌƒRƒ“ƒeƒLƒXƒgƒNƒ‰ƒXƒ[ƒ_‚ğg—p‚·‚é‚Æ
-        // WEB-INF/classes‚ÌƒvƒƒpƒeƒBƒtƒ@ƒCƒ‹‚ğ“Ç‚Ş‚±‚Æ‚ª‚Å‚«‚È‚¢ê‡‚ª‚ ‚éB
-        // ‚¾‚ªJNLP‚ÅƒŠƒ\[ƒX‚ğæ“¾‚·‚é‚É‚ÍAƒƒCƒ“ƒXƒŒƒbƒh‚ÌƒRƒ“ƒeƒLƒXƒg
-        // ƒNƒ‰ƒXƒ[ƒ_‚ğ—˜—p‚µ‚È‚¯‚ê‚Î‚È‚ç‚È‚¢‚½‚ß—¼•û‚ğ•¹—p‚·‚éB
+
+        //ã‚«ãƒ¬ãƒ³ãƒˆã‚¹ãƒ¬ãƒƒãƒ‰ã®ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã‚¯ãƒ©ã‚¹ãƒ­ãƒ¼ãƒ€ã‚’ä½¿ç”¨ã™ã‚‹ã¨
+        // WEB-INF/classesã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã‚€ã“ã¨ãŒã§ããªã„å ´åˆãŒã‚ã‚‹ã€‚
+        // ã ãŒJNLPã§ãƒªã‚½ãƒ¼ã‚¹ã‚’å–å¾—ã™ã‚‹ã«ã¯ã€ãƒ¡ã‚¤ãƒ³ã‚¹ãƒ¬ãƒƒãƒ‰ã®ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆ
+        // ã‚¯ãƒ©ã‚¹ãƒ­ãƒ¼ãƒ€ã‚’åˆ©ç”¨ã—ãªã‘ã‚Œã°ãªã‚‰ãªã„ãŸã‚ä¸¡æ–¹ã‚’ä½µç”¨ã™ã‚‹ã€‚
         InputStream is = Thread.currentThread().getContextClassLoader()
                 .getResourceAsStream(resourceName.toString());
         if (is == null) {
@@ -428,7 +428,7 @@ public class PropertyUtil {
         } finally {
             try {
                 if (is != null) {
-                    is.close();                 
+                    is.close();
                 }
             } catch (IOException ie) {
                 log.error("", ie);
@@ -439,15 +439,15 @@ public class PropertyUtil {
     }
 
     /**
-     * ƒvƒƒpƒeƒBƒtƒ@ƒCƒ‹‚Ì“Ç‚İo‚µƒpƒX‚ğæ“¾‚·‚éB
-     * 
-     * ƒvƒƒpƒeƒBƒtƒ@ƒCƒ‹‚ğ’Ç‰Á‚ğs‚Á‚½ƒvƒƒpƒeƒBƒtƒ@ƒCƒ‹‚ª
-     * ‘¶İ‚·‚éƒfƒBƒŒƒNƒgƒŠ‚ğƒx[ƒX‚É‚µ‚Ä’Ç‰Á‚³‚ê‚½ƒvƒƒpƒeƒBƒtƒ@ƒCƒ‹‚ğ“Ç‚Şˆ×A
-     * ƒvƒƒpƒeƒBƒtƒ@ƒCƒ‹‚Ì“Ç‚İo‚µƒfƒBƒŒƒNƒgƒŠ‚ğæ“¾‚·‚éB
-     * 
-     * @param resource ’Ç‰Áw’è‚ğ‹Lq‚µ‚Ä‚¢‚éƒvƒƒpƒeƒBƒtƒ@ƒCƒ‹
-     * @param addFile ’Ç‰Á‚·‚éƒvƒƒpƒeƒBƒtƒ@ƒCƒ‹
-     * @return ’Ç‰Á‚·‚éƒvƒƒpƒeƒBƒtƒ@ƒCƒ‹‚Ì“Ç‚İo‚µƒpƒX
+     * ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿å‡ºã—ãƒ‘ã‚¹ã‚’å–å¾—ã™ã‚‹ã€‚
+     *
+     * ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãƒ•ã‚¡ã‚¤ãƒ«ã‚’è¿½åŠ ã‚’è¡Œã£ãŸãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãƒ•ã‚¡ã‚¤ãƒ«ãŒ
+     * å­˜åœ¨ã™ã‚‹ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’ãƒ™ãƒ¼ã‚¹ã«ã—ã¦è¿½åŠ ã•ã‚ŒãŸãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã‚€ç‚ºã€
+     * ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿å‡ºã—ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’å–å¾—ã™ã‚‹ã€‚
+     *
+     * @param resource è¿½åŠ æŒ‡å®šã‚’è¨˜è¿°ã—ã¦ã„ã‚‹ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãƒ•ã‚¡ã‚¤ãƒ«
+     * @param addFile è¿½åŠ ã™ã‚‹ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãƒ•ã‚¡ã‚¤ãƒ«
+     * @return è¿½åŠ ã™ã‚‹ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿å‡ºã—ãƒ‘ã‚¹
      */
     private static String getPropertiesPath(String resource, String addFile) {
         File file = new File(resource);

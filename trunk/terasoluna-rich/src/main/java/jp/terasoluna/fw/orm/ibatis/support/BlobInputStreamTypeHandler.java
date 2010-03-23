@@ -27,32 +27,32 @@ import org.springframework.jdbc.support.lob.LobHandler;
 import org.springframework.orm.ibatis.support.AbstractLobTypeHandler;
 
 /**
- * iBATIS‚©‚ç—˜—p‚³‚ê‚éBLOB‚ÆƒXƒgƒŠ[ƒ€‚ğƒ}ƒbƒsƒ“ƒO‚·‚éÀ‘•‚ÌiBATIS‚Ìƒ^ƒCƒvƒnƒ“ƒhƒ‰B
+ * iBATISã‹ã‚‰åˆ©ç”¨ã•ã‚Œã‚‹BLOBã¨ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚’ãƒãƒƒãƒ”ãƒ³ã‚°ã™ã‚‹å®Ÿè£…ã®iBATISã®ã‚¿ã‚¤ãƒ—ãƒãƒ³ãƒ‰ãƒ©ã€‚
  *
  * <p>
- * BLOB—ñ‚ğƒoƒCƒg”z—ñ‚Æ‚µ‚Äˆµ‚¤ê‡A–{ƒNƒ‰ƒX‚ğ—˜—p‚·‚é•K—v‚ª‚È‚¢B
- * ƒoƒCƒg”z—ñ‚Æ‚µ‚Äˆµ‚¤‚ÆA
- * BLOB—ñ‚Åˆµ‚¤ƒf[ƒ^‚ª‹‘å‚Åƒƒ‚ƒŠƒGƒ‰[‚ª”­¶‚µ‚½‚èA
- * «”\—vŒ‚ª–‚½‚¹‚È‚¢ê‡‚Ì‚İA–{ƒNƒ‰ƒX‚ğ—˜—p‚·‚é‚±‚ÆB
+ * BLOBåˆ—ã‚’ãƒã‚¤ãƒˆé…åˆ—ã¨ã—ã¦æ‰±ã†å ´åˆã€æœ¬ã‚¯ãƒ©ã‚¹ã‚’åˆ©ç”¨ã™ã‚‹å¿…è¦ãŒãªã„ã€‚
+ * ãƒã‚¤ãƒˆé…åˆ—ã¨ã—ã¦æ‰±ã†ã¨ã€
+ * BLOBåˆ—ã§æ‰±ã†ãƒ‡ãƒ¼ã‚¿ãŒå·¨å¤§ã§ãƒ¡ãƒ¢ãƒªã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸã‚Šã€
+ * æ€§èƒ½è¦ä»¶ãŒæº€ãŸã›ãªã„å ´åˆã®ã¿ã€æœ¬ã‚¯ãƒ©ã‚¹ã‚’åˆ©ç”¨ã™ã‚‹ã“ã¨ã€‚
  * </p>
  *
  * <p>
- * “à•”‚ÅSpring‚ª’ñ‹Ÿ‚µ‚Ä‚¢‚éLobHandler‚ğ—˜—p‚µ‚Ä‚¢‚é‚½‚ßA
- * –{ƒNƒ‰ƒX‚ğ—˜—p‚·‚é‚½‚ß‚É‚ÍALobHandler‚ÌBean’è‹`‚ÆsqlMapClientFactoryBean‚Ö‚Ìİ’è‚ğs‚¤‚±‚ÆB
- * ‚È‚¨ALobHandler‚ÌÀ‘•ƒNƒ‰ƒX‚ÍASpring‚ª’ñ‹Ÿ‚µ‚Ä‚¢‚éB<br>
- * ¦ Oracle‚Ìê‡‚ÍAOracleLobHandlerA‚»‚Ì‘¼‚Ìê‡‚ÍADefaultLobHandler‚ğ—˜—p‚·‚é‚±‚ÆB
+ * å†…éƒ¨ã§SpringãŒæä¾›ã—ã¦ã„ã‚‹LobHandlerã‚’åˆ©ç”¨ã—ã¦ã„ã‚‹ãŸã‚ã€
+ * æœ¬ã‚¯ãƒ©ã‚¹ã‚’åˆ©ç”¨ã™ã‚‹ãŸã‚ã«ã¯ã€LobHandlerã®Beanå®šç¾©ã¨sqlMapClientFactoryBeanã¸ã®è¨­å®šã‚’è¡Œã†ã“ã¨ã€‚
+ * ãªãŠã€LobHandlerã®å®Ÿè£…ã‚¯ãƒ©ã‚¹ã¯ã€SpringãŒæä¾›ã—ã¦ã„ã‚‹ã€‚<br>
+ * â€» Oracleã®å ´åˆã¯ã€OracleLobHandlerã€ãã®ä»–ã®å ´åˆã¯ã€DefaultLobHandlerã‚’åˆ©ç”¨ã™ã‚‹ã“ã¨ã€‚
  * </p>
  *
  * <p>
- *  y<code>Bean’è‹`ƒtƒ@ƒCƒ‹</code>‚Ìİ’è—áz<br>
+ *  ã€<code>Beanå®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«</code>ã®è¨­å®šä¾‹ã€‘<br>
  * <code><pre>
- *   &lt;!-- LOBƒtƒB[ƒ‹ƒh‚ğˆµ‚¤‚½‚ß‚Ìƒnƒ“ƒhƒ‰ --&gt;
+ *   &lt;!-- LOBãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚’æ‰±ã†ãŸã‚ã®ãƒãƒ³ãƒ‰ãƒ© --&gt;
  *   &lt;bean id="oracleLobHandler"
  *            class="org.springframework.jdbc.support.lob.OracleLobHandler"&gt;
  *     &lt;property name="nativeJdbcExtractor" ref="simpleExtractor"/&gt;
  *   &lt;/bean&gt;
  *
- *   &lt;!-- iBATIS ƒf[ƒ^ƒx[ƒX‘w‚Ì‚½‚ß‚ÌSQlMap‚Ìİ’è --&gt;
+ *   &lt;!-- iBATIS ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹å±¤ã®ãŸã‚ã®SQlMapã®è¨­å®š --&gt;
  *   &lt;bean id="sqlMapClient"
  *       class="org.springframework.orm.ibatis.SqlMapClientFactoryBean"&gt;
  *     &lt;property name="configLocation" value="WEB-INF/sql-map-config.xml"/&gt;
@@ -63,15 +63,15 @@ import org.springframework.orm.ibatis.support.AbstractLobTypeHandler;
  * </p>
  *
  * <p>
- * –{ƒNƒ‰ƒX‚ğ—˜—p‚µ‚½iBATISİ’èƒtƒ@ƒCƒ‹‚Ì‹Lq•û–@‚ğˆÈ‰º‚É‚µ‚ß‚·B
+ * æœ¬ã‚¯ãƒ©ã‚¹ã‚’åˆ©ç”¨ã—ãŸiBATISè¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã®è¨˜è¿°æ–¹æ³•ã‚’ä»¥ä¸‹ã«ã—ã‚ã™ã€‚
  * </p>
  *
  * <p>
- *  yBLOB_TESTƒe[ƒuƒ‹’è‹`z<br>
+ *  ã€BLOB_TESTãƒ†ãƒ¼ãƒ–ãƒ«å®šç¾©ã€‘<br>
  *   <table border="1" CELLPADDING="8">
- *     <th>—ñ–¼</th>
- *     <th>Œ^</th>
- *     <th>§–ñ</th>
+ *     <th>åˆ—å</th>
+ *     <th>å‹</th>
+ *     <th>åˆ¶ç´„</th>
  *
  *     <tr>
  *       <td align=center>PK</td>
@@ -88,9 +88,9 @@ import org.springframework.orm.ibatis.support.AbstractLobTypeHandler;
  * </p>
  *
  * <p>
- *  y<code>iBATISİ’èƒtƒ@ƒCƒ‹</code>‚Ìİ’è—áz<br>
+ *  ã€<code>iBATISè¨­å®šãƒ•ã‚¡ã‚¤ãƒ«</code>ã®è¨­å®šä¾‹ã€‘<br>
  * <code><pre>
- * &lt;!-- update•¶‚Ìİ’è --&gt;
+ * &lt;!-- updateæ–‡ã®è¨­å®š --&gt;
  * &lt;parameterMap id="blobParam" class="java.util.Map"&gt;
  *   &lt;parameter property="pk"/&gt;
  *   &lt;parameter property="map"
@@ -101,7 +101,7 @@ import org.springframework.orm.ibatis.support.AbstractLobTypeHandler;
  *   INSERT INTO BLOB_TEST (PK, MAP) VALUES (?, ?)
  * &lt;/insert&gt;
  *
- * &lt;!-- select•¶‚Ìİ’è --&gt;
+ * &lt;!-- selectæ–‡ã®è¨­å®š --&gt;
  * &lt;resultMap id="blobResult" class="java.util.HashMap"&gt;
  *   &lt;result property="pk"/&gt;
  *   &lt;result property="map"
@@ -118,14 +118,14 @@ import org.springframework.orm.ibatis.support.AbstractLobTypeHandler;
 public class BlobInputStreamTypeHandler extends AbstractLobTypeHandler {
 
     /**
-     * ƒRƒ“ƒXƒgƒ‰ƒNƒ^B
+     * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã€‚
      */
     public BlobInputStreamTypeHandler() {
         super();
     }
 
     /**
-     * ƒRƒ“ƒXƒgƒ‰ƒNƒ^B
+     * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã€‚
      * @param lobHandler LobHandler
      */
     protected BlobInputStreamTypeHandler(LobHandler lobHandler) {
@@ -133,14 +133,14 @@ public class BlobInputStreamTypeHandler extends AbstractLobTypeHandler {
     }
 
     /**
-     * ƒpƒ‰ƒ[ƒ^‚ğİ’è‚·‚éB
+     * ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¨­å®šã™ã‚‹ã€‚
      *
-     * @param ps ƒZƒbƒgæ‚ÌPreparedStatement
-     * @param index ƒpƒ‰ƒ[ƒ^‚ÌƒCƒ“ƒfƒbƒNƒX
-     * @param value ƒZƒbƒg‚·‚éƒpƒ‰ƒ[ƒ^
-     * @param jdbcType ƒpƒ‰ƒ[ƒ^‚ÌJDBCŒ^
-     * @param lobCreator —˜—p‚·‚éLobCreator
-     * @throws SQLException SQL—áŠO
+     * @param ps ã‚»ãƒƒãƒˆå…ˆã®PreparedStatement
+     * @param index ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+     * @param value ã‚»ãƒƒãƒˆã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+     * @param jdbcType ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®JDBCå‹
+     * @param lobCreator åˆ©ç”¨ã™ã‚‹LobCreator
+     * @throws SQLException SQLä¾‹å¤–
      */
     @Override
     protected void setParameterInternal(
@@ -154,12 +154,12 @@ public class BlobInputStreamTypeHandler extends AbstractLobTypeHandler {
     }
 
     /**
-     * Œ‹‰Ê‚ğæ“¾‚·‚éB
-     * @param rs æ“¾Œ³‚ÌResultSet
-     * @param index ResultSet‚ÌƒCƒ“ƒfƒbƒNƒX
-     * @param lobHandler —˜—p‚·‚éLobHandler
-     * @return æ“¾Œ‹‰Ê
-     * @throws SQLException SQL—áŠO
+     * çµæœã‚’å–å¾—ã™ã‚‹ã€‚
+     * @param rs å–å¾—å…ƒã®ResultSet
+     * @param index ResultSetã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+     * @param lobHandler åˆ©ç”¨ã™ã‚‹LobHandler
+     * @return å–å¾—çµæœ
+     * @throws SQLException SQLä¾‹å¤–
      */
     @Override
     protected Object getResultInternal(
@@ -171,9 +171,9 @@ public class BlobInputStreamTypeHandler extends AbstractLobTypeHandler {
     }
 
     /**
-     * •¶š—ñ‚ğ–{Handler‚ªˆµ‚¤Œ^‚É•ÏŠ·‚·‚éB
-     * @param s •¶š—ñ
-     * @return Handler‚ªˆµ‚¤Œ^‚ÌƒCƒ“ƒXƒ^ƒ“ƒX
+     * æ–‡å­—åˆ—ã‚’æœ¬HandlerãŒæ‰±ã†å‹ã«å¤‰æ›ã™ã‚‹ã€‚
+     * @param s æ–‡å­—åˆ—
+     * @return HandlerãŒæ‰±ã†å‹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹
      */
     public Object valueOf(String s) {
         if (s == null) {

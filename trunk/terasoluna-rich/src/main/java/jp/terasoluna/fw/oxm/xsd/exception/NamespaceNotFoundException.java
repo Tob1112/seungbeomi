@@ -19,22 +19,22 @@ package jp.terasoluna.fw.oxm.xsd.exception;
 import jp.terasoluna.fw.oxm.exception.OXMappingException;
 
 /**
- * –¼‘O‹óŠÔ‚ªæ“¾‚Å‚«‚È‚©‚Á‚½ê‡‚ÉAƒXƒ[‚³‚ê‚éŒ`®ƒ`ƒFƒbƒN—áŠOB
- * 
+ * åå‰ç©ºé–“ãŒå–å¾—ã§ããªã‹ã£ãŸå ´åˆã«ã€ã‚¹ãƒ­ãƒ¼ã•ã‚Œã‚‹å½¢å¼ãƒã‚§ãƒƒã‚¯ä¾‹å¤–ã€‚
+ *
  * <p>
- * OXMappingException‚ÌƒTƒuƒNƒ‰ƒX‚Æ‚µ‚Ä’ñ‹Ÿ‚µ‚Ä‚¢‚éB
+ * OXMappingExceptionã®ã‚µãƒ–ã‚¯ãƒ©ã‚¹ã¨ã—ã¦æä¾›ã—ã¦ã„ã‚‹ã€‚
  * </p>
- * 
+ *
  */
 public class NamespaceNotFoundException extends OXMappingException {
 
     /**
-     * ƒVƒŠƒAƒ‹ƒo[ƒWƒ‡ƒ“IDB
+     * ã‚·ãƒªã‚¢ãƒ«ãƒãƒ¼ã‚¸ãƒ§ãƒ³IDã€‚
      */
     private static final long serialVersionUID = 2620908894525856492L;
 
     /**
-     * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+     * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
      */
     public NamespaceNotFoundException() {
         super();

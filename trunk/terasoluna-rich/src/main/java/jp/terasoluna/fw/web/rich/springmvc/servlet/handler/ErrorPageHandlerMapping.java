@@ -21,19 +21,19 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping;
 
 /**
- * ƒŠƒNƒGƒXƒg‚ª•Û‚·‚é—áŠO‚Ì—L–³‚É‚æ‚Á‚ÄƒRƒ“ƒgƒ[ƒ‰‚ğ•Ô‚·ƒnƒ“ƒhƒ‰B
- * 
- * <p>Servlet“àA‚à‚µ‚­‚ÍFilter‚Å—áŠO‚ª”­¶‚µ‚½ê‡‚É
- * ƒRƒ“ƒgƒ[ƒ‰‚ğ•Ô‚·B
- * •Ô‹p‚·‚éƒRƒ“ƒgƒ[ƒ‰‚ÍBean’è‹`ƒtƒ@ƒCƒ‹‚Éİ’è‚µ‚Ä‚¨‚­‚±‚ÆB
- * ƒRƒ“ƒgƒ[ƒ‰‚ÌBean’è‹`ID‚Í{@link #beanId}‚Å’è‹`‚·‚éB
- * ƒfƒtƒHƒ‹ƒg’l‚Í<code><pre>/exceptionController</pre></code>
- * ‚Æ‚È‚Á‚Ä‚¢‚éB</p>
- * 
- * <p>‚±‚ÌƒNƒ‰ƒX‚ğg—p‚·‚é‚É‚ÍABean’è‹`ƒtƒ@ƒCƒ‹‚ÉˆÈ‰º‚Ìİ’è‚ª•K—v‚Å‚ ‚éB
- * 
+ * ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒä¿æŒã™ã‚‹ä¾‹å¤–ã®æœ‰ç„¡ã«ã‚ˆã£ã¦ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã‚’è¿”ã™ãƒãƒ³ãƒ‰ãƒ©ã€‚
+ *
+ * <p>Servletå†…ã€ã‚‚ã—ãã¯Filterã§ä¾‹å¤–ãŒç™ºç”Ÿã—ãŸå ´åˆã«
+ * ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã‚’è¿”ã™ã€‚
+ * è¿”å´ã™ã‚‹ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã¯Beanå®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã«è¨­å®šã—ã¦ãŠãã“ã¨ã€‚
+ * ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã®Beanå®šç¾©IDã¯{@link #beanId}ã§å®šç¾©ã™ã‚‹ã€‚
+ * ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã¯<code><pre>/exceptionController</pre></code>
+ * ã¨ãªã£ã¦ã„ã‚‹ã€‚</p>
+ *
+ * <p>ã“ã®ã‚¯ãƒ©ã‚¹ã‚’ä½¿ç”¨ã™ã‚‹ã«ã¯ã€Beanå®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã«ä»¥ä¸‹ã®è¨­å®šãŒå¿…è¦ã§ã‚ã‚‹ã€‚
+ *
  * <code><pre>
- * &lt;bean id="urlHandlerMapping" 
+ * &lt;bean id="urlHandlerMapping"
  *     class="jp.terasoluna.fw.web.rich.springmvc.servlet.handler.ErrorPageHandlerMapping"&gt;
  *   &lt;property name="order" value="1"/&gt;
  * &lt;/bean&gt;
@@ -43,57 +43,57 @@ import org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping;
 public class ErrorPageHandlerMapping extends BeanNameUrlHandlerMapping {
 
     /**
-     * HTTPƒŠƒNƒGƒXƒg“à‚Å”­¶‚µ‚½—áŠO‚ğ•Û‚µ‚Ä‚¢‚éƒL[B
+     * HTTPãƒªã‚¯ã‚¨ã‚¹ãƒˆå†…ã§ç™ºç”Ÿã—ãŸä¾‹å¤–ã‚’ä¿æŒã—ã¦ã„ã‚‹ã‚­ãƒ¼ã€‚
      */
-    private static final String JAVAX_SERVLET_ERROR_EXCEPTION = 
+    private static final String JAVAX_SERVLET_ERROR_EXCEPTION =
         "javax.servlet.error.exception";
 
     /**
-     * ‚±‚Ìƒnƒ“ƒhƒ‰‚ª•Ô‚·ƒRƒ“ƒgƒ[ƒ‰‚ÌBean’è‹`IDB
+     * ã“ã®ãƒãƒ³ãƒ‰ãƒ©ãŒè¿”ã™ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã®Beanå®šç¾©IDã€‚
      */
     private String beanId = DEFAULT_BEAN_ID;
-    
+
     /**
-     * ‚±‚Ìƒnƒ“ƒhƒ‰‚ª•Ô‚·ƒfƒtƒHƒ‹ƒg‚ÌƒRƒ“ƒgƒ[ƒ‰‚ÌBean’è‹`IDB
+     * ã“ã®ãƒãƒ³ãƒ‰ãƒ©ãŒè¿”ã™ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã®Beanå®šç¾©IDã€‚
      */
     private static final String DEFAULT_BEAN_ID = "/exceptionController";
-    
+
     /**
-     * ƒfƒtƒHƒ‹ƒgƒRƒ“ƒXƒgƒ‰ƒNƒ^B
+     * ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã€‚
      */
     public ErrorPageHandlerMapping() {
         super();
     }
 
     /**
-     * beanId‚ğ•Ô‚·B
-     * @return ƒRƒ“ƒgƒ[ƒ‰‚ÌBean’è‹`IDB
+     * beanIdã‚’è¿”ã™ã€‚
+     * @return ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã®Beanå®šç¾©IDã€‚
      */
     public String getBeanId() {
         return beanId;
     }
 
     /**
-     * beanId‚ğİ’è‚·‚éB
-     * @param beanId ƒRƒ“ƒgƒ[ƒ‰‚ÌBean’è‹`IDB
+     * beanIdã‚’è¨­å®šã™ã‚‹ã€‚
+     * @param beanId ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã®Beanå®šç¾©IDã€‚
      */
     public void setBeanId(String beanId) {
         this.beanId = beanId;
     }
 
     /**
-     * ƒnƒ“ƒhƒŠƒ“ƒOˆ—B
-     * ServletAFilter‚Å—áŠO‚ª”­¶‚µ‚½ê‡‚Ég—p‚·‚éƒRƒ“ƒgƒ[ƒ‰‚ğ•Ô‚·B
-     * ServletAFilter‚É‚Ä—áŠO‚ª”­¶‚µ‚Ä‚¢‚È‚¢ê‡Anull‚ğ•Ô‚·B
+     * ãƒãƒ³ãƒ‰ãƒªãƒ³ã‚°å‡¦ç†ã€‚
+     * Servletã€Filterã§ä¾‹å¤–ãŒç™ºç”Ÿã—ãŸå ´åˆã«ä½¿ç”¨ã™ã‚‹ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã‚’è¿”ã™ã€‚
+     * Servletã€Filterã«ã¦ä¾‹å¤–ãŒç™ºç”Ÿã—ã¦ã„ãªã„å ´åˆã€nullã‚’è¿”ã™ã€‚
      * @param request HttpServletRequest
-     * @return Object ƒRƒ“ƒgƒ[ƒ‰
-     * @throws Exception —áŠO
+     * @return Object ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©
+     * @throws Exception ä¾‹å¤–
      */
     @Override
     protected Object getHandlerInternal(HttpServletRequest request)
             throws Exception {
         Object exception = request.getAttribute(JAVAX_SERVLET_ERROR_EXCEPTION);
-        
+
         if (exception != null && exception instanceof Exception) {
             return super.lookupHandler(beanId, request);
         }

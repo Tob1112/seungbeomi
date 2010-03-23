@@ -23,25 +23,25 @@ import jp.terasoluna.fw.oxm.xsd.message.ErrorMessages;
 import org.w3c.dom.Document;
 
 /**
- * XMLƒf[ƒ^‚ÌŒ`®ƒ`ƒFƒbƒN‚ğs‚¤ƒNƒ‰ƒX‚ªÀ‘•‚·‚×‚«ƒCƒ“ƒ^ƒtƒF[ƒXB
+ * XMLãƒ‡ãƒ¼ã‚¿ã®å½¢å¼ãƒã‚§ãƒƒã‚¯ã‚’è¡Œã†ã‚¯ãƒ©ã‚¹ãŒå®Ÿè£…ã™ã¹ãã‚¤ãƒ³ã‚¿ãƒ•ã‚§ãƒ¼ã‚¹ã€‚
  * <p>
- * ’Êí‚ÍÀ‘•ƒNƒ‰ƒX‚Æ‚µ‚ÄA{@link jp.terasoluna.fw.oxm.xsd.xerces.SchemaValidatorImpl}‚ğ—˜—p‚·‚ê‚Î‚æ‚¢B
+ * é€šå¸¸ã¯å®Ÿè£…ã‚¯ãƒ©ã‚¹ã¨ã—ã¦ã€{@link jp.terasoluna.fw.oxm.xsd.xerces.SchemaValidatorImpl}ã‚’åˆ©ç”¨ã™ã‚Œã°ã‚ˆã„ã€‚
  * </p>
- * 
+ *
  * @see jp.terasoluna.fw.oxm.xsd.xerces.SchemaValidatorImpl
  * @see jp.terasoluna.fw.web.rich.springmvc.bind.XMLServletRequestDataBinder
- * 
+ *
  */
 public interface SchemaValidator {
 
     /**
-     * XMLƒf[ƒ^‚ÌŒ`®ƒ`ƒFƒbƒN‚ğs‚¤ƒƒ\ƒbƒhB
-     * 
-     * @param in XMLƒf[ƒ^‚Ì“ü—ÍƒXƒgƒŠ[ƒ€
-     * @param object ’è‹`ƒtƒ@ƒCƒ‹‚ÌƒpƒX‚ğ‰ğŒˆ‚·‚é‚½‚ß‚ÌƒIƒuƒWƒFƒNƒg
-     * @param errorMessages ƒGƒ‰[ƒƒbƒZ[ƒW‚ªŠi”[‚³‚ê‚éƒCƒ“ƒXƒ^ƒ“ƒX
-     * 
-     * @return DOMƒcƒŠ[
+     * XMLãƒ‡ãƒ¼ã‚¿ã®å½¢å¼ãƒã‚§ãƒƒã‚¯ã‚’è¡Œã†ãƒ¡ã‚½ãƒƒãƒ‰ã€‚
+     *
+     * @param in XMLãƒ‡ãƒ¼ã‚¿ã®å…¥åŠ›ã‚¹ãƒˆãƒªãƒ¼ãƒ 
+     * @param object å®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‘ã‚¹ã‚’è§£æ±ºã™ã‚‹ãŸã‚ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+     * @param errorMessages ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒæ ¼ç´ã•ã‚Œã‚‹ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹
+     *
+     * @return DOMãƒ„ãƒªãƒ¼
      */
     Document validate(InputStream in, Object object,
             ErrorMessages errorMessages);

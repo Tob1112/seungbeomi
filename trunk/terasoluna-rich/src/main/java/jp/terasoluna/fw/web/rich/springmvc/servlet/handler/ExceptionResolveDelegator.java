@@ -22,39 +22,39 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.servlet.ModelAndView;
 /**
- * ƒGƒ‰[î•ñ‚ğƒŒƒXƒ|ƒ“ƒXƒwƒbƒ_‚ÆModelAndView‚É”½‰f‚·‚é‚½‚ß‚ÌƒCƒ“ƒ^ƒtƒF[ƒXB
+ * ã‚¨ãƒ©ãƒ¼æƒ…å ±ã‚’ãƒ¬ã‚¹ãƒãƒ³ã‚¹ãƒ˜ãƒƒãƒ€ã¨ModelAndViewã«åæ˜ ã™ã‚‹ãŸã‚ã®ã‚¤ãƒ³ã‚¿ãƒ•ã‚§ãƒ¼ã‚¹ã€‚
  * <p>
- * •Û‚µ‚½“à—e‚ğAƒŒƒXƒ|ƒ“ƒXƒwƒbƒ_‹y‚ÑModelAndView‚Éİ’è‚·‚é‹@”\‚à’ñ‹Ÿ‚·‚éB
+ * ä¿æŒã—ãŸå†…å®¹ã‚’ã€ãƒ¬ã‚¹ãƒãƒ³ã‚¹ãƒ˜ãƒƒãƒ€åŠã³ModelAndViewã«è¨­å®šã™ã‚‹æ©Ÿèƒ½ã‚‚æä¾›ã™ã‚‹ã€‚
  * </p>
- * 
+ *
  */
 public interface ExceptionResolveDelegator {
-    
+
     /**
-     * —áŠO‚ÌŒ^‚Æƒrƒ…[–¼i•ƒGƒ‰[î•ñj‚ğ‘®«‚ÉŠi”[‚·‚éB
-     * @param mappingKey  —áŠO‚ÌŒ^
-     * @param mappingValues ƒrƒ…[–¼‚ÆƒGƒ‰[î•ñ
-     * @param params •Ê‚Ìî•ñ‚ÌƒL[‚Æ’l‚ğŠi”[‚·‚éMap
+     * ä¾‹å¤–ã®å‹ã¨ãƒ“ãƒ¥ãƒ¼åï¼ˆï¼†ã‚¨ãƒ©ãƒ¼æƒ…å ±ï¼‰ã‚’å±æ€§ã«æ ¼ç´ã™ã‚‹ã€‚
+     * @param mappingKey  ä¾‹å¤–ã®å‹
+     * @param mappingValues ãƒ“ãƒ¥ãƒ¼åã¨ã‚¨ãƒ©ãƒ¼æƒ…å ±
+     * @param params åˆ¥ã®æƒ…å ±ã®ã‚­ãƒ¼ã¨å€¤ã‚’æ ¼ç´ã™ã‚‹Map
      */
-    void initMapping (String mappingKey, Object mappingValues, 
+    void initMapping (String mappingKey, Object mappingValues,
             Map<String, String> params);
-    
+
     /**
-     * ƒŒƒXƒ|ƒ“ƒXƒwƒbƒ_‚ÉƒGƒ‰[î•ñ‚ğİ’è‚·‚éB
-     * @param response HTTPƒŒƒXƒ|ƒ“ƒX
+     * ãƒ¬ã‚¹ãƒãƒ³ã‚¹ãƒ˜ãƒƒãƒ€ã«ã‚¨ãƒ©ãƒ¼æƒ…å ±ã‚’è¨­å®šã™ã‚‹ã€‚
+     * @param response HTTPãƒ¬ã‚¹ãƒãƒ³ã‚¹
      */
     void setHeader(HttpServletResponse response);
-    
+
     /**
-     * ModelAndView‚ÉƒGƒ‰[î•ñ‚ğİ’è‚·‚éB
-     * @param mv ModelAndView ModelAndViewƒIƒuƒWƒFƒNƒg
+     * ModelAndViewã«ã‚¨ãƒ©ãƒ¼æƒ…å ±ã‚’è¨­å®šã™ã‚‹ã€‚
+     * @param mv ModelAndView ModelAndViewã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
      */
     void addObjectToModel(ModelAndView mv);
-    
+
     /**
-     * ƒrƒ…[–¼‚ğæ“¾‚·‚éB
-     * @return ƒrƒ…[–¼
-     */    
+     * ãƒ“ãƒ¥ãƒ¼åã‚’å–å¾—ã™ã‚‹ã€‚
+     * @return ãƒ“ãƒ¥ãƒ¼å
+     */
     String getViewName();
 
 }

@@ -19,23 +19,23 @@ package jp.terasoluna.fw.oxm.xsd.exception;
 import jp.terasoluna.fw.oxm.exception.OXMappingException;
 
 /**
- * ƒXƒL[ƒ}’è‹`ƒtƒ@ƒCƒ‹‚ÌŒ`®‚ª•s³‚Èê‡‚ÉAƒXƒ[‚³‚ê‚éŒ`®ƒ`ƒFƒbƒN—áŠOB
- * 
+ * ã‚¹ã‚­ãƒ¼ãƒå®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã®å½¢å¼ãŒä¸æ­£ãªå ´åˆã«ã€ã‚¹ãƒ­ãƒ¼ã•ã‚Œã‚‹å½¢å¼ãƒã‚§ãƒƒã‚¯ä¾‹å¤–ã€‚
+ *
  * <p>
- * OXMappingException‚ÌƒTƒuƒNƒ‰ƒX‚Æ‚µ‚Ä’ñ‹Ÿ‚µ‚Ä‚¢‚éB
+ * OXMappingExceptionã®ã‚µãƒ–ã‚¯ãƒ©ã‚¹ã¨ã—ã¦æä¾›ã—ã¦ã„ã‚‹ã€‚
  * </p>
- * 
+ *
  */
 public class IllegalSchemaDefinitionException extends OXMappingException {
 
     /**
-     * ƒVƒŠƒAƒ‹ƒo[ƒWƒ‡ƒ“IDB
+     * ã‚·ãƒªã‚¢ãƒ«ãƒãƒ¼ã‚¸ãƒ§ãƒ³IDã€‚
      */
     private static final long serialVersionUID = 6349264072192465060L;
 
     /**
-     * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-     * 
+     * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+     *
      */
     public IllegalSchemaDefinitionException() {
         super();

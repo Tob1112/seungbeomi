@@ -30,82 +30,82 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
 /**
- * —áŠOƒNƒ‰ƒX–¼‚Æƒrƒ…[–¼‚Ìƒ}ƒbƒsƒ“ƒO‚ğs‚¤Exception resolver‚ÌŠg’£ƒNƒ‰ƒXB
- * 
+ * ä¾‹å¤–ã‚¯ãƒ©ã‚¹åã¨ãƒ“ãƒ¥ãƒ¼åã®ãƒãƒƒãƒ”ãƒ³ã‚°ã‚’è¡Œã†Exception resolverã®æ‹¡å¼µã‚¯ãƒ©ã‚¹ã€‚
+ *
  * <p>
- * Spring‚ª’ñ‹Ÿ‚·‚é SimpleMappingExceptionResolver‚Ì
- * ‘®«exceptionMappings‚ÍAİ’è€–Ú‚Ì‡˜«‚Ì•Û‚ªo—ˆ‚È‚¢B<br>
- * –{ƒNƒ‰ƒX‚ÍASimpleMappingExceptionResolver‚ğŠg’£‚µA
- * ‘ã‚í‚è‚É‡˜«‚Ì•Û‚ª‰Â”\‚È‘®«linkedExceptionMappings‚ğ’ñ‹Ÿ‚·‚é‚à‚Ì‚Å‚ ‚éB
+ * SpringãŒæä¾›ã™ã‚‹ SimpleMappingExceptionResolverã®
+ * å±æ€§exceptionMappingsã¯ã€è¨­å®šé …ç›®ã®é †åºæ€§ã®ä¿æŒãŒå‡ºæ¥ãªã„ã€‚<br>
+ * æœ¬ã‚¯ãƒ©ã‚¹ã¯ã€SimpleMappingExceptionResolverã‚’æ‹¡å¼µã—ã€
+ * ä»£ã‚ã‚Šã«é †åºæ€§ã®ä¿æŒãŒå¯èƒ½ãªå±æ€§linkedExceptionMappingsã‚’æä¾›ã™ã‚‹ã‚‚ã®ã§ã‚ã‚‹ã€‚
  * </p>
- * 
+ *
  * <p>
- * ƒŠƒNƒGƒXƒgƒRƒ“ƒgƒ[ƒ‰‚Å”­¶‚µ‚½—áŠO‚ğƒnƒ“ƒhƒŠƒ“ƒO‚µA
- * Bean’è‹`ƒtƒ@ƒCƒ‹‚É]‚¢ƒXƒ[‚³‚ê‚½—áŠOŒ^‚É‘Î‰‚·‚éViewƒCƒ“ƒXƒ^ƒ“ƒX‚Æ
- * ModelƒCƒ“ƒXƒ^ƒ“ƒX‚ğ•Ô‹p‚·‚éB<br>
- * ModelƒCƒ“ƒXƒ^ƒ“ƒX‚Éî•ñ‚ğŠi”[‚·‚éˆ—‚ÍA{@link ExceptionResolveDelegator}À‘•ƒNƒ‰ƒX‚ÉˆÏ÷‚·‚éB<br>
- * ViewƒCƒ“ƒXƒ^ƒ“ƒX‚ÅAModelƒCƒ“ƒXƒ^ƒ“ƒX‚ÉŠi”[‚³‚ê‚½î•ñ‚ğ—˜—p‚µ‚Ä
- * ƒGƒ‰[ƒŒƒXƒ|ƒ“ƒX‚ÌƒŒƒ“ƒ_ƒŠƒ“ƒO‚ğs‚¤‚±‚Æ‚ğ‘z’è‚µ‚Ä‚¢‚éB
+ * ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã§ç™ºç”Ÿã—ãŸä¾‹å¤–ã‚’ãƒãƒ³ãƒ‰ãƒªãƒ³ã‚°ã—ã€
+ * Beanå®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã«å¾“ã„ã‚¹ãƒ­ãƒ¼ã•ã‚ŒãŸä¾‹å¤–å‹ã«å¯¾å¿œã™ã‚‹Viewã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã¨
+ * Modelã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’è¿”å´ã™ã‚‹ã€‚<br>
+ * Modelã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã«æƒ…å ±ã‚’æ ¼ç´ã™ã‚‹å‡¦ç†ã¯ã€{@link ExceptionResolveDelegator}å®Ÿè£…ã‚¯ãƒ©ã‚¹ã«å§”è­²ã™ã‚‹ã€‚<br>
+ * Viewã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã§ã€Modelã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã«æ ¼ç´ã•ã‚ŒãŸæƒ…å ±ã‚’åˆ©ç”¨ã—ã¦
+ * ã‚¨ãƒ©ãƒ¼ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã®ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã‚’è¡Œã†ã“ã¨ã‚’æƒ³å®šã—ã¦ã„ã‚‹ã€‚
  * </p>
- * 
+ *
  * <p>
- * ƒŒƒXƒ|ƒ“ƒX‚É—áŠO‚ª”­¶‚µ‚½‚±‚Æ‚ğ’Ê’m‚·‚éƒwƒbƒ_‚ğİ’è‚·‚éB<br>
- * ƒwƒbƒ_‚Éî•ñ‚ğİ’è‚·‚éˆ—‚ÍA{@link ExceptionResolveDelegator}À‘•ƒNƒ‰ƒX‚ÉˆÏ÷‚·‚éB
+ * ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã«ä¾‹å¤–ãŒç™ºç”Ÿã—ãŸã“ã¨ã‚’é€šçŸ¥ã™ã‚‹ãƒ˜ãƒƒãƒ€ã‚’è¨­å®šã™ã‚‹ã€‚<br>
+ * ãƒ˜ãƒƒãƒ€ã«æƒ…å ±ã‚’è¨­å®šã™ã‚‹å‡¦ç†ã¯ã€{@link ExceptionResolveDelegator}å®Ÿè£…ã‚¯ãƒ©ã‚¹ã«å§”è­²ã™ã‚‹ã€‚
  * </p>
- * 
+ *
  * <p>
- * –{ƒNƒ‰ƒX‚ğ—˜—p‚·‚éê‡A–{ƒNƒ‰ƒX‚ÌBean’è‹`‚ğs‚¤‚±‚ÆB
- * ‚Ü‚½AˆÈ‰º‚ÌƒvƒƒpƒeƒB‚ğ•K‚¸İ’è‚·‚é‚±‚ÆB
+ * æœ¬ã‚¯ãƒ©ã‚¹ã‚’åˆ©ç”¨ã™ã‚‹å ´åˆã€æœ¬ã‚¯ãƒ©ã‚¹ã®Beanå®šç¾©ã‚’è¡Œã†ã“ã¨ã€‚
+ * ã¾ãŸã€ä»¥ä¸‹ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚’å¿…ãšè¨­å®šã™ã‚‹ã“ã¨ã€‚
  * </p>
- * 
+ *
  * <p>
  *   <table border="1" CELLPADDING="8">
- *     <th>‘®«–¼</th>
- *     <th>•K{</th>
- *     <th>à–¾</th>
- * 
+ *     <th>å±æ€§å</th>
+ *     <th>å¿…é ˆ</th>
+ *     <th>èª¬æ˜</th>
+ *
  *     <tr>
  *       <td align=center><b>linkedExceptionMappings</b></td>
- *       <td>›</td>
+ *       <td>â—‹</td>
  *       <td>
- *           —áŠOƒNƒ‰ƒX–¼‚ÆView–¼‚Ìƒ}ƒbƒsƒ“ƒOimapŒ`®jB<br>
- *           entry‚ÌƒL[‚ÍA—áŠOƒNƒ‰ƒX–¼‚ğİ’è‚·‚éB<br>
- *           entry‚Ì’l‚ÍAg—p‚·‚é{@link ExceptionResolveDelegator}À‘•ƒNƒ‰ƒX‚Ìjavadoc‚ğQl‚Éİ’è‚·‚é‚±‚ÆB
+ *           ä¾‹å¤–ã‚¯ãƒ©ã‚¹åã¨Viewåã®ãƒãƒƒãƒ”ãƒ³ã‚°ï¼ˆmapå½¢å¼ï¼‰ã€‚<br>
+ *           entryã®ã‚­ãƒ¼ã¯ã€ä¾‹å¤–ã‚¯ãƒ©ã‚¹åã‚’è¨­å®šã™ã‚‹ã€‚<br>
+ *           entryã®å€¤ã¯ã€ä½¿ç”¨ã™ã‚‹{@link ExceptionResolveDelegator}å®Ÿè£…ã‚¯ãƒ©ã‚¹ã®javadocã‚’å‚è€ƒã«è¨­å®šã™ã‚‹ã“ã¨ã€‚
  *       </td>
  *     </tr>
  *     <tr>
  *       <td align=center><b>exceptionResolveDelegatorClass</b></td>
- *       <td>›</td>
+ *       <td>â—‹</td>
  *       <td>
- *           ExceptionResolveDelegatorÀ‘•ƒNƒ‰ƒX
+ *           ExceptionResolveDelegatorå®Ÿè£…ã‚¯ãƒ©ã‚¹
  *       </td>
  *     </tr>
  *     <tr>
  *       <td align=center><b>exceptionResolveDelegatorParams</b></td>
  *       <td>&nbsp;</td>
  *       <td>
- *           ExceptionResolveDelegatorÀ‘•ƒNƒ‰ƒX‚ª—˜—p‚·‚éî•ñ‚Ìƒ}ƒbƒsƒ“ƒOB<br>
- *           entry‚ÌƒL[‚ÍAî•ñ–¼B<br>
- *           entry‚Ì’l‚ÍAî•ñ’lB
+ *           ExceptionResolveDelegatorå®Ÿè£…ã‚¯ãƒ©ã‚¹ãŒåˆ©ç”¨ã™ã‚‹æƒ…å ±ã®ãƒãƒƒãƒ”ãƒ³ã‚°ã€‚<br>
+ *           entryã®ã‚­ãƒ¼ã¯ã€æƒ…å ±åã€‚<br>
+ *           entryã®å€¤ã¯ã€æƒ…å ±å€¤ã€‚
  *       </td>
  *     </tr>
  *     <tr>
  *       <td align=center><b>outputErrorLogHandledException</b></td>
  *       <td>&nbsp;</td>
  *       <td>
- *           ƒnƒ“ƒhƒŠƒ“ƒO‚µ‚½—áŠO‚Ìî•ñ‚ğƒGƒ‰[ƒƒOo—Í‚·‚é‚©‚ğ‚ ‚ç‚í‚·boolean’lB<br>
- *           true‚Ìê‡AƒGƒ‰[ƒƒOo—Í‚ğs‚¤B<br>
- *           ƒfƒtƒHƒ‹ƒg‚Ítrue‚Å‚ ‚éB<br>
- *           ƒvƒƒWƒFƒNƒg‚²‚Æ‚ÌƒƒOŠÄ‹‚Ì—vŒ‚È‚Ç‚Å
- *           ƒnƒ“ƒhƒŠƒ“ƒO‚µ‚½—áŠO‚Ìî•ñ‚ğƒGƒ‰[ƒƒOo—Í‚µ‚½‚­‚È‚¢ê‡‚Ì‚İİ’è‚·‚é‚±‚ÆB
- *           ’Êí‚Í–{İ’è‚ğ—˜—p‚·‚é•K—v‚Í‚È‚¢B
+ *           ãƒãƒ³ãƒ‰ãƒªãƒ³ã‚°ã—ãŸä¾‹å¤–ã®æƒ…å ±ã‚’ã‚¨ãƒ©ãƒ¼ãƒ­ã‚°å‡ºåŠ›ã™ã‚‹ã‹ã‚’ã‚ã‚‰ã‚ã™booleanå€¤ã€‚<br>
+ *           trueã®å ´åˆã€ã‚¨ãƒ©ãƒ¼ãƒ­ã‚°å‡ºåŠ›ã‚’è¡Œã†ã€‚<br>
+ *           ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã¯trueã§ã‚ã‚‹ã€‚<br>
+ *           ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã”ã¨ã®ãƒ­ã‚°ç›£è¦–ã®è¦ä»¶ãªã©ã§
+ *           ãƒãƒ³ãƒ‰ãƒªãƒ³ã‚°ã—ãŸä¾‹å¤–ã®æƒ…å ±ã‚’ã‚¨ãƒ©ãƒ¼ãƒ­ã‚°å‡ºåŠ›ã—ãŸããªã„å ´åˆã®ã¿è¨­å®šã™ã‚‹ã“ã¨ã€‚
+ *           é€šå¸¸ã¯æœ¬è¨­å®šã‚’åˆ©ç”¨ã™ã‚‹å¿…è¦ã¯ãªã„ã€‚
  *       </td>
  *     </tr>
  *  </table>
- * 
+ *
  * </p>
- * ExceptionResolveDelegatorÀ‘•ƒNƒ‰ƒX‚Æ‚µ‚ÄAExceptionResolveDelegatorImpl‚ğg—p‚·‚éê‡‚Ìİ’è—á‚ğˆÈ‰º‚É‹L‚·B
- * y<code>Bean’è‹`ƒtƒ@ƒCƒ‹</code>‚Ìİ’è—áz<br>
+ * ExceptionResolveDelegatorå®Ÿè£…ã‚¯ãƒ©ã‚¹ã¨ã—ã¦ã€ExceptionResolveDelegatorImplã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã®è¨­å®šä¾‹ã‚’ä»¥ä¸‹ã«è¨˜ã™ã€‚
+ * ã€<code>Beanå®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«</code>ã®è¨­å®šä¾‹ã€‘<br>
  * <code><pre>
  *   &lt;bean id="handlerExceptionResolver"
  *       class="jp.terasoluna.fw.web.rich.springmvc.servlet.handler.SimpleMappingExceptionResolverEx"&gt;
@@ -135,116 +135,116 @@ import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
  *           &lt;value&gt;errorType&lt;/value&gt;
  *         &lt;/entry&gt;
  *       &lt;/map&gt;
- *     &lt;/property&gt; 
+ *     &lt;/property&gt;
  *   &lt;/bean&gt;
  * </pre></code>
- * 
+ *
  * <p>
- * ‚½‚Æ‚¦‚ÎAã‹L‚Ìİ’è‚ğs‚Á‚½ã‚ÅA
- * UnknownRequestNameException‚ªƒXƒ[‚³‚ê‚Ä‚«‚½ê‡A
- * uexceptionv‚Æ‚¢‚¤–¼Ì‚Ìƒrƒ…[‚ÆA
- * ƒXƒ[‚³‚ê‚½—áŠOƒCƒ“ƒXƒ^ƒ“ƒX‚ÆAƒGƒ‰[ƒR[ƒh•¶š—ñu8004C003v‚ğ
- * Ši”[‚µ‚½ƒ‚ƒfƒ‹‚ğ•Ô‹p‚·‚éB<br>
- * ƒŒƒXƒ|ƒ“ƒXƒwƒbƒ_‚É‚ÍAuerrorTypev‚ğƒL[‚Æ‚µ‚Äukind01v‚ğİ’è‚·‚éB
+ * ãŸã¨ãˆã°ã€ä¸Šè¨˜ã®è¨­å®šã‚’è¡Œã£ãŸä¸Šã§ã€
+ * UnknownRequestNameExceptionãŒã‚¹ãƒ­ãƒ¼ã•ã‚Œã¦ããŸå ´åˆã€
+ * ã€Œexceptionã€ã¨ã„ã†åç§°ã®ãƒ“ãƒ¥ãƒ¼ã¨ã€
+ * ã‚¹ãƒ­ãƒ¼ã•ã‚ŒãŸä¾‹å¤–ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã¨ã€ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰æ–‡å­—åˆ—ã€Œ8004C003ã€ã‚’
+ * æ ¼ç´ã—ãŸãƒ¢ãƒ‡ãƒ«ã‚’è¿”å´ã™ã‚‹ã€‚<br>
+ * ãƒ¬ã‚¹ãƒãƒ³ã‚¹ãƒ˜ãƒƒãƒ€ã«ã¯ã€ã€ŒerrorTypeã€ã‚’ã‚­ãƒ¼ã¨ã—ã¦ã€Œkind01ã€ã‚’è¨­å®šã™ã‚‹ã€‚
  * </p>
- * 
+ *
  * <p>
- * SimpleMappingExceptionResolverEx‚ÍAƒXƒ[‚³‚ê‚½—áŠO‚ÌŒ^‚Æ
- * linkedExceptionMappings‚ÌƒL[‚ğİ’èƒtƒ@ƒCƒ‹‚É‹Lq‚³‚ê‚½‡‚É”äŠr‚·‚éB
- * İ’èƒtƒ@ƒCƒ‹‚É‹Lq‚³‚ê‚½—áŠOŒ^‚ªAƒXƒ[‚³‚ê‚½—áŠOŒ^‚Ì
- * “¯ˆê‚ÌŒ^A‚Ü‚½‚Íe‚ÌŒ^‚¾‚Á‚½ê‡‚ÉA‘Î‰‚·‚é’l‚Ì–¼Ì‚ÌView‚ğ¶¬‚µ•Ô‹p‚·‚éB
- * 
- * ƒXƒ[‚³‚ê‚½Œ^‚Æˆê’v‚·‚éİ’è‚ª•¡”‚ ‚Á‚½ê‡‚ÍA
- * ‚æ‚èæ‚É‹Lq‚µ‚½İ’è‚ªÌ—p‚³‚ê‚éB
- * ÅŒã‚É‘S‚Ä‚Ì—áŠO‚ÌeƒNƒ‰ƒX‚Æ‚È‚éjava.lang.Exception‚Ìİ’è‚ğs‚¤‚±‚Æ‚ÅA
- *@—\Šú‚¹‚Ê—áŠO‚ª”­¶‚µ‚½ê‡‚Å‚à•K‚¸Ajava.lang.Exception‚Ìİ’è‚Å
- * ƒGƒ‰[ƒŒƒXƒ|ƒ“ƒX‚ÌƒŒƒ“ƒ_ƒŠƒ“ƒO‚ªo—ˆ‚éB
+ * SimpleMappingExceptionResolverExã¯ã€ã‚¹ãƒ­ãƒ¼ã•ã‚ŒãŸä¾‹å¤–ã®å‹ã¨
+ * linkedExceptionMappingsã®ã‚­ãƒ¼ã‚’è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã«è¨˜è¿°ã•ã‚ŒãŸé †ã«æ¯”è¼ƒã™ã‚‹ã€‚
+ * è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã«è¨˜è¿°ã•ã‚ŒãŸä¾‹å¤–å‹ãŒã€ã‚¹ãƒ­ãƒ¼ã•ã‚ŒãŸä¾‹å¤–å‹ã®
+ * åŒä¸€ã®å‹ã€ã¾ãŸã¯è¦ªã®å‹ã ã£ãŸå ´åˆã«ã€å¯¾å¿œã™ã‚‹å€¤ã®åç§°ã®Viewã‚’ç”Ÿæˆã—è¿”å´ã™ã‚‹ã€‚
+ *
+ * ã‚¹ãƒ­ãƒ¼ã•ã‚ŒãŸå‹ã¨ä¸€è‡´ã™ã‚‹è¨­å®šãŒè¤‡æ•°ã‚ã£ãŸå ´åˆã¯ã€
+ * ã‚ˆã‚Šå…ˆã«è¨˜è¿°ã—ãŸè¨­å®šãŒæ¡ç”¨ã•ã‚Œã‚‹ã€‚
+ * æœ€å¾Œã«å…¨ã¦ã®ä¾‹å¤–ã®è¦ªã‚¯ãƒ©ã‚¹ã¨ãªã‚‹java.lang.Exceptionã®è¨­å®šã‚’è¡Œã†ã“ã¨ã§ã€
+ *ã€€äºˆæœŸã›ã¬ä¾‹å¤–ãŒç™ºç”Ÿã—ãŸå ´åˆã§ã‚‚å¿…ãšã€java.lang.Exceptionã®è¨­å®šã§
+ * ã‚¨ãƒ©ãƒ¼ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã®ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ãŒå‡ºæ¥ã‚‹ã€‚
  * </p>
- * 
+ *
  * <p>
- * ‚±‚±‚Åˆ—‰Â”\‚È—áŠO‚ÍAƒŠƒNƒGƒXƒgƒRƒ“ƒgƒ[ƒ‰‚Å”­¶‚µ‚½—áŠO‚Ì‚İ‚Å‚ ‚éB
- * View‚âFilter“™ADispacherServletŠO‚Å”­¶‚µ‚½—áŠO‚Ìƒnƒ“ƒhƒŠƒ“ƒO‚ÍA
- * –{ƒNƒ‰ƒX‚ÍÓ–±‚ğ‚½‚È‚¢B
- * ‚»‚ê‚ç‚Ì—áŠO‚ğƒnƒ“ƒhƒŠƒ“ƒO‚·‚é‚½‚ß‚É‚ÍAServlet‚ª’ñ‹Ÿ‚µ‚Ä‚¢‚é
- * ƒGƒ‰[ƒy[ƒW‚Ì‹@”\‚ğ—˜—p‚·‚é‚±‚ÆB
- * —áŠO‚ÌŒ^‚²‚Æ‚É”CˆÓ‚ÌŒÅ’è“d•¶‚ğƒŒƒXƒ|ƒ“ƒX‚ÉƒŒƒ“ƒ_ƒŠƒ“ƒO‚·‚é‚±‚Æ‚ªo—ˆ‚éB
+ * ã“ã“ã§å‡¦ç†å¯èƒ½ãªä¾‹å¤–ã¯ã€ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã§ç™ºç”Ÿã—ãŸä¾‹å¤–ã®ã¿ã§ã‚ã‚‹ã€‚
+ * Viewã‚„Filterç­‰ã€DispacherServletå¤–ã§ç™ºç”Ÿã—ãŸä¾‹å¤–ã®ãƒãƒ³ãƒ‰ãƒªãƒ³ã‚°ã¯ã€
+ * æœ¬ã‚¯ãƒ©ã‚¹ã¯è²¬å‹™ã‚’æŒãŸãªã„ã€‚
+ * ãã‚Œã‚‰ã®ä¾‹å¤–ã‚’ãƒãƒ³ãƒ‰ãƒªãƒ³ã‚°ã™ã‚‹ãŸã‚ã«ã¯ã€ServletãŒæä¾›ã—ã¦ã„ã‚‹
+ * ã‚¨ãƒ©ãƒ¼ãƒšãƒ¼ã‚¸ã®æ©Ÿèƒ½ã‚’åˆ©ç”¨ã™ã‚‹ã“ã¨ã€‚
+ * ä¾‹å¤–ã®å‹ã”ã¨ã«ä»»æ„ã®å›ºå®šé›»æ–‡ã‚’ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã«ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã™ã‚‹ã“ã¨ãŒå‡ºæ¥ã‚‹ã€‚
  * </p>
- * 
+ *
  * <p>
- * y<code>web.xml</code>‚Ìİ’è—áz<br>
+ * ã€<code>web.xml</code>ã®è¨­å®šä¾‹ã€‘<br>
  * <code><pre>
  *   &lt;error-page&gt;
  *     &lt;exception-type&gt;java.lang.Exception&lt;/exception-type&gt;
  *     &lt;location&gt;/error/unknown-error.jsp&lt;/location&gt;
  *   &lt;/error-page&gt;
- * @@¦ ‚ ‚ç‚©‚¶‚ßŒÅ’è‚ÌƒGƒ‰[“d•¶‚ğ‹Lq‚µ‚½/error/unknown-error.jsp‚ğ—pˆÓ‚µ‚Ä‚¨‚­‚±‚ÆB
+ * ã€€ã€€â€» ã‚ã‚‰ã‹ã˜ã‚å›ºå®šã®ã‚¨ãƒ©ãƒ¼é›»æ–‡ã‚’è¨˜è¿°ã—ãŸ/error/unknown-error.jspã‚’ç”¨æ„ã—ã¦ãŠãã“ã¨ã€‚
  * </pre></code>
  * </p>
  * @see jp.terasoluna.fw.web.rich.springmvc.servlet.handler.ExceptionResolveDelegator
- * 
+ *
  *
  */
 public class SimpleMappingExceptionResolverEx extends SimpleMappingExceptionResolver implements InitializingBean {
     /**
-     * ƒƒOƒNƒ‰ƒXB
+     * ãƒ­ã‚°ã‚¯ãƒ©ã‚¹ã€‚
      */
     private final Log log = LogFactory.getLog(getClass());
-    
+
     /**
-     * ‡˜«‚ğ•Û‚µ‚½—áŠO‚ÆView–¼i•ƒGƒ‰[î•ñj‚Ìƒ}ƒbƒsƒ“ƒOB
+     * é †åºæ€§ã‚’ä¿æŒã—ãŸä¾‹å¤–ã¨Viewåï¼ˆï¼†ã‚¨ãƒ©ãƒ¼æƒ…å ±ï¼‰ã®ãƒãƒƒãƒ”ãƒ³ã‚°ã€‚
      */
     protected Map<String, Object> linkedExceptionMappings = null;
 
     /**
-     * –{ƒNƒ‰ƒX‚ªˆ—‚·‚é‚×‚«ƒnƒ“ƒhƒ‰‚ÌƒZƒbƒgB
-     * <p>ˆ—‚·‚×‚«ƒRƒ“ƒgƒ[ƒ‰ƒCƒ“ƒXƒ^ƒ“ƒX‚ğİ’è‚·‚éB
+     * æœ¬ã‚¯ãƒ©ã‚¹ãŒå‡¦ç†ã™ã‚‹ã¹ããƒãƒ³ãƒ‰ãƒ©ã®ã‚»ãƒƒãƒˆã€‚
+     * <p>å‡¦ç†ã™ã¹ãã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’è¨­å®šã™ã‚‹ã€‚
      * {@link #resolveException(HttpServletRequest, HttpServletResponse, Object, Exception)}
-     * ƒƒ\ƒbƒh“à‚Åg—p‚³‚ê‚éBƒRƒ“ƒgƒ[ƒ‰ƒIƒuƒWƒFƒNƒg‚Ì”äŠr‚ğs‚¤‚½‚ßA
-     * ƒRƒ“ƒgƒ[ƒ‰‚ğƒVƒ“ƒOƒ‹ƒgƒ“İ’è‚É‚µ‚È‚¯‚ê‚Î‚È‚ç‚È‚¢B</p>
+     * ãƒ¡ã‚½ãƒƒãƒ‰å†…ã§ä½¿ç”¨ã•ã‚Œã‚‹ã€‚ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ¯”è¼ƒã‚’è¡Œã†ãŸã‚ã€
+     * ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã‚’ã‚·ãƒ³ã‚°ãƒ«ãƒˆãƒ³è¨­å®šã«ã—ãªã‘ã‚Œã°ãªã‚‰ãªã„ã€‚</p>
      */
     protected Set mappedHandlers = null;
 
     /**
-     * —áŠO‚ª”­¶‚µ‚½ê‡‚ÉƒŒƒXƒ|ƒ“ƒX‚Éİ’è‚·‚éƒGƒ‰[ƒR[ƒhB
+     * ä¾‹å¤–ãŒç™ºç”Ÿã—ãŸå ´åˆã«ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã«è¨­å®šã™ã‚‹ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ã€‚
      */
     protected Integer defaultStatusCode = null;
-    
+
     /**
-     * ƒXƒ[‚³‚ê‚½—áŠO‚É‘Î‰‚·‚éİ’è‚ª–³‚©‚Á‚½ê‡‚ÉÀs‚·‚éView‚Ì–¼ÌB
-     * linkedExceptionMappings‚ÅAjava.lang.Exception‚Ì’è‹`‚ğ‚µ‚Ä‚¢‚½ê‡‚Í•s—vB
+     * ã‚¹ãƒ­ãƒ¼ã•ã‚ŒãŸä¾‹å¤–ã«å¯¾å¿œã™ã‚‹è¨­å®šãŒç„¡ã‹ã£ãŸå ´åˆã«å®Ÿè¡Œã™ã‚‹Viewã®åç§°ã€‚
+     * linkedExceptionMappingsã§ã€java.lang.Exceptionã®å®šç¾©ã‚’ã—ã¦ã„ãŸå ´åˆã¯ä¸è¦ã€‚
      */
     protected String defaultErrorView = null;
 
     /**
-     * ExceptionResolveDelegatorÀ‘•ƒNƒ‰ƒX‚ÌŒ^
+     * ExceptionResolveDelegatorå®Ÿè£…ã‚¯ãƒ©ã‚¹ã®å‹
      */
     protected Class< ? extends ExceptionResolveDelegator> exceptionResolveDelegatorClass = jp.terasoluna.fw.web.rich.springmvc.servlet.handler.ExceptionResolveDelegatorImpl.class;
-    
+
     /**
-     * —áŠO‚ÌŒ^‚ğƒL[‚ÉExceptionResolveDelegator‚ğŠi”[‚·‚éMap
+     * ä¾‹å¤–ã®å‹ã‚’ã‚­ãƒ¼ã«ExceptionResolveDelegatorã‚’æ ¼ç´ã™ã‚‹Map
      */
     protected LinkedHashMap<String, ExceptionResolveDelegator> exceptionResolveDelegatorMap = new LinkedHashMap<String, ExceptionResolveDelegator>();
-    
+
     /**
-     * ExceptionResolveDelegator‚Ìƒpƒ‰ƒ[ƒ^[‚ÌƒL[‚Æ’l‚ğŠi”[‚·‚éMap
+     * ExceptionResolveDelegatorã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ã®ã‚­ãƒ¼ã¨å€¤ã‚’æ ¼ç´ã™ã‚‹Map
      */
     protected Map<String, String> exceptionResolveDelegatorParams = null;
-    
+
     /**
-     * ƒnƒ“ƒhƒŠƒ“ƒO‚µ‚½—áŠO‚Ìî•ñ‚ğƒGƒ‰[ƒƒOo—Í‚·‚é‚©
+     * ãƒãƒ³ãƒ‰ãƒªãƒ³ã‚°ã—ãŸä¾‹å¤–ã®æƒ…å ±ã‚’ã‚¨ãƒ©ãƒ¼ãƒ­ã‚°å‡ºåŠ›ã™ã‚‹ã‹
      */
     protected boolean outputErrorLogHandledException = true;
-    
+
     /**
-     * –{ƒNƒ‰ƒX‚ªƒCƒ“ƒXƒ^ƒ“ƒX‰»‚³‚ê‚½’¼Œã‚ÉŒÄ‚Î‚ê‚éƒƒ\ƒbƒhB 
-     * ExceptionResolveDelegator‚ğ¶¬‚µA‘®«‚ÉŠi”[‚·‚éB
+     * æœ¬ã‚¯ãƒ©ã‚¹ãŒã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹åŒ–ã•ã‚ŒãŸç›´å¾Œã«å‘¼ã°ã‚Œã‚‹ãƒ¡ã‚½ãƒƒãƒ‰ã€‚
+     * ExceptionResolveDelegatorã‚’ç”Ÿæˆã—ã€å±æ€§ã«æ ¼ç´ã™ã‚‹ã€‚
      */
     public void afterPropertiesSet() {
         if (this.linkedExceptionMappings == null) {
             return;
         }
 
-        // exceptionResolveDelegatorClass‘®«‚Ìnullƒ`ƒFƒbƒN
+        // exceptionResolveDelegatorClasså±æ€§ã®nullãƒã‚§ãƒƒã‚¯
         if (this.exceptionResolveDelegatorClass == null) {
             String message = "SimpleMappingExceptionResolverEx must be set exceptionResolveDelegatorClass. "
                     + "Check Spring Bean definition file.";
@@ -255,7 +255,7 @@ public class SimpleMappingExceptionResolverEx extends SimpleMappingExceptionReso
         for (String mappingKey : this.linkedExceptionMappings.keySet()) {
             ExceptionResolveDelegator exceptionResolveDelegator = null;
             try {
-                // exceptionResolveDelegatorClass‘®«‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ªAExceptionResolveDelegatorŒ^‚Å‚ ‚é‚±‚Æ‚Ìƒ`ƒFƒbƒN
+                // exceptionResolveDelegatorClasså±æ€§ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãŒã€ExceptionResolveDelegatorå‹ã§ã‚ã‚‹ã“ã¨ã®ãƒã‚§ãƒƒã‚¯
                 if (!(ExceptionResolveDelegator.class
                         .isAssignableFrom(exceptionResolveDelegatorClass))) {
                     String message = exceptionResolveDelegatorClass.getName()
@@ -267,35 +267,35 @@ public class SimpleMappingExceptionResolverEx extends SimpleMappingExceptionReso
                 exceptionResolveDelegator = exceptionResolveDelegatorClass
                         .newInstance();
             } catch (InstantiationException e) {
-                // exceptionResolveDelegatorClass‘®«‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‰»‚É¸”s‚µ‚½ê‡A—áŠO‚ğƒXƒ[‚·‚é
+                // exceptionResolveDelegatorClasså±æ€§ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹åŒ–ã«å¤±æ•—ã—ãŸå ´åˆã€ä¾‹å¤–ã‚’ã‚¹ãƒ­ãƒ¼ã™ã‚‹
                 String message = exceptionResolveDelegatorClass.getName()
                         + " cannot be instantiated. "
                         + "Check Spring Bean definition file.";
                 log.error(message, e);
                 throw new IllegalStateException(message, e);
             } catch (IllegalAccessException e) {
-                // exceptionResolveDelegatorClass‘®«‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‰»‚É¸”s‚µ‚½ê‡A—áŠO‚ğƒXƒ[‚·‚é
+                // exceptionResolveDelegatorClasså±æ€§ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹åŒ–ã«å¤±æ•—ã—ãŸå ´åˆã€ä¾‹å¤–ã‚’ã‚¹ãƒ­ãƒ¼ã™ã‚‹
                 String message = exceptionResolveDelegatorClass.getName()
                         + " cannot be instantiated. "
                         + "Check Spring Bean definition file.";
                 log.error(message, e);
                 throw new IllegalStateException(message, e);
             }
-            // ExceptionResolveDelegator‚ÉAƒGƒ‰[‚ÌŒ^‚ÆƒGƒ‰[î•ñ‚ğƒ}ƒbƒsƒ“ƒO‚·‚é
+            // ExceptionResolveDelegatorã«ã€ã‚¨ãƒ©ãƒ¼ã®å‹ã¨ã‚¨ãƒ©ãƒ¼æƒ…å ±ã‚’ãƒãƒƒãƒ”ãƒ³ã‚°ã™ã‚‹
             exceptionResolveDelegator.initMapping(mappingKey,
                     this.linkedExceptionMappings.get(mappingKey),
                     this.exceptionResolveDelegatorParams);
             exceptionResolveDelegatorMap.put(mappingKey,
                     exceptionResolveDelegator);
         }
-    }   
+    }
 
     /**
-     * ƒXƒ[‚³‚ê‚½—áŠO‚É‘Î‰‚·‚éİ’è‚ª–³‚©‚Á‚½ê‡‚ÉÀsView‚Ì–¼Ì‚ğİ’è‚·‚éB
-     * eƒNƒ‰ƒX‚Å•Û‚³‚ê‚Ä‚¢‚é‚ªA–{ƒNƒ‰ƒX‚ÅQÆ‚Å‚«‚È‚¢‚½‚ßA
-     * –{ƒNƒ‰ƒX‚Å‚à‘®«‚Æ‚µ‚ÄŠÇ—‚·‚éB
-     * 
-     * @param defaultErrorView ƒXƒ[‚³‚ê‚½—áŠO‚É‘Î‰‚·‚éİ’è‚ª–³‚©‚Á‚½ê‡‚ÉÀsView‚Ì–¼Ì
+     * ã‚¹ãƒ­ãƒ¼ã•ã‚ŒãŸä¾‹å¤–ã«å¯¾å¿œã™ã‚‹è¨­å®šãŒç„¡ã‹ã£ãŸå ´åˆã«å®Ÿè¡ŒViewã®åç§°ã‚’è¨­å®šã™ã‚‹ã€‚
+     * è¦ªã‚¯ãƒ©ã‚¹ã§ä¿æŒã•ã‚Œã¦ã„ã‚‹ãŒã€æœ¬ã‚¯ãƒ©ã‚¹ã§å‚ç…§ã§ããªã„ãŸã‚ã€
+     * æœ¬ã‚¯ãƒ©ã‚¹ã§ã‚‚å±æ€§ã¨ã—ã¦ç®¡ç†ã™ã‚‹ã€‚
+     *
+     * @param defaultErrorView ã‚¹ãƒ­ãƒ¼ã•ã‚ŒãŸä¾‹å¤–ã«å¯¾å¿œã™ã‚‹è¨­å®šãŒç„¡ã‹ã£ãŸå ´åˆã«å®Ÿè¡ŒViewã®åç§°
      */
     @Override
     public void setDefaultErrorView(String defaultErrorView) {
@@ -308,27 +308,27 @@ public class SimpleMappingExceptionResolverEx extends SimpleMappingExceptionReso
     }
 
     /**
-     * —áŠO‚Æƒrƒ…[–¼i•ƒGƒ‰[î•ñj‚Ìƒ}ƒbƒsƒ“ƒO‚ğ•Û‚·‚éƒNƒ‰ƒX‚ğİ’è‚·‚é
-     * @param exceptionResolveDelegatorClass —áŠO‚Æƒrƒ…[–¼i•ƒGƒ‰[î•ñj‚Ìƒ}ƒbƒsƒ“ƒO‚ğ•Û‚·‚éƒNƒ‰ƒX
+     * ä¾‹å¤–ã¨ãƒ“ãƒ¥ãƒ¼åï¼ˆï¼†ã‚¨ãƒ©ãƒ¼æƒ…å ±ï¼‰ã®ãƒãƒƒãƒ”ãƒ³ã‚°ã‚’ä¿æŒã™ã‚‹ã‚¯ãƒ©ã‚¹ã‚’è¨­å®šã™ã‚‹
+     * @param exceptionResolveDelegatorClass ä¾‹å¤–ã¨ãƒ“ãƒ¥ãƒ¼åï¼ˆï¼†ã‚¨ãƒ©ãƒ¼æƒ…å ±ï¼‰ã®ãƒãƒƒãƒ”ãƒ³ã‚°ã‚’ä¿æŒã™ã‚‹ã‚¯ãƒ©ã‚¹
      */
     public void setExceptionResolveDelegatorClass(
             Class< ? extends ExceptionResolveDelegator> exceptionResolveDelegatorClass) {
         this.exceptionResolveDelegatorClass = exceptionResolveDelegatorClass;
     }
-     
-    /**@
-     * ExceptionResolveDelegator‚Ìƒpƒ‰ƒ[ƒ^[‚ÌƒL[‚Æ’l‚ğŠi”[‚·‚éMap‚ğİ’è‚·‚é
-     * @param exceptionResolveDelegatorParams ExceptionResolveDelegator‚Ìƒpƒ‰ƒ[ƒ^[‚ÌƒL[‚Æ’l‚ğŠi”[‚·‚éMap
+
+    /**ã€€
+     * ExceptionResolveDelegatorã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ã®ã‚­ãƒ¼ã¨å€¤ã‚’æ ¼ç´ã™ã‚‹Mapã‚’è¨­å®šã™ã‚‹
+     * @param exceptionResolveDelegatorParams ExceptionResolveDelegatorã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ã®ã‚­ãƒ¼ã¨å€¤ã‚’æ ¼ç´ã™ã‚‹Map
      */
     public void setExceptionResolveDelegatorParams(
             Map<String, String> exceptionResolveDelegatorParams) {
         this.exceptionResolveDelegatorParams = exceptionResolveDelegatorParams;
     }
-    
+
     /**
-     * mappedHandlers‚ğİ’è‚·‚éB
-     * eƒNƒ‰ƒX‚Å•Û‚³‚ê‚Ä‚¢‚é‚ªA–{ƒNƒ‰ƒX‚ÅQÆ‚Å‚«‚È‚¢‚½‚ßA
-     * –{ƒNƒ‰ƒX‚Å‚à‘®«‚Æ‚µ‚ÄŠÇ—‚·‚éB
+     * mappedHandlersã‚’è¨­å®šã™ã‚‹ã€‚
+     * è¦ªã‚¯ãƒ©ã‚¹ã§ä¿æŒã•ã‚Œã¦ã„ã‚‹ãŒã€æœ¬ã‚¯ãƒ©ã‚¹ã§å‚ç…§ã§ããªã„ãŸã‚ã€
+     * æœ¬ã‚¯ãƒ©ã‚¹ã§ã‚‚å±æ€§ã¨ã—ã¦ç®¡ç†ã™ã‚‹ã€‚
      * @param mappedHandlers mappedHandlers
      */
     @Override
@@ -338,22 +338,22 @@ public class SimpleMappingExceptionResolverEx extends SimpleMappingExceptionReso
     }
 
     /**
-     * —áŠO‚ª”­¶‚µ‚½ê‡‚ÉƒŒƒXƒ|ƒ“ƒX‚Éİ’è‚·‚éƒGƒ‰[ƒR[ƒh‚ğİ’è‚·‚éB
-     * 
-     * @param defaultStatusCode HTTPƒXƒe[ƒ^ƒXƒR[ƒh’l
+     * ä¾‹å¤–ãŒç™ºç”Ÿã—ãŸå ´åˆã«ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã«è¨­å®šã™ã‚‹ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹ã€‚
+     *
+     * @param defaultStatusCode HTTPã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚³ãƒ¼ãƒ‰å€¤
      */
     @Override
     public void setDefaultStatusCode(int defaultStatusCode) {
         super.setDefaultStatusCode(defaultStatusCode);
         this.defaultStatusCode = Integer.valueOf(defaultStatusCode);
     }
-    
+
     /**
-     * ‡˜«‚ğ•Û‚Å‚«‚È‚¢—áŠO‚ÆView–¼i•ƒGƒ‰[î•ñj‚Ìƒ}ƒbƒsƒ“ƒO‚ğİ’è‚·‚éB
-     * ‘ã‚í‚è‚É‡˜«‚ğ•Û‚·‚é‹@”\‚ğ’ñ‹Ÿ‚µ‚Ä‚¢‚é‚Ì‚ÅA
-     * •K‚¸UnsupportedOperationException‚ğƒXƒ[‚·‚éB
-     * @deprecated ‘ã‚í‚è‚ÉlinkedExceptionMappings‚ğ—˜—p‚·‚é‚±‚ÆB
-     * @param mappings —áŠO‚ÆView–¼‚Ìƒ}ƒbƒsƒ“ƒO
+     * é †åºæ€§ã‚’ä¿æŒã§ããªã„ä¾‹å¤–ã¨Viewåï¼ˆï¼†ã‚¨ãƒ©ãƒ¼æƒ…å ±ï¼‰ã®ãƒãƒƒãƒ”ãƒ³ã‚°ã‚’è¨­å®šã™ã‚‹ã€‚
+     * ä»£ã‚ã‚Šã«é †åºæ€§ã‚’ä¿æŒã™ã‚‹æ©Ÿèƒ½ã‚’æä¾›ã—ã¦ã„ã‚‹ã®ã§ã€
+     * å¿…ãšUnsupportedOperationExceptionã‚’ã‚¹ãƒ­ãƒ¼ã™ã‚‹ã€‚
+     * @deprecated ä»£ã‚ã‚Šã«linkedExceptionMappingsã‚’åˆ©ç”¨ã™ã‚‹ã“ã¨ã€‚
+     * @param mappings ä¾‹å¤–ã¨Viewåã®ãƒãƒƒãƒ”ãƒ³ã‚°
      */
     @Deprecated
     @Override
@@ -361,39 +361,39 @@ public class SimpleMappingExceptionResolverEx extends SimpleMappingExceptionReso
         throw new UnsupportedOperationException();
     }
 
-    
+
     /**
-     * ‡˜«‚ğ•Û‚·‚é‡˜«‚ğ•Û‚µ‚½—áŠO‚ÆView–¼(&ƒGƒ‰[î•ñ)‚Ì
-     * ƒ}ƒbƒsƒ“ƒO‚ğİ’è‚·‚éB
-     * @param linkedExceptionMappings ‡˜«‚ğ•Û‚µ‚½—áŠO‚ÆView–¼i•ƒGƒ‰[î•ñj‚Ìƒ}ƒbƒsƒ“ƒO
+     * é †åºæ€§ã‚’ä¿æŒã™ã‚‹é †åºæ€§ã‚’ä¿æŒã—ãŸä¾‹å¤–ã¨Viewå(&ã‚¨ãƒ©ãƒ¼æƒ…å ±)ã®
+     * ãƒãƒƒãƒ”ãƒ³ã‚°ã‚’è¨­å®šã™ã‚‹ã€‚
+     * @param linkedExceptionMappings é †åºæ€§ã‚’ä¿æŒã—ãŸä¾‹å¤–ã¨Viewåï¼ˆï¼†ã‚¨ãƒ©ãƒ¼æƒ…å ±ï¼‰ã®ãƒãƒƒãƒ”ãƒ³ã‚°
      */
     public void setLinkedExceptionMappings(
             Map<String, Object> linkedExceptionMappings) {
         this.linkedExceptionMappings = linkedExceptionMappings;
     }
-    
+
     /**
-     * ƒnƒ“ƒhƒŠƒ“ƒO‚µ‚½—áŠO‚Ìî•ñ‚ğƒGƒ‰[ƒƒOo—Í‚·‚é‚©‚Ìboolean’l‚ğİ’è‚·‚éB
-     * 
+     * ãƒãƒ³ãƒ‰ãƒªãƒ³ã‚°ã—ãŸä¾‹å¤–ã®æƒ…å ±ã‚’ã‚¨ãƒ©ãƒ¼ãƒ­ã‚°å‡ºåŠ›ã™ã‚‹ã‹ã®booleanå€¤ã‚’è¨­å®šã™ã‚‹ã€‚
+     *
      * <p>
-     * ƒfƒtƒHƒ‹ƒg‚Ítrue‚È‚Ì‚ÅƒvƒƒWƒFƒNƒg‚²‚Æ‚ÌƒƒOŠÄ‹‚Ì—vŒ‚È‚Ç‚Å
-     * ƒnƒ“ƒhƒŠƒ“ƒO‚µ‚½—áŠO‚Ìî•ñ‚ğƒGƒ‰[ƒƒOo—Í‚µ‚½‚­‚È‚¢ê‡‚Ì‚İ–{ƒƒ\ƒbƒh‚ğ—˜—p‚·‚é‚±‚ÆB
-     * ’Êí‚Í–{ƒƒ\ƒbƒh‚ğ—˜—p‚·‚é•K—v‚Í‚È‚¢B
+     * ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã¯trueãªã®ã§ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã”ã¨ã®ãƒ­ã‚°ç›£è¦–ã®è¦ä»¶ãªã©ã§
+     * ãƒãƒ³ãƒ‰ãƒªãƒ³ã‚°ã—ãŸä¾‹å¤–ã®æƒ…å ±ã‚’ã‚¨ãƒ©ãƒ¼ãƒ­ã‚°å‡ºåŠ›ã—ãŸããªã„å ´åˆã®ã¿æœ¬ãƒ¡ã‚½ãƒƒãƒ‰ã‚’åˆ©ç”¨ã™ã‚‹ã“ã¨ã€‚
+     * é€šå¸¸ã¯æœ¬ãƒ¡ã‚½ãƒƒãƒ‰ã‚’åˆ©ç”¨ã™ã‚‹å¿…è¦ã¯ãªã„ã€‚
      * </p>
-     * 
-     * @param outputErrorLogHandledException false‚È‚ç‚Îo—Í‚µ‚È‚¢B
+     *
+     * @param outputErrorLogHandledException falseãªã‚‰ã°å‡ºåŠ›ã—ãªã„ã€‚
      */
     public void setOutputErrorLogHandledException(boolean outputErrorLogHandledException) {
         this.outputErrorLogHandledException = outputErrorLogHandledException;
     }
 
     /**
-     * ƒXƒ[‚³‚ê‚½—áŠO‚É‘Î‰‚·‚éView‚ÆModel‚ğ•Ô‹p‚·‚éB
-     * @param request HTTPƒŠƒNƒGƒXƒg
-     * @param response HTTPƒŒƒXƒ|ƒ“ƒX
-     * @param handler ƒnƒ“ƒhƒ‰
-     * @param ex ƒXƒ[‚³‚ê‚½—áŠO
-     * @return ƒ‚ƒfƒ‹(—áŠO‚ÆƒGƒ‰[î•ñ(”CˆÓ)‚ğŠi”[)‚Æƒrƒ…[
+     * ã‚¹ãƒ­ãƒ¼ã•ã‚ŒãŸä¾‹å¤–ã«å¯¾å¿œã™ã‚‹Viewã¨Modelã‚’è¿”å´ã™ã‚‹ã€‚
+     * @param request HTTPãƒªã‚¯ã‚¨ã‚¹ãƒˆ
+     * @param response HTTPãƒ¬ã‚¹ãƒãƒ³ã‚¹
+     * @param handler ãƒãƒ³ãƒ‰ãƒ©
+     * @param ex ã‚¹ãƒ­ãƒ¼ã•ã‚ŒãŸä¾‹å¤–
+     * @return ãƒ¢ãƒ‡ãƒ«(ä¾‹å¤–ã¨ã‚¨ãƒ©ãƒ¼æƒ…å ±(ä»»æ„)ã‚’æ ¼ç´)ã¨ãƒ“ãƒ¥ãƒ¼
      */
     @Override
     public ModelAndView resolveException (
@@ -402,13 +402,13 @@ public class SimpleMappingExceptionResolverEx extends SimpleMappingExceptionReso
             Object handler,
             Exception ex) {
 
-        // –{ƒNƒ‰ƒX‚ªˆ—‚·‚×‚«ƒnƒ“ƒhƒ‰‚©
+        // æœ¬ã‚¯ãƒ©ã‚¹ãŒå‡¦ç†ã™ã¹ããƒãƒ³ãƒ‰ãƒ©ã‹
         if (this.mappedHandlers != null
                 && !this.mappedHandlers.contains(handler)) {
             return null;
         }
 
-        // ƒXƒ[‚³‚ê‚½—áŠO‚ÌŒ^‚Æ’è‹`‚³‚ê‚Ä‚¢‚é—áŠO‚ÌŒ^‚ğƒ`ƒFƒbƒN
+        // ã‚¹ãƒ­ãƒ¼ã•ã‚ŒãŸä¾‹å¤–ã®å‹ã¨å®šç¾©ã•ã‚Œã¦ã„ã‚‹ä¾‹å¤–ã®å‹ã‚’ãƒã‚§ãƒƒã‚¯
         ExceptionResolveDelegator exceptionResolveDelegator = null;
         for (String mappingKey : exceptionResolveDelegatorMap.keySet()) {
             int depth = getDepth(mappingKey, ex);
@@ -419,37 +419,37 @@ public class SimpleMappingExceptionResolverEx extends SimpleMappingExceptionReso
             }
         }
 
-        // ’è‹`‚³‚ê‚Ä‚¢‚È‚¢—áŠO‚ªƒXƒ[‚³‚ê‚Ä‚«‚½ê‡‚Ìˆ—
+        // å®šç¾©ã•ã‚Œã¦ã„ãªã„ä¾‹å¤–ãŒã‚¹ãƒ­ãƒ¼ã•ã‚Œã¦ããŸå ´åˆã®å‡¦ç†
         if (exceptionResolveDelegator == null) {
             return null;
         }
 
         String viewName = exceptionResolveDelegator.getViewName();
-        // ƒrƒ…[–¼‚ªİ’è‚³‚ê‚Ä‚¢‚È‚¢ê‡‚Ìˆ—
+        // ãƒ“ãƒ¥ãƒ¼åãŒè¨­å®šã•ã‚Œã¦ã„ãªã„å ´åˆã®å‡¦ç†
         if (viewName == null && this.defaultErrorView != null) {
             viewName = this.defaultErrorView;
         }
 
         if (viewName != null) {
-            // ƒXƒ[‚³‚ê‚½—áŠO‚ª’è‹`‚³‚ê‚Ä‚¢‚éê‡‚Í ƒƒO‚ğo—Í
+            // ã‚¹ãƒ­ãƒ¼ã•ã‚ŒãŸä¾‹å¤–ãŒå®šç¾©ã•ã‚Œã¦ã„ã‚‹å ´åˆã¯ ãƒ­ã‚°ã‚’å‡ºåŠ›
             if (this.outputErrorLogHandledException) {
                 log.error("Handled the following exception.", ex);
             }
 
-            // HTTPƒGƒ‰[ƒXƒe[ƒ^ƒX‚ğƒŒƒXƒ|ƒ“ƒX‚Éİ’è‚·‚é
+            // HTTPã‚¨ãƒ©ãƒ¼ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã«è¨­å®šã™ã‚‹
             if (this.defaultStatusCode != null) {
                 response.setStatus(this.defaultStatusCode.intValue());
             }
 
             exceptionResolveDelegator.setHeader(response);
 
-            // View‚ÌŒˆ’è
+            // Viewã®æ±ºå®š
             ModelAndView mv = getModelAndView(viewName, ex);
-            
+
             exceptionResolveDelegator.addObjectToModel(mv);
 
             return mv;
-        } 
+        }
         return null;
     }
 

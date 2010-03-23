@@ -17,29 +17,29 @@
 package jp.terasoluna.fw.web.rich;
 
 /**
- * �����񂪋�����URI�����肷��`�F�b�J�̃C���^�t�F�[�X�B
- * 
+ * 文字列が許可するURIか判定するチェッカのインタフェース。
+ *
  * <p>
- * ForbiddenURIFilter���A
- * �A�v���P�[�V�����R���e�L�X�g��ʂ��ČĂяo����A���s����邱�Ƃ�z�肷��B
- * 
- * �{�N���X�̎����N���X��Bean��`���邱�ƁB��`��͎����N���X���Q�Ƃ��邱�ƁB
- * �ʏ�͎����N���X�Ƃ��āAForbiddenURICheckerImpl�𗘗p����΂悢�B
- * ForbiddenURICheckerImpl�ł͋Ɩ��̗v�����������Ȃ��ꍇ�ɂ̂݁A
- * �{�C���^�t�F�[�X�����������Ɩ��v���𖞂����N���X���쐬���邱�ƁB
+ * ForbiddenURIFilterより、
+ * アプリケーションコンテキストを通して呼び出され、実行されることを想定する。
+ *
+ * 本クラスの実装クラスをBean定義すること。定義例は実装クラスを参照すること。
+ * 通常は実装クラスとして、ForbiddenURICheckerImplを利用すればよい。
+ * ForbiddenURICheckerImplでは業務の要件が満たせない場合にのみ、
+ * 本インタフェースを実装した業務要件を満たすクラスを作成すること。
  * </p>
 
- * 
+ *
  * @see jp.terasoluna.fw.web.rich.ForbiddenURIFilter
- * 
+ *
  */
 public interface ForbiddenURIChecker {
-    
+
     /**
-     * ������Ă���URI���`�F�b�N����B
-     * 
-     * @param requestURI �`�F�b�N�Ώۂ�URI
-     * @return �`�F�b�N���ʁi������Ă����true�j
+     * 許可されているURIかチェックする。
+     *
+     * @param requestURI チェック対象のURI
+     * @return チェック結果（許可されていればtrue）
      */
     boolean isAllowedURI(String requestURI);
 }

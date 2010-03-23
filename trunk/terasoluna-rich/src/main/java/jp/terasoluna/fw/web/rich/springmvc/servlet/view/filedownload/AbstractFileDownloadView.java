@@ -30,21 +30,21 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.web.servlet.view.AbstractView;
 
 /**
- * ƒoƒCƒiƒŠƒtƒ@ƒCƒ‹‚ğƒ_ƒEƒ“ƒ[ƒh‚·‚éÛ‚É—˜—p‚·‚éView’ŠÛƒNƒ‰ƒXB
- * 
+ * ãƒã‚¤ãƒŠãƒªãƒ•ã‚¡ã‚¤ãƒ«ã‚’ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã™ã‚‹éš›ã«åˆ©ç”¨ã™ã‚‹ViewæŠ½è±¡ã‚¯ãƒ©ã‚¹ã€‚
+ *
  * <p>
- * ƒoƒŠƒiƒŠƒf[ƒ^‚ğƒŒƒXƒ|ƒ“ƒX‚É‘‚«‚ŞB
- * •K—v‚É‰‚¶‚ÄA
- * ƒŒƒXƒ|ƒ“ƒXƒ{ƒfƒB‚É‘‚«‚ŞƒXƒgƒŠ[ƒ€‚Ìæ“¾ˆ—‚ÆA
- * ƒTƒuƒNƒ‰ƒX‚É‚ÄAƒŒƒXƒ|ƒ“ƒXƒwƒbƒ_‚Ìî•ñİ’èˆ—‚ğÀ‘•‚·‚é‚±‚ÆB
+ * ãƒãƒªãƒŠãƒªãƒ‡ãƒ¼ã‚¿ã‚’ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã«æ›¸ãè¾¼ã‚€ã€‚
+ * å¿…è¦ã«å¿œã˜ã¦ã€
+ * ãƒ¬ã‚¹ãƒãƒ³ã‚¹ãƒœãƒ‡ã‚£ã«æ›¸ãè¾¼ã‚€ã‚¹ãƒˆãƒªãƒ¼ãƒ ã®å–å¾—å‡¦ç†ã¨ã€
+ * ã‚µãƒ–ã‚¯ãƒ©ã‚¹ã«ã¦ã€ãƒ¬ã‚¹ãƒãƒ³ã‚¹ãƒ˜ãƒƒãƒ€ã®æƒ…å ±è¨­å®šå‡¦ç†ã‚’å®Ÿè£…ã™ã‚‹ã“ã¨ã€‚
  * </p>
- * 
+ *
  * <p>
- * –{ƒNƒ‰ƒX‚ÌÀ‘•ƒNƒ‰ƒX‚ğ—˜—p‚·‚éê‡A‚Ü‚¸AResourceBundleViewResolver‚ğBean’è‹`‚·‚é‚±‚ÆB
+ * æœ¬ã‚¯ãƒ©ã‚¹ã®å®Ÿè£…ã‚¯ãƒ©ã‚¹ã‚’åˆ©ç”¨ã™ã‚‹å ´åˆã€ã¾ãšã€ResourceBundleViewResolverã‚’Beanå®šç¾©ã™ã‚‹ã“ã¨ã€‚
  * </p>
- * 
+ *
  * <p>
- *  yBean’è‹`ƒtƒ@ƒCƒ‹‚Ìİ’è—áz<br>
+ *  ã€Beanå®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã®è¨­å®šä¾‹ã€‘<br>
  * <code><pre>
  *   &lt;bean id="fileDownloadViewResolver"
  *       class="org.springframework.web.servlet.view.ResourceBundleViewResolver"&gt;
@@ -52,14 +52,14 @@ import org.springframework.web.servlet.view.AbstractView;
  *   &lt;/bean&gt;
  * </pre></code>
  * </p>
- * 
+ *
  * <p>
- * Ÿ‚ÉAƒoƒCƒiƒŠƒf[ƒ^‚ğƒŒƒXƒ|ƒ“ƒX‚Æ‚·‚éƒRƒ“ƒgƒ[ƒ‰‚ÌBean’è‹`‚ÅA
- * propertyuviewNamev‚ğ’è‹`‚·‚é‚±‚ÆB
+ * æ¬¡ã«ã€ãƒã‚¤ãƒŠãƒªãƒ‡ãƒ¼ã‚¿ã‚’ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã¨ã™ã‚‹ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã®Beanå®šç¾©ã§ã€
+ * propertyã€ŒviewNameã€ã‚’å®šç¾©ã™ã‚‹ã“ã¨ã€‚
  * </p>
- * 
+ *
  * <p>
- *  yBean’è‹`ƒtƒ@ƒCƒ‹‚Ìİ’è—áz<br>
+ *  ã€Beanå®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã®è¨­å®šä¾‹ã€‘<br>
  * <code><pre>
  *   &lt;id name="fileDownloadSampleController"
  *           class="jp.terasoluna.sample2.web.controller.FileDownloadSampleController"
@@ -68,90 +68,90 @@ import org.springframework.web.servlet.view.AbstractView;
  *  </bean>
  * </pre></code>
  * </p>
- * 
+ *
  * <p>
- * ‚³‚ç‚ÉAfileDownloadViewResolver‚Ì‘®«basename‚ÌƒvƒƒpƒeƒBƒtƒ@ƒCƒ‹iã‹L‚Ìİ’è‚Ìê‡Aview.propertiesj‚ÉA
- * u<I><ƒRƒ“ƒgƒ[ƒ‰‚ÌBean’è‹`‚Ì‘®«viewNameƒvƒƒpƒeƒB’l>.class</I>v‚ÌƒL[‚Å
- * Às‚·‚éViewƒNƒ‰ƒX‚ğw’è‚·‚é‚±‚ÆB
+ * ã•ã‚‰ã«ã€fileDownloadViewResolverã®å±æ€§basenameã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãƒ•ã‚¡ã‚¤ãƒ«ï¼ˆä¸Šè¨˜ã®è¨­å®šã®å ´åˆã€view.propertiesï¼‰ã«ã€
+ * ã€Œ<I><ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã®Beanå®šç¾©ã®å±æ€§viewNameãƒ—ãƒ­ãƒ‘ãƒ†ã‚£å€¤>.class</I>ã€ã®ã‚­ãƒ¼ã§
+ * å®Ÿè¡Œã™ã‚‹Viewã‚¯ãƒ©ã‚¹ã‚’æŒ‡å®šã™ã‚‹ã“ã¨ã€‚
  * </p>
- * 
+ *
  * <p>
- *  yview.properties‚Ìİ’è—áz<br>
+ *  ã€view.propertiesã®è¨­å®šä¾‹ã€‘<br>
  * <code><pre>
  *   FileDownloadSample.class=jp.terasoluna.sample2.web.view.SampleFileDownloadView
  * </pre></code>
  * </p>
- * 
+ *
  */
 public abstract class AbstractFileDownloadView extends AbstractView {
     /**
-     * ƒƒOƒNƒ‰ƒXB
+     * ãƒ­ã‚°ã‚¯ãƒ©ã‚¹ã€‚
      */
     private static Log log = LogFactory.getLog(AbstractFileDownloadView.class);
-    
+
     /**
-     * ƒ`ƒƒƒ“ƒNƒTƒCƒYB
+     * ãƒãƒ£ãƒ³ã‚¯ã‚µã‚¤ã‚ºã€‚
      */
     protected int chunkSize = 256;
-    
+
     /**
-     * ƒŒƒXƒ|ƒ“ƒX‚ğƒŒƒ“ƒ_ƒŠƒ“ƒO‚·‚éB
-     * 
-     * @param model ƒ‚ƒfƒ‹ƒIƒuƒWƒFƒNƒg
-     * @param request HTTPƒŠƒNƒGƒXƒg
-     * @param response HTTPƒŒƒXƒ|ƒ“ƒX
-     * @throws IOException IO—áŠO
-     * 
-     */   
+     * ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚’ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã™ã‚‹ã€‚
+     *
+     * @param model ãƒ¢ãƒ‡ãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+     * @param request HTTPãƒªã‚¯ã‚¨ã‚¹ãƒˆ
+     * @param response HTTPãƒ¬ã‚¹ãƒãƒ³ã‚¹
+     * @throws IOException IOä¾‹å¤–
+     *
+     */
     @Override
     protected void renderMergedOutputModel(Map model,
             HttpServletRequest request, HttpServletResponse response)
             throws IOException {
         if (log.isDebugEnabled()) {
             log.debug("FileDownload start.");
-        }      
-       
+        }
+
         InputStream inputStream = null;
         OutputStream outputStream = null;
         try {
-            // ƒ_ƒEƒ“ƒ[ƒhƒtƒ@ƒCƒ‹ƒf[ƒ^‚ğæ“¾‚·‚éB
+            // ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹ã€‚
             try {
                 inputStream = getInputStream(model, request);
             } catch (IOException e) {
-                // ƒ_ƒEƒ“ƒ[ƒh‚É¸”s‚µ‚½ê‡
+                // ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã«å¤±æ•—ã—ãŸå ´åˆ
                 log.error("FileDownload Failed.", e);
                 throw e;
             }
             if (inputStream == null) {
                 log.error("FileDownload Failed. InputStream is null.");
                 throw new IOException(
-                    "FileDownload Failed. InputStream is null.");          
+                    "FileDownload Failed. InputStream is null.");
             }
 
-            // HTTPƒŒƒXƒ|ƒ“ƒX‚Ìo—ÍƒXƒgƒŠ[ƒ€‚É‘‚«‚Ş
+            // HTTPãƒ¬ã‚¹ãƒãƒ³ã‚¹ã®å‡ºåŠ›ã‚¹ãƒˆãƒªãƒ¼ãƒ ã«æ›¸ãè¾¼ã‚€
             try {
                 outputStream
                     = new BufferedOutputStream(response.getOutputStream());
             } catch (IOException e) {
-                // ƒ_ƒEƒ“ƒ[ƒh‚É¸”s‚µ‚½ê‡
+                // ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã«å¤±æ•—ã—ãŸå ´åˆ
                 log.error("FileDownload Failed.", e);
                 throw e;
             }
-            
-            // ƒwƒbƒ_•ÒW
+
+            // ãƒ˜ãƒƒãƒ€ç·¨é›†
             addResponseHeader(model, request, response);
-            
+
             try {
                 writeResponseStream(inputStream, outputStream);
             } catch (IOException e) {
-                // ƒ_ƒEƒ“ƒ[ƒh‚É¸”s‚µ‚½ê‡
+                // ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã«å¤±æ•—ã—ãŸå ´åˆ
                 log.error("FileDownload Failed.", e);
                 throw e;
             }
             try {
                 outputStream.flush();
             } catch (IOException e) {
-                // ƒ_ƒEƒ“ƒ[ƒh‚É¸”s‚µ‚½ê‡
+                // ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã«å¤±æ•—ã—ãŸå ´åˆ
                 log.error("FileDownload Failed.", e);
                 throw e;
             }
@@ -163,7 +163,7 @@ public abstract class AbstractFileDownloadView extends AbstractView {
                     log.warn("Cannot close InputStream.", ioe);
                 }
             }
- 
+
             if (outputStream != null) {
                 try {
                     outputStream.close();
@@ -173,46 +173,46 @@ public abstract class AbstractFileDownloadView extends AbstractView {
             }
         }
     }
-    
+
     /**
-     * ƒŒƒXƒ|ƒ“ƒXƒ{ƒfƒB‚É‘‚«‚ŞƒXƒgƒŠ[ƒ€‚ğæ“¾‚·‚éB
-     * 
-     * @param model ƒ‚ƒfƒ‹ƒIƒuƒWƒFƒNƒg
-     * @param request HTTPƒŠƒNƒGƒXƒg
-     * @return ƒŠƒNƒGƒXƒg‚É‘‚«‚Ş‚½‚ß‚ÌƒXƒgƒŠ[ƒ€
-     * @throws IOException “üo—Í—áŠO
+     * ãƒ¬ã‚¹ãƒãƒ³ã‚¹ãƒœãƒ‡ã‚£ã«æ›¸ãè¾¼ã‚€ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚’å–å¾—ã™ã‚‹ã€‚
+     *
+     * @param model ãƒ¢ãƒ‡ãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+     * @param request HTTPãƒªã‚¯ã‚¨ã‚¹ãƒˆ
+     * @return ãƒªã‚¯ã‚¨ã‚¹ãƒˆã«æ›¸ãè¾¼ã‚€ãŸã‚ã®ã‚¹ãƒˆãƒªãƒ¼ãƒ 
+     * @throws IOException å…¥å‡ºåŠ›ä¾‹å¤–
      */
     protected abstract InputStream getInputStream(
             Map model,
-            HttpServletRequest request) throws IOException; 
-    
+            HttpServletRequest request) throws IOException;
+
     /**
-     * ƒ_ƒEƒ“ƒ[ƒhƒtƒ@ƒCƒ‹‚ğHTTPƒŒƒXƒ|ƒ“ƒX‚ÌƒXƒgƒŠ[ƒ€‚É‘‚«‚ŞB
-     * 
-     * @param inputStream ƒ_ƒEƒ“ƒ[ƒh‚·‚éƒtƒ@ƒCƒ‹ƒf[ƒ^‚Ì“ü—ÍƒXƒgƒŠ[ƒ€
-     * @param outputStream ƒŒƒXƒ|ƒ“ƒX‚Ìo—ÍƒXƒgƒŠ[ƒ€
-     * @throws IOException “üo—Í—áŠO(—áŠOˆ—‚ÍŒÄ‚ÑŒ³‚Ås‚¤)
+     * ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«ã‚’HTTPãƒ¬ã‚¹ãƒãƒ³ã‚¹ã®ã‚¹ãƒˆãƒªãƒ¼ãƒ ã«æ›¸ãè¾¼ã‚€ã€‚
+     *
+     * @param inputStream ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿ã®å…¥åŠ›ã‚¹ãƒˆãƒªãƒ¼ãƒ 
+     * @param outputStream ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã®å‡ºåŠ›ã‚¹ãƒˆãƒªãƒ¼ãƒ 
+     * @throws IOException å…¥å‡ºåŠ›ä¾‹å¤–(ä¾‹å¤–å‡¦ç†ã¯å‘¼ã³å…ƒã§è¡Œã†)
      */
     protected void writeResponseStream(
-            InputStream inputStream, 
+            InputStream inputStream,
             OutputStream outputStream) throws IOException {
         if (inputStream == null || outputStream == null) {
             return;
         }
 
-        byte[] buffer = new byte[chunkSize]; 
+        byte[] buffer = new byte[chunkSize];
         int length = 0;
         while ((length = inputStream.read(buffer)) > 0) {
             outputStream.write(buffer, 0, length);
-        }   
+        }
     }
-    
+
     /**
-     * ƒŒƒXƒ|ƒ“ƒXƒwƒbƒ_‚ğ’Ç‰Á‚·‚éB
-     * 
-     * @param model ƒ‚ƒfƒ‹ƒIƒuƒWƒFƒNƒg
-     * @param request HTTPƒŠƒNƒGƒXƒg
-     * @param response HTTPƒŒƒXƒ|ƒ“ƒX
+     * ãƒ¬ã‚¹ãƒãƒ³ã‚¹ãƒ˜ãƒƒãƒ€ã‚’è¿½åŠ ã™ã‚‹ã€‚
+     *
+     * @param model ãƒ¢ãƒ‡ãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+     * @param request HTTPãƒªã‚¯ã‚¨ã‚¹ãƒˆ
+     * @param response HTTPãƒ¬ã‚¹ãƒãƒ³ã‚¹
      */
     protected abstract void addResponseHeader(Map model,
             HttpServletRequest request,
