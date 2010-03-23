@@ -25,58 +25,58 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
 
 /**
- * •s³‚ÈƒŠƒNƒGƒXƒg–¼‚ªƒŠƒNƒGƒXƒg‚³‚ê‚Ä‚«‚½ê‡‚ÉÀs‚³‚ê‚éƒŠƒNƒGƒXƒgƒRƒ“ƒgƒ[ƒ‰B
- * 
+ * ä¸æ­£ãªãƒªã‚¯ã‚¨ã‚¹ãƒˆåãŒãƒªã‚¯ã‚¨ã‚¹ãƒˆã•ã‚Œã¦ããŸå ´åˆã«å®Ÿè¡Œã•ã‚Œã‚‹ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã€‚
+ *
  * <p>
- * •K‚¸UnkownRequestNameException‚ğƒXƒ[‚·‚éB
- * 
- * BeanNameUrlHandlerMappingEx‚ÅƒŠƒNƒGƒXƒg–¼‚É‘Î‰‚·‚éƒŠƒNƒGƒXƒgƒRƒ“ƒgƒ[ƒ‰‚ª
- * ‘¶İ‚µ‚È‚©‚Á‚½ê‡‚ÉÀs‚³‚ê‚é‚±‚Æ‚ğ‘z’è‚µ‚Ä‚¢‚éB
- * 
- * ƒXƒ[‚µ‚½—áŠO‚ÍASimpleMappingExceptionResolverEx‚Å
- * “KØ‚Éƒnƒ“ƒhƒŠƒ“ƒO‚³‚ê‚é‚±‚Æ‚ğ‘z’è‚µ‚Ä‚¢‚éB
+ * å¿…ãšUnkownRequestNameExceptionã‚’ã‚¹ãƒ­ãƒ¼ã™ã‚‹ã€‚
+ *
+ * BeanNameUrlHandlerMappingExã§ãƒªã‚¯ã‚¨ã‚¹ãƒˆåã«å¯¾å¿œã™ã‚‹ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãŒ
+ * å­˜åœ¨ã—ãªã‹ã£ãŸå ´åˆã«å®Ÿè¡Œã•ã‚Œã‚‹ã“ã¨ã‚’æƒ³å®šã—ã¦ã„ã‚‹ã€‚
+ *
+ * ã‚¹ãƒ­ãƒ¼ã—ãŸä¾‹å¤–ã¯ã€SimpleMappingExceptionResolverExã§
+ * é©åˆ‡ã«ãƒãƒ³ãƒ‰ãƒªãƒ³ã‚°ã•ã‚Œã‚‹ã“ã¨ã‚’æƒ³å®šã—ã¦ã„ã‚‹ã€‚
  * </p>
- * 
+ *
  * <p>
- * Bean’è‹`ƒtƒ@ƒCƒ‹‚ÉˆÈ‰º‚Ìİ’è‚ğ‚·‚é‚±‚ÆB
+ * Beanå®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã«ä»¥ä¸‹ã®è¨­å®šã‚’ã™ã‚‹ã“ã¨ã€‚
  * </p>
- * 
+ *
  * <p>
- *  y<code>Bean’è‹`ƒtƒ@ƒCƒ‹</code>‚Ìİ’è—áz<br>
+ *  ã€<code>Beanå®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«</code>ã®è¨­å®šä¾‹ã€‘<br>
  *  <code><pre>
  *  &lt;bean id="unkownRequestNameController"
  *      class="jp.terasoluna.fw.web.rich.springmvc.controller.UnkownRequestNameController"/&gt;
  * </pre></code>
  * </p>
- * 
+ *
  * <p>
- * ‚Ü‚½Aƒnƒ“ƒhƒ‰ƒ}ƒbƒsƒ“ƒO‚ÌBean’è‹`‚ÌÛAƒvƒƒpƒeƒBdefaultHandler‚Éã‹LBean‚ğİ’è‚·‚é‚±‚ÆB
- * Ú×‚ÍABeanNameUrlHandlerMappingEx‚ğQÆ‚Ì‚±‚ÆB
+ * ã¾ãŸã€ãƒãƒ³ãƒ‰ãƒ©ãƒãƒƒãƒ”ãƒ³ã‚°ã®Beanå®šç¾©ã®éš›ã€ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£defaultHandlerã«ä¸Šè¨˜Beanã‚’è¨­å®šã™ã‚‹ã“ã¨ã€‚
+ * è©³ç´°ã¯ã€BeanNameUrlHandlerMappingExã‚’å‚ç…§ã®ã“ã¨ã€‚
  * </p>
- * 
+ *
  * <p>
- * ‚³‚ç‚ÉAhandlerExceptionResolver‚ÌBean’è‹`‚ÌÛ‚É
- * UnknownRequestNameException‚ªƒXƒ[‚³‚ê‚½ê‡‚Ìˆ—‚ğ’è‹`‚·‚é‚±‚ÆB
- * Ú×‚ÍASimpleMappingExceptionResolverEx‚ğQÆ‚Ì‚±‚ÆB
+ * ã•ã‚‰ã«ã€handlerExceptionResolverã®Beanå®šç¾©ã®éš›ã«
+ * UnknownRequestNameExceptionãŒã‚¹ãƒ­ãƒ¼ã•ã‚ŒãŸå ´åˆã®å‡¦ç†ã‚’å®šç¾©ã™ã‚‹ã“ã¨ã€‚
+ * è©³ç´°ã¯ã€SimpleMappingExceptionResolverExã‚’å‚ç…§ã®ã“ã¨ã€‚
  * </p>
- * 
+ *
  * @see jp.terasoluna.fw.web.rich.springmvc.servlet.handler.BeanNameUrlHandlerMappingEx
  * @see jp.terasoluna.fw.web.rich.springmvc.servlet.handler.SimpleMappingExceptionResolverEx
- * 
+ *
  */
 public class UnkownRequestNameController implements Controller {
 
     /**
-     * ƒŠƒNƒGƒXƒgˆ—‚ğs‚¤B
-     * •K‚¸UnknownRequestNameException‚ğƒXƒ[‚·‚éB
-     * 
-     * @param request HTTPƒŠƒNƒGƒXƒgB
-     * @param response HTTPƒŒƒXƒ|ƒ“ƒXB
-     * @return ƒŒƒXƒ|ƒ“ƒX‚ğƒŒƒ“ƒ_ƒŠƒ“ƒO‚·‚é‚½‚ß‚ÌModelAndViewB
-     * @throws Exception —áŠOB
+     * ãƒªã‚¯ã‚¨ã‚¹ãƒˆå‡¦ç†ã‚’è¡Œã†ã€‚
+     * å¿…ãšUnknownRequestNameExceptionã‚’ã‚¹ãƒ­ãƒ¼ã™ã‚‹ã€‚
+     *
+     * @param request HTTPãƒªã‚¯ã‚¨ã‚¹ãƒˆã€‚
+     * @param response HTTPãƒ¬ã‚¹ãƒãƒ³ã‚¹ã€‚
+     * @return ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚’ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã™ã‚‹ãŸã‚ã®ModelAndViewã€‚
+     * @throws Exception ä¾‹å¤–ã€‚
      */
     public ModelAndView handleRequest(
-            HttpServletRequest request, 
+            HttpServletRequest request,
             HttpServletResponse response) throws Exception {
         throw new UnknownRequestNameException();
     }

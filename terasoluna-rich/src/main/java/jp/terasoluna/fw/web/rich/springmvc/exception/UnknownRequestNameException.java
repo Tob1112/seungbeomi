@@ -17,17 +17,17 @@
 package jp.terasoluna.fw.web.rich.springmvc.exception;
 
 /**
- * BeanNameUrlHandlerMappingEx‚ÅƒŠƒNƒGƒXƒg–¼‚É‘Î‰‚·‚éƒŠƒNƒGƒXƒgƒRƒ“ƒgƒ[ƒ‰‚ª
- * ‘¶İ‚µ‚È‚©‚Á‚½ê‡‚ÉAUnkownRequestNameController‚©‚çƒXƒ[‚³‚ê‚éƒNƒ‰ƒXB
- * 
- * Ú×‚ÍAUnkownRequestNameController‚ğQÆ‚Ì‚±‚ÆB
- * 
+ * BeanNameUrlHandlerMappingExã§ãƒªã‚¯ã‚¨ã‚¹ãƒˆåã«å¯¾å¿œã™ã‚‹ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãŒ
+ * å­˜åœ¨ã—ãªã‹ã£ãŸå ´åˆã«ã€UnkownRequestNameControllerã‹ã‚‰ã‚¹ãƒ­ãƒ¼ã•ã‚Œã‚‹ã‚¯ãƒ©ã‚¹ã€‚
+ *
+ * è©³ç´°ã¯ã€UnkownRequestNameControllerã‚’å‚ç…§ã®ã“ã¨ã€‚
+ *
  * @see jp.terasoluna.fw.web.rich.springmvc.controller.UnkownRequestNameController
- * 
+ *
  */
 public class UnknownRequestNameException extends Exception {
     /**
-     * ƒVƒŠƒAƒ‹ƒo[ƒWƒ‡ƒ“IDB
+     * ã‚·ãƒªã‚¢ãƒ«ãƒãƒ¼ã‚¸ãƒ§ãƒ³IDã€‚
      */
     private static final long serialVersionUID = -7482776140798712735L;
 }

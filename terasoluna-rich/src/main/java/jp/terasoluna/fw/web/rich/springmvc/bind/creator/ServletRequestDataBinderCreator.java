@@ -21,17 +21,17 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.ServletRequestDataBinder;
 
 /**
- * ServletRequestDataBinder‚ğ•Ô‹p‚·‚éƒNƒ‰ƒX‚ªÀ‘•‚·‚×‚«ƒCƒ“ƒ^ƒtƒF[ƒXB
- * 
+ * ServletRequestDataBinderã‚’è¿”å´ã™ã‚‹ã‚¯ãƒ©ã‚¹ãŒå®Ÿè£…ã™ã¹ãã‚¤ãƒ³ã‚¿ãƒ•ã‚§ãƒ¼ã‚¹ã€‚
+ *
  * <p>
- * XMLŒ`®‚Å’è‹`‚³‚ê‚½ƒŠƒNƒGƒXƒg‚ğˆµ‚¤ê‡A’Êí‚ÍÀ‘•ƒNƒ‰ƒX‚Æ‚µ‚ÄA
- * XMLServletRequestDataBinderCreator‚ğ—˜—p‚·‚ê‚Î‚æ‚¢B <br>
- * ƒNƒGƒŠŒ`®‚Å’è‹`‚³‚ê‚½ƒŠƒNƒGƒXƒg‚ğˆµ‚¤ê‡A’Êí‚ÍÀ‘•ƒNƒ‰ƒX‚Æ‚µ‚ÄA
- * QueryServletRequestDataBinderCreator‚ğ—˜—p‚·‚ê‚Î‚æ‚¢B <br>
- * ‘¼Œ`®‚Å’è‹`‚³‚ê‚½ƒŠƒNƒGƒXƒg‚ğˆµ‚¤ê‡A‚à‚µ‚­‚ÍƒfƒtƒHƒ‹ƒg‚Å—pˆÓ‚³‚ê‚Ä‚¢‚éÀ‘•ƒNƒ‰ƒX‚Å‚Í‹Æ–±‚Ì—vŒ‚ª–‚½‚¹‚È‚¢ê‡‚É‚Ì‚İA
- * –{ƒCƒ“ƒ^ƒtƒF[ƒX‚ğÀ‘•‚µ‚½‹Æ–±—vŒ‚ğ–‚½‚·ƒNƒ‰ƒX‚ğì¬‚·‚é‚±‚ÆB
+ * XMLå½¢å¼ã§å®šç¾©ã•ã‚ŒãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’æ‰±ã†å ´åˆã€é€šå¸¸ã¯å®Ÿè£…ã‚¯ãƒ©ã‚¹ã¨ã—ã¦ã€
+ * XMLServletRequestDataBinderCreatorã‚’åˆ©ç”¨ã™ã‚Œã°ã‚ˆã„ã€‚ <br>
+ * ã‚¯ã‚¨ãƒªå½¢å¼ã§å®šç¾©ã•ã‚ŒãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’æ‰±ã†å ´åˆã€é€šå¸¸ã¯å®Ÿè£…ã‚¯ãƒ©ã‚¹ã¨ã—ã¦ã€
+ * QueryServletRequestDataBinderCreatorã‚’åˆ©ç”¨ã™ã‚Œã°ã‚ˆã„ã€‚ <br>
+ * ä»–å½¢å¼ã§å®šç¾©ã•ã‚ŒãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’æ‰±ã†å ´åˆã€ã‚‚ã—ãã¯ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã§ç”¨æ„ã•ã‚Œã¦ã„ã‚‹å®Ÿè£…ã‚¯ãƒ©ã‚¹ã§ã¯æ¥­å‹™ã®è¦ä»¶ãŒæº€ãŸã›ãªã„å ´åˆã«ã®ã¿ã€
+ * æœ¬ã‚¤ãƒ³ã‚¿ãƒ•ã‚§ãƒ¼ã‚¹ã‚’å®Ÿè£…ã—ãŸæ¥­å‹™è¦ä»¶ã‚’æº€ãŸã™ã‚¯ãƒ©ã‚¹ã‚’ä½œæˆã™ã‚‹ã“ã¨ã€‚
  * </p>
- * 
+ *
  * @see QueryServletRequestDataBinderCreator
  * @see XMLServletRequestDataBinderCreator
  * @see org.springframework.web.bind.ServletRequestDataBinder
@@ -39,12 +39,12 @@ import org.springframework.web.bind.ServletRequestDataBinder;
 public interface ServletRequestDataBinderCreator {
 
     /**
-     * ServletRequestDataBinder‚ğ¶¬‚·‚éƒNƒ‰ƒX‚ğ•Ô‹p‚·‚éB
-     * 
-     * @param request ƒŠƒNƒGƒXƒg
-     * @param command ƒRƒ}ƒ“ƒhƒIƒuƒWƒFƒNƒg
-     * @param requestName ƒŠƒNƒGƒXƒg–¼
-     * @return ServletRequestDataBinder‚ğ¶¬‚·‚éƒNƒ‰ƒX
+     * ServletRequestDataBinderã‚’ç”Ÿæˆã™ã‚‹ã‚¯ãƒ©ã‚¹ã‚’è¿”å´ã™ã‚‹ã€‚
+     *
+     * @param request ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
+     * @param command ã‚³ãƒãƒ³ãƒ‰ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+     * @param requestName ãƒªã‚¯ã‚¨ã‚¹ãƒˆå
+     * @return ServletRequestDataBinderã‚’ç”Ÿæˆã™ã‚‹ã‚¯ãƒ©ã‚¹
      */
     ServletRequestDataBinder create(HttpServletRequest request, Object command,
             String requestName);

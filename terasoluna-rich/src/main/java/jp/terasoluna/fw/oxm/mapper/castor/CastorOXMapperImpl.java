@@ -53,72 +53,72 @@ import org.xml.sax.ContentHandler;
 import org.xml.sax.InputSource;
 
 /**
- * Castor‚ğ—˜—p‚µ‚½ƒIƒuƒWƒFƒNƒg-XML•ÏŠ·ƒNƒ‰ƒXB
- * 
+ * Castorã‚’åˆ©ç”¨ã—ãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ-XMLå¤‰æ›ã‚¯ãƒ©ã‚¹ã€‚
+ *
  * <p>
- * ƒIƒuƒWƒFƒNƒg-XML‚Ì•ÏŠ·‚ğ–¾¦“I‚Éw’è‚·‚éê‡‚ÍACastorƒ}ƒbƒsƒ“ƒO’è‹`ƒtƒ@ƒCƒ‹‚ª•K—v‚Æ‚È‚éB
- * ˆê‚Â‚ÌCastorƒ}ƒbƒsƒ“ƒO’è‹`ƒtƒ@ƒCƒ‹‚ÅƒIƒuƒWƒFƒNƒg¨XMLAXML¨ƒIƒuƒWƒFƒNƒg ‘ŠŒİ‚Ì•ÏŠ·‚ğs‚¤‚±‚Æ‚ª‚Å‚«‚éB
- * Castorƒ}ƒbƒsƒ“ƒO’è‹`ƒtƒ@ƒCƒ‹‚Í•ÏŠ·‚ğs‚¤ƒIƒuƒWƒFƒNƒg‚ÌƒNƒ‰ƒX‚Æ “¯‚¶ƒpƒbƒP[ƒWA“¯‚¶–¼‘OAŠg’£qh.xmlh‚Å”z’u‚·‚é‚±‚ÆB
+ * ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ-XMLã®å¤‰æ›ã‚’æ˜ç¤ºçš„ã«æŒ‡å®šã™ã‚‹å ´åˆã¯ã€Castorãƒãƒƒãƒ”ãƒ³ã‚°å®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ãŒå¿…è¦ã¨ãªã‚‹ã€‚
+ * ä¸€ã¤ã®Castorãƒãƒƒãƒ”ãƒ³ã‚°å®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã§ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆâ†’XMLã€XMLâ†’ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ ç›¸äº’ã®å¤‰æ›ã‚’è¡Œã†ã“ã¨ãŒã§ãã‚‹ã€‚
+ * Castorãƒãƒƒãƒ”ãƒ³ã‚°å®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã¯å¤‰æ›ã‚’è¡Œã†ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ã‚¯ãƒ©ã‚¹ã¨ åŒã˜ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã€åŒã˜åå‰ã€æ‹¡å¼µå­â€.xmlâ€ã§é…ç½®ã™ã‚‹ã“ã¨ã€‚
  * </p>
- * 
+ *
  * <p>
- * Castorƒ}ƒbƒsƒ“ƒO’è‹`ƒtƒ@ƒCƒ‹‚ğÈ—ª‚µ‚½ê‡‚ÍACastor‚ÌƒfƒtƒHƒ‹ƒg•ÏŠ·ƒ‹[ƒ‹‚ª“K—p‚³‚ê‚éB
+ * Castorãƒãƒƒãƒ”ãƒ³ã‚°å®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã‚’çœç•¥ã—ãŸå ´åˆã¯ã€Castorã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå¤‰æ›ãƒ«ãƒ¼ãƒ«ãŒé©ç”¨ã•ã‚Œã‚‹ã€‚
  * </p>
- * 
+ *
  * <fieldset style="border:1pt solid black;padding:10px;width:100%;">
- * <legend>ƒfƒtƒHƒ‹ƒg•ÏŠ·‚ğg—p‚·‚éê‡‚ÌƒIƒvƒVƒ‡ƒ“</legend> ƒfƒtƒHƒ‹ƒg•ÏŠ·‚ğg—p‚·‚éê‡‚ÍACastor‚ÌXMLƒl[ƒ~ƒ“ƒOƒIƒvƒVƒ‡ƒ“‚ğ
- * ‰º‹L‚Ì‚æ‚¤‚É mixed ‚Æw’è‚µ‚Ä‚¨‚­‚±‚ÆB<br>
+ * <legend>ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå¤‰æ›ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã®ã‚ªãƒ—ã‚·ãƒ§ãƒ³</legend> ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå¤‰æ›ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã¯ã€Castorã®XMLãƒãƒ¼ãƒŸãƒ³ã‚°ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’
+ * ä¸‹è¨˜ã®ã‚ˆã†ã« mixed ã¨æŒ‡å®šã—ã¦ãŠãã“ã¨ã€‚<br>
  * <fieldset style="border:1pt solid black;padding:10px;width:100%;">
  * <legend>castor.properties</legend> org.exolab.castor.xml.naming=mixed
  * </fieldset> <br>
- * ‚±‚ÌƒIƒvƒVƒ‡ƒ“‚Ìİ’è—L–³‚É‚æ‚Á‚ÄA‰º‹L‚Ì‚æ‚¤‚ÉMarshall‚Ìo—ÍXML‚ª•Ï‰»‚·‚éB<br>
- * ƒfƒtƒHƒ‹ƒg‚Ì‚Ü‚Ü‚¾‚ÆAUnmarshall‚É–â‘è‚ª‚ ‚é‚½‚ßA‚±‚ÌƒIƒvƒVƒ‡ƒ“‚ğİ’è‚·‚éB<br>
+ * ã“ã®ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã®è¨­å®šæœ‰ç„¡ã«ã‚ˆã£ã¦ã€ä¸‹è¨˜ã®ã‚ˆã†ã«Marshallæ™‚ã®å‡ºåŠ›XMLãŒå¤‰åŒ–ã™ã‚‹ã€‚<br>
+ * ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ã¾ã¾ã ã¨ã€Unmarshallæ™‚ã«å•é¡ŒãŒã‚ã‚‹ãŸã‚ã€ã“ã®ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’è¨­å®šã™ã‚‹ã€‚<br>
  * <fieldset style="border:1pt solid black;padding:10px;width:100%;">
- * <legend>yorg.exolab.castor.xml.naming=lower (ƒfƒtƒHƒ‹ƒg)z</legend>
- * <code>UserBean ¨ &lt;user-bean&gt;</code><br>
+ * <legend>ã€org.exolab.castor.xml.naming=lower (ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ)ã€‘</legend>
+ * <code>UserBean â†’ &lt;user-bean&gt;</code><br>
  * </fieldset> <fieldset style="border:1pt solid
- * black;padding:10px;width:100%;"> <legend>yorg.exolab.castor.xml.naming=mixedz</legend>
- * <code>UserBean ¨ &lt;userBean&gt;</code> </fieldset> </fieldset>
- * 
+ * black;padding:10px;width:100%;"> <legend>ã€org.exolab.castor.xml.naming=mixedã€‘</legend>
+ * <code>UserBean â†’ &lt;userBean&gt;</code> </fieldset> </fieldset>
+ *
  * <p>
- * —ájXML•ÏŠ·‘ÎÛ‚ÌƒIƒuƒWƒFƒNƒg‚ªusample.SampleBeanvƒNƒ‰ƒX‚Ìê‡A
- * Castorƒ}ƒbƒsƒ“ƒO’è‹`ƒtƒ@ƒCƒ‹‚ÍƒNƒ‰ƒXƒpƒXã‚Ìusample/SampleBean.xmlv ƒtƒ@ƒCƒ‹‚Æ‚È‚éB
+ * ä¾‹ï¼‰XMLå¤‰æ›å¯¾è±¡ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒã€Œsample.SampleBeanã€ã‚¯ãƒ©ã‚¹ã®å ´åˆã€
+ * Castorãƒãƒƒãƒ”ãƒ³ã‚°å®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã¯ã‚¯ãƒ©ã‚¹ãƒ‘ã‚¹ä¸Šã®ã€Œsample/SampleBean.xmlã€ ãƒ•ã‚¡ã‚¤ãƒ«ã¨ãªã‚‹ã€‚
  * </p>
- * 
+ *
  * <p>
- * Castorƒ}ƒbƒsƒ“ƒO’è‹`ƒtƒ@ƒCƒ‹‚Ì‹Lq•û–@‚ÍA Castor‚Ìd—l‚É€‚¶‚Ä‚¢‚éB Ú×‚ÍTERASOUNA‚ÌƒhƒLƒ…ƒƒ“ƒg‚ğQÆ‚·‚é‚±‚ÆB
+ * Castorãƒãƒƒãƒ”ãƒ³ã‚°å®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã®è¨˜è¿°æ–¹æ³•ã¯ã€ Castorã®ä»•æ§˜ã«æº–ã˜ã¦ã„ã‚‹ã€‚ è©³ç´°ã¯TERASOUNAã®ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆã‚’å‚ç…§ã™ã‚‹ã“ã¨ã€‚
  * </p>
- * 
+ *
  * <p>
- * –{ƒNƒ‰ƒX‚Å‚ÍAˆê“xCastorƒ}ƒbƒsƒ“ƒO’è‹`ƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚Ş‚Æ “à•”‚ÅƒLƒƒƒbƒVƒ…‚³‚ê‚éB ƒLƒƒƒbƒVƒ…‚ğ—˜—p‚µ‚È‚¢ê‡A–{ƒNƒ‰ƒX‚Ì
- * {@link #cache}‘®«‚ğfalse‚É‚·‚é‚±‚ÆB
+ * æœ¬ã‚¯ãƒ©ã‚¹ã§ã¯ã€ä¸€åº¦Castorãƒãƒƒãƒ”ãƒ³ã‚°å®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚€ã¨ å†…éƒ¨ã§ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã•ã‚Œã‚‹ã€‚ ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚’åˆ©ç”¨ã—ãªã„å ´åˆã€æœ¬ã‚¯ãƒ©ã‚¹ã®
+ * {@link #cache}å±æ€§ã‚’falseã«ã™ã‚‹ã“ã¨ã€‚
  * </p>
- * 
+ *
  * <p>
- * <strong>g—p—á</strong>
+ * <strong>ä½¿ç”¨ä¾‹</strong>
  * </p>
- * 
+ *
  * <p>
- * y•ÏŠ·‘ÎÛ‚ÌƒIƒuƒWƒFƒNƒgz <code><pre>
+ * ã€å¤‰æ›å¯¾è±¡ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‘ <code><pre>
  *       public class SampleDto {
  *           private int userid;
  *           private String username;
  *           private Item[] item;
- *           EEE
- *           igetterAsetterj
+ *           ãƒ»ãƒ»ãƒ»
+ *           ï¼ˆgetterã€setterï¼‰
  *       }
  *       public class Item {
  *           private int id;
  *           private String name;
  *           private int price;
- *           EEE
- *           igetterAsetterj
+ *           ãƒ»ãƒ»ãƒ»
+ *           ï¼ˆgetterã€setterï¼‰
  *       }
  * </pre></code>
  * </p>
- * 
+ *
  * <p>
- * y•ÏŠ·‘ÎÛ‚ÌXMLƒf[ƒ^z <code><pre>
+ * ã€å¤‰æ›å¯¾è±¡ã®XMLãƒ‡ãƒ¼ã‚¿ã€‘ <code><pre>
  *       &lt;sample-dto&gt;
  *        &lt;user-id&gt;15&lt;/user-id&gt;
  *        &lt;user-name&gt;user1&lt;/user-name&gt;
@@ -135,9 +135,9 @@ import org.xml.sax.InputSource;
  *       &lt;/sample-dto&gt;
  * </pre></code>
  * </p>
- * 
+ *
  * <p>
- * y•ÏŠ·‘ÎÛ‚ÌƒIƒuƒWƒFƒNƒgz <code><pre>
+ * ã€å¤‰æ›å¯¾è±¡ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‘ <code><pre>
  *       SampleDto[0].userid[0] = 15
  *       SampleDto[0].name[0] = user1
  *       SampleDto[0].Item[0].id[0] = 100
@@ -148,9 +148,9 @@ import org.xml.sax.InputSource;
  *       SampleDto[0].Item[1].price[0] = 200
  * </pre></code>
  * </p>
- * 
+ *
  * <p>
- * yCastorƒ}ƒbƒsƒ“ƒO’è‹`ƒtƒ@ƒCƒ‹z <code><pre>
+ * ã€Castorãƒãƒƒãƒ”ãƒ³ã‚°å®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã€‘ <code><pre>
  *       &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
  *       &lt;!DOCTYPE mapping PUBLIC &quot;-//EXOLAB/Castor Object Mapping DTD Version 1.0//EN&quot;
  *                                       &quot;http://castor.exolab.org/mapping.dtd&quot;&gt;
@@ -175,124 +175,124 @@ import org.xml.sax.InputSource;
  *           &lt;field name=&quot;price&quot; type=&quot;int&quot;&gt;
  *           &lt;/field&gt;
  *         &lt;/class&gt;
- *       &lt;/mapping&gt; 
+ *       &lt;/mapping&gt;
  * </pre></code>
  * </p>
- * 
+ *
  * <p>
- * yÀ‘•ƒR[ƒhiXML¨ƒIƒuƒWƒFƒNƒgjz
- * 
+ * ã€å®Ÿè£…ã‚³ãƒ¼ãƒ‰ï¼ˆXMLâ†’ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆï¼‰ã€‘
+ *
  * <pre><code>
  * CastorOXMapper oxmapper = new CastorOXMapperImpl();
- * SampleDto bean = new SampleDto(); // ‚±‚ÌƒIƒuƒWƒFƒNƒg‚ÉXMLƒf[ƒ^‚ªŠi”[‚³‚ê‚é
- * Reader reader = new FileReader(&quot;C:/sample/sampleDto.xml&quot;); // •ÏŠ·‚·‚éXMLƒf[ƒ^
- * 
- * // XML¨ƒIƒuƒWƒFƒNƒg•ÏŠ·
+ * SampleDto bean = new SampleDto(); // ã“ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«XMLãƒ‡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚Œã‚‹
+ * Reader reader = new FileReader(&quot;C:/sample/sampleDto.xml&quot;); // å¤‰æ›ã™ã‚‹XMLãƒ‡ãƒ¼ã‚¿
+ *
+ * // XMLâ†’ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå¤‰æ›
  * oxmapper.unmarshal(reader, bean);
  * </code></pre>
- * 
+ *
  * </p>
- * 
+ *
  * <p>
- * yÀ‘•ƒR[ƒhiƒIƒuƒWƒFƒNƒg¨XMLjz
- * 
+ * ã€å®Ÿè£…ã‚³ãƒ¼ãƒ‰ï¼ˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆâ†’XMLï¼‰ã€‘
+ *
  * <pre><code>
  * CastorOXMapper oxmapper = new CastorOXMapperImpl();
  * Writer writer = new OutputStreamWriter(System.out);
- * 
- * // ƒIƒuƒWƒFƒNƒg¨XML
+ *
+ * // ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆâ†’XML
  * oxmapper.marshal(bean, writer);
  * </code></pre>
- * 
+ *
  * </p>
- * 
+ *
  * @see jp.terasoluna.fw.web.rich.springmvc.bind.XMLServletRequestDataBinder
- * 
+ *
  */
 public class CastorOXMapperImpl implements OXMapper {
 
     /**
-     * ƒƒOƒNƒ‰ƒXB
+     * ãƒ­ã‚°ã‚¯ãƒ©ã‚¹ã€‚
      */
     private static Log log = LogFactory.getLog(CastorOXMapperImpl.class);
 
     /**
-     * ƒfƒtƒHƒ‹ƒg‚Ì•¶šƒZƒbƒgB
+     * ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®æ–‡å­—ã‚»ãƒƒãƒˆã€‚
      */
     protected static final String DEFAULT_CHARSET = "UTF-8";
 
     /**
-     * •¶šƒZƒbƒgB
+     * æ–‡å­—ã‚»ãƒƒãƒˆã€‚
      */
     private String charset = DEFAULT_CHARSET;
 
     /**
-     * Castorƒ}ƒbƒsƒ“ƒO’è‹`ƒtƒ@ƒCƒ‹‚ÌƒLƒƒƒbƒVƒ…İ’èBƒfƒtƒHƒ‹ƒg‚ÍtrueB
+     * Castorãƒãƒƒãƒ”ãƒ³ã‚°å®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚­ãƒ£ãƒƒã‚·ãƒ¥è¨­å®šã€‚ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã¯trueã€‚
      */
     private boolean cache = true;
 
     /**
-     * MarshallerƒIƒvƒVƒ‡ƒ“ suppressXSIType‚Éfalse‚ğİ’è‚·‚é‚Æƒ}ƒbƒsƒ“ƒO’è‹`–³İ’è‚É
-     * ¶¬‚·‚éƒhƒLƒ…ƒƒ“ƒg‚Éuxmlns:xsiv‹y‚Ñuxsi:typev‚ğ•t—^‚·‚é
+     * Marshallerã‚ªãƒ—ã‚·ãƒ§ãƒ³ suppressXSITypeã«falseã‚’è¨­å®šã™ã‚‹ã¨ãƒãƒƒãƒ”ãƒ³ã‚°å®šç¾©ç„¡è¨­å®šæ™‚ã«
+     * ç”Ÿæˆã™ã‚‹ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆã«ã€Œxmlns:xsiã€åŠã³ã€Œxsi:typeã€ã‚’ä»˜ä¸ã™ã‚‹
      */
     private boolean suppressXSIType = true;
 
     /**
-     * MarshallerƒIƒvƒVƒ‡ƒ“ preserveWhitespace‚Étrue‚ğİ’è‚·‚é‚ÆA
-     * ¶¬‚·‚éƒhƒLƒ…ƒƒ“ƒg‚Ìƒ‹[ƒgƒm[ƒh‚Éuxml:space="preserve"v‚ğ•t—^‚·‚éB<br>
-     * ƒfƒtƒHƒ‹ƒg’l‚Ítrue‚Å‚ ‚éB ‘S“d•¶‚É‘Î‚µ‚Ä—LŒø‚É‚È‚é‚½‚ßAg—p‚É‚Í’ˆÓ‚ª•K—vB
+     * Marshallerã‚ªãƒ—ã‚·ãƒ§ãƒ³ preserveWhitespaceã«trueã‚’è¨­å®šã™ã‚‹ã¨ã€
+     * ç”Ÿæˆã™ã‚‹ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆã®ãƒ«ãƒ¼ãƒˆãƒãƒ¼ãƒ‰ã«ã€Œxml:space="preserve"ã€ã‚’ä»˜ä¸ã™ã‚‹ã€‚<br>
+     * ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã¯trueã§ã‚ã‚‹ã€‚ å…¨é›»æ–‡ã«å¯¾ã—ã¦æœ‰åŠ¹ã«ãªã‚‹ãŸã‚ã€ä½¿ç”¨ã«ã¯æ³¨æ„ãŒå¿…è¦ã€‚
      */
     private boolean preserveWhitespaceAtMarshal = true;
 
     /**
-     * UnmarshallerƒIƒvƒVƒ‡ƒ“ whitespacePreserve‚Étrue‚ğİ’è‚·‚é‚ÆAƒgƒbƒvƒŒƒxƒ‹‚Ì‹ó”’‚ğ•Û‚·‚é‚æ‚¤‚É‚È‚éB<br>
-     * ƒfƒtƒHƒ‹ƒg’l‚Ífalse‚Å‚ ‚éB ‘S“d•¶‚É‘Î‚µ‚Ä—LŒø‚É‚È‚é‚½‚ßAg—p‚É‚Í’ˆÓ‚ª•K—vB
+     * Unmarshallerã‚ªãƒ—ã‚·ãƒ§ãƒ³ whitespacePreserveã«trueã‚’è¨­å®šã™ã‚‹ã¨ã€ãƒˆãƒƒãƒ—ãƒ¬ãƒ™ãƒ«ã®ç©ºç™½ã‚’ä¿æŒã™ã‚‹ã‚ˆã†ã«ãªã‚‹ã€‚<br>
+     * ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã¯falseã§ã‚ã‚‹ã€‚ å…¨é›»æ–‡ã«å¯¾ã—ã¦æœ‰åŠ¹ã«ãªã‚‹ãŸã‚ã€ä½¿ç”¨ã«ã¯æ³¨æ„ãŒå¿…è¦ã€‚
      */
     private boolean preserveWhitespaceAtUnmarshal = false;
 
     /**
-     * MarshallerƒIƒvƒVƒ‡ƒ“ indenting‚Étrue‚ğİ’è‚·‚é‚ÆA¶¬‚³‚ê‚éxml‚ªƒCƒ“ƒfƒ“ƒg‚³‚ê‚éB<br>
-     * <b>¦’ˆÓFpreserveWhitespaceAtMarshal ‚ª <u>false</u> ‚Ì‚Ì‚İ—LŒø<b><br>
+     * Marshallerã‚ªãƒ—ã‚·ãƒ§ãƒ³ indentingã«trueã‚’è¨­å®šã™ã‚‹ã¨ã€ç”Ÿæˆã•ã‚Œã‚‹xmlãŒã‚¤ãƒ³ãƒ‡ãƒ³ãƒˆã•ã‚Œã‚‹ã€‚<br>
+     * <b>â€»æ³¨æ„ï¼špreserveWhitespaceAtMarshal ãŒ <u>false</u> ã®æ™‚ã®ã¿æœ‰åŠ¹<b><br>
      */
     private boolean indenting = true;
-    
+
     /**
-     * ƒpƒbƒP[ƒW‚ÌƒZƒpƒŒ[ƒ^B
+     * ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã®ã‚»ãƒ‘ãƒ¬ãƒ¼ã‚¿ã€‚
      */
     public static final String NESTED_PACKAGE_SEPARATOR = ".";
 
     /**
-     * ƒtƒHƒ‹ƒ_‚ÌƒZƒpƒŒ[ƒ^B
+     * ãƒ•ã‚©ãƒ«ãƒ€ã®ã‚»ãƒ‘ãƒ¬ãƒ¼ã‚¿ã€‚
      */
     public static final String NESTED_FOLDER_SEPARATOR = "/";
 
     /**
-     * Castorƒ}ƒbƒsƒ“ƒO’è‹`ƒtƒ@ƒCƒ‹‚ÌƒTƒtƒBƒbƒNƒXB
+     * Castorãƒãƒƒãƒ”ãƒ³ã‚°å®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚µãƒ•ã‚£ãƒƒã‚¯ã‚¹ã€‚
      */
     public static final String CASTOR_MAPPINGFILE_SUFFIX = ".xml";
 
     /**
-     * Castorƒ}ƒbƒsƒ“ƒO’è‹`ƒtƒ@ƒCƒ‹‚ğƒLƒƒƒbƒVƒ…‚·‚éMapB
+     * Castorãƒãƒƒãƒ”ãƒ³ã‚°å®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã™ã‚‹Mapã€‚
      */
     private Map<Class, Mapping> mappingFileCache = new HashMap<Class, Mapping>();
 
     /**
-     * Marshaller‚Å‹¤—L‚·‚éXMLClassDescriptorResolverB
+     * Marshallerã§å…±æœ‰ã™ã‚‹XMLClassDescriptorResolverã€‚
      */
     private XMLClassDescriptorResolver sharedResolverForMarshaller = null;
 
     /**
-     * Marshaller‚Éİ’èÏ‚İ‚ÌCastorƒ}ƒbƒsƒ“ƒO‚ÌClass‚ÌW‡B
+     * Marshallerã«è¨­å®šæ¸ˆã¿ã®Castorãƒãƒƒãƒ”ãƒ³ã‚°ã®Classã®é›†åˆã€‚
      */
     private Set<Class> hasSetMappingSetForMarshaller = new HashSet<Class>();
 
     /**
-     * DOMƒcƒŠ[‚ğƒIƒuƒWƒFƒNƒg‚É•ÏŠ·‚·‚éB
-     * 
+     * DOMãƒ„ãƒªãƒ¼ã‚’ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«å¤‰æ›ã™ã‚‹ã€‚
+     *
      * @param doc
-     *            DOMƒcƒŠ[B
+     *            DOMãƒ„ãƒªãƒ¼ã€‚
      * @param out
-     *            XML‚©‚ç•ÏŠ·‚³‚ê‚½ƒIƒuƒWƒFƒNƒgB
+     *            XMLã‹ã‚‰å¤‰æ›ã•ã‚ŒãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‚
      */
     public void unmarshal(Document doc, Object out) {
 
@@ -303,27 +303,27 @@ public class CastorOXMapperImpl implements OXMapper {
 
         Unmarshaller unmarshaller = createUnmarshaller(out);
 
-        // XML¨Object
+        // XMLâ†’Object
         try {
             unmarshaller.unmarshal(doc);
         } catch (MarshalException e) {
-            // XMLƒf[ƒ^‚Ìƒ}ƒbƒsƒ“ƒO‚É¸”s
+            // XMLãƒ‡ãƒ¼ã‚¿ã®ãƒãƒƒãƒ”ãƒ³ã‚°ã«å¤±æ•—
             log.error("Castor unmarshal failure.", e);
             throw new CastorMarshalException(e);
         } catch (ValidationException e) {
-            // XMLƒf[ƒ^‚ÌŒŸØ‚É¸”s
+            // XMLãƒ‡ãƒ¼ã‚¿ã®æ¤œè¨¼ã«å¤±æ•—
             log.error("Castor validation error.", e);
             throw new CastorValidationException(e);
         }
     }
 
     /**
-     * ƒXƒgƒŠ[ƒ€‚©‚çXMLƒf[ƒ^‚ğæ‚èo‚µAƒIƒuƒWƒFƒNƒg‚É•ÏŠ·‚·‚éB
-     * 
+     * ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‹ã‚‰XMLãƒ‡ãƒ¼ã‚¿ã‚’å–ã‚Šå‡ºã—ã€ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«å¤‰æ›ã™ã‚‹ã€‚
+     *
      * @param reader
-     *            XMLƒf[ƒ^B•¶šƒZƒbƒg‚ªw’è‚³‚ê‚Ä‚¢‚È‚¢ê‡A VM‚ÌƒfƒtƒHƒ‹ƒg•¶šƒZƒbƒg‚ªg—p‚³‚ê‚éB
+     *            XMLãƒ‡ãƒ¼ã‚¿ã€‚æ–‡å­—ã‚»ãƒƒãƒˆãŒæŒ‡å®šã•ã‚Œã¦ã„ãªã„å ´åˆã€ VMã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆæ–‡å­—ã‚»ãƒƒãƒˆãŒä½¿ç”¨ã•ã‚Œã‚‹ã€‚
      * @param out
-     *            XML‚©‚ç•ÏŠ·‚³‚ê‚½ƒIƒuƒWƒFƒNƒgB
+     *            XMLã‹ã‚‰å¤‰æ›ã•ã‚ŒãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‚
      */
     public void unmarshal(Reader reader, Object out) {
 
@@ -334,34 +334,34 @@ public class CastorOXMapperImpl implements OXMapper {
 
         Unmarshaller unmarshaller = createUnmarshaller(out);
 
-        // XML¨Object
+        // XMLâ†’Object
         try {
             unmarshaller.unmarshal(reader);
         } catch (MarshalException e) {
-            // XMLƒf[ƒ^‚Ìƒ}ƒbƒsƒ“ƒO‚É¸”s
+            // XMLãƒ‡ãƒ¼ã‚¿ã®ãƒãƒƒãƒ”ãƒ³ã‚°ã«å¤±æ•—
             log.error("Castor unmarshal failure.", e);
             throw new CastorMarshalException(e);
         } catch (ValidationException e) {
-            // XMLƒf[ƒ^‚ÌŒŸØ‚É¸”s
+            // XMLãƒ‡ãƒ¼ã‚¿ã®æ¤œè¨¼ã«å¤±æ•—
             log.error("Castor validation error.", e);
             throw new CastorValidationException(e);
         }
     }
 
     /**
-     * ƒXƒgƒŠ[ƒ€‚©‚çXMLƒf[ƒ^‚ğæ‚èo‚µAƒIƒuƒWƒFƒNƒg‚É•ÏŠ·‚·‚éB
-     * 
+     * ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‹ã‚‰XMLãƒ‡ãƒ¼ã‚¿ã‚’å–ã‚Šå‡ºã—ã€ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«å¤‰æ›ã™ã‚‹ã€‚
+     *
      * <p>
-     * ˆø”argCharset‚ªnull‚Ü‚½‚Í‹ó•¶š‚Ìê‡A InputStreamReader‚Ì•¶šƒZƒbƒg‚Æ‚µ‚Ä‘®«{@link #charset}‚Ì’l‚ªg—p‚³‚ê‚éB<br>
-     * ƒfƒtƒHƒ‹ƒgİ’è‚Å‚ÍA‘®«{@link #charset}‚Ì’l‚Í"UTF-8"‚Å‚ ‚éB
+     * å¼•æ•°argCharsetãŒnullã¾ãŸã¯ç©ºæ–‡å­—ã®å ´åˆã€ InputStreamReaderã®æ–‡å­—ã‚»ãƒƒãƒˆã¨ã—ã¦å±æ€§{@link #charset}ã®å€¤ãŒä½¿ç”¨ã•ã‚Œã‚‹ã€‚<br>
+     * ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆè¨­å®šã§ã¯ã€å±æ€§{@link #charset}ã®å€¤ã¯"UTF-8"ã§ã‚ã‚‹ã€‚
      * </p>
-     * 
+     *
      * @param is
-     *            XMLƒf[ƒ^B
+     *            XMLãƒ‡ãƒ¼ã‚¿ã€‚
      * @param argCharset
-     *            •¶šƒZƒbƒgB
+     *            æ–‡å­—ã‚»ãƒƒãƒˆã€‚
      * @param out
-     *            XML‚©‚ç•ÏŠ·‚³‚ê‚½ƒIƒuƒWƒFƒNƒgB
+     *            XMLã‹ã‚‰å¤‰æ›ã•ã‚ŒãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‚
      */
     public void unmarshal(InputStream is, String argCharset, Object out) {
 
@@ -372,7 +372,7 @@ public class CastorOXMapperImpl implements OXMapper {
 
         String charset = argCharset;
 
-        // •¶šƒZƒbƒg‚ªw’è‚³‚ê‚Ä‚¢‚È‚¢ê‡‚ÍAUTF-8‚ğg—p‚·‚é
+        // æ–‡å­—ã‚»ãƒƒãƒˆãŒæŒ‡å®šã•ã‚Œã¦ã„ãªã„å ´åˆã¯ã€UTF-8ã‚’ä½¿ç”¨ã™ã‚‹
         if (charset == null || charset.length() < 1) {
             if (log.isDebugEnabled()) {
                 log.debug("Character encoding is not found. " + DEFAULT_CHARSET
@@ -383,12 +383,12 @@ public class CastorOXMapperImpl implements OXMapper {
 
         InputStreamReader isr = null;
 
-        // XML¨Object
+        // XMLâ†’Object
         try {
             isr = new InputStreamReader(is, charset);
             unmarshal(isr, out);
         } catch (UnsupportedEncodingException e) {
-            // ƒTƒ|[ƒg‚µ‚Ä‚¢‚È‚¢ƒGƒ“ƒR[ƒfƒBƒ“ƒO
+            // ã‚µãƒãƒ¼ãƒˆã—ã¦ã„ãªã„ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°
             log.error("Character encoding error.", e);
             throw new CastorUnsupportedEncodingException(e);
         } finally {
@@ -403,11 +403,11 @@ public class CastorOXMapperImpl implements OXMapper {
     }
 
     /**
-     * ƒAƒ“ƒ}[ƒVƒƒƒ‰[‚ğ¶¬‚·‚éB Castorƒ}ƒbƒsƒ“ƒO’è‹`‚Ìİ’è‚ğs‚¤B
-     * 
+     * ã‚¢ãƒ³ãƒãƒ¼ã‚·ãƒ£ãƒ©ãƒ¼ã‚’ç”Ÿæˆã™ã‚‹ã€‚ Castorãƒãƒƒãƒ”ãƒ³ã‚°å®šç¾©ã®è¨­å®šã‚’è¡Œã†ã€‚
+     *
      * @param out
-     *            o—Í‘ÎÛ‚ÌƒIƒuƒWƒFƒNƒg
-     * @return ƒAƒ“ƒ}[ƒVƒƒƒ‰[
+     *            å‡ºåŠ›å¯¾è±¡ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+     * @return ã‚¢ãƒ³ãƒãƒ¼ã‚·ãƒ£ãƒ©ãƒ¼
      */
     protected Unmarshaller createUnmarshaller(Object out) {
 
@@ -420,68 +420,68 @@ public class CastorOXMapperImpl implements OXMapper {
 
         Class mappingClass = out.getClass();
 
-        // Castorƒ}ƒbƒsƒ“ƒO’è‹`
+        // Castorãƒãƒƒãƒ”ãƒ³ã‚°å®šç¾©
         Mapping mapping = getCastorMapping(mappingClass);
 
         if (mapping != null) {
             try {
                 unmarshaller.setMapping(mapping);
             } catch (MappingException e) {
-                // Castorƒ}ƒbƒsƒ“ƒO’è‹`ƒtƒ@ƒCƒ‹‚É–â‘è‚ª‚ ‚é
+                // Castorãƒãƒƒãƒ”ãƒ³ã‚°å®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã«å•é¡ŒãŒã‚ã‚‹
                 log.error("Castor mapping file is invalid. "
                         + "- [root-classpath]/"
                         + getMappingFilePath(mappingClass), e);
                 throw new CastorMappingException(e);
             }
 
-            // Castorƒ}ƒbƒsƒ“ƒO’è‹`ƒtƒ@ƒCƒ‹‚ğƒLƒƒƒbƒVƒ…‚·‚é
+            // Castorãƒãƒƒãƒ”ãƒ³ã‚°å®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã™ã‚‹
             if (cache && !mappingFileCache.containsKey(mappingClass)) {
                 mappingFileCache.put(mappingClass, mapping);
             }
         }
 
-        // Castor‚ÅƒoƒŠƒf[ƒVƒ‡ƒ“iŒ`®ƒ`ƒFƒbƒNj‚Ís‚í‚È‚¢
+        // Castorã§ãƒãƒªãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ï¼ˆå½¢å¼ãƒã‚§ãƒƒã‚¯ï¼‰ã¯è¡Œã‚ãªã„
         unmarshaller.setValidation(false);
 
-        // UnmarshallerƒIƒvƒVƒ‡ƒ“ whitespacePreserve
+        // Unmarshallerã‚ªãƒ—ã‚·ãƒ§ãƒ³ whitespacePreserve
         unmarshaller.setWhitespacePreserve(preserveWhitespaceAtUnmarshal);
 
         return unmarshaller;
     }
 
     /**
-     * ƒIƒuƒWƒFƒNƒg‚ğXML‚É•ÏŠ·‚µAƒXƒgƒŠ[ƒ€‚É‘‚«‚ŞB
-     * 
+     * ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’XMLã«å¤‰æ›ã—ã€ã‚¹ãƒˆãƒªãƒ¼ãƒ ã«æ›¸ãè¾¼ã‚€ã€‚
+     *
      * @param in
-     *            XML‚É•ÏŠ·‚·‚éƒIƒuƒWƒFƒNƒg
+     *            XMLã«å¤‰æ›ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
      * @param writer
-     *            •ÏŠ·‚µ‚½XML‚ğ‘‚«‚Şƒ‰ƒCƒ^[
+     *            å¤‰æ›ã—ãŸXMLã‚’æ›¸ãè¾¼ã‚€ãƒ©ã‚¤ã‚¿ãƒ¼
      */
     public void marshal(Object in, Writer writer) {
         Marshaller marshaller = createMarshaller(in, writer);
 
-        // Object¨XML
+        // Objectâ†’XML
         try {
             marshaller.marshal(in);
         } catch (MarshalException e) {
-            // XMLƒf[ƒ^‚Ìƒ}ƒbƒsƒ“ƒO‚É¸”s
+            // XMLãƒ‡ãƒ¼ã‚¿ã®ãƒãƒƒãƒ”ãƒ³ã‚°ã«å¤±æ•—
             log.error("Castor marshal failure.", e);
             throw new CastorMarshalException(e);
         } catch (ValidationException e) {
-            // XMLƒf[ƒ^‚ÌŒŸØ‚É¸”s
+            // XMLãƒ‡ãƒ¼ã‚¿ã®æ¤œè¨¼ã«å¤±æ•—
             log.error("Castor validation error.", e);
             throw new CastorValidationException(e);
         }
     }
 
     /**
-     * ƒ}[ƒVƒƒƒ‰[‚ğ¶¬‚·‚éB Castorƒ}ƒbƒsƒ“ƒO’è‹`‚ğİ’è‚·‚éB
-     * 
+     * ãƒãƒ¼ã‚·ãƒ£ãƒ©ãƒ¼ã‚’ç”Ÿæˆã™ã‚‹ã€‚ Castorãƒãƒƒãƒ”ãƒ³ã‚°å®šç¾©ã‚’è¨­å®šã™ã‚‹ã€‚
+     *
      * @param in
-     *            XML•ÏŠ·‘ÎÛ‚ÌƒIƒuƒWƒFƒNƒg
+     *            XMLå¤‰æ›å¯¾è±¡ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
      * @param writer
-     *            o—Í—pƒ‰ƒCƒ^[
-     * @return ƒ}[ƒVƒƒƒ‰[
+     *            å‡ºåŠ›ç”¨ãƒ©ã‚¤ã‚¿ãƒ¼
+     * @return ãƒãƒ¼ã‚·ãƒ£ãƒ©ãƒ¼
      */
     @SuppressWarnings("deprecation")
     protected Marshaller createMarshaller(Object in, Writer writer) {
@@ -498,7 +498,7 @@ public class CastorOXMapperImpl implements OXMapper {
 
         Marshaller marshaller = null;
 
-        // ƒ}[ƒVƒƒƒ‰[‚Ì¶¬
+        // ãƒãƒ¼ã‚·ãƒ£ãƒ©ãƒ¼ã®ç”Ÿæˆ
         try {
             XMLSerializerEx serializer = new XMLSerializerEx(writer,
                     new OutputFormat(Method.XML, charset, indenting));
@@ -521,7 +521,7 @@ public class CastorOXMapperImpl implements OXMapper {
         Class mappingClass = in.getClass();
 
         if (!hasSetMappingSetForMarshaller.contains(mappingClass)) {
-            // Castorƒ}ƒbƒsƒ“ƒO’è‹`
+            // Castorãƒãƒƒãƒ”ãƒ³ã‚°å®šç¾©
             Mapping mapping = getCastorMapping(mappingClass);
 
             if (mapping != null) {
@@ -529,14 +529,14 @@ public class CastorOXMapperImpl implements OXMapper {
                     marshaller.setMapping(mapping);
                     hasSetMappingSetForMarshaller.add(mappingClass);
                 } catch (MappingException e) {
-                    // Castorƒ}ƒbƒsƒ“ƒO’è‹`ƒtƒ@ƒCƒ‹‚É–â‘è‚ª‚ ‚é
+                    // Castorãƒãƒƒãƒ”ãƒ³ã‚°å®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã«å•é¡ŒãŒã‚ã‚‹
                     log.error("Castor mapping file is invalid. "
                             + "- [root-classpath]/"
                             + getMappingFilePath(mappingClass), e);
                     throw new CastorMappingException(e);
                 }
 
-                // Castorƒ}ƒbƒsƒ“ƒO’è‹`ƒtƒ@ƒCƒ‹‚ğƒLƒƒƒbƒVƒ…‚·‚é
+                // Castorãƒãƒƒãƒ”ãƒ³ã‚°å®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã™ã‚‹
                 if (cache && !mappingFileCache.containsKey(mappingClass)) {
                     mappingFileCache.put(mappingClass, mapping);
                 }
@@ -545,24 +545,24 @@ public class CastorOXMapperImpl implements OXMapper {
 
         marshaller.setValidation(false);
 
-        // MarshallerƒIƒvƒVƒ‡ƒ“ suppressXSIType
+        // Marshallerã‚ªãƒ—ã‚·ãƒ§ãƒ³ suppressXSIType
         marshaller.setSuppressXSIType(suppressXSIType);
 
         return marshaller;
     }
 
     /**
-     * Castorƒ}ƒbƒsƒ“ƒO’è‹`ƒtƒ@ƒCƒ‹‚ğæ“¾‚·‚éB {@link #cache}‘®«‚ªtrue‚Ìê‡A“Ç‚İ‚ñ‚¾Castorƒ}ƒbƒsƒ“ƒO’è‹`ƒtƒ@ƒCƒ‹‚ğ
-     * ƒLƒƒƒbƒVƒ…‚·‚éBfalse‚Ìê‡AƒLƒƒƒbƒVƒ…‚Ís‚í‚È‚¢B
-     * 
+     * Castorãƒãƒƒãƒ”ãƒ³ã‚°å®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å–å¾—ã™ã‚‹ã€‚ {@link #cache}å±æ€§ãŒtrueã®å ´åˆã€èª­ã¿è¾¼ã‚“ã Castorãƒãƒƒãƒ”ãƒ³ã‚°å®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã‚’
+     * ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã™ã‚‹ã€‚falseã®å ´åˆã€ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã¯è¡Œã‚ãªã„ã€‚
+     *
      * @param mappingClass
-     *            ƒ}ƒbƒsƒ“ƒO‘ÎÛ‚ÌƒNƒ‰ƒX
-     * @return Castorƒ}ƒbƒsƒ“ƒO’è‹`ƒtƒ@ƒCƒ‹
+     *            ãƒãƒƒãƒ”ãƒ³ã‚°å¯¾è±¡ã®ã‚¯ãƒ©ã‚¹
+     * @return Castorãƒãƒƒãƒ”ãƒ³ã‚°å®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«
      */
     protected Mapping getCastorMapping(Class mappingClass) {
         Mapping mapping = null;
 
-        // ƒLƒƒƒbƒVƒ…‚ª‚ ‚ê‚Î•Ô‚·
+        // ã‚­ãƒ£ãƒƒã‚·ãƒ¥ãŒã‚ã‚Œã°è¿”ã™
         if (cache) {
             mapping = mappingFileCache.get(mappingClass);
             if (mapping != null) {
@@ -570,27 +570,27 @@ public class CastorOXMapperImpl implements OXMapper {
             }
         }
 
-        // Castorƒ}ƒbƒsƒ“ƒO’è‹`ƒtƒ@ƒCƒ‹‚ğæ“¾‚·‚é
+        // Castorãƒãƒƒãƒ”ãƒ³ã‚°å®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å–å¾—ã™ã‚‹
         mapping = new Mapping();
         URL mappingURL = getUrl(mappingClass);
 
         if (mappingURL == null) {
-            // Castorƒ}ƒbƒsƒ“ƒO’è‹`ƒtƒ@ƒCƒ‹‚ª‚È‚¢ê‡‚Ínull‚ğ•Ô‹p‚µACastor‚ÌƒfƒtƒHƒ‹ƒgƒ‹[ƒ‹‚ğ“K—p‚·‚é
+            // Castorãƒãƒƒãƒ”ãƒ³ã‚°å®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ãŒãªã„å ´åˆã¯nullã‚’è¿”å´ã—ã€Castorã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ«ãƒ¼ãƒ«ã‚’é©ç”¨ã™ã‚‹
             return null;
         }
 
-        // ƒ}ƒbƒsƒ“ƒOƒCƒ“ƒXƒ^ƒ“ƒX‚ÉCastorƒ}ƒbƒsƒ“ƒO’è‹`ƒtƒ@ƒCƒ‹‚ğƒ[ƒh‚·‚é
+        // ãƒãƒƒãƒ”ãƒ³ã‚°ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã«Castorãƒãƒƒãƒ”ãƒ³ã‚°å®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ãƒ­ãƒ¼ãƒ‰ã™ã‚‹
         mapping.loadMapping(new InputSource(mappingURL.toExternalForm()));
 
         return mapping;
     }
 
     /**
-     * URL‚ğæ“¾‚·‚éB
-     * 
+     * URLã‚’å–å¾—ã™ã‚‹ã€‚
+     *
      * @param mappingClass
-     *            ƒ}ƒbƒsƒ“ƒO‘ÎÛ‚ÌƒNƒ‰ƒX
-     * @return ƒŠƒ\[ƒX‚ÌURLƒCƒ“ƒXƒ^ƒ“ƒX
+     *            ãƒãƒƒãƒ”ãƒ³ã‚°å¯¾è±¡ã®ã‚¯ãƒ©ã‚¹
+     * @return ãƒªã‚½ãƒ¼ã‚¹ã®URLã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹
      */
     protected URL getUrl(Class mappingClass) {
         return Thread.currentThread().getContextClassLoader().getResource(
@@ -598,11 +598,11 @@ public class CastorOXMapperImpl implements OXMapper {
     }
 
     /**
-     * Castorƒ}ƒbƒsƒ“ƒOƒtƒ@ƒCƒ‹‚ÌƒpƒX‚ğæ“¾‚·‚éB
-     * 
+     * Castorãƒãƒƒãƒ”ãƒ³ã‚°ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‘ã‚¹ã‚’å–å¾—ã™ã‚‹ã€‚
+     *
      * @param mappingClass
-     *            ƒ}ƒbƒsƒ“ƒO‚·‚éƒNƒ‰ƒXB
-     * @return Castorƒ}ƒbƒsƒ“ƒOƒtƒ@ƒCƒ‹‚ÌƒpƒX
+     *            ãƒãƒƒãƒ”ãƒ³ã‚°ã™ã‚‹ã‚¯ãƒ©ã‚¹ã€‚
+     * @return Castorãƒãƒƒãƒ”ãƒ³ã‚°ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‘ã‚¹
      */
     protected String getMappingFilePath(Class mappingClass) {
         StringBuilder buf = new StringBuilder();
@@ -613,130 +613,130 @@ public class CastorOXMapperImpl implements OXMapper {
     }
 
     /**
-     * cache‚ğæ“¾‚·‚éB
-     * 
-     * @return cache‘®«
+     * cacheã‚’å–å¾—ã™ã‚‹ã€‚
+     *
+     * @return cacheå±æ€§
      */
     public boolean isCache() {
         return cache;
     }
 
     /**
-     * indenting‚ğæ“¾‚·‚éB
-     * 
-     * @return indenting‘®«
+     * indentingã‚’å–å¾—ã™ã‚‹ã€‚
+     *
+     * @return indentingå±æ€§
      */
     public boolean isIndenting() {
         return indenting;
     }
 
     /**
-     * preserveWhitespaceAtMarshal‚ğæ“¾‚·‚éB
-     * 
-     * @return preserveWhitespaceAtMarshal‘®«
+     * preserveWhitespaceAtMarshalã‚’å–å¾—ã™ã‚‹ã€‚
+     *
+     * @return preserveWhitespaceAtMarshalå±æ€§
      */
     public boolean isPreserveWhitespaceAtMarshal() {
         return preserveWhitespaceAtMarshal;
     }
 
     /**
-     * preserveWhitespaceAtUnmarshal‚ğæ“¾‚·‚éB
-     * 
-     * @return preserveWhitespaceAtUnmarshal‘®«
+     * preserveWhitespaceAtUnmarshalã‚’å–å¾—ã™ã‚‹ã€‚
+     *
+     * @return preserveWhitespaceAtUnmarshalå±æ€§
      */
     public boolean isPreserveWhitespaceAtUnmarshal() {
         return preserveWhitespaceAtUnmarshal;
     }
 
     /**
-     * suppressXSIType‚ğæ“¾‚·‚éB
-     * 
-     * @return suppressXSIType‘®«
+     * suppressXSITypeã‚’å–å¾—ã™ã‚‹ã€‚
+     *
+     * @return suppressXSITypeå±æ€§
      */
     public boolean isSuppressXSIType() {
         return suppressXSIType;
     }
 
     /**
-     * cache‚ğİ’è‚·‚éB
-     * 
+     * cacheã‚’è¨­å®šã™ã‚‹ã€‚
+     *
      * @param cache
-     *            cache‘®«‚Éİ’è‚·‚é’l
+     *            cacheå±æ€§ã«è¨­å®šã™ã‚‹å€¤
      */
     public void setCache(boolean cache) {
         this.cache = cache;
     }
 
     /**
-     * •¶šƒZƒbƒg‚ğæ“¾‚·‚éB
-     * 
-     * @return •¶šƒZƒbƒgB
+     * æ–‡å­—ã‚»ãƒƒãƒˆã‚’å–å¾—ã™ã‚‹ã€‚
+     *
+     * @return æ–‡å­—ã‚»ãƒƒãƒˆã€‚
      */
     public String getCharset() {
         return charset;
     }
 
     /**
-     * •¶šƒZƒbƒg‚ğİ’è‚·‚éB
-     * 
+     * æ–‡å­—ã‚»ãƒƒãƒˆã‚’è¨­å®šã™ã‚‹ã€‚
+     *
      * @param charset
-     *            •¶šƒZƒbƒgB
+     *            æ–‡å­—ã‚»ãƒƒãƒˆã€‚
      */
     public void setCharset(String charset) {
         this.charset = charset;
     }
 
     /**
-     * MarshallerƒIƒvƒVƒ‡ƒ“ suppressXSIType<br>
+     * Marshallerã‚ªãƒ—ã‚·ãƒ§ãƒ³ suppressXSIType<br>
      * <br>
-     * <b>Castorƒ}ƒbƒsƒ“ƒO–³İ’è‰»‚ÉƒXƒL[ƒ}ƒoƒŠƒf[ƒ^‚ğ“K—p‚·‚éê‡‚Étrue‚ğİ’è‚·‚éB</b><br>
+     * <b>Castorãƒãƒƒãƒ”ãƒ³ã‚°ç„¡è¨­å®šåŒ–æ™‚ã«ã‚¹ã‚­ãƒ¼ãƒãƒãƒªãƒ‡ãƒ¼ã‚¿ã‚’é©ç”¨ã™ã‚‹å ´åˆã«trueã‚’è¨­å®šã™ã‚‹ã€‚</b><br>
      * <br>
-     * false‚ğİ’è‚·‚é‚ÆƒlƒXƒg‚µ‚½Bean‚ğMarshall‚·‚é‚ÉA
-     * ¶¬‚·‚éXMLƒhƒLƒ…ƒƒ“ƒg‚Éuxmlns:xsiv‹y‚Ñuxsi:typev‚ğ•t—^‚·‚éB<br>
-     * ‚±‚Ìƒl[ƒ€ƒXƒy[ƒX‚ª•t—^‚³‚ê‚é‚ÆACastorƒ}ƒbƒsƒ“ƒO–³İ’è‰»‚É ƒXƒL[ƒ}ƒoƒŠƒf[ƒ^‚ğg—p‚µ‚½ê‡A³‚µ‚­Unmarshall‚Å‚«‚È‚¢B<br>
-     * ‚»‚Ì‚½‚ßAƒXƒL[ƒ}ƒoƒŠƒf[ƒ^‚ğg—p‚·‚éê‡‚É‚ÍA‚±‚ÌƒIƒvƒVƒ‡ƒ“‚ğtrue‚É İ’è‚·‚éB<br>
+     * falseã‚’è¨­å®šã™ã‚‹ã¨ãƒã‚¹ãƒˆã—ãŸBeanã‚’Marshallã™ã‚‹æ™‚ã«ã€
+     * ç”Ÿæˆã™ã‚‹XMLãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆã«ã€Œxmlns:xsiã€åŠã³ã€Œxsi:typeã€ã‚’ä»˜ä¸ã™ã‚‹ã€‚<br>
+     * ã“ã®ãƒãƒ¼ãƒ ã‚¹ãƒšãƒ¼ã‚¹ãŒä»˜ä¸ã•ã‚Œã‚‹ã¨ã€Castorãƒãƒƒãƒ”ãƒ³ã‚°ç„¡è¨­å®šåŒ–æ™‚ã« ã‚¹ã‚­ãƒ¼ãƒãƒãƒªãƒ‡ãƒ¼ã‚¿ã‚’ä½¿ç”¨ã—ãŸå ´åˆã€æ­£ã—ãUnmarshallã§ããªã„ã€‚<br>
+     * ãã®ãŸã‚ã€ã‚¹ã‚­ãƒ¼ãƒãƒãƒªãƒ‡ãƒ¼ã‚¿ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã«ã¯ã€ã“ã®ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’trueã« è¨­å®šã™ã‚‹ã€‚<br>
      * <fieldset style="border:1pt solid black;padding:10px;width:100%;">
      * <legend>false</legend>
-     * 
+     *
      * <pre>
      *       &lt;resultReserveParam&gt;
-     *         &lt;reserveDetailList 
-     *         xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; 
+     *         &lt;reserveDetailList
+     *         xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
      *         xsi:type=&quot;java:sample.ReserveDetail&quot;&gt;
      *         &lt;/reserveDetailList&gt;
      *       &lt;/resultReserveParam&gt;
      * </pre>
-     * 
+     *
      * </fieldset><br>
      * <fieldset style="border:1pt solid black;padding:10px;width:100%;">
-     * <legend>trueiƒfƒtƒHƒ‹ƒgj</legend>
-     * 
+     * <legend>trueï¼ˆãƒ‡ãƒ•ã‚©ãƒ«ãƒˆï¼‰</legend>
+     *
      * <pre>
      *       &lt;resultReserveParam&gt;
      *         &lt;reserveDetailList&gt;
      *         &lt;/reserveDetailList&gt;
      *       &lt;/resultReserveParam&gt;
      * </pre>
-     * 
+     *
      * </fieldset><br>
-     * 
+     *
      * @param suppressXSIType
-     *            İ’è‚·‚é suppressXSIType
+     *            è¨­å®šã™ã‚‹ suppressXSIType
      */
     public void setSuppressXSIType(boolean suppressXSIType) {
         this.suppressXSIType = suppressXSIType;
     }
 
     /**
-     * UnmarshallerƒIƒvƒVƒ‡ƒ“ whitespacePreserve‚ğİ’è‚·‚éB
+     * Unmarshallerã‚ªãƒ—ã‚·ãƒ§ãƒ³ whitespacePreserveã‚’è¨­å®šã™ã‚‹ã€‚
      * <p>
-     * true‚ğİ’è‚·‚é‚ÆA‘S‚Ä‚Ì—v‘f‚É‚Â‚¢‚Ä‹ó”’‚ğ•Û ‚µ‚½‚Ü‚ÜƒAƒ“ƒ}[ƒVƒƒƒ‹‚ªs‚í‚ê‚éB<br>
-     * false‚Ìê‡‚Å‚àAuxml:space="preserve"v‚ªw’è‚³‚ê‚½ —v‘f‚É‚Â‚¢‚Ä‚ÍA‹ó”’‚ğ•Û‚µ‚½‚Ü‚ÜƒAƒ“ƒ}[ƒVƒƒƒ‹‚³‚ê‚éB
-     * 
-     * ‘S“d•¶‚É‘Î‚µ‚Ä—LŒø‚É‚È‚é‚½‚ßAg—p‚É‚Í’ˆÓ‚ª•K—v‚Å‚ ‚éB ƒfƒtƒHƒ‹ƒg’l‚Í<code>false</code>B
-     * 
+     * trueã‚’è¨­å®šã™ã‚‹ã¨ã€å…¨ã¦ã®è¦ç´ ã«ã¤ã„ã¦ç©ºç™½ã‚’ä¿æŒ ã—ãŸã¾ã¾ã‚¢ãƒ³ãƒãƒ¼ã‚·ãƒ£ãƒ«ãŒè¡Œã‚ã‚Œã‚‹ã€‚<br>
+     * falseã®å ´åˆã§ã‚‚ã€ã€Œxml:space="preserve"ã€ãŒæŒ‡å®šã•ã‚ŒãŸ è¦ç´ ã«ã¤ã„ã¦ã¯ã€ç©ºç™½ã‚’ä¿æŒã—ãŸã¾ã¾ã‚¢ãƒ³ãƒãƒ¼ã‚·ãƒ£ãƒ«ã•ã‚Œã‚‹ã€‚
+     *
+     * å…¨é›»æ–‡ã«å¯¾ã—ã¦æœ‰åŠ¹ã«ãªã‚‹ãŸã‚ã€ä½¿ç”¨ã«ã¯æ³¨æ„ãŒå¿…è¦ã§ã‚ã‚‹ã€‚ ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã¯<code>false</code>ã€‚
+     *
      * @param preserveWhitespaceAtUnmarshal
-     *            İ’è‚·‚é whitespacePreserve
+     *            è¨­å®šã™ã‚‹ whitespacePreserve
      */
     public void setPreserveWhitespaceAtUnmarshal(
             boolean preserveWhitespaceAtUnmarshal) {
@@ -744,36 +744,36 @@ public class CastorOXMapperImpl implements OXMapper {
     }
 
     /**
-     * MarshallerƒIƒvƒVƒ‡ƒ“ preserveWhitespace‚ğİ’è‚·‚éB
+     * Marshallerã‚ªãƒ—ã‚·ãƒ§ãƒ³ preserveWhitespaceã‚’è¨­å®šã™ã‚‹ã€‚
      * <p>
-     * true‚ğİ’è‚·‚é‚Æ¶¬‚·‚éƒhƒLƒ…ƒƒ“ƒg‚Ìƒ‹[ƒgƒm[ƒh‚É uxml:space="preserve"v‚ğ•t—^‚·‚éB<br>
-     * ‘S“d•¶‚É‘Î‚µ‚Ä—LŒø‚É‚È‚é‚½‚ßAg—p‚É‚Í’ˆÓ‚ª•K—v‚Å‚ ‚éB ƒfƒtƒHƒ‹ƒg’l‚Í<code>true</code>B
-     * 
+     * trueã‚’è¨­å®šã™ã‚‹ã¨ç”Ÿæˆã™ã‚‹ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆã®ãƒ«ãƒ¼ãƒˆãƒãƒ¼ãƒ‰ã« ã€Œxml:space="preserve"ã€ã‚’ä»˜ä¸ã™ã‚‹ã€‚<br>
+     * å…¨é›»æ–‡ã«å¯¾ã—ã¦æœ‰åŠ¹ã«ãªã‚‹ãŸã‚ã€ä½¿ç”¨ã«ã¯æ³¨æ„ãŒå¿…è¦ã§ã‚ã‚‹ã€‚ ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã¯<code>true</code>ã€‚
+     *
      * <fieldset style="border:1pt solid black;padding:10px;width:100%;">
      * <legend>false</legend>
-     * 
+     *
      * <pre>
      *       &lt;resultReserveParam&gt;
      *         &lt;reserveDetailList&gt;
      *         &lt;/reserveDetailList&gt;
      *       &lt;/resultReserveParam&gt;
      * </pre>
-     * 
+     *
      * </fieldset><br>
      * <fieldset style="border:1pt solid black;padding:10px;width:100%;">
-     * <legend>trueiƒfƒtƒHƒ‹ƒgj</legend>
-     * 
+     * <legend>trueï¼ˆãƒ‡ãƒ•ã‚©ãƒ«ãƒˆï¼‰</legend>
+     *
      * <pre>
      *       &lt;resultReserveParam xml:space=&quot;preserve&quot;&gt;
      *         &lt;reserveDetailList&gt;
      *         &lt;/reserveDetailList&gt;
      *       &lt;/resultReserveParam&gt;
      * </pre>
-     * 
+     *
      * </fieldset><br> *
-     * 
+     *
      * @param preserveWhitespaceAtMarshal
-     *            İ’è‚·‚épreserveWhitespace
+     *            è¨­å®šã™ã‚‹preserveWhitespace
      */
     public void setPreserveWhitespaceAtMarshal(
             boolean preserveWhitespaceAtMarshal) {
@@ -781,13 +781,13 @@ public class CastorOXMapperImpl implements OXMapper {
     }
 
     /**
-     * MarshallerƒIƒvƒVƒ‡ƒ“ indenting‚ğİ’è‚·‚é<br>
+     * Marshallerã‚ªãƒ—ã‚·ãƒ§ãƒ³ indentingã‚’è¨­å®šã™ã‚‹<br>
      * <br>
-     * true‚ğİ’è‚·‚é‚ÆA¶¬‚³‚ê‚éxml‚ªƒCƒ“ƒfƒ“ƒg‚³‚ê‚éB<br>
+     * trueã‚’è¨­å®šã™ã‚‹ã¨ã€ç”Ÿæˆã•ã‚Œã‚‹xmlãŒã‚¤ãƒ³ãƒ‡ãƒ³ãƒˆã•ã‚Œã‚‹ã€‚<br>
      * <br>
-     * <b>¦’ˆÓFpreserveWhitespaceAtMarshal ‚ª <u>false</u> ‚Ì‚Ì‚İ—LŒø<b><br>
-     * 
-     * @param indenting İ’è‚·‚é indenting
+     * <b>â€»æ³¨æ„ï¼špreserveWhitespaceAtMarshal ãŒ <u>false</u> ã®æ™‚ã®ã¿æœ‰åŠ¹<b><br>
+     *
+     * @param indenting è¨­å®šã™ã‚‹ indenting
      */
     public void setIndenting(boolean indenting) {
         this.indenting = indenting;

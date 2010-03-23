@@ -17,52 +17,52 @@
 package jp.terasoluna.fw.web.rich.context.exception;
 
 /**
- * æ“¾‚·‚é‹Æ–±ƒvƒƒpƒeƒB‚ÌŒ^‚Æw’è‚³‚ê‚½Œ^‚ªˆá‚Á‚½ê‡‚ÌRuntime—áŠOƒNƒ‰ƒXB
- * 
+ * å–å¾—ã™ã‚‹æ¥­å‹™ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã®å‹ã¨æŒ‡å®šã•ã‚ŒãŸå‹ãŒé•ã£ãŸå ´åˆã®Runtimeä¾‹å¤–ã‚¯ãƒ©ã‚¹ã€‚
+ *
  */
 public class IllegalContextPropertyClassTypeException extends RuntimeException {
 
     /**
-     * ƒVƒŠƒAƒ‹ƒo[ƒWƒ‡ƒ“IDB
+     * ã‚·ãƒªã‚¢ãƒ«ãƒãƒ¼ã‚¸ãƒ§ãƒ³IDã€‚
      */
     private static final long serialVersionUID = -6316012802099459622L;
 
     /**
-     * ƒGƒ‰[ƒƒbƒZ[ƒW
+     * ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
      */
     public static final String ERROR_ILLEGAL_CLASS_TYPE
         = "The illegal Class Type of the context property.";
 
     /**
-     * ƒRƒ“ƒXƒgƒ‰ƒNƒ^B
+     * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã€‚
      */
     public IllegalContextPropertyClassTypeException() {
         super(ERROR_ILLEGAL_CLASS_TYPE);
     }
 
     /**
-     * ƒRƒ“ƒXƒgƒ‰ƒNƒ^B
+     * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã€‚
      *
-     * @param message ƒƒbƒZ[ƒW
+     * @param message ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
      */
     public IllegalContextPropertyClassTypeException(String message) {
         super(message);
     }
 
     /**
-     * ƒRƒ“ƒXƒgƒ‰ƒNƒ^B
+     * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã€‚
      *
-     * @param cause Œ´ˆö‚Æ‚È‚Á‚½—áŠO
+     * @param cause åŸå› ã¨ãªã£ãŸä¾‹å¤–
      */
     public IllegalContextPropertyClassTypeException(Throwable cause) {
         super(ERROR_ILLEGAL_CLASS_TYPE, cause);
     }
 
     /**
-     * ƒRƒ“ƒXƒgƒ‰ƒNƒ^B
+     * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã€‚
      *
-     * @param message ƒƒbƒZ[ƒW
-     * @param cause Œ´ˆö‚Æ‚È‚Á‚½—áŠO
+     * @param message ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+     * @param cause åŸå› ã¨ãªã£ãŸä¾‹å¤–
      */
     public IllegalContextPropertyClassTypeException(String message, Throwable cause) {
         super(message, cause);

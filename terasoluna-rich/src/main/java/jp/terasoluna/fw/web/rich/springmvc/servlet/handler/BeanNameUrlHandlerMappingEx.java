@@ -26,51 +26,51 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping;
 
 /**
- * ƒŠƒNƒGƒXƒg–¼‚ÆÀs‚·‚éƒŠƒNƒGƒXƒgƒRƒ“ƒgƒ[ƒ‰Bean’è‹`‚Ìƒ}ƒbƒsƒ“ƒO‚ğs‚¤ƒnƒ“ƒhƒ‰B
- * 
+ * ãƒªã‚¯ã‚¨ã‚¹ãƒˆåã¨å®Ÿè¡Œã™ã‚‹ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©Beanå®šç¾©ã®ãƒãƒƒãƒ”ãƒ³ã‚°ã‚’è¡Œã†ãƒãƒ³ãƒ‰ãƒ©ã€‚
+ *
  * <p>
- * DispacherServlet‚æ‚èÀs‚³‚êA
- * §Œäî•ñ‚ÌƒŠƒNƒGƒXƒg–¼‚Æ‚ ‚ç‚©‚¶‚ß’è‹`‚µ‚½Ú“ª«EÚ”ö«‚ğŒ‹‡‚µ‚½•¶š—ñ‚ğBean–¼‚Æ‚µ‚ÄA
- * DIƒRƒ“ƒeƒi‚æ‚èƒŠƒNƒGƒXƒgƒRƒ“ƒgƒ[ƒ‰‚Ìæ“¾‚ğs‚¢A•Ô‹p‚·‚éB
- * DispacherServlet‚ÍA•Ô‹p‚³‚ê‚½ƒŠƒNƒGƒXƒgƒRƒ“ƒgƒ[ƒ‰‚ğÀs‚·‚éB
+ * DispacherServletã‚ˆã‚Šå®Ÿè¡Œã•ã‚Œã€
+ * åˆ¶å¾¡æƒ…å ±ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆåã¨ã‚ã‚‰ã‹ã˜ã‚å®šç¾©ã—ãŸæ¥é ­è¾ãƒ»æ¥å°¾è¾ã‚’çµåˆã—ãŸæ–‡å­—åˆ—ã‚’Beanåã¨ã—ã¦ã€
+ * DIã‚³ãƒ³ãƒ†ãƒŠã‚ˆã‚Šãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã®å–å¾—ã‚’è¡Œã„ã€è¿”å´ã™ã‚‹ã€‚
+ * DispacherServletã¯ã€è¿”å´ã•ã‚ŒãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã‚’å®Ÿè¡Œã™ã‚‹ã€‚
  * </p>
- * 
+ *
  * <p>
- * –{ƒNƒ‰ƒX‚ğ—˜—p‚·‚éê‡A–{ƒNƒ‰ƒX‚ÌBean’è‹`‚ğs‚¤‚±‚ÆB
- * ‚Ü‚½AˆÈ‰º‚ÌƒvƒƒpƒeƒB‚ğ•K‚¸İ’è‚·‚é‚±‚ÆB
+ * æœ¬ã‚¯ãƒ©ã‚¹ã‚’åˆ©ç”¨ã™ã‚‹å ´åˆã€æœ¬ã‚¯ãƒ©ã‚¹ã®Beanå®šç¾©ã‚’è¡Œã†ã“ã¨ã€‚
+ * ã¾ãŸã€ä»¥ä¸‹ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚’å¿…ãšè¨­å®šã™ã‚‹ã“ã¨ã€‚
  * </p>
- * 
+ *
  * <p>
  *   <table border="1" CELLPADDING="8">
- *     <th>‘®«–¼</th>
- *     <th>à–¾</th>
- * 
+ *     <th>å±æ€§å</th>
+ *     <th>èª¬æ˜</th>
+ *
  *     <tr>
  *       <td align=center><b>ctxSupport</b></td>
- *       <td>ƒŠƒNƒGƒXƒg–¼‚ğæ“¾‚·‚é‚½‚ß‚ÌƒTƒ|[ƒgƒƒWƒbƒNƒNƒ‰ƒXB</td>
+ *       <td>ãƒªã‚¯ã‚¨ã‚¹ãƒˆåã‚’å–å¾—ã™ã‚‹ãŸã‚ã®ã‚µãƒãƒ¼ãƒˆãƒ­ã‚¸ãƒƒã‚¯ã‚¯ãƒ©ã‚¹ã€‚</td>
  *     </tr>
- *     
+ *
  *     <tr>
  *       <td align=center><b>prefix</b></td>
- *       <td>ƒŠƒNƒGƒXƒg–¼‚É•t—^‚·‚éÚ“ª«B</td>
+ *       <td>ãƒªã‚¯ã‚¨ã‚¹ãƒˆåã«ä»˜ä¸ã™ã‚‹æ¥é ­è¾ã€‚</td>
  *     </tr>
- * 
+ *
  *     <tr>
  *       <td align=center><b>suffix</b></td>
- *       <td>ƒŠƒNƒGƒXƒg–¼‚É•t—^‚·‚éÚ”ö«B</td>
+ *       <td>ãƒªã‚¯ã‚¨ã‚¹ãƒˆåã«ä»˜ä¸ã™ã‚‹æ¥å°¾è¾ã€‚</td>
  *     </tr>
- *     
+ *
  *     <tr>
  *       <td align=center><b>defaultHandler</b></td>
- *       <td>ƒŠƒNƒGƒXƒg–¼‚É‘Î‰‚·‚éƒRƒ“ƒgƒ[ƒ‰‚ª‘¶İ‚µ‚È‚¢ê‡‚ÌƒRƒ“ƒgƒ[ƒ‰B</td>
+ *       <td>ãƒªã‚¯ã‚¨ã‚¹ãƒˆåã«å¯¾å¿œã™ã‚‹ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãŒå­˜åœ¨ã—ãªã„å ´åˆã®ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã€‚</td>
  *     </tr>
- * 
+ *
  *  </table>
- * 
+ *
  * </p>
- * 
+ *
  * <p>
- * y<code>Bean’è‹`ƒtƒ@ƒCƒ‹</code>‚Ìİ’è—áz<br>
+ * ã€<code>Beanå®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«</code>ã®è¨­å®šä¾‹ã€‘<br>
  * <code><pre>
  *   &lt;bean id=&quot;defaultHandlerMapping&quot;
  *       class=&quot;jp.terasoluna.fw.web.rich.springmvc.servlet.handler.BeanNameUrlHandlerMappingEx&quot;&gt;
@@ -79,94 +79,94 @@ import org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping;
  *     &lt;property name=&quot;suffix&quot; value=&quot;.do&quot;/&gt;
  *     &lt;property name=&quot;defaultHandler&quot; ref=&quot;unknownRequestNameController&quot;/&gt;
  *   &lt;/bean&gt;
- *   ¦ ctxSupport‚ÍA §Œäî•ñ‚ğˆµ‚¤ƒTƒ|[ƒgƒƒWƒbƒN‚ÌBean’è‹`B
- *   ¦ unknownRequestNameController‚ÍAƒŠƒNƒGƒXƒg–¼‚É‘Î‰‚·‚éƒRƒ“ƒgƒ[ƒ‰‚ª‘¶İ‚µ‚È‚¢ê‡‚ÉÀs‚³‚ê‚éƒRƒ“ƒgƒ[ƒ‰‚ÌBean’è‹`B
+ *   â€» ctxSupportã¯ã€ åˆ¶å¾¡æƒ…å ±ã‚’æ‰±ã†ã‚µãƒãƒ¼ãƒˆãƒ­ã‚¸ãƒƒã‚¯ã®Beanå®šç¾©ã€‚
+ *   â€» unknownRequestNameControllerã¯ã€ãƒªã‚¯ã‚¨ã‚¹ãƒˆåã«å¯¾å¿œã™ã‚‹ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãŒå­˜åœ¨ã—ãªã„å ´åˆã«å®Ÿè¡Œã•ã‚Œã‚‹ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã®Beanå®šç¾©ã€‚
  * </pre></code>
  * </p>
- * 
+ *
  * <p>
- * ã‹L‚Ìİ’è‚ğs‚Á‚½ê‡A
- * ‚½‚Æ‚¦‚ÎAƒŠƒNƒGƒXƒg–¼‚ªusumv‚¾‚Á‚½ê‡A
- * DIƒRƒ“ƒeƒi‚æ‚èu/secure/blogic/sum.dov‚Æ‚¢‚¤–¼Ì‚ÌBean‚ğæ“¾‚µA•Ô‹p‚·‚éB
- * ‚½‚¾‚µABean‚ğæ“¾‚Å‚«‚È‚©‚Á‚½(‘¶İ‚µ‚È‚©‚Á‚½)ê‡‚ÍA
- * uunknownRequestNameControllerv‚Æ‚¢‚¤–¼Ì‚Ì
- * Bean‚ğDIƒRƒ“ƒeƒi‚æ‚èæ“¾‚µA•Ô‹p‚·‚éB
- * iBean‚ğæ“¾‚Å‚«‚È‚©‚Á‚½ê‡‚ÌÚ×‚ÍAUnkownRequestNameController‚ğQÆ‚Ì‚±‚ÆBj
+ * ä¸Šè¨˜ã®è¨­å®šã‚’è¡Œã£ãŸå ´åˆã€
+ * ãŸã¨ãˆã°ã€ãƒªã‚¯ã‚¨ã‚¹ãƒˆåãŒã€Œsumã€ã ã£ãŸå ´åˆã€
+ * DIã‚³ãƒ³ãƒ†ãƒŠã‚ˆã‚Šã€Œ/secure/blogic/sum.doã€ã¨ã„ã†åç§°ã®Beanã‚’å–å¾—ã—ã€è¿”å´ã™ã‚‹ã€‚
+ * ãŸã ã—ã€Beanã‚’å–å¾—ã§ããªã‹ã£ãŸ(å­˜åœ¨ã—ãªã‹ã£ãŸ)å ´åˆã¯ã€
+ * ã€ŒunknownRequestNameControllerã€ã¨ã„ã†åç§°ã®
+ * Beanã‚’DIã‚³ãƒ³ãƒ†ãƒŠã‚ˆã‚Šå–å¾—ã—ã€è¿”å´ã™ã‚‹ã€‚
+ * ï¼ˆBeanã‚’å–å¾—ã§ããªã‹ã£ãŸå ´åˆã®è©³ç´°ã¯ã€UnkownRequestNameControllerã‚’å‚ç…§ã®ã“ã¨ã€‚ï¼‰
  * </p>
- * 
+ *
  */
-public class BeanNameUrlHandlerMappingEx extends BeanNameUrlHandlerMapping 
+public class BeanNameUrlHandlerMappingEx extends BeanNameUrlHandlerMapping
     implements InitializingBean {
     /**
-     * ƒƒOƒNƒ‰ƒXB
+     * ãƒ­ã‚°ã‚¯ãƒ©ã‚¹ã€‚
      */
-    private static Log log = 
+    private static Log log =
         LogFactory.getLog(BeanNameUrlHandlerMappingEx.class);
-    
+
     /**
-     * §Œäî•ñƒTƒ|[ƒgƒƒWƒbƒNƒNƒ‰ƒXB
+     * åˆ¶å¾¡æƒ…å ±ã‚µãƒãƒ¼ãƒˆãƒ­ã‚¸ãƒƒã‚¯ã‚¯ãƒ©ã‚¹ã€‚
      */
     protected RequestContextSupport ctxSupport = null;
-    
+
     /**
-     * ƒŠƒNƒGƒXƒg–¼‚É•t—^‚·‚éÚ“ª«B
+     * ãƒªã‚¯ã‚¨ã‚¹ãƒˆåã«ä»˜ä¸ã™ã‚‹æ¥é ­è¾ã€‚
      */
     protected String prefix = "";
 
     /**
-     * ƒŠƒNƒGƒXƒg–¼‚É•t—^‚·‚éÚ”ö«B
+     * ãƒªã‚¯ã‚¨ã‚¹ãƒˆåã«ä»˜ä¸ã™ã‚‹æ¥å°¾è¾ã€‚
      */
     protected String suffix = "";
-    
+
     /**
-     * ƒŠƒNƒGƒXƒg–¼‚É•t—^‚·‚éÚ“ª«‚ğİ’è‚·‚éB
-     * @param prefix ƒŠƒNƒGƒXƒg–¼‚É•t—^‚·‚éÚ“ª«B
+     * ãƒªã‚¯ã‚¨ã‚¹ãƒˆåã«ä»˜ä¸ã™ã‚‹æ¥é ­è¾ã‚’è¨­å®šã™ã‚‹ã€‚
+     * @param prefix ãƒªã‚¯ã‚¨ã‚¹ãƒˆåã«ä»˜ä¸ã™ã‚‹æ¥é ­è¾ã€‚
      */
     public void setPrefix(String prefix) {
         this.prefix = prefix;
     }
 
     /**
-     * ƒŠƒNƒGƒXƒg–¼‚É•t—^‚·‚éÚ”ö«‚ğİ’è‚·‚éB
-     * @param suffix ƒŠƒNƒGƒXƒg–¼‚É•t—^‚·‚éÚ”ö«B
+     * ãƒªã‚¯ã‚¨ã‚¹ãƒˆåã«ä»˜ä¸ã™ã‚‹æ¥å°¾è¾ã‚’è¨­å®šã™ã‚‹ã€‚
+     * @param suffix ãƒªã‚¯ã‚¨ã‚¹ãƒˆåã«ä»˜ä¸ã™ã‚‹æ¥å°¾è¾ã€‚
      */
     public void setSuffix(String suffix) {
         this.suffix = suffix;
     }
 
     /**
-     * §Œäî•ñƒTƒ|[ƒgƒƒWƒbƒNƒNƒ‰ƒX‚ğİ’è‚·‚éB
-     * @param ctxSupport §Œäî•ñƒTƒ|[ƒgƒƒWƒbƒNƒNƒ‰ƒX
+     * åˆ¶å¾¡æƒ…å ±ã‚µãƒãƒ¼ãƒˆãƒ­ã‚¸ãƒƒã‚¯ã‚¯ãƒ©ã‚¹ã‚’è¨­å®šã™ã‚‹ã€‚
+     * @param ctxSupport åˆ¶å¾¡æƒ…å ±ã‚µãƒãƒ¼ãƒˆãƒ­ã‚¸ãƒƒã‚¯ã‚¯ãƒ©ã‚¹
      */
     public void setCtxSupport(
             RequestContextSupport ctxSupport) {
         this.ctxSupport = ctxSupport;
     }
-    
+
     /**
-     * ƒŠƒNƒGƒXƒg–¼‚ğ‚à‚Æ‚ÉAƒŠƒNƒGƒXƒgƒRƒ“ƒgƒ[ƒ‰‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğƒ‹ƒbƒNƒAƒbƒv‚·‚éB
-     * @param urlPath URLƒpƒX
+     * ãƒªã‚¯ã‚¨ã‚¹ãƒˆåã‚’ã‚‚ã¨ã«ã€ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’ãƒ«ãƒƒã‚¯ã‚¢ãƒƒãƒ—ã™ã‚‹ã€‚
+     * @param urlPath URLãƒ‘ã‚¹
      * @param request HttpServletRequest
-     * @return ƒŠƒNƒGƒXƒgƒRƒ“ƒgƒ[ƒ‰‚ÌƒCƒ“ƒXƒ^ƒ“ƒX
+     * @return ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹
      */
     @Override
     protected Object lookupHandler(String urlPath, HttpServletRequest request) {
         String requestName = ctxSupport.getRequestName();
         String newUrlPath = prefix + requestName + suffix;
-        
-        // ƒRƒ“ƒgƒ[ƒ‰‚Ìæ“¾
-        Object handler = super.lookupHandler(newUrlPath, request); 
-        
+
+        // ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã®å–å¾—
+        Object handler = super.lookupHandler(newUrlPath, request);
+
         if (handler == null) {
-            log.error("Controller is not found. " + "BeanName:'" 
+            log.error("Controller is not found. " + "BeanName:'"
                     + newUrlPath + "'");
         }
-        return handler; 
+        return handler;
     }
 
     /**
-     * –{ƒNƒ‰ƒX‚ªƒCƒ“ƒXƒ^ƒ“ƒX‰»‚³‚ê‚½’¼Œã‚ÉŒÄ‚Î‚ê‚éƒƒ\ƒbƒhB
-     * ƒRƒ“ƒeƒLƒXƒgæ“¾ƒNƒ‰ƒX‚ÌNullƒ`ƒFƒbƒN‚ğs‚¤B
+     * æœ¬ã‚¯ãƒ©ã‚¹ãŒã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹åŒ–ã•ã‚ŒãŸç›´å¾Œã«å‘¼ã°ã‚Œã‚‹ãƒ¡ã‚½ãƒƒãƒ‰ã€‚
+     * ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆå–å¾—ã‚¯ãƒ©ã‚¹ã®Nullãƒã‚§ãƒƒã‚¯ã‚’è¡Œã†ã€‚
      */
     public void afterPropertiesSet() {
         if (ctxSupport == null) {

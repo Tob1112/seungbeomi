@@ -19,23 +19,23 @@ package jp.terasoluna.fw.oxm.xsd.exception;
 import jp.terasoluna.fw.oxm.exception.OXMappingException;
 
 /**
- * w’èƒpƒXã‚ÉƒXƒL[ƒ}’è‹`ƒtƒ@ƒCƒ‹‚ª‘¶İ‚µ‚È‚¢ê‡‚ÉAƒXƒ[‚³‚ê‚éŒ`®ƒ`ƒFƒbƒN—áŠOB
- * 
+ * æŒ‡å®šãƒ‘ã‚¹ä¸Šã«ã‚¹ã‚­ãƒ¼ãƒå®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ãŒå­˜åœ¨ã—ãªã„å ´åˆã«ã€ã‚¹ãƒ­ãƒ¼ã•ã‚Œã‚‹å½¢å¼ãƒã‚§ãƒƒã‚¯ä¾‹å¤–ã€‚
+ *
  * <p>
- * OXMappingException‚ÌƒTƒuƒNƒ‰ƒX‚Æ‚µ‚Ä’ñ‹Ÿ‚µ‚Ä‚¢‚éB
+ * OXMappingExceptionã®ã‚µãƒ–ã‚¯ãƒ©ã‚¹ã¨ã—ã¦æä¾›ã—ã¦ã„ã‚‹ã€‚
  * </p>
- * 
+ *
  */
 public class SchemaFileNotFoundException extends OXMappingException {
 
     /**
-     * ƒVƒŠƒAƒ‹ƒo[ƒWƒ‡ƒ“IDB
+     * ã‚·ãƒªã‚¢ãƒ«ãƒãƒ¼ã‚¸ãƒ§ãƒ³IDã€‚
      */
     private static final long serialVersionUID = 7231692049763141057L;
 
     /**
-     * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-     * 
+     * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+     *
      */
     public SchemaFileNotFoundException() {
         super();

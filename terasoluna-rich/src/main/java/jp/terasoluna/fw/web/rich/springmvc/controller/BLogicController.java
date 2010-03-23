@@ -25,98 +25,98 @@ import jp.terasoluna.fw.util.ProxyUtil;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 /**
- * BLogic�C���^�t�F�[�X�����N���X���s�p���N�G�X�g�R���g���[���B
+ * BLogicインタフェース実装クラス実行用リクエストコントローラ。
  *
  * <p>
- * <code>DispatcherServlet</code>����N������A
- * <code>BLogic</code>�C���^�t�F�[�X�����������Ɩ����W�b�N�N���X�����s����B
- * </p>
- *
- * <p>
- * �Ɩ����W�b�N�̎��s�́A�{�N���X�����s���邪�A
- * �g�����U�N�V�����Ǘ��̐Ӗ��́ABLogic���󂯎��B
- * �Ɩ����W�b�N�N�����̈�����JavaBean�́A���N�G�X�g���o�C���h����JavaBean�i�R�}���h�j�ƂȂ�B
+ * <code>DispatcherServlet</code>から起動され、
+ * <code>BLogic</code>インタフェースを実装した業務ロジッククラスを実行する。
  * </p>
  *
  * <p>
- * �����Ƃ��āA�T�u�N���X�̍쐬�͕s�v�ł���A�{�N���X�𒼐ڗ��p����B
- * �������A�v���W�F�N�g���Ƃ̗v���ɂ���āA
- * �Ɩ��O�����A�㏈�����K�v�ȏꍇ�́A�v���W�F�N�g�P�ʂŃT�u�N���X���쐬����B
+ * 業務ロジックの実行は、本クラスが実行するが、
+ * トランザクション管理の責務は、BLogicが受け持つ。
+ * 業務ロジック起動時の引数のJavaBeanは、リクエストをバインドしたJavaBean（コマンド）となる。
  * </p>
- * 
+ *
  * <p>
- * ���炩����TERASOLUNA���񋟂��Ă���
- * ���N�G�X�g�R���g���[���̃x�[�X��`
- * xmlRequestBLogicExecuteController�܂���
- * queryRequestBLogicExecuteController���p������Bean��`���s�����ƁB
- * �܂��A�ȉ��̃v���p�e�B��ݒ肷�邱�ƁB
+ * 原則として、サブクラスの作成は不要であり、本クラスを直接利用する。
+ * ただし、プロジェクトごとの要件によって、
+ * 業務前処理、後処理が必要な場合は、プロジェクト単位でサブクラスを作成する。
  * </p>
- * 
+ *
+ * <p>
+ * あらかじめTERASOLUNAが提供している
+ * リクエストコントローラのベース定義
+ * xmlRequestBLogicExecuteControllerまたは
+ * queryRequestBLogicExecuteControllerを継承してBean定義を行うこと。
+ * また、以下のプロパティを設定すること。
+ * </p>
+ *
  * <p>
  *   <table border="1" CELLPADDING="8">
- *     <th>������</th>
- *     <th>�K�{</th>
- *     <th>����</th>
- *     
+ *     <th>属性名</th>
+ *     <th>必須</th>
+ *     <th>説明</th>
+ *
  *     <tr>
  *       <td align=center><b>blogic</b></td>
- *       <td>��</td>
- *       <td>�N������BLogic��Bean��</td>
+ *       <td>○</td>
+ *       <td>起動するBLogicのBean名</td>
  *     </tr>
- *  
+ *
  *  </table>
- * 
+ *
  * </p>
- * 
- * �y<code>Bean��`�t�@�C��</code>�̐ݒ��z<br>
+ *
+ * 【<code>Bean定義ファイル</code>の設定例】<br>
  * <code><pre>
  *   &lt;bean name="/secure/blogic/max.do"
  *       parent="xmlRequestBLogicExecuteController" scope="singleton"&gt;
  *     &lt;property name="blogic" ref="maxBLogic"/&gt;
  *   &lt;/bean&gt;
- *   �� xmlRequestBLogicExecuteController�́A
- *   BLogic���N�����郊�N�G�X�g�R���g���[���̒��ے�`�B
- *   �ڍׂ́ATerasolunaController���Q�ƁB
+ *   ※ xmlRequestBLogicExecuteControllerは、
+ *   BLogicを起動するリクエストコントローラの抽象定義。
+ *   詳細は、TerasolunaControllerを参照。
  * </pre></code>
  * </p>
- * 
- *�@@see jp.terasoluna.fw.service.rich.BLogic
  *
- * 
+ *　@see jp.terasoluna.fw.service.rich.BLogic
+ *
+ *
  */
 public class BLogicController extends TerasolunaController<Object, Object> {
     /**
-     * ���O�N���X�B
+     * ログクラス。
      */
     private static Log log = LogFactory.getLog(BLogicController.class);
-    
+
     /**
-     * Bean��`�t�@�C���ɐݒ肳��Ă���BLogic�����N���X�B
+     * Bean定義ファイルに設定されているBLogic実装クラス。
      */
     protected BLogic<Object, Object> blogic = null;
 
     /**
-     * BLogic�����N���X��ݒ肷��B
-     * @param blogic BLogic�����N���X�B
+     * BLogic実装クラスを設定する。
+     * @param blogic BLogic実装クラス。
      */
     public void setBlogic(BLogic<Object, Object> blogic) {
         this.blogic = blogic;
     }
-    
+
     /**
-     * BLogic�����N���X��ݒ肷��B
-     * 
+     * BLogic実装クラスを設定する。
+     *
      * @param blogic
-     *            BLogic�����N���X�B
+     *            BLogic実装クラス。
      */
     public void setBusinessLogic(BLogic<Object, Object> blogic) {
 
         this.blogic = blogic;
     }
-    
+
     /**
-     * DI�R���e�i�ɂ���ăC���X�^���X�����ꂽ����ɌĂ΂�郁�\�b�h�B
-     * �K�{������Null�`�F�b�N���s���B
+     * DIコンテナによってインスタンス化された直後に呼ばれるメソッド。
+     * 必須属性のNullチェックを行う。
      */
     @Override
     public void afterPropertiesSet() {
@@ -131,11 +131,11 @@ public class BLogicController extends TerasolunaController<Object, Object> {
     }
 
     /**
-     * �R�}���h�I�u�W�F�N�g�̌^���擾����B
-     * {@link jp.terasoluna.fw.service.rich.BLogic}�N���X��
-     * execute���\�b�h�̈����̌^��Ԃ��B
-     * execute���\�b�h���I�[�o�[���[�h����Ă���ꍇ�A��O��Ԃ��B
-     * @return �R�}���h�I�u�W�F�N�g�̌^�B
+     * コマンドオブジェクトの型を取得する。
+     * {@link jp.terasoluna.fw.service.rich.BLogic}クラスの
+     * executeメソッドの引数の型を返す。
+     * executeメソッドがオーバーロードされている場合、例外を返す。
+     * @return コマンドオブジェクトの型。
      */
     @SuppressWarnings("unchecked")
     @Override
@@ -143,13 +143,13 @@ public class BLogicController extends TerasolunaController<Object, Object> {
         return GenericsUtil.resolveParameterizedClass(BLogic.class, ProxyUtil
                 .getTargetClass(blogic))[0];
     }
-    
+
     /**
-     *  BLogic#execute()�𒼐ڌĂяo���A�Ɩ����W�b�N�����s����B
+     *  BLogic#execute()を直接呼び出し、業務ロジックを実行する。
      *
-     * @param command �R�}���h�I�u�W�F�N�g
-     * @return ���f���I�u�W�F�N�g
-     * @throws Exception �Ɩ����W�b�N����X���[���ꂽ��O
+     * @param command コマンドオブジェクト
+     * @return モデルオブジェクト
+     * @throws Exception 業務ロジックからスローされた例外
      */
     @Override
     protected Object executeService(Object command) throws Exception {

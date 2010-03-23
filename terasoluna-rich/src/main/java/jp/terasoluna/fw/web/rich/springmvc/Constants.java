@@ -17,19 +17,19 @@
 package jp.terasoluna.fw.web.rich.springmvc;
 
 /**
- * ’è”ƒNƒ‰ƒXB
+ * å®šæ•°ã‚¯ãƒ©ã‚¹ã€‚
  *
  */
 public class Constants {
     /**
-     * ƒGƒ‰[ƒR[ƒh‚ğƒ‚ƒfƒ‹‚Éİ’è‚·‚éƒL[B
-     * TODO ’è”ƒNƒ‰ƒX‚ÉˆÚ“®
+     * ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ã‚’ãƒ¢ãƒ‡ãƒ«ã«è¨­å®šã™ã‚‹ã‚­ãƒ¼ã€‚
+     * TODO å®šæ•°ã‚¯ãƒ©ã‚¹ã«ç§»å‹•
      */
     public static final String ERRORCODE_KEY = "errorCode";
-    
+
     /**
-     * ‹Æ–±ˆ—Œ‹‰Ê‚ğƒ‚ƒfƒ‹‚Éİ’è‚·‚é‚½‚ß‚ÌƒL[B
-     * TODO view‚Æ“¯‚ÉretËresult‚ÉC³B
+     * æ¥­å‹™å‡¦ç†çµæœã‚’ãƒ¢ãƒ‡ãƒ«ã«è¨­å®šã™ã‚‹ãŸã‚ã®ã‚­ãƒ¼ã€‚
+     * TODO viewã¨åŒæ™‚ã«retâ‡’resultã«ä¿®æ­£ã€‚
      */
     public static final String RESULT_KEY = "ret";
 }

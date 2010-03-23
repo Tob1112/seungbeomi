@@ -32,21 +32,21 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 /**
- * §Œäî•ñ‚Ì¶¬E”jŠü‚ğs‚¤ƒT[ƒuƒŒƒbƒgƒtƒBƒ‹ƒ^B
- * 
- * <p>
- * ƒŠƒNƒGƒXƒgˆ—ŠJn‚É§Œäî•ñ‚ğ¶¬‚µAƒŠƒNƒGƒXƒgˆ—I—¹‚É”jŠü‚·‚éB
- * §Œäî•ñ‚Ì¶¬ˆ—Œãƒ`ƒFƒCƒ“‚³‚ê‚½ˆ—‚ÌÀs’†‚É—áŠO‚ª”­¶‚µ‚Ä‚àA•K‚¸§Œäî•ñ‚Í”jŠü‚³‚ê‚éB
+ * åˆ¶å¾¡æƒ…å ±ã®ç”Ÿæˆãƒ»ç ´æ£„ã‚’è¡Œã†ã‚µãƒ¼ãƒ–ãƒ¬ãƒƒãƒˆãƒ•ã‚£ãƒ«ã‚¿ã€‚
  *
- * §Œäî•ñ‚ÌÚ×‚ÍARequestContextSupport‚ğQÆ‚Ì‚±‚ÆB
- * </p>
- * 
  * <p>
- * –{ƒT[ƒuƒŒƒbƒgƒtƒBƒ‹ƒ^‚ğ—˜—p‚·‚é‚É‚ÍAweb.xml‚Ìİ’è‚ª•K—v‚Å‚ ‚éB
+ * ãƒªã‚¯ã‚¨ã‚¹ãƒˆå‡¦ç†é–‹å§‹æ™‚ã«åˆ¶å¾¡æƒ…å ±ã‚’ç”Ÿæˆã—ã€ãƒªã‚¯ã‚¨ã‚¹ãƒˆå‡¦ç†çµ‚äº†æ™‚ã«ç ´æ£„ã™ã‚‹ã€‚
+ * åˆ¶å¾¡æƒ…å ±ã®ç”Ÿæˆå‡¦ç†å¾Œãƒã‚§ã‚¤ãƒ³ã•ã‚ŒãŸå‡¦ç†ã®å®Ÿè¡Œä¸­ã«ä¾‹å¤–ãŒç™ºç”Ÿã—ã¦ã‚‚ã€å¿…ãšåˆ¶å¾¡æƒ…å ±ã¯ç ´æ£„ã•ã‚Œã‚‹ã€‚
+ *
+ * åˆ¶å¾¡æƒ…å ±ã®è©³ç´°ã¯ã€RequestContextSupportã‚’å‚ç…§ã®ã“ã¨ã€‚
  * </p>
- * 
+ *
  * <p>
- * yƒfƒvƒƒCƒƒ“ƒgƒfƒBƒXƒNƒŠƒvƒ^iweb.xmlj‚Ìİ’è—áz<br>
+ * æœ¬ã‚µãƒ¼ãƒ–ãƒ¬ãƒƒãƒˆãƒ•ã‚£ãƒ«ã‚¿ã‚’åˆ©ç”¨ã™ã‚‹ã«ã¯ã€web.xmlã®è¨­å®šãŒå¿…è¦ã§ã‚ã‚‹ã€‚
+ * </p>
+ *
+ * <p>
+ * ã€ãƒ‡ãƒ—ãƒ­ã‚¤ãƒ¡ãƒ³ãƒˆãƒ‡ã‚£ã‚¹ã‚¯ãƒªãƒ—ã‚¿ï¼ˆweb.xmlï¼‰ã®è¨­å®šä¾‹ã€‘<br>
  * <code><pre>
  *  &lt;filter&gt;
  *   &lt;filter-name&gt;requestContextHandlingFilter&lt;/filter-name&gt;
@@ -60,18 +60,18 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
  *  &lt;/filter-mapping&gt;
  * </pre></code>
  * </p>
- * 
+ *
  * <p>
- * §Œäî•ñ‚Ìæ“¾‚Ì‚½‚ßADIƒRƒ“ƒeƒi‚©‚ç§Œäî•ñƒTƒ|[ƒgƒNƒ‰ƒX‚ğæ“¾‚·‚éB
- * æ“¾‚·‚éBeanID‚ÍhctxSupporth‚Æ‚·‚éB
- * ‚½‚¾‚µRequestContextSupport‚ğæ“¾‚·‚éÛ‚É—˜—p‚·‚éBeanID‚ğƒJƒXƒ^ƒ}ƒCƒY‚µ‚½‚¢ê‡‚ÍA
- * ƒtƒBƒ‹ƒ^‚Ì‰Šú‰»ƒpƒ‰ƒ[ƒ^uctxSupportBeanIDv‚É
- * RequestContextSupport‚ğæ“¾‚·‚é‚½‚ß‚ÌBean–¼‚ğ‹Lq‚·‚é‚±‚Æ‚Å’¼Úw’è‚·‚é‚±‚Æ‚ª‚Å‚«‚éB
- * ’Êí‚ÍA‰Šú‰»ƒpƒ‰ƒ[ƒ^‚Ìw’è‚Í•s—v‚Å‚ ‚éB
+ * åˆ¶å¾¡æƒ…å ±ã®å–å¾—ã®ãŸã‚ã€DIã‚³ãƒ³ãƒ†ãƒŠã‹ã‚‰åˆ¶å¾¡æƒ…å ±ã‚µãƒãƒ¼ãƒˆã‚¯ãƒ©ã‚¹ã‚’å–å¾—ã™ã‚‹ã€‚
+ * å–å¾—ã™ã‚‹BeanIDã¯â€ctxSupportâ€ã¨ã™ã‚‹ã€‚
+ * ãŸã ã—RequestContextSupportã‚’å–å¾—ã™ã‚‹éš›ã«åˆ©ç”¨ã™ã‚‹BeanIDã‚’ã‚«ã‚¹ã‚¿ãƒã‚¤ã‚ºã—ãŸã„å ´åˆã¯ã€
+ * ãƒ•ã‚£ãƒ«ã‚¿ã®åˆæœŸåŒ–ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã€ŒctxSupportBeanIDã€ã«
+ * RequestContextSupportã‚’å–å¾—ã™ã‚‹ãŸã‚ã®Beanåã‚’è¨˜è¿°ã™ã‚‹ã“ã¨ã§ç›´æ¥æŒ‡å®šã™ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚
+ * é€šå¸¸ã¯ã€åˆæœŸåŒ–ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æŒ‡å®šã¯ä¸è¦ã§ã‚ã‚‹ã€‚
  * </p>
- * 
+ *
  * <p>
- * yinitParameter‚ğ—˜—p‚µ‚½ƒfƒvƒƒCƒƒ“ƒgƒfƒBƒXƒNƒŠƒvƒ^iweb.xmlj‚Ìİ’è—áz<br>
+ * ã€initParameterã‚’åˆ©ç”¨ã—ãŸãƒ‡ãƒ—ãƒ­ã‚¤ãƒ¡ãƒ³ãƒˆãƒ‡ã‚£ã‚¹ã‚¯ãƒªãƒ—ã‚¿ï¼ˆweb.xmlï¼‰ã®è¨­å®šä¾‹ã€‘<br>
  * <code><pre>
  *  &lt;filter&gt;
  *     &lt;filter-name&gt;requestContextHandlingFilter&lt;/filter-name&gt;
@@ -89,34 +89,34 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
  *   &lt;/filter-mapping&gt;
  * </pre></code>
  * </p>
- * 
+ *
  * @see jp.terasoluna.fw.web.rich.context.support.RequestContextSupport
- * 
+ *
  */
 public class RequestContextHandlingFilter implements Filter {
-    
+
     /**
-     * DIƒRƒ“ƒeƒi‚©‚çRequestContextSupport‚ğæ“¾‚·‚éÛ‚ÌBeanID‚ÌƒfƒtƒHƒ‹ƒg’lB
+     * DIã‚³ãƒ³ãƒ†ãƒŠã‹ã‚‰RequestContextSupportã‚’å–å¾—ã™ã‚‹éš›ã®BeanIDã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã€‚
      */
     private static final String DEFAULT_CTXSUPPORT_BEANID = "ctxSupport";
-    
+
     /**
-     * ‰Šú‰»ƒpƒ‰ƒ[ƒ^‚©‚çRequestContextSupport‚ÌBeanID‚ğæ“¾‚·‚é‚½‚ß‚ÌƒL[B
+     * åˆæœŸåŒ–ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‹ã‚‰RequestContextSupportã®BeanIDã‚’å–å¾—ã™ã‚‹ãŸã‚ã®ã‚­ãƒ¼ã€‚
      */
     private static final String INITPARAM_KEY_CTXSUPPORT_BEANID
                                                      = "ctxSupportBeanID";
-    
+
     /**
-     * RequestContextSupportB
+     * RequestContextSupportã€‚
      */
     private RequestContextSupport ctxSupport = null;
 
     /**
-     * ƒtƒBƒ‹ƒ^‚Ì‰Šú‰»‚ğs‚¤B
-     * RequestContextSupport‚ğDIƒRƒ“ƒeƒi‚æ‚èæ“¾‚·‚éB
-     * 
-     * @param config ƒtƒBƒ‹ƒ^İ’è
-     * @throws ServletException ƒT[ƒuƒŒƒbƒg—áŠO
+     * ãƒ•ã‚£ãƒ«ã‚¿ã®åˆæœŸåŒ–ã‚’è¡Œã†ã€‚
+     * RequestContextSupportã‚’DIã‚³ãƒ³ãƒ†ãƒŠã‚ˆã‚Šå–å¾—ã™ã‚‹ã€‚
+     *
+     * @param config ãƒ•ã‚£ãƒ«ã‚¿è¨­å®š
+     * @throws ServletException ã‚µãƒ¼ãƒ–ãƒ¬ãƒƒãƒˆä¾‹å¤–
      */
     public void init(FilterConfig config) throws ServletException {
         String ctxSupportBeanID
@@ -124,8 +124,8 @@ public class RequestContextHandlingFilter implements Filter {
         if (ctxSupportBeanID == null) {
             ctxSupportBeanID = DEFAULT_CTXSUPPORT_BEANID;
         }
-        // ƒRƒ“ƒeƒLƒXƒg‚Ìæ“¾
-        ApplicationContext context 
+        // ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã®å–å¾—
+        ApplicationContext context
             = WebApplicationContextUtils.getWebApplicationContext(
                 config.getServletContext());
         this.ctxSupport
@@ -133,30 +133,30 @@ public class RequestContextHandlingFilter implements Filter {
     }
 
     /**
-     * ƒtƒBƒ‹ƒ^ˆ—‚·‚éB
-     * §Œäî•ñ‚Ì“o˜^E”jŠü‚ğs‚¤B
-     * 
-     * @param request HTTPƒŠƒNƒGƒXƒg
-     * @param response HTTPƒŒƒXƒ|ƒ“ƒX
-     * @param chain ƒ`ƒFƒCƒ“‚³‚ê‚½ƒtƒBƒ‹ƒ^
-     * @throws IOException “üo—Í—áŠO
-     * @throws ServletException ƒT[ƒuƒŒƒbƒg—áŠO
+     * ãƒ•ã‚£ãƒ«ã‚¿å‡¦ç†ã™ã‚‹ã€‚
+     * åˆ¶å¾¡æƒ…å ±ã®ç™»éŒ²ãƒ»ç ´æ£„ã‚’è¡Œã†ã€‚
+     *
+     * @param request HTTPãƒªã‚¯ã‚¨ã‚¹ãƒˆ
+     * @param response HTTPãƒ¬ã‚¹ãƒãƒ³ã‚¹
+     * @param chain ãƒã‚§ã‚¤ãƒ³ã•ã‚ŒãŸãƒ•ã‚£ãƒ«ã‚¿
+     * @throws IOException å…¥å‡ºåŠ›ä¾‹å¤–
+     * @throws ServletException ã‚µãƒ¼ãƒ–ãƒ¬ãƒƒãƒˆä¾‹å¤–
      */
     public void doFilter(ServletRequest request, ServletResponse response,
             FilterChain chain) throws IOException, ServletException {
         try {
-            // ƒRƒ“ƒeƒLƒXƒg‚Ì¶¬
+            // ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã®ç”Ÿæˆ
             ctxSupport.generateContext((HttpServletRequest) request);
             chain.doFilter(request, response);
         } finally {
-            // ƒRƒ“ƒeƒXƒg‚Ìíœ
+            // ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã®å‰Šé™¤
             ctxSupport.destroyContext();
         }
     }
 
     /**
-     * ƒtƒBƒ‹ƒ^‚Ì”jŠüˆ—‚ğs‚¤B
-     * ‚È‚É‚à‚µ‚È‚¢B
+     * ãƒ•ã‚£ãƒ«ã‚¿ã®ç ´æ£„å‡¦ç†ã‚’è¡Œã†ã€‚
+     * ãªã«ã‚‚ã—ãªã„ã€‚
      */
     public void destroy() {
     }

@@ -19,24 +19,24 @@ package jp.terasoluna.fw.oxm.mapper.castor.exception;
 import jp.terasoluna.fw.oxm.exception.OXMappingException;
 
 /**
- * Castor‚Ìƒ}ƒbƒsƒ“ƒO’è‹`ƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İ‚É¸”s‚µ‚½ê‡‚ÉAƒXƒ[‚³‚ê‚éƒoƒCƒ“ƒhˆ——áŠOB
- * 
+ * Castorã®ãƒãƒƒãƒ”ãƒ³ã‚°å®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿ã«å¤±æ•—ã—ãŸå ´åˆã«ã€ã‚¹ãƒ­ãƒ¼ã•ã‚Œã‚‹ãƒã‚¤ãƒ³ãƒ‰å‡¦ç†ä¾‹å¤–ã€‚
+ *
  * <p>
- * OXMappingException‚ÌƒTƒuƒNƒ‰ƒX‚Æ‚µ‚Ä’ñ‹Ÿ‚µ‚Ä‚¢‚éB
+ * OXMappingExceptionã®ã‚µãƒ–ã‚¯ãƒ©ã‚¹ã¨ã—ã¦æä¾›ã—ã¦ã„ã‚‹ã€‚
  * </p>
- * 
+ *
  */
 public class CastorMappingFileIOException extends OXMappingException {
 
     /**
-     * ƒVƒŠƒAƒ‹ƒo[ƒWƒ‡ƒ“IDB
+     * ã‚·ãƒªã‚¢ãƒ«ãƒãƒ¼ã‚¸ãƒ§ãƒ³IDã€‚
      */
     private static final long serialVersionUID = 856879408423123020L;
 
     /**
-     * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-     * 
-     * @param cause —áŠO
+     * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+     *
+     * @param cause ä¾‹å¤–
      */
     public CastorMappingFileIOException(Throwable cause) {
         super(cause);

@@ -19,19 +19,19 @@ package jp.terasoluna.fw.web.rich.exception;
 import javax.servlet.ServletException;
 
 /**
- * ForbiddenURIFilter‚ÅA
- * ‹–‰Â‚³‚ê‚È‚¢URI‚É‘Î‚µ‚ÄƒŠƒNƒGƒXƒg‚³‚ê‚½‚Æ”»’è‚³‚ê‚½
- * ê‡‚ÉAForbiddenURIFilter‚©‚çƒXƒ[‚³‚ê‚éƒNƒ‰ƒXB
- * 
- * Ú×‚ÍAForbiddenURIFilter‚ğQÆ‚Ì‚±‚ÆB
- * 
+ * ForbiddenURIFilterã§ã€
+ * è¨±å¯ã•ã‚Œãªã„URIã«å¯¾ã—ã¦ãƒªã‚¯ã‚¨ã‚¹ãƒˆã•ã‚ŒãŸã¨åˆ¤å®šã•ã‚ŒãŸ
+ * å ´åˆã«ã€ForbiddenURIFilterã‹ã‚‰ã‚¹ãƒ­ãƒ¼ã•ã‚Œã‚‹ã‚¯ãƒ©ã‚¹ã€‚
+ *
+ * è©³ç´°ã¯ã€ForbiddenURIFilterã‚’å‚ç…§ã®ã“ã¨ã€‚
+ *
  * @see jp.terasoluna.fw.web.rich.ForbiddenURIFilter
- * 
+ *
  *
  */
 public class ForbiddenURIException extends ServletException {
     /**
-     * ƒVƒŠƒAƒ‹ƒo[ƒWƒ‡ƒ“IDB
+     * ã‚·ãƒªã‚¢ãƒ«ãƒãƒ¼ã‚¸ãƒ§ãƒ³IDã€‚
      */
     private static final long serialVersionUID = -369710077653519791L;
 }

@@ -23,123 +23,123 @@ import jp.terasoluna.fw.web.rich.context.RequestContextManager;
 import jp.terasoluna.fw.web.rich.context.exception.IllegalContextPropertyClassTypeException;
 
 /**
- * §Œäî•ñ‚ğˆµ‚¤‚½‚ß‚Ì•â•ƒƒWƒbƒNƒCƒ“ƒ^ƒtƒF[ƒX‚ğŒp³‚µ‚½’ŠÛƒNƒ‰ƒXB
- * 
+ * åˆ¶å¾¡æƒ…å ±ã‚’æ‰±ã†ãŸã‚ã®è£œåŠ©ãƒ­ã‚¸ãƒƒã‚¯ã‚¤ãƒ³ã‚¿ãƒ•ã‚§ãƒ¼ã‚¹ã‚’ç¶™æ‰¿ã—ãŸæŠ½è±¡ã‚¯ãƒ©ã‚¹ã€‚
+ *
  * <p>
- * ‹Æ–±ƒRƒ“ƒeƒLƒXƒgƒ}ƒl[ƒWƒƒ‚æ‚è‹Æ–±ƒRƒ“ƒeƒLƒXƒg‚ğæ“¾‚µA•K—v‚Èî•ñ‚ğ•Ô‹p‚·‚éB
+ * æ¥­å‹™ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ã‚ˆã‚Šæ¥­å‹™ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã‚’å–å¾—ã—ã€å¿…è¦ãªæƒ…å ±ã‚’è¿”å´ã™ã‚‹ã€‚
  * </p>
- * 
+ *
  * <p>
- * RequestContext, RequestContextManager‚ğ—˜—p‚µ‚Ä
- * §Œäî•ñ‚ğˆµ‚¤À‘•‚ğ’ñ‹Ÿ‚µ‚Ä‚¢‚éB
- * Ú×‚ÍARequestContext, RequestContextManager‚ğQÆ‚·‚é‚±‚ÆB
+ * RequestContext, RequestContextManagerã‚’åˆ©ç”¨ã—ã¦
+ * åˆ¶å¾¡æƒ…å ±ã‚’æ‰±ã†å®Ÿè£…ã‚’æä¾›ã—ã¦ã„ã‚‹ã€‚
+ * è©³ç´°ã¯ã€RequestContext, RequestContextManagerã‚’å‚ç…§ã™ã‚‹ã“ã¨ã€‚
  * </P>
- * 
+ *
  * <p>
- * §Œäî•ñ‚Éİ’è‚·‚é’l‚ÍHTTPƒŠƒNƒGƒXƒg‚©‚çæ“¾‚·‚éB
- * HTTPƒŠƒNƒGƒXƒg‚©‚çæ“¾‚·‚é€–Ú‚ÍAƒVƒXƒeƒ€‚Ì—vŒ‚É‚æ‚Á‚Ä•Ï‰»‚·‚é‚½‚ßA
- * ƒŠƒNƒGƒXƒg–¼‚ğƒŠƒNƒGƒXƒgƒwƒbƒ_ˆÈŠO‚Ì‰ÓŠ‚©‚çæ“¾‚·‚éê‡‚âA
- * ‹Æ–±ƒvƒƒpƒeƒB‚ğ•Û‚µ‚½‚¢ê‡“™‚ÍA
- * •K—v‚É‰‚¶‚ÄƒVƒXƒeƒ€‚²‚Æ‚É–{ƒNƒ‰ƒX‚ÌÀ‘•ƒNƒ‰ƒX‚ğì¬‚µA
- * §Œäî•ñ‰Šú‰»‚Ì’ŠÛƒƒ\ƒbƒh‚ğÀ‘•‚·‚é‚±‚ÆB
+ * åˆ¶å¾¡æƒ…å ±ã«è¨­å®šã™ã‚‹å€¤ã¯HTTPãƒªã‚¯ã‚¨ã‚¹ãƒˆã‹ã‚‰å–å¾—ã™ã‚‹ã€‚
+ * HTTPãƒªã‚¯ã‚¨ã‚¹ãƒˆã‹ã‚‰å–å¾—ã™ã‚‹é …ç›®ã¯ã€ã‚·ã‚¹ãƒ†ãƒ ã®è¦ä»¶ã«ã‚ˆã£ã¦å¤‰åŒ–ã™ã‚‹ãŸã‚ã€
+ * ãƒªã‚¯ã‚¨ã‚¹ãƒˆåã‚’ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€ä»¥å¤–ã®ç®‡æ‰€ã‹ã‚‰å–å¾—ã™ã‚‹å ´åˆã‚„ã€
+ * æ¥­å‹™ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚’ä¿æŒã—ãŸã„å ´åˆç­‰ã¯ã€
+ * å¿…è¦ã«å¿œã˜ã¦ã‚·ã‚¹ãƒ†ãƒ ã”ã¨ã«æœ¬ã‚¯ãƒ©ã‚¹ã®å®Ÿè£…ã‚¯ãƒ©ã‚¹ã‚’ä½œæˆã—ã€
+ * åˆ¶å¾¡æƒ…å ±åˆæœŸåŒ–ã®æŠ½è±¡ãƒ¡ã‚½ãƒƒãƒ‰ã‚’å®Ÿè£…ã™ã‚‹ã“ã¨ã€‚
  * </p>
- * 
+ *
  * <p>
- * ƒVƒXƒeƒ€‚Æ‚µ‚Ä“Á‚Éã‹L‚Ì‚æ‚¤‚È—vŒ‚ª‚È‚¢ê‡‚ÍAƒfƒtƒHƒ‹ƒgÀ‘•‚Å‚ ‚éA
- * DefaultRequestContextSupportImpl‚ğ—˜—p‚·‚é‚±‚ÆB
+ * ã‚·ã‚¹ãƒ†ãƒ ã¨ã—ã¦ç‰¹ã«ä¸Šè¨˜ã®ã‚ˆã†ãªè¦ä»¶ãŒãªã„å ´åˆã¯ã€ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå®Ÿè£…ã§ã‚ã‚‹ã€
+ * DefaultRequestContextSupportImplã‚’åˆ©ç”¨ã™ã‚‹ã“ã¨ã€‚
  * </p>
- * 
+ *
  * <p>
- * –{ƒNƒ‰ƒX‚ğ—˜—p‚·‚éê‡AÀ‘•ƒNƒ‰ƒX‚ğBean’è‹`‚·‚é‚±‚ÆB
- * ’è‹`—á‚ÍAÀ‘•ƒNƒ‰ƒX‚ğQÆ‚·‚é‚±‚ÆB
- * ‚Ü‚½AˆÈ‰º‚ÌƒvƒƒpƒeƒB‚ğ•K‚¸İ’è‚·‚é‚±‚ÆB
+ * æœ¬ã‚¯ãƒ©ã‚¹ã‚’åˆ©ç”¨ã™ã‚‹å ´åˆã€å®Ÿè£…ã‚¯ãƒ©ã‚¹ã‚’Beanå®šç¾©ã™ã‚‹ã“ã¨ã€‚
+ * å®šç¾©ä¾‹ã¯ã€å®Ÿè£…ã‚¯ãƒ©ã‚¹ã‚’å‚ç…§ã™ã‚‹ã“ã¨ã€‚
+ * ã¾ãŸã€ä»¥ä¸‹ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚’å¿…ãšè¨­å®šã™ã‚‹ã“ã¨ã€‚
  * </p>
- * 
+ *
  * @see jp.terasoluna.fw.web.rich.context.RequestContext
  * @see jp.terasoluna.fw.web.rich.context.RequestContextManager
- * 
+ *
  */
 public abstract class AbstractRequestContextSupport
         implements RequestContextSupport {
 
     /**
-     * Às‚·‚é‹Æ–±ƒƒWƒbƒN‚ğ¯•Ê‚·‚éƒŠƒNƒGƒXƒg–¼‚ğæ“¾‚·‚éB
+     * å®Ÿè¡Œã™ã‚‹æ¥­å‹™ãƒ­ã‚¸ãƒƒã‚¯ã‚’è­˜åˆ¥ã™ã‚‹ãƒªã‚¯ã‚¨ã‚¹ãƒˆåã‚’å–å¾—ã™ã‚‹ã€‚
      *
-     * @return ƒŠƒNƒGƒXƒg–¼
+     * @return ãƒªã‚¯ã‚¨ã‚¹ãƒˆå
      */
     public String getRequestName() {
         return getRequestContext().getRequestName();
     }
 
     /**
-     * ‹Æ–±ƒvƒƒpƒeƒB‚ğæ“¾‚·‚éB
-     * ‹Æ–±‚²‚Æ‚É“Æ©‚É•Û‚µ‚½‚¢î•ñ‚ÍA‚±‚Ìƒƒ\ƒbƒh‚Åæ“¾‚·‚éB
+     * æ¥­å‹™ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚’å–å¾—ã™ã‚‹ã€‚
+     * æ¥­å‹™ã”ã¨ã«ç‹¬è‡ªã«ä¿æŒã—ãŸã„æƒ…å ±ã¯ã€ã“ã®ãƒ¡ã‚½ãƒƒãƒ‰ã§å–å¾—ã™ã‚‹ã€‚
      *
-     * @param key ƒL[
-     * @return ‹Æ–±ƒvƒƒpƒeƒB
+     * @param key ã‚­ãƒ¼
+     * @return æ¥­å‹™ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
      */
     public Object getProperty(String key) {
         return getRequestContext().getProperty(key);
     }
-    
+
     /**
-     * •Ô‹p’l‚ÌŒ^‚ğw’è‚µ‚ÄA‹Æ–±ƒvƒƒpƒeƒB‚ğæ“¾‚·‚éB
-     * ‹Æ–±‚²‚Æ‚É“Æ©‚É•Û‚µ‚½‚¢î•ñ‚ÍA‚±‚Ìƒƒ\ƒbƒh‚Åæ“¾‚·‚éB
-     * æ“¾‚·‚é‹Æ–±ƒvƒƒpƒeƒB‚ÌŒ^‚Æw’è‚³‚ê‚½Œ^‚ªˆá‚Á‚½ê‡‚ÍA
-     * Às—áŠO‚ğ”­¶‚³‚¹‚éB
+     * è¿”å´å€¤ã®å‹ã‚’æŒ‡å®šã—ã¦ã€æ¥­å‹™ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚’å–å¾—ã™ã‚‹ã€‚
+     * æ¥­å‹™ã”ã¨ã«ç‹¬è‡ªã«ä¿æŒã—ãŸã„æƒ…å ±ã¯ã€ã“ã®ãƒ¡ã‚½ãƒƒãƒ‰ã§å–å¾—ã™ã‚‹ã€‚
+     * å–å¾—ã™ã‚‹æ¥­å‹™ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã®å‹ã¨æŒ‡å®šã•ã‚ŒãŸå‹ãŒé•ã£ãŸå ´åˆã¯ã€
+     * å®Ÿè¡Œæ™‚ä¾‹å¤–ã‚’ç™ºç”Ÿã•ã›ã‚‹ã€‚
      *
-     * @param key ƒL[
-     * @param <E> •Ô‹p’l‚ÌŒ^
-     * @return ‹Æ–±ƒvƒƒpƒeƒB
+     * @param key ã‚­ãƒ¼
+     * @param <E> è¿”å´å€¤ã®å‹
+     * @return æ¥­å‹™ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
      */
     public <E> E getProperty(String key, Class<E> clazz) {
         E propertyObject = null;
-        
-        if (clazz == null) {            
-        	// Œ^ƒpƒ‰ƒ[ƒ^‚ªw’è‚³‚ê‚Ä‚¢‚È‚¢
+
+        if (clazz == null) {
+        	// å‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒæŒ‡å®šã•ã‚Œã¦ã„ãªã„
             String message = "Must not use null for clazz of an argument.";
         	throw new IllegalArgumentException(message);
         }
-        
+
         try {
         	propertyObject = clazz.cast(getProperty(key));
         } catch (ClassCastException e) {
             throw new IllegalContextPropertyClassTypeException(e);
         }
-    	
+
         return propertyObject;
     }
-    
+
     /**
-     * StringŒ^‚Ì‹Æ–±ƒvƒƒpƒeƒB‚ğæ“¾‚·‚éB
-     * ‹Æ–±‚²‚Æ‚É“Æ©‚É•Û‚µ‚½‚¢î•ñ‚ÍA‚±‚Ìƒƒ\ƒbƒh‚Åæ“¾‚·‚éB
+     * Stringå‹ã®æ¥­å‹™ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚’å–å¾—ã™ã‚‹ã€‚
+     * æ¥­å‹™ã”ã¨ã«ç‹¬è‡ªã«ä¿æŒã—ãŸã„æƒ…å ±ã¯ã€ã“ã®ãƒ¡ã‚½ãƒƒãƒ‰ã§å–å¾—ã™ã‚‹ã€‚
      *
-     * @param key ƒL[
-     * @return ‹Æ–±ƒvƒƒpƒeƒB
+     * @param key ã‚­ãƒ¼
+     * @return æ¥­å‹™ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
      */
     public String getPropertyString(String key) {
         return getProperty(key,String.class);
     }
-    
+
     /**
-     * ‹Æ–±ƒRƒ“ƒeƒLƒXƒg‚ğ¶¬‚·‚éB
-     * @param request HTTPƒŠƒNƒGƒXƒg
+     * æ¥­å‹™ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã‚’ç”Ÿæˆã™ã‚‹ã€‚
+     * @param request HTTPãƒªã‚¯ã‚¨ã‚¹ãƒˆ
      */
     public void generateContext(HttpServletRequest request) {
         RequestContext ctx = doGenerateContext(request);
         RequestContextManager.bindRequestContext(ctx);
     }
-    
+
     /**
-     * §Œäî•ñ‚ğ¶¬E‰Šú‰»‚µ‚Ä•Ô‹p‚·‚éB
-     * @param request HTTPƒŠƒNƒGƒXƒg
-     * @return ¶¬‚µ‚½‹ó‚Ì§Œäî•ñB
+     * åˆ¶å¾¡æƒ…å ±ã‚’ç”Ÿæˆãƒ»åˆæœŸåŒ–ã—ã¦è¿”å´ã™ã‚‹ã€‚
+     * @param request HTTPãƒªã‚¯ã‚¨ã‚¹ãƒˆ
+     * @return ç”Ÿæˆã—ãŸç©ºã®åˆ¶å¾¡æƒ…å ±ã€‚
      */
     protected abstract RequestContext doGenerateContext(
                                     HttpServletRequest request);
-    
+
     /**
-     * §Œäî•ñ‚ğ”jŠü‚·‚éB
+     * åˆ¶å¾¡æƒ…å ±ã‚’ç ´æ£„ã™ã‚‹ã€‚
      *
      */
     public void destroyContext() {
@@ -147,10 +147,10 @@ public abstract class AbstractRequestContextSupport
             RequestContextManager.unbindRequestContext();
         }
     }
-    
+
     /**
-     * §Œäî•ñ‚ğƒ}ƒl[ƒWƒƒ‚æ‚èæ“¾‚·‚éB
-     * @return §Œäî•ñ
+     * åˆ¶å¾¡æƒ…å ±ã‚’ãƒãƒãƒ¼ã‚¸ãƒ£ã‚ˆã‚Šå–å¾—ã™ã‚‹ã€‚
+     * @return åˆ¶å¾¡æƒ…å ±
      */
     protected RequestContext getRequestContext() {
         return RequestContextManager.getRequestContext();

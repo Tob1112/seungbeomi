@@ -17,23 +17,23 @@
 package jp.terasoluna.fw.web.rich.springmvc.bind.creator.exception;
 
 /**
- * ƒoƒCƒ“ƒh—áŠOƒNƒ‰ƒX
- * 
+ * ãƒã‚¤ãƒ³ãƒ‰ä¾‹å¤–ã‚¯ãƒ©ã‚¹
+ *
  * <p>
- * ƒŠƒNƒGƒXƒgƒXƒgƒŠ[ƒ€‚Ì“Ç‚İ‚İ‚É¸”s‚µ‚½ê‡‚ÉA–{—áŠO‚ªƒXƒ[‚³‚ê‚éB
+ * ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚¹ãƒˆãƒªãƒ¼ãƒ ã®èª­ã¿è¾¼ã¿ã«å¤±æ•—ã—ãŸå ´åˆã«ã€æœ¬ä¾‹å¤–ãŒã‚¹ãƒ­ãƒ¼ã•ã‚Œã‚‹ã€‚
  * </p>
- * 
+ *
  */
 public class XMLRequestIOException extends RuntimeException {
     /**
-     * ƒVƒŠƒAƒ‹ƒo[ƒWƒ‡ƒ“IDB
+     * ã‚·ãƒªã‚¢ãƒ«ãƒãƒ¼ã‚¸ãƒ§ãƒ³IDã€‚
      */
     private static final long serialVersionUID = -3630321738490293561L;
 
     /**
-     * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-     * 
-     * @param cause —áŠO
+     * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+     *
+     * @param cause ä¾‹å¤–
      */
     public XMLRequestIOException(Throwable cause) {
         super(cause);

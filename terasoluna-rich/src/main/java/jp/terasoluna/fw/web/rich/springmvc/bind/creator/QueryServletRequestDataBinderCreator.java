@@ -22,46 +22,46 @@ import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.multipart.support.ByteArrayMultipartFileEditor;
 
 /**
- * ƒNƒGƒŠŒ`®‚ÌƒŠƒNƒGƒXƒgƒf[ƒ^‚É‘Î‰‚µ‚½ServletRequestDataBinderÀ‘•ƒNƒ‰ƒX‚ğ•Ô‹p‚·‚éB
- * 
+ * ã‚¯ã‚¨ãƒªå½¢å¼ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã«å¯¾å¿œã—ãŸServletRequestDataBinderå®Ÿè£…ã‚¯ãƒ©ã‚¹ã‚’è¿”å´ã™ã‚‹ã€‚
+ *
  * <p>
- * Spring‚É’è‹`‚³‚ê‚Ä‚¢‚éServletRequestDataBinder‚ğÀ‘•ƒNƒ‰ƒX‚Æ‚µ‚Ä•Ô‹p‚·‚éB
+ * Springã«å®šç¾©ã•ã‚Œã¦ã„ã‚‹ServletRequestDataBinderã‚’å®Ÿè£…ã‚¯ãƒ©ã‚¹ã¨ã—ã¦è¿”å´ã™ã‚‹ã€‚
  * </p>
- * 
+ *
  * <p>
- * ƒ}ƒ‹ƒ`ƒp[ƒgŒ`®‚Å’è‹`‚³‚ê‚½ƒŠƒNƒGƒXƒgƒf[ƒ^‚É‚à‘Î‰‚µ‚Ä‚¢‚éB
+ * ãƒãƒ«ãƒãƒ‘ãƒ¼ãƒˆå½¢å¼ã§å®šç¾©ã•ã‚ŒãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã«ã‚‚å¯¾å¿œã—ã¦ã„ã‚‹ã€‚
  * </p>
- * 
+ *
  * <p>
- * –{ƒNƒ‰ƒX‚Ìg—p•û–@‚ÍA{@link jp.terasoluna.fw.web.rich.springmvc.controller.TerasolunaController}‚ğQÆ‚·‚é‚±‚ÆB
+ * æœ¬ã‚¯ãƒ©ã‚¹ã®ä½¿ç”¨æ–¹æ³•ã¯ã€{@link jp.terasoluna.fw.web.rich.springmvc.controller.TerasolunaController}ã‚’å‚ç…§ã™ã‚‹ã“ã¨ã€‚
  * </p>
- * 
+ *
  * @see jp.terasoluna.fw.web.rich.springmvc.controller.TerasolunaController
  * @see org.springframework.web.bind.ServletRequestDataBinder
- * 
+ *
  */
 public class QueryServletRequestDataBinderCreator implements
         ServletRequestDataBinderCreator {
 
     /**
-     * ƒNƒGƒŠŒ`®‚ÌƒŠƒNƒGƒXƒgƒf[ƒ^‚É‘Î‰‚µ‚½ServletRequestDataBinderÀ‘•ƒNƒ‰ƒX‚ğ•Ô‹p‚·‚éB
-     * 
+     * ã‚¯ã‚¨ãƒªå½¢å¼ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã«å¯¾å¿œã—ãŸServletRequestDataBinderå®Ÿè£…ã‚¯ãƒ©ã‚¹ã‚’è¿”å´ã™ã‚‹ã€‚
+     *
      * <p>
-     * ƒ}ƒ‹ƒ`ƒp[ƒgŒ`®‚ÌƒŠƒNƒGƒXƒgƒf[ƒ^‚ğƒoƒCƒg”z—ñ‚É•ÏŠ·‚·‚é‚±‚Æ‚ğ‰Â”\‚É‚·‚éƒvƒƒpƒeƒBƒGƒfƒBƒ^‚ğİ’è‚·‚éB
+     * ãƒãƒ«ãƒãƒ‘ãƒ¼ãƒˆå½¢å¼ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’ãƒã‚¤ãƒˆé…åˆ—ã«å¤‰æ›ã™ã‚‹ã“ã¨ã‚’å¯èƒ½ã«ã™ã‚‹ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚¨ãƒ‡ã‚£ã‚¿ã‚’è¨­å®šã™ã‚‹ã€‚
      * </p>
-     * 
-     * @param request ƒNƒGƒŠŒ`®‚ÌƒŠƒNƒGƒXƒg
-     * @param command ƒRƒ}ƒ“ƒhƒIƒuƒWƒFƒNƒg
-     * @param requestName ƒŠƒNƒGƒXƒg–¼
-     * @return Spring‚É’è‹`‚³‚ê‚Ä‚¢‚éServletRequestDataBinder
+     *
+     * @param request ã‚¯ã‚¨ãƒªå½¢å¼ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
+     * @param command ã‚³ãƒãƒ³ãƒ‰ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+     * @param requestName ãƒªã‚¯ã‚¨ã‚¹ãƒˆå
+     * @return Springã«å®šç¾©ã•ã‚Œã¦ã„ã‚‹ServletRequestDataBinder
      */
     public ServletRequestDataBinder create(HttpServletRequest request,
             Object command, String requestName) {
-        // ƒNƒGƒŠŒ`®‚ÌƒŠƒNƒGƒXƒgƒf[ƒ^‚É‘Î‰‚µ‚½ServletRequestDataBinderÀ‘•ƒNƒ‰ƒX‚ğ¶¬‚·‚éB
+        // ã‚¯ã‚¨ãƒªå½¢å¼ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã«å¯¾å¿œã—ãŸServletRequestDataBinderå®Ÿè£…ã‚¯ãƒ©ã‚¹ã‚’ç”Ÿæˆã™ã‚‹ã€‚
         ServletRequestDataBinder binder = new ServletRequestDataBinder(command,
                 requestName);
-        // ServletRequestDataBinderÀ‘•ƒNƒ‰ƒX‚ÉA
-        // ƒ}ƒ‹ƒ`ƒp[ƒgŒ`®‚ÌƒŠƒNƒGƒXƒgƒf[ƒ^‚ğƒoƒCƒg”z—ñ‚É•ÏŠ·‚·‚é‚±‚Æ‚ğ‰Â”\‚É‚·‚éƒvƒƒpƒeƒBƒGƒfƒBƒ^‚ğ¶¬‚·‚é
+        // ServletRequestDataBinderå®Ÿè£…ã‚¯ãƒ©ã‚¹ã«ã€
+        // ãƒãƒ«ãƒãƒ‘ãƒ¼ãƒˆå½¢å¼ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’ãƒã‚¤ãƒˆé…åˆ—ã«å¤‰æ›ã™ã‚‹ã“ã¨ã‚’å¯èƒ½ã«ã™ã‚‹ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚¨ãƒ‡ã‚£ã‚¿ã‚’ç”Ÿæˆã™ã‚‹
         binder.registerCustomEditor(byte[].class,
                 new ByteArrayMultipartFileEditor());
         return binder;

@@ -21,31 +21,31 @@ import org.springframework.web.servlet.view.velocity.VelocityView;
 import org.springframework.web.servlet.view.velocity.VelocityViewResolver;
 
 /**
- * ƒGƒ“ƒR[ƒfƒBƒ“ƒOw’è‚ª‰Â”\‚ÈVelocityViewResolverŠg’£ƒNƒ‰ƒXB
- * 
- * Spring‚ÌVelocityViewResolver‚ğŠg’£‚µA
- * ¶¬‚·‚éView‚ÌƒGƒ“ƒR[ƒfƒBƒ“ƒOw’è‚ğ‰Â”\‚É‚µ‚Ä‚¢‚éB
- * 
+ * ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°æŒ‡å®šãŒå¯èƒ½ãªVelocityViewResolveræ‹¡å¼µã‚¯ãƒ©ã‚¹ã€‚
+ *
+ * Springã®VelocityViewResolverã‚’æ‹¡å¼µã—ã€
+ * ç”Ÿæˆã™ã‚‹Viewã®ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°æŒ‡å®šã‚’å¯èƒ½ã«ã—ã¦ã„ã‚‹ã€‚
+ *
  * <p>
- * VelocityViewResolver‚Åİ’è‰Â”\‚ÈƒvƒƒpƒeƒB‚É‰Á‚¦A
- * ˆÈ‰º‚ÌƒvƒƒpƒeƒB‚ğİ’è‚·‚é‚±‚ÆB
+ * VelocityViewResolverã§è¨­å®šå¯èƒ½ãªãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã«åŠ ãˆã€
+ * ä»¥ä¸‹ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚’è¨­å®šã™ã‚‹ã“ã¨ã€‚
  * </p>
- * 
+ *
  * <p>
  *   <table border="1" CELLPADDING="8">
- *     <th>‘®«–¼</th>
- *     <th>à–¾</th>
- *  
+ *     <th>å±æ€§å</th>
+ *     <th>èª¬æ˜</th>
+ *
  *     <tr>
  *       <td align=center><b>encoding</b></td>
- *       <td>View‚ÌƒGƒ“ƒR[ƒfƒBƒ“ƒOİ’è</td>
+ *       <td>Viewã®ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¨­å®š</td>
  *     </tr>
  *  </table>
- * 
+ *
  * </p>
- *  yBean’è‹`ƒtƒ@ƒCƒ‹‚Ìİ’è—áz<br>
+ *  ã€Beanå®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã®è¨­å®šä¾‹ã€‘<br>
  * <code><pre>
- *   &lt;bean id="viewResolver" 
+ *   &lt;bean id="viewResolver"
  *           class="jp.terasoluna.fw.web.rich.springmvc.servlet.view.velocity.VelocityViewResolverEx"&gt;
  *       &lt;property name="cache"&gt;&lt;value&gt;true&lt;/value&gt;&lt;/property&gt;
  *       &lt;property name="requestContextAttribute" value="rc"/&gt;
@@ -56,38 +56,38 @@ import org.springframework.web.servlet.view.velocity.VelocityViewResolver;
  *       &lt;property name="encoding"&gt;&lt;value&gt;UTF-8&lt;/value&gt;&lt;/property&gt;
  *   &lt;/bean&gt;
  * </pre></code>
- * 
+ *
  */
 public class VelocityViewResolverEx extends VelocityViewResolver {
-    
+
     /**
-     * View‚ÌƒGƒ“ƒR[ƒfƒBƒ“ƒOB
-     */ 
+     * Viewã®ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ã€‚
+     */
     private String encoding = null;
-    
+
     /**
-     * View‚ÌƒGƒ“ƒR[ƒfƒBƒ“ƒO‚ğæ“¾‚·‚éB
-     * @return View‚ÌƒGƒ“ƒR[ƒfƒBƒ“ƒOB
+     * Viewã®ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ã‚’å–å¾—ã™ã‚‹ã€‚
+     * @return Viewã®ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ã€‚
      */
     public String getEncoding() {
         return encoding;
     }
 
     /**
-     * View‚ÌƒGƒ“ƒR[ƒfƒBƒ“ƒO‚ğİ’è‚·‚éB
-     * @param encoding View‚ÌƒGƒ“ƒR[ƒfƒBƒ“ƒOB
+     * Viewã®ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ã‚’è¨­å®šã™ã‚‹ã€‚
+     * @param encoding Viewã®ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ã€‚
      */
     public void setEncoding(String encoding) {
         this.encoding = encoding;
     }
 
     /**
-     * ViewƒCƒ“ƒXƒ^ƒ“ƒX‚ğì¬‚·‚éB
-     * ¶¬‚µ‚½ViewƒCƒ“ƒXƒ^ƒ“ƒX‚ÉƒGƒ“ƒR[ƒfƒBƒ“ƒO‚Ìİ’è‚ğs‚¤B
-     * 
-     * @param viewName view–¼
-     * @return ViewƒCƒ“ƒXƒ^ƒ“ƒX
-     * @throws Exception —áŠO
+     * Viewã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’ä½œæˆã™ã‚‹ã€‚
+     * ç”Ÿæˆã—ãŸViewã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã«ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ã®è¨­å®šã‚’è¡Œã†ã€‚
+     *
+     * @param viewName viewå
+     * @return Viewã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹
+     * @throws Exception ä¾‹å¤–
      */
     @Override
     protected AbstractUrlBasedView buildView(String viewName)

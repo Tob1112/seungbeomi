@@ -47,52 +47,52 @@ import org.xml.sax.SAXNotRecognizedException;
 import org.xml.sax.SAXNotSupportedException;
 
 /**
- * XMLƒf[ƒ^‚ÌŒ`®ƒ`ƒFƒbƒN‚ğs‚¤SchemaValidatorÀ‘•ƒNƒ‰ƒXB
+ * XMLãƒ‡ãƒ¼ã‚¿ã®å½¢å¼ãƒã‚§ãƒƒã‚¯ã‚’è¡Œã†SchemaValidatorå®Ÿè£…ã‚¯ãƒ©ã‚¹ã€‚
  * <p>
- * Œ`®ƒ`ƒFƒbƒN‚É‚ÍƒXƒL[ƒ}’è‹`ƒtƒ@ƒCƒ‹‚ğg—p‚·‚éB –{ƒNƒ‰ƒX‚ÍƒVƒ“ƒOƒ‹ƒgƒ“‚Æ‚µ‚Äg—p‚·‚é‚±‚ÆB
+ * å½¢å¼ãƒã‚§ãƒƒã‚¯ã«ã¯ã‚¹ã‚­ãƒ¼ãƒå®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä½¿ç”¨ã™ã‚‹ã€‚ æœ¬ã‚¯ãƒ©ã‚¹ã¯ã‚·ãƒ³ã‚°ãƒ«ãƒˆãƒ³ã¨ã—ã¦ä½¿ç”¨ã™ã‚‹ã“ã¨ã€‚
  * </p>
  * <p>
- * ƒXƒL[ƒ}’è‹`ƒtƒ@ƒCƒ‹‚Í•ÏŠ·‚ğs‚¤ƒIƒuƒWƒFƒNƒg‚ÌƒNƒ‰ƒX‚Æ “¯‚¶ƒpƒbƒP[ƒWA “¯‚¶–¼‘OAŠg’£qh.xsdh‚Å”z’u‚·‚é‚±‚ÆB <br>
- * —ájXML•ÏŠ·‘ÎÛ‚ÌƒIƒuƒWƒFƒNƒg‚ªusample.SampleBeanvƒNƒ‰ƒX‚Ìê‡A
- * ƒXƒL[ƒ}’è‹`ƒtƒ@ƒCƒ‹‚ÍƒNƒ‰ƒXƒpƒXã‚Ìusample/SampleBean.xsdv ƒtƒ@ƒCƒ‹‚Æ‚È‚éB
+ * ã‚¹ã‚­ãƒ¼ãƒå®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã¯å¤‰æ›ã‚’è¡Œã†ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ã‚¯ãƒ©ã‚¹ã¨ åŒã˜ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã€ åŒã˜åå‰ã€æ‹¡å¼µå­â€.xsdâ€ã§é…ç½®ã™ã‚‹ã“ã¨ã€‚ <br>
+ * ä¾‹ï¼‰XMLå¤‰æ›å¯¾è±¡ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒã€Œsample.SampleBeanã€ã‚¯ãƒ©ã‚¹ã®å ´åˆã€
+ * ã‚¹ã‚­ãƒ¼ãƒå®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã¯ã‚¯ãƒ©ã‚¹ãƒ‘ã‚¹ä¸Šã®ã€Œsample/SampleBean.xsdã€ ãƒ•ã‚¡ã‚¤ãƒ«ã¨ãªã‚‹ã€‚
  * </p>
  * <p>
- * XML‚Ìƒp[ƒX‚É‚ÍDOMƒp[ƒT‚ª•K—v‚Æ‚È‚éB TERASOLUNA‚Å‚ÍÚ×‚ÈƒGƒ‰[î•ñ‚ğæ“¾‚·‚é‚½‚ß‚ÉA Šg’£‚µ‚½{@link jp.terasoluna.fw.oxm.xsd.xerces.XML11ConfigurationEx}A
- * {@link jp.terasoluna.fw.oxm.xsd.xerces.XMLErrorReporterEx}‚ğ—˜—p‚·‚éB
+ * XMLã®ãƒ‘ãƒ¼ã‚¹ã«ã¯DOMãƒ‘ãƒ¼ã‚µãŒå¿…è¦ã¨ãªã‚‹ã€‚ TERASOLUNAã§ã¯è©³ç´°ãªã‚¨ãƒ©ãƒ¼æƒ…å ±ã‚’å–å¾—ã™ã‚‹ãŸã‚ã«ã€ æ‹¡å¼µã—ãŸ{@link jp.terasoluna.fw.oxm.xsd.xerces.XML11ConfigurationEx}ã€
+ * {@link jp.terasoluna.fw.oxm.xsd.xerces.XMLErrorReporterEx}ã‚’åˆ©ç”¨ã™ã‚‹ã€‚
  * </p>
- * 
+ *
  * <hr>
- * <h4>–¼‘O‹óŠÔ‚Ìİ’è</h4>
+ * <h4>åå‰ç©ºé–“ã®è¨­å®š</h4>
  * <p>
- * –{ƒNƒ‰ƒX‚ÍAƒXƒL[ƒ}’è‹`‚É–¼‘O‹óŠÔ‚ğg—p‚·‚é‚±‚Æ‚ª‚Å‚«‚éB –¼‘O‹óŠÔ‚ğg—p‚·‚éê‡A{@link #namespace}‘®«‚Étrue‚ğİ’è‚·‚é•K—v‚ª‚ ‚éB
- * ƒfƒtƒHƒ‹ƒg‚Ífalse‚ÅA–¼‘O‹óŠÔ‚ğg—p‚µ‚È‚¢İ’è‚É‚È‚Á‚Ä‚¢‚éB –¼‘O‹óŠÔ‚ğg—p‚·‚éê‡AƒXƒL[ƒ}’è‹`ƒtƒ@ƒCƒ‹‚ÌƒLƒƒƒbƒVƒ…‚ğs‚¤‚±‚Æ‚ª‚Å‚«‚éB
- * –¼‘O‹óŠÔ‚ğg—p‚·‚é‚½‚ß‚É‚ÍAˆÈ‰º‚Ìİ’è‚ª•K—v‚Å‚ ‚éB
+ * æœ¬ã‚¯ãƒ©ã‚¹ã¯ã€ã‚¹ã‚­ãƒ¼ãƒå®šç¾©ã«åå‰ç©ºé–“ã‚’ä½¿ç”¨ã™ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚ åå‰ç©ºé–“ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã€{@link #namespace}å±æ€§ã«trueã‚’è¨­å®šã™ã‚‹å¿…è¦ãŒã‚ã‚‹ã€‚
+ * ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã¯falseã§ã€åå‰ç©ºé–“ã‚’ä½¿ç”¨ã—ãªã„è¨­å®šã«ãªã£ã¦ã„ã‚‹ã€‚ åå‰ç©ºé–“ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã€ã‚¹ã‚­ãƒ¼ãƒå®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚’è¡Œã†ã“ã¨ãŒã§ãã‚‹ã€‚
+ * åå‰ç©ºé–“ã‚’ä½¿ç”¨ã™ã‚‹ãŸã‚ã«ã¯ã€ä»¥ä¸‹ã®è¨­å®šãŒå¿…è¦ã§ã‚ã‚‹ã€‚
  * <ul>
- * <li>ƒvƒƒpƒeƒBƒtƒ@ƒCƒ‹(namespaces.properties)‚ÉA XML•ÏŠ·‘ÎÛ‚ÌƒNƒ‰ƒX–¼‚Æg—p‚·‚é–¼‘O‹óŠÔ‚Ì‘Î‰•t‚¯‚ğ‹Lq‚·‚éB
- * iÚ×‚Í‰º‹L‚Ìİ’è—á‚ğQÆj</li>
- * <li>ƒvƒƒpƒeƒBƒtƒ@ƒCƒ‹(namespaces.properties)‚ğƒNƒ‰ƒXƒpƒXã‚É’u‚­B</li>
- * <li>–{ƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ¶¬inewj‚·‚éB</li>
- * <li>ƒCƒ“ƒXƒ^ƒ“ƒX‚Ì{@link #namespace}‘®«‚Étrue‚ğİ’è‚·‚éB</li>
- * <li>ƒXƒL[ƒ}’è‹`‚ÌƒLƒƒƒbƒVƒ…İ’è‚ğ‚·‚éBƒfƒtƒHƒ‹ƒg‚ÍƒLƒƒƒbƒVƒ…‚ª—LŒø‚Å‚ ‚éB ƒLƒƒƒbƒVƒ…‚ğ–³Œø‚É‚·‚éê‡AƒCƒ“ƒXƒ^ƒ“ƒX‚Ì{@link #cache}‘®«‚ğfalse‚Éİ’è‚·‚éB</li>
- * <li>ƒCƒ“ƒXƒ^ƒ“ƒX‚Ì{@link #initNamespaceProperties()}ƒƒ\ƒbƒh‚ğŒÄ‚Ño‚µ‚ÄA ƒvƒƒpƒeƒBƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚ŞB</li>
+ * <li>ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãƒ•ã‚¡ã‚¤ãƒ«(namespaces.properties)ã«ã€ XMLå¤‰æ›å¯¾è±¡ã®ã‚¯ãƒ©ã‚¹åã¨ä½¿ç”¨ã™ã‚‹åå‰ç©ºé–“ã®å¯¾å¿œä»˜ã‘ã‚’è¨˜è¿°ã™ã‚‹ã€‚
+ * ï¼ˆè©³ç´°ã¯ä¸‹è¨˜ã®è¨­å®šä¾‹ã‚’å‚ç…§ï¼‰</li>
+ * <li>ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãƒ•ã‚¡ã‚¤ãƒ«(namespaces.properties)ã‚’ã‚¯ãƒ©ã‚¹ãƒ‘ã‚¹ä¸Šã«ç½®ãã€‚</li>
+ * <li>æœ¬ã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’ç”Ÿæˆï¼ˆnewï¼‰ã™ã‚‹ã€‚</li>
+ * <li>ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®{@link #namespace}å±æ€§ã«trueã‚’è¨­å®šã™ã‚‹ã€‚</li>
+ * <li>ã‚¹ã‚­ãƒ¼ãƒå®šç¾©ã®ã‚­ãƒ£ãƒƒã‚·ãƒ¥è¨­å®šã‚’ã™ã‚‹ã€‚ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã¯ã‚­ãƒ£ãƒƒã‚·ãƒ¥ãŒæœ‰åŠ¹ã§ã‚ã‚‹ã€‚ ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚’ç„¡åŠ¹ã«ã™ã‚‹å ´åˆã€ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®{@link #cache}å±æ€§ã‚’falseã«è¨­å®šã™ã‚‹ã€‚</li>
+ * <li>ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®{@link #initNamespaceProperties()}ãƒ¡ã‚½ãƒƒãƒ‰ã‚’å‘¼ã³å‡ºã—ã¦ã€ ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚€ã€‚</li>
  * </ul>
- * 
+ *
  * <br>
- * y–¼‘O‹óŠÔ‚ÌƒvƒƒpƒeƒBƒtƒ@ƒCƒ‹inemaspace.propertiesj‚Ìİ’è—áz<br>
- * —ájXML•ÏŠ·‘ÎÛ‚ÌƒIƒuƒWƒFƒNƒg‚ªusample.SampleBeanvƒNƒ‰ƒXA–¼‘O‹óŠÔ‚ª
- * uhttp://xxx.co.jp/sample/samplebeanv‚Ìê‡A ƒvƒƒpƒeƒBƒtƒ@ƒCƒ‹‚É‰º‹L‚Ìİ’è‚ğs‚¤B<br>
+ * ã€åå‰ç©ºé–“ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãƒ•ã‚¡ã‚¤ãƒ«ï¼ˆnemaspace.propertiesï¼‰ã®è¨­å®šä¾‹ã€‘<br>
+ * ä¾‹ï¼‰XMLå¤‰æ›å¯¾è±¡ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒã€Œsample.SampleBeanã€ã‚¯ãƒ©ã‚¹ã€åå‰ç©ºé–“ãŒ
+ * ã€Œhttp://xxx.co.jp/sample/samplebeanã€ã®å ´åˆã€ ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãƒ•ã‚¡ã‚¤ãƒ«ã«ä¸‹è¨˜ã®è¨­å®šã‚’è¡Œã†ã€‚<br>
  * <br>
  * jp.terasoluna.sample2.dto.SumParam.Namespace =
  * http://xxx.co.jp/sample/samplebean
  * </p>
- * 
+ *
  * <hr>
  * <p>
- * <strong>–¼‘O‹óŠÔ‚ğg—p‚µ‚È‚¢ê‡‚ÌƒXƒL[ƒ}ƒtƒ@ƒCƒ‹İ’è—á</strong>
+ * <strong>åå‰ç©ºé–“ã‚’ä½¿ç”¨ã—ãªã„å ´åˆã®ã‚¹ã‚­ãƒ¼ãƒãƒ•ã‚¡ã‚¤ãƒ«è¨­å®šä¾‹</strong>
  * </p>
- * 
+ *
  * <p>
- * yŒ`®ƒ`ƒFƒbƒN‘ÎÛ‚ÌXMLƒf[ƒ^z <code><pre>
+ * ã€å½¢å¼ãƒã‚§ãƒƒã‚¯å¯¾è±¡ã®XMLãƒ‡ãƒ¼ã‚¿ã€‘ <code><pre>
  *   &lt;sample-dto&gt;
  *     &lt;user-id&gt;15&lt;/user-id&gt;
  *     &lt;user-name&gt;user1&lt;/user-name&gt;
@@ -109,9 +109,9 @@ import org.xml.sax.SAXNotSupportedException;
  *   &lt;/sample-dto&gt;
  * </pre></code>
  * </p>
- * 
+ *
  * <p>
- * yƒXƒL[ƒ}’è‹`ƒtƒ@ƒCƒ‹‚Ìİ’è—áz<br>
+ * ã€ã‚¹ã‚­ãƒ¼ãƒå®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã®è¨­å®šä¾‹ã€‘<br>
  * <code><pre>
  *   &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
  *   &lt;xs:schema xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;
@@ -133,23 +133,23 @@ import org.xml.sax.SAXNotSupportedException;
  *   &lt;/xs:schema&gt;
  * </pre></code>
  * </p>
- * 
+ *
  * <hr>
  * <p>
- * <strong>–¼‘O‹óŠÔ‚ğg—p‚·‚éê‡‚ÌƒXƒL[ƒ}ƒtƒ@ƒCƒ‹İ’è—á</strong>
+ * <strong>åå‰ç©ºé–“ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã®ã‚¹ã‚­ãƒ¼ãƒãƒ•ã‚¡ã‚¤ãƒ«è¨­å®šä¾‹</strong>
  * </p>
- * 
- * yŒ`®ƒ`ƒFƒbƒN‘ÎÛ‚ÌXMLƒf[ƒ^ƒTƒ“ƒvƒ‹z
- * 
+ *
+ * ã€å½¢å¼ãƒã‚§ãƒƒã‚¯å¯¾è±¡ã®XMLãƒ‡ãƒ¼ã‚¿ã‚µãƒ³ãƒ—ãƒ«ã€‘
+ *
  * &lt;sample-dto xmlns=&quot;http://xxx.co.jp/sample/samplebean&quot;&gt;
  * &lt;user-id&gt;15&lt;/user-id&gt; &lt;user-name&gt;user1&lt;/user-name&gt;
  * &lt;item&gt; &lt;id&gt;100&lt;/id&gt; &lt;name&gt;item1&lt;/name&gt;
  * &lt;price&gt;1000&lt;/price&gt; &lt;/item&gt; &lt;item&gt;
  * &lt;id&gt;101&lt;/id&gt; &lt;name&gt;item2&lt;/name&gt;
  * &lt;price&gt;2000&lt;/price&gt; &lt;/item&gt; &lt;/sample-dto&gt;
- * 
- * yƒXƒL[ƒ}’è‹`ƒtƒ@ƒCƒ‹‚Ìİ’èƒTƒ“ƒvƒ‹z
- * 
+ *
+ * ã€ã‚¹ã‚­ãƒ¼ãƒå®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã®è¨­å®šã‚µãƒ³ãƒ—ãƒ«ã€‘
+ *
  * &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
  * &lt;xs:schema xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot;
  * xmlns:tns=&quot;http://xxx.co.jp/sample/samplebean&quot;
@@ -167,123 +167,123 @@ import org.xml.sax.SAXNotSupportedException;
  * name=&quot;name&quot; type=&quot;xs:string&quot;/&gt; &lt;xs:element
  * name=&quot;price&quot; type=&quot;xs:int&quot;/&gt; &lt;/xs:sequence&gt;
  * &lt;/xs:complexType&gt; &lt;/xs:schema&gt;
- * 
+ *
  * @see jp.terasoluna.fw.oxm.xsd.xerces.XML11ConfigurationEx
  * @see jp.terasoluna.fw.oxm.xsd.message.ErrorMessages
  * @see jp.terasoluna.fw.oxm.xsd.xerces.XMLErrorReporterEx
  * @see jp.terasoluna.fw.web.rich.springmvc.bind.XMLServletRequestDataBinder
  * @see org.apache.xerces.util.XMLGrammarPoolImpl
- * 
+ *
  */
 public class SchemaValidatorImpl implements SchemaValidator {
 
     /**
-     * ƒƒOƒNƒ‰ƒXB
+     * ãƒ­ã‚°ã‚¯ãƒ©ã‚¹ã€‚
      */
     private static Log log = LogFactory.getLog(SchemaValidatorImpl.class);
 
     /**
-     * ƒpƒbƒP[ƒW‚ÌƒZƒpƒŒ[ƒ^B
+     * ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã®ã‚»ãƒ‘ãƒ¬ãƒ¼ã‚¿ã€‚
      */
     public static final String NESTED_PACKAGE_SEPARATOR = ".";
 
     /**
-     * ƒtƒHƒ‹ƒ_‚ÌƒZƒpƒŒ[ƒ^B
+     * ãƒ•ã‚©ãƒ«ãƒ€ã®ã‚»ãƒ‘ãƒ¬ãƒ¼ã‚¿ã€‚
      */
     public static final String NESTED_FOLDER_SEPARATOR = "/";
 
     /**
-     * ƒXƒL[ƒ}’è‹`ƒtƒ@ƒCƒ‹‚ÌƒTƒtƒBƒbƒNƒXB
+     * ã‚¹ã‚­ãƒ¼ãƒå®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚µãƒ•ã‚£ãƒƒã‚¯ã‚¹ã€‚
      */
     public static final String XSD_FILE_SUFFIX = ".xsd";
 
     /**
-     * ƒvƒƒpƒeƒBƒtƒ@ƒCƒ‹‚©‚çƒl[ƒ€ƒXƒy[ƒX–¼‚ğæ“¾‚·‚éƒL[‚ÌÚ”ö«B
+     * ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ãƒãƒ¼ãƒ ã‚¹ãƒšãƒ¼ã‚¹åã‚’å–å¾—ã™ã‚‹ã‚­ãƒ¼ã®æ¥å°¾è¾ã€‚
      */
     private static final String NAME_SPACE_SUFFIX = ".Namespace";
 
     /**
-     * ƒNƒ‰ƒX–¼‚Æ–¼‘O‹óŠÔ‚Ìƒ}ƒbƒsƒ“ƒO‚ğ’è‹`‚µ‚½ƒvƒƒpƒeƒBƒtƒ@ƒCƒ‹–¼B
+     * ã‚¯ãƒ©ã‚¹åã¨åå‰ç©ºé–“ã®ãƒãƒƒãƒ”ãƒ³ã‚°ã‚’å®šç¾©ã—ãŸãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãƒ•ã‚¡ã‚¤ãƒ«åã€‚
      */
     protected String namespacePropertyFileName = "namespaces.properties";
 
     /**
-     * ƒXƒL[ƒ}’è‹`‚ÌƒLƒƒƒbƒVƒ…g—pİ’èB ¦–¼‘O‹óŠÔ‚ğg—p‚·‚éê‡‚Ì‚İAƒLƒƒƒbƒVƒ…‚ªs‚È‚í‚ê‚éB
+     * ã‚¹ã‚­ãƒ¼ãƒå®šç¾©ã®ã‚­ãƒ£ãƒƒã‚·ãƒ¥ä½¿ç”¨è¨­å®šã€‚ â€»åå‰ç©ºé–“ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã®ã¿ã€ã‚­ãƒ£ãƒƒã‚·ãƒ¥ãŒè¡Œãªã‚ã‚Œã‚‹ã€‚
      */
     protected boolean cache = true;
 
     /**
-     * –¼‘O‹óŠÔ‚Ìg—pİ’èB
+     * åå‰ç©ºé–“ã®ä½¿ç”¨è¨­å®šã€‚
      */
     protected boolean namespace = false;
 
     /**
-     * –¼‘O‹óŠÔ‚Ì•¶–@ƒv[ƒ‹B
+     * åå‰ç©ºé–“ã®æ–‡æ³•ãƒ—ãƒ¼ãƒ«ã€‚
      */
     protected XMLGrammarPool grammarPool = new XMLGrammarPoolImpl();
 
     /**
-     * ƒNƒ‰ƒX–¼‚Æ–¼‘O‹óŠÔ‚Ìƒ}ƒbƒsƒ“ƒO‚ğ’è‹`‚µ‚½ƒvƒƒpƒeƒBB
+     * ã‚¯ãƒ©ã‚¹åã¨åå‰ç©ºé–“ã®ãƒãƒƒãƒ”ãƒ³ã‚°ã‚’å®šç¾©ã—ãŸãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã€‚
      */
     protected Properties namespaceProperties = null;
 
     /**
-     * –¼‘O‹óŠÔ‚Ìƒ`ƒFƒbƒNİ’èB
+     * åå‰ç©ºé–“ã®ãƒã‚§ãƒƒã‚¯è¨­å®šã€‚
      */
     protected boolean namespaceCheck = true;
 
     /**
-     * ƒXƒL[ƒ}’è‹`‚ÌƒLƒƒƒbƒVƒ…g—pİ’è‚ğs‚¤B
-     * 
+     * ã‚¹ã‚­ãƒ¼ãƒå®šç¾©ã®ã‚­ãƒ£ãƒƒã‚·ãƒ¥ä½¿ç”¨è¨­å®šã‚’è¡Œã†ã€‚
+     *
      * @param cache
-     *            ƒXƒL[ƒ}’è‹`ƒtƒ@ƒCƒ‹‚ÌƒLƒƒƒbƒVƒ…‚ğs‚¤ê‡Atrue
+     *            ã‚¹ã‚­ãƒ¼ãƒå®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚’è¡Œã†å ´åˆã€true
      */
     public void setCache(boolean cache) {
         this.cache = cache;
     }
 
     /**
-     * –¼‘O‹óŠÔ‚Ìg—pİ’è‚ğs‚¤B
-     * 
+     * åå‰ç©ºé–“ã®ä½¿ç”¨è¨­å®šã‚’è¡Œã†ã€‚
+     *
      * @param namespace
-     *            –¼‘O‹óŠÔ‚ğg—p‚·‚éê‡Atrue
+     *            åå‰ç©ºé–“ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã€true
      */
     public void setNamespace(boolean namespace) {
         this.namespace = namespace;
     }
 
     /**
-     * –¼‘O‹óŠÔ‚Ìƒ`ƒFƒbƒNİ’è‚ğs‚¤B
-     * 
+     * åå‰ç©ºé–“ã®ãƒã‚§ãƒƒã‚¯è¨­å®šã‚’è¡Œã†ã€‚
+     *
      * @param namespaceCheck
-     *            –¼‘O‹óŠÔ‚ğƒ`ƒFƒbƒN‚·‚éê‡Atrue
+     *            åå‰ç©ºé–“ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹å ´åˆã€true
      */
     public void setNamespaceCheck(boolean namespaceCheck) {
         this.namespaceCheck = namespaceCheck;
     }
 
     /**
-     * ƒNƒ‰ƒX–¼‚Æ–¼‘O‹óŠÔ‚Ìƒ}ƒbƒsƒ“ƒO‚ğ’è‹`‚µ‚½ƒvƒƒpƒeƒB‚ğİ’è‚·‚é
-     * 
+     * ã‚¯ãƒ©ã‚¹åã¨åå‰ç©ºé–“ã®ãƒãƒƒãƒ”ãƒ³ã‚°ã‚’å®šç¾©ã—ãŸãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚’è¨­å®šã™ã‚‹
+     *
      * @param namespaceProperties
-     *            ƒNƒ‰ƒX–¼‚Æ–¼‘O‹óŠÔ‚Ìƒ}ƒbƒsƒ“ƒO‚ğ’è‹`‚µ‚½ƒvƒƒpƒeƒB
+     *            ã‚¯ãƒ©ã‚¹åã¨åå‰ç©ºé–“ã®ãƒãƒƒãƒ”ãƒ³ã‚°ã‚’å®šç¾©ã—ãŸãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
      */
     public void setNamespaceProperties(Properties namespaceProperties) {
         this.namespaceProperties = namespaceProperties;
     }
 
     /**
-     * ƒNƒ‰ƒX–¼‚Æ–¼‘O‹óŠÔ‚Ìƒ}ƒbƒsƒ“ƒO‚ğ’è‹`‚µ‚½ƒvƒƒpƒeƒBƒtƒ@ƒCƒ‹–¼‚ğİ’è‚·‚éB
-     * 
+     * ã‚¯ãƒ©ã‚¹åã¨åå‰ç©ºé–“ã®ãƒãƒƒãƒ”ãƒ³ã‚°ã‚’å®šç¾©ã—ãŸãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãƒ•ã‚¡ã‚¤ãƒ«åã‚’è¨­å®šã™ã‚‹ã€‚
+     *
      * @param namespacePropertyFileName
-     *            ƒNƒ‰ƒX–¼‚Æ–¼‘O‹óŠÔ‚Ìƒ}ƒbƒsƒ“ƒO‚ğ’è‹`‚µ‚½ƒvƒƒpƒeƒBƒtƒ@ƒCƒ‹–¼
+     *            ã‚¯ãƒ©ã‚¹åã¨åå‰ç©ºé–“ã®ãƒãƒƒãƒ”ãƒ³ã‚°ã‚’å®šç¾©ã—ãŸãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãƒ•ã‚¡ã‚¤ãƒ«å
      */
     public void setNamespacePropertyFileName(String namespacePropertyFileName) {
         this.namespacePropertyFileName = namespacePropertyFileName;
     }
 
     /**
-     * ‰Šú‰»‚É–¼‘O‹óŠÔ‚ğƒvƒƒpƒeƒB‚Éİ’è‚·‚éB
+     * åˆæœŸåŒ–æ™‚ã«åå‰ç©ºé–“ã‚’ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã«è¨­å®šã™ã‚‹ã€‚
      */
     public void initNamespaceProperties() {
         loadNamespaceProperties();
@@ -294,19 +294,19 @@ public class SchemaValidatorImpl implements SchemaValidator {
     }
 
     /**
-     * –¼‘O‹óŠÔ‚ª’è‹`‚³‚ê‚½ƒvƒƒpƒeƒBƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚İA‘®«‚ÉƒZƒbƒg‚·‚éB
+     * åå‰ç©ºé–“ãŒå®šç¾©ã•ã‚ŒãŸãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã¿ã€å±æ€§ã«ã‚»ãƒƒãƒˆã™ã‚‹ã€‚
      */
     protected void loadNamespaceProperties() {
-        // propertyName‚ªnull‚Ü‚½‚Í‹ó•¶š‚Ìê‡AˆÈŒã‚Ìˆ—‚ğs‚í‚È‚¢B
+        // propertyNameãŒnullã¾ãŸã¯ç©ºæ–‡å­—ã®å ´åˆã€ä»¥å¾Œã®å‡¦ç†ã‚’è¡Œã‚ãªã„ã€‚
         if (namespacePropertyFileName == null
                 || "".equals(namespacePropertyFileName)) {
             return;
         }
 
-        // ƒJƒŒƒ“ƒgƒXƒŒƒbƒh‚ÌƒRƒ“ƒeƒLƒXƒgƒNƒ‰ƒXƒ[ƒ_‚ğg—p‚·‚é‚Æ
-        // WEB-INF/classes‚ÌƒvƒƒpƒeƒBƒtƒ@ƒCƒ‹‚ğ“Ç‚Ş‚±‚Æ‚ª‚Å‚«‚È‚¢ê‡‚ª‚ ‚éB
-        // ‚¾‚ªJNLP‚ÅƒŠƒ\[ƒX‚ğæ“¾‚·‚é‚É‚ÍAƒƒCƒ“ƒXƒŒƒbƒh‚ÌƒRƒ“ƒeƒLƒXƒg
-        // ƒNƒ‰ƒXƒ[ƒ_‚ğ—˜—p‚µ‚È‚¯‚ê‚Î‚È‚ç‚È‚¢‚½‚ß—¼•û‚ğ•¹—p‚·‚éB
+        // ã‚«ãƒ¬ãƒ³ãƒˆã‚¹ãƒ¬ãƒƒãƒ‰ã®ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã‚¯ãƒ©ã‚¹ãƒ­ãƒ¼ãƒ€ã‚’ä½¿ç”¨ã™ã‚‹ã¨
+        // WEB-INF/classesã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã‚€ã“ã¨ãŒã§ããªã„å ´åˆãŒã‚ã‚‹ã€‚
+        // ã ãŒJNLPã§ãƒªã‚½ãƒ¼ã‚¹ã‚’å–å¾—ã™ã‚‹ã«ã¯ã€ãƒ¡ã‚¤ãƒ³ã‚¹ãƒ¬ãƒƒãƒ‰ã®ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆ
+        // ã‚¯ãƒ©ã‚¹ãƒ­ãƒ¼ãƒ€ã‚’åˆ©ç”¨ã—ãªã‘ã‚Œã°ãªã‚‰ãªã„ãŸã‚ä¸¡æ–¹ã‚’ä½µç”¨ã™ã‚‹ã€‚
         InputStream is = Thread.currentThread().getContextClassLoader()
                 .getResourceAsStream(namespacePropertyFileName);
         if (is == null) {
@@ -339,11 +339,11 @@ public class SchemaValidatorImpl implements SchemaValidator {
     }
 
     /**
-     * –¼‘O‹óŠÔ‚ªd•¡‚µ‚Ä‚¢‚È‚¢‚©‚Ìƒ`ƒFƒbƒN‚ğs‚¤B
+     * åå‰ç©ºé–“ãŒé‡è¤‡ã—ã¦ã„ãªã„ã‹ã®ãƒã‚§ãƒƒã‚¯ã‚’è¡Œã†ã€‚
      */
     protected void checkNamespaceProperties() {
         StringBuilder logStr = new StringBuilder();
-        // namespaceProperties‚ªnull‚Ü‚½‚Í‹ó‚Ìê‡AˆÈŒã‚Ìˆ—‚ğs‚í‚È‚¢B
+        // namespacePropertiesãŒnullã¾ãŸã¯ç©ºã®å ´åˆã€ä»¥å¾Œã®å‡¦ç†ã‚’è¡Œã‚ãªã„ã€‚
         if (namespaceProperties == null || namespaceProperties.isEmpty()) {
             return;
         }
@@ -352,7 +352,7 @@ public class SchemaValidatorImpl implements SchemaValidator {
         for (Object namespaceKey : namespaceProperties.keySet()) {
             String namespaceValue = namespaceProperties
                     .getProperty((String) namespaceKey);
-            // –¼‘O‹óŠÔ‚ªd•¡‚µ‚Ä‚¢‚éê‡AƒGƒ‰[ƒƒO‚Ìo—Í‚ğs‚¢A—áŠO‚ğƒXƒ[‚·‚éB
+            // åå‰ç©ºé–“ãŒé‡è¤‡ã—ã¦ã„ã‚‹å ´åˆã€ã‚¨ãƒ©ãƒ¼ãƒ­ã‚°ã®å‡ºåŠ›ã‚’è¡Œã„ã€ä¾‹å¤–ã‚’ã‚¹ãƒ­ãƒ¼ã™ã‚‹ã€‚
             if (namespacePropertiesList.contains(namespaceValue)) {
                 logStr.setLength(0);
                 logStr.append("Namespace name [");
@@ -370,24 +370,24 @@ public class SchemaValidatorImpl implements SchemaValidator {
     }
 
     /**
-     * XMLƒf[ƒ^‚ÌŒ`®ƒ`ƒFƒbƒN‚ğs‚¤ƒƒ\ƒbƒhB
+     * XMLãƒ‡ãƒ¼ã‚¿ã®å½¢å¼ãƒã‚§ãƒƒã‚¯ã‚’è¡Œã†ãƒ¡ã‚½ãƒƒãƒ‰ã€‚
      * <p>
-     * XMLƒf[ƒ^‚ğDOMƒcƒŠ[‚É•ÏŠ·‚·‚éÛ‚ÉAXMLƒXƒL[ƒ}‚É‚æ‚é Œ`®ƒ`ƒFƒbƒNi‘Ã“–«ŒŸØj‚ğÀs‚·‚éB<br>
-     * Œ`®ƒ`ƒFƒbƒN‚É‚ÍAƒXƒL[ƒ}’è‹`ƒtƒ@ƒCƒ‹‚ğ—p‚¢‚éB
+     * XMLãƒ‡ãƒ¼ã‚¿ã‚’DOMãƒ„ãƒªãƒ¼ã«å¤‰æ›ã™ã‚‹éš›ã«ã€XMLã‚¹ã‚­ãƒ¼ãƒã«ã‚ˆã‚‹ å½¢å¼ãƒã‚§ãƒƒã‚¯ï¼ˆå¦¥å½“æ€§æ¤œè¨¼ï¼‰ã‚’å®Ÿè¡Œã™ã‚‹ã€‚<br>
+     * å½¢å¼ãƒã‚§ãƒƒã‚¯ã«ã¯ã€ã‚¹ã‚­ãƒ¼ãƒå®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ç”¨ã„ã‚‹ã€‚
      * </p>
      * <p>
-     * ³í‚ÉŒ`®ƒ`ƒFƒbƒN‚ªI—¹‚µ‚½ê‡ADOMƒcƒŠ[‚ğ•Ô‹p‚·‚éB<br>
-     * ƒ†[ƒU‚Ì“ü—Í‚ªŒ´ˆö‚Æl‚¦‚ç‚ê‚éƒf[ƒ^Œ^‚ÌƒGƒ‰[‚ª”­¶‚µ‚½ê‡Aˆø”‚ÌerrorMessages‚ÉƒGƒ‰[î•ñ‚ğŠi”[‚µ‚ÄAnull‚ğ•Ô‹p‚·‚éB<br>
-     * ‚»‚êˆÈŠO‚ÌƒGƒ‰[‚ÉŠÖ‚µ‚Ä‚ÍAOXMappingException‚ÌƒTƒuƒNƒ‰ƒX‚Éƒ‰ƒbƒv‚µ‚ÄƒXƒ[‚·‚éB
+     * æ­£å¸¸ã«å½¢å¼ãƒã‚§ãƒƒã‚¯ãŒçµ‚äº†ã—ãŸå ´åˆã€DOMãƒ„ãƒªãƒ¼ã‚’è¿”å´ã™ã‚‹ã€‚<br>
+     * ãƒ¦ãƒ¼ã‚¶ã®å…¥åŠ›ãŒåŸå› ã¨è€ƒãˆã‚‰ã‚Œã‚‹ãƒ‡ãƒ¼ã‚¿å‹ã®ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸå ´åˆã€å¼•æ•°ã®errorMessagesã«ã‚¨ãƒ©ãƒ¼æƒ…å ±ã‚’æ ¼ç´ã—ã¦ã€nullã‚’è¿”å´ã™ã‚‹ã€‚<br>
+     * ãã‚Œä»¥å¤–ã®ã‚¨ãƒ©ãƒ¼ã«é–¢ã—ã¦ã¯ã€OXMappingExceptionã®ã‚µãƒ–ã‚¯ãƒ©ã‚¹ã«ãƒ©ãƒƒãƒ—ã—ã¦ã‚¹ãƒ­ãƒ¼ã™ã‚‹ã€‚
      * </p>
-     * 
+     *
      * @param in
-     *            XMLƒf[ƒ^
+     *            XMLãƒ‡ãƒ¼ã‚¿
      * @param object
-     *            •ÏŠ·‘ÎÛ‚ÌƒIƒuƒWƒFƒNƒg
+     *            å¤‰æ›å¯¾è±¡ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
      * @param errorMessages
-     *            ƒGƒ‰[ƒƒbƒZ[ƒW‚ªŠi”[‚³‚ê‚éƒCƒ“ƒXƒ^ƒ“ƒX
-     * @return DOMƒcƒŠ[
+     *            ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒæ ¼ç´ã•ã‚Œã‚‹ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹
+     * @return DOMãƒ„ãƒªãƒ¼
      */
     public Document validate(InputStream in, Object object,
             ErrorMessages errorMessages) {
@@ -400,23 +400,23 @@ public class SchemaValidatorImpl implements SchemaValidator {
             throw new IllegalArgumentException("ErrorMessages is null.");
         }
 
-        // DOMƒp[ƒT‚Ìì¬
+        // DOMãƒ‘ãƒ¼ã‚µã®ä½œæˆ
         DOMParser parser = null;
         try {
             parser = createDomParser(object);
             setCommonParserProperty(parser, errorMessages);
             setCommonParserFeature(parser);
         } catch (SAXNotRecognizedException e) {
-            // ”F¯‚Å‚«‚È‚¢ƒL[‚ªİ’è‚³‚ê‚½ê‡‚ÉƒXƒ[‚³‚ê‚é—áŠO
+            // èªè­˜ã§ããªã„ã‚­ãƒ¼ãŒè¨­å®šã•ã‚ŒãŸå ´åˆã«ã‚¹ãƒ­ãƒ¼ã•ã‚Œã‚‹ä¾‹å¤–
             log.error("Schema property error.", e);
             throw new ParserNotSupportedException(e);
         } catch (SAXNotSupportedException e) {
-            // ƒTƒ|[ƒg‚³‚ê‚Ä‚¢‚È‚¢’l‚ªİ’è‚³‚ê‚½ê‡‚ÉƒXƒ[‚³‚ê‚é—áŠO
+            // ã‚µãƒãƒ¼ãƒˆã•ã‚Œã¦ã„ãªã„å€¤ãŒè¨­å®šã•ã‚ŒãŸå ´åˆã«ã‚¹ãƒ­ãƒ¼ã•ã‚Œã‚‹ä¾‹å¤–
             log.error("Schema property error.", e);
             throw new ParserNotSupportedException(e);
         }
 
-        // ƒp[ƒX
+        // ãƒ‘ãƒ¼ã‚¹
         try {
             parser.parse(new InputSource(in));
         } catch (SAXException e) {
@@ -434,21 +434,21 @@ public class SchemaValidatorImpl implements SchemaValidator {
     }
 
     /**
-     * DOMƒp[ƒT‚ğ¶¬‚·‚éB
-     * 
+     * DOMãƒ‘ãƒ¼ã‚µã‚’ç”Ÿæˆã™ã‚‹ã€‚
+     *
      * @param object
-     *            ƒp[ƒX‘ÎÛ‚ÌƒIƒuƒWƒFƒNƒg
-     * @return DOMƒp[ƒT
+     *            ãƒ‘ãƒ¼ã‚¹å¯¾è±¡ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+     * @return DOMãƒ‘ãƒ¼ã‚µ
      * @throws SAXNotSupportedException
-     *             ”F¯‚Å‚«‚È‚¢ƒL[‚ªİ’è‚³‚ê‚½ê‡‚ÉƒXƒ[‚³‚ê‚é—áŠO
+     *             èªè­˜ã§ããªã„ã‚­ãƒ¼ãŒè¨­å®šã•ã‚ŒãŸå ´åˆã«ã‚¹ãƒ­ãƒ¼ã•ã‚Œã‚‹ä¾‹å¤–
      * @throws SAXNotRecognizedException
-     *             ƒTƒ|[ƒg‚³‚ê‚Ä‚¢‚È‚¢’l‚ªİ’è‚³‚ê‚½ê‡‚ÉƒXƒ[‚³‚ê‚é—áŠO
+     *             ã‚µãƒãƒ¼ãƒˆã•ã‚Œã¦ã„ãªã„å€¤ãŒè¨­å®šã•ã‚ŒãŸå ´åˆã«ã‚¹ãƒ­ãƒ¼ã•ã‚Œã‚‹ä¾‹å¤–
      */
     protected DOMParser createDomParser(Object object)
             throws SAXNotRecognizedException, SAXNotSupportedException {
         DOMParser parser = new DOMParser(createXmlParserConfiguration());
 
-        // ƒXƒL[ƒ}’è‹`ƒtƒ@ƒCƒ‹‚ÌURL
+        // ã‚¹ã‚­ãƒ¼ãƒå®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã®URL
         URL schemaURL = getUrl(object);
         if (schemaURL == null) {
             log.error("Schema file is not found. Set schema file in "
@@ -456,7 +456,7 @@ public class SchemaValidatorImpl implements SchemaValidator {
             throw new SchemaFileNotFoundException();
         }
 
-        // ƒXƒL[ƒ}’è‹`ƒtƒ@ƒCƒ‹‚ÌƒƒP[ƒVƒ‡ƒ“İ’è
+        // ã‚¹ã‚­ãƒ¼ãƒå®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ­ã‚±ãƒ¼ã‚·ãƒ§ãƒ³è¨­å®š
         if (namespace) {
             StringBuilder key = new StringBuilder();
             key.append(Constants.XERCES_PROPERTY_PREFIX);
@@ -477,70 +477,70 @@ public class SchemaValidatorImpl implements SchemaValidator {
     }
 
     /**
-     * XMLParserConfiguration‚ğ¶¬‚·‚éB –¼‘O‹óŠÔ‚ÆƒLƒƒƒbƒVƒ…‚Ìg—p‚ğ—LŒø‚É‚µ‚Ä‚¢‚éê‡A
-     * ƒXƒL[ƒ}ƒtƒ@ƒCƒ‹‚ÌƒLƒƒƒbƒVƒ…‚ğ—˜—p‚·‚éB
-     * 
-     * @return XMLParserConfiguration XMLƒp[ƒT‚Ìİ’è‚ğ•Û‚·‚éƒIƒuƒWƒFƒNƒg
+     * XMLParserConfigurationã‚’ç”Ÿæˆã™ã‚‹ã€‚ åå‰ç©ºé–“ã¨ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã®ä½¿ç”¨ã‚’æœ‰åŠ¹ã«ã—ã¦ã„ã‚‹å ´åˆã€
+     * ã‚¹ã‚­ãƒ¼ãƒãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚’åˆ©ç”¨ã™ã‚‹ã€‚
+     *
+     * @return XMLParserConfiguration XMLãƒ‘ãƒ¼ã‚µã®è¨­å®šã‚’ä¿æŒã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
      */
     protected XMLParserConfiguration createXmlParserConfiguration() {
         if (namespace && cache) {
-            // –¼‘O‹óŠÔ‚Ì•¶–@ƒv[ƒ‹‚ğİ’è‚·‚é‚±‚Æ‚ÅƒLƒƒƒbƒVƒ…‚ğ—LŒø‚É‚·‚é
+            // åå‰ç©ºé–“ã®æ–‡æ³•ãƒ—ãƒ¼ãƒ«ã‚’è¨­å®šã™ã‚‹ã“ã¨ã§ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚’æœ‰åŠ¹ã«ã™ã‚‹
             return new XML11ConfigurationEx(grammarPool);
         }
         return new XML11ConfigurationEx();
     }
 
     /**
-     * ƒp[ƒT‹¤’Ê‚ÌProperty‚ğİ’è‚·‚éB
-     * 
+     * ãƒ‘ãƒ¼ã‚µå…±é€šã®Propertyã‚’è¨­å®šã™ã‚‹ã€‚
+     *
      * @param parser
-     *            DOMƒp[ƒT
+     *            DOMãƒ‘ãƒ¼ã‚µ
      * @param errorMessages
-     *            ƒGƒ‰[
+     *            ã‚¨ãƒ©ãƒ¼
      * @throws SAXNotRecognizedException
-     *             ”F¯‚Å‚«‚È‚¢ƒL[‚ªİ’è‚³‚ê‚½ê‡‚ÉƒXƒ[‚³‚ê‚é—áŠO
+     *             èªè­˜ã§ããªã„ã‚­ãƒ¼ãŒè¨­å®šã•ã‚ŒãŸå ´åˆã«ã‚¹ãƒ­ãƒ¼ã•ã‚Œã‚‹ä¾‹å¤–
      * @throws SAXNotSupportedException
-     *             ƒTƒ|[ƒg‚³‚ê‚Ä‚¢‚È‚¢’l‚ªİ’è‚³‚ê‚½ê‡‚ÉƒXƒ[‚³‚ê‚é—áŠO
+     *             ã‚µãƒãƒ¼ãƒˆã•ã‚Œã¦ã„ãªã„å€¤ãŒè¨­å®šã•ã‚ŒãŸå ´åˆã«ã‚¹ãƒ­ãƒ¼ã•ã‚Œã‚‹ä¾‹å¤–
      */
     protected void setCommonParserProperty(DOMParser parser,
             ErrorMessages errorMessages) throws SAXNotRecognizedException,
             SAXNotSupportedException {
-        // ƒp[ƒX‚É”­¶‚µ‚½ƒGƒ‰[‚ğˆ—‚·‚éƒCƒ“ƒXƒ^ƒ“ƒX
+        // ãƒ‘ãƒ¼ã‚¹æ™‚ã«ç™ºç”Ÿã—ãŸã‚¨ãƒ©ãƒ¼ã‚’å‡¦ç†ã™ã‚‹ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹
         parser.setProperty(Constants.XERCES_PROPERTY_PREFIX
                 + Constants.ERROR_REPORTER_PROPERTY, new XMLErrorReporterEx(
                 errorMessages));
     }
 
     /**
-     * ƒp[ƒT‹¤’Ê‚ÌFeature‚ğİ’è‚·‚é
-     * 
+     * ãƒ‘ãƒ¼ã‚µå…±é€šã®Featureã‚’è¨­å®šã™ã‚‹
+     *
      * @param parser
-     *            DOMƒp[ƒT
+     *            DOMãƒ‘ãƒ¼ã‚µ
      * @throws SAXNotRecognizedException
-     *             ”F¯‚Å‚«‚È‚¢ƒL[‚ªİ’è‚³‚ê‚½ê‡‚ÉƒXƒ[‚³‚ê‚é—áŠO
+     *             èªè­˜ã§ããªã„ã‚­ãƒ¼ãŒè¨­å®šã•ã‚ŒãŸå ´åˆã«ã‚¹ãƒ­ãƒ¼ã•ã‚Œã‚‹ä¾‹å¤–
      * @throws SAXNotSupportedException
-     *             ƒTƒ|[ƒg‚³‚ê‚Ä‚¢‚È‚¢’l‚ªİ’è‚³‚ê‚½ê‡‚ÉƒXƒ[‚³‚ê‚é—áŠO
+     *             ã‚µãƒãƒ¼ãƒˆã•ã‚Œã¦ã„ãªã„å€¤ãŒè¨­å®šã•ã‚ŒãŸå ´åˆã«ã‚¹ãƒ­ãƒ¼ã•ã‚Œã‚‹ä¾‹å¤–
      */
     protected void setCommonParserFeature(DOMParser parser)
             throws SAXNotRecognizedException, SAXNotSupportedException {
-        // ‚·‚×‚Ä‚Ì‘Ã“–«ŒŸ¸ƒGƒ‰[‚ğ’Ê’m‚·‚é
+        // ã™ã¹ã¦ã®å¦¥å½“æ€§æ¤œæŸ»ã‚¨ãƒ©ãƒ¼ã‚’é€šçŸ¥ã™ã‚‹
         parser.setFeature(Constants.SAX_FEATURE_PREFIX
                 + Constants.VALIDATION_FEATURE, true);
 
-        // Œ`®ƒ`ƒFƒbƒN‚ÉƒXƒL[ƒ}’è‹`ƒtƒ@ƒCƒ‹‚ğg—p‚·‚éİ’è
+        // å½¢å¼ãƒã‚§ãƒƒã‚¯ã«ã‚¹ã‚­ãƒ¼ãƒå®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä½¿ç”¨ã™ã‚‹è¨­å®š
         parser.setFeature(Constants.XERCES_FEATURE_PREFIX
                 + Constants.SCHEMA_VALIDATION_FEATURE, true);
     }
 
     /**
-     * URL‚ğæ“¾‚·‚éB
+     * URLã‚’å–å¾—ã™ã‚‹ã€‚
      * <p>
-     * ˆø”‚ÌƒIƒuƒWƒFƒNƒg‚Æ“¯ˆê‚ÌƒNƒ‰ƒXƒpƒX‚©‚çA’è‹`ƒtƒ@ƒCƒ‹‚ğæ“¾‚·‚é
+     * å¼•æ•°ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¨åŒä¸€ã®ã‚¯ãƒ©ã‚¹ãƒ‘ã‚¹ã‹ã‚‰ã€å®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å–å¾—ã™ã‚‹
      * </p>
-     * 
+     *
      * @param object
-     *            ƒIƒuƒWƒFƒNƒg
-     * @return ƒŠƒ\[ƒX‚ÌURLƒCƒ“ƒXƒ^ƒ“ƒX
+     *            ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+     * @return ãƒªã‚½ãƒ¼ã‚¹ã®URLã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹
      */
     protected URL getUrl(Object object) {
         return Thread.currentThread().getContextClassLoader().getResource(
@@ -548,11 +548,11 @@ public class SchemaValidatorImpl implements SchemaValidator {
     }
 
     /**
-     * ƒXƒL[ƒ}ƒtƒ@ƒCƒ‹‚ÌƒpƒX‚ğæ“¾‚·‚éB
-     * 
+     * ã‚¹ã‚­ãƒ¼ãƒãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‘ã‚¹ã‚’å–å¾—ã™ã‚‹ã€‚
+     *
      * @param object
-     *            ƒXƒL[ƒ}ƒ`ƒFƒbƒN‘ÎÛ‚ÌƒIƒuƒWƒFƒNƒg
-     * @return ƒXƒL[ƒ}ƒtƒ@ƒCƒ‹‚ÌƒpƒX
+     *            ã‚¹ã‚­ãƒ¼ãƒãƒã‚§ãƒƒã‚¯å¯¾è±¡ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+     * @return ã‚¹ã‚­ãƒ¼ãƒãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‘ã‚¹
      */
     protected String getSchemaFilePath(Object object) {
         if (object == null) {
@@ -568,11 +568,11 @@ public class SchemaValidatorImpl implements SchemaValidator {
     }
 
     /**
-     * ƒvƒƒpƒeƒBƒtƒ@ƒCƒ‹‚©‚ç–¼‘O‹óŠÔ‚ğæ“¾‚·‚éB –¼‘O‹óŠÔ‚ğg—p‚µ‚È‚¢ê‡Anull‚ğ•Ô‚·B •K—v‚È–¼‘O‹óŠÔ‚ªİ’è‚³‚ê‚Ä‚¢‚È‚¢ê‡AÀs—áŠO‚ğ“Š‚°‚éB
-     * 
+     * ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰åå‰ç©ºé–“ã‚’å–å¾—ã™ã‚‹ã€‚ åå‰ç©ºé–“ã‚’ä½¿ç”¨ã—ãªã„å ´åˆã€nullã‚’è¿”ã™ã€‚ å¿…è¦ãªåå‰ç©ºé–“ãŒè¨­å®šã•ã‚Œã¦ã„ãªã„å ´åˆã€å®Ÿè¡Œæ™‚ä¾‹å¤–ã‚’æŠ•ã’ã‚‹ã€‚
+     *
      * @param object
-     *            ƒIƒuƒWƒFƒNƒg
-     * @return ƒŠƒ\[ƒX‚ÌURLƒCƒ“ƒXƒ^ƒ“ƒX
+     *            ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+     * @return ãƒªã‚½ãƒ¼ã‚¹ã®URLã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹
      */
     protected String getNamespaceName(Object object) {
         if (object == null) {
@@ -580,12 +580,12 @@ public class SchemaValidatorImpl implements SchemaValidator {
             throw new IllegalArgumentException("Argument is null.");
         }
 
-        // –¼‘O‹óŠÔ‚ğg‚í‚È‚¢
+        // åå‰ç©ºé–“ã‚’ä½¿ã‚ãªã„
         if (!namespace) {
             return null;
         }
 
-        // –¼‘O‹óŠÔ‚ğ’è‹`‚·‚éƒtƒ@ƒCƒ‹‚ª‚È‚¢
+        // åå‰ç©ºé–“ã‚’å®šç¾©ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ãŒãªã„
         if (this.namespaceProperties == null) {
             String message = "Namespace property is not set. " + "Put "
                     + namespacePropertyFileName + " file on your classpath, "
@@ -595,7 +595,7 @@ public class SchemaValidatorImpl implements SchemaValidator {
             throw new IllegalStateException(message);
         }
 
-        // –¼‘O‹óŠÔ‚ğæ“¾‚·‚é
+        // åå‰ç©ºé–“ã‚’å–å¾—ã™ã‚‹
         StringBuilder namespaceKey = new StringBuilder(object.getClass()
                 .getName());
         namespaceKey.append(NAME_SPACE_SUFFIX);

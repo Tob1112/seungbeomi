@@ -21,36 +21,36 @@ import javax.servlet.http.HttpServletRequest;
 import jp.terasoluna.fw.web.rich.context.RequestContext;
 
 /**
- * §Œäî•ñ‚ğˆµ‚¤‚½‚ß‚Ì•â•ƒƒWƒbƒN‚ÌƒfƒtƒHƒ‹ƒgÀ‘•ƒNƒ‰ƒXB
- * 
+ * åˆ¶å¾¡æƒ…å ±ã‚’æ‰±ã†ãŸã‚ã®è£œåŠ©ãƒ­ã‚¸ãƒƒã‚¯ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå®Ÿè£…ã‚¯ãƒ©ã‚¹ã€‚
+ *
  * <p>
- * ƒŠƒNƒGƒXƒgƒwƒbƒ_"requestName"‚Éİ’è‚µ‚Ä‚ ‚é•¶š—ñ‚ğƒŠƒNƒGƒXƒg–¼‚Æ‚·‚éB
- * iƒwƒbƒ_–¼‚ÍBean’è‹`ƒtƒ@ƒCƒ‹‚Ìİ’è‚É‚æ‚è•ÏX‰Â”\Bj
+ * ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€"requestName"ã«è¨­å®šã—ã¦ã‚ã‚‹æ–‡å­—åˆ—ã‚’ãƒªã‚¯ã‚¨ã‚¹ãƒˆåã¨ã™ã‚‹ã€‚
+ * ï¼ˆãƒ˜ãƒƒãƒ€åã¯Beanå®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã®è¨­å®šã«ã‚ˆã‚Šå¤‰æ›´å¯èƒ½ã€‚ï¼‰
  * </p>
- * 
+ *
  * <p>
- * –{ƒNƒ‰ƒX‚ğ—˜—p‚·‚éê‡ABean’è‹`‚ğs‚¤‚±‚ÆB
- * ‚Ü‚½AAbstractRequestContextSupport‚ÌƒvƒƒpƒeƒB‚É‰Á‚¦‚ÄAˆÈ‰º‚ÌƒvƒƒpƒeƒB‚ğİ’è‚·‚é‚±‚Æ‚ª‰Â”\‚Å‚ ‚éB
+ * æœ¬ã‚¯ãƒ©ã‚¹ã‚’åˆ©ç”¨ã™ã‚‹å ´åˆã€Beanå®šç¾©ã‚’è¡Œã†ã“ã¨ã€‚
+ * ã¾ãŸã€AbstractRequestContextSupportã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã«åŠ ãˆã¦ã€ä»¥ä¸‹ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚’è¨­å®šã™ã‚‹ã“ã¨ãŒå¯èƒ½ã§ã‚ã‚‹ã€‚
  * </p>
  *
  * <p>
  *   <table border="1" CELLPADDING="8">
- *     <th>‘®«–¼</th>
- *     <th>•K{</th>
- *     <th>à–¾</th>
- *     
+ *     <th>å±æ€§å</th>
+ *     <th>å¿…é ˆ</th>
+ *     <th>èª¬æ˜</th>
+ *
  *     <tr>
  *       <td align=center><b>requestNameHeaderKey</b></td>
- *       <td>~</td>
- *       <td>ƒŠƒNƒGƒXƒg–¼‚ğ•Û‚·‚éƒŠƒNƒGƒXƒgƒwƒbƒ_–¼B
- *       ƒfƒtƒHƒ‹ƒg‚Ìƒwƒbƒ_–¼hrequestNamehˆÈŠO‚Ìƒwƒbƒ_‚©‚çƒŠƒNƒGƒXƒg–¼‚ğæ“¾‚µ‚½‚¢ê‡‚Ì‚İİ’è‚·‚é‚±‚ÆB</td>
+ *       <td>Ã—</td>
+ *       <td>ãƒªã‚¯ã‚¨ã‚¹ãƒˆåã‚’ä¿æŒã™ã‚‹ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€åã€‚
+ *       ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ãƒ˜ãƒƒãƒ€åâ€requestNameâ€ä»¥å¤–ã®ãƒ˜ãƒƒãƒ€ã‹ã‚‰ãƒªã‚¯ã‚¨ã‚¹ãƒˆåã‚’å–å¾—ã—ãŸã„å ´åˆã®ã¿è¨­å®šã™ã‚‹ã“ã¨ã€‚</td>
  *     </tr>
- *  
+ *
  *  </table>
  * </p>
- * 
+ *
  * <p>
- * y<code>Bean’è‹`ƒtƒ@ƒCƒ‹</code>‚Ìİ’è—áz<br>
+ * ã€<code>Beanå®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«</code>ã®è¨­å®šä¾‹ã€‘<br>
  * <code><pre>
  *   &lt;bean id="ctxSupport"
  *       class="jp.terasoluna.fw.web.rich.context.support.DefaultRequestContextSupportImpl"&gt;
@@ -60,34 +60,34 @@ import jp.terasoluna.fw.web.rich.context.RequestContext;
  *   &lt;/bean&gt;
  * </pre></code>
  * </p>
- * 
+ *
  */
 public class DefaultRequestContextSupportImpl extends
         AbstractRequestContextSupport {
-    
+
     /**
-     * ƒŠƒNƒGƒXƒg–¼‚ğ•Û‚·‚éƒŠƒNƒGƒXƒgƒwƒbƒ_–¼B
+     * ãƒªã‚¯ã‚¨ã‚¹ãƒˆåã‚’ä¿æŒã™ã‚‹ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€åã€‚
      */
     protected String requestNameHeaderKey = DEFAULT_REQUEST_NAME_HEADER_KEY;
-    
+
     /**
-     * ƒŠƒNƒGƒXƒg–¼‚ğ•Û‚·‚éƒŠƒNƒGƒXƒgƒwƒbƒ_–¼‚ÌƒfƒtƒHƒ‹ƒg’lB
+     * ãƒªã‚¯ã‚¨ã‚¹ãƒˆåã‚’ä¿æŒã™ã‚‹ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€åã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã€‚
      */
-    private static final String DEFAULT_REQUEST_NAME_HEADER_KEY 
+    private static final String DEFAULT_REQUEST_NAME_HEADER_KEY
     	= "requestName";
-    
+
     /**
-     * ƒŠƒNƒGƒXƒg–¼‚ğ•Û‚·‚éƒŠƒNƒGƒXƒgƒwƒbƒ_–¼‚ğİ’è‚·‚éB
-     * @param requestNameHeaderKey ƒŠƒNƒGƒXƒg–¼‚ğ•Û‚·‚éƒŠƒNƒGƒXƒgƒwƒbƒ_–¼B
+     * ãƒªã‚¯ã‚¨ã‚¹ãƒˆåã‚’ä¿æŒã™ã‚‹ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€åã‚’è¨­å®šã™ã‚‹ã€‚
+     * @param requestNameHeaderKey ãƒªã‚¯ã‚¨ã‚¹ãƒˆåã‚’ä¿æŒã™ã‚‹ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€åã€‚
      */
     public void setRequestNameHeaderKey(String requestNameHeaderKey) {
         this.requestNameHeaderKey = requestNameHeaderKey;
     }
 
     /**
-     * §Œäî•ñ‚ğ¶¬E‰Šú‰»‚µ‚Ä•Ô‹p‚·‚éB
-     * @param request HTTPƒŠƒNƒGƒXƒg
-     * @return ¶¬‚µ‚½‹ó‚Ì§Œäî•ñB
+     * åˆ¶å¾¡æƒ…å ±ã‚’ç”Ÿæˆãƒ»åˆæœŸåŒ–ã—ã¦è¿”å´ã™ã‚‹ã€‚
+     * @param request HTTPãƒªã‚¯ã‚¨ã‚¹ãƒˆ
+     * @return ç”Ÿæˆã—ãŸç©ºã®åˆ¶å¾¡æƒ…å ±ã€‚
      */
     @Override
     protected RequestContext doGenerateContext(

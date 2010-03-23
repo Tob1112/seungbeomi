@@ -28,36 +28,36 @@ import org.apache.commons.beanutils.PropertyUtils;
 
 
 /**
- * Œ^•ÏŠ·‚ğs‚¤‚½‚ß‚Ìƒ†[ƒeƒBƒŠƒeƒBƒNƒ‰ƒXB
- * 
+ * å‹å¤‰æ›ã‚’è¡Œã†ãŸã‚ã®ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£ã‚¯ãƒ©ã‚¹ã€‚
+ *
  */
 public class ConvertUtil {
 
     /**
-     * <code>class</code>ƒtƒB[ƒ‹ƒh‚ğ•\‚·ƒtƒB[ƒ‹ƒh–¼
+     * <code>class</code>ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚’è¡¨ã™ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰å
      */
     public static final String CLASS_FIELDNAME = "class";
 
     /**
-     * ƒIƒuƒWƒFƒNƒg‚ğ”z—ñ‚É•ÏŠ·‚·‚éB
+     * ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’é…åˆ—ã«å¤‰æ›ã™ã‚‹ã€‚
      * <ul>
-     *   <li><code>null</code>‚Ìê‡ - <code>Object[0]</code>‚ğ•Ô‹p</li>
-     *   <li><code>Object[]</code>‚Ìê‡ - ‚»‚Ì‚Ü‚Ü•Ô‹p</li>
-     *   <li><code>Collection</code>‚Ìê‡ - ”z—ñ‚É•ÏŠ·‚µ‚Ä•Ô‹p</li>
-     *   <li>‚»‚êˆÈŠO‚Ìê‡ - —v‘f‚ğ1‚Â‚Â”z—ñ‚Æ‚µ‚Ä•Ô‹p</li>
+     *   <li><code>null</code>ã®å ´åˆ - <code>Object[0]</code>ã‚’è¿”å´</li>
+     *   <li><code>Object[]</code>ã®å ´åˆ - ãã®ã¾ã¾è¿”å´</li>
+     *   <li><code>Collection</code>ã®å ´åˆ - é…åˆ—ã«å¤‰æ›ã—ã¦è¿”å´</li>
+     *   <li>ãã‚Œä»¥å¤–ã®å ´åˆ - è¦ç´ ã‚’1ã¤æŒã¤é…åˆ—ã¨ã—ã¦è¿”å´</li>
      * </ul>
-     * 
+     *
      * <p>
-     * Œ^•Ûá‚³‚ê‚½”z—ñ‚ª—~‚µ‚¢ê‡‚ÍA{@link #toList(Object, Class)}‚ğ
-     * g—p‚µ‚ÄA‰º‹L‚Ì‚æ‚¤‚É‚·‚é‚±‚ÆB
+     * å‹ä¿éšœã•ã‚ŒãŸé…åˆ—ãŒæ¬²ã—ã„å ´åˆã¯ã€{@link #toList(Object, Class)}ã‚’
+     * ä½¿ç”¨ã—ã¦ã€ä¸‹è¨˜ã®ã‚ˆã†ã«ã™ã‚‹ã“ã¨ã€‚
      * <code><pre>
      * List<String> list = ConvertUtil.toList(value, String.class);
      * String[] array = list.toArray(new String[list.size()]);
      * </pre></code>
      * </p>
-     * 
-     * @param obj ƒIƒuƒWƒFƒNƒgB
-     * @return ƒIƒuƒWƒFƒNƒg‚ğ•ÏŠ·‚µ‚½”z—ñB
+     *
+     * @param obj ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‚
+     * @return ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å¤‰æ›ã—ãŸé…åˆ—ã€‚
      */
     public static Object[] toArray(Object obj) {
         if (obj == null) {
@@ -71,22 +71,22 @@ public class ConvertUtil {
     }
 
     /**
-     * ƒIƒuƒWƒFƒNƒg‚ğƒŠƒXƒg‚É•ÏŠ·‚·‚éB
+     * ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ãƒªã‚¹ãƒˆã«å¤‰æ›ã™ã‚‹ã€‚
      * <ul>
-     *   <li><code>null</code>‚Ìê‡ - —v‘f‚ğ‚½‚È‚¢<code>T</code>Œ^‚ÌƒŠƒXƒg‚Æ‚µ‚Ä•Ô‹p</li>
-     *   <li><code>Object[]</code>‚Ìê‡ - <code>T</code>Œ^‚ÌƒŠƒXƒg‚É•ÏŠ·‚µ‚Ä•Ô‹p</li>
-     *   <li><code>Collection</code>‚Ìê‡ - <code>T</code>Œ^‚ÌƒŠƒXƒg‚Æ‚µ‚Ä•Ô‹p</li>
-     *   <li>‚»‚êˆÈŠO‚Ìê‡ - —v‘f‚ğ1‚Â‚Â<code>T</code>Œ^‚ÌƒŠƒXƒg‚Æ‚µ‚Ä•Ô‹p</li>
+     *   <li><code>null</code>ã®å ´åˆ - è¦ç´ ã‚’æŒãŸãªã„<code>T</code>å‹ã®ãƒªã‚¹ãƒˆã¨ã—ã¦è¿”å´</li>
+     *   <li><code>Object[]</code>ã®å ´åˆ - <code>T</code>å‹ã®ãƒªã‚¹ãƒˆã«å¤‰æ›ã—ã¦è¿”å´</li>
+     *   <li><code>Collection</code>ã®å ´åˆ - <code>T</code>å‹ã®ãƒªã‚¹ãƒˆã¨ã—ã¦è¿”å´</li>
+     *   <li>ãã‚Œä»¥å¤–ã®å ´åˆ - è¦ç´ ã‚’1ã¤æŒã¤<code>T</code>å‹ã®ãƒªã‚¹ãƒˆã¨ã—ã¦è¿”å´</li>
      * </ul>
-     * 
-     * @param <E> •Ô‹p‚·‚éƒŠƒXƒg‚Ì—v‘f‚ğ•\‚·Œ^B
-     * @param obj ƒIƒuƒWƒFƒNƒgB
-     * @param elementClass •Ô‹p‚·‚éƒŠƒXƒg‚Ì—v‘f‚ğ•\‚·Œ^B 
-     * @return ƒIƒuƒWƒFƒNƒg‚ğ•ÏŠ·‚µ‚½ƒŠƒXƒgB
-     * @throws IllegalArgumentException ˆø”<code>clazz</code>‚ª
-     *           <code>null</code>‚Ìê‡
-     *           <code>obj</code>‚Ü‚½‚ÍA‚»‚Ì—v‘f‚ª<code>T</code>Œ^
-     *           ‚Å‚Í‚È‚¢ê‡B
+     *
+     * @param <E> è¿”å´ã™ã‚‹ãƒªã‚¹ãƒˆã®è¦ç´ ã‚’è¡¨ã™å‹ã€‚
+     * @param obj ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‚
+     * @param elementClass è¿”å´ã™ã‚‹ãƒªã‚¹ãƒˆã®è¦ç´ ã‚’è¡¨ã™å‹ã€‚
+     * @return ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å¤‰æ›ã—ãŸãƒªã‚¹ãƒˆã€‚
+     * @throws IllegalArgumentException å¼•æ•°<code>clazz</code>ãŒ
+     *           <code>null</code>ã®å ´åˆ
+     *           <code>obj</code>ã¾ãŸã¯ã€ãã®è¦ç´ ãŒ<code>T</code>å‹
+     *           ã§ã¯ãªã„å ´åˆã€‚
      */
     @SuppressWarnings("unchecked")
     public static <E> List<E> toList(Object obj, Class<E> elementClass)
@@ -95,7 +95,7 @@ public class ConvertUtil {
             throw new IllegalArgumentException("Argument 'elementClass' ("
                     +  Class.class.getName() + ") is null");
         }
-        
+
         Object[] array = toArray(obj);
         List<E> result = new ArrayList<E>();
         for (Object element : array) {
@@ -113,13 +113,13 @@ public class ConvertUtil {
     }
 
     /**
-     * ƒIƒuƒWƒFƒNƒg‚ğ<code>T</code>Œ^‚É•ÏŠ·‚·‚éB
-     * 
-     * @param <T> •ÏŠ·Œã‚ÌŒ^B
-     * @param obj ƒIƒuƒWƒFƒNƒgB
-     * @param clazz •ÏŠ·Œã‚ÌŒ^B
-     * @return •ÏŠ·Œã‚ÌƒIƒuƒWƒFƒNƒgB
-     * @throws IllegalArgumentException •ÏŠ·‚É¸”s‚µ‚½ê‡B
+     * ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’<code>T</code>å‹ã«å¤‰æ›ã™ã‚‹ã€‚
+     *
+     * @param <T> å¤‰æ›å¾Œã®å‹ã€‚
+     * @param obj ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‚
+     * @param clazz å¤‰æ›å¾Œã®å‹ã€‚
+     * @return å¤‰æ›å¾Œã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‚
+     * @throws IllegalArgumentException å¤‰æ›ã«å¤±æ•—ã—ãŸå ´åˆã€‚
      */
     public static <T> T convert(Object obj, Class<T> clazz)
             throws IllegalArgumentException {
@@ -127,49 +127,49 @@ public class ConvertUtil {
     }
 
     /**
-     * <code>null</code>‚Å‚Í‚È‚¢ƒIƒuƒWƒFƒNƒg‚ğ
-     * <code>T</code>Œ^‚É•ÏŠ·‚·‚éB
+     * <code>null</code>ã§ã¯ãªã„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’
+     * <code>T</code>å‹ã«å¤‰æ›ã™ã‚‹ã€‚
      * <p>
-     * ƒvƒŠƒ~ƒeƒBƒuŒ^‚É‘Î‰‚·‚é’l‚È‚Ç‚Ì•ÏŠ·‚É—˜—p‚·‚éB
+     * ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–å‹ã«å¯¾å¿œã™ã‚‹å€¤ãªã©ã®å¤‰æ›ã«åˆ©ç”¨ã™ã‚‹ã€‚
      * </p>
-     * 
-     * @param <T> •ÏŠ·Œã‚ÌŒ^B
-     * @param obj ƒIƒuƒWƒFƒNƒgB
-     * @param clazz •ÏŠ·Œã‚ÌŒ^B
-     * @return •ÏŠ·Œã‚ÌƒIƒuƒWƒFƒNƒgB
-     * @throws IllegalArgumentException •ÏŠ·‚É¸”s‚µ‚½ê‡B
-     *      ˆø”<code>obj</code>‚ª<code>null</code>‚Ìê‡B
+     *
+     * @param <T> å¤‰æ›å¾Œã®å‹ã€‚
+     * @param obj ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‚
+     * @param clazz å¤‰æ›å¾Œã®å‹ã€‚
+     * @return å¤‰æ›å¾Œã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‚
+     * @throws IllegalArgumentException å¤‰æ›ã«å¤±æ•—ã—ãŸå ´åˆã€‚
+     *      å¼•æ•°<code>obj</code>ãŒ<code>null</code>ã®å ´åˆã€‚
      */
     public static <T> T convertIfNotNull(Object obj, Class<T> clazz)
             throws IllegalArgumentException {
         return convert(obj, clazz, false);
     }
-    
+
     /**
-     * ƒIƒuƒWƒFƒNƒg‚ğ<code>T</code>Œ^‚É•ÏŠ·‚·‚éB
+     * ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’<code>T</code>å‹ã«å¤‰æ›ã™ã‚‹ã€‚
      * <p>
      * <ul>
-     *  <li><code>allowsNull</code>‚ª<code>false</code>‚©‚Â
-     *        <code>obj</code>‚ª<code>null</code> - —áŠO‚ğƒXƒ[B
-     *  <li><code>allowsNull</code>‚ª<code>true</code>‚©‚Â
-     *        <code>obj</code>‚ª<code>null</code> - <code>null</code>‚ğ•Ô‹pB
-     *  <li><code>obj</code>‚ª<code>clazz</code>Œ^ - ‚»‚Ì‚Ü‚Ü•Ô‹pB
-     *  <li><code>obj</code>‚ª<code>clazz</code>Œ^‚Å‚Í‚È‚¢
-     *        - <code>ConvertUtils</code>‚ğg—p‚µ‚Ä“KØ‚ÈŒ^‚É•ÏŠ·‚µ‚Ä•Ô‹pB
+     *  <li><code>allowsNull</code>ãŒ<code>false</code>ã‹ã¤
+     *        <code>obj</code>ãŒ<code>null</code> - ä¾‹å¤–ã‚’ã‚¹ãƒ­ãƒ¼ã€‚
+     *  <li><code>allowsNull</code>ãŒ<code>true</code>ã‹ã¤
+     *        <code>obj</code>ãŒ<code>null</code> - <code>null</code>ã‚’è¿”å´ã€‚
+     *  <li><code>obj</code>ãŒ<code>clazz</code>å‹ - ãã®ã¾ã¾è¿”å´ã€‚
+     *  <li><code>obj</code>ãŒ<code>clazz</code>å‹ã§ã¯ãªã„
+     *        - <code>ConvertUtils</code>ã‚’ä½¿ç”¨ã—ã¦é©åˆ‡ãªå‹ã«å¤‰æ›ã—ã¦è¿”å´ã€‚
      * </ul>
      * </p>
-     * 
-     * @param <T> •ÏŠ·Œã‚ÌŒ^B
-     * @param obj ƒIƒuƒWƒFƒNƒgB
-     * @param clazz •ÏŠ·Œã‚ÌŒ^B
-     * @param allowsNull ˆø”<code>obj</code>‚ª<code>null</code>‚Ì
-     *      ê‡‚ğ‹–—e‚·‚é‚©‚Ç‚¤‚©B
-     * @return •ÏŠ·Œã‚ÌƒIƒuƒWƒFƒNƒgB
-     * @throws IllegalArgumentException ˆø”<code>clazz</code>‚ª
-     *      <code>null</code>‚Ìê‡B
-     *      ˆø”<code>allowsNull</code>‚ª<code>false</code>‚©‚Â
-     *        ˆø”<code>obj</code>‚ª<code>null</code>‚Ìê‡B
-     *      •ÏŠ·‚É¸”s‚µ‚½ê‡B
+     *
+     * @param <T> å¤‰æ›å¾Œã®å‹ã€‚
+     * @param obj ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‚
+     * @param clazz å¤‰æ›å¾Œã®å‹ã€‚
+     * @param allowsNull å¼•æ•°<code>obj</code>ãŒ<code>null</code>ã®
+     *      å ´åˆã‚’è¨±å®¹ã™ã‚‹ã‹ã©ã†ã‹ã€‚
+     * @return å¤‰æ›å¾Œã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‚
+     * @throws IllegalArgumentException å¼•æ•°<code>clazz</code>ãŒ
+     *      <code>null</code>ã®å ´åˆã€‚
+     *      å¼•æ•°<code>allowsNull</code>ãŒ<code>false</code>ã‹ã¤
+     *        å¼•æ•°<code>obj</code>ãŒ<code>null</code>ã®å ´åˆã€‚
+     *      å¤‰æ›ã«å¤±æ•—ã—ãŸå ´åˆã€‚
      */
     @SuppressWarnings("unchecked")
     public static <T> T convert(
@@ -194,7 +194,7 @@ public class ConvertUtil {
         if (clazz.isAssignableFrom(obj.getClass())) {
             return (T) obj;
         }
-        
+
         Object result = null;
         try {
             result = ConvertUtils.convert(obj.toString(), clazz);
@@ -205,35 +205,35 @@ public class ConvertUtil {
     }
 
     /**
-     * ˆø”<code>value</code>‚ªƒvƒŠƒ~ƒeƒBƒuŒ^‚Ì”z—ñ‚Å‚ ‚ê‚ÎA
-     * —v‘f‚ğ<code>String</code>‚É•ÏŠ·‚µ‚Ä<code>List</code>‚ÉŠi”[
-     * ‚·‚éƒ†[ƒeƒBƒŠƒeƒBƒƒ\ƒbƒhB
-     * 
-     * @param value ƒvƒŠƒ~ƒeƒBƒuŒ^‚Ì”z—ñB
-     * @return ˆø”‚ªƒvƒŠƒ~ƒeƒBƒuŒ^‚Ì”z—ñ‚Ìê‡A‘S—v‘f‚ğŠi”[‚µ‚½<code>List</code>B
-     *          ‚»‚êˆÈŠO‚Ìê‡‚Íˆø”‚Ì<code>value</code>‚»‚Ì‚à‚ÌB
+     * å¼•æ•°<code>value</code>ãŒãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–å‹ã®é…åˆ—ã§ã‚ã‚Œã°ã€
+     * è¦ç´ ã‚’<code>String</code>ã«å¤‰æ›ã—ã¦<code>List</code>ã«æ ¼ç´
+     * ã™ã‚‹ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£ãƒ¡ã‚½ãƒƒãƒ‰ã€‚
+     *
+     * @param value ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–å‹ã®é…åˆ—ã€‚
+     * @return å¼•æ•°ãŒãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–å‹ã®é…åˆ—ã®å ´åˆã€å…¨è¦ç´ ã‚’æ ¼ç´ã—ãŸ<code>List</code>ã€‚
+     *          ãã‚Œä»¥å¤–ã®å ´åˆã¯å¼•æ•°ã®<code>value</code>ãã®ã‚‚ã®ã€‚
      */
     public static Object convertPrimitiveArrayToList(Object value) {
         if (value == null) {
             return value;
         }
         Class type = value.getClass().getComponentType();
-        
-        // value‚ª”z—ñŒ^‚Å‚Í‚È‚¢ê‡
+
+        // valueãŒé…åˆ—å‹ã§ã¯ãªã„å ´åˆ
         if (type == null) {
             return value;
         }
-        
-        // ”z—ñ‚Ì—v‘f‚ªƒvƒŠƒ~ƒeƒBƒuŒ^‚Å‚Í‚È‚¢ê‡
+
+        // é…åˆ—ã®è¦ç´ ãŒãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–å‹ã§ã¯ãªã„å ´åˆ
         if (!type.isPrimitive()) {
             return value;
         }
-        
+
         List<Object> list = new ArrayList<Object>();
-        
+
         if (value instanceof boolean[]) {
             for (boolean data : (boolean[]) value) {
-                // StringŒ^‚É•ÏŠ·‚·‚é•K—v‚Í‚È‚¢B
+                // Stringå‹ã«å¤‰æ›ã™ã‚‹å¿…è¦ã¯ãªã„ã€‚
                 list.add(data);
             }
         } else if (value instanceof byte[]) {
@@ -264,27 +264,27 @@ public class ConvertUtil {
             for (short data : (short[]) value) {
                 list.add(Short.toString(data));
             }
-        } 
+        }
         return list;
     }
 
     /**
-     * ƒIƒuƒWƒFƒNƒg‚ÌƒRƒŒƒNƒVƒ‡ƒ“‚Ü‚½‚Í”z—ñ‚ğƒ}ƒbƒv‚ÌƒŠƒXƒg‚É•ÏŠ·‚·‚éB
+     * ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã¾ãŸã¯é…åˆ—ã‚’ãƒãƒƒãƒ—ã®ãƒªã‚¹ãƒˆã«å¤‰æ›ã™ã‚‹ã€‚
      * <p>
-     * ƒŠƒXƒg‚Ì—v‘f‚Å‚ ‚éƒ}ƒbƒv‚Í{@link #CLASS_FIELDNAME}‚ğœ‚­‘S‚Ä‚Ì
-     * ƒtƒB[ƒ‹ƒh‚É‚Â‚¢‚ÄAƒtƒB[ƒ‹ƒh–¼‚ğƒL[‚Æ‚·‚é’l‚ğ‚ÂB
-     * ‚½‚¾‚µAƒtƒB[ƒ‹ƒh–¼‚ª‘å•¶š‚Ån‚Ü‚Á‚Ä‚¢‚éê‡AÅ‰‚Ì1•¶š‚ª
-     * ¬•¶š‚É•ÏŠ·‚³‚ê‚é‚Ì‚Å’ˆÓ‚·‚é‚±‚ÆB
+     * ãƒªã‚¹ãƒˆã®è¦ç´ ã§ã‚ã‚‹ãƒãƒƒãƒ—ã¯{@link #CLASS_FIELDNAME}ã‚’é™¤ãå…¨ã¦ã®
+     * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã«ã¤ã„ã¦ã€ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åã‚’ã‚­ãƒ¼ã¨ã™ã‚‹å€¤ã‚’æŒã¤ã€‚
+     * ãŸã ã—ã€ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åãŒå¤§æ–‡å­—ã§å§‹ã¾ã£ã¦ã„ã‚‹å ´åˆã€æœ€åˆã®1æ–‡å­—ãŒ
+     * å°æ–‡å­—ã«å¤‰æ›ã•ã‚Œã‚‹ã®ã§æ³¨æ„ã™ã‚‹ã“ã¨ã€‚
      * </p>
      * <ul>
-     *   <li><code>null</code>‚Ìê‡ - —v‘f‚ğ‚½‚È‚¢ƒ}ƒbƒv‚ÌƒŠƒXƒg‚Æ‚µ‚Ä•Ô‹p</li>
-     *   <li><code>Object[]</code>‚Ìê‡ - ƒ}ƒbƒv‚ÌƒŠƒXƒg‚É•ÏŠ·‚µ‚Ä•Ô‹p</li>
-     *   <li><code>Collection</code>‚Ìê‡ - ƒ}ƒbƒv‚ÌƒŠƒXƒg‚Æ‚µ‚Ä•Ô‹p</li>
-     *   <li>‚»‚êˆÈŠO‚Ìê‡ - —v‘f‚ğ1‚Â‚Âƒ}ƒbƒv‚ÌƒŠƒXƒg‚Æ‚µ‚Ä•Ô‹p</li>
+     *   <li><code>null</code>ã®å ´åˆ - è¦ç´ ã‚’æŒãŸãªã„ãƒãƒƒãƒ—ã®ãƒªã‚¹ãƒˆã¨ã—ã¦è¿”å´</li>
+     *   <li><code>Object[]</code>ã®å ´åˆ - ãƒãƒƒãƒ—ã®ãƒªã‚¹ãƒˆã«å¤‰æ›ã—ã¦è¿”å´</li>
+     *   <li><code>Collection</code>ã®å ´åˆ - ãƒãƒƒãƒ—ã®ãƒªã‚¹ãƒˆã¨ã—ã¦è¿”å´</li>
+     *   <li>ãã‚Œä»¥å¤–ã®å ´åˆ - è¦ç´ ã‚’1ã¤æŒã¤ãƒãƒƒãƒ—ã®ãƒªã‚¹ãƒˆã¨ã—ã¦è¿”å´</li>
      * </ul>
-     * @param obj ƒIƒuƒWƒFƒNƒgB
-     * @return ƒIƒuƒWƒFƒNƒg‚ğ•ÏŠ·‚µ‚½ƒ}ƒbƒv‚ÌƒŠƒXƒgB
-     * @throws IllegalArgumentException •ÏŠ·’†‚É—\Šú‚µ‚È‚¢—áŠO‚ª”­¶‚µ‚½ê‡B
+     * @param obj ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‚
+     * @return ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å¤‰æ›ã—ãŸãƒãƒƒãƒ—ã®ãƒªã‚¹ãƒˆã€‚
+     * @throws IllegalArgumentException å¤‰æ›ä¸­ã«äºˆæœŸã—ãªã„ä¾‹å¤–ãŒç™ºç”Ÿã—ãŸå ´åˆã€‚
      */
     @SuppressWarnings("unchecked")
     public static List<Map<String, Object>> toListOfMap(Object obj)
@@ -292,7 +292,7 @@ public class ConvertUtil {
         Object[] array = ConvertUtil.toArray(obj);
         List<Map<String, Object>> result = new ArrayList<Map<String, Object>>();
         for (Object object : array) {
-            
+
             Map<String, Object> map = null;
             if (object instanceof Map) {
                 map = (Map) object;
@@ -311,7 +311,7 @@ public class ConvertUtil {
             map.remove(CLASS_FIELDNAME);
             result.add(map);
         }
-    
+
         return result;
     }
 }

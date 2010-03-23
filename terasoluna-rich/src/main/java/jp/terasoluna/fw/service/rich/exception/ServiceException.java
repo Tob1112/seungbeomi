@@ -17,47 +17,47 @@
 package jp.terasoluna.fw.service.rich.exception;
 
 /**
- * ƒT[ƒrƒX‘w‚ÌƒNƒ‰ƒX‚ÅV‹K”­¶‚·‚é—áŠO‚ð‚ ‚ç‚í‚·ƒNƒ‰ƒXB
- * 
+ * ã‚µãƒ¼ãƒ“ã‚¹å±¤ã®ã‚¯ãƒ©ã‚¹ã§æ–°è¦ç™ºç”Ÿã™ã‚‹ä¾‹å¤–ã‚’ã‚ã‚‰ã‚ã™ã‚¯ãƒ©ã‚¹ã€‚
+ *
  * <p>
- *  ƒT[ƒrƒX‘w‚ÌƒNƒ‰ƒX‚ÅAƒGƒ‰[‚ªV‹K”­¶‚µ‚½ê‡‚É—˜—p‚·‚éB
- *  —á‚¦‚ÎA‹Æ–±“I‚Éƒf[ƒ^‚Ì•s®‡“™‚ª‹N‚«‚Ä‚¢‚éê‡‚É—˜—p‚·‚éB
+ *  ã‚µãƒ¼ãƒ“ã‚¹å±¤ã®ã‚¯ãƒ©ã‚¹ã§ã€ã‚¨ãƒ©ãƒ¼ãŒæ–°è¦ç™ºç”Ÿã—ãŸå ´åˆã«åˆ©ç”¨ã™ã‚‹ã€‚
+ *  ä¾‹ãˆã°ã€æ¥­å‹™çš„ã«ãƒ‡ãƒ¼ã‚¿ã®ä¸æ•´åˆç­‰ãŒèµ·ãã¦ã„ã‚‹å ´åˆã«åˆ©ç”¨ã™ã‚‹ã€‚
  * </p>
- * 
+ *
  * <p>
- * –{ƒNƒ‰ƒX‚ÅÝ’è‚µ‚½ƒGƒ‰[ƒR[ƒh‚¨‚æ‚Ñ’uŠ·•¶Žš—ñ‚ÍAƒvƒŒƒ[ƒ“ƒe[ƒVƒ‡ƒ“‘wEƒNƒ‰ƒCƒAƒ“ƒgƒTƒCƒh“™‚Å
- * “KØ‚ÈƒƒbƒZ[ƒW‚É•ÏŠ·‚·‚é‚±‚ÆB
+ * æœ¬ã‚¯ãƒ©ã‚¹ã§è¨­å®šã—ãŸã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ãŠã‚ˆã³ç½®æ›æ–‡å­—åˆ—ã¯ã€ãƒ—ãƒ¬ã‚¼ãƒ³ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³å±¤ãƒ»ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‚µã‚¤ãƒ‰ç­‰ã§
+ * é©åˆ‡ãªãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã«å¤‰æ›ã™ã‚‹ã“ã¨ã€‚
  * </p>
- * 
+ *
  */
 public class ServiceException extends RuntimeException {
 
     /**
-     * ƒVƒŠƒAƒ‹ƒo[ƒWƒ‡ƒ“IDB
+     * ã‚·ãƒªã‚¢ãƒ«ãƒãƒ¼ã‚¸ãƒ§ãƒ³IDã€‚
      */
     private static final long serialVersionUID = 3011574799470623851L;
 
     /**
-     * ƒGƒ‰[ƒR[ƒhB
+     * ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ã€‚
      */
     private String errorCode = null;
 
     /**
-     * ƒGƒ‰[ƒƒbƒZ[ƒW‚Ì’uŠ·•¶Žš—ñB
+     * ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ç½®æ›æ–‡å­—åˆ—ã€‚
      */
     private String[] options = null;
-    
+
     /**
-     * ¶¬ˆ—B
+     * ç”Ÿæˆå‡¦ç†ã€‚
      */
     public ServiceException() {
     }
 
     /**
-     * ¶¬ˆ—B
+     * ç”Ÿæˆå‡¦ç†ã€‚
      *
-     * @param errorCode ƒGƒ‰[ƒR[ƒh
-     * @param optionStrings ƒƒbƒZ[ƒW’†‚Ì{n}‚ð’uŠ·‚·‚é•¶Žš—ñ‚Ì”z—ñ
+     * @param errorCode ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
+     * @param optionStrings ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ä¸­ã®{n}ã‚’ç½®æ›ã™ã‚‹æ–‡å­—åˆ—ã®é…åˆ—
      */
     public ServiceException(String errorCode,
                             String... optionStrings) {
@@ -66,18 +66,18 @@ public class ServiceException extends RuntimeException {
     }
 
     /**
-     * ƒGƒ‰[ƒR[ƒh‚ðŽæ“¾‚·‚éB
+     * ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ã‚’å–å¾—ã™ã‚‹ã€‚
      *
-     * @return ƒGƒ‰[ƒR[ƒh
+     * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
      */
     public String getErrorCode() {
         return this.errorCode;
     }
 
     /**
-     * ƒGƒ‰[ƒƒbƒZ[ƒW‚Ì’uŠ·•¶Žš—ñ‚ðŽæ“¾‚·‚éB
+     * ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ç½®æ›æ–‡å­—åˆ—ã‚’å–å¾—ã™ã‚‹ã€‚
      *
-     * @return ƒGƒ‰[ƒƒbƒZ[ƒW’uŠ·•¶Žš—ñ
+     * @return ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç½®æ›æ–‡å­—åˆ—
      */
     public String[] getOptions() {
         return this.options;
