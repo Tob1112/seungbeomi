@@ -144,4 +144,6 @@ public interface QueryDAO {
      */
     List<Map<String, Object>> executeForMapList(String sqlID,
             Object bindParams, int beginIndex, int maxCount);
+
+
 }

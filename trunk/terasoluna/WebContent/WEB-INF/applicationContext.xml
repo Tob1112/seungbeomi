@@ -13,6 +13,10 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 <!-- アプリケーション全体のBean定義 -->
 
 <!-- ======================================== 各種フィルタコントローラ定義 -->
+  <!-- ログオン済みチェック設定 -->
+  <bean id="tutorialAuthenticationController"
+        class="jp.terasoluna.thin.tutorial.web.common.controller.TutorialAuthController"/>
+        
   <!-- ログオン済みチェック設定例 -->
   <!-- 
   <bean id="authenticationController"
@@ -89,13 +93,14 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
   <!-- 
     下記で指定したパターンのBeanに対してインタセプタを適用する。
     applicationContext.xmlで定義されたBeanのみ対象となるので注意すること。
-   -->  
+   -->
   <aop:config>
     <aop:pointcut id="daoBeans" expression="bean(*DAO)"/>
     <aop:advisor pointcut-ref="daoBeans" 
                  advice-ref="transactionInterceptor"/>
   </aop:config>
 
+  
 <!-- ======================================== リソースバンドル定義 -->
   <!-- プロパティファイル利用 -->
   <!-- 
