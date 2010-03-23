@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<errors>
+#foreach($error in $exception.allErrors)
+    <error>
+      #foreach($arg in $error.arguments)
+      <replace-values>${arg}</replace-values>
+      #end
+      <error-field>${error.field}</error-field>
+      <error-message>${rc.getMessage($error)}</error-message>
+      <error-code>${error.code}</error-code>
+    </error>
+
+#end
+</errors>

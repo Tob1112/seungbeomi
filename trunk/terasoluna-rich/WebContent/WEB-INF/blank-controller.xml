@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd">
+
+<!-- プレゼンテーション層のBean定義 -->
+<!--
+  コントローラや相関入力チェッククラスのBean定義などを記述する。
+  プレゼンテーション層共通のBean定義はblank-servlet.xmlに記述する。 
+-->
+
+<!-- ======================================== コントローラ定義 -->
+
+  <!-- 動作確認用コントローラの設定 -->
+  <bean name="/testController" 
+        class="org.springframework.web.servlet.mvc.SimpleFormController">
+    <property name="commandClass" value="java.lang.Object"/>
+    <property name="successView" value="success"/>
+  </bean>
+
+  <!-- コントローラ設定例 -->
+  <!-- 
+  <bean name="/sumController"
+        class="jp.terasoluna.sample.controller.SumController"
+        parent="pojoXmlRequestCastorViewController" scope="singleton">
+    <property name="sumService" ref="sumService"/>
+  </bean>
+  -->
+</beans>
