@@ -18,13 +18,14 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
   	   class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
 		<property name="mappings">
 			<props>
+				<prop key="/validateTest.do">validateTestController</prop>
 				<prop key="/validate.do">validateController</prop>
 			</props>
 		</property>
 	</bean>
 
     <!-- ================================================================ -->
-    <!-- VIEW RESOLBER                                                    -->
+    <!-- VIEW RESOLVER                                                    -->
     <!-- ================================================================ -->
 	<bean id="viewResolver"
 	   class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -40,7 +41,6 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 		<property name="validationConfigLocations">
 			<list>
 				<value>/WEB-INF/validator/validator-rules.xml</value>
-				<value>/WEB-INF/validator/validator-rules-ex.xml</value>
 				<value>/WEB-INF/validator/validator.xml</value>
 			</list>
 		</property>
