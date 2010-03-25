@@ -15,12 +15,14 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 
     <bean id="validateTestController"
        class="org.springframework.web.servlet.mvc.ParameterizableViewController">
-        <property name="viewName" value="input"/>
+        <!--<property name="viewName" value="input"/>-->
+        <property name="viewName" value="inputClientValidator"/>
     </bean>
 
 	<bean id="validateController"
 	   class="org.springframework.web.servlet.mvc.SimpleFormController">
-		<property name="formView" value="input" />
+		<!--<property name="formView" value="input" />-->
+		<property name="formView" value="inputClientValidator" />
 		<property name="successView" value="output" />
 		<property name="commandClass" value="org.seungbeomi.blank.ValidateCommand" />
 		<property name="validator" ref="beanValidator" />
