@@ -13,11 +13,17 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 	<bean name="/hello.do"
 	     class="org.seungbeomi.blank.HelloController"/>
 
+    <bean id="validateTestController"
+       class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+        <property name="viewName" value="input"/>
+    </bean>
+
 	<bean id="validateController"
-		class="org.springframework.web.servlet.mvc.SimpleFormController">
+	   class="org.springframework.web.servlet.mvc.SimpleFormController">
 		<property name="formView" value="input" />
 		<property name="successView" value="output" />
 		<property name="commandClass" value="org.seungbeomi.blank.ValidateCommand" />
 		<property name="validator" ref="beanValidator" />
 	</bean>
+
 </beans>

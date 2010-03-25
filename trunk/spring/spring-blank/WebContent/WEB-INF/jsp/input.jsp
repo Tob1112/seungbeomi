@@ -10,30 +10,25 @@
 	<title>Validate Sample</title>
 </head>
 <body>
-  <form action="validate.do" method="POST">
+  <form:form action="validate.do" method="POST">
 	<spring:hasBindErrors name="command"/>
     <!-- 必須チェックを行う -->
-    <form:errors path="command.name"/>
-    名前　：　<input type="text" name="name"
-    value="<c:out value="${status.value}"/>" />
-    <font color="red"><c:out value="${status.errorMessage}" /></font>
+    名前　：　<input type="text" name="name" />
+    <font color="red"><form:errors path="name"/></font>
     <br/>
 
     <!-- 桁数チェックを行う -->
-    <form:errors path="command.number"/>
-    数字　：　<input type="text" name="number"
-    value="<c:out value="${status.value}"/>"/>
-    <font color="red"><c:out value="${status.errorMessage}" /></font>
+    数字　：　<input type="text" name="number" />
+    <font color="red"><form:errors path="number"/></font>
     <br/>
 
     <!-- 日付フォーマット変換 -->
-    <form:errors path="command.date"/>
     日付　：　<input type="text" name="date"
-    value="<c:out value="${status.value}"/>"/>
-    <font color="red"><c:out value="${status.errorMessage}" /></font>
+    />
+    <font color="red"><form:errors path="date"/></font>
     <br/>
 
     <input type="submit" />
-  </form>
+  </form:form>
 </body>
 </html>
