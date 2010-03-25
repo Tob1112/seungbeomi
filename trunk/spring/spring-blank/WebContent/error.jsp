@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
-<title>Insert title here</title>
+<title>spring-blank error</title>
 </head>
 <body>
-
+	Error!!
 </body>
 </html>

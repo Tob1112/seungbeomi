@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- ================================================================ -->
+    <!-- HANDLER MAPPING                                                  -->
+    <!-- ================================================================ -->
+	<!-- BeanNameUrlHandlerMapping -->
+	<bean id="beanNameUrlMapping"
+	   class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/>
+
+	<!-- SimpleUrlHandlerMapping -->
+	<bean id="simpleUrlHandlerMapping"
+  	   class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="/validate.do">validateController</prop>
+			</props>
+		</property>
+	</bean>
+
+    <!-- ================================================================ -->
+    <!-- VIEW RESOLBER                                                    -->
+    <!-- ================================================================ -->
+	<bean id="viewResolver"
+	   class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/jsp/"/>
+		<property name="suffix" value=".jsp"/>
+	</bean>
+
+    <!-- ================================================================ -->
+    <!-- VALIDATOR                                                        -->
+    <!-- ================================================================ -->
+	<bean id="validatorFactory"
+		class="org.springmodules.validation.commons.DefaultValidatorFactory">
+		<property name="validationConfigLocations">
+			<list>
+				<value>/WEB-INF/validator/validator-rules.xml</value>
+				<value>/WEB-INF/validator/validator-rules-ex.xml</value>
+				<value>/WEB-INF/validator/validator.xml</value>
+			</list>
+		</property>
+	</bean>
+	<bean id="beanValidator"
+		class="org.springmodules.validation.commons.DefaultBeanValidator">
+		<property name="validatorFactory" ref="validatorFactory" />
+	</bean>
+
+
+</beans>

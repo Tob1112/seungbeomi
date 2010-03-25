@@ -5,33 +5,37 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
     <display-name>CHRONOS APPLICATION</display-name>
 
-    <!-- ============================================= -->
-    <!-- SPRING CONTEXT PARAMETER                      -->
-    <!-- ============================================= -->
+    <!-- ================================================================ -->
+    <!-- SPRING CONTEXT PARAMETER                                         -->
+    <!-- ================================================================ -->
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>
-            classpath:applicationContext-dao.xml
-            classpath:applicationContext-security.xml
-            classpath:applicationContext-service.xml
-            classpath:applicationContext-web.xml
-            classpath:applicationContext.xml
+            /WEB-INF/applicationContext-dao.xml
+            /WEB-INF/applicationContext-security.xml
+            /WEB-INF/applicationContext-service.xml
+            /WEB-INF/applicationContext.xml
         </param-value>
     </context-param>
 
-    <!-- ============================================= -->
-    <!-- LISTENER                                      -->
-    <!-- ============================================= -->
+    <!-- ================================================================ -->
+    <!-- LISTENER                                                         -->
+    <!-- ================================================================ -->
+    <!--
+    	springのservletが使用するbeanを設定 ：
+    		beanの設定は<context-param/>で行う。
+    -->
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
+    <!-- Spring Security Listener -->
     <listener>
         <listener-class>org.springframework.security.ui.session.HttpSessionEventPublisher</listener-class>
     </listener>
 
-    <!-- ============================================= -->
-    <!-- FILTER                                        -->
-    <!-- ============================================= -->
+    <!-- ================================================================ -->
+    <!-- FILTER                                                           -->
+    <!-- ================================================================ -->
     <filter>
         <filter-name>springSecurityFilterChain</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
@@ -41,21 +45,40 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
-    <!-- ============================================= -->
-    <!-- SPRING DISPATCHER SERVLET                     -->
-    <!-- ============================================= -->
+    <filter>
+    	<filter-name>encodingFilter</filter-name>
+    	<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    	<init-param>
+    		<param-name>encoding</param-name>
+    		<param-value>UTF-8</param-value>
+    	</init-param>
+    </filter>
+    <filter-mapping>
+    	<filter-name>encodingFilter</filter-name>
+    	<url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!-- ================================================================ -->
+    <!-- SPRING DISPATCHER SERVLET                                        -->
+    <!-- ================================================================ -->
     <servlet>
-        <servlet-name>dispatcher</servlet-name>
+        <servlet-name>blank</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+        	<param-name>contextConfigLocation</param-name>
+        	<param-value>
+        		/WEB-INF/blank-servlet.xml /WEB-INF/blank-controller.xml
+        	</param-value>
+        </init-param>
     </servlet>
     <servlet-mapping>
-        <servlet-name>dispatcher</servlet-name>
-        <url-pattern>*.html</url-pattern>
+        <servlet-name>blank</servlet-name>
+        <url-pattern>*.do</url-pattern>
     </servlet-mapping>
 
-    <!-- ============================================= -->
-    <!-- WELCOME FILE                                  -->
-    <!-- ============================================= -->
+    <!-- ================================================================ -->
+    <!-- WELCOME FILE                                                     -->
+    <!-- ================================================================ -->
     <welcome-file-list>
         <welcome-file>jsp/index.jsp</welcome-file>
     </welcome-file-list>
