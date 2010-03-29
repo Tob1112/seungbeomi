@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.4"
+	xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
+	http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+
+
+  <context-param>
+        <param-name>jdbcUrl</param-name>
+			<param-value>jdbc:h2:tcp://localhost/~/struts</param-value>
+  </context-param>
+  <context-param>
+        <param-name>jdbcUser</param-name>
+			<param-value>sa</param-value>
+  </context-param>
+  <context-param>
+        <param-name>jdbcPw</param-name>
+			<param-value></param-value>
+  </context-param>
+
+	<!-- 서버 시작과 끝에 반응하는 리스너  -->
+	<listener>
+		<listener-class>util.InitialContextListener</listener-class>
+	</listener>
+
+
+
+	<!--
+	<servlet>
+		<servlet-name>action</servlet-name>
+		<servlet-class>org.apache.struts.action.ActionServlet</servlet-class>
+		<init-param>
+			<param-name>config</param-name>
+			<param-value>/WEB-INF/struts-config.xml</param-value>
+		</init-param>
+		<init-param>
+			<param-name>debug</param-name>
+			<param-value>3</param-value>
+		</init-param>
+		<init-param>
+			<param-name>detail</param-name>
+			<param-value>3</param-value>
+		</init-param>
+		<load-on-startup>0</load-on-startup>
+	</servlet>
+	-->
+
+	<!--
+	어플리케이션으로 들어오는 모든 요청을 MyAppServlet이 받도록한다.
+	-->
+	<servlet>
+      	<servlet-name>action</servlet-name>
+      	<servlet-class>servlet.MyAppServlet</servlet-class>
+
+      	<init-param>
+        	 <param-name>config</param-name>
+         	<param-value>/WEB-INF/struts-config.xml</param-value>
+      	</init-param>
+      	<init-param>
+         	<param-name>debug</param-name>
+         	<param-value>0</param-value>
+      	</init-param>
+
+      	<load-on-startup>1</load-on-startup>
+   	</servlet>
+
+
+	<!-- log4j 설정파일 서버 재기동 없이 Reload하기 -->
+	<servlet>
+		<servlet-name>log4j-init</servlet-name>
+		<servlet-class>util.Log4jReLoadConfigure</servlet-class>
+		<init-param>
+			<param-name>log4j-init-file</param-name>
+			<param-value>log4j.properties</param-value>
+		</init-param>
+		<init-param>
+			<param-name>watch</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param>
+			<param-name>time-watch</param-name>
+			<param-value>1000</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+   	<servlet>
+     	<servlet-name>Download</servlet-name>
+     	<servlet-class>servlet.DownloadServlet2</servlet-class>
+   	</servlet>
+
+
+	<servlet-mapping>
+  	<servlet-name>action</servlet-name>
+  	<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+   	<servlet-name>Download</servlet-name>
+   	<url-pattern>/Download</url-pattern>
+	</servlet-mapping>
+
+
+  <!-- The Usual Welcome File List -->
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+
+  <jsp-config>
+  <taglib>
+  		<taglib-uri>/tags/struts-bean</taglib-uri>
+  		<taglib-location>/WEB-INF/struts-bean.tld</taglib-location>
+  </taglib>
+  <taglib>
+  		<taglib-uri>/tags/struts-html</taglib-uri>
+  		<taglib-location>/WEB-INF/struts-html.tld</taglib-location>
+  </taglib>
+  <taglib>
+  		<taglib-uri>/tags/struts-logic</taglib-uri>
+  		<taglib-location>/WEB-INF/struts-logic.tld</taglib-location>
+  </taglib>
+  <taglib>
+    	<taglib-uri>/tags/struts-nested.tld</taglib-uri>
+    	<taglib-location>/WEB-INF/struts-nested.tld</taglib-location>
+  </taglib>
+  <taglib>
+    	<taglib-uri>/tags/struts-template.tld</taglib-uri>
+    	<taglib-location>/WEB-INF/struts-template.tld</taglib-location>
+  </taglib>
+  <taglib>
+    	<taglib-uri>/tags/struts-tiles.tld</taglib-uri>
+    	<taglib-location>/WEB-INF/struts-tiles.tld</taglib-location>
+  </taglib>
+  </jsp-config>
+
+	<!-- 한글처리 필터 -->
+	<filter>
+		<display-name>Encoding Filter</display-name>
+		<filter-name>Encoding Filter</filter-name>
+		<filter-class>filter.EncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>EUC-KR</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>Encoding Filter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+</web-app>
+
