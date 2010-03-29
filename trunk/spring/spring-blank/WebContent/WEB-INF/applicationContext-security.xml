@@ -11,7 +11,7 @@ http://www.springframework.org/schema/security http://www.springframework.org/sc
 	</security:global-method-security>
 
 	<security:http auto-config="true" access-denied-page="/403.jsp">
-		<security:intercept-url pattern="/jsp/**" access="ROLE_ADMINISTRATOR,ROLE_USER"/>
+		<security:intercept-url pattern="/jsp/**" access="ROLE_ADMIN,ROLE_USER"/>
 		<security:form-login login-page="/login.jsp" authentication-failure-url="/error.jsp"/>
 		<security:logout logout-url="/logout" logout-success-url="/jsp/index.jsp" invalidate-session="true"/>
 	</security:http>
@@ -19,23 +19,21 @@ http://www.springframework.org/schema/security http://www.springframework.org/sc
 	<!-- Automatically receives AuthenticationEvent messages -->
 	<bean id="loggerListener" class="org.springframework.security.event.authentication.LoggerListener" />
 
+	<!--
 	<security:authentication-provider>
 		<security:user-service>
 			<security:user name="admin" password="admin" authorities="ROLE_ADMIN,ROLE_USER"/>
 			<security:user name="user" password="user" authorities="ROLE_USER"/>
-			<!--
-			<security:user name="user" password="ee11cbb19052e4b7aac0ca6c23ee" authorities="ROLE_USER" />
-			<security:user name="admin" password="21232f297a57a5a743894ae4a801fc3" authorities="ROLE_ADMIN,ROLE_USER" />
-			-->
 		</security:user-service>
 	</security:authentication-provider>
+	-->
 
-	<!--<security:authentication-provider>
+	<security:authentication-provider>
 		<security:jdbc-user-service
 			role-prefix="ROLE_"
 			data-source-ref="dataSource"
-			users-by-username-query="SELECT EMAIL AS USERNAME, PASSWD AS PASSWORD, 1 AS ENABLE FROM EMP WHERE EMAIL = ?"
-			authorities-by-username-query="SELECT E.EMAIL AS USERNAME, A.AUTH AS ROLES FROM EMP E, AUTH A WHERE E.EMAIL = A.ID AND E.EMAIL = ?"/>
-	</security:authentication-provider>-->
+			users-by-username-query="SELECT USERNAME, PASSWORD, ENABLED FROM USERINFO WHERE USERNAME = ?"
+			authorities-by-username-query="SELECT U.USERNAME, A.AUTHORITY FROM USERINFO U, AUTHORITIES A WHERE U.USERNAME = A.USERNAME AND U.USERNAME = ?"/>
+	</security:authentication-provider>
 
 </beans>
