@@ -62,16 +62,14 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
     <!-- ============================================= -->
     <!-- AOP							   			   -->
     <!-- ============================================= -->
-    <!--
-    <bean id="loggingAspect" class="com.prms.util.LoggingAspect"/>
+    <bean id="loggingAOP" class="org.seungbeomi.util.LoggingAOP"/>
 
     <aop:config>
-        <aop:aspect id="logging" ref="loggingAspect">
-	    	<aop:pointcut id="loggingPointcut" expression="execution(public * com.prms..*.*(..))"/>
+        <aop:aspect id="logging" ref="loggingAOP">
+	    	<aop:pointcut id="loggingPointcut" expression="execution(public * org.seungbeomi..*.*(..))"/>
             <aop:around pointcut-ref="loggingPointcut" method="logging"/>
         </aop:aspect>
     </aop:config>
-    -->
 
 	<!-- ============================================= -->
     <!-- APPLICATION RESOURCE			   			   -->
