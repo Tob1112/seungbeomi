@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+
+<struts-config>
+	<!-- DB에 접속 -->
+	<data-sources> 
+	
+	</data-sources> 
+	
+	
+	<form-beans>
+	<!-- DynaActionForm -->
+	<!--<form-bean name="userForm" type="org.apache.struts.action.DynaActionForm">
+			<form-property name="userId" type="java.lang.String"/>
+			<form-property name="password" type="java.lang.String"/>
+			<form-property name="name" type="java.lang.String"/>
+			<form-property name="email" type="java.lang.String"/>
+		</form-bean>
+	-->
+		<form-bean name="userForm" 
+				   type="form.UserForm"></form-bean>
+		<form-bean name="listForm" 
+				   type="form.ListForm"></form-bean>
+  		<form-bean name="boardForm" 
+				   type="form.BoardForm"></form-bean>
+	
+	
+	</form-beans>
+
+	<global-exceptions />
+
+	<global-forwards />
+
+	<action-mappings>
+	
+		<action path="/login"
+				type="user.action.UserAction" 
+				name="userForm"
+				scope="request" 
+				parameter="method"
+				input="/struts/login.jsp" 
+				validate="false">
+		<forward name="user_list" path="/user_list.do?method=list"/>
+		</action>	
+		
+		<action path="/user_list"
+				type="user.action.UserAction" 
+				name="userForm"
+				scope="request" 
+				parameter="method"
+				input="/struts/login.jsp" 
+				validate="false">
+		<forward name="user_list" path="/struts/user_list.jsp"/>
+		</action>	
+			
+		<!-- 회원가입  -->	
+		<action path="/user_write"
+		   		type="user.action.UserAction" 
+				name = "userForm"
+				scope="request"
+				parameter="method"
+				input = "/struts/user_write.jsp">
+		<forward name="user_list" path="/user_list.do?method=list"/>
+		</action>	
+			 					
+		<action path="/user_writeForm"
+				type="org.apache.struts.actions.ForwardAction"
+				parameter="/struts/user_write.jsp">
+		</action>
+		
+		<!-- 사용자정보보기 -->
+		<action path="/user_view"
+				type="user.action.UserAction" 
+				name = "userForm"
+				scope = "request"
+				parameter="method"
+				input = "/struts/user_list.jsp">
+		<forward name="user_view" path="/struts/user_view.jsp"/>
+		</action>
+		
+		<!-- 수정하기 폼 -->
+		 <action path="/user_modifyForm"
+				type="user.action.UserAction" 
+				name = "userForm"
+				scope = "request"
+				parameter="method"
+				input = "/struts/user_view.jsp">
+		<forward name="user_modify" path="/struts/user_modify.jsp"/>
+		</action>
+		
+		<!-- 수정하기 -->
+		<action path="/user_modify"
+				type="user.action.UserAction" 
+				name = "userForm"
+				scope = "request"
+				parameter="method"
+				input = "/struts/user_modify.jsp">
+		<forward name="user_list" path="/user_list.do?method=list"/>
+		</action>
+		
+		<!-- 삭제하기 -->
+		<action path="/user_remove"
+				type="user.action.UserAction" 
+				name = "userForm"
+				scope = "request"
+				parameter="method"
+				input = "/struts/user_view.jsp">
+		<forward name="user_list" path="/user_list.do?method=list"/>
+		</action>
+		
+		<action path="/loginForm"
+				type="org.apache.struts.actions.ForwardAction"
+				parameter="/struts/login.jsp">
+		</action>
+		
+		
+		
+		
+		<!-- 게시판 관련 action  -->
+		
+		<action path="/board_list"
+				type="board.action.BoardListAction"
+				name="listForm"
+				scope="request"
+				validate="false">
+				<forward name="list" path="/board/board_list.jsp"/>
+		</action>
+		
+		<action path="/board_writeForm"
+      			type="board.action.BoardWriteFormAction"
+			    name="boardForm"
+			    scope="request"
+			    unknown="false"
+			    validate="true">
+      	<forward name="write" path="/board/board_write.jsp" redirect="false"/>
+	    </action>
+	    
+	    
+	    <!--
+	    write를 하고 나면 DispatcherAction을 상속한 BoardAction으로 돌려서 parameter값을 받아 method를 실행한다.
+	    ex 1)board_write.jsp에서 submit을 하면 create method로 날라가서 insert문을 실행 시킨다.
+	    -->
+	    <action path="/board" 
+	            type="board.action.BoardAction"
+	      		name="boardForm"
+	      	    scope="request"
+	       	  	parameter="method"
+	      		unknown="false"
+	      		validate="true">
+	    <forward name="list" path="/board_list.do" redirect="true"/>
+	    </action>	
+      	
+      	<action path="/board_view" 
+      			type="board.action.BoardViewAction"
+      			name="boardForm"
+      			scope="request"
+      			unknown="false"
+      			validate="true">
+      	<forward name="view" path="/board/board_view.jsp" redirect="false"/>
+    	</action>
+    	
+    	<action path="/board_updateForm"
+      			type="board.action.BoardUpdateFormAction"
+      			name="boardForm"
+      			scope="request"
+      			unknown="false"
+      			validate="true">
+      	<forward name="modify" path="/board/board_modify.jsp" redirect="false"/>
+	    </action>
+	    
+	    <action path="/board_fileremove"
+	    		type="board.action.BoardFileRemoveAction"
+      			name="boardForm"
+      			scope="request"
+      			unknown="false"
+      			validate="true">
+      	<forward name="modify" path="/board_updateForm.do" redirect="false"/>
+      	</action>
+      	
+      	<!--
+	    여기의 parameter는 web.xml의 servlet으로 연결된다.
+	    -->
+	    <action path="/download"
+	    		parameter="/Download"
+	      		type="org.apache.struts.actions.ForwardAction">
+	    </action>
+	    
+	    <!--
+	    서버의 재시작없이 struts-config.xml과 메세지리소스파일 초기화하기위한것
+	    사용법 : http://203.233.196.153:7777/StrutsTest6/reload.do
+	    -->
+	    <action path="/reload"
+      			type="board.ReloadStrutsConfigAction"
+			    unknown="false"
+      			validate="true">
+      	</action>
+      	
+	</action-mappings>
+	
+	<controller></controller>
+	<!--
+	<controller contentType="text/html"
+				debug="3"
+				nocache="true"
+				processorClass="processor.MyAppRequestProcessor"/>
+	-->
+	<message-resources
+		parameter="resources.application" />
+
+</struts-config>
+
+
