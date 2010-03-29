@@ -1,0 +1,49 @@
+<?xml version='1.0'?>
+<project basedir='.' default='all' name='csharp-simple'>
+  <property name='src' value='src'/>
+  <property name='build' value='bin'/>
+  <property name='nant.settings.currentframework' value='mono-1.0'/>
+  <target depends='Hello,OverridingTest,Indexer,InterfaceTest,DelegateTest,DelegateTest2' name='all'/>
+  <target depends='' name='Hello'>
+    <csc debug='true' define='' optimize='true' output='${build}\\Hello.exe' target='exe' warninglevel='4'>
+      <sources>
+        <include name='${src}/\Hello.cs'/>
+</sources>
+</csc>
+</target>
+  <target depends='' name='OverridingTest'>
+    <csc debug='true' define='' optimize='true' output='${build}\\OverridingTest.exe' target='exe' warninglevel='4'>
+      <sources>
+        <include name='${src}/\OverridingTest.cs'/>
+</sources>
+</csc>
+</target>
+  <target depends='' name='Indexer'>
+    <csc debug='true' define='' optimize='true' output='${build}\\Indexer.exe' target='exe' warninglevel='4'>
+      <sources>
+        <include name='${src}/\Indexer.cs'/>
+</sources>
+</csc>
+</target>
+  <target depends='' name='InterfaceTest'>
+    <csc debug='true' define='' optimize='true' output='${build}\\InterfaceTest.exe' target='exe' warninglevel='4'>
+      <sources>
+        <include name='${src}/\InterfaceTest.cs'/>
+</sources>
+</csc>
+</target>
+  <target depends='' name='DelegateTest'>
+    <csc debug='true' define='' optimize='true' output='${build}\\DelegateTest.exe' target='exe' warninglevel='4'>
+      <sources>
+        <include name='${src}/\DelegateTest.cs'/>
+</sources>
+</csc>
+</target>
+  <target depends='' name='DelegateTest2'>
+    <csc debug='true' define='' optimize='true' output='${build}\\DelegateTest2.exe' target='exe' warninglevel='4'>
+      <sources>
+        <include name='${src}/\DelegateTest2.cs'/>
+      </sources>
+    </csc>
+  </target>
+</project>

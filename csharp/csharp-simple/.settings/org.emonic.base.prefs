@@ -1,0 +1,6 @@
+#Wed Mar 24 12:30:02 JST 2010
+eclipse.preferences.version=1
+org.emonic.base.build.file=csharp.build
+org.emonic.base.build.mechanism=nant
+org.emonic.base.project.copyright=(c) YEAR by AUTHOR\nAll rights reserved.
+org.emonic.base.project.defaultNamespace=
