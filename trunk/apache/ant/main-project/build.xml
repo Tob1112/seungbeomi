@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="application" basedir="." default="build">
+    <target name="build" description="import another project files">
+    	<ant dir="../domain-project" target="all"/>
+    	<ant dir="../util-project" target="all"/>
+    </target>
+</project>
