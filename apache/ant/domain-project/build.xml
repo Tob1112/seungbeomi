@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="domain" default="all">
+
+	<path id="classpath">
+		<fileset dir="./lib" includes="*.jar"/>
+	</path>
+	
+	<target name="setProps" unless="setProps" description="setup the properties.">
+		<property name="deploy.dir" value="../main-project/WebContent/WEB-INF/lib/"/>
+	</target>
+	
+	<target name="init" depends="setProps" description="initialize the properties.">
+		<tstamp/>
+		<property name="build" value="./bin/domain"/>
+		<property name="lib" value="./lib"/>
+		<property name="domain_jar" value="domain-project.jar"/>
+	</target>
+	
+	<target name="clean" depends="init" description="delete domain.jar">
+		<delete file="${domain_jar}"/>
+		<delete file="${deploy.dir}/${domain_jar}"/>
+		<delete dir="${build}"/>
+	</target>
+	
+	<target name="prepare" depends="init" description="prepare the output directory.">
+		<mkdir dir="${build}"/>
+	</target>
+	
+	<target name="compile" depends="prepare" 	description="compile the java source.">
+		<javac srcdir="./src" destdir="${build}">
+			<classpath refid="classpath" />
+		</javac>
+		<copy todir="${build}">
+			<fileset dir="./src" includes="**/*.xml,**/*.properties"/>
+		</copy>
+	</target>
+	
+	<target name="package" depends="compile" description="package the java classes into a jar.">
+		<jar jarfile="${domain_jar}" manifest="./META-INF/MANIFEST.MF" basedir="${build}"/>
+	</target>
+	
+	<target name="deploy" depends="package" description="deploy domain jar">
+        <move todir="${deploy.dir}">
+            <fileset file="${domain_jar}"/>
+        </move>
+		<copy todir="${deploy.dir}">
+			<fileset dir="${lib}">
+            	<exclude name="**/commons-logging-1.1.1.jar" />
+                <exclude name="**/junit.jar" />
+            </fileset>
+        </copy>
+    </target>
+
+	<target name="all" depends="clean,deploy" description="perform all targets."/>	
+</project>
