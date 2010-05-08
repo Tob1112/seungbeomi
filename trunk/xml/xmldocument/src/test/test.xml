@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="test.xsl"?>
+<booklist>
+    <book>
+        <title>타이틀</title>
+        <author>author01</author>
+        <publisher>publisher01</publisher>
+        <price>10000</price>
+    </book>
+    <book>
+        <title>title02</title>
+        <author>author02</author>
+        <publisher>publisher02</publisher>
+        <price>20000</price>
+    </book>
+    <book>
+        <title>title03</title>
+        <author>author03</author>
+        <publisher>publisher03</publisher>
+        <price>30000</price>
+    </book>
+    <book>
+        <title>title04</title>
+        <author>author04</author>
+        <publisher>publisher04</publisher>
+        <price>40000</price>
+    </book>
+    <book>
+        <title>title05</title>
+        <author>author05</author>
+        <publisher>publisher05</publisher>
+        <price>50000</price>
+    </book>
+</booklist>
