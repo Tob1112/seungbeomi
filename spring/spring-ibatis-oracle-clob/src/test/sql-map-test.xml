@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="user">
+
+	<typeAlias alias="user" type="test.User" />
+
+	<resultMap id="result" class="user">
+		<result property="userId" column="USERID" />
+		<result property="name" column="NAME" />
+		<result property="contents" column="CONTENTS" jdbcType="CLOB" />
+	</resultMap>
+
+	<insert id="insertTest" parameterClass="user">
+		INSERT INTO TEST (USERID, NAME, CONTENTS) VALUES (#userId#, #name#, #contents#)
+	</insert>
+	
+	<select id="selectTest" parameterClass="string" resultMap="result">
+		SELECT USERID, NAME, CONTENTS FROM TEST WHERE USERID = #userId#
+	</select>
+</sqlMap>
