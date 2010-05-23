@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="
+    	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+
+	<context:property-placeholder location="database.properties" />
+
+    <bean id="dataSource"
+           class="org.apache.commons.dbcp.BasicDataSource"
+           destroy-method="close"
+           p:driverClassName="${db.driver}"
+           p:url="${db.url}"
+           p:username="${db.username}"
+           p:password="${db.password}"
+           p:defaultAutoCommit="true" />
+
+	<bean id="simpleNativeJdbcExtractor" class="org.springframework.jdbc.support.nativejdbc.SimpleNativeJdbcExtractor"/>
+
+	<bean id="oracleLobHandler" class="org.springframework.jdbc.support.lob.OracleLobHandler">
+		<property name="nativeJdbcExtractor" ref="simpleNativeJdbcExtractor"/>
+	</bean>
+
+	<bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+		<property name="configLocation" value="sqlmapConfig.xml"/>
+		<property name="dataSource" ref="dataSource"/>
+    	<property name="lobHandler" ref="oracleLobHandler"/>
+	</bean>
+
+	<bean id="testDao" class="test.TestDaoImpl">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+</beans>
