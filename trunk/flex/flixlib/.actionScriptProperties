@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<actionScriptProperties mainApplicationPath="flixlib.mxml" version="3">
+  <compiler additionalCompilerArguments="-locale en_US" copyDependentFiles="true" enableModuleDebug="true" generateAccessible="false" htmlExpressInstall="true" htmlGenerate="true" htmlHistoryManagement="true" htmlPlayerVersion="9.0.124" htmlPlayerVersionCheck="true" outputFolderPath="bin-debug" sourceFolderPath="src" strict="true" useApolloConfig="false" verifyDigests="true" warn="true">
+    <compilerSourcePath/>
+    <libraryPath defaultLinkType="1">
+      <libraryPathEntry kind="4" path=""/>
+      <libraryPathEntry kind="1" linkType="1" path="libs"/>
+    </libraryPath>
+    <sourceAttachmentPath/>
+  </compiler>
+  <applications>
+        <application path="AdvancedForm/AdvancedForm_Sample.mxml"/>
+        <application path="DockingToolBar/DockingToolBar_Sample.mxml"/>
+        <application path="DockingToolBar/MultipleDockingToolBars_Sample.mxml"/>
+        <application path="FlowBox/FlowBox_Sample.mxml"/>
+        <application path="IconLoader/IconLoader_Sample.mxml"/>
+        <application path="ScrollableMenus/ScrollableMenu_Sample.mxml"/>
+        <application path="Base64Image/Base64Image_Sample.mxml"/>
+        <application path="DragCanvas/DragCanvas_Sample.mxml"/>
+        <application path="FlowContainer/FlowContainer_Sample.mxml"/>
+        <application path="ImageMap/ImageMap_Sample.mxml"/>
+        <application path="SuperTabNavigator/SuperTabNavigator_Sample.mxml"/>
+        <application path="CanvasButton/CanvasButton_Sample.mxml"/>
+        <application path="DraggableSlider/Slider_Sample.mxml"/>
+        <application path="HAccordion/HAccordion_Sample.mxml"/>
+        <application path="MDI/MDI_Sample.mxml"/>
+        <application path="TreeGrid/TreeGrid_Sample.mxml"/>
+        <application path="CanvasButtonAccordionHeader/CanvasButtonAccordionHeader_Sample.mxml"/>
+        <application path="EnhancedButtonSkin/EnhancedButton_Sample.mxml"/>
+        <application path="Highlighter/Highlighter_Sample.mxml"/>
+        <application path="PromptingTextInput/PromptingTextInput_Sample.mxml"/>
+        <application path="VerticalMenuBar/VerticalMenu_Sample.mxml"/>
+        <application path="ConvertibleTreeList/ConvertibleTreeList_Sample.mxml"/>
+        <application path="Fire/Fire_Sample.mxml"/>
+        <application path="HorizontalAxisDataSelector/HorizontalAxisDataSelector_Sample.mxml"/>
+        <application path="SchedulingFramework/ScheduleViewer1_Sample.mxml"/>
+        <application path="SchedulingFramework/ScheduleViewer2_Sample.mxml"/>
+        <application path="SchedulingFramework/ScheduleViewer3_Sample.mxml"/>
+        <application path="SchedulingFramework/ScheduleViewer4_Sample.mxml"/>
+        <application path="SchedulingFramework/ScheduleViewer5_Sample.mxml"/>
+        <application path="SchedulingFramework/ScheduleViewer6_Sample.mxml"/>
+        <application path="WindowShade/WindowShade_Sample.mxml"/>
+  </applications>
+  <modules/>
+  <buildCSSFiles/>
+</actionScriptProperties>
+
+
