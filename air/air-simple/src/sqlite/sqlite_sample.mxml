@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:WindowedApplication xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute"
+                        applicationComplete="applicationCompleteHandler()" width="450" height="450"
+                        showFlexChrome="false" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+    <mx:Script>
+        <![CDATA[
+            import mx.controls.Alert;
+            import mx.collections.ArrayCollection;
+
+            [Bindable] private var contacts:ArrayCollection;
+            [Bindable] private var contact:Object;
+
+            private var sqlConnection:SQLConnection;
+            private function applicationCompleteHandler():void {
+                openDatabase();
+            }
+            private function openDatabase():void {
+                var sqliteDB:String = "contacts.sqlite3";
+                var file:File = File.userDirectory.resolvePath(sqliteDB);
+                //var file:File = new File("app:/" + sqliteDB);
+                var isNewDB:Boolean = !file.exists;
+                sqlConnection = new SQLConnection();
+                sqlConnection.open(file);
+
+                if (isNewDB) {
+                    createDatabase();
+                }
+                findAll();
+            }
+            private function findAll():void {
+                var stmt:SQLStatement = new SQLStatement();
+                stmt.sqlConnection = sqlConnection;
+                stmt.text = "SELECT * FROM contacts";
+                stmt.execute();
+                contacts = new ArrayCollection(stmt.getResult().data);
+            }
+            private function createDatabase():void {
+                var stmt:SQLStatement = new SQLStatement();
+                stmt.sqlConnection = sqlConnection;
+                stmt.text = "CREATE TABLE contacts (user_id TEXT PRIMARY KEY, name TEXT)";
+                stmt.execute();
+                stmt.text = "INSERT INTO contacts (user_id, name) VALUES (:user_id, :name)";
+                stmt.parameters[":user_id"] = "son";
+                stmt.parameters[":name"] = "seungbeom";
+                stmt.execute();
+                stmt.parameters[":user_id"] = "kim";
+                stmt.parameters[":name"] = "hyungsuk";
+                stmt.execute();
+            }
+
+            private function clickBtnSave():void {
+                try {
+                    var stmt:SQLStatement = new SQLStatement();
+                    stmt.sqlConnection = sqlConnection;
+                    stmt.text = "INSERT INTO contacts (user_id, name) VALUES (:userId, :name)";
+                    stmt.parameters[":userId"] = txtInputUserId.text;
+                    stmt.parameters[":name"] = txtInputName.text;
+                    stmt.execute();
+
+                    findAll();
+                        //dispatchEvent(new ContactEvent(ContactEvent.CREATE, contact, true));
+                } catch (error:SQLError) {
+                    Alert.show(error.toString());
+                }
+                clear();
+            }
+
+            private function clickBtnDelete():void {
+                try {
+                    var stmt:SQLStatement = new SQLStatement();
+                    stmt.sqlConnection = sqlConnection;
+                    stmt.text = "DELETE FROM contacts WHERE user_id = :userId";
+                    stmt.parameters[":userId"] = txtInputUserId.text;
+                    stmt.execute();
+
+                    findAll();
+                } catch (error:SQLError) {
+                    Alert.show(error.details, "Error");
+                }
+                clear();
+            }
+
+            private function clickUserDataGrid(contact:Object):void {
+                txtInputUserId.text = contact.user_id;
+                txtInputName.text = contact.name;
+            }
+
+            private function isNoData():Boolean {
+                var result:Boolean = false;
+                if (txtInputUserId.text.length == 0) {
+                    result = true;
+                }
+                return result;
+            }
+
+            private function clear():void {
+                txtInputUserId.text = "";
+                txtInputName.text = "";
+            }
+        ]]>
+    </mx:Script>
+    <mx:Canvas width="448" height="451">
+        <mx:DataGrid id="userDataGrid" dataProvider="{contacts}"
+                     click="clickUserDataGrid(userDataGrid.selectedItem)"
+                     x="10" y="10" width="200" height="400">
+            <mx:columns>
+                <mx:DataGridColumn headerText="USER ID" dataField="user_id"/>
+                <mx:DataGridColumn headerText="NAME" dataField="name"/>
+            </mx:columns>
+        </mx:DataGrid>
+        <mx:Button x="278" y="70" label="save" width="75" id="btnSave" click="clickBtnSave()"/>
+        <mx:Button x="363" y="70" label="delete" width="75" id="btnDelete" click="clickBtnDelete()"/>
+        <mx:TextInput x="278" y="10" id="txtInputUserId"/>
+        <mx:TextInput x="278" y="40" id="txtInputName"/>
+        <mx:Text x="218" y="12" text="USER ID" width="52"/>
+        <mx:Text x="218" y="42" text="NAME" width="52"/>
+    </mx:Canvas>
+</mx:WindowedApplication>
