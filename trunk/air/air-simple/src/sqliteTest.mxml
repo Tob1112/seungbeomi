@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:WindowedApplication xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute"
+	creationComplete="creationCompleteHandler(event)" width="626" height="320">
+
+	<mx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			private var con:SQLConnection;
+
+			private function creationCompleteHandler(e:Event):void {
+			     var file:File = File.applicationDirectory.resolvePath("employee.db");
+			     con = new SQLConnection();
+			     con.addEventListener(SQLEvent.OPEN, function(e:SQLEvent):void {
+			         trace("opened...");
+			         listEmployees();
+			     });
+
+			     con.addEventListener(SQLEvent.CLOSE, function(e:SQLEvent):void {
+			         trace("closed...");
+			     });
+			     con.addEventListener(SQLErrorEvent.ERROR, function(e:SQLErrorEvent):void {
+			         debug.text = e.error.message;
+			     });
+			     con.openAsync(file, SQLMode.READ);
+			     button.addEventListener(MouseEvent.CLICK, onClickHandler);
+			     endButton.addEventListener(MouseEvent.CLICK, endButtonOnClickHandler);
+			}
+
+			private function listEmployees(salary:Number=0):void {
+			     var stmt:SQLStatement = new SQLStatement();
+			     stmt.sqlConnection = con;
+			     //stmt.itemClass = Employee;
+			     stmt.text = "select e.id eid, e.name ename, e.job_type job_type, d.name dname, e.salary salary " +
+			     		"from employee e inner join department d on e.department_id = d.id" +
+			     		"where salary >= :salary";
+			     stmt.parameters[":salary"] = salary.toString();
+			     stmt.addEventListener(SQLEvent.RESULT, function(e:SQLEvent):void {
+			         var result:SQLResult = stmt.getResult();
+			         employeeGrid.dataProvider = new ArrayCollection(result.data);
+			     });
+			     stmt.addEventListener(SQLErrorEvent.ERROR, function(e:SQLErrorEvent):void {
+			         debug.text = e.error.message;
+			     });
+			     stmt.execute();
+			}
+
+			private function onClickHandler(e:MouseEvent):void {
+                listEmployees(Number(salaryInput.text));
+			}
+
+			private function endButtonOnClickHandler(e:MouseEvent):void {
+			 con.close();
+			 con = null;
+			 nativeWindow.close();
+			}
+		]]>
+	</mx:Script>
+
+    <mx:DataGrid id="employeeGrid" width="600" height="250" x="10" y="10">
+    	<mx:columns>
+    		<mx:DataGridColumn headerText="ID" dataField="eid"/>
+    		<mx:DataGridColumn headerText="Name" dataField="ename"/>
+    		<mx:DataGridColumn headerText="job" dataField="job_type"/>
+    		<mx:DataGridColumn headerText="dep" dataField="dname" />
+    		<mx:DataGridColumn headerText="salary" dataField="salary"/>
+    	</mx:columns>
+    </mx:DataGrid>
+    <mx:HBox x="10" y="270" width="600">
+    	<mx:Label text="condition salary" width="135"/>
+    	<mx:TextInput id="salaryInput" />
+    	<mx:Button id="button" label="給与条件を変更する"/>
+    	<mx:Button id="endButton" label="給与条件検索を終了する"/>
+    </mx:HBox>
+    <mx:Text id="debug" y="290" x="10" width="600"/>
+</mx:WindowedApplication>

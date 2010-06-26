@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:WindowedApplication xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute"
+	creationComplete="creationCompleteHandler(event)"
+	backgroundColor="0xFFFFFF">
+	<mx:Script>
+		<![CDATA[
+			private function creationCompleteHandler(e:Event):void {
+                button.addEventListener(MouseEvent.CLICK, function(e:MouseEvent):void {
+                    text.text = "Hello AIR!";
+                });
+			}
+		]]>
+	</mx:Script>
+
+	<mx:Text id="text" x="10" y="50"/>
+	<mx:Button id="button" label="push me" x="10" y="100"/>
+
+</mx:WindowedApplication>

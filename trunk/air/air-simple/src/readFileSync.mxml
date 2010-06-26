@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:WindowedApplication xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute"
+    creationComplete="init(event)">
+
+    <mx:Script>
+        <![CDATA[
+            private function init(e:Event):void {
+                 var f:File = new File("app:/test.txt");
+                 var stream:FileStream = new FileStream();
+                 try {
+                     stream.open(f, FileMode.READ);
+                     textArea.text = stream.readMultiByte(stream.bytesAvailable, "UTF-8");
+                 } catch (error:IOError) {
+                     trace(error.message);
+                 } finally {
+                     stream.close();
+                 }
+            }
+        ]]>
+    </mx:Script>
+    <mx:TextArea id="textArea" width="380" height="200"/>
+</mx:WindowedApplication>

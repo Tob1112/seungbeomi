@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:WindowedApplication xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute"
+	creationComplete="init()">
+	<mx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+
+			private function init():void {
+			 var f:File = new File("app:/fileTest.txt");
+			 Alert.show(f.nativePath);
+			}
+		]]>
+	</mx:Script>
+</mx:WindowedApplication>
