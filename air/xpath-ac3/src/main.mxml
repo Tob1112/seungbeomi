@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:WindowedApplication xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" applicationComplete="loadXMLFile()" width="1000" height="510">
+    <mx:Script>
+        <![CDATA[
+            import mx.controls.Alert;
+            import mx.collections.ArrayCollection;
+            import mx.events.CubeEvent;
+            import flash.events.MouseEvent;
+            import flash.events.Event;
+            import mx.collections.XMLListCollection;
+            import com.tis.XpathExample.*;
+            //---- Declare your variables Here ----
+            public var xRead:xmlRead;
+            private var commandArray:Array;
+            [Bindable]
+            public var cmdCollection:ArrayCollection; //--------- The Binable object for the Grid
+            [Bindable]
+            public var strExpression:String;
+            //-------------------------------------
+            public function loadXMLFile(bLoadDefault:Boolean=false):void{
+                //--------- Put Commands to ComboBox
+                commandArray = [];
+                if(bLoadDefault)
+                    commandArray = [{label:"Select titles from all book Nodes",data:"/bookstore/book/title"},
+                        {label:"Select the title of the first book Node", data:"/bookstore/book[1]/title"},
+                        {label:"Select the prices", data:"/bookstore/book/price/text()"},
+                        {label:"Selecting price Nodes with Price>35", data:"/bookstore/book[price>35]/price"},
+                        {label:"Selecting title Nodes with Price>35", data:"/bookstore/book[price>35]/title"}];
+
+                cmdCollection = new ArrayCollection(commandArray);
+                //---------------------------
+                //---------- Create XML Reader --------------
+                xRead = new xmlRead();
+                xRead.addEventListener(CustomEvent.XML_DONE ,bindNow); //- Custom event fired and bind the data
+                xRead.loadData();
+            }
+            //-------- Private function on Expression Change -------------
+            private function onExpressionSelect(evt:Event):void{
+                expression.text = evt.target.selectedItem.data;
+            }
+            //------------ Bind Data to the Grid Component -------
+            private function bindNow(e:Event):void{
+                trace(e.target.data.toString());
+                var tList:XMLList = xRead.getData(null);
+                sourceXML.text = tList.toString();
+            }
+            //---------- Get Results -----------
+            private function getResults():void{
+                var strExpression:String = expression.text.toString();
+                var tList:XMLList = xRead.getData(strExpression);
+                ResultXML.text = tList;//.toString();
+                var exp_obj:Object = {label:strExpression,data:strExpression};
+                for(var i:String in cmdCollection){
+                    if(exp_obj.data == cmdCollection[i].data){
+                        return;
+                    }
+                }
+                cmdCollection.addItemAt(exp_obj,0);
+            }
+            //------------ Validate Inputs ---------
+            private function validate():void{
+                if(sourceXML.text.length < 1){
+                    mx.controls.Alert.show("Please provide Input XML");
+                    return;
+                }
+                if(expression.text.length<1){
+                    mx.controls.Alert.show("Please provide Xpath Expression");
+                    return;
+                }
+                getResults();
+            }
+            //------- Add Listeners
+            //btnSubmit.addEventListener(MouseEvent.CLICK,getResults);//
+        ]]>
+    </mx:Script>
+    <mx:TextArea x="10" y="35" width="500" height="453" id="sourceXML"/>
+    <mx:TextArea x="529" y="280" width="459" height="208" id="ResultXML"/>
+    <mx:TextInput x="529" y="224" id="expression" width="385" editable="true" text="{strExpression}"/>
+    <mx:Button x="922" y="224" label="Submit" id="btnSubmit" click="validate()"/>
+    <mx:Label x="529" y="200" text="Enter Xpath Expression"/>
+    <mx:Label x="529" y="254" text="Result" width="44" color="#031C22"/>
+    <mx:Label x="10" y="10" text="Input XML (You can paste your XML here)"/>
+    <mx:Label x="529" y="10" text="Expression History" width="124"/>
+    <mx:List x="529" y="36" width="459" height="156" id="history_lb" dataProvider="{cmdCollection}" change="onExpressionSelect(event)" />
+    <mx:Button x="661" y="8" label="Load sample expressions" id="btnLoadSample" click="loadXMLFile(true)" width="327"/>
+</mx:WindowedApplication>
