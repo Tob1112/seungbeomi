@@ -15,6 +15,7 @@
     <application path="readFileSync.mxml"/>
     <application path="sqliteTest.mxml"/>
     <application path="sqlite/sqlite_sample.mxml"/>
+    <application path="DataTypeTest.mxml"/>
   </applications>
   <modules/>
   <buildCSSFiles/>
