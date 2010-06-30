@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:WindowedApplication xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute"
-                        applicationComplete="applicationCompleteHandler()" width="450" height="450"
-                        showFlexChrome="false" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+                        applicationComplete="applicationCompleteHandler()" width="450" height="206"
+                        showFlexChrome="false" horizontalScrollPolicy="off" verticalScrollPolicy="off" close="closeHandler()">
     <mx:Script>
         <![CDATA[
+            import deng.fzip.FZipFile;
+            import deng.fzip.FZipEvent;
+            import deng.fzip.FZip;
             import mx.controls.Alert;
             import mx.collections.ArrayCollection;
 
@@ -11,11 +14,73 @@
             [Bindable] private var contact:Object;
 
             private var sqlConnection:SQLConnection;
+
             private function applicationCompleteHandler():void {
+                init();
                 openDatabase();
             }
+            private function closeHandler():void {
+                var initData:String;
+                if (chkboxRememberMe.selected) {
+                    initData =
+                        "userId=" + txtInputUserId.text + "\n" +
+                        "name=" + txtInputName.text + "\n" +
+                        "rememberMe=" + chkboxRememberMe.selected;
+                } else {
+                    initData =
+                        "userId=" + "\n" +
+                        "name=" + "\n" +
+                        "rememberMe=" + chkboxRememberMe.selected;
+                }
+
+                // 設定ファイル書き込み
+                var file:File = File.userDirectory.resolvePath("AirTest" + File.separator + "test.ini");
+                var stream:FileStream = new FileStream();
+                try {
+                    //if (file.exists) {
+                    //stream.openAsync(file, FileMode.APPEND);
+                    //stream.openAsync(file, FileMode.UPDATE);
+                    //} else {
+                    stream.openAsync(file, FileMode.WRITE);
+                    //}
+                    stream.writeMultiByte(initData, "UTF-8");
+                } catch (e:Error) {
+                    trace(e.message);
+                } finally {
+                    stream.close();
+                }
+            }
+
+            private function init():void {
+                //var file:File = File.userDirectory.resolvePath("AirTest");
+                //file.createDirectory();
+                var initFile:File = File.userDirectory.resolvePath("AirTest" + File.separator + "test.ini");
+                // 設定ファイル読み込み
+                if (initFile.exists) {
+                    var stream:FileStream = new FileStream();
+                    try {
+                        stream.open(initFile, FileMode.READ);
+                        var initData:String = stream.readMultiByte(stream.bytesAvailable, "UTF-8");
+                        var initDataArray:Array = initData.split("\n");
+                        var initMap:Array = new Array();
+                        for each (var initData:String in initDataArray) {
+                            var data:Array = initData.split("=");
+                            initMap[data[0]] = data[1];
+                        }
+
+                        txtInputUserId.text = initMap["userId"];
+                        txtInputName.text = initMap["name"];
+                        chkboxRememberMe.selected = (initMap["rememberMe"] == "true" ? true : false) ;
+
+                    } catch (e:Error) {
+                        trace(e.message);
+                    } finally {
+                        stream.close();
+                    }
+                }
+            }
             private function openDatabase():void {
-                var sqliteDB:String = "contacts.sqlite3";
+                var sqliteDB:String = "AirTest" + File.separator + "contacts.db";
                 var file:File = File.userDirectory.resolvePath(sqliteDB);
                 //var file:File = new File("app:/" + sqliteDB);
                 var isNewDB:Boolean = !file.exists;
@@ -97,12 +162,47 @@
                 txtInputUserId.text = "";
                 txtInputName.text = "";
             }
+
+            private function btnZipClickHandler():void {
+                try {
+                    // zipファイル　インスタンス生成
+                    var zip:FZip = new FZip("UTF-8");
+
+                    // ファイル読み込み
+                    var inputFile:File = File.userDirectory.resolvePath("AirTest" + File.separator + "test.ini");
+                    var inputBytes:ByteArray = new ByteArray();
+                    var inputStream:FileStream = new FileStream();
+                    inputStream.open(inputFile, FileMode.READ);
+                    inputStream.readBytes(inputBytes,0,inputFile.size);
+
+                    // zipファイルに追加
+                    zip.addFile(inputFile.name, inputBytes);
+
+                    // zip ファイル書き込み
+                    var outputFile:File = File.userDirectory.resolvePath("AirTest" + File.separator + inputFile.name + ".zip");
+                    var outputStream:FileStream = new FileStream();
+                    outputStream.open(outputFile, FileMode.WRITE);
+                    zip.serialize(outputStream);
+
+                    txtMessage.text = outputFile.nativePath + "に zipファイルが生成されました。";
+
+                    inputStream.close();
+                    outputStream.close();
+                } catch (e:Error) {
+                    trace(e.message);
+                } finally {
+                }
+            }
+
+            private function btnUnZipClickHandler():void {
+
+            }
         ]]>
     </mx:Script>
-    <mx:Canvas width="448" height="451">
+    <mx:Canvas width="448" height="204">
         <mx:DataGrid id="userDataGrid" dataProvider="{contacts}"
                      click="clickUserDataGrid(userDataGrid.selectedItem)"
-                     x="10" y="10" width="200" height="400">
+                     x="10" y="10" width="200" height="157">
             <mx:columns>
                 <mx:DataGridColumn headerText="USER ID" dataField="user_id"/>
                 <mx:DataGridColumn headerText="NAME" dataField="name"/>
@@ -114,5 +214,9 @@
         <mx:TextInput x="278" y="40" id="txtInputName"/>
         <mx:Text x="218" y="12" text="USER ID" width="52"/>
         <mx:Text x="218" y="42" text="NAME" width="52"/>
+        <mx:CheckBox x="278" y="100" label="Remember me" id="chkboxRememberMe" width="160"/>
+        <mx:Button x="278" y="130" label="ZIP" height="37" id="btnZip" width="75" click="btnZipClickHandler()"/>
+        <mx:Button x="361" y="130" label="UNZIP" height="37" id="btnUnZip" width="77" click="btnUnZipClickHandler()"/>
+        <mx:Text x="10" y="175" id="txtMessage"/>
     </mx:Canvas>
 </mx:WindowedApplication>
