@@ -10,12 +10,13 @@
   </compiler>
   <applications>
     <application path="readFileAsync.mxml"/>
-    <application path="FileTest.mxml"/>
-    <application path="helloAir.mxml"/>
+    <application path="mainXML.mxml"/>
     <application path="readFileSync.mxml"/>
     <application path="sqliteTest.mxml"/>
-    <application path="sqlite/sqlite_sample.mxml"/>
+    <application path="FileTest.mxml"/>
     <application path="DataTypeTest.mxml"/>
+    <application path="helloAir.mxml"/>
+    <application path="sample/airSampleApp.mxml"/>
   </applications>
   <modules/>
   <buildCSSFiles/>

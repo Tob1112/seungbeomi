@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:WindowedApplication xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute"
+                        applicationComplete="applicationCompleteHandler()" width="450" height="536"
+                        showFlexChrome="false" horizontalScrollPolicy="off" verticalScrollPolicy="off" close="closeHandler()">
+    <mx:Script>
+        <![CDATA[
+            import memorphic.xpath.XPathQuery;
+            import mx.collections.XMLListCollection;
+            import xpath.CustomEvent;
+            import xpath.xmlRead;
+            import mx.collections.IViewCursor;
+            import deng.fzip.FZipFile;
+            import deng.fzip.FZipEvent;
+            import deng.fzip.FZip;
+            import mx.controls.Alert;
+            import mx.collections.ArrayCollection;
+
+            [Bindable] private var contacts:ArrayCollection;
+            [Bindable] private var contact:Contact;
+
+            private static const ENCODE:String = "utf-8";
+            private var sqlConnection:SQLConnection;
+
+            private function applicationCompleteHandler():void {
+                init();
+                openDatabase();
+            }
+            private function closeHandler():void {
+                var initData:String;
+                if (chkboxRememberMe.selected) {
+                    initData =
+                        "userId=" + txtInputUserId.text + "\n" +
+                        "name=" + txtInputName.text + "\n" +
+                        "rememberMe=" + chkboxRememberMe.selected;
+                } else {
+                    initData =
+                        "userId=" + "\n" +
+                        "name=" + "\n" +
+                        "rememberMe=" + chkboxRememberMe.selected;
+                }
+
+                // 設定ファイル書き込み
+                var file:File = File.userDirectory.resolvePath("AirTest" + File.separator + "test.ini");
+                var stream:FileStream = new FileStream();
+                try {
+                    //if (file.exists) {
+                    //stream.openAsync(file, FileMode.APPEND);
+                    //stream.openAsync(file, FileMode.UPDATE);
+                    //} else {
+                    stream.openAsync(file, FileMode.WRITE);
+                    //}
+                    stream.writeMultiByte(initData, ENCODE);
+                } catch (e:Error) {
+                    trace(e.message);
+                } finally {
+                    stream.close();
+                }
+            }
+
+            private function init():void {
+                //var file:File = File.userDirectory.resolvePath("AirTest");
+                //file.createDirectory();
+                var initFile:File = File.userDirectory.resolvePath("AirTest" + File.separator + "test.ini");
+                // 設定ファイル読み込み
+                if (initFile.exists) {
+                    var stream:FileStream = new FileStream();
+                    try {
+                        stream.open(initFile, FileMode.READ);
+                        var initData:String = stream.readMultiByte(stream.bytesAvailable, ENCODE);
+                        var initDataArray:Array = initData.split("\n");
+                        var initMap:Array = new Array();
+                        for each (var initData:String in initDataArray) {
+                            var data:Array = initData.split("=");
+                            initMap[data[0]] = data[1];
+                        }
+
+                        txtInputUserId.text = initMap["userId"];
+                        txtInputName.text = initMap["name"];
+                        chkboxRememberMe.selected = (initMap["rememberMe"] == "true" ? true : false) ;
+
+                    } catch (e:Error) {
+                        trace(e.message);
+                    } finally {
+                        stream.close();
+                    }
+                }
+            }
+            private function openDatabase():void {
+                var sqliteDB:String = "AirTest" + File.separator + "contacts.db";
+                var file:File = File.userDirectory.resolvePath(sqliteDB);
+                //var file:File = new File("app:/" + sqliteDB);
+                var isNewDB:Boolean = !file.exists;
+                sqlConnection = new SQLConnection();
+                sqlConnection.open(file);
+
+                if (isNewDB) {
+                    createDatabase();
+                }
+                findAll();
+            }
+            private function findAll():void {
+                var stmt:SQLStatement = new SQLStatement();
+                stmt.sqlConnection = sqlConnection;
+                stmt.text = "SELECT user_id as userId, name FROM contacts";
+                stmt.execute();
+                contacts = new ArrayCollection(stmt.getResult().data);
+            }
+            private function createDatabase():void {
+                var stmt:SQLStatement = new SQLStatement();
+                stmt.sqlConnection = sqlConnection;
+                stmt.text = "CREATE TABLE contacts (user_id TEXT PRIMARY KEY, name TEXT)";
+                stmt.execute();
+                stmt.text = "INSERT INTO contacts (user_id, name) VALUES (:user_id, :name)";
+                stmt.parameters[":user_id"] = "son";
+                stmt.parameters[":name"] = "seungbeom";
+                stmt.execute();
+                stmt.parameters[":user_id"] = "kim";
+                stmt.parameters[":name"] = "hyungsuk";
+                stmt.execute();
+            }
+
+            private function clickBtnSave():void {
+                try {
+                    var stmt:SQLStatement = new SQLStatement();
+                    stmt.sqlConnection = sqlConnection;
+                    stmt.text = "INSERT INTO contacts (user_id, name) VALUES (:userId, :name)";
+                    stmt.parameters[":userId"] = txtInputUserId.text;
+                    stmt.parameters[":name"] = txtInputName.text;
+                    stmt.execute();
+
+                    findAll();
+                        //dispatchEvent(new ContactEvent(ContactEvent.CREATE, contact, true));
+                } catch (error:SQLError) {
+                    Alert.show(error.toString());
+                }
+                clear();
+            }
+
+            private function clickBtnDelete():void {
+                try {
+                    var stmt:SQLStatement = new SQLStatement();
+                    stmt.sqlConnection = sqlConnection;
+                    stmt.text = "DELETE FROM contacts WHERE user_id = :userId";
+                    stmt.parameters[":userId"] = txtInputUserId.text;
+                    stmt.execute();
+
+                    findAll();
+                } catch (error:SQLError) {
+                    Alert.show(error.details, "Error");
+                }
+                clear();
+            }
+
+            private function clickUserDataGrid(contact:Object):void {
+                if (contact == null) return;
+                txtInputUserId.text = contact.userId;
+                txtInputName.text = contact.name;
+            }
+
+            private function isNoData():Boolean {
+                var result:Boolean = false;
+                if (txtInputUserId.text.length == 0) {
+                    result = true;
+                }
+                return result;
+            }
+
+            private function clear():void {
+                txtInputUserId.text = "";
+                txtInputName.text = "";
+            }
+
+            // zip ファイルを作成する。
+            private function btnZipClickHandler():void {
+                try {
+                    // zipファイル　インスタンス生成
+                    var zip:FZip = new FZip();
+
+                    var files:Array = File.userDirectory.resolvePath("AirTest").getDirectoryListing();
+                    for each (var file:File in files) {
+                        // ファイル名が「.」で始まらないが圧縮対象
+                        if (!file.isDirectory &&
+                            file.name.charAt(0) != "." &&
+                            file.extension != "zip") {
+
+                            var bytes:ByteArray = new ByteArray();
+                            var inputStream:FileStream = new FileStream();
+                            inputStream.open(file, FileMode.READ);
+                            inputStream.readBytes(bytes,0,file.size);
+                            inputStream.close();
+                            // zip ファイル書き込み
+                            zip.addFile(file.name, bytes);
+                        }
+                    }
+
+                    var outputFile:File = File.userDirectory.resolvePath("AirTest" + File.separator + "test.zip");
+                    var outputStream:FileStream = new FileStream();
+                    outputStream.open(outputFile, FileMode.WRITE);
+                    zip.serialize(outputStream);
+
+                    txtMessage.text = "";
+                    txtMessage.text = outputFile.nativePath + "に zipファイルが圧縮されました。";
+
+                    outputStream.close();
+                } catch (e:Error) {
+                    trace(e.message);
+                } finally {
+                }
+            }
+
+            // zip ファイルを解凍する
+            private function btnUnZipClickHandler():void {
+                // load zip file
+                var unzip:FZip = new FZip();
+                var file:File = File.userDirectory.resolvePath("AirTest" + File.separator + "test.zip");
+                var bytes:ByteArray = new ByteArray();
+                var stream:FileStream = new FileStream();
+                stream.open(file, FileMode.READ);
+                stream.readBytes(bytes, 0, file.size);
+                unzip.loadBytes(bytes);
+
+                // write zip file
+                for(var i:int = 0; i < unzip.getFileCount(); i++) {
+                    var zipfile:FZipFile = unzip.getFileAt(i);
+                    trace("解凍 : " + zipfile.filename);
+                    var file:File = File.userDirectory.resolvePath("AirTest" + File.separator + "uncompressed" + File.separator + zipfile.filename);
+                    var zipStream:FileStream = new FileStream();
+                    zipStream.open(file, FileMode.WRITE);
+                    zipStream.writeBytes(zipfile.content);
+                    zipStream.close();
+
+                    zipfile.content = null;
+                    zipfile = null;
+                }
+                stream.close();
+
+                txtMessage.text = "";
+                txtMessage.text = file.nativePath + "ファイルが解凍されました。";
+            }
+
+            //=====================================================================
+            // XML
+            //=====================================================================
+            [Bindable] private var xml:XML;
+            private var xRead:xmlRead;
+            private function clickBtnLoadXMLHandler():void {
+                // ファイルからXML読み込み
+                xRead = new xmlRead();
+                var xmlFilePath:String = "/workspace/air-simple/src/data/data.xml";
+                var loadedXML:XML = xRead.loadDataFromXMLFile(xmlFilePath);
+                userDataGrid.dataProvider = loadedXML.contact;
+                txtAreaLoadXML.data = loadedXML;
+                txtMessage.text = "xmlファイルをロードしました。";
+            }
+
+            private function clickBtnSaveXMLHandler():void {
+                if (xml == null) {
+                    Alert.show("load xml file");
+                    return;
+                }
+                // XMLにデータ追加
+                var newnode:XML = new XML();
+                newnode =
+                    <contact>
+                        <userId>{txtInputUserId.text}</userId>
+                        <name>{txtInputName.text}</name>
+                    </contact>;
+                xml.appendChild(newnode);
+
+                // XMLをファイルを書き込み
+                var file:File = new File("/workspace/air-simple/src/data/data.xml");
+                var saveData:String = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + xml.toXMLString();
+                var fs:FileStream = new FileStream();
+                fs.open(file, FileMode.WRITE);
+                fs.writeUTFBytes(saveData);
+                fs.close();
+
+                // XML再読み込み
+                userDataGrid.dataProvider = xml.contact
+                txtMessage.text = "xmlファイルをセーブしました。";
+            }
+            private function clickBtnDeleteXMLHandler():void {
+
+            }
+            private function clickBtnFindXMLHandler():void {
+                if (xml == null) {
+                    Alert.show("load xml file");
+                    return;
+                }z
+                var xpath:String = txtiptXpath.text.toString();
+                var xmlList:XMLList = xRead.getValue(txtiptXpath.text);
+                txtAreaFindXML.data = "";
+                txtAreaFindXML.data = xmlList;
+            }
+        ]]>
+    </mx:Script>
+
+
+    <mx:Canvas width="448" height="534">
+        <mx:DataGrid id="userDataGrid" dataProvider="{contacts}"
+                     click="clickUserDataGrid(userDataGrid.selectedItem)"
+                     x="10" y="10" width="200" height="187">
+            <mx:columns>
+                <mx:DataGridColumn headerText="USER ID" dataField="userId"/>
+                <mx:DataGridColumn headerText="NAME" dataField="name"/>
+            </mx:columns>
+        </mx:DataGrid>
+        <mx:Button x="218" y="100" label="saveDB" width="106" id="btnSave" click="clickBtnSave()"/>
+        <mx:Button x="332" y="100" label="deleteDB" width="106" id="btnDelete" click="clickBtnDelete()"/>
+        <mx:Button x="332" y="70" label="loadXML" width="106" id="btnLoadXML" click="clickBtnLoadXMLHandler()"/>
+        <mx:Button x="218" y="130" label="saveXML" width="106" id="btnSaveXML" click="clickBtnSaveXMLHandler()"/>
+        <mx:Button x="332" y="130" label="deleteXML" width="106" id="btnDeleteXML" click="clickBtnDeleteXMLHandler()"/>
+        <mx:TextInput x="278" y="10" id="txtInputUserId"/>
+        <mx:TextInput x="278" y="40" id="txtInputName"/>
+        <mx:Text x="218" y="12" text="USER ID" width="52"/>
+        <mx:Text x="218" y="42" text="NAME" width="52"/>
+        <mx:CheckBox x="218" y="70" label="Remember me" id="chkboxRememberMe" width="118"/>
+        <mx:Button x="218" y="160" label="ZIP" height="37" id="btnZip" width="106" click="btnZipClickHandler()"/>
+        <mx:Button x="332" y="160" label="UNZIP" height="37" id="btnUnZip" width="106" click="btnUnZipClickHandler()"/>
+        <mx:Text x="10" y="205" id="txtMessage"/>
+        <!-- XPATH -->
+        <mx:TextInput id="txtiptXpath" x="10" y="233" width="314" text="/contacts/contact/userId"/>
+        <mx:Button id="btnFindXML" x="332" y="233" label="findXML" width="106" click="clickBtnFindXMLHandler()"/>
+        <mx:TextArea id="txtAreaLoadXML" x="10" y="263" width="260" height="257"/>
+        <mx:TextArea id="txtAreaFindXML" x="278" y="263" width="160" height="257"/>
+    </mx:Canvas>
+</mx:WindowedApplication>
