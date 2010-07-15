@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:WindowedApplication xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute"
                         horizontalScrollPolicy="off" verticalScrollPolicy="off"
-                        creationComplete="creationCompleteHandler()"
                         xmlns:icontact="suite.icontact.*"
-                        height="{icontactView.height}" width="{icontactView.width}">
-    <mx:Script>
-        <![CDATA[
-            private function creationCompleteHandler():void {
-                // 初期化処理
-            }
-        ]]>
-    </mx:Script>
+                        height="{icontactView.height}" width="{icontactView.width}"
+                        xmlns:local="*">
+
+    <local:mainController id="controller" />
 
     <rds:IContactServices xmlns:rds="suite.*"/>
     <router:IContactController xmlns:router="suite.*"/>

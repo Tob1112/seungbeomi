@@ -5,6 +5,8 @@ package suite.icontact {
     import mx.events.ChildExistenceChangedEvent;
     import mx.events.FlexEvent;
 
+    import suite.Constants;
+
     public class IContactViewController implements IMXMLObject {
 
         private var view:IContactView;
@@ -22,9 +24,12 @@ package suite.icontact {
 
         private function registerEvent():void {
             view.changeStateBtn.addEventListener(MouseEvent.CLICK, clickChangeStateBtnHandler);
-            view.iContactNavigator.addEventListener(ChildExistenceChangedEvent.CHILD_REMOVE, chileRemoveHandler);
+            view.iContactTabNavigator.addEventListener(ChildExistenceChangedEvent.CHILD_REMOVE, chileRemoveHandler);
             view.newContactBtn.addEventListener(MouseEvent.CLICK, clickNewContactBtnHandler);
             view.loginBtn.addEventListener(MouseEvent.CLICK, clickLoginBtnHandler);
+            view.iContactDataGrid.addEventListener(MouseEvent.DOUBLE_CLICK, openContactHandler);
+            view.iContactTabNavigator.addEventListener(ChildExistenceChangedEvent.CHILD_REMOVE, childRemoveHandler);
+
         }
 
         private function clickChangeStateBtnHandler(e:MouseEvent):void {
@@ -33,13 +38,14 @@ package suite.icontact {
         }
 
         private function chileRemoveHandler():void {
-            if (view.iContactNavigator.numChildren == 1) {
+            if (view.iContactTabNavigator.numChildren == 1) {
                 view.currentState = "small";
             }
         }
 
         private function clickNewContactBtnHandler(e:MouseEvent):void {
-            openTab(new Object());
+            //openTab(new Object());
+            openContactHandler(new Contact());
         }
 
         private function openTab(contact:Object):void {
@@ -57,6 +63,30 @@ package suite.icontact {
             model.user = user;
             var iContactEvent:IContactEvent = new IContactEvent(IContactEvent.LOGIN, view);
             iContactEvent.dispatch();
+        }
+
+        // Double click
+        private function openContactHandler(contact:Object):void {
+			view.currentState = Constants.BIG_STATE;
+			if (view.changeStateBtn.label == Constants.SMALL_STATE_BUTTON_LABEL) {
+				view.changeStateBtn.label = Constants.BIG_STATE_BUTTON_LABEL;
+			}
+
+			var children:Array = view.iContactTabNavigator.getChildren();
+			var length:int = children.length;
+			for (var i:int=0; i < length; i++) {
+				if (children[i].contact.name == contact.name) {
+					view.iContactTabNavigator.selectedIndex = i;
+					return;
+				}
+			}
+
+        }
+
+        private function childRemoveHandler():void {
+        	if (view.iContactTabNavigator.numChildren == 1) {
+        		view.currentState = Constants.SMALL_STATE;
+        	}
         }
 
     }

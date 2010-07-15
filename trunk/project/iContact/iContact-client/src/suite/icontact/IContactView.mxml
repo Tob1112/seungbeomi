@@ -3,7 +3,8 @@
            xmlns:icontact="suite.icontact.*"
            xmlns:code="http://code.google.com/p/flexlib/"
            currentState="login"
-           backgroundColor="white">
+           backgroundColor="white"
+           >
 
     <icontact:IContactViewController id="controller"/>
 
@@ -21,7 +22,7 @@
             <mx:SetProperty target="{iContactCanvas}" name="visible" value="true"/>
             <mx:SetProperty target="{iContactCanvas}" name="height" value="600"/>
             <mx:SetProperty target="{iContactDataGrid}" name="visible" value="true"/>
-            <mx:SetProperty target="{iContactNavigator}" name="visible" value="true"/>
+            <mx:SetProperty target="{iContactTabNavigator}" name="visible" value="true"/>
         </mx:State>
         <mx:State name="small">
             <mx:SetProperty name="width" value="400"/>
@@ -30,7 +31,7 @@
             <mx:SetProperty target="{iContactCanvas}" name="visible" value="true"/>
             <mx:SetProperty target="{iContactCanvas}" name="height" value="600"/>
             <mx:SetProperty target="{iContactDataGrid}" name="visible" value="true"/>
-            <mx:SetProperty target="{iContactNavigator}" name="visible" value="false"/>
+            <mx:SetProperty target="{iContactTabNavigator}" name="visible" value="false"/>
         </mx:State>
     </mx:states>
 
@@ -58,15 +59,17 @@
         <!-- BODY -->
         <mx:HBox top="40" bottom="30" left="10" right="10">
             <!-- iContact DATAGRID -->
-            <mx:DataGrid id="iContactDataGrid" width="380" height="100%">
+            <mx:DataGrid id="iContactDataGrid" width="380" height="100%"
+            	dataProvider="{controller.model.contactsAC}"
+            	doubleClickEnabled="true">
                 <mx:columns>
-                    <mx:DataGridColumn headerText="Name" />
-                    <mx:DataGridColumn headerText="Phone" />
-                    <mx:DataGridColumn headerText="Email" />
+                    <mx:DataGridColumn headerText="Name" dataField="NAME" width="90"/>
+                    <mx:DataGridColumn headerText="Phone" dataField="PHONE_VALUE" width="90"/>
+                    <mx:DataGridColumn headerText="Email" dataField="EMAIL_VALUE"/>
                 </mx:columns>
             </mx:DataGrid>
             <!-- iContact DETAIL -->
-            <code:SuperTabNavigator id="iContactNavigator" width="100%" height="100%"/>
+            <code:SuperTabNavigator id="iContactTabNavigator" width="100%" height="100%"/>
         </mx:HBox>
         <mx:Label id="messageLabel" left="10" right="10" bottom="10" text="message"/>
     </mx:Canvas>

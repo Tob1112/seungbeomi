@@ -1,6 +1,8 @@
 package suite {
     import com.adobe.cairngorm.control.FrontController;
 
+    import suite.common.IContactDaoCommand;
+    import suite.common.IContactDaoEvent;
     import suite.icontact.IContactCommand;
     import suite.icontact.IContactEvent;
 
@@ -10,6 +12,8 @@ package suite {
             super();
 
             addCommand(IContactEvent.LOGIN, IContactCommand);
+
+            addCommand(IContactDaoEvent.OPEN_DATABASE, IContactDaoCommand);
 
         }
     }
