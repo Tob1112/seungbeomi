@@ -13,13 +13,13 @@ CREATE TABLE CONTACTS
     NAME VARCHAR(30),
     USER_NAME VARCHAR(30),
     PHONE_TYPE CHAR(6), --mobile, home, work, other
-    PHONE_VALUE INTEGER(20),
+    PHONE_VALUE VARCHAR(20),
     EMAIL_TYPE CHAR(8), --mobile, computer, work, other
     EMAIL_VALUE VARCHAR(50),
     ADDRESS_TYPE CHAR(5),   --home, work, other
     ADDRESS_VALUE VARCHAR(200),
     NOTES VARCHAR(500),
-    STATUS CHAR(1),         --  O:最新, A:追加, M:修正, D:削除
+    STATUS CHAR(1),         --  O:SYNC, A:ADD M:MODIFY, D:DELETE
     CONSTRAINT PK_CONTACTS PRIMARY KEY(CONTACT_NAME)
 )
 
