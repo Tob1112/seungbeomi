@@ -8,8 +8,10 @@ package suite.common {
 	import flash.utils.Dictionary;
 
 	import mx.collections.ArrayCollection;
+	import mx.collections.IViewCursor;
 
 	import suite.Constants;
+	import suite.icontact.IContactMapper;
 	import suite.icontact.IContactModelLocator;
 
 	public class IContactDaoCommand implements ICommand{
@@ -84,8 +86,14 @@ package suite.common {
 
 		private function findAll():void {
 			trace("findAll");
-			var result:ArrayCollection = SQLMap.execute(sqlConnection, "findContacts");
-			model.contactsAC = result;
+			var results:ArrayCollection = SQLMap.execute(sqlConnection, "findContacts");
+			// TODO mapping
+			var cursor:IViewCursor = results.createCursor();
+			for (; cursor.afterLast; cursor.moveNext()) {
+				//var mapper:IContactMapper = new IContactMapper();
+				//mapper(cursor.current);
+			}
+			model.contactsAC = results;
 		}
 	}
 }
