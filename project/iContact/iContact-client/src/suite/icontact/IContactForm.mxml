@@ -4,4 +4,6 @@
 
 	<icontact:IContactFormController id="controller"/>
 
+	<mx:Label text="contact detail"/>
+
 </mx:Canvas>

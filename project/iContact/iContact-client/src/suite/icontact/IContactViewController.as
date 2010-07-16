@@ -45,7 +45,7 @@ package suite.icontact {
 
         private function clickNewContactBtnHandler(e:MouseEvent):void {
             //openTab(new Object());
-            openContactHandler(new Contact());
+            openContactHandler();
         }
 
         private function openTab(contact:Object):void {
@@ -66,7 +66,10 @@ package suite.icontact {
         }
 
         // Double click
-        private function openContactHandler(contact:Object):void {
+        private function openContactHandler(e:MouseEvent=null):void {
+        	var contact:Object = e.target.data;
+			trace("name : " + contact.NAME);
+
 			view.currentState = Constants.BIG_STATE;
 			if (view.changeStateBtn.label == Constants.SMALL_STATE_BUTTON_LABEL) {
 				view.changeStateBtn.label = Constants.BIG_STATE_BUTTON_LABEL;
@@ -75,11 +78,16 @@ package suite.icontact {
 			var children:Array = view.iContactTabNavigator.getChildren();
 			var length:int = children.length;
 			for (var i:int=0; i < length; i++) {
-				if (children[i].contact.name == contact.name) {
+				if (children[i].contact.name == e.currentTarget.selectedItem) {
 					view.iContactTabNavigator.selectedIndex = i;
 					return;
 				}
 			}
+
+			var form:IContactForm = new IContactForm();
+			view.iContactTabNavigator.addChild(form);
+			form.controller.contact = e.target.contact;
+			view.iContactTabNavigator.selectedChild = form;
 
         }
 
