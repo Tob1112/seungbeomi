@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:orientation="vertical"
+	xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<TextView
+		android:id="@+id/detail_name"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:textSize="50sp"
+		android:textColor="#FFFFFF"
+		android:background="@android:drawable/dark_header"
+		/>
+	<TableRow>
+		<TextView
+			android:id="@+id/detail_phone"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:textSize="30sp"/>
+	</TableRow>
+	<View
+        android:layout_height="1dip"
+        android:background="#FF909090" />
+	<TableRow>
+		<TextView
+			android:id="@+id/detail_email"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:textSize="30sp"/>
+	</TableRow>
+	<View
+        android:layout_height="1dip"
+        android:background="#FF909090" />
+	<TableRow>
+		<TextView
+			android:id="@+id/detail_address"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:textSize="30sp"/>
+	</TableRow>
+	<View
+        android:layout_height="1dip"
+        android:background="#FF909090" />
+    <TableRow>
+		<TextView
+			android:id="@+id/detail_notes"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:textSize="30sp"/>
+	</TableRow>
+</TableLayout>
