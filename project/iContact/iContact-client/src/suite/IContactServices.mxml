@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<rds:ServiceLocator xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:rds="com.adobe.cairngorm.business.*">
-
-    <!-- serverのRemoteObjectで登録する-->
-    <mx:RemoteObject id="iContactRO" destination="iContactService"
-                     endpoint="http://localhost:8080/iContact-server/spring/messagebroker/amf"/>
-
-</rds:ServiceLocator>
