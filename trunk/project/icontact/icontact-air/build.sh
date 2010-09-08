@@ -1,0 +1,2 @@
+#!/bin/sh
+/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Home/bin/java -jar /development/sdk/flex_sdk_3.4.0.9271/lib/adt.jar -package -storetype pkcs12 -keystore /workspace/seungbeomi.p12 /workspace/webproject/icontact/icontact-air/release/icontact.air /workspace/webproject/icontact/icontact-air/src/icontact-app.xml -C /workspace/webproject/icontact/icontact-air/bin-debug icontact.swf -C /workspace/webproject/icontact/icontact-air/src/assets icons.png

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="icontact-air" basedir="." default="debugcompile">
+
+	<!-- SDK properties -->
+	<property name="FLEX_HOME" value="/development/sdk/flex_sdk_3.4.0.9271"/>
+	<property name="MXMLC.JAR" value="${FLEX_HOME}/lib/mxmlc.jar"/>
+	<property name="ADL" value="${FLEX_HOME}/bin/adl"/>
+	<property name="ADT.JAR" value="${FLEX_HOME}/lib/adt.jar"/>
+	<property name="FLASH_PLAYER" value="/development/sdk/flex_sdk_3.4.0.9271/Player/mac/10/mac/FlashPlayer.app"/>
+	<property name="LOCALE" value="jp_JP"/>
+	<property name="locale.dir" value="${FLEX_HOME}/frameworks/locale/{locale}"/>
+
+	<!-- Project properties -->
+	<property name="APP_NAME" value="icontact"/>
+	<property name="APP_ROOT_DIR" value="."/>
+	<property name="MAIN_SOURCE_FILE" value="${basedir}/src/${APP_NAME}.mxml"/>
+	<property name="APP_ROOT_FILE" value="${APP_NAME}.swf"/>
+	<property name="APP_DESCRIPTOR" value="${basedir}/src/${APP_NAME}-app.xml"/>
+	<property name="AIR_NAME" value="${APP_NAME}.air"/>
+	<property name="build" location="${basedir}/build"/>
+	<property name="debug"  location="${basedir}/debug"/>
+	<property name="release"  location="${basedir}/release"/>
+	<property name="assets"  location="${basedir}/src/assets"/>
+	<property name="STORETYPE" value="pkcs12"/>
+	<property name="KEYSTORE" value="icontact.p12"/>
+
+	<target name="message">
+		<echo message="------------------------------------------------------------------------"/>
+		<echo message="Building icontact-air"/>
+		<echo message="   task-segment: [debugcompile]"/>
+		<echo message="------------------------------------------------------------------------"/>
+	</target>
+
+	<target name="init" depends="clean">
+		<mkdir dir="${build}"/>
+		<mkdir dir="${debug}"/>
+		<mkdir dir="${release}"/>
+	</target>
+
+	<target name="debugcompile" depends="message, init">
+		<java jar="${MXMLC.JAR}" fork="true" failonerror="true">
+			<arg value="-debug=true"/>
+			<arg value="+flexlib=${FLEX_HOME}/frameworks"/>
+			<arg value="+configname=air"/>
+			<arg value="+include-libraries=libs/*.swc"/>
+			<arg value="-file-specs=${MAIN_SOURCE_FILE}"/>
+			<arg value="-output=${debug}/${APP_ROOT_FILE}"/>
+		</java>
+		<copy todir="${debug}">
+			<fileset dir="${assets}"/>
+		</copy>
+	</target>
+
+	<target name="releasecompile" depends="debugcompile">
+		<java jar="${MXMLC.JAR}" fork="true" failonerror="true">
+			<arg value="-debug=true"/>
+			<arg value="+flexlib=${FLEX_HOME}/frameworks"/>
+			<arg value="+configname=air"/>
+			<arg value="-compiler.include-libraries=libs/*.swc"/>
+			<arg value="-file-specs=${MAIN_SOURCE_FILE}"/>
+			<arg value="-output=${release}/${AIR_NAME}"/>
+		</java>
+	</target>
+
+	<target name="test" depends="debugcompile">
+		<exec executable="${ADL}">
+			<arg value="${APP_DESCRIPTOR}"/>
+			<arg value="${debug}"/>
+		</exec>
+	</target>
+
+	<target name="package" depends="releasecompile">
+		<java jar="${ADT.JAR}" fork="true" failonerror="false">
+			<arg value="-package"/>
+			<arg value="-storetype"/>
+			<arg value="${STORETYPE}"/>
+			<arg value="-keystore"/>
+			<arg value="${KEYSTORE}"/>
+			<arg value="${release}/${AIR_NAME}"/>
+			<arg value="${APP_DESCRIPTOR}"/>
+			<arg value="-C"/>
+			<arg value="${debug}"/>
+			<arg value="${APP_ROOT_FILE}"/>
+			<arg value="-C"/>
+			<arg value="${assets}"/>
+			<arg value="*.png"/>
+		</java>
+	</target>
+
+	<target name="run" depends="debugcompile">
+		<exec executable="open" vmlauncher="true" spawn="false" failonerror="true">
+			<arg line="${FLASH_PLAYER}"/>
+			<!--<arg line="${build.dir}/icontact.swf" />-->
+			<arg line="${basedir}/debug/icontact.swf" />
+		</exec>
+	</target>
+
+	<target name="clean" description="clean up">
+		<delete dir="${build}"/>
+		<delete dir="${debug}"/>
+		<delete dir="${release}"/>
+	</target>
+</project>
