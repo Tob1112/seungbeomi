@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Contact">
+
+	<resultMap id="allContactMap" class="com.icontact.domain.Contact">
+		<result property="name" column="NAME" />
+		<result property="phone" column="PHONE" />
+		<result property="email" column="EMAIL" />
+		<result property="address" column="ADDRESS" />
+		<result property="notes" column="NOTES" />
+		<result property="status" column="STATUS" />
+		<result property="account" column="ACCOUNT" />
+	</resultMap>
+
+	<sql id="selectAll">
+		SELECT
+			NAME,
+			PHONE,
+			EMAIL,
+			ADDRESS,
+			NOTES,
+			STATUS,
+			ACCOUNT
+	</sql>
+
+	<sql id="whereFind">
+		WHERE NAME = #name#
+	      AND ACCOUNT = #account#
+	</sql>
+
+	<select id="find" parameterClass="hashmap" resultMap="allContactMap">
+		<include refid="selectAll"/>
+		FROM CONTACTS
+		<include refid="whereFind"/>
+	</select>
+
+	<select id="finds" parameterClass="hashmap" resultMap="allContactMap">
+		<include refid="selectAll"/>
+		FROM CONTACTS
+		WHERE ACCOUNT = #account#
+	</select>
+
+	<insert id="add" parameterClass="hashmap">
+		INSERT
+		INTO
+			CONTACTS(
+				NAME,
+				PHONE,
+				EMAIL,
+				ADDRESS,
+				NOTES,
+				STATUS,
+				ACCOUNT
+			)
+		VALUES (
+			#name#,
+			#phone#,
+			#email#,
+			#address#,
+			#notes#,
+			#status#,
+			#account#
+		)
+	</insert>
+
+	<update id="update" parameterClass="hashmap">
+		UPDATE
+			CONTACTS
+		SET
+			PHONE = #phone#,
+			EMAIL = #email#,
+			ADDRESS = #address#,
+			NOTES = #notes#,
+			STATUS = #status#
+		<include refid="whereFind"/>
+	</update>
+
+	<delete id="delete" parameterClass="hashmap">
+		DELETE
+		FROM
+			CONTACTS
+		<include refid="whereFind"/>
+	</delete>
+
+</sqlMap>
