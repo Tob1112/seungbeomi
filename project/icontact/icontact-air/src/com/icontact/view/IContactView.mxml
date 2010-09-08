@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:code="http://code.google.com/p/flexlib/"
+	width="900" height="600"
+	xmlns:view="com.icontact.view.*"
+	xmlns:components="com.hillelcoren.components.*">
+
+	<view:IContactViewController id="controller"/>
+
+	<!-- ==================================================================== -->
+	<!-- ApplicationControlBar											  	  -->
+	<!-- ==================================================================== -->
+	<mx:ApplicationControlBar dock="true"
+	 	paddingLeft="0" paddingRight="0" paddingTop="0" paddingBottom="0"
+		top="0" left="0" right="0">
+		<mx:Canvas backgroundColor="#006699" width="60" height="23" verticalCenter="0">
+			<mx:Label text="iContact" color="#FFFFFF" x="5" y="5"/>
+		</mx:Canvas>
+		<mx:MenuBar id="menuBar" labelField="@label">
+            <mx:XMLList>
+                <menuitem label="iContact">
+                    <menuitem label="Preferences"/>
+                    <menuitem label="About iContact"/>
+                </menuitem>
+                <menuitem label="File" >
+                    <menuitem label="import"/>
+                    <menuitem label="Export"/>
+                    <menuitem label="Sync"/>
+                </menuitem>
+            </mx:XMLList>
+        </mx:MenuBar>
+	</mx:ApplicationControlBar>
+
+    <mx:Canvas id="container" left="0" right="0" top="20" bottom="0">
+		<!-- ==================================================================== -->
+		<!-- Contact List  														  -->
+		<!-- ==================================================================== -->
+        <mx:Canvas left="20" top="14" right="20">
+            <mx:Button y="1" label="+" id="addContactButton" width="35" height="35" right="0"/>
+            <components:AdvancedAutoComplete id="autoComplete" dataProvider="{controller.contacts}"
+            	allowMultipleSelection="false" allowNewValues="true" labelField="name"
+                matchType="word" keyUp="controller.changeAutoCompleteHandler(event)" itemClick="controller.autoCompleteItemClickHanler(event)"
+            	y="10" selectedItemStyleName="none" width="216" x="0"/>
+        </mx:Canvas>
+
+		<!-- ==================================================================== -->
+		<!-- Contact Detail														  -->
+		<!-- ==================================================================== -->
+        <mx:HBox top="60" bottom="50" left="20" right="20">
+            <mx:DataGrid id="contactDG" width="430" height="470"
+                dataProvider="{controller.model.contactAC}">
+                <mx:columns>
+                    <mx:DataGridColumn dataField="name" headerText="Name"/>
+                    <mx:DataGridColumn dataField="phone" headerText="Phone"/>
+                    <mx:DataGridColumn dataField="email" headerText="Email"/>
+                </mx:columns>
+            </mx:DataGrid>
+            <view:IContactForm id="icontactForm" width="100%" height="100%"/>
+        </mx:HBox>
+
+		<!-- Message -->
+        <mx:Label id="message" text="message" left="20" bottom="10"/>
+
+    </mx:Canvas>
+
+</mx:Canvas>
