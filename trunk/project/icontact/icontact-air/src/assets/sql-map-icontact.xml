@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+<sqlMap>
+
+	<!-- ========================================== -->
+	<!-- CREATE STATEMENTS 							-->
+	<!-- ========================================== -->
+
+	<sql id="createSequence">
+		CREATE TABLE SEQUENCE (
+			NAME VARCHAR(30),
+			ID INTEGER
+		);
+	</sql>
+	<sql id="createUsersTable">
+		CREATE TABLE USERS (
+			USER_ID   VARCHAR(30),
+			PASSWORD VARCHAR(30),
+			USERNAME VARCHAR(30)
+		);
+    </sql>
+    <sql id="createContactsTable">
+		CREATE TABLE CONTACTS (
+			ID INTEGER,
+			NAME VARCHAR(30),
+		    PHONE_TYPE CHAR(6),
+		    PHONE_VALUE VARCHAR(20),
+		    EMAIL_TYPE CHAR(8),
+		    EMAIL_VALUE VARCHAR(50),
+		    ADDRESS_TYPE CHAR(5),
+		    ADDRESS_VALUE VARCHAR(200),
+		    NOTES VARCHAR(500),
+		    STATUS CHAR(1)
+		);
+	</sql>
+
+	<!-- ========================================== -->
+	<!-- INSERT STATEMENTS 							-->
+	<!-- ========================================== -->
+
+	<sql id="insertSequence">
+		INSERT INTO SEQUENCE(NAME, ID) VALUES(:NAME, :ID);
+	</sql>
+	<sql id="insertUsers">
+		INSERT INTO USERS (USER_ID, PASSWORD, USERNAME) VALUES (:USER_ID, :PASSWORD);
+	</sql>
+	<sql id="insertContact">
+		INSERT INTO CONTACTS (
+			ID,
+			NAME,
+			PHONE_TYPE,
+			PHONE_VALUE,
+			EMAIL_TYPE,
+			EMAIL_VALUE,
+			ADDRESS_TYPE,
+			ADDRESS_VALUE,
+			NOTES,
+			STATUS
+		)
+		VALUES (
+			:NAME,
+			:PHONE_TYPE,
+			:PHONE_VALUE,
+			:EMAIL_TYPE,
+			:EMAIL_VALUE,
+			:ADDRESS_TYPE,
+			:ADDRESS_VALUE,
+			:NOTES,
+			:STATUS
+		);
+	</sql>
+
+	<!-- ========================================== -->
+	<!-- SELECT STATEMENTS 							-->
+	<!-- ========================================== -->
+	<sql id="maxSequence">
+		SELECT ID FROM SEQUENCE
+		WHERE NAME = :NAME;
+	</sql>
+	<sql id="findAll">
+		SELECT * FROM CONTACTS;
+	</sql>
+	<sql id="findContactByPK">
+		SELECT * FROM CONTACTS
+		WHERE NAME = :NAME;
+	</sql>
+
+	<!-- ========================================== -->
+	<!-- UPDATE STATEMENTS 							-->
+	<!-- ========================================== -->
+	<sql id="updateSequence">
+		UPDATE SEQUENCE
+		SET
+			ID = :ID + 1
+		WHERE
+			NAME = :NAME;
+	</sql>
+	<sql id="updateContact">
+		UPDATE CONTACTS
+		SET
+			NAME = :NAME,
+			PHONE_TYPE = :PHONE_TYPE,
+			PHONE_VALUE = :PHONE_VALUE,
+			EMAIL_TYPE = :EMAIL_TYPE,
+			EMAIL_VALUE = :EMAIL_VALUE,
+			ADDRESS_TYPE = :ADDRESS_TYPE,
+			ADDRESS_VALUE = :ADDRESS_VALUE,
+			NOTES = :NOTES,
+			STATUS = :STATUS
+		WHERE
+			ID = :ID;
+	</sql>
+
+	<!-- ========================================== -->
+	<!-- DELETE STATEMENTS 							-->
+	<!-- ========================================== -->
+	<sql id="deleteContact">
+		DELETE FROM contacts
+		WHERE name = :name;
+    </sql>
+</sqlMap>
+</data>
