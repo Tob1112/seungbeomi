@@ -4,8 +4,6 @@ import java.util.Date;
 
 public class DefaultShinseishoYoshiki {
 
-	private static final String ENCODE = "UTF-8";
-
 	private String yoshikiId;
 	private String yoshikiFileData;
 	private Date tetsuzukiYukoKaishibi;

@@ -32,7 +32,7 @@ public class ZipFile {
 		this.fileEncoding = fileEncoding;
 	}
 
-	/** Zip«Õ«£«¢«ëú°ÔÐ */
+	/** extract zip file */
 	public void extract(String outputDir) throws IOException {
 		org.apache.commons.compress.archivers.zip.ZipFile file = null;
 		InputStream in = null;

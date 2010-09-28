@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -34,13 +36,15 @@ public class UpdateYoshikiManager {
 		yoshikiDao = (UpdateYoshikiManagerDao) context.getBean("updateYoshikiManagerDao");
 
 		try {
-			filePath = args[0];
+			//filePath = args[0];
+			filePath = "/workspace/webproject/updateYoshikiManager/testData";
 		} catch (ArrayIndexOutOfBoundsException e) {
 			log.fatal(e.toString());
 			return;
 		}
 
-		new UpdateYoshikiManager().execute();
+		//new UpdateYoshikiManager().execute();
+		new UpdateYoshikiManager().executeUpdateBatch();
 	}
 
 	public void execute() {
@@ -51,23 +55,64 @@ public class UpdateYoshikiManager {
 		if (yoshikiZipFilePath.isDirectory()) {
 			File[] files = yoshikiZipFilePath.listFiles();
 			for (File file : files) {
-				// Extract zip file
-				ZipFile zipfile = new ZipFile(filePath + File.separator + file.getName());
-				try {
-					zipfile.extract(filePath);
+				if (file.getName().endsWith(".zip")) {
+					// Extract zip file
+					ZipFile zipfile = new ZipFile(filePath + File.separator + file.getName());
+					try {
+						zipfile.extract(filePath);
 
-					yoshikiId = file.getName().replace(".xml", "");
+						yoshikiId = file.getName().replace(".zip", "");
 
-					// create yoshiki
-					DefaultShinseishoYoshiki yoshiki = createYoshiki(yoshikiId, filePath);
+						// create yoshiki
+						DefaultShinseishoYoshiki yoshiki = createYoshiki(yoshikiId, filePath);
 
-					// update yoshiki
-					yoshikiDao.update(yoshiki);
-				} catch (Exception e) {
-					log.fatal(e.toString());
+						// update yoshiki
+						yoshikiDao.update(yoshiki);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
 				}
 
 			}
+		}
+		log.info("end...");
+	}
+
+	private void executeUpdateBatch() {
+		String yoshikiId;
+		List<DefaultShinseishoYoshiki> yoshikiList;
+
+		yoshikiList = new ArrayList<DefaultShinseishoYoshiki>();
+
+		log.info("start...");
+		File yoshikiZipFilePath = new File(filePath);
+		try {
+			if (yoshikiZipFilePath.isDirectory()) {
+				File[] files = yoshikiZipFilePath.listFiles();
+				for (File file : files) {
+					if (file.getName().endsWith(".zip")) {
+						// Extract zip file
+						ZipFile zipfile = new ZipFile(filePath + File.separator + file.getName());
+						zipfile.extract(filePath);
+						System.out.print(".");
+					}
+				}
+				System.out.println();
+
+				// create yoshiki
+				for (File file : files) {
+					if (file.getName().endsWith(".zip")) {
+						yoshikiId = file.getName().replace(".zip", "");
+						DefaultShinseishoYoshiki yoshiki = createYoshiki(yoshikiId, filePath);
+						yoshikiList.add(yoshiki);
+					}
+				}
+
+				// update yoshiki
+				yoshikiDao.updateBatch(yoshikiList);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		log.info("end...");
 	}
@@ -81,8 +126,7 @@ public class UpdateYoshikiManager {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 
 		created = new DefaultShinseishoYoshiki();
-		//fullPath = filePath + File.separator + yoshikiId + File.separator + yoshikiId + MASTER_XML;
-		fullPath = "/workspace/webproject/updateYoshikiManager/testData/t001_master.xml";
+		fullPath = filePath + File.separator + yoshikiId + File.separator + yoshikiId + MASTER_XML;
 		xml = new XmlDocument(fullPath);
 
 		try {
@@ -91,7 +135,7 @@ public class UpdateYoshikiManager {
 			created.setVersion(Integer.parseInt(xml.getTagValue(XPATH_VERSION)));
 
 			// CLOB data
-			yoshikiFilePath = filePath + File.separator + yoshikiId + MASTER_XML;
+			yoshikiFilePath = filePath + File.separator + yoshikiId + File.separator + yoshikiId + MASTER_XML;
 			yoshikiFileData = readFileData(yoshikiFilePath);
 			created.setYoshikiFileData(yoshikiFileData);
 		} catch (Exception e) {
@@ -117,7 +161,7 @@ public class UpdateYoshikiManager {
 			br.close();
 			return data.toString().trim();
 		} catch (IOException e) {
-			log.fatal(e.toString());
+			e.printStackTrace();
 			throw new RuntimeException();
 		}
 	}
