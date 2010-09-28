@@ -13,9 +13,4 @@ INSERT INTO PUBLIC.YOSHIKI(YOSHIKI_ID, YOSHIKI_FILE_DATA, TETSUZUKI_YOSHIKI_KAIS
 ('y002','yoshikidata002','2010-9-22','2'),
 ('y003','yoshikidata003','2010-9-23','3'),
 ('y004','yoshikidata004','2010-9-24','4'),
-('y005','yoshikidata005','2010-9-25','5'),
-('y006','yoshikidata006','2010-9-26','6'),
-('y007','yoshikidata007','2010-9-27','7'),
-('y008','yoshikidata008','2010-9-28','8'),
-('y009','yoshikidata009','2010-9-29','9'),
-('y010','yoshikidata010','2010-9-30','0');
+('y005','yoshikidata005','2010-9-25','5');
