@@ -3,6 +3,12 @@
     <wb-module deploy-name="icontact-web">
         <wb-resource deploy-path="/" source-path="/src/main/webapp"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/target/classes"/>
+        <dependent-module deploy-path="/WEB-INF/lib" handle="module:/resource/icontact-domain/icontact-domain">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module deploy-path="/WEB-INF/lib" handle="module:/resource/icontact-common/icontact-common">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="icontact-web"/>
         <property name="java-output-path" value="/icontact-web/target/classes"/>
     </wb-module>
