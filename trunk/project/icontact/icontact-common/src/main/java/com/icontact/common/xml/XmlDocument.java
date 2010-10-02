@@ -130,7 +130,9 @@ public class XmlDocument {
 			//XMLを表す文字列をSAXでパース
 			source = domBuilder.newDocument();
 			handler.setDocument(source);
-			saxParser.parse(new InputSource(xml), handler);
+			//saxParser.parse(xml, handler);
+			//saxParser.parse(new InputSource(xml), handler);
+			saxParser.parse(new InputSource(new StringReader(xml)), handler);
 			this.source = handler.getDocument();
 
 			if ((handler.getXmlProcessingInstructionList() != null)
@@ -178,6 +180,7 @@ public class XmlDocument {
 		NodeList nodes = null;
 
 		//XPathを適用してノードを取得
+		nodes = this.applyXPath(xPath);
 		if (nodes != null) {
 			length = nodes.getLength();
 		} else {
@@ -205,7 +208,11 @@ public class XmlDocument {
 			//ノードが１つだけあり、かつ指定されたノード種類(タグまたは属性)の場合
 			if((nodes.getLength() == 1) && (nodes.item(0).getNodeType() == nodeType)) {
 				//テキストノードの値を取得
-				nodeValue = nodes.item(0).getTextContent();
+				//nodeValue = nodes.item(0).getTextContent();
+				for (int i=0; i < nodes.getLength(); i++) {
+					Node node = nodes.item(i);
+					nodeValue = node.getNodeValue();
+				}
 			} else if (nodes.getLength() > 1) {
 				throw new RuntimeException();
 			}
