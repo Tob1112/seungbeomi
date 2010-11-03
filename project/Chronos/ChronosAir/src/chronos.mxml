@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:WindowedApplication xmlns:mx="http://www.adobe.com/2006/mxml"
+	layout="absolute"
+	horizontalScrollPolicy="off" verticalScrollPolicy="off"
+	xmlns:chronos="com.chronos.*"
+	xmlns:sample="com.chronos.air.sample.*"
+	xmlns:view="com.chronos.air.view.*">
+
+	<mx:Style source="asset/css/common.css" />
+
+	<chronos:Controller />
+	<chronos:Services />
+
+	<view:MainView />
+	<!-- <sample:PersonMainView /> -->
+</mx:WindowedApplication>
