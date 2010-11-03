@@ -1,0 +1,89 @@
+/* CSS file */
+Alert {
+	titleStyleName: "alertTitle";
+	/*
+    modal-transparency: 0.3;
+    modal-transparency-blur : 0.0;
+    background-alpha: 1.0;
+    border-alpha: 1.0;
+	*/
+    border-color: #353A49;
+    background-color: #353A49;
+    border-thickness-top: 10;
+    border-thickness-left: 20;
+    border-thickness-right: 20;
+}
+
+/* Title部 */
+.alertTitle {
+        letterSpacing: 0;
+        fontSize: 14;
+        color: #33C815;
+        fontWeight: bold;
+}
+
+.myMainViewStack
+{
+	background-color:		#ffffff;
+}
+.myControlBar
+{
+    fillAlphas:             1, 1;
+    fillColors:             #353A49, #353A49;
+    shadowColor:			#2DA8DB;
+    cornerRadius:           0;
+    shadowDistance:         4;
+    paddingLeft:            10;
+    paddingRight:           10;
+    paddingTop:             5;
+    paddingBottom:          -1;
+    horizontalGap:          0;
+    /*storeLogo:              Embed("assets/logo_orange.png");*/
+}
+
+.myToggleButtonBar
+{
+	buttonHeight: 			23;
+	buttonWidth: 			75;
+	paddingLeft:            5;
+	textIndent: 			0;
+    cornerRadius:           0;
+    buttonStyleName:        "mytoggleButtonBarButtonStyle";
+    themeColor:             #353A49;
+}
+
+.mytoggleButtonBarButtonStyle
+{
+    cornerRadius:           3;
+    fillColors:             #BBBBBB, #BBBBBB, #BBBBBB, #BBBBBB;
+    fontWeight:             "bold";
+    color:					#FFFFFF;
+    textRollOverColor: 		#ffffff;
+    textSelectedColor: 		#ffffff;
+    font-size:				14;
+}
+
+.loginSection
+{
+	cornerRadius:           4;
+    borderStyle:            "solid";
+}
+
+.sectionHeader
+{
+	fontWeight:             "bold";
+    fontSize:               12;
+}
+
+.logoLabel
+{
+	color:					#33C815;
+	font-weight: 			bold;
+	font-size:				12;
+}
+
+.errorMessage
+{
+	color:					red;
+	font-size:				12;
+}

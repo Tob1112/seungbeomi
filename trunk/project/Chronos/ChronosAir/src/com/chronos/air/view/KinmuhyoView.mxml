@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml"
+	width="100%" height="530"
+	currentState="showMenu"
+	xmlns:controller="com.chronos.air.controller.*"
+	xmlns:view="com.chronos.air.view.*"
+	xmlns:model="com.chronos.air.model.*">
+
+	<mx:Style source="asset/css/kinmuhyo.css" />
+	<model:KinmuhyoModelLocator id="model" />
+	<controller:KinmuhyoController id="controller" />
+
+	<mx:HDividedBox id="kinmuhyoDividedBox" width="100%" height="100%"
+		horizontalDividerCursor="@Embed('asset/img/arrow.gif')"
+		horizontalGap="5"
+		doubleClickEnabled="true">
+		<!-- ================================================== -->
+		<!-- メニューBOX											-->
+		<!-- ================================================== -->
+		<mx:Canvas id="menuBox" width="180" height="100%"
+			minWidth="180" maxWidth="180"
+			backgroundColor="#EDEDED" borderStyle="solid"
+			verticalScrollPolicy="off">
+			<mx:Button label="簡単作成" left="5" top="10" width="84" height="30" fontSize="12"/>
+			<mx:Button label="インポート" right="5" top="10" width="84" height="30" fontSize="11"/>
+			<!-- ================================================== -->
+			<!-- サマリーFORM											-->
+			<!-- ================================================== -->
+			<mx:Form verticalGap="0" paddingRight="0" paddingTop="0" paddingBottom="0"
+				width="100%" left="0" top="45">
+		        <mx:FormItem label="Total:">
+		            <mx:Label text="total" />
+		        </mx:FormItem>
+		        <mx:FormItem label="Shipping:">
+		            <mx:Label text="shipping" />
+		        </mx:FormItem>
+		        <mx:FormItem label="Grand Total:">
+		            <mx:Label text="total" />
+		        </mx:FormItem>
+		        <mx:FormItem label="Total:">
+		            <mx:Label text="total" />
+		        </mx:FormItem>
+		        <mx:FormItem label="Shipping:">
+		            <mx:Label text="shipping" />
+		        </mx:FormItem>
+		        <mx:FormItem label="Grand Total:">
+		            <mx:Label text="total" />
+		        </mx:FormItem>
+		        <mx:FormItem label="Total:">
+		            <mx:Label text="total" />
+		        </mx:FormItem>
+		        <mx:FormItem label="Shipping:">
+		            <mx:Label text="shipping" />
+		        </mx:FormItem>
+		        <mx:FormItem label="Grand Total:">
+		            <mx:Label text="total" />
+		        </mx:FormItem>
+		    </mx:Form>
+
+			<mx:HRule y="215" left="10" right="10"/>
+
+			<!-- ================================================== -->
+			<!-- 申請書リストBOX										-->
+			<!-- ================================================== -->
+			<mx:Label width="100%" text="申請書リスト" styleName="sectionHeader" x="5" y="219"/>
+			<mx:VBox left="5" right="5" top="242" borderStyle="inset" verticalGap="0" height="275">
+				<view:ShinseishoItem />
+				<view:ShinseishoItem />
+				<view:ShinseishoItem />
+			</mx:VBox>
+
+		</mx:Canvas>
+
+		<!-- ================================================== -->
+		<!-- 勤務表ボックス										-->
+		<!-- ================================================== -->
+		<mx:VBox width="100%" height="100%" borderStyle="solid" verticalGap="0">
+			<mx:Canvas width="100%" height="60">
+				<mx:Label text="{model.currentDate}" right="5" top="10" fontWeight="bold"/>
+				<mx:Label y="10" text="＜　2010年 11月 勤務表　＞" horizontalCenter="0" fontWeight="bold" fontSize="25"/>
+				<mx:Button y="29" label="EXCEL保存" width="89" fontSize="10" right="5"/>
+			</mx:Canvas>
+			<mx:Canvas width="100%" height="100%" backgroundColor="green">
+				<mx:DataGrid x="0" y="0" width="100%" height="100%">
+					<mx:columns>
+						<mx:DataGridColumn headerText="Column 1" dataField="col1"/>
+						<mx:DataGridColumn headerText="Column 2" dataField="col2"/>
+						<mx:DataGridColumn headerText="Column 3" dataField="col3"/>
+						<mx:DataGridColumn headerText="Column 1" dataField="col1"/>
+						<mx:DataGridColumn headerText="Column 2" dataField="col2"/>
+						<mx:DataGridColumn headerText="Column 3" dataField="col3"/>
+						<mx:DataGridColumn headerText="Column 1" dataField="col1"/>
+						<mx:DataGridColumn headerText="Column 2" dataField="col2"/>
+						<mx:DataGridColumn headerText="Column 3" dataField="col3"/>
+					</mx:columns>
+				</mx:DataGrid>
+			</mx:Canvas>
+			<mx:Canvas width="100%" height="60">
+				<mx:Button y="8" label="SAVE" right="100" width="96" height="40" fontSize="15" fontWeight="bold"/>
+				<mx:Button y="8" label="SEND" right="5" width="96" height="40" fontSize="15" fontWeight="bold"/>
+				<mx:Label x="10" y="16" text="申請番号：1234567890" fontSize="15"/>
+			</mx:Canvas>
+		</mx:VBox>
+	</mx:HDividedBox>
+
+	<!-- ================================================== -->
+	<!-- ステート											-->
+	<!-- ================================================== -->
+	<mx:states>
+		<mx:State name="showMenu">
+			<mx:SetProperty target="{menuBox}" name="width" value="180" />
+		</mx:State>
+		<mx:State name="hideMenu">
+			<mx:SetProperty target="{menuBox}" name="width" value="0"/>
+		</mx:State>
+	</mx:states>
+	<!-- ================================================== -->
+	<!-- トランジション										-->
+	<!-- ================================================== -->
+	<mx:transitions>
+       <mx:Transition fromState="*" toState="*">
+          <mx:Move target="{menuBox}" />
+       </mx:Transition>
+    </mx:transitions>
+</mx:HBox>
