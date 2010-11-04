@@ -7,7 +7,7 @@
 	xmlns:model="com.chronos.air.model.*">
 
 	<mx:Style source="asset/css/kinmuhyo.css" />
-	<model:KinmuhyoModelLocator id="model" />
+	<model:KinmuhyoModel id="model" />
 	<controller:KinmuhyoController id="controller" />
 
 	<mx:HDividedBox id="kinmuhyoDividedBox" width="100%" height="100%"
@@ -21,7 +21,7 @@
 			minWidth="180" maxWidth="180"
 			backgroundColor="#EDEDED" borderStyle="solid"
 			verticalScrollPolicy="off">
-			<mx:Button label="簡単作成" left="5" top="10" width="84" height="30" fontSize="12"/>
+			<mx:Button label="新規作成" left="5" top="10" width="84" height="30" fontSize="12"/>
 			<mx:Button label="インポート" right="5" top="10" width="84" height="30" fontSize="11"/>
 			<!-- ================================================== -->
 			<!-- サマリーFORM											-->
@@ -77,8 +77,8 @@
 		<mx:VBox width="100%" height="100%" borderStyle="solid" verticalGap="0">
 			<mx:Canvas width="100%" height="60">
 				<mx:Label text="{model.currentDate}" right="5" top="10" fontWeight="bold"/>
-				<mx:Label y="10" text="＜　2010年 11月 勤務表　＞" horizontalCenter="0" fontWeight="bold" fontSize="25"/>
 				<mx:Button y="29" label="EXCEL保存" width="89" fontSize="10" right="5"/>
+				<mx:DateChooser y="10" horizontalCenter="0" styleName="kinmuhyoDateChooser" height="30" id="kinmuhyoDateChooser"/>
 			</mx:Canvas>
 			<mx:Canvas width="100%" height="100%" backgroundColor="green">
 				<mx:DataGrid x="0" y="0" width="100%" height="100%">
@@ -114,6 +114,7 @@
 			<mx:SetProperty target="{menuBox}" name="width" value="0"/>
 		</mx:State>
 	</mx:states>
+
 	<!-- ================================================== -->
 	<!-- トランジション										-->
 	<!-- ================================================== -->

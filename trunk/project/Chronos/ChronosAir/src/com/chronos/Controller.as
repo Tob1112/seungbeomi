@@ -1,6 +1,8 @@
 package com.chronos
 {
 	import com.adobe.cairngorm.control.FrontController;
+	import com.chronos.air.model.MainDAO;
+	import com.chronos.air.model.MainEvent;
 	import com.chronos.air.sample.PersonCommand;
 	import com.chronos.air.sample.PersonEvent;
 
@@ -10,7 +12,8 @@ package com.chronos
 		{
 			super();
 
-			
+			addCommand(MainEvent.OPEN_DATABASE, MainDAO);
+
 
 
 			// sample

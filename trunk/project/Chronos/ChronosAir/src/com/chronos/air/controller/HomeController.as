@@ -1,7 +1,7 @@
 package com.chronos.air.controller {
 
 	import com.chronos.air.model.MainEvent;
-	import com.chronos.air.model.MainModelLocator;
+	import com.chronos.air.model.MainModel;
 	import com.chronos.air.view.HomeView;
 
 	import flash.events.MouseEvent;
@@ -12,7 +12,7 @@ package com.chronos.air.controller {
 	public class HomeController implements IMXMLObject {
 
 		private var view:HomeView;
-		private var model:MainModelLocator = MainModelLocator.getInstance();
+		private var model:MainModel = MainModel.getInstance();
 		private static const SHOW_ERROR_STATE:String = "showError";
 
 		public function initialized(doc:Object, id:String):void {

@@ -7,11 +7,12 @@ Alert {
     background-alpha: 1.0;
     border-alpha: 1.0;
 	*/
-    border-color: #353A49;
-    background-color: #353A49;
-    border-thickness-top: 10;
-    border-thickness-left: 20;
+    border-color: 			#353A49;
+    background-color: 		#353A49;
+    border-thickness-top: 	10;
+    border-thickness-left: 	20;
     border-thickness-right: 20;
+    shadow-direction:		right;
 }
 
 /* Title部 */
