@@ -3,3 +3,11 @@ Button
 {
 	font-size:			11;
 }
+
+.kinmuhyoDateChooser
+{
+	font-size:			30;
+	border-color:		#FFFFFF;
+	header-colors:		#FFFFFF, #FFFFFF;
+}
+

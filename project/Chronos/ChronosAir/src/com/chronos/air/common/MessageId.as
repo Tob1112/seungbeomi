@@ -11,6 +11,7 @@ package com.chronos.air.common
 		//public static const SYSTEM_ERROR:String = getMessage("error.system");
 		public static const SERVER_ACCESS_ERROR:String = "サーバーアクセスにエラーが発生しました。";
 		public static const SYSTEM_ERROR:String = "システムエラーが発生しました。";
+		public static const SQL_ERROR:String = "SQLエラーが発生しました。";
 
 		private static function getMessage(messageKey:String):String {
 			return messages.getString(messageKey);

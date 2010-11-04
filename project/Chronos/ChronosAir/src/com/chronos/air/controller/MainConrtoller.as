@@ -1,10 +1,12 @@
 package com.chronos.air.controller {
 
 	import com.chronos.Constants;
-	import com.chronos.air.common.MessageId;
 	import com.chronos.air.common.Messages;
-	import com.chronos.air.model.MainModelLocator;
+	import com.chronos.air.model.MainEvent;
+	import com.chronos.air.model.MainModel;
 	import com.chronos.air.view.MainView;
+
+	import flash.filesystem.File;
 
 	import mx.core.IMXMLObject;
 	import mx.events.FlexEvent;
@@ -12,7 +14,7 @@ package com.chronos.air.controller {
 	public class MainConrtoller implements IMXMLObject{
 
 		private var view:MainView;
-		public var model:MainModelLocator = MainModelLocator.getInstance();
+		public var model:MainModel = MainModel.getInstance();
 		private var messages:Messages = Messages.getInstance();
 
 		public function initialized(doc:Object, id:String):void {
@@ -24,7 +26,8 @@ package com.chronos.air.controller {
 
 		/** アプリケーション初期化処理を行う */
 		public function applicationInitializeHandler(e:FlexEvent):void {
-			new MessageId();
+			//new MessageId();
+			openDatabase();
 		}
 
 		public function creationCompletHandler(e:FlexEvent):void {
@@ -35,7 +38,18 @@ package com.chronos.air.controller {
 		/** ViewStackをロックし、HOME画面を表示する。 */
 		private function lockViewStack():void {
 			view.chronosViews.selectedIndex = Constants.HOME_VIEWSTACK_INDEX;
-			view.buttonBar.enabled = false;
+			//view.buttonBar.enabled = false;
+		}
+
+		private function openDatabase():void {
+			// システムディレクトリ生成
+			var systemDir:File = File.userDirectory.resolvePath(Constants.SYSTEM_DIRECTORY_PATH);
+			// システムディレクトリが存在しない場合
+			if (!systemDir.exists) {
+				systemDir.createDirectory();
+			}
+			var event:MainEvent = new MainEvent(MainEvent.OPEN_DATABASE);
+			event.dispatch();
 		}
 
 	}

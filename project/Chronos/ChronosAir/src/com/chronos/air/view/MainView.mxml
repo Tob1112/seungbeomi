@@ -4,7 +4,7 @@
 	horizontalScrollPolicy="off" verticalScrollPolicy="off" xmlns:view="com.chronos.air.view.*" xmlns:controller="com.chronos.air.controller.*" xmlns:model="com.chronos.air.model.*">
 
 	<mx:Style source="asset/css/main.css" />
-	<model:MainModelLocator id="model" />
+	<model:MainModel id="model" />
 	<controller:MainConrtoller id="controller"/>
 
 	<mx:ApplicationControlBar width="100%" styleName="myControlBar">

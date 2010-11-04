@@ -6,6 +6,8 @@ package com.chronos.air.model {
 
 		public static const LOGIN:String = "login";
 
+		public static const OPEN_DATABASE:String = "openDatabase";
+
 		public var view:Object;
 
 		public function MainEvent(type:String, doc:Object=null) {
