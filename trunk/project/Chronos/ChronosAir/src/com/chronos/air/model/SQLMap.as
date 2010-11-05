@@ -21,7 +21,7 @@ package com.chronos.air.model {
 		private static var sqlMap:Dictionary = new Dictionary();
 		private static var baseDir:File;
 		private static var baseDirPath:String = "/";
-		private static var sqlMapConfigFileName:String = "sqlMapConfig.xml";
+		private static var sqlMapConfigFileName:String = "SqlMapConfig.xml";
 
 		private static var instance:SQLMap = null;
 

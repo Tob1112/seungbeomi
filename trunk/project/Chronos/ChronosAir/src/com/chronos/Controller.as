@@ -3,6 +3,8 @@ package com.chronos
 	import com.adobe.cairngorm.control.FrontController;
 	import com.chronos.air.model.MainDAO;
 	import com.chronos.air.model.MainEvent;
+	import com.chronos.air.model.ServiceCommand;
+	import com.chronos.air.model.ServiceEvent;
 	import com.chronos.air.sample.PersonCommand;
 	import com.chronos.air.sample.PersonEvent;
 
@@ -14,6 +16,7 @@ package com.chronos
 
 			addCommand(MainEvent.OPEN_DATABASE, MainDAO);
 
+			addCommand(ServiceEvent.LOGIN, ServiceCommand);	// ログイン
 
 
 			// sample
