@@ -4,8 +4,10 @@ package com.chronos.air.controller {
 	import com.chronos.air.common.Messages;
 	import com.chronos.air.model.MainEvent;
 	import com.chronos.air.model.MainModel;
+	import com.chronos.air.model.ServiceEvent;
 	import com.chronos.air.view.MainView;
 
+	import flash.events.MouseEvent;
 	import flash.filesystem.File;
 
 	import mx.core.IMXMLObject;
@@ -31,14 +33,20 @@ package com.chronos.air.controller {
 		}
 
 		public function creationCompletHandler(e:FlexEvent):void {
+			// イベントの登録
+			view.logoutButton.addEventListener(MouseEvent.CLICK, logoutHandler);
+
 			// ViewStackをロックし、HOME画面を表示する。
-			lockViewStack();
+			initMainView();
 		}
 
 		/** ViewStackをロックし、HOME画面を表示する。 */
-		private function lockViewStack():void {
-			view.chronosViews.selectedIndex = Constants.HOME_VIEWSTACK_INDEX;
-			//view.buttonBar.enabled = false;
+		private function initMainView():void {
+			view.mainViewStack.selectedIndex = Constants.HOME_VIEWSTACK_INDEX;
+			view.nameLabel.text = "";
+			view.nameLabel.visible = false;
+			view.logoutButton.visible = false;
+			view.buttonBar.enabled = false;
 		}
 
 		private function openDatabase():void {
@@ -49,6 +57,11 @@ package com.chronos.air.controller {
 				systemDir.createDirectory();
 			}
 			var event:MainEvent = new MainEvent(MainEvent.OPEN_DATABASE);
+			event.dispatch();
+		}
+
+		private function logoutHandler():void {
+			var event:ServiceEvent = new ServiceEvent(ServiceEvent.LOGOUT, view);
 			event.dispatch();
 		}
 

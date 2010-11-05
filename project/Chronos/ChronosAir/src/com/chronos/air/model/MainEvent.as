@@ -4,8 +4,6 @@ package com.chronos.air.model {
 
 	public class MainEvent extends CairngormEvent {
 
-		public static const LOGIN:String = "login";
-
 		public static const OPEN_DATABASE:String = "openDatabase";
 
 		public var view:Object;

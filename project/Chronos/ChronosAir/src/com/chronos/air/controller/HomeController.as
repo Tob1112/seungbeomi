@@ -1,7 +1,7 @@
 package com.chronos.air.controller {
 
-	import com.chronos.air.model.MainEvent;
 	import com.chronos.air.model.MainModel;
+	import com.chronos.air.model.ServiceEvent;
 	import com.chronos.air.view.HomeView;
 
 	import flash.events.MouseEvent;
@@ -29,7 +29,7 @@ package com.chronos.air.controller {
 			model.user.id = view.idTextInput.text;
 			model.user.password = view.passwordTextInput.text;
 
-			var event:MainEvent = new MainEvent(MainEvent.LOGIN, view);
+			var event:ServiceEvent = new ServiceEvent(ServiceEvent.LOGIN, view);
 			event.dispatch();
 		}
 	}
