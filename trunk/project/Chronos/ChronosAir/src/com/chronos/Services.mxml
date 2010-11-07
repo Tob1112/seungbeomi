@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rds:ServiceLocator xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:rds="com.adobe.cairngorm.business.*">
 
- <mx:RemoteObject id="chronosRO" destination="chronosService"
+ <mx:RemoteObject id="chronosRO" destination="ShinseiService"
                      endpoint="http://localhost:8888/spring/messagebroker/amf"/>
  <!--
  <mx:RemoteObject id="chronosRO" destination="chronosService"

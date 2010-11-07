@@ -10,4 +10,34 @@ Button
 	border-color:		#FFFFFF;
 	header-colors:		#FFFFFF, #FFFFFF;
 }
+.kinmuhyoShinkiSakuseiTitleWindow
+{
+	/*
+    */
+	modal-transparency: 		0.3;
+    modal-transparency-blur : 	0.5;
+    border-alpha: 				1.0;
+    header-style-name:			"kinmuhyoShinkiSakuseititleWindowHeader";
+	border-color: 				#353A49;
+	border-thickness-left: 		0;
+	border-thickness-right: 	0;
+	shadow-direction:			right;
+}
 
+.kinmuhyoShinkiSakuseititleWindowHeader
+{
+	font-size:				12;
+	font-weight:			bold;
+}
+
+.windowStyles {
+	color: 					#33C815;
+	font-weight: 			bold;
+	font-size:				12;
+}
+.shinkiKinmuhyoDateChooser
+{
+	border-color:			#FFFFFF;
+	today-color:			#FFFFFF;
+	corner-radius:			0;
+}

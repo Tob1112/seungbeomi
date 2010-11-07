@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sqlMapConfig>
 
-	<sqlMap resource="sql-map-timesheet.xml" />
+	<sqlMap resource="sql-map-user.xml" />
+	<sqlMap resource="sql-map-kinmuhyo.xml" />
+	<sqlMap resource="sql-map-shinsei.xml" />
 
 </sqlMapConfig>

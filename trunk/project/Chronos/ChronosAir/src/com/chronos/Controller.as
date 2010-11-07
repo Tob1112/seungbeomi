@@ -1,10 +1,10 @@
 package com.chronos
 {
 	import com.adobe.cairngorm.control.FrontController;
-	import com.chronos.air.model.MainDAO;
-	import com.chronos.air.model.MainEvent;
-	import com.chronos.air.model.ServiceCommand;
-	import com.chronos.air.model.ServiceEvent;
+	import com.chronos.air.event.DAOEvent;
+	import com.chronos.air.event.ShinseiServiceEvent;
+	import com.chronos.air.model.DAOCommand;
+	import com.chronos.air.model.ShinseiServiceCommand;
 	import com.chronos.air.sample.PersonCommand;
 	import com.chronos.air.sample.PersonEvent;
 
@@ -14,9 +14,12 @@ package com.chronos
 		{
 			super();
 
-			addCommand(MainEvent.OPEN_DATABASE, MainDAO);
+			addCommand(DAOEvent.OPEN_DATABASE, DAOCommand);
+			addCommand(DAOEvent.SAVE_USER, DAOCommand);
+			addCommand(DAOEvent.REMOVE_USER, DAOCommand);
 
-			addCommand(ServiceEvent.LOGIN, ServiceCommand);	// ログイン
+			addCommand(ShinseiServiceEvent.LOGIN, ShinseiServiceCommand);	// ログイン
+			addCommand(ShinseiServiceEvent.LOGOUT, ShinseiServiceCommand);
 
 
 			// sample

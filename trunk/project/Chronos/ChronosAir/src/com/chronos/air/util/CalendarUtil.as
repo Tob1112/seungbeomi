@@ -54,7 +54,7 @@ package com.chronos.air.util {
 
         public static function currentDateLabel(current:Date):String {
         	return current.fullYear + "." +
-					current.month + "." +
+					(current.month + 1) + "." +
 					current.date +
 					"(" + dayOfWkArray[current.day] + ")";
 

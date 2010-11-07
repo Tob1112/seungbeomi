@@ -2,13 +2,13 @@
 <mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml"
 	width="100%" height="530"
 	currentState="showMenu"
-	xmlns:controller="com.chronos.air.controller.*"
+	xmlns:controller="com.chronos.air.view.controller.*"
 	xmlns:view="com.chronos.air.view.*"
 	xmlns:model="com.chronos.air.model.*">
 
 	<mx:Style source="asset/css/kinmuhyo.css" />
 	<model:KinmuhyoModel id="model" />
-	<controller:KinmuhyoController id="controller" />
+	<controller:KinmuhyoViewController id="controller" />
 
 	<mx:HDividedBox id="kinmuhyoDividedBox" width="100%" height="100%"
 		horizontalDividerCursor="@Embed('asset/img/arrow.gif')"
@@ -21,49 +21,19 @@
 			minWidth="180" maxWidth="180"
 			backgroundColor="#EDEDED" borderStyle="solid"
 			verticalScrollPolicy="off">
-			<mx:Button label="新規作成" left="5" top="10" width="84" height="30" fontSize="12"/>
-			<mx:Button label="インポート" right="5" top="10" width="84" height="30" fontSize="11"/>
+			<mx:Button id="kinmuhyoShinkiSakuseiButton" label="新規作成" left="5" top="10" width="84" height="30" fontSize="12"/>
+			<mx:Button id="kinmuhyoPreviewButton" label="プレビュー" right="5" top="10" width="84" height="30" fontSize="11"/>
 			<!-- ================================================== -->
 			<!-- サマリーFORM											-->
 			<!-- ================================================== -->
-			<mx:Form verticalGap="0" paddingRight="0" paddingTop="0" paddingBottom="0"
-				width="100%" left="0" top="45">
-		        <mx:FormItem label="Total:">
-		            <mx:Label text="total" />
-		        </mx:FormItem>
-		        <mx:FormItem label="Shipping:">
-		            <mx:Label text="shipping" />
-		        </mx:FormItem>
-		        <mx:FormItem label="Grand Total:">
-		            <mx:Label text="total" />
-		        </mx:FormItem>
-		        <mx:FormItem label="Total:">
-		            <mx:Label text="total" />
-		        </mx:FormItem>
-		        <mx:FormItem label="Shipping:">
-		            <mx:Label text="shipping" />
-		        </mx:FormItem>
-		        <mx:FormItem label="Grand Total:">
-		            <mx:Label text="total" />
-		        </mx:FormItem>
-		        <mx:FormItem label="Total:">
-		            <mx:Label text="total" />
-		        </mx:FormItem>
-		        <mx:FormItem label="Shipping:">
-		            <mx:Label text="shipping" />
-		        </mx:FormItem>
-		        <mx:FormItem label="Grand Total:">
-		            <mx:Label text="total" />
-		        </mx:FormItem>
-		    </mx:Form>
 
-			<mx:HRule y="215" left="10" right="10"/>
+			<mx:HRule left="10" right="10" y="50"/>
 
 			<!-- ================================================== -->
 			<!-- 申請書リストBOX										-->
 			<!-- ================================================== -->
-			<mx:Label width="100%" text="申請書リスト" styleName="sectionHeader" x="5" y="219"/>
-			<mx:VBox left="5" right="5" top="242" borderStyle="inset" verticalGap="0" height="275">
+			<mx:Label width="100%" text="勤務表リスト" styleName="sectionHeader" x="5" y="60"/>
+			<mx:VBox left="5" right="5" borderStyle="inset" verticalGap="0" height="440" y="80">
 				<view:ShinseishoItem />
 				<view:ShinseishoItem />
 				<view:ShinseishoItem />
@@ -76,29 +46,39 @@
 		<!-- ================================================== -->
 		<mx:VBox width="100%" height="100%" borderStyle="solid" verticalGap="0">
 			<mx:Canvas width="100%" height="60">
-				<mx:Label text="{model.currentDate}" right="5" top="10" fontWeight="bold"/>
-				<mx:Button y="29" label="EXCEL保存" width="89" fontSize="10" right="5"/>
+				<mx:Label text="{model.currentDate}" right="10" top="10" fontWeight="bold"/>
 				<mx:DateChooser y="10" horizontalCenter="0" styleName="kinmuhyoDateChooser" height="30" id="kinmuhyoDateChooser"/>
+				<mx:Label text="申請番号：1234567890" fontSize="15" id="shinseiBangoLabel" right="10" top="25"/>
 			</mx:Canvas>
 			<mx:Canvas width="100%" height="100%" backgroundColor="green">
 				<mx:DataGrid x="0" y="0" width="100%" height="100%">
 					<mx:columns>
-						<mx:DataGridColumn headerText="Column 1" dataField="col1"/>
-						<mx:DataGridColumn headerText="Column 2" dataField="col2"/>
-						<mx:DataGridColumn headerText="Column 3" dataField="col3"/>
-						<mx:DataGridColumn headerText="Column 1" dataField="col1"/>
-						<mx:DataGridColumn headerText="Column 2" dataField="col2"/>
-						<mx:DataGridColumn headerText="Column 3" dataField="col3"/>
-						<mx:DataGridColumn headerText="Column 1" dataField="col1"/>
-						<mx:DataGridColumn headerText="Column 2" dataField="col2"/>
-						<mx:DataGridColumn headerText="Column 3" dataField="col3"/>
+						<mx:DataGridColumn headerText="日付" dataField="hizuke"/>
+						<mx:DataGridColumn headerText="休みの状況" dataField="yasumiType"/>
+						<mx:DataGridColumn headerText="始業時間" dataField="shigyo"/>
+						<mx:DataGridColumn headerText="終了時間" dataField="syuryo"/>
+						<mx:DataGridColumn headerText="休憩時間" dataField="kyukei"/>
+						<mx:DataGridColumn headerText="実働時間" dataField="jitsudouJikan"/>
+						<mx:DataGridColumn headerText="作業内容及び状況" dataField="sagyoNaiyo" width="300"/>
 					</mx:columns>
 				</mx:DataGrid>
 			</mx:Canvas>
-			<mx:Canvas width="100%" height="60">
-				<mx:Button y="8" label="SAVE" right="100" width="96" height="40" fontSize="15" fontWeight="bold"/>
-				<mx:Button y="8" label="SEND" right="5" width="96" height="40" fontSize="15" fontWeight="bold"/>
-				<mx:Label x="10" y="16" text="申請番号：1234567890" fontSize="15"/>
+			<mx:Canvas width="100%" height="60" id="canvas1">
+				<mx:Button y="8" label="SAVE" right="105" width="96" height="40" fontSize="15" fontWeight="bold"/>
+				<mx:Button y="8" label="SEND" right="10" width="96" height="40" fontSize="15" fontWeight="bold"/>
+				<mx:Label text="160.50" top="10" fontSize="15" id="jitsudouJikanGokeiLabel" right="268" fontWeight="bold" color="#33C815"/>
+				<mx:Label text="実働時間合計：" fontSize="12" top="10" right="355"/>
+				<mx:Form verticalGap="0" paddingRight="0" paddingTop="0" paddingBottom="0" left="0" top="0">
+				       <mx:FormItem label="所定日数：">
+				           <mx:Label text="20 日" />
+				       </mx:FormItem>
+				       <mx:FormItem label="作業日数：">
+				           <mx:Label text="19 日" />
+				       </mx:FormItem>
+				       <mx:FormItem label="欠勤日数：">
+				           <mx:Label text="1 日" />
+				       </mx:FormItem>
+				   </mx:Form>
 			</mx:Canvas>
 		</mx:VBox>
 	</mx:HDividedBox>

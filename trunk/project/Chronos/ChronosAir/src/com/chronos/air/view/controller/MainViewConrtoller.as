@@ -1,10 +1,10 @@
-package com.chronos.air.controller {
+package com.chronos.air.view.controller {
 
 	import com.chronos.Constants;
 	import com.chronos.air.common.Messages;
-	import com.chronos.air.model.MainEvent;
+	import com.chronos.air.event.DAOEvent;
+	import com.chronos.air.event.ShinseiServiceEvent;
 	import com.chronos.air.model.MainModel;
-	import com.chronos.air.model.ServiceEvent;
 	import com.chronos.air.view.MainView;
 
 	import flash.events.MouseEvent;
@@ -13,7 +13,7 @@ package com.chronos.air.controller {
 	import mx.core.IMXMLObject;
 	import mx.events.FlexEvent;
 
-	public class MainConrtoller implements IMXMLObject{
+	public class MainViewConrtoller implements IMXMLObject{
 
 		private var view:MainView;
 		public var model:MainModel = MainModel.getInstance();
@@ -44,7 +44,7 @@ package com.chronos.air.controller {
 		private function initMainView():void {
 			view.mainViewStack.selectedIndex = Constants.HOME_VIEWSTACK_INDEX;
 			view.nameLabel.text = "";
-			view.nameLabel.visible = false;
+			//view.nameLabel.visible = false;
 			view.logoutButton.visible = false;
 			view.buttonBar.enabled = false;
 		}
@@ -56,12 +56,12 @@ package com.chronos.air.controller {
 			if (!systemDir.exists) {
 				systemDir.createDirectory();
 			}
-			var event:MainEvent = new MainEvent(MainEvent.OPEN_DATABASE);
+			var event:DAOEvent = new DAOEvent(DAOEvent.OPEN_DATABASE);
 			event.dispatch();
 		}
 
-		private function logoutHandler():void {
-			var event:ServiceEvent = new ServiceEvent(ServiceEvent.LOGOUT, view);
+		private function logoutHandler(e:MouseEvent):void {
+			var event:ShinseiServiceEvent = new ShinseiServiceEvent(ShinseiServiceEvent.LOGOUT, view);
 			event.dispatch();
 		}
 

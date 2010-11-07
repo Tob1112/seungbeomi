@@ -139,7 +139,7 @@ package com.chronos.air.sample
 			sqlMapXML = XML(stream.readUTFBytes(stream.bytesAvailable));
 			stream.close();
 
-			trace(sqlMap.getQuery("find1"));
+			//trace(sqlMap.getQuery("find1"));
 
 			// view read xml data
 			view.idTextInput.text = sqlMapXML.sql[0].@id;

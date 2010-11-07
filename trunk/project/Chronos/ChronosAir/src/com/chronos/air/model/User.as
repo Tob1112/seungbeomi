@@ -7,6 +7,13 @@ package com.chronos.air.model
 		public var id:String;
 		public var password:String;
 		public var name:String;
+		public var rememberMe:Boolean;
 
+		public function reset():void {
+			id = "";
+			password = "";
+			name = "";
+			rememberMe = false;
+		}
 	}
 }
