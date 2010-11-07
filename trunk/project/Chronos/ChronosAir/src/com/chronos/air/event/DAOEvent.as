@@ -7,6 +7,7 @@ package com.chronos.air.event {
 		public static const OPEN_DATABASE:String 	= "openDatabase";
 		public static const SAVE_USER:String 		= "saveUser";
 		public static const REMOVE_USER:String 		= "removeUser";
+		public static const FIND_KINMUHYO_DATA:String 	= "findKinmuhyoData";
 
 		public var view:Object;
 

@@ -14,12 +14,15 @@ package com.chronos
 		{
 			super();
 
-			addCommand(DAOEvent.OPEN_DATABASE, DAOCommand);
-			addCommand(DAOEvent.SAVE_USER, DAOCommand);
-			addCommand(DAOEvent.REMOVE_USER, DAOCommand);
+			addCommand(DAOEvent.OPEN_DATABASE, DAOCommand);	// database 解放
+			addCommand(DAOEvent.SAVE_USER, DAOCommand);		// ユーザー情報保存
+			addCommand(DAOEvent.REMOVE_USER, DAOCommand);	// ユーザー情報削除
+
+			// 勤務表
+			addCommand(DAOEvent.FIND_KINMUHYO_DATA, DAOCommand); // 勤務表リスト検索
 
 			addCommand(ShinseiServiceEvent.LOGIN, ShinseiServiceCommand);	// ログイン
-			addCommand(ShinseiServiceEvent.LOGOUT, ShinseiServiceCommand);
+			addCommand(ShinseiServiceEvent.LOGOUT, ShinseiServiceCommand);	// ログアウト
 
 
 			// sample

@@ -9,9 +9,13 @@ package com.chronos.air.model {
 	import flash.filesystem.File;
 	import flash.utils.Dictionary;
 
+	import mx.collections.ArrayCollection;
+	import mx.collections.IViewCursor;
+
 	public class DAOCommand implements ICommand {
 
 		private var mainModel:MainModel = MainModel.getInstance();
+		private var kinmuhyoModel:KinmuhyoModel = KinmuhyoModel.getInstance();
 		private var sqlMap:SQLMap = SQLMap.getInstance();
 		private var con:SQLConnection;
 		private var file:File = File.userDirectory.resolvePath(Constants.DATABASE_FILE_PATH);
@@ -24,7 +28,9 @@ package com.chronos.air.model {
 		// CREATE SQL ID
 		private static const SQL_CREATE_USER:String 			= PREFIX_USER + "createUser";
 		private static const SQL_CREATE_KINMUHYO:String 		= PREFIX_KINMUHYO + "createKinmuhyo";
+		private static const SQL_FIND_KINMUHYO:String 			= PREFIX_KINMUHYO + "findKinmuhyo";
 		private static const SQL_CREATE_SHINSEI:String			= PREFIX_SHINSEI + "createShinsei";
+		private static const SQL_FIND_SHINSEI_LIST:String		= PREFIX_SHINSEI + "findShinseiList";
 
 		// FIND SQL ID
 		private static const SQL_FIND_USER:String				= PREFIX_USER + "findUser";
@@ -68,7 +74,6 @@ package com.chronos.air.model {
 		private static const FORGET_ME:int = 0;
 
 		public function execute(e:CairngormEvent):void {
-
 			switch(e.type) {
 				case DAOEvent.OPEN_DATABASE:
 					openDatabase();			// データーベース解放
@@ -78,6 +83,9 @@ package com.chronos.air.model {
 					break;
 				case DAOEvent.REMOVE_USER:	// ユーザー情報削除
 					removeUser(mainModel.user.id);
+					break;
+				case DAOEvent.FIND_KINMUHYO_DATA:	// 勤務表リスト検索
+					findShinseiListAndSaikinKinmuhyo();
 					break;
 			}
 		}
@@ -150,6 +158,55 @@ package com.chronos.air.model {
 				if (isExist) {
 					params[PARAMETER_NAME_ID] = id;
 					SQLMap.remove(con, SQL_REMOVE_USER, id);
+				}
+			} finally {
+				con.close();
+			}
+		}
+
+		/** 全申請リスト検索及び申請リストの中、最新勤務表情報取得 */
+		public function findShinseiListAndSaikinKinmuhyo():void {
+			con = new SQLConnection();
+			con.open(file);
+			var saishinKinmuhyoNengetsu:String;	// 最新勤務表年月
+			var shinsei:Shinsei;				// 申請
+			var kinmuhyo:Kinmuhyo;				// 勤務表
+			var kinmuhyoAC:ArrayCollection;		// 勤務表リスト(当月)
+			var shinseiAC:ArrayCollection;		// 申請リスト
+			var shinseiMapper:ShinseiMapper;	// 申請パップ
+			var kinmuhyoMapper:KinmuhyoMapper;	// 勤務表マップ
+			var cursor:IViewCursor;				// カーソル
+			try {
+				// 申請リスト検索 ----------------------------------
+
+				shinseiAC = SQLMap.execute(con, SQL_FIND_SHINSEI_LIST);
+				cursor = shinseiAC.createCursor();
+				kinmuhyoModel.shinseiAC.removeAll();
+
+				var isSaishinShinsei:Boolean = true;
+				shinseiMapper = new ShinseiMapper();
+				for (; !cursor.afterLast; cursor.moveNext()) {
+					shinsei = shinseiMapper.mapping(cursor.current);
+					// 最近申請年月取得
+					if (isSaishinShinsei) {
+						saishinKinmuhyoNengetsu = shinsei.nengetsu;
+						isSaishinShinsei = false;
+					}
+					kinmuhyoModel.shinseiAC.addItem(shinsei);
+				}
+
+				// 最近勤務表取得 ------------------------------------
+				var parameters:Dictionary = new Dictionary();
+				parameters[PARAMETER_NAME_NENGETSU] = saishinKinmuhyoNengetsu;
+
+				kinmuhyoMapper = new KinmuhyoMapper();
+				kinmuhyoAC = SQLMap.execute(con, SQL_FIND_KINMUHYO, parameters);
+				cursor = kinmuhyoAC.createCursor();
+				kinmuhyoModel.kinmuhyoAC.removeAll();
+
+				for (; !cursor.afterLast; cursor.moveNext()) {
+					kinmuhyo = kinmuhyoMapper.mapping(cursor.current);
+					kinmuhyoModel.kinmuhyoAC.addItem(kinmuhyo);
 				}
 			} finally {
 				con.close();
