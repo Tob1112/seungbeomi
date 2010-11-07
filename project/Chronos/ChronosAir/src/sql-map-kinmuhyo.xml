@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sqlMap>
+
+	<!-- =================================== -->
+	<!-- CREATE SQL							 -->
+	<!-- =================================== -->
+	<sql id="kinmuhyo.createKinmuhyo">
+		CREATE TABLE kinmuhyo (
+			nengetsu			TEXT,
+			hizuke 				TEXT,
+			yasumiKubun			TEXT,
+			shigyoJikan			REAL,
+			syuryoJikan			REAL,
+			kyukeiJikan			REAL,
+			jitsudoJikan		REAL,
+			sagyoNaiyo			TEXT,
+			syoteiNissu			INTEGER,
+			sagyoNissu			INTEGER,
+			kekkinNissu			INTEGER,
+			totalJitsudoJikan	REAL
+		)
+	</sql>
+
+	<!-- =================================== -->
+	<!-- SELECT SQL							 -->
+	<!-- =================================== -->
+
+
+	<!-- =================================== -->
+	<!-- INSERT SQL							 -->
+	<!-- =================================== -->
+
+
+
+	<!-- =================================== -->
+	<!-- UPDATE SQL							 -->
+	<!-- =================================== -->
+
+
+	<!-- =================================== -->
+	<!-- DELETE SQL							 -->
+	<!-- =================================== -->
+  	<sql id="findPersonById">select * from person</sql>
+  	<sql id="findTest">select * from test</sql>
+</sqlMap>

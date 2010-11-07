@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%"
-	xmlns:controller="com.chronos.air.controller.*">
+	xmlns:controller="com.chronos.air.view.controller.*">
 
-	<controller:HomeController id="controller" />
+	<controller:HomeViewController id="controller" />
 
 	<!-- ================================================== -->
 	<!-- メイン画面イメージ										-->
@@ -31,9 +31,9 @@
 	<!-- ================================================== -->
 	<mx:states>
 		<mx:State name="showError">
-			<mx:SetProperty target="{loginCanvas}" name="height" value="172"/>
+			<mx:SetProperty target="{loginCanvas}" name="height" value="180"/>
 			<mx:AddChild relativeTo="{loginCanvas}" position="lastChild">
-				<mx:Label x="20" y="129" id="errorLabel" styleName="errorMessage"/>
+				<mx:Text x="20" y="129" id="errorText" styleName="errorMessage" width="240"/>
 			</mx:AddChild>
 		</mx:State>
 	</mx:states>

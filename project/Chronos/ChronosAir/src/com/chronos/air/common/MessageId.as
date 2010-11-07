@@ -9,9 +9,13 @@ package com.chronos.air.common
 
 		//public static const SERVER_ACCESS_ERROR:String = getMessage("error.server.access");
 		//public static const SYSTEM_ERROR:String = getMessage("error.system");
-		public static const SERVER_ACCESS_ERROR:String = "サーバーアクセスにエラーが発生しました。";
-		public static const SYSTEM_ERROR:String = "システムエラーが発生しました。";
-		public static const SQL_ERROR:String = "SQLエラーが発生しました。";
+		public static const SERVER_ACCESS_ERROR:String 		= "サーバーアクセスにエラーが発生しました。";
+		public static const SYSTEM_ERROR:String 			= "システムエラーが発生しました。";
+		public static const SQL_ERROR:String				= "SQLエラーが発生しました。";
+		public static const LOGIN_ERROR:String 				= "入力したidまたはパスワードが\n間違っています。";
+		public static const OVER_DATA_FOUND_ERROR:String 	= "複数のデータが検索されました。";
+
+		public static const SECURITY_MESSAGE:String 		= "TODO : セキュリティーメッセージ表示！！";
 
 		private static function getMessage(messageKey:String):String {
 			return messages.getString(messageKey);

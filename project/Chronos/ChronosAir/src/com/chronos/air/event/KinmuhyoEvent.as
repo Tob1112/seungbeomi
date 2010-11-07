@@ -1,4 +1,4 @@
-package com.chronos.air.model {
+package com.chronos.air.event {
 
 	public class KinmuhyoEvent 	{
 

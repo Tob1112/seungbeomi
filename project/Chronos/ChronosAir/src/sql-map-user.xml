@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sqlMap>
+
+	<!-- =================================== -->
+	<!-- CREATE SQL							 -->
+	<!-- =================================== -->
+	<sql id="user.createUser">
+		CREATE TABLE user (
+			id 			TEXT PRIMARY KEY,
+			password 	TEXT,
+			rememberMe  INTEGER
+		)
+	</sql>
+
+	<!-- =================================== -->
+	<!-- SELECT SQL							 -->
+	<!-- =================================== -->
+	<sql id="user.findUser">
+		SELECT * FROM user
+		WHERE id = :id
+	</sql>
+
+	<!-- =================================== -->
+	<!-- INSERT SQL							 -->
+	<!-- =================================== -->
+	<sql id="user.insertUser">
+		INSERT INTO user (id, password, rememberMe)
+		VALUES (:id, :password, :rememberMe)
+	</sql>
+
+	<!-- =================================== -->
+	<!-- UPDATE SQL							 -->
+	<!-- =================================== -->
+	<sql id="user.updateUser">
+		UPDATE user
+		SET
+			password = :password,
+			rememberMe = :rememberMe
+		WHERE
+			id = :id
+	</sql>
+
+	<!-- =================================== -->
+	<!-- REMOVE SQL							 -->
+	<!-- =================================== -->
+	<sql id="user.removeUser">
+		DELETE FROM user
+		WHERE id = :id
+	</sql>
+</sqlMap>

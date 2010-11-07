@@ -4,6 +4,7 @@ package com.chronos.air.model {
 	public class KinmuhyoModel {
 
 		public var currentDate:String;
+		public var kinmuhyo:Kinmuhyo;
 
 		private static var instance:KinmuhyoModel = null;
 
