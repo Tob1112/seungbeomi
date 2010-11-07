@@ -28,7 +28,6 @@ package com.chronos.air.view.controller {
 
 		/** アプリケーション初期化処理を行う */
 		public function applicationInitializeHandler(e:FlexEvent):void {
-			//new MessageId();
 			openDatabase();
 		}
 
@@ -49,6 +48,7 @@ package com.chronos.air.view.controller {
 			view.buttonBar.enabled = false;
 		}
 
+		/** database解放 */
 		private function openDatabase():void {
 			// システムディレクトリ生成
 			var systemDir:File = File.userDirectory.resolvePath(Constants.SYSTEM_DIRECTORY_PATH);
@@ -60,6 +60,7 @@ package com.chronos.air.view.controller {
 			event.dispatch();
 		}
 
+		/** ログアウト */
 		private function logoutHandler(e:MouseEvent):void {
 			var event:ShinseiServiceEvent = new ShinseiServiceEvent(ShinseiServiceEvent.LOGOUT, view);
 			event.dispatch();

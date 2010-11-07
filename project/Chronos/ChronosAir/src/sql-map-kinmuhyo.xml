@@ -18,12 +18,17 @@
 			sagyoNissu			INTEGER,
 			kekkinNissu			INTEGER,
 			totalJitsudoJikan	REAL
-		)
+		);
 	</sql>
 
 	<!-- =================================== -->
 	<!-- SELECT SQL							 -->
 	<!-- =================================== -->
+	<sql id="kinmuhyo.findKinmuhyo">
+		SELECT * FROM kinmuhyo
+		WHERE nengetsu = :nengetsu
+		ORDER BY hizuke ASC;
+	</sql>
 
 
 	<!-- =================================== -->

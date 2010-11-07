@@ -8,6 +8,7 @@ package com.chronos.air.model {
 	import com.chronos.air.event.DAOEvent;
 	import com.chronos.air.event.ShinseiServiceEvent;
 	import com.chronos.air.view.HomeView;
+	import com.chronos.air.view.KinmuhyoView;
 	import com.chronos.air.view.MainView;
 
 	import mx.rpc.Responder;
@@ -17,8 +18,10 @@ package com.chronos.air.model {
 	public class ShinseiServiceCommand implements ICommand {
 
 			private var mainModel:MainModel = MainModel.getInstance();
+			private var kinmuhyoModel:KinmuhyoModel = KinmuhyoModel.getInstance();
 			private var homeView:HomeView;
 			private var mainView:MainView;
+			private var kinmuhyoView:KinmuhyoView;
 
 			public function execute(e:CairngormEvent):void {
 				var responder:Responder = null;
@@ -44,35 +47,44 @@ package com.chronos.air.model {
 			// PRIVATE METHOD -----------------------------------------------------
 
 			private function loginResultHandler(e:ResultEvent):void {
-				var isRememberMe:Boolean = homeView.rememberMeCheckBox.selected;
-				var daoEvent:DAOEvent;
-
+				mainView = MainView(homeView.parentDocument);
 				var name:String = e.result.toString();
+
 				// リータン値がある場合
 				if (name != null) {
-					// remember me チェックした場合、ユーザー情報をDBに保存
-					if (isRememberMe) {
-						daoEvent = new DAOEvent(DAOEvent.SAVE_USER);
-						daoEvent.dispatch();
-					} else {
-						daoEvent = new DAOEvent(DAOEvent.REMOVE_USER);
-						daoEvent.dispatch();
-					}
+					saveUserInfo();	// ユーザー情報保存
+					findShinseiListAndSaikinKinmuhyo();	// 勤務表リストと勤務表リスト最新勤務表取得
+					initialKinmuhyoViewData(mainView.kinmuhyoView);	// 勤務表画面データ設定
 
 					// model 設定
-					homeView.parentDocument.model.user.name = name;
+					mainView.model.user.name = name;
 					mainModel.user.id = "";
 					mainModel.user.password = "";
 					// view 設定
-					homeView.parentDocument.mainViewStack.selectedIndex = Constants.KINMUHYO_VIEWSTACK_INDEX;
-					homeView.parentDocument.buttonBar.enabled = true;
-					homeView.parentDocument.logoutButton.visible = true;
-					homeView.parentDocument.nameLabel.visible = true;
+					mainView.mainViewStack.selectedIndex = Constants.KINMUHYO_VIEWSTACK_INDEX;
+					mainView.buttonBar.enabled = true;
+					mainView.logoutButton.visible = true;
+					mainView.nameLabel.visible = true;
 					homeView.loginCanvas.visible = false;
 				// リータン値がない場合
 				} else {
 					resetLoginField();
 				}
+			}
+
+			/** 勤務表画面データ設定 */
+			private function initialKinmuhyoViewData(kinmuhyoView:KinmuhyoView):void {
+				var shinsei:Shinsei = Shinsei(kinmuhyoModel.shinseiAC.getItemAt(0));
+				var nengetsu:String = shinsei.nengetsu;
+				var calendar:Array = nengetsu.split("-");
+				var year:int = int(calendar[0]);
+				var month:int = int(calendar[1]) - 1;
+
+				kinmuhyoView.kinmuhyoDateChooser.displayedYear = year;
+				kinmuhyoView.kinmuhyoDateChooser.displayedMonth = month;
+
+				kinmuhyoView.shinseiBangoLabel.text = "申請番号：" + shinsei.shinseiBango;
+
 			}
 
 			/** ログイン失敗時 */
@@ -96,11 +108,6 @@ package com.chronos.air.model {
 
 
 			}
-			/*
-			private function logoutResultHandler(e:ResultEvent):void {
-				resetLoginField();
-			}
-			*/
 
 			/** サービス失敗 */
 			private function serviceFaultHandler(e:FaultEvent):void {
@@ -115,7 +122,26 @@ package com.chronos.air.model {
 				homeView.idTextInput.setFocus();
 			}
 
+			/** ユーザー情報保存 */
+			private function saveUserInfo():void {
+				var isRememberMe:Boolean = homeView.rememberMeCheckBox.selected;
+				var daoEvent:DAOEvent;
+				// remember me チェックした場合、ユーザー情報をDBに保存
+				if (isRememberMe) {
+					daoEvent = new DAOEvent(DAOEvent.SAVE_USER);
+					daoEvent.dispatch();
+				} else {
+					daoEvent = new DAOEvent(DAOEvent.REMOVE_USER);
+					daoEvent.dispatch();
+				}
+			}
 
+			/** 全申請リスト検索及び申請リストの中、最新勤務表情報取得 */
+			private function findShinseiListAndSaikinKinmuhyo():void {
+				var daoEvent:DAOEvent = new DAOEvent(DAOEvent.FIND_KINMUHYO_DATA);
+				daoEvent.dispatch();
+
+			}
 		}
 
 	}

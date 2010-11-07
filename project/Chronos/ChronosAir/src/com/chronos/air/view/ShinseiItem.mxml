@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml" height="30" width="150" verticalAlign="middle" backgroundColor="red">
+
+	<mx:Script>
+		<![CDATA[
+			import com.chronos.air.model.Shinsei;
+
+			override public function set data(value:Object):void {
+				if (value != null) {
+					trace("item : " + Shinsei(value).nengetsu);
+					this.shinseiNengetsuLabel.text = Shinsei(value).nengetsu;
+					this.shinseiJokyoLabel.text = Shinsei(value).shinseiJokyo;
+				}
+			}
+		]]>
+	</mx:Script>
+
+	<mx:Label id="shinseiNengetsuLabel" />
+	<mx:Label id="shinseiJokyoLabel" />
+</mx:HBox>

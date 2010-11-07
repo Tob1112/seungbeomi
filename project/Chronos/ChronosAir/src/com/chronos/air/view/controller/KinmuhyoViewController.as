@@ -1,7 +1,10 @@
 package com.chronos.air.view.controller {
 
+	import com.chronos.air.common.LabelUtil;
 	import com.chronos.air.event.KinmuhyoShinkiSakuseiEvent;
 	import com.chronos.air.model.KinmuhyoModel;
+	import com.chronos.air.model.Shinsei;
+	import com.chronos.air.model.ShinseiJokyoEnum;
 	import com.chronos.air.util.CalendarUtil;
 	import com.chronos.air.view.KinmuhyoShinkiSakuseiWindow;
 	import com.chronos.air.view.KinmuhyoView;
@@ -11,6 +14,7 @@ package com.chronos.air.view.controller {
 	import mx.core.IMXMLObject;
 	import mx.events.DividerEvent;
 	import mx.events.FlexEvent;
+	import mx.events.ListEvent;
 	import mx.managers.PopUpManager;
 
 	public class KinmuhyoViewController implements IMXMLObject{
@@ -32,6 +36,7 @@ package com.chronos.air.view.controller {
 			view.kinmuhyoDateChooser.addEventListener(MouseEvent.CLICK, findKinmuhyoHandler);	// DateChooserから年月を取得し、勤務表を検索
 			view.kinmuhyoShinkiSakuseiButton.addEventListener(MouseEvent.CLICK, popupKinmuhyoShinkiSakuseiWindow);	// 勤務表新規作成
 			view.kinmuhyoPreviewButton.addEventListener(MouseEvent.CLICK, kinmuhyouPreviewHandler);	// 勤務表プレビュー
+			view.shinseiList.addEventListener(ListEvent.CHANGE, shinseiListClickHandler);	// 申請リストクリック
 
 			setCurrentDate();	// 現在の時刻を設定する。(2011年11月3日(水))
 		}
@@ -39,7 +44,8 @@ package com.chronos.air.view.controller {
 		/** 現在の時刻を設定する。(2011年11月3日(水)) */
 		private function setCurrentDate():void {
 			var currentDate:Date = new Date();
-			view.model.currentDate = CalendarUtil.currentDateLabel(currentDate);
+			//view.model.currentDate = CalendarUtil.currentDateLabel(currentDate);
+			model.currentDate = CalendarUtil.currentDateLabel(currentDate);
 		}
 
 		/** メニュー表示＊非表示 */
@@ -73,6 +79,7 @@ package com.chronos.air.view.controller {
 			PopUpManager.centerPopUp(kinmuhyouShinkiSakuseiWindow);
 		}
 
+		/** 勤務表新規作成 */
 		private function kinmuhyoShinkiSakuseiHandler(e:KinmuhyoShinkiSakuseiEvent):void {
 			trace("kinmuhyoShinkiSakuseiHandler");
 		}
@@ -81,5 +88,20 @@ package com.chronos.air.view.controller {
 		private function kinmuhyouPreviewHandler(e:MouseEvent):void {
 			// TODO xml, xslを利用しプレビュー
 		}
+
+		/** 申請リストから申請アイテム選択時、該当勤務表取得 */
+		private function shinseiListClickHandler(e:ListEvent):void {
+			var nengetsu:String = Shinsei(e.currentTarget.selectedItem).nengetsu;
+			trace(nengetsu);
+		}
+
+		/** 勤務表リストLabelFunction */
+		public function shinseiListLabelFunction(item:Object):String {
+			var nengetsu:String = Shinsei(item).nengetsu;
+			var code:String = Shinsei(item).shinseiJokyo;
+			return LabelUtil.nengetsuLabel(nengetsu)  + " " + ShinseiJokyoEnum.fromCode(code);
+		}
+
+
 	}
 }

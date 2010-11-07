@@ -1,4 +1,10 @@
 /* CSS file */
+.shinseiList {
+   /*backgroundAlpha: 0;*/
+   borderStyle: 		solid;
+   font-size:			13;
+}
+
 Button
 {
 	font-size:			11;

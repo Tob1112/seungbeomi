@@ -16,7 +16,10 @@
 	<!-- =================================== -->
 	<!-- SELECT SQL							 -->
 	<!-- =================================== -->
-
+	<sql id="shinsei.findShinseiList">
+		SELECT * FROM shinsei
+		ORDER BY nengetsu DESC
+	</sql>
 
 	<!-- =================================== -->
 	<!-- INSERT SQL							 -->

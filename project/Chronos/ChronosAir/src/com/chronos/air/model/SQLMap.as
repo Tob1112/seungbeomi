@@ -107,7 +107,6 @@ package com.chronos.air.model {
 			}
 		}
 
-		// データ保存
 		static public function execute(con:SQLConnection, sqlId:String, parameters:Dictionary=null):ArrayCollection {
 			try {
 				var stmt:SQLStatement = new SQLStatement();
@@ -179,8 +178,6 @@ package com.chronos.air.model {
 			} catch (e:Error) {
 				Messages.showError(MessageId.SQL_ERROR, e);
 				trace(e.getStackTrace());
-			} finally {
-				//sqlConnection.close();
 			}
 			return null;
 		}

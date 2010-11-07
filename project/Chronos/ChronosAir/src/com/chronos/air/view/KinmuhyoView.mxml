@@ -7,7 +7,6 @@
 	xmlns:model="com.chronos.air.model.*">
 
 	<mx:Style source="asset/css/kinmuhyo.css" />
-	<model:KinmuhyoModel id="model" />
 	<controller:KinmuhyoViewController id="controller" />
 
 	<mx:HDividedBox id="kinmuhyoDividedBox" width="100%" height="100%"
@@ -33,11 +32,11 @@
 			<!-- 申請書リストBOX										-->
 			<!-- ================================================== -->
 			<mx:Label width="100%" text="勤務表リスト" styleName="sectionHeader" x="5" y="60"/>
-			<mx:VBox left="5" right="5" borderStyle="inset" verticalGap="0" height="440" y="80">
-				<view:ShinseishoItem />
-				<view:ShinseishoItem />
-				<view:ShinseishoItem />
-			</mx:VBox>
+			<mx:List id="shinseiList" left="5" right="5" height="440" y="80" styleName="shinseiList"
+				dataProvider="{controller.model.shinseiAC}"
+				labelFunction="{controller.shinseiListLabelFunction}"
+				selectable="true">
+			</mx:List>
 
 		</mx:Canvas>
 
@@ -46,9 +45,9 @@
 		<!-- ================================================== -->
 		<mx:VBox width="100%" height="100%" borderStyle="solid" verticalGap="0">
 			<mx:Canvas width="100%" height="60">
-				<mx:Label text="{model.currentDate}" right="10" top="10" fontWeight="bold"/>
+				<mx:Label text="{controller.model.currentDate}" right="10" top="10" fontWeight="bold"/>
 				<mx:DateChooser y="10" horizontalCenter="0" styleName="kinmuhyoDateChooser" height="30" id="kinmuhyoDateChooser"/>
-				<mx:Label text="申請番号：1234567890" fontSize="15" id="shinseiBangoLabel" right="10" top="25"/>
+				<mx:Label fontSize="15" id="shinseiBangoLabel" right="10" top="25"/>
 			</mx:Canvas>
 			<mx:Canvas width="100%" height="100%" backgroundColor="green">
 				<mx:DataGrid x="0" y="0" width="100%" height="100%">
