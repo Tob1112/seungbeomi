@@ -22,8 +22,8 @@ package com.chronos.air.model {
 		}
 
 		// ログイン
-		public function login(user:User):void {
-			var token:AsyncToken = service.login(user);
+		public function login(shain:Shain):void {
+			var token:AsyncToken = service.login(shain);
 			token.addResponder(responder);
 		}
 

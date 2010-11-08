@@ -2,7 +2,6 @@ package com.chronos.air.view.controller {
 
 	import com.chronos.air.common.MessageId;
 	import com.chronos.air.common.Messages;
-	import com.chronos.air.event.DAOEvent;
 	import com.chronos.air.event.ShinseiServiceEvent;
 	import com.chronos.air.model.MainModel;
 	import com.chronos.air.view.HomeView;
@@ -11,6 +10,7 @@ package com.chronos.air.view.controller {
 
 	import mx.core.IMXMLObject;
 	import mx.events.FlexEvent;
+	import mx.validators.Validator;
 
 	public class HomeViewController implements IMXMLObject {
 
@@ -30,12 +30,23 @@ package com.chronos.air.view.controller {
 		}
 
 		private function loginButtonClickHandler(e:MouseEvent):void {
+			// 妥当性チェック
+			view.validators.forEach(function(item:Object, index:int, array:Array):void {
+				item.enabled = true;
+			});
+
+			var validatorResult:Array = Validator.validateAll(view.validators);
+			if (validatorResult.length > 0) {
+				return;
+			}
+
+
 			var isRememberMe:Boolean = view.rememberMeCheckBox.selected;
 			var event:ShinseiServiceEvent;
 
-			model.user.id = view.idTextInput.text;
-			model.user.password = view.passwordTextInput.text;
-			model.user.rememberMe = view.rememberMeCheckBox.selected;
+			model.shain.id = view.idTextInput.text;
+			model.shain.password = view.passwordTextInput.text;
+			model.shain.rememberMe = view.rememberMeCheckBox.selected;
 
 			// ログイン
 			event = new ShinseiServiceEvent(ShinseiServiceEvent.LOGIN, view);

@@ -12,6 +12,7 @@ package com.chronos.air.model
 		private static const PARAMETER_NAME_SAGYO_NISSU:String 			= ":sagyoNissu";
 		private static const PARAMETER_NAME_KEKKIN_NISSU:String 		= ":kekkinNissu";
 		private static const PARAMETER_NAME_JITSUDO_JIKAN_GOKEI:String 	= ":jitsudoJikanGokei";
+		private static const PARAMETER_NAME_SAGYO_GENBA:String 			= ":sagyoGenba";
 
 
 		public function mapping(obj:Object):Kinmuhyo {
@@ -23,7 +24,8 @@ package com.chronos.air.model
 			mapped.syoteiNissu = obj.syoteiNissu;
 			mapped.sagyoNissu = obj.sagyoNissu;
 			mapped.kekkinNissu = obj.kekkinNissu;
-			mapped.jitsudoJikanGokei - obj.jitsudoJikanGokei;
+			mapped.jitsudoJikanGokei = obj.jitsudoJikanGokei;
+			mapped.sagyoGenba = obj.sagyoGenba;
 
 			return mapped;
 		}
@@ -33,11 +35,12 @@ package com.chronos.air.model
 			mapped[PARAMETER_NAME_NENGETSU] = obj.nengetsu;
 			mapped[PARAMETER_NAME_SHINSEI_KUBUN] = obj.shinseiKubun;
 			(obj.shinseiBango == null) 	 ? mapped[PARAMETER_NAME_SHINSEI_BANGO] = ""      : mapped[PARAMETER_NAME_SHINSEI_BANGO] = obj.shinseiBango;
-			(obj.shinseiJokyo == null) ? mapped[PARAMETER_NAME_SHINSEI_JYOKYO] = "" 	  : mapped[PARAMETER_NAME_SHINSEI_JYOKYO] = obj.shinseiJokyo;
+			(obj.shinseiJokyo == null)   ? mapped[PARAMETER_NAME_SHINSEI_JYOKYO] = "" 	  : mapped[PARAMETER_NAME_SHINSEI_JYOKYO] = obj.shinseiJokyo;
 			(obj.syoteiNissu == 0)       ? mapped[PARAMETER_NAME_SYOTEI_NISSU] = 0  	  : mapped[PARAMETER_NAME_SYOTEI_NISSU] = obj.syoteiNissu;
 			(obj.sagyoNissu == 0)        ? mapped[PARAMETER_NAME_SAGYO_NISSU] = 0  		  : mapped[PARAMETER_NAME_SAGYO_NISSU] = obj.sagyoNissu;
 			(obj.kekkinNissu == 0)       ? mapped[PARAMETER_NAME_KEKKIN_NISSU] = 0 		  : mapped[PARAMETER_NAME_KEKKIN_NISSU] = obj.kekkinNissu;
 			(obj.jitsudoJikanGokei == 0) ? mapped[PARAMETER_NAME_JITSUDO_JIKAN_GOKEI] = 0 : mapped[PARAMETER_NAME_JITSUDO_JIKAN_GOKEI] = obj.jitsudoJikanGokei;
+			(obj.sagyoGenba == null) 	 ? mapped[PARAMETER_NAME_SAGYO_GENBA] = "" 		  : mapped[PARAMETER_NAME_SAGYO_GENBA] = obj.sagyoGenba;
 
 			return mapped;
 		}

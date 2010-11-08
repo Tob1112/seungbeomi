@@ -9,7 +9,12 @@
 			nengetsu			TEXT	PRIMARY KEY,
 			shinseiBango		TEXT,
 			shinseiKubun		TEXT,
-			shinseiJokyo		TEXT
+			shinseiJokyo		TEXT,
+			syoteiNissu			INTEGER,
+			sagyoNissu			INTEGER,
+			kekkinNissu			INTEGER,
+			jitsudoJikanGokei	REAL,
+			sagyoGenba			TEXT
 		)
 	</sql>
 
@@ -19,6 +24,10 @@
 	<sql id="kinmuhyo.findKinmuhyoList">
 		SELECT * FROM kinmuhyo
 		ORDER BY nengetsu DESC
+	</sql>
+	<sql id="kinmuhyo.findMaxNengetsu">
+		SELECT MAX(nengetsu)
+		FROM   kinmuhyo;
 	</sql>
 
 	<!-- =================================== -->

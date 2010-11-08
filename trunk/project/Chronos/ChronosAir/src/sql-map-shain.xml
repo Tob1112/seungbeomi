@@ -4,10 +4,11 @@
 	<!-- =================================== -->
 	<!-- CREATE SQL							 -->
 	<!-- =================================== -->
-	<sql id="user.createUser">
-		CREATE TABLE user (
+	<sql id="shain.createShain">
+		CREATE TABLE shain (
 			id 			TEXT PRIMARY KEY,
 			password 	TEXT,
+			shainMei		TEXT,
 			rememberMe  INTEGER,
 			shainBango	TEXT
 		)
@@ -16,26 +17,27 @@
 	<!-- =================================== -->
 	<!-- SELECT SQL							 -->
 	<!-- =================================== -->
-	<sql id="user.findUser">
-		SELECT * FROM user
+	<sql id="shain.findShain">
+		SELECT * FROM shain
 		WHERE id = :id
 	</sql>
 
 	<!-- =================================== -->
 	<!-- INSERT SQL							 -->
 	<!-- =================================== -->
-	<sql id="user.insertUser">
-		INSERT INTO user (id, password, rememberMe, shainBango)
-		VALUES (:id, :password, :rememberMe, :shainBango)
+	<sql id="shain.insertShain">
+		INSERT INTO shain (id, password, shainMei, rememberMe, shainBango)
+		VALUES (:id, :password, :shainMei, :rememberMe, :shainBango)
 	</sql>
 
 	<!-- =================================== -->
 	<!-- UPDATE SQL							 -->
 	<!-- =================================== -->
-	<sql id="user.updateUser">
-		UPDATE user
+	<sql id="shain.updateShain">
+		UPDATE shain
 		SET
 			password = :password,
+			shainMei = :shainMei,
 			rememberMe = :rememberMe,
 			shainBango = :shainBango
 		WHERE
@@ -46,8 +48,8 @@
 	<!-- REMOVE SQL							 -->
 	<!-- =================================== -->
 	<!--
-	<sql id="user.removeUser">
-		DELETE FROM user
+	<sql id="shain.removeShain">
+		DELETE FROM shain
 		WHERE id = :id
 	</sql>
 	-->

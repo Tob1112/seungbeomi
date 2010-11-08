@@ -5,15 +5,12 @@ package com.chronos.air.event {
 	public class DAOEvent extends CairngormEvent {
 
 		public static const OPEN_DATABASE:String 	= "openDatabase";
-		public static const SAVE_USER:String 		= "saveUser";
-		//public static const REMOVE_USER:String 		= "removeUser";
+		public static const SAVE_SHAIN:String 		= "saveShain";
 		public static const FIND_KINMUHYO:String 	= "findKinmuhyo";
+		public static const FIND_MAX_NENGETSU:String= "findMaxNengetsu";
 
-		public var view:Object;
-
-		public function DAOEvent(type:String, doc:Object=null) {
+		public function DAOEvent(type:String) {
 			super(type);
-			view = doc;
 		}
 	}
 }

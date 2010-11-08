@@ -10,10 +10,32 @@
 	<mx:Image width="700" height="500" left="20" top="20" source="@Embed('asset/img/main.jpg')" scaleContent="true" autoLoad="true"/>
 
 	<!-- ================================================== -->
+	<!-- バリデーター											-->
+	<!-- ================================================== -->
+	<mx:Array id="validators">
+		<!--
+		<mx:EmailValidator enabled="false" id="idValidator"
+			source="{idTextInput}" property="text"/>
+		-->
+		<mx:StringValidator enabled="false" id="idValidator"
+			source="{idTextInput}" property="text"
+			maxLength="50" minLength="1" required="true"
+			requiredFieldError="idを入力してください。"
+			tooLongError="50文字以下入力してください。"
+			tooShortError="1文字以上入力してください。"/>
+		<mx:StringValidator enabled="false" id="passwordValidator"
+			source="{passwordTextInput}" property="text"
+			maxLength="50" minLength="1" required="true"
+			requiredFieldError="パスワードを入力してください。"
+			tooLongError="50文字以下入力してください。"
+			tooShortError="1文字以上入力してください。"/>
+	</mx:Array>
+
+	<!-- ================================================== -->
 	<!-- ログインフォーム										-->
 	<!-- ================================================== -->
 	<mx:Canvas right="40" top="40" styleName="loginSection" height="140" id="loginCanvas">
-		<mx:Label text="Chronos アカウント"  fontWeight="bold" horizontalCenter="0" fontSize="20"/>
+		<mx:Label text="ROUE アカウント"  fontWeight="bold" horizontalCenter="0" fontSize="20"/>
 		<mx:Form top="20">
 			<mx:FormItem label="id：">
 				<mx:TextInput id="idTextInput"/>

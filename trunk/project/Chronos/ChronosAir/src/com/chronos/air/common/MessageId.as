@@ -14,6 +14,7 @@ package com.chronos.air.common
 		public static const SQL_ERROR:String				= "SQLエラーが発生しました。";
 		public static const LOGIN_ERROR:String 				= "入力したidまたはパスワードが\n間違っています。";
 		public static const OVER_DATA_FOUND_ERROR:String 	= "複数のデータが検索されました。";
+		public static const NOT_FOUND_OPERATION_ERROR:String 	= "操作に過ちがありますので、再度確認してください。";
 
 		public static const SECURITY_MESSAGE:String 		= "TODO : セキュリティーメッセージ表示！！";
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sqlMapConfig>
 
-	<sqlMap resource="sql-map-user.xml" />
+	<sqlMap resource="sql-map-shain.xml" />
 	<sqlMap resource="sql-map-kinmuhyo.xml" />
 	<sqlMap resource="sql-map-kinmuhyoShosai.xml" />
 
