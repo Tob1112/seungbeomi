@@ -8,12 +8,14 @@ package com.chronos.air.model
 		public var password:String;
 		public var name:String;
 		public var rememberMe:Boolean;
+		public var shainBango:String;
 
 		public function reset():void {
 			id = "";
 			password = "";
 			name = "";
 			rememberMe = false;
+			shainBango = "";
 		}
 	}
 }

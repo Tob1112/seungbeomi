@@ -1,9 +1,9 @@
 package com.chronos.air.view.controller {
 
 	import com.chronos.air.common.LabelUtil;
-	import com.chronos.air.event.KinmuhyoShinkiSakuseiEvent;
+	import com.chronos.air.event.KinmuhyoEvent;
 	import com.chronos.air.model.KinmuhyoModel;
-	import com.chronos.air.model.Shinsei;
+	import com.chronos.air.model.Kinmuhyo;
 	import com.chronos.air.model.ShinseiJokyoEnum;
 	import com.chronos.air.util.CalendarUtil;
 	import com.chronos.air.view.KinmuhyoShinkiSakuseiWindow;
@@ -20,6 +20,7 @@ package com.chronos.air.view.controller {
 	public class KinmuhyoViewController implements IMXMLObject{
 
 		private var view:KinmuhyoView;
+		[Bindable]
 		public var model:KinmuhyoModel = KinmuhyoModel.getInstance();
 
 		private static const SHOW_MENU_STATE:String = "showMenu";
@@ -75,12 +76,12 @@ package com.chronos.air.view.controller {
 		private function popupKinmuhyoShinkiSakuseiWindow(e:MouseEvent):void {
 			var kinmuhyouShinkiSakuseiWindow:KinmuhyoShinkiSakuseiWindow
 				= PopUpManager.createPopUp(view, KinmuhyoShinkiSakuseiWindow, true) as KinmuhyoShinkiSakuseiWindow;
-			kinmuhyouShinkiSakuseiWindow.addEventListener(KinmuhyoShinkiSakuseiEvent.KINMUHYO_SHINKI_SAKUSEI, kinmuhyoShinkiSakuseiHandler);
+			kinmuhyouShinkiSakuseiWindow.addEventListener(KinmuhyoEvent.KINMUHYO_SHINKI_SAKUSEI, kinmuhyoShinkiSakuseiHandler);
 			PopUpManager.centerPopUp(kinmuhyouShinkiSakuseiWindow);
 		}
 
 		/** 勤務表新規作成 */
-		private function kinmuhyoShinkiSakuseiHandler(e:KinmuhyoShinkiSakuseiEvent):void {
+		private function kinmuhyoShinkiSakuseiHandler(e:KinmuhyoEvent):void {
 			trace("kinmuhyoShinkiSakuseiHandler");
 		}
 
@@ -91,14 +92,14 @@ package com.chronos.air.view.controller {
 
 		/** 申請リストから申請アイテム選択時、該当勤務表取得 */
 		private function shinseiListClickHandler(e:ListEvent):void {
-			var nengetsu:String = Shinsei(e.currentTarget.selectedItem).nengetsu;
+			var nengetsu:String = Kinmuhyo(e.currentTarget.selectedItem).nengetsu;
 			trace(nengetsu);
 		}
 
 		/** 勤務表リストLabelFunction */
 		public function shinseiListLabelFunction(item:Object):String {
-			var nengetsu:String = Shinsei(item).nengetsu;
-			var code:String = Shinsei(item).shinseiJokyo;
+			var nengetsu:String = Kinmuhyo(item).nengetsu;
+			var code:String = Kinmuhyo(item).shinseiJokyo;
 			return LabelUtil.nengetsuLabel(nengetsu)  + " " + ShinseiJokyoEnum.fromCode(code);
 		}
 

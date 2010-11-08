@@ -1,5 +1,7 @@
 package com.chronos.air.sample
 {
+	import com.chronos.air.model.DAO;
+
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.filesystem.File;
@@ -13,11 +15,9 @@ package com.chronos.air.sample
 	import mx.events.FlexEvent;
 	import mx.resources.ResourceBundle;
 
-	import com.chronos.air.model.SQLMap;
-
 	public class PersonMainController implements IMXMLObject
 	{
-		private var sqlMap:SQLMap = SQLMap.getInstance();
+		private var dao:DAO = DAO.getInstance();
 
 		private var view:PersonMainView;
 		public var model:PersonModelLocator = PersonModelLocator.getInstance();

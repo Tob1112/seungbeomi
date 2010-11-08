@@ -45,19 +45,23 @@ package com.chronos.air.model {
 			}
 
 			// PRIVATE METHOD -----------------------------------------------------
-
+			// ログイン成功時
 			private function loginResultHandler(e:ResultEvent):void {
 				mainView = MainView(homeView.parentDocument);
-				var name:String = e.result.toString();
+				var user:User = User(e.result);
 
 				// リータン値がある場合
-				if (name != null) {
-					saveUserInfo();	// ユーザー情報保存
+				if (user != null) {
+					saveUser(user);	// ユーザー情報保存
 					findShinseiListAndSaikinKinmuhyo();	// 勤務表リストと勤務表リスト最新勤務表取得
-					initialKinmuhyoViewData(mainView.kinmuhyoView);	// 勤務表画面データ設定
+					if (kinmuhyoModel.kinmuhyoAC.length > 0) {
+						initialKinmuhyoViewData(mainView.kinmuhyoView);	// 勤務表画面データ設定
+					} else {
+						kinmuhyoModel.kinmuhyo = Kinmuhyo.createKinmuhyo();
+					}
 
 					// model 設定
-					mainView.model.user.name = name;
+					mainView.model.user.name = user.name;
 					mainModel.user.id = "";
 					mainModel.user.password = "";
 					// view 設定
@@ -74,8 +78,8 @@ package com.chronos.air.model {
 
 			/** 勤務表画面データ設定 */
 			private function initialKinmuhyoViewData(kinmuhyoView:KinmuhyoView):void {
-				var shinsei:Shinsei = Shinsei(kinmuhyoModel.shinseiAC.getItemAt(0));
-				var nengetsu:String = shinsei.nengetsu;
+				var kinmuhyo:Kinmuhyo = Kinmuhyo(kinmuhyoModel.kinmuhyoAC.getItemAt(0));
+				var nengetsu:String = kinmuhyo.nengetsu;
 				var calendar:Array = nengetsu.split("-");
 				var year:int = int(calendar[0]);
 				var month:int = int(calendar[1]) - 1;
@@ -83,7 +87,11 @@ package com.chronos.air.model {
 				kinmuhyoView.kinmuhyoDateChooser.displayedYear = year;
 				kinmuhyoView.kinmuhyoDateChooser.displayedMonth = month;
 
-				kinmuhyoView.shinseiBangoLabel.text = "申請番号：" + shinsei.shinseiBango;
+				kinmuhyoView.shinseiBangoLabel.text = "申請番号：" + kinmuhyo.shinseiBango;
+				kinmuhyoModel.kinmuhyo.syoteiNissu = kinmuhyo.syoteiNissu;
+				kinmuhyoModel.kinmuhyo.sagyoNissu = kinmuhyo.sagyoNissu;
+				kinmuhyoModel.kinmuhyo.kekkinNissu = kinmuhyo.kekkinNissu;
+				kinmuhyoModel.kinmuhyo.jitsudoJikanGokei = kinmuhyo.jitsudoJikanGokei;
 
 			}
 
@@ -105,8 +113,6 @@ package com.chronos.air.model {
 				mainView.homeView.idTextInput.text = "";
 				mainView.homeView.passwordTextInput.text = "";
 				mainView.homeView.rememberMeCheckBox.selected = false;
-
-
 			}
 
 			/** サービス失敗 */
@@ -123,22 +129,25 @@ package com.chronos.air.model {
 			}
 
 			/** ユーザー情報保存 */
-			private function saveUserInfo():void {
+			private function saveUser(user:User):void {
 				var isRememberMe:Boolean = homeView.rememberMeCheckBox.selected;
 				var daoEvent:DAOEvent;
+
+				mainModel.user.name = user.name;
+				mainModel.user.shainBango = user.shainBango;
 				// remember me チェックした場合、ユーザー情報をDBに保存
 				if (isRememberMe) {
 					daoEvent = new DAOEvent(DAOEvent.SAVE_USER);
 					daoEvent.dispatch();
 				} else {
-					daoEvent = new DAOEvent(DAOEvent.REMOVE_USER);
+					daoEvent = new DAOEvent(DAOEvent.SAVE_USER);
 					daoEvent.dispatch();
 				}
 			}
 
 			/** 全申請リスト検索及び申請リストの中、最新勤務表情報取得 */
 			private function findShinseiListAndSaikinKinmuhyo():void {
-				var daoEvent:DAOEvent = new DAOEvent(DAOEvent.FIND_KINMUHYO_DATA);
+				var daoEvent:DAOEvent = new DAOEvent(DAOEvent.FIND_KINMUHYO);
 				daoEvent.dispatch();
 
 			}

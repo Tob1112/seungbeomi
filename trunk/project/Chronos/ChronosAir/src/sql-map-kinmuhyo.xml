@@ -6,30 +6,20 @@
 	<!-- =================================== -->
 	<sql id="kinmuhyo.createKinmuhyo">
 		CREATE TABLE kinmuhyo (
-			nengetsu			TEXT,
-			hizuke 				TEXT,
-			yasumiKubun			TEXT,
-			shigyoJikan			REAL,
-			syuryoJikan			REAL,
-			kyukeiJikan			REAL,
-			jitsudoJikan		REAL,
-			sagyoNaiyo			TEXT,
-			syoteiNissu			INTEGER,
-			sagyoNissu			INTEGER,
-			kekkinNissu			INTEGER,
-			totalJitsudoJikan	REAL
-		);
+			nengetsu			TEXT	PRIMARY KEY,
+			shinseiBango		TEXT,
+			shinseiKubun		TEXT,
+			shinseiJokyo		TEXT
+		)
 	</sql>
 
 	<!-- =================================== -->
 	<!-- SELECT SQL							 -->
 	<!-- =================================== -->
-	<sql id="kinmuhyo.findKinmuhyo">
+	<sql id="kinmuhyo.findKinmuhyoList">
 		SELECT * FROM kinmuhyo
-		WHERE nengetsu = :nengetsu
-		ORDER BY hizuke ASC;
+		ORDER BY nengetsu DESC
 	</sql>
-
 
 	<!-- =================================== -->
 	<!-- INSERT SQL							 -->
@@ -45,6 +35,5 @@
 	<!-- =================================== -->
 	<!-- DELETE SQL							 -->
 	<!-- =================================== -->
-  	<sql id="findPersonById">select * from person</sql>
-  	<sql id="findTest">select * from test</sql>
+
 </sqlMap>

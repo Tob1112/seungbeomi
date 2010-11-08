@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sqlMap>
+
+	<!-- =================================== -->
+	<!-- CREATE SQL							 -->
+	<!-- =================================== -->
+	<sql id="kinmuhyoShosai.createKinmuhyoShosai">
+		CREATE TABLE kinmuhyoShosai (
+			nengetsu			TEXT,
+			hizuke 				TEXT,
+			yasumiKubun			TEXT,
+			shigyoJikan			REAL,
+			syuryoJikan			REAL,
+			kyukeiJikan			REAL,
+			jitsudoJikan		REAL,
+			sagyoNaiyo			TEXT,
+			syoteiNissu			INTEGER,
+			sagyoNissu			INTEGER,
+			kekkinNissu			INTEGER,
+			jitsudoJikanGokei	REAL
+		);
+	</sql>
+
+	<!-- =================================== -->
+	<!-- SELECT SQL							 -->
+	<!-- =================================== -->
+	<sql id="kinmuhyoShosai.findKinmuhyoShosai">
+		SELECT * FROM kinmuhyoShosai
+		WHERE nengetsu = :nengetsu
+		ORDER BY hizuke ASC;
+	</sql>
+
+
+	<!-- =================================== -->
+	<!-- INSERT SQL							 -->
+	<!-- =================================== -->
+
+
+
+	<!-- =================================== -->
+	<!-- UPDATE SQL							 -->
+	<!-- =================================== -->
+
+
+	<!-- =================================== -->
+	<!-- DELETE SQL							 -->
+	<!-- =================================== -->
+</sqlMap>

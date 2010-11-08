@@ -3,6 +3,6 @@
 
 	<sqlMap resource="sql-map-user.xml" />
 	<sqlMap resource="sql-map-kinmuhyo.xml" />
-	<sqlMap resource="sql-map-shinsei.xml" />
+	<sqlMap resource="sql-map-kinmuhyoShosai.xml" />
 
 </sqlMapConfig>
