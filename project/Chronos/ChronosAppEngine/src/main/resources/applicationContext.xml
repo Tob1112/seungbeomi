@@ -8,10 +8,6 @@
         
     <context:annotation-config />
 
-	<bean id="chronosService" class="com.chronos.appengine.sample.PersonService">
-		<!--<property name="persistenceManagerFactory" ref="persistenceManagerFactory"/>-->
-	</bean>
-
 	<bean id="pmf"
 		class="org.springframework.orm.jdo.LocalPersistenceManagerFactoryBean"
 		lazy-init="false">
