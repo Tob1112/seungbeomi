@@ -12,7 +12,7 @@ package com.chronos.air.model {
 	import mx.collections.ArrayCollection;
 
 	[Bindable]
-	public class SQLMap
+	public class DAO
 	{
 		private static var sqlMapConfigFile:File;
 		private static var sqlMapConfig:XML;
@@ -23,14 +23,9 @@ package com.chronos.air.model {
 		private static var baseDirPath:String = "/";
 		private static var sqlMapConfigFileName:String = "SqlMapConfig.xml";
 
-		private static var CREATE_MODE:String = "create";
-		private static var FIND_MODE:String = "find";
-		private static var INSERT_MODE:String = "insert";
-		private static var UPDATE_MODE:String = "update";
+		private static var instance:DAO = null;
 
-		private static var instance:SQLMap = null;
-
-		public static function getInstance():SQLMap {
+		public static function getInstance():DAO {
 			try {
 				if (instance == null) {
 					//baseDir = new File(baseDirPath);
@@ -38,7 +33,7 @@ package com.chronos.air.model {
 					sqlMapConfigFile = File.applicationDirectory.resolvePath(sqlMapConfigFileName);
 					//trace("sqlMapConfigFile : " + sqlMapConfigFile.nativePath);
 					readSqlMapConfig();
-					instance = new SQLMap();
+					instance = new DAO();
 				}
 			} catch(e:Error) {
 				trace(e.message);
@@ -112,9 +107,10 @@ package com.chronos.air.model {
 				var stmt:SQLStatement = new SQLStatement();
 				stmt.sqlConnection = con;
 				stmt.text = sqlMap[sqlId];
+				trace("execute - " + stmt.text);
 				if (parameters != null) {
 					for (var key:Object in parameters) {
-						trace("parameter : " + key + " = " + parameters[key]);
+						trace("parameter - " + key + " = " + parameters[key]);
 						stmt.parameters[key] = parameters[key];
 					}
 				}
@@ -138,6 +134,8 @@ package com.chronos.air.model {
 			try {
 				stmt.text = sqlMap[sqlId];
 				stmt.parameters[":id"] = pk;
+				trace("execute - " + stmt.text);
+				trace("parameter - " + pk);
 				stmt.execute();
 				(stmt.getResult().data == null) ? found = false: found = true;
 				return found;
@@ -158,9 +156,10 @@ package com.chronos.air.model {
 				var stmt:SQLStatement = new SQLStatement();
 				stmt.sqlConnection = sqlConnection;
 				stmt.text = sqlMap[sqlId];
+				trace("execute - " + stmt.text);
 				if (parameters != null) {
 					for (var key:Object in parameters) {
-						trace("parameter : " + key + " = " + parameters[key]);
+						trace("parameter - " + key + " = " + parameters[key]);
 						stmt.parameters[key] = parameters[key];
 					}
 				}
@@ -191,7 +190,7 @@ package com.chronos.air.model {
 				stmt.text = sqlMap[sqlId];
 				stmt.parameters[":id"] = pk;
 				stmt.execute();
-				trace("delete : " + stmt.text.replace(" |¥t", ""));
+				trace("execute - " + stmt.text.replace(" |\t", ""));
 				(stmt.getResult().data == null) ? found = false: found = true;
 				return found;
 			} catch (e:Error) {

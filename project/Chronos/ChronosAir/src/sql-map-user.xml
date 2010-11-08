@@ -8,7 +8,8 @@
 		CREATE TABLE user (
 			id 			TEXT PRIMARY KEY,
 			password 	TEXT,
-			rememberMe  INTEGER
+			rememberMe  INTEGER,
+			shainBango	TEXT
 		)
 	</sql>
 
@@ -24,8 +25,8 @@
 	<!-- INSERT SQL							 -->
 	<!-- =================================== -->
 	<sql id="user.insertUser">
-		INSERT INTO user (id, password, rememberMe)
-		VALUES (:id, :password, :rememberMe)
+		INSERT INTO user (id, password, rememberMe, shainBango)
+		VALUES (:id, :password, :rememberMe, :shainBango)
 	</sql>
 
 	<!-- =================================== -->
@@ -35,7 +36,8 @@
 		UPDATE user
 		SET
 			password = :password,
-			rememberMe = :rememberMe
+			rememberMe = :rememberMe,
+			shainBango = :shainBango
 		WHERE
 			id = :id
 	</sql>
@@ -43,8 +45,10 @@
 	<!-- =================================== -->
 	<!-- REMOVE SQL							 -->
 	<!-- =================================== -->
+	<!--
 	<sql id="user.removeUser">
 		DELETE FROM user
 		WHERE id = :id
 	</sql>
+	-->
 </sqlMap>

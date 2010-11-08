@@ -6,8 +6,9 @@ package com.chronos.air.model {
 	public class KinmuhyoModel {
 
 		public var currentDate:String;
+		public var kinmuhyo:Kinmuhyo = new Kinmuhyo();
 		public var kinmuhyoAC:ArrayCollection = new ArrayCollection();
-		public var shinseiAC:ArrayCollection = new ArrayCollection();
+		public var kinmuhyoShosaiAC:ArrayCollection = new ArrayCollection();
 
 		private static var instance:KinmuhyoModel = null;
 
