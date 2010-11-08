@@ -42,8 +42,8 @@ package com.chronos.air.view.controller {
 		/** ViewStackをロックし、HOME画面を表示する。 */
 		private function initMainView():void {
 			view.mainViewStack.selectedIndex = Constants.HOME_VIEWSTACK_INDEX;
-			view.nameLabel.text = "";
-			//view.nameLabel.visible = false;
+			view.shainMeiLabel.text = "";
+			//view.shainMeiLabel.visible = false;
 			view.logoutButton.visible = false;
 			view.buttonBar.enabled = false;
 		}

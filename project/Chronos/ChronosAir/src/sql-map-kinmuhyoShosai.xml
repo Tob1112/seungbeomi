@@ -13,11 +13,7 @@
 			syuryoJikan			REAL,
 			kyukeiJikan			REAL,
 			jitsudoJikan		REAL,
-			sagyoNaiyo			TEXT,
-			syoteiNissu			INTEGER,
-			sagyoNissu			INTEGER,
-			kekkinNissu			INTEGER,
-			jitsudoJikanGokei	REAL
+			sagyoNaiyo			TEXT
 		);
 	</sql>
 

@@ -163,7 +163,6 @@ package com.chronos.air.model {
 						stmt.parameters[key] = parameters[key];
 					}
 				}
-				trace("execute : " + stmt.text.replace(" |¥t", ""));
 				stmt.execute();
 				founds = new ArrayCollection(stmt.getResult().data);
 

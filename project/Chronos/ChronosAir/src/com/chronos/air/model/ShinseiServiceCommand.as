@@ -32,7 +32,7 @@ package com.chronos.air.model {
 						homeView = ShinseiServiceEvent(e).view as HomeView;
 						responder = new Responder(loginResultHandler, loginFaultHandler);
 						delegate = new ShinseiServiceDelegate(responder);
-						delegate.login(mainModel.user);
+						delegate.login(mainModel.shain);
 						break;
 					case ShinseiServiceEvent.LOGOUT:	// ログアウト
 						mainView = ShinseiServiceEvent(e).view as MainView;
@@ -48,11 +48,11 @@ package com.chronos.air.model {
 			// ログイン成功時
 			private function loginResultHandler(e:ResultEvent):void {
 				mainView = MainView(homeView.parentDocument);
-				var user:User = User(e.result);
+				var shain:Shain = Shain(e.result);
 
 				// リータン値がある場合
-				if (user != null) {
-					saveUser(user);	// ユーザー情報保存
+				if (shain != null) {
+					saveShain(shain);	// ユーザー情報保存
 					findShinseiListAndSaikinKinmuhyo();	// 勤務表リストと勤務表リスト最新勤務表取得
 					if (kinmuhyoModel.kinmuhyoAC.length > 0) {
 						initialKinmuhyoViewData(mainView.kinmuhyoView);	// 勤務表画面データ設定
@@ -61,14 +61,14 @@ package com.chronos.air.model {
 					}
 
 					// model 設定
-					mainView.model.user.name = user.name;
-					mainModel.user.id = "";
-					mainModel.user.password = "";
+					mainView.model.shain.shainMei = shain.shainMei;
+					mainModel.shain.id = "";
+					mainModel.shain.password = "";
 					// view 設定
 					mainView.mainViewStack.selectedIndex = Constants.KINMUHYO_VIEWSTACK_INDEX;
 					mainView.buttonBar.enabled = true;
 					mainView.logoutButton.visible = true;
-					mainView.nameLabel.visible = true;
+					mainView.shainMeiLabel.visible = true;
 					homeView.loginCanvas.visible = false;
 				// リータン値がない場合
 				} else {
@@ -109,7 +109,7 @@ package com.chronos.air.model {
 				mainView.logoutButton.visible = false;
 				mainView.buttonBar.enabled = false;
 				// TODO データ初期化
-				mainView.model.user.name = "";
+				mainView.model.shain.reset();
 				mainView.homeView.idTextInput.text = "";
 				mainView.homeView.passwordTextInput.text = "";
 				mainView.homeView.rememberMeCheckBox.selected = false;
@@ -121,7 +121,7 @@ package com.chronos.air.model {
 			}
 
 			private function resetLoginField():void {
-				mainModel.user.reset();
+				mainModel.shain.reset();
 				homeView.idTextInput.text = "";
 				homeView.passwordTextInput.text = "";
 				homeView.rememberMeCheckBox.selected = false;
@@ -129,20 +129,15 @@ package com.chronos.air.model {
 			}
 
 			/** ユーザー情報保存 */
-			private function saveUser(user:User):void {
+			private function saveShain(shain:Shain):void {
 				var isRememberMe:Boolean = homeView.rememberMeCheckBox.selected;
 				var daoEvent:DAOEvent;
 
-				mainModel.user.name = user.name;
-				mainModel.user.shainBango = user.shainBango;
-				// remember me チェックした場合、ユーザー情報をDBに保存
-				if (isRememberMe) {
-					daoEvent = new DAOEvent(DAOEvent.SAVE_USER);
-					daoEvent.dispatch();
-				} else {
-					daoEvent = new DAOEvent(DAOEvent.SAVE_USER);
-					daoEvent.dispatch();
-				}
+				mainModel.shain.shainMei = shain.shainMei;
+				mainModel.shain.shainBango = shain.shainBango;
+
+				daoEvent = new DAOEvent(DAOEvent.SAVE_SHAIN);
+				daoEvent.dispatch();
 			}
 
 			/** 全申請リスト検索及び申請リストの中、最新勤務表情報取得 */

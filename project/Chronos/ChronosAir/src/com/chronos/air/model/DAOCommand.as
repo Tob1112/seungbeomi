@@ -3,6 +3,8 @@ package com.chronos.air.model {
 	import com.adobe.cairngorm.commands.ICommand;
 	import com.adobe.cairngorm.control.CairngormEvent;
 	import com.chronos.Constants;
+	import com.chronos.air.common.MessageId;
+	import com.chronos.air.common.Messages;
 	import com.chronos.air.event.DAOEvent;
 
 	import flash.data.SQLConnection;
@@ -21,33 +23,34 @@ package com.chronos.air.model {
 		private var file:File = File.userDirectory.resolvePath(Constants.DATABASE_FILE_PATH);
 
 		// SQL PREFIX
-		private static const PREFIX_USER:String 						= "user.";
+		private static const PREFIX_SHAIN:String 						= "shain.";
 		private static const PREFIX_KINMUHYO:String 					= "kinmuhyo.";
 		private static const PREFIX_KINMUHYO_SHOSAI:String 				= "kinmuhyoShosai.";
 
 		// CREATE SQL ID
-		private static const SQL_CREATE_USER:String 					= PREFIX_USER + "createUser";
+		private static const SQL_CREATE_SHAIN:String 					= PREFIX_SHAIN + "createShain";
 		private static const SQL_CREATE_KINMUHYO:String 				= PREFIX_KINMUHYO + "createKinmuhyo";
 		private static const SQL_CREATE_KINMUHYO_SHOSAI:String			= PREFIX_KINMUHYO_SHOSAI + "createKinmuhyoShosai";
 
 		// FIND SQL ID
-		private static const SQL_FIND_USER:String						= PREFIX_USER + "findUser";
+		private static const SQL_FIND_SHAIN:String						= PREFIX_SHAIN + "findShain";
 		private static const SQL_FIND_KINMUHYO_LIST:String				= PREFIX_KINMUHYO + "findKinmuhyoList";
 		private static const SQL_FIND_KINMUHYO_SHOSAI:String			= PREFIX_KINMUHYO_SHOSAI + "findKinmuhyoShosai";
+		private static const SQL_FIND_MAX_NENGETSU:String				= PREFIX_KINMUHYO + "findMaxNengetsu";
 
 		// INSERT SQL ID
-		private static const SQL_INSERT_USER:String						= PREFIX_USER + "insertUser";
+		private static const SQL_INSERT_SHAIN:String						= PREFIX_SHAIN + "insertShain";
 
 		// UPDATE SQL ID
-		private static const SQL_UPDATE_USER:String						= PREFIX_USER + "updateUser";
+		private static const SQL_UPDATE_SHAIN:String						= PREFIX_SHAIN + "updateShain";
 
 		// REMOVE SQL ID
-		private static const SQL_REMOVE_USER:String						= PREFIX_USER + "removeUser";
 
 		// PARAMETER NAME
-		// USER  PARAMETER
+		// SHAIN  PARAMETER
 		private static const PARAMETER_NAME_ID:String 					= ":id";
 		private static const PARAMETER_NAME_PASSWORD:String 			= ":password";
+		private static const PARAMETER_NAME_SHAIN_MEI:String 			= ":shainMei";
 		private static const PARAMETER_NAME_REMEMBER_ME:String 			= ":rememberMe";
 		private static const PARAMETER_NAME_SHAIN_BANGO:String 			= ":shainBango";
 
@@ -79,15 +82,17 @@ package com.chronos.air.model {
 				case DAOEvent.OPEN_DATABASE:
 					openDatabase();			// データーベース解放
 					break;
-				case DAOEvent.SAVE_USER:	// ユーザー情報保存
-					saveUser();
+				case DAOEvent.SAVE_SHAIN:	// ユーザー情報保存
+					saveShain();
 					break;
-				//case DAOEvent.REMOVE_USER:	// ユーザー情報削除
-				//	removeUser(mainModel.user.id);
-				//	break;
 				case DAOEvent.FIND_KINMUHYO:	// 勤務表リスト検索
 					findKinmuhyoListAndSaikinKinmuhyo();
 					break;
+				case DAOEvent.FIND_MAX_NENGETSU:	// 勤務表年月最大値取得
+					findMaxNengetsu();
+					break;
+				default:
+					Messages.showError(MessageId.NOT_FOUND_OPERATION_ERROR);
 			}
 		}
 
@@ -109,7 +114,7 @@ package com.chronos.air.model {
 			con = new SQLConnection();
 			con.open(file);
 			try {
-				DAO.create(con, SQL_CREATE_USER);
+				DAO.create(con, SQL_CREATE_SHAIN);
 				DAO.create(con, SQL_CREATE_KINMUHYO);
 				DAO.create(con, SQL_CREATE_KINMUHYO_SHOSAI);
 			} finally {
@@ -119,27 +124,28 @@ package com.chronos.air.model {
 		}
 
 		/** ユーザー情報保存 */
-		private function saveUser():void {
-			var user:User = mainModel.user;
+		private function saveShain():void {
+			var shain:Shain = mainModel.shain;
 			con = new SQLConnection();
 			con.open(file);
 			var isExist:Boolean = false;
 			var sqlId:String;
 			var params:Dictionary = new Dictionary();
 
-			isExist = DAO.exist(con, SQL_FIND_USER, user.id);
+			isExist = DAO.exist(con, SQL_FIND_SHAIN, shain.id);
 
-			params[PARAMETER_NAME_ID] = user.id;
-			params[PARAMETER_NAME_PASSWORD] = user.password;
-			params[PARAMETER_NAME_REMEMBER_ME] = user.rememberMe;
-			params[PARAMETER_NAME_SHAIN_BANGO] = user.shainBango;
+			params[PARAMETER_NAME_ID] = shain.id;
+			params[PARAMETER_NAME_PASSWORD] = shain.password;
+			params[PARAMETER_NAME_SHAIN_MEI] = shain.shainMei;
+			params[PARAMETER_NAME_REMEMBER_ME] = shain.rememberMe;
+			params[PARAMETER_NAME_SHAIN_BANGO] = shain.shainBango;
 
 			// 存在する場合、UPDATE
 			if (isExist) {
-				sqlId = SQL_UPDATE_USER;
+				sqlId = SQL_UPDATE_SHAIN;
 			// 存在しない場合、INSERT
 			} else {
-				sqlId = SQL_INSERT_USER;
+				sqlId = SQL_INSERT_SHAIN;
 			}
 			try {
 				DAO.execute(con, sqlId, params);
@@ -150,18 +156,18 @@ package com.chronos.air.model {
 
 		/** ユーザー情報削除 */
 		/*
-		private function removeUser(id:String):void {
+		private function removeShain(id:String):void {
 			var isExist:Boolean = false;
 			var params:Dictionary = new Dictionary();
 			con = new SQLConnection();
 			con.open(file);
 
-			isExist = DAO.exist(con, SQL_FIND_USER, id);
+			isExist = DAO.exist(con, SQL_FIND_SHAIN, id);
 
 			try {
 				if (isExist) {
 					params[PARAMETER_NAME_ID] = id;
-					DAO.remove(con, SQL_REMOVE_USER, id);
+					DAO.remove(con, SQL_REMOVE_SHAIN, id);
 				}
 			} finally {
 				con.close();
@@ -216,6 +222,21 @@ package com.chronos.air.model {
 						kinmuhyo = kinmuhyoMapper.mapping(cursor.current);
 						kinmuhyoModel.kinmuhyoAC.addItem(kinmuhyo);
 					}
+				}
+			} finally {
+				con.close();
+			}
+		}
+
+		/** 勤務表年月最大値を取得 */
+		private function findMaxNengetsu():void {
+			con = new SQLConnection();
+			con.open(file);
+
+			try {
+				var nengetsu:String = DAO.find(con, SQL_FIND_MAX_NENGETSU) as String;
+				if (nengetsu != null) {
+					kinmuhyoModel.shinkiKinmuhyo.nengetsu = nengetsu;
 				}
 			} finally {
 				con.close();

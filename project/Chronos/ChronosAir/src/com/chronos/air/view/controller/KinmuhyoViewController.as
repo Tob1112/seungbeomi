@@ -2,8 +2,8 @@ package com.chronos.air.view.controller {
 
 	import com.chronos.air.common.LabelUtil;
 	import com.chronos.air.event.KinmuhyoEvent;
-	import com.chronos.air.model.KinmuhyoModel;
 	import com.chronos.air.model.Kinmuhyo;
+	import com.chronos.air.model.KinmuhyoModel;
 	import com.chronos.air.model.ShinseiJokyoEnum;
 	import com.chronos.air.util.CalendarUtil;
 	import com.chronos.air.view.KinmuhyoShinkiSakuseiWindow;
@@ -37,7 +37,7 @@ package com.chronos.air.view.controller {
 			view.kinmuhyoDateChooser.addEventListener(MouseEvent.CLICK, findKinmuhyoHandler);	// DateChooserから年月を取得し、勤務表を検索
 			view.kinmuhyoShinkiSakuseiButton.addEventListener(MouseEvent.CLICK, popupKinmuhyoShinkiSakuseiWindow);	// 勤務表新規作成
 			view.kinmuhyoPreviewButton.addEventListener(MouseEvent.CLICK, kinmuhyouPreviewHandler);	// 勤務表プレビュー
-			view.shinseiList.addEventListener(ListEvent.CHANGE, shinseiListClickHandler);	// 申請リストクリック
+			view.shinseiList.addEventListener(ListEvent.CHANGE, shinseiListClickHandler);	// 勤務表リストクリック
 
 			setCurrentDate();	// 現在の時刻を設定する。(2011年11月3日(水))
 		}
@@ -74,6 +74,10 @@ package com.chronos.air.view.controller {
 
 		/** 勤務表新規作成ウィンドウポップアップ */
 		private function popupKinmuhyoShinkiSakuseiWindow(e:MouseEvent):void {
+			// 勤務表年月最大値取得
+			var event:KinmuhyoEvent = new KinmuhyoEvent(KinmuhyoEvent.FIND_SHINKI_NENGETSU, view);
+			event.dispatch();
+
 			var kinmuhyouShinkiSakuseiWindow:KinmuhyoShinkiSakuseiWindow
 				= PopUpManager.createPopUp(view, KinmuhyoShinkiSakuseiWindow, true) as KinmuhyoShinkiSakuseiWindow;
 			kinmuhyouShinkiSakuseiWindow.addEventListener(KinmuhyoEvent.KINMUHYO_SHINKI_SAKUSEI, kinmuhyoShinkiSakuseiHandler);
@@ -90,7 +94,7 @@ package com.chronos.air.view.controller {
 			// TODO xml, xslを利用しプレビュー
 		}
 
-		/** 申請リストから申請アイテム選択時、該当勤務表取得 */
+		/** 勤務表リストから申請アイテム選択時、該当勤務表取得 */
 		private function shinseiListClickHandler(e:ListEvent):void {
 			var nengetsu:String = Kinmuhyo(e.currentTarget.selectedItem).nengetsu;
 			trace(nengetsu);

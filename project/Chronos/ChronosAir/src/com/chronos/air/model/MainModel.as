@@ -3,7 +3,7 @@ package com.chronos.air.model {
 	[Bindable]
 	public class MainModel {
 
-		public var user:User = new User();
+		public var shain:Shain = new Shain();
 
 		private static var instance:MainModel = null;
 
