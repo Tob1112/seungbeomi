@@ -16,7 +16,7 @@ public class ShinseiService {
 	
 	@RemotingInclude
 	public Shain login(Shain shain) {
-		shain.setName("孫承範");
+		shain.setShainMei("孫承範");
 		shain.setShainBango("111");
 
 		log.fine(shain.toString());
