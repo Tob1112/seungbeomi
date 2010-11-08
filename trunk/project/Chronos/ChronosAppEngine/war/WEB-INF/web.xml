@@ -10,7 +10,7 @@
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>
-            classpath:applicationContext.xml
+            classpath:applicationContext*.xml
         </param-value>
     </context-param>
 
@@ -24,18 +24,18 @@
     </listener>
 
     <servlet>
-        <servlet-name>chronos-blazeds</servlet-name>
+        <servlet-name>blazeds</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <init-param>
             <param-name>contextConfigLocation</param-name>
             <param-value>
-				classpath:blazedsContext.xml
+				classpath:blazeds-servlet.xml
             </param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
-        <servlet-name>chronos-blazeds</servlet-name>
+        <servlet-name>blazeds</servlet-name>
         <url-pattern>/spring/*</url-pattern>
     </servlet-mapping>
     
