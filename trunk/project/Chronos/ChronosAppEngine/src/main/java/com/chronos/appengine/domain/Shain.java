@@ -2,7 +2,7 @@ package com.chronos.appengine.domain;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
 
-public class User {
+public class Shain {
 
 	private String id;
 	private String password;
