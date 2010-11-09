@@ -6,6 +6,7 @@ package com.chronos.air.model {
 	import com.chronos.air.common.MessageId;
 	import com.chronos.air.common.Messages;
 	import com.chronos.air.event.DAOEvent;
+	import com.chronos.air.util.Logger;
 
 	import flash.data.SQLConnection;
 	import flash.filesystem.File;
@@ -98,7 +99,8 @@ package com.chronos.air.model {
 
 		/** database 解放 */
 		private function openDatabase():void {
-			trace("sqlite path : " + file.nativePath);
+			//trace("sqlite path : " + file.nativePath);
+			Logger.log("sqlite path : " + file.nativePath);
 			var isNewDB:Boolean = !file.exists;
 			con = new SQLConnection();
 			con.open(file);
@@ -242,5 +244,6 @@ package com.chronos.air.model {
 				con.close();
 			}
 		}
+
 	}
 }

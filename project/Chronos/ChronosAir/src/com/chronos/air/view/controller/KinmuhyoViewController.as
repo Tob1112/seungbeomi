@@ -6,6 +6,7 @@ package com.chronos.air.view.controller {
 	import com.chronos.air.model.KinmuhyoModel;
 	import com.chronos.air.model.ShinseiJokyoEnum;
 	import com.chronos.air.util.CalendarUtil;
+	import com.chronos.air.util.Logger;
 	import com.chronos.air.view.KinmuhyoShinkiSakuseiWindow;
 	import com.chronos.air.view.KinmuhyoView;
 
@@ -67,7 +68,7 @@ package com.chronos.air.view.controller {
 			case "kinmuhyoDateChooser":
 				year = view.kinmuhyoDateChooser.displayedYear;
 				month = view.kinmuhyoDateChooser.displayedMonth;
-				trace(new Date(year, month));
+				Logger.log(new Date(year, month).toString());
 				break;
 			}
 		}
@@ -86,7 +87,7 @@ package com.chronos.air.view.controller {
 
 		/** 勤務表新規作成 */
 		private function kinmuhyoShinkiSakuseiHandler(e:KinmuhyoEvent):void {
-			trace("kinmuhyoShinkiSakuseiHandler");
+			Logger.log("kinmuhyoShinkiSakuseiHandler");
 		}
 
 		/** 勤務表プレビュー */
@@ -97,7 +98,7 @@ package com.chronos.air.view.controller {
 		/** 勤務表リストから申請アイテム選択時、該当勤務表取得 */
 		private function shinseiListClickHandler(e:ListEvent):void {
 			var nengetsu:String = Kinmuhyo(e.currentTarget.selectedItem).nengetsu;
-			trace(nengetsu);
+			Logger.log(nengetsu);
 		}
 
 		/** 勤務表リストLabelFunction */
