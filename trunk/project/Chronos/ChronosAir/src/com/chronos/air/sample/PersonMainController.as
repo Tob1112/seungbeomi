@@ -1,6 +1,7 @@
 package com.chronos.air.sample
 {
 	import com.chronos.air.model.DAO;
+	import com.chronos.air.util.Logger;
 
 	import flash.events.Event;
 	import flash.events.MouseEvent;
@@ -37,14 +38,14 @@ package com.chronos.air.sample
 			view.fileUploadButton.addEventListener(MouseEvent.CLICK, fileUploadHandler);
 
 			// Resource TEST
-			trace("Resources Test ? " + resources.getString("test"));
+			Logger.log("Resources Test ? " + resources.getString("test"));
 			// Read XML
 			//sqlMapFile = File.applicationStorageDirectory;
 			//sqlMapFile = File.createTempDirectory();
 			//sqlMapFile = File.desktopDirectory;
 			sqlMapFile = new File("file:///C:/workspace/chronos/ChronosAir/src");
 			sqlMapFile = sqlMapFile.resolvePath("sql-map-person.xml");
-			trace("sqlMapFile path : " + sqlMapFile.nativePath);
+			Logger.log("sqlMapFile path : " + sqlMapFile.nativePath);
 			readXML();
 
 
@@ -139,7 +140,7 @@ package com.chronos.air.sample
 			sqlMapXML = XML(stream.readUTFBytes(stream.bytesAvailable));
 			stream.close();
 
-			//trace(sqlMap.getQuery("find1"));
+			//Logger.log(sqlMap.getQuery("find1"));
 
 			// view read xml data
 			view.idTextInput.text = sqlMapXML.sql[0].@id;
@@ -147,7 +148,7 @@ package com.chronos.air.sample
 		}
 
 		private function saveData():void {
-			trace("save data");
+			Logger.log("save data");
 			createXMLData();
 			writeXMLData();
 		}

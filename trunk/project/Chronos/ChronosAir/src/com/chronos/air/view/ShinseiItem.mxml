@@ -3,11 +3,12 @@
 
 	<mx:Script>
 		<![CDATA[
+			import air.update.logging.Logger;
 			import com.chronos.air.model.Shinsei;
 
 			override public function set data(value:Object):void {
 				if (value != null) {
-					trace("item : " + Shinsei(value).nengetsu);
+					Logger.log("item : " + Shinsei(value).nengetsu);
 					this.shinseiNengetsuLabel.text = Shinsei(value).nengetsu;
 					this.shinseiJokyoLabel.text = Shinsei(value).shinseiJokyo;
 				}

@@ -2,6 +2,7 @@ package com.chronos.air.sample
 {
 	import com.adobe.cairngorm.commands.ICommand;
 	import com.adobe.cairngorm.control.CairngormEvent;
+	import com.chronos.air.util.Logger;
 
 	import mx.controls.Alert;
 	import mx.rpc.Responder;
@@ -38,7 +39,7 @@ package com.chronos.air.sample
 			//model.result = e.result.toString();
 			//view.result.text = model.result;
 			view.result.text = e.result.toString();
-			trace("result : " + e.result.toString());
+			Logger.log("result : " + e.result.toString());
 		}
 
 		private function fileUploadResultHandler(e:ResultEvent):void {
