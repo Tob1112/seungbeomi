@@ -20,6 +20,9 @@ package com.chronos
     	public static const SYSTEM_DIRECTORY_PATH:String = PROJECT_NAME + File.separator + SYSTEM_DIRECTORY_NAME;
     	public static const DATABASE_FILE_PATH:String = SYSTEM_DIRECTORY_PATH + File.separator + DATABASE_NAME;
 
+		public static const JIKOKU_KAISHI_JIKAN:String = "08:00";
+		public static const JIKOKU_KANKAKU:Number = 0.25;
+
 
 	}
 }

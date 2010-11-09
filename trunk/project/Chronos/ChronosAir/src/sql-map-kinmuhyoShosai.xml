@@ -9,8 +9,10 @@
 			nengetsu			TEXT,
 			hizuke 				TEXT,
 			yasumiKubun			TEXT,
-			shigyoJikan			REAL,
-			syuryoJikan			REAL,
+			shigyoJikan			TEXT,
+			shigyoJikanchi		REAL,
+			syuryoJikan			TEXT,
+			syuryoJikanchi		REAL,
 			kyukeiJikan			REAL,
 			jitsudoJikan		REAL,
 			sagyoNaiyo			TEXT

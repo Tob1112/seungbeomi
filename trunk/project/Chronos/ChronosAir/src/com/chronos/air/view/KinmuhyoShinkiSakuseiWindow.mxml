@@ -18,13 +18,13 @@
 			<mx:DateChooser id="shinkiKinmuhyoDateChooser" width="160" height="25" styleName="shinkiKinmuhyoDateChooser"/>
 		</mx:FormItem>
 		<mx:FormItem label="始業時間">
-			<mx:ComboBox id="shigyoJikanComboBox" prompt="選択してくだたい。"/>
+			<mx:ComboBox id="shigyoJikanComboBox" width="160" prompt="選択してくだたい。" labelField="jikoku" dataProvider="{controller.model.jikokuhyoAC}"/>
 		</mx:FormItem>
 		<mx:FormItem label="終了時間">
-			<mx:ComboBox id="shuryouJikanComboBox" prompt="選択してくだたい。" />
+			<mx:ComboBox id="shuryouJikanComboBox" width="160" prompt="選択してくだたい。" labelField="jikoku" dataProvider="{controller.model.jikokuhyoAC}"/>
 		</mx:FormItem>
 		<mx:FormItem label="休憩時間">
-			<mx:ComboBox id="kyukeiJikanComboBox" prompt="選択してくだたい。" />
+			<mx:ComboBox id="kyukeiJikanComboBox" width="160" prompt="選択してくだたい。" labelFunction="{controller.kyukeiJikanComboBoxLabelFunction}" dataProvider="{controller.model.jikokuhyoAC}" maxHeight="100" />
 		</mx:FormItem>
 		<mx:FormItem label="作業現場">
 			<mx:TextInput id="sagyoGenba" />

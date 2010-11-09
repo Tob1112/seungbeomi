@@ -6,6 +6,8 @@ package com.chronos.air.model {
 	public class KinmuhyoModel {
 
 		public var currentDate:String;	// 現在日時
+		//public var jikokuhyo:Dictionary = new Dictionary();	// 時刻表
+		public var jikokuhyoAC:ArrayCollection = new ArrayCollection(); // 時刻表
 		public var kinmuhyo:Kinmuhyo = new Kinmuhyo();	// 勤務表
 		public var kinmuhyoAC:ArrayCollection = new ArrayCollection();	// 勤務表リスト
 		public var kinmuhyoShosaiAC:ArrayCollection = new ArrayCollection();	// 勤務表詳細

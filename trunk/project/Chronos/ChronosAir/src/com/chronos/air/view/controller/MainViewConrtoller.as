@@ -3,6 +3,7 @@ package com.chronos.air.view.controller {
 	import com.chronos.Constants;
 	import com.chronos.air.common.Messages;
 	import com.chronos.air.event.DAOEvent;
+	import com.chronos.air.event.KinmuhyoEvent;
 	import com.chronos.air.event.ShinseiServiceEvent;
 	import com.chronos.air.model.MainModel;
 	import com.chronos.air.view.MainView;
@@ -29,6 +30,9 @@ package com.chronos.air.view.controller {
 		/** アプリケーション初期化処理を行う */
 		public function applicationInitializeHandler(e:FlexEvent):void {
 			openDatabase();
+			// 勤務表用時刻表取得
+			var event:KinmuhyoEvent = new KinmuhyoEvent(KinmuhyoEvent.GET_JIKOKUHYO);
+			event.dispatch();
 		}
 
 		public function creationCompletHandler(e:FlexEvent):void {
