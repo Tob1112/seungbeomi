@@ -10,7 +10,11 @@ package com.chronos.air.view.controller {
 	import com.chronos.air.view.KinmuhyoShinkiSakuseiWindow;
 	import com.chronos.air.view.KinmuhyoView;
 
+	import flash.display.NativeWindowInitOptions;
+	import flash.display.NativeWindowSystemChrome;
 	import flash.events.MouseEvent;
+	import flash.geom.Rectangle;
+	import flash.html.HTMLLoader;
 
 	import mx.core.IMXMLObject;
 	import mx.events.DividerEvent;
@@ -76,9 +80,10 @@ package com.chronos.air.view.controller {
 		/** 勤務表新規作成ウィンドウポップアップ */
 		private function popupKinmuhyoShinkiSakuseiWindow(e:MouseEvent):void {
 			// 勤務表年月最大値取得
-			var event:KinmuhyoEvent = new KinmuhyoEvent(KinmuhyoEvent.FIND_SHINKI_NENGETSU, view);
+			var event:KinmuhyoEvent = new KinmuhyoEvent(KinmuhyoEvent.GET_MAX_NENGETSU, view);
 			event.dispatch();
 
+			// 勤務表新規作成ウィンドウポップアップ
 			var kinmuhyouShinkiSakuseiWindow:KinmuhyoShinkiSakuseiWindow
 				= PopUpManager.createPopUp(view, KinmuhyoShinkiSakuseiWindow, true) as KinmuhyoShinkiSakuseiWindow;
 			kinmuhyouShinkiSakuseiWindow.addEventListener(KinmuhyoEvent.KINMUHYO_SHINKI_SAKUSEI, kinmuhyoShinkiSakuseiHandler);
@@ -93,6 +98,14 @@ package com.chronos.air.view.controller {
 		/** 勤務表プレビュー */
 		private function kinmuhyouPreviewHandler(e:MouseEvent):void {
 			// TODO xml, xslを利用しプレビュー
+			var html:HTMLLoader = new HTMLLoader();
+			var options:NativeWindowInitOptions = new NativeWindowInitOptions();
+			options.systemChrome = NativeWindowSystemChrome.STANDARD;
+			options.type = "normal";
+			var windowBounds:Rectangle = new Rectangle(0,0,300,300);
+			html = HTMLLoader.createRootWindow(true, options, true, windowBounds);
+			html.loadString("<html><body><h1>Hello Chronos!!</h1></body></html>");
+			//view.stage.addChild(html);
 		}
 
 		/** 勤務表リストから申請アイテム選択時、該当勤務表取得 */

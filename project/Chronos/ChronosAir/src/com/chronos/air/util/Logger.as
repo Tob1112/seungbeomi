@@ -5,7 +5,7 @@ package com.chronos.air.util {
 	public class Logger {
 
 
-		private static const PRINT_LOG_KEY:String = "pring.log";
+		private static const PRINT_LOG_KEY:String = "print.log";
 		private static var level:String;
 
 		[ResourceBundle("ApplicationResources")]

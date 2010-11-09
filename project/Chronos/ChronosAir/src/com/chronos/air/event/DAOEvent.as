@@ -8,6 +8,7 @@ package com.chronos.air.event {
 		public static const SAVE_SHAIN:String 		= "saveShain";
 		public static const FIND_KINMUHYO:String 	= "findKinmuhyo";
 		public static const FIND_MAX_NENGETSU:String= "findMaxNengetsu";
+		public static const FIND_JIKOKUHYO:String	= "findJikokuhyo";
 
 		public function DAOEvent(type:String) {
 			super(type);

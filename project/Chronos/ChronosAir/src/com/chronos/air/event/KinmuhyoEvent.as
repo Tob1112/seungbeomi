@@ -5,7 +5,8 @@ package com.chronos.air.event {
 	public class KinmuhyoEvent extends CairngormEvent {
 
 		public static const KINMUHYO_SHINKI_SAKUSEI:String = "kinmuhyoShinkiSakusei";
-		public static const FIND_SHINKI_NENGETSU:String = "findShinkiNengetsu";
+		public static const GET_MAX_NENGETSU:String = "getMaxNengetsu";
+		public static const GET_JIKOKUHYO:String = "getJikokuhyo";
 
 		public var view:Object;
 

@@ -27,17 +27,20 @@ package com.chronos.air.model {
 		private static const PREFIX_SHAIN:String 						= "shain.";
 		private static const PREFIX_KINMUHYO:String 					= "kinmuhyo.";
 		private static const PREFIX_KINMUHYO_SHOSAI:String 				= "kinmuhyoShosai.";
+		private static const PREFIX_JIKOKUHYO:String	 				= "jikokuhyo.";
 
 		// CREATE SQL ID
 		private static const SQL_CREATE_SHAIN:String 					= PREFIX_SHAIN + "createShain";
 		private static const SQL_CREATE_KINMUHYO:String 				= PREFIX_KINMUHYO + "createKinmuhyo";
 		private static const SQL_CREATE_KINMUHYO_SHOSAI:String			= PREFIX_KINMUHYO_SHOSAI + "createKinmuhyoShosai";
+		private static const SQL_CREATE_JIKOKUHYO:String				= PREFIX_JIKOKUHYO + "createJikokuhyo";
 
 		// FIND SQL ID
 		private static const SQL_FIND_SHAIN:String						= PREFIX_SHAIN + "findShain";
 		private static const SQL_FIND_KINMUHYO_LIST:String				= PREFIX_KINMUHYO + "findKinmuhyoList";
 		private static const SQL_FIND_KINMUHYO_SHOSAI:String			= PREFIX_KINMUHYO_SHOSAI + "findKinmuhyoShosai";
 		private static const SQL_FIND_MAX_NENGETSU:String				= PREFIX_KINMUHYO + "findMaxNengetsu";
+		private static const SQL_FIND_JIKOKUHYO:String					= PREFIX_JIKOKUHYO + "findJikokuhyo";
 
 		// INSERT SQL ID
 		private static const SQL_INSERT_SHAIN:String						= PREFIX_SHAIN + "insertShain";
@@ -70,7 +73,9 @@ package com.chronos.air.model {
 		private static const PARAMETER_NAME_HIZUKE:String 				= ":hizuke";
 		private static const PARAMETER_NAME_YASUMI_KUBUN:String 		= ":yasumiKubun";
 		private static const PARAMETER_NAME_SHIGYO_JIKAN:String 		= ":shigyoJikan";
+		private static const PARAMETER_NAME_SHIGYO_JIKANCHI:String 		= ":shigyoJikanchi";
 		private static const PARAMETER_NAME_SYURYO_JIKAN:String 		= ":syuryoJikan";
+		private static const PARAMETER_NAME_SYURYO_JIKANCHI:String 		= ":syuryoJikanchi";
 		private static const PARAMETER_NAME_KYUKEI_JIKAN:String 		= ":kyukeiJikan";
 		private static const PARAMETER_NAME_JITSUDO_JIKAN:String 		= ":jitsudoJikan";
 
@@ -91,6 +96,9 @@ package com.chronos.air.model {
 					break;
 				case DAOEvent.FIND_MAX_NENGETSU:	// 勤務表年月最大値取得
 					findMaxNengetsu();
+					break;
+				case DAOEvent.FIND_JIKOKUHYO:	// 時刻表取得
+					findJikokuhyo();
 					break;
 				default:
 					Messages.showError(MessageId.NOT_FOUND_OPERATION_ERROR);
@@ -119,6 +127,9 @@ package com.chronos.air.model {
 				DAO.create(con, SQL_CREATE_SHAIN);
 				DAO.create(con, SQL_CREATE_KINMUHYO);
 				DAO.create(con, SQL_CREATE_KINMUHYO_SHOSAI);
+				DAO.create(con, SQL_CREATE_JIKOKUHYO);
+
+				DAO.insertJikokihyo(con);
 			} finally {
 				con.close();
 			}
@@ -240,6 +251,29 @@ package com.chronos.air.model {
 				if (nengetsu != null) {
 					kinmuhyoModel.shinkiKinmuhyo.nengetsu = nengetsu;
 				}
+			} finally {
+				con.close();
+			}
+		}
+
+		private function findJikokuhyo():void {
+			con = new SQLConnection();
+			con.open(file);
+			var jikokuhyoMap:Dictionary = new Dictionary();
+			try {
+				var jikokuhyoAC:ArrayCollection = DAO.execute(con, SQL_FIND_JIKOKUHYO) as ArrayCollection;
+				kinmuhyoModel.jikokuhyoAC = jikokuhyoAC;
+				/*
+				var jikokuhyoMapper:JikokuhyoMapper = new JikokuhyoMapper();
+				var jikokuhyo:Jikokuhyo = new Jikokuhyo();
+				var cursor:IViewCursor = jikokuhyoAC.createCursor();
+				for (; !cursor.afterLast; cursor.moveNext()) {
+					jikokuhyo = jikokuhyoMapper.mapping(cursor.current);
+					jikokuhyoMap[jikokuhyo.jikoku] = jikokuhyo.jikokuchi;
+				}
+
+				kinmuhyoModel.jikokuhyo = jikokuhyoMap;
+				*/
 			} finally {
 				con.close();
 			}

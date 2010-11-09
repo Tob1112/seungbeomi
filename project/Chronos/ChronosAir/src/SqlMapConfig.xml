@@ -4,5 +4,6 @@
 	<sqlMap resource="sql-map-shain.xml" />
 	<sqlMap resource="sql-map-kinmuhyo.xml" />
 	<sqlMap resource="sql-map-kinmuhyoShosai.xml" />
+	<sqlMap resource="sql-map-jikokuhyo.xml" />
 
 </sqlMapConfig>

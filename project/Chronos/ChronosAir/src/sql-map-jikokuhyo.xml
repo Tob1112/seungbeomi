@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sqlMap>
+	<sql id="jikokuhyo.createJikokuhyo">
+		CREATE TABLE jikokuhyo (
+			jikoku		TEXT,
+			jikokuchi	REAL
+		);
+	</sql>
+
+	<sql id="jikokuhyo.findJikokuhyo">
+		SELECT * FROM jikokuhyo
+		ORDER BY jikokuchi ASC;
+	</sql>
+</sqlMap>
