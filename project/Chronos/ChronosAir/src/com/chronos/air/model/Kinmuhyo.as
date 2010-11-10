@@ -13,7 +13,7 @@ package com.chronos.air.model
 		public var jitsudoJikanGokei:Number;	// 実働時間合計
 		public var sagyoGenba:String;			// 作業現場
 
-		public static function createKinmuhyo():Kinmuhyo {
+		public static function createDefaultKinmuhyo():Kinmuhyo {
 			var kinmuhyo:Kinmuhyo = new Kinmuhyo();
 			kinmuhyo.nengetsu = "";
 			kinmuhyo.shinseiBango = "";

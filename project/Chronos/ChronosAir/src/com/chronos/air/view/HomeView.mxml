@@ -38,10 +38,10 @@
 		<mx:Label text="ROUE アカウント"  fontWeight="bold" horizontalCenter="0" fontSize="20"/>
 		<mx:Form top="20">
 			<mx:FormItem label="id：">
-				<mx:TextInput id="idTextInput"/>
+				<mx:TextInput id="idTextInput" text="test"/>
 			</mx:FormItem>
 			<mx:FormItem label="パスワード：">
-				<mx:TextInput id="passwordTextInput" displayAsPassword="true" />
+				<mx:TextInput id="passwordTextInput" displayAsPassword="true" text="test" />
 			</mx:FormItem>
 		</mx:Form>
 		<mx:CheckBox id="rememberMeCheckBox" label="ログイン状態を保持する" top="100" left="20"/>

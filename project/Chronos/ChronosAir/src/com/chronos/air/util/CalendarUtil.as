@@ -57,7 +57,11 @@ package com.chronos.air.util {
 					(current.month + 1) + "." +
 					current.date +
 					"(" + dayOfWkArray[current.day] + ")";
+        }
 
+        /** 曜日取得 */
+        public static function getYobi(date:Date):String {
+        	return dayOfWkArray[date.day];
         }
     }
 }

@@ -88,11 +88,11 @@ package com.chronos.air.view.controller {
 			var kinmuhyouShinkiSakuseiWindow:KinmuhyoShinkiSakuseiWindow
 				= PopUpManager.createPopUp(view, KinmuhyoShinkiSakuseiWindow, true) as KinmuhyoShinkiSakuseiWindow;
 			kinmuhyouShinkiSakuseiWindow.addEventListener(KinmuhyoEvent.KINMUHYO_SHINKI_SAKUSEI, kinmuhyoShinkiSakuseiHandler);
-
+			kinmuhyouShinkiSakuseiWindow.addEventListener(PopupEvent.KINMUHYO_SHINKI_SAKUSEI_WINDOW_CLOSE,kinmuhyoShinkiSakuseiWindowCloseHandler);
 			// 勤務表年月最大値を作業年月に設定
 			var sagyoNengetsu:String = ShinkiKinmuhyo.getInstance().nengetsu;
 			var sagyoNengetsuArray:Array = sagyoNengetsu.split("-");
-			if (sagyoNengetsu != "" || sagyoNengetsu != null) {
+			if (sagyoNengetsu != "") {
 				kinmuhyouShinkiSakuseiWindow.shinkiKinmuhyoDateChooser.displayedYear = sagyoNengetsuArray[0];
 				kinmuhyouShinkiSakuseiWindow.shinkiKinmuhyoDateChooser.displayedMonth = sagyoNengetsuArray[1] - 1;
 			}
@@ -131,6 +131,17 @@ package com.chronos.air.view.controller {
 			return LabelUtil.nengetsuLabel(nengetsu)  + " " + ShinseiJokyoEnum.fromCode(code);
 		}
 
+		/** 勤務表新規作成ウィンドウを閉じる */
+		private function kinmuhyoShinkiSakuseiWindowCloseHandler(e:PopupEvent):void {
+			Logger.log("kinmuhyoShinkiSakuseiWindowCloseHandler");
+			// 勤務表設定
+			var nengetsu:String = model.kinmuhyo.nengetsu;
+			var nengetsuArray:Array = nengetsu.split("-");
+			var year:int = nengetsuArray[0];
+			var month:int = nengetsuArray[1];
 
+			view.kinmuhyoDateChooser.displayedYear = year;
+			view.kinmuhyoDateChooser.displayedMonth = month;
+		}
 	}
 }
