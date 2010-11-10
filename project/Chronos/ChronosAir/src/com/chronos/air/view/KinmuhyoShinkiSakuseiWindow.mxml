@@ -29,7 +29,7 @@
 		<mx:FormItem label="作業現場">
 			<mx:TextInput id="sagyoGenba" />
 		</mx:FormItem>
-		<mx:CheckBox label="デフォルト値として勤務表に反映する。"/>
+		<mx:CheckBox id="kinmuhyoHaneiCheckBox" label="デフォルト値として勤務表に反映する。"/>
 	</mx:Form>
 	<mx:ControlBar horizontalAlign="center">
 		<mx:Button id="kinmuhyoSakuseiButton" label="勤務表作成" width="80"/>

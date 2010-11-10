@@ -4,6 +4,7 @@ package com.chronos.air.view.controller {
 	import com.chronos.air.event.KinmuhyoEvent;
 	import com.chronos.air.model.Kinmuhyo;
 	import com.chronos.air.model.KinmuhyoModel;
+	import com.chronos.air.model.ShinkiKinmuhyo;
 	import com.chronos.air.model.ShinseiJokyoEnum;
 	import com.chronos.air.util.CalendarUtil;
 	import com.chronos.air.util.Logger;
@@ -87,6 +88,15 @@ package com.chronos.air.view.controller {
 			var kinmuhyouShinkiSakuseiWindow:KinmuhyoShinkiSakuseiWindow
 				= PopUpManager.createPopUp(view, KinmuhyoShinkiSakuseiWindow, true) as KinmuhyoShinkiSakuseiWindow;
 			kinmuhyouShinkiSakuseiWindow.addEventListener(KinmuhyoEvent.KINMUHYO_SHINKI_SAKUSEI, kinmuhyoShinkiSakuseiHandler);
+
+			// 勤務表年月最大値を作業年月に設定
+			var sagyoNengetsu:String = ShinkiKinmuhyo.getInstance().nengetsu;
+			var sagyoNengetsuArray:Array = sagyoNengetsu.split("-");
+			if (sagyoNengetsu != "" || sagyoNengetsu != null) {
+				kinmuhyouShinkiSakuseiWindow.shinkiKinmuhyoDateChooser.displayedYear = sagyoNengetsuArray[0];
+				kinmuhyouShinkiSakuseiWindow.shinkiKinmuhyoDateChooser.displayedMonth = sagyoNengetsuArray[1] - 1;
+			}
+
 			PopUpManager.centerPopUp(kinmuhyouShinkiSakuseiWindow);
 		}
 

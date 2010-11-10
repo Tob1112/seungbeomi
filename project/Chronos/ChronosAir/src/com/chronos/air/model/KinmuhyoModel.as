@@ -11,7 +11,7 @@ package com.chronos.air.model {
 		public var kinmuhyo:Kinmuhyo = new Kinmuhyo();	// 勤務表
 		public var kinmuhyoAC:ArrayCollection = new ArrayCollection();	// 勤務表リスト
 		public var kinmuhyoShosaiAC:ArrayCollection = new ArrayCollection();	// 勤務表詳細
-		public var shinkiKinmuhyo:ShinkiKinmuhyo;	// 新規勤務表
+		public var shinkiKinmuhyo:ShinkiKinmuhyo = ShinkiKinmuhyo.getInstance();	// 新規勤務表
 
 		private static var instance:KinmuhyoModel = null;
 

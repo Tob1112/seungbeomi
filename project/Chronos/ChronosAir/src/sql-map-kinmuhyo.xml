@@ -26,7 +26,7 @@
 		ORDER BY nengetsu DESC
 	</sql>
 	<sql id="kinmuhyo.findMaxNengetsu">
-		SELECT MAX(nengetsu)
+		SELECT MAX(nengetsu) AS nengetsu
 		FROM   kinmuhyo;
 	</sql>
 

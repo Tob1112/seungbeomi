@@ -43,10 +43,10 @@ package com.chronos.air.model {
 		private static const SQL_FIND_JIKOKUHYO:String					= PREFIX_JIKOKUHYO + "findJikokuhyo";
 
 		// INSERT SQL ID
-		private static const SQL_INSERT_SHAIN:String						= PREFIX_SHAIN + "insertShain";
+		private static const SQL_INSERT_SHAIN:String					= PREFIX_SHAIN + "insertShain";
 
 		// UPDATE SQL ID
-		private static const SQL_UPDATE_SHAIN:String						= PREFIX_SHAIN + "updateShain";
+		private static const SQL_UPDATE_SHAIN:String					= PREFIX_SHAIN + "updateShain";
 
 		// REMOVE SQL ID
 
@@ -247,8 +247,10 @@ package com.chronos.air.model {
 			con.open(file);
 
 			try {
-				var nengetsu:String = DAO.find(con, SQL_FIND_MAX_NENGETSU) as String;
+				var found:Object = DAO.find(con, SQL_FIND_MAX_NENGETSU) as Object;
+				var nengetsu:String = found.nengetsu;
 				if (nengetsu != null) {
+					kinmuhyoModel.shinkiKinmuhyo = ShinkiKinmuhyo.getInstance();	// 新規勤務表取得
 					kinmuhyoModel.shinkiKinmuhyo.nengetsu = nengetsu;
 				}
 			} finally {
