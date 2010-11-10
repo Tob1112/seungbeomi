@@ -18,6 +18,7 @@ package com.chronos.air.view.controller {
 	import flash.html.HTMLLoader;
 
 	import mx.core.IMXMLObject;
+	import mx.events.DataGridEvent;
 	import mx.events.DividerEvent;
 	import mx.events.FlexEvent;
 	import mx.events.ListEvent;
@@ -45,6 +46,8 @@ package com.chronos.air.view.controller {
 			view.kinmuhyoPreviewButton.addEventListener(MouseEvent.CLICK, kinmuhyouPreviewHandler);	// 勤務表プレビュー
 			view.shinseiList.addEventListener(ListEvent.CHANGE, shinseiListClickHandler);	// 勤務表リストクリック
 
+			//view.kinmuhyoShosaiDataGrid.addEventListener(ListEvent.CHANGE, jikokuHenkoHandler);
+			view.kinmuhyoShosaiDataGrid.addEventListener(DataGridEvent.ITEM_EDIT_BEGIN, jikokuHenkoHandler);
 			setCurrentDate();	// 現在の時刻を設定する。(2011年11月3日(水))
 		}
 
@@ -133,7 +136,6 @@ package com.chronos.air.view.controller {
 
 		/** 勤務表新規作成ウィンドウを閉じる */
 		private function kinmuhyoShinkiSakuseiWindowCloseHandler(e:PopupEvent):void {
-			Logger.log("kinmuhyoShinkiSakuseiWindowCloseHandler");
 			// 勤務表設定
 			var nengetsu:String = model.kinmuhyo.nengetsu;
 			var nengetsuArray:Array = nengetsu.split("-");
@@ -142,6 +144,10 @@ package com.chronos.air.view.controller {
 
 			view.kinmuhyoDateChooser.displayedYear = year;
 			view.kinmuhyoDateChooser.displayedMonth = month;
+		}
+
+		private function jikokuHenkoHandler(e:DataGridEvent):void {
+			Logger.log(e.itemRenderer.data.shigyoJikan);
 		}
 	}
 }

@@ -8,7 +8,7 @@
 			private var model:KinmuhyoModel = KinmuhyoModel.getInstance();
 
 			private function creationCompleteHandler():void {
-				//this.dataProvider = model.jikokuhyoAC;
+
 			}
 		]]>
 	</mx:Script>
