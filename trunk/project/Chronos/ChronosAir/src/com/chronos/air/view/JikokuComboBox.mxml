@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:ComboBox xmlns:mx="http://www.adobe.com/2006/mxml" prompt="   " labelField="jikoku" dataProvider="{model.jikokuhyoAC}" creationComplete="creationCompleteHandler()">
+	<mx:Script>
+		<![CDATA[
+			import com.chronos.air.util.Logger;
+			import com.chronos.air.model.KinmuhyoModel;
+
+			private var model:KinmuhyoModel = KinmuhyoModel.getInstance();
+
+			private function creationCompleteHandler():void {
+				//this.dataProvider = model.jikokuhyoAC;
+			}
+		]]>
+	</mx:Script>
+</mx:ComboBox>

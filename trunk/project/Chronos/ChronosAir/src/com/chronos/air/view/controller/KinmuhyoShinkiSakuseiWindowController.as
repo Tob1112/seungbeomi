@@ -3,7 +3,6 @@ package com.chronos.air.view.controller {
 	import com.chronos.air.model.Kinmuhyo;
 	import com.chronos.air.model.KinmuhyoModel;
 	import com.chronos.air.model.KinmuhyoShosai;
-	import com.chronos.air.util.CalendarUtil;
 	import com.chronos.air.view.KinmuhyoShinkiSakuseiWindow;
 
 	import flash.events.MouseEvent;
@@ -43,38 +42,46 @@ package com.chronos.air.view.controller {
 		/** 勤務表作成 */
 		private function kinmuhyoSakuseiHandler(e:MouseEvent):void {
 			// 勤務表に反映
-			var kinmuhyo:Kinmuhyo = new Kinmuhyo();
-			var kinmuhyoshosai:KinmuhyoShosai = new KinmuhyoShosai();
-			var shikiKinmuhyoShosaiAC:ArrayCollection = new ArrayCollection();
+			var kinmuhyo:Kinmuhyo = Kinmuhyo.createDefaultKinmuhyo();
+			var kinmuhyoshosai:KinmuhyoShosai;
+			var shinkiKinmuhyoShosaiAC:ArrayCollection = new ArrayCollection();
 
 			var isDefaultHanei:Boolean = view.kinmuhyoHaneiCheckBox.selected;
 			// 全反映
 			if (isDefaultHanei) {
 
-			// 作業年月
+			// TODO 作業年月設定 REFACTORING
 			} else {
 				var year:int = view.shinkiKinmuhyoDateChooser.displayedYear;
 				var month:int = view.shinkiKinmuhyoDateChooser.displayedMonth;
 
+				// 勤務表年月設定
 				kinmuhyo.nengetsu = year + "-" + month;
+				model.kinmuhyo = kinmuhyo;
+
+				// 勤務表詳細日付設定
 				var date:Date = new Date();
-				var hizuke:int = 1;
-				date.setFullYear(year, month - 1, hizuke);
+				date.setFullYear(year, month, 1);
 
-				var tmpMonth:int = month;
-				while(month == tmpMonth) {
-					kinmuhyoshosai.hizuke = month + "/" + hizuke + "(" + CalendarUtil.currentDateLabel(date) + ")";
-					shikiKinmuhyoShosaiAC.addItem(kinmuhyoshosai);
-					hizuke++;
+				var currentMonth:int = date.getMonth();
+				for (var hizuke:int=1; hizuke < 32; hizuke++) {
+					date.setFullYear(year, month, hizuke);
+					if (date.getMonth() != currentMonth) {
+						break;
+					}
+					kinmuhyoshosai = KinmuhyoShosai.createDefaultKinmuhyoShosai();
+					kinmuhyoshosai.hizuke = new Date(year, month, hizuke);
+					shinkiKinmuhyoShosaiAC.addItem(kinmuhyoshosai);
 				}
-
+				model.kinmuhyoShosaiAC = shinkiKinmuhyoShosaiAC;
 			}
-
+			// 親ウィンドウにイベントdispatch
+			view.dispatchEvent(new PopupEvent(PopupEvent.KINMUHYO_SHINKI_SAKUSEI_WINDOW_CLOSE));
 			closeWindowHandler(e);	// ウィンドウを閉じる
 		}
+
 		/** 時刻更新 */
 		private function changeJikokuHandler(e:ListEvent):void {
-			//Logger.log(e.currentTarget.selectedItem.jikoku + " - " + e.currentTarget.selectedItem.jikokuchi);
 			var target:String = e.currentTarget.id;
 			var jikoku:String = e.currentTarget.selectedItem.jikoku;
 			var jikokuchi:Number = e.currentTarget.selectedItem.jikokuchi;

@@ -57,7 +57,7 @@ package com.chronos.air.model {
 					if (kinmuhyoModel.kinmuhyoAC.length > 0) {
 						initialKinmuhyoViewData(mainView.kinmuhyoView);	// 勤務表画面データ設定
 					} else {
-						kinmuhyoModel.kinmuhyo = Kinmuhyo.createKinmuhyo();
+						kinmuhyoModel.kinmuhyo = Kinmuhyo.createDefaultKinmuhyo();
 					}
 
 					// model 設定

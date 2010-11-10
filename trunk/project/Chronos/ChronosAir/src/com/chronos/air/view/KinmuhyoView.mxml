@@ -4,10 +4,12 @@
 	currentState="showMenu"
 	xmlns:controller="com.chronos.air.view.controller.*"
 	xmlns:view="com.chronos.air.view.*"
-	xmlns:model="com.chronos.air.model.*">
+	xmlns:model="com.chronos.air.model.*" xmlns:util="com.chronos.air.util.*">
 
 	<mx:Style source="asset/css/kinmuhyo.css" />
 	<controller:KinmuhyoViewController id="controller" />
+
+	<util:DateColumnFormatter id="hizukeDateColumnFormatter" />
 
 	<mx:HDividedBox id="kinmuhyoDividedBox" width="100%" height="100%"
 		horizontalDividerCursor="@Embed('asset/img/arrow.gif')"
@@ -49,13 +51,18 @@
 				<mx:Label fontSize="15" id="shinseiBangoLabel" right="10" top="25"/>
 			</mx:Canvas>
 			<mx:Canvas width="100%" height="100%" backgroundColor="green">
-				<mx:DataGrid x="0" y="0" width="100%" height="100%">
+				<mx:DataGrid x="0" y="0" width="100%" height="100%" dataProvider="{controller.model.kinmuhyoShosaiAC}" editable="true">
 					<mx:columns>
-						<mx:DataGridColumn headerText="日付" dataField="hizuke"/>
+						<mx:DataGridColumn headerText="日付" width="75" dataField="hizuke"
+							labelFunction="{hizukeDateColumnFormatter.format}"
+							itemRenderer="com.chronos.air.view.DayColoredLabel"/>
 						<mx:DataGridColumn headerText="休みの状況" dataField="yasumiType"/>
-						<mx:DataGridColumn headerText="始業時間" dataField="shigyo"/>
-						<mx:DataGridColumn headerText="終了時間" dataField="syuryo"/>
-						<mx:DataGridColumn headerText="休憩時間" dataField="kyukei"/>
+						<mx:DataGridColumn headerText="始業時間" dataField="shigyoJikan"
+							itemEditor="com.chronos.air.view.JikokuComboBox"/>
+						<mx:DataGridColumn headerText="終了時間" dataField="syuryoJikan"
+							itemEditor="com.chronos.air.view.JikokuComboBox"/>
+						<mx:DataGridColumn headerText="休憩時間" dataField="kyukeiJikan"
+							itemEditor="com.chronos.air.view.JikokuComboBox"/>
 						<mx:DataGridColumn headerText="実働時間" dataField="jitsudouJikan"/>
 						<mx:DataGridColumn headerText="作業内容及び状況" dataField="sagyoNaiyo" width="300"/>
 					</mx:columns>
