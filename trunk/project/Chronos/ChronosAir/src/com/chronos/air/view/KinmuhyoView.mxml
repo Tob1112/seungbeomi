@@ -51,7 +51,7 @@
 				<mx:Label fontSize="15" id="shinseiBangoLabel" right="10" top="25"/>
 			</mx:Canvas>
 			<mx:Canvas width="100%" height="100%" backgroundColor="green">
-				<mx:DataGrid x="0" y="0" width="100%" height="100%" dataProvider="{controller.model.kinmuhyoShosaiAC}" editable="true">
+				<mx:DataGrid id="kinmuhyoShosaiDataGrid" x="0" y="0" width="100%" height="100%" dataProvider="{controller.model.kinmuhyoShosaiAC}" editable="true">
 					<mx:columns>
 						<mx:DataGridColumn headerText="日付" width="75" dataField="hizuke"
 							labelFunction="{hizukeDateColumnFormatter.format}"
