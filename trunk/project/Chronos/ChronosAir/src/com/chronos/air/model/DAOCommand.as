@@ -97,8 +97,8 @@ package com.chronos.air.model {
 				case DAOEvent.FIND_MAX_NENGETSU:	// 勤務表年月最大値取得
 					findMaxNengetsu();
 					break;
-				case DAOEvent.FIND_JIKOKUHYO:	// 時刻表取得
-					findJikokuhyo();
+				case DAOEvent.INITIALIZE_DATA:	// データ初期化
+					findJikokuhyo();	// 時刻表取得
 					break;
 				default:
 					Messages.showError(MessageId.NOT_FOUND_OPERATION_ERROR);

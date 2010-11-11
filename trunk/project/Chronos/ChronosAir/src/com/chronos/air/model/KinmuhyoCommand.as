@@ -18,8 +18,8 @@ package com.chronos.air.model {
 				case KinmuhyoEvent.GET_MAX_NENGETSU:	// 新規作成時年月最大値取得
 					findMaxNengetsu();
 					break;
-				case KinmuhyoEvent.GET_JIKOKUHYO:		// 時刻表取得
-					findJikokuhyo();
+				case KinmuhyoEvent.INITIALIZE_KINMUHYO_DATA:
+					initializeKinmuhyoData();
 					break;
 			}
 		}
@@ -30,9 +30,8 @@ package com.chronos.air.model {
 			event.dispatch();
 		}
 
-		/** 時刻表取得 */
-		private function findJikokuhyo():void {
-			var event:DAOEvent = new DAOEvent(DAOEvent.FIND_JIKOKUHYO);
+		private function initializeKinmuhyoData():void {
+			var event:DAOEvent = new DAOEvent(DAOEvent.INITIALIZE_DATA);
 			event.dispatch();
 		}
 

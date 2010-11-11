@@ -21,11 +21,11 @@ package com.chronos
 			addCommand(DAOEvent.SAVE_SHAIN, DAOCommand);		// ユーザー情報保存
 			addCommand(DAOEvent.FIND_KINMUHYO, DAOCommand); // 勤務表リスト検索
 			addCommand(DAOEvent.FIND_MAX_NENGETSU, DAOCommand);	// 勤務表年月最大値取得
-			addCommand(DAOEvent.FIND_JIKOKUHYO, DAOCommand);	// 時刻表取得
+			//addCommand(DAOEvent.FIND_JIKOKUHYO, DAOCommand);	// 時刻表取得
 
 			// 勤務表 --------------------------------------------------------------
 			addCommand(KinmuhyoEvent.GET_MAX_NENGETSU, KinmuhyoCommand); // 勤務表年月最大値取得
-			addCommand(KinmuhyoEvent.GET_JIKOKUHYO, KinmuhyoCommand); // 時刻表取得
+			addCommand(KinmuhyoEvent.INITIALIZE_KINMUHYO_DATA, KinmuhyoCommand); // 勤務表データ初期化
 
 			// 申請サービス ---------------------------------------------------------
 			addCommand(ShinseiServiceEvent.LOGIN, ShinseiServiceCommand);	// ログイン

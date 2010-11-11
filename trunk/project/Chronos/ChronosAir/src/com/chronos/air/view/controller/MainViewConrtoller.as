@@ -30,8 +30,8 @@ package com.chronos.air.view.controller {
 		/** アプリケーション初期化処理を行う */
 		public function applicationInitializeHandler(e:FlexEvent):void {
 			openDatabase();
-			// 勤務表用時刻表取得
-			var event:KinmuhyoEvent = new KinmuhyoEvent(KinmuhyoEvent.GET_JIKOKUHYO);
+			// 勤務表用データ初期化
+			var event:KinmuhyoEvent = new KinmuhyoEvent(KinmuhyoEvent.INITIALIZE_KINMUHYO_DATA);
 			event.dispatch();
 		}
 

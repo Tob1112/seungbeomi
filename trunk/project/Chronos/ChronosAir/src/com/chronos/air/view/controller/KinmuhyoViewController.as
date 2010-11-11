@@ -4,6 +4,7 @@ package com.chronos.air.view.controller {
 	import com.chronos.air.event.KinmuhyoEvent;
 	import com.chronos.air.model.Kinmuhyo;
 	import com.chronos.air.model.KinmuhyoModel;
+	import com.chronos.air.model.KinmuhyoShosai;
 	import com.chronos.air.model.ShinkiKinmuhyo;
 	import com.chronos.air.model.ShinseiJokyoEnum;
 	import com.chronos.air.util.CalendarUtil;
@@ -17,6 +18,7 @@ package com.chronos.air.view.controller {
 	import flash.geom.Rectangle;
 	import flash.html.HTMLLoader;
 
+	import mx.controls.dataGridClasses.DataGridColumn;
 	import mx.core.IMXMLObject;
 	import mx.events.DataGridEvent;
 	import mx.events.DividerEvent;
@@ -47,7 +49,8 @@ package com.chronos.air.view.controller {
 			view.shinseiList.addEventListener(ListEvent.CHANGE, shinseiListClickHandler);	// 勤務表リストクリック
 
 			//view.kinmuhyoShosaiDataGrid.addEventListener(ListEvent.CHANGE, jikokuHenkoHandler);
-			view.kinmuhyoShosaiDataGrid.addEventListener(DataGridEvent.ITEM_EDIT_BEGIN, jikokuHenkoHandler);
+			view.kinmuhyoShosaiDataGrid.addEventListener(DataGridEvent.ITEM_EDIT_BEGIN, jikokuKoushinKaishiHandler);
+			view.kinmuhyoShosaiDataGrid.addEventListener(DataGridEvent.ITEM_EDIT_END, jikokuKoushinShuryoHandler);
 			setCurrentDate();	// 現在の時刻を設定する。(2011年11月3日(水))
 		}
 
@@ -134,6 +137,13 @@ package com.chronos.air.view.controller {
 			return LabelUtil.nengetsuLabel(nengetsu)  + " " + ShinseiJokyoEnum.fromCode(code);
 		}
 
+		/** 休み区分LabelFuntion */
+		public function yasumiKubunLabelFunction(item:Object, data:DataGridColumn):String {
+			var yasumiKubun:String = KinmuhyoShosai(item).yasumiKubun;
+			// Logger.log("休み区分："+ yasumiKubun);
+			return yasumiKubun;
+		}
+
 		/** 勤務表新規作成ウィンドウを閉じる */
 		private function kinmuhyoShinkiSakuseiWindowCloseHandler(e:PopupEvent):void {
 			// 勤務表設定
@@ -146,8 +156,19 @@ package com.chronos.air.view.controller {
 			view.kinmuhyoDateChooser.displayedMonth = month;
 		}
 
-		private function jikokuHenkoHandler(e:DataGridEvent):void {
+		private function jikokuKoushinKaishiHandler(e:DataGridEvent):void {
+
 			Logger.log(e.itemRenderer.data.shigyoJikan);
+		}
+
+		private function jikokuKoushinShuryoHandler(e:DataGridEvent):void {
+
+
+
+			//view.kinmuhyoShosaiDataGrid.listData;
+			//DataGridListData(e.itemRenderer.listData ).label;
+			//Logger.log(DataGridListData(e.itemRenderer.data).label + "!!");
+			//Logger.log(e.itemRenderer.data.shigyoJikan);
 		}
 	}
 }
