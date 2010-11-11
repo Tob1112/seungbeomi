@@ -6,7 +6,7 @@ package com.chronos.air.event {
 
 		public static const KINMUHYO_SHINKI_SAKUSEI:String = "kinmuhyoShinkiSakusei";
 		public static const GET_MAX_NENGETSU:String = "getMaxNengetsu";
-		public static const GET_JIKOKUHYO:String = "getJikokuhyo";
+		public static const INITIALIZE_KINMUHYO_DATA:String = "initializeKinmuhyoData";
 
 		public var view:Object;
 

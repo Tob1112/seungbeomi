@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sqlMap>
+
+	<!-- =================================== -->
+	<!-- CREATE SQL							 -->
+	<!-- =================================== -->
+	<sql id="code.createCodeHyo">
+		CREATE TABLE codeHyo (
+			code 		TEXT,
+			value 		TEXT
+		)
+	</sql>
+
+	<!-- =================================== -->
+	<!-- SELECT SQL							 -->
+	<!-- =================================== -->
+	<sql id="code.findCode">
+		SELECT * FROM codeHyo
+		ORDER BY code ASC;
+	</sql>
+
+	<!-- =================================== -->
+	<!-- REMOVE SQL							 -->
+	<!-- =================================== -->
+	<!--
+	<sql id="code.removecode">
+		DELETE FROM code
+		WHERE id = :id
+	</sql>
+	-->
+</sqlMap>

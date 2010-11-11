@@ -2,12 +2,25 @@
 <mx:ComboBox xmlns:mx="http://www.adobe.com/2006/mxml" prompt="   " labelField="jikoku" dataProvider="{model.jikokuhyoAC}" creationComplete="creationCompleteHandler()">
 	<mx:Script>
 		<![CDATA[
+			import mx.controls.dataGridClasses.DataGridListData;
 			import com.chronos.air.util.Logger;
 			import com.chronos.air.model.KinmuhyoModel;
 
+			[Bindable]
 			private var model:KinmuhyoModel = KinmuhyoModel.getInstance();
 
+			private var ownerData:Object;
+			private var lookupField:String = "";
+
+			override public function set data(value:Object):void {
+				if (value) {
+
+				}
+			}
+
 			private function creationCompleteHandler():void {
+
+				var col:DataGridListData = DataGridListData(listData);
 
 			}
 		]]>
