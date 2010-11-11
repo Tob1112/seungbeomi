@@ -4,12 +4,12 @@ package com.chronos.air.event {
 
 	public class DAOEvent extends CairngormEvent {
 
-		public static const OPEN_DATABASE:String 	= "openDatabase";
-		public static const SAVE_SHAIN:String 		= "saveShain";
-		public static const FIND_KINMUHYO:String 	= "findKinmuhyo";
-		public static const FIND_MAX_NENGETSU:String= "findMaxNengetsu";
-		//public static const FIND_JIKOKUHYO:String	= "findJikokuhyo";
-		public static const INITIALIZE_DATA:String 	= "daoEvent.initializeData";
+		public static const SAVE_SHAIN:String 			= "daoEvent.saveShain";			// 社員保存
+		public static const FIND_KINMUHYO:String 		= "daoEvent.findKinmuhyo";		// 勤務表検索
+		public static const FIND_MAX_NENGETSU:String	= "daoEvent.findMaxNengetsu";	// 年月最大値検索
+		public static const FIND_JIKOKUHYO:String		= "daoEvent.findJikokuhyo";		// 時刻表検索
+		public static const FIND_CODE_DATA:String 		= "daoEvent.findCodeData";		// コードデータ検索
+		public static const KINMUHYO_HOZON:String		= "daoEvent.kinmuhyoHozon";		// 勤務表保存
 
 		public function DAOEvent(type:String) {
 			super(type);

@@ -15,7 +15,7 @@ package com.chronos.air.model {
 		private static const PARAMETER_NAME_JITSUDO_JIKAN:String 		= ":jitsudoJikan";
 		private static const PARAMETER_NAME_SAGYO_NAIYO:String			= ":sagyoNaiyo";
 
-		public function mapping(obj:Object):KinmuhyoShosai {
+		public static function mapping(obj:Object):KinmuhyoShosai {
 			var mapped:KinmuhyoShosai = new KinmuhyoShosai();
 			mapped.nengetsu = obj.nengetsu;
 			mapped.hizuke = obj.hizuke;
@@ -31,7 +31,7 @@ package com.chronos.air.model {
 			return mapped;
 		}
 
-		public function parameterMapping(obj:KinmuhyoShosai):Dictionary {
+		public static function parameterMapping(obj:KinmuhyoShosai):Dictionary {
 			var mapped:Dictionary = new Dictionary();
 			mapped[PARAMETER_NAME_NENGETSU] = obj.nengetsu;
 			(obj.nengetsu == null)       ? mapped[PARAMETER_NAME_NENGETSU] = "" 	   : mapped[PARAMETER_NAME_NENGETSU] = obj.nengetsu;

@@ -29,17 +29,34 @@
 		SELECT MAX(nengetsu) AS nengetsu
 		FROM   kinmuhyo;
 	</sql>
+	<sql id="kinmuhyo.findKinmuhyo">
+		SELECT * FROM kinmuhyo
+		WHERE nengetsu = :nengetsu
+	</sql>
 
 	<!-- =================================== -->
 	<!-- INSERT SQL							 -->
 	<!-- =================================== -->
-
-
+	<sql id="kinmuhyo.insertKinmuhyo">
+		INSERT INTO kinmuhyo (nengetsu, shinseiBango, shinseiKubun, shinseiJokyo, syoteiNissu, sagyoNissu, kekkinNissu, jitsudoJikanGokei, sagyoGenba)
+		VALUES (:nengetsu, :shinseiBango, :shinseiKubun, :shinseiJokyo, :syoteiNissu, :sagyoNissu, :kekkinNissu, :jitsudoJikanGokei, :sagyoGenba);
+	</sql>
 
 	<!-- =================================== -->
 	<!-- UPDATE SQL							 -->
 	<!-- =================================== -->
-
+	<sql id="kinmuhyo.updateKinmuhyo">
+		UPDATE kinmuhyo
+		SET shinseiBango = :shinseiBango,
+			shinseiKubun = :shinseiKubun,
+			shinseiJokyo = :shinseiJokyo,
+			syoteiNissu = :syoteiNissu,
+			sagyoNissu = :sagyoNissu,
+			kekkinNissu = :kekkinNissu,
+			jitsudoJikanGokei = :jitsudoJikanGokei,
+			sagyoGenba = :sagyoGenba
+		WHERE nengetsu = :nengetsu;
+	</sql>
 
 	<!-- =================================== -->
 	<!-- DELETE SQL							 -->

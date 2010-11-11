@@ -54,9 +54,15 @@ package com.chronos.air.view.controller {
 			} else {
 				var year:int = view.shinkiKinmuhyoDateChooser.displayedYear;
 				var month:int = view.shinkiKinmuhyoDateChooser.displayedMonth;
+				var getsu:String = month.toString();
+
+				// 月が１０以下の場合「０」を足す
+				if (month < 10) {
+					getsu = 0 + getsu;
+				}
 
 				// 勤務表年月設定
-				kinmuhyo.nengetsu = year + "-" + month;
+				kinmuhyo.nengetsu = year + "-" + getsu;
 				model.kinmuhyo = kinmuhyo;
 
 				// 勤務表詳細日付設定
@@ -76,7 +82,7 @@ package com.chronos.air.view.controller {
 				model.kinmuhyoShosaiAC = shinkiKinmuhyoShosaiAC;
 			}
 			// 親ウィンドウにイベントdispatch
-			view.dispatchEvent(new PopupEvent(PopupEvent.KINMUHYO_SHINKI_SAKUSEI_WINDOW_CLOSE));
+			view.dispatchEvent(new PopupEvent(PopupEvent.SHINKI_KINMUHYO_HANEI));
 			closeWindowHandler(e);	// ウィンドウを閉じる
 		}
 

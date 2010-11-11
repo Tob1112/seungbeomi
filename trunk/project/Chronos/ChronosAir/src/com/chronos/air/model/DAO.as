@@ -39,7 +39,7 @@ package com.chronos.air.model {
 					instance = new DAO();
 				}
 			} catch(e:Error) {
-				Logger.log(e.message);
+				trace(e.message);
 			}
 			return instance;
 		}
@@ -101,11 +101,11 @@ package com.chronos.air.model {
 				stmt.execute();
 			} catch (e:Error) {
 				Messages.showError(MessageId.SQL_ERROR, e);
-				Logger.log(e.getStackTrace());
+				trace(e.getStackTrace());
 			}
 		}
 
-		static public function execute(con:SQLConnection, sqlId:String, parameters:Dictionary=null):ArrayCollection {
+		static public function execute(con:SQLConnection, sqlId:String, parameters:Dictionary=null):Object {
 			try {
 				var stmt:SQLStatement = new SQLStatement();
 				stmt.sqlConnection = con;
@@ -121,7 +121,7 @@ package com.chronos.air.model {
 				return new ArrayCollection(stmt.getResult().data);
 			} catch (e:Error) {
 				Messages.showError(MessageId.SQL_ERROR, e);
-				Logger.log(e.getStackTrace());
+				trace(e.getStackTrace());
 			} finally {
 				//sqlConnection.close();
 			}
@@ -144,7 +144,7 @@ package com.chronos.air.model {
 				return found;
 			} catch (e:Error) {
 				Messages.showError(MessageId.SQL_ERROR, e);
-				Logger.log(e.getStackTrace());
+				trace(e.getStackTrace());
 			} finally {
 
 			}
@@ -172,13 +172,13 @@ package com.chronos.air.model {
 				if (founds.length == 1) {
 					found = founds.getItemAt(0);
 				} else {
-					Messages.showError(MessageId.OVER_DATA_FOUND_ERROR);
-					return 0;
+					//Messages.showError(MessageId.OVER_DATA_FOUND_ERROR);
+					return null;
 				}
 				return found;
 			} catch (e:Error) {
 				Messages.showError(MessageId.SQL_ERROR, e);
-				Logger.log(e.getStackTrace());
+				trace(e.getStackTrace());
 			}
 			return null;
 		}
@@ -197,79 +197,10 @@ package com.chronos.air.model {
 				return found;
 			} catch (e:Error) {
 				Messages.showError(MessageId.SQL_ERROR, e);
-				Logger.log(e.getStackTrace());
+				trace(e.getStackTrace());
 			}
 			return null;
 		}
 
-		// 時刻表insert sql
-		public static function insertJikokihyo(sqlConnection:SQLConnection):void {
-
-			try {
-				var stmt:SQLStatement = new SQLStatement();
-				stmt.sqlConnection = sqlConnection;
-				stmt.text = getSqlInsertJikokuhyo();
-				stmt.execute();
-			} catch (e:Error) {
-				Messages.showError(MessageId.SQL_ERROR, e);
-				Logger.log(e.getStackTrace());
-			}
-		}
-
-		/** 時刻表マップ取得 */
-		private static function getSqlInsertJikokuhyo():String {
-			var jikokuKaishiJikan:String = Constants.JIKOKU_KAISHI_JIKAN;
-			var jikokuKankaku:Number = Constants.JIKOKU_KANKAKU;
-			var jikokuArray:Array = jikokuKaishiJikan.split(":");
-			var hour:int = jikokuArray[0];
-			var minute:int = jikokuArray[1];
-			var date:Date = new Date();
-			var jikoku:String;
-			var formatter:DateFormatter = new DateFormatter();
-		    formatter.formatString = "JJ:NN";
-			var sql:String = "INSERT INTO jikokuhyo (jikoku, jikokuchi) ";
-
-			var j:int = 0;
-			var jikokuchi:Number = 0;
-		    for (var i:int=0; jikokuchi < 24; i++) {
-				if (i/4 == 1) {
-					hour++;
-					minute = 0;
-					j = 0;
-				}
-				date.setHours(hour, minute);
-				jikoku = formatter.format(date);
-
-				if (jikokuchi == 23.75) {
-					sql = sql + "SELECT '" + jikoku + "', " + jikokuchi;
-				} else {
-					sql = sql + "SELECT '" + jikoku + "', " + jikokuchi + " UNION ";
-				}
-
-			    j++;
-				minute = minute + 15;
-			    jikokuchi = jikokuchi + jikokuKankaku;
-		    }
-
-			return sql;
-		}
-
-/*
-		// sql idのprefixを利用し、fine sqlを生成
-		private static function createSqlSupport(prefix:String, mode:String):String {
-			return prefix + "." + mode + prefix.charAt(0).toUpperCase() + prefix.substr(1);
-		}
-		// パラメーターからPK取得
-		private static function getPk(parameters:Dictionary):String {
-			var found:String = "";
-			for (var key:Object in parameters) {
-				if (key == ":id") {
-					found = parameters[key];
-					break;
-				}
-			}
-			return found;
-		}
-*/
 	}
 }
