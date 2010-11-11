@@ -3,7 +3,7 @@ package com.chronos.air.view.controller {
 	import com.chronos.air.common.MessageId;
 	import com.chronos.air.common.Messages;
 	import com.chronos.air.event.ShinseiServiceEvent;
-	import com.chronos.air.model.MainModel;
+	import com.chronos.air.model.ApplicationModel;
 	import com.chronos.air.view.HomeView;
 
 	import flash.events.MouseEvent;
@@ -15,7 +15,7 @@ package com.chronos.air.view.controller {
 	public class HomeViewController implements IMXMLObject {
 
 		private var view:HomeView;
-		private var model:MainModel = MainModel.getInstance();
+		private var model:ApplicationModel = ApplicationModel.getInstance();
 		private static const SHOW_ERROR_STATE:String = "showError";
 
 		public function initialized(doc:Object, id:String):void {

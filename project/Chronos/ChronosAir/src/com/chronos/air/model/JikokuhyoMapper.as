@@ -7,7 +7,7 @@ package com.chronos.air.model
 		private static const PARAMETER_NAME_JIKOKU:String 		= ":jikoku";
 		private static const PARAMETER_NAME_JIKOKUCHI:String 	= ":jikokuchi";
 
-		public function mapping(obj:Object):Jikokuhyo {
+		public static function mapping(obj:Object):Jikokuhyo {
 			var mapped:Jikokuhyo = new Jikokuhyo();
 			mapped.jikoku = obj.jikoku;
 			mapped.jikokuchi = obj.jikokuchi;
@@ -15,7 +15,7 @@ package com.chronos.air.model
 			return mapped;
 		}
 
-		public function paramMapping(obj:Jikokuhyo):Dictionary {
+		public static function paramMapping(obj:Jikokuhyo):Dictionary {
 			var mapped:Dictionary = new Dictionary();
 			(obj.jikoku == null) 	? mapped[PARAMETER_NAME_JIKOKU] = "" 	: mapped[PARAMETER_NAME_JIKOKU] = obj.jikoku;
 			(obj.jikokuchi == 0.0) 	? mapped[PARAMETER_NAME_JIKOKUCHI] = 0.0  : mapped[PARAMETER_NAME_JIKOKUCHI] = obj.jikokuchi;

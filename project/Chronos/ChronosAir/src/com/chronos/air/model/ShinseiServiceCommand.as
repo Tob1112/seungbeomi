@@ -17,7 +17,7 @@ package com.chronos.air.model {
 
 	public class ShinseiServiceCommand implements ICommand {
 
-			private var mainModel:MainModel = MainModel.getInstance();
+			private var appModel:ApplicationModel = ApplicationModel.getInstance();
 			private var kinmuhyoModel:KinmuhyoModel = KinmuhyoModel.getInstance();
 			private var homeView:HomeView;
 			private var mainView:MainView;
@@ -32,14 +32,11 @@ package com.chronos.air.model {
 						homeView = ShinseiServiceEvent(e).view as HomeView;
 						responder = new Responder(loginResultHandler, loginFaultHandler);
 						delegate = new ShinseiServiceDelegate(responder);
-						delegate.login(mainModel.shain);
+						delegate.login(appModel.shain);
 						break;
 					case ShinseiServiceEvent.LOGOUT:	// ログアウト
 						mainView = ShinseiServiceEvent(e).view as MainView;
 						logoutHandler();
-						//responder = new Responder(logoutResultHandler, serviceFaultHandler);
-						//delegate = new ShinseiServiceDelegate(responder);
-						//delegate.logout();
 						break;
 				}
 			}
@@ -61,9 +58,9 @@ package com.chronos.air.model {
 					}
 
 					// model 設定
-					mainView.model.shain.shainMei = shain.shainMei;
-					mainModel.shain.id = "";
-					mainModel.shain.password = "";
+					appModel.shain.shainMei = shain.shainMei;
+					appModel.shain.id = "";
+					appModel.shain.password = "";
 					// view 設定
 					mainView.mainViewStack.selectedIndex = Constants.KINMUHYO_VIEWSTACK_INDEX;
 					mainView.buttonBar.enabled = true;
@@ -104,15 +101,22 @@ package com.chronos.air.model {
 
 			/** ログアウト */
 			private function logoutHandler():void {
+				// データ初期化
+				//mainView.model.shain.refresh();
+				appModel.shain.reset();
+				kinmuhyoModel.kinmuhyo.reset();
+				kinmuhyoModel.kinmuhyoAC.removeAll();
+				kinmuhyoModel.kinmuhyoShosaiAC.removeAll();
+
+				// 画面初期化
+				mainView.homeView.idTextInput.text = "";
+				mainView.homeView.passwordTextInput.text = "";
+				mainView.homeView.rememberMeCheckBox.selected = false;
+				mainView.kinmuhyoView.currentState = "showMenu";
 				mainView.mainViewStack.selectedIndex = Constants.HOME_VIEWSTACK_INDEX;
 				mainView.homeView.loginCanvas.visible = true;
 				mainView.logoutButton.visible = false;
 				mainView.buttonBar.enabled = false;
-				// TODO データ初期化
-				mainView.model.shain.reset();
-				mainView.homeView.idTextInput.text = "";
-				mainView.homeView.passwordTextInput.text = "";
-				mainView.homeView.rememberMeCheckBox.selected = false;
 			}
 
 			/** サービス失敗 */
@@ -121,7 +125,7 @@ package com.chronos.air.model {
 			}
 
 			private function resetLoginField():void {
-				mainModel.shain.reset();
+				appModel.shain.reset();
 				homeView.idTextInput.text = "";
 				homeView.passwordTextInput.text = "";
 				homeView.rememberMeCheckBox.selected = false;
@@ -133,8 +137,8 @@ package com.chronos.air.model {
 				var isRememberMe:Boolean = homeView.rememberMeCheckBox.selected;
 				var daoEvent:DAOEvent;
 
-				mainModel.shain.shainMei = shain.shainMei;
-				mainModel.shain.shainBango = shain.shainBango;
+				appModel.shain.shainMei = shain.shainMei;
+				appModel.shain.shainBango = shain.shainBango;
 
 				daoEvent = new DAOEvent(DAOEvent.SAVE_SHAIN);
 				daoEvent.dispatch();

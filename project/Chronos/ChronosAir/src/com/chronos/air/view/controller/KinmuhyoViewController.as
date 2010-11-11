@@ -4,7 +4,6 @@ package com.chronos.air.view.controller {
 	import com.chronos.air.event.KinmuhyoEvent;
 	import com.chronos.air.model.Kinmuhyo;
 	import com.chronos.air.model.KinmuhyoModel;
-	import com.chronos.air.model.KinmuhyoShosai;
 	import com.chronos.air.model.ShinkiKinmuhyo;
 	import com.chronos.air.model.ShinseiJokyoEnum;
 	import com.chronos.air.util.CalendarUtil;
@@ -47,6 +46,7 @@ package com.chronos.air.view.controller {
 			view.kinmuhyoShinkiSakuseiButton.addEventListener(MouseEvent.CLICK, popupKinmuhyoShinkiSakuseiWindow);	// 勤務表新規作成
 			view.kinmuhyoPreviewButton.addEventListener(MouseEvent.CLICK, kinmuhyouPreviewHandler);	// 勤務表プレビュー
 			view.shinseiList.addEventListener(ListEvent.CHANGE, shinseiListClickHandler);	// 勤務表リストクリック
+			view.kinmuhyoHozonButton.addEventListener(MouseEvent.CLICK, kinmuhyoHozonHandler);	// 勤務表保存
 
 			//view.kinmuhyoShosaiDataGrid.addEventListener(ListEvent.CHANGE, jikokuHenkoHandler);
 			view.kinmuhyoShosaiDataGrid.addEventListener(DataGridEvent.ITEM_EDIT_BEGIN, jikokuKoushinKaishiHandler);
@@ -93,8 +93,8 @@ package com.chronos.air.view.controller {
 			// 勤務表新規作成ウィンドウポップアップ
 			var kinmuhyouShinkiSakuseiWindow:KinmuhyoShinkiSakuseiWindow
 				= PopUpManager.createPopUp(view, KinmuhyoShinkiSakuseiWindow, true) as KinmuhyoShinkiSakuseiWindow;
-			kinmuhyouShinkiSakuseiWindow.addEventListener(KinmuhyoEvent.KINMUHYO_SHINKI_SAKUSEI, kinmuhyoShinkiSakuseiHandler);
-			kinmuhyouShinkiSakuseiWindow.addEventListener(PopupEvent.KINMUHYO_SHINKI_SAKUSEI_WINDOW_CLOSE,kinmuhyoShinkiSakuseiWindowCloseHandler);
+			kinmuhyouShinkiSakuseiWindow.addEventListener(KinmuhyoEvent.KINMUHYO_SHINKI_SAKUSEI, kinmuhyoShinkiSakuseiHandler);	// 勤務表新規作成
+			kinmuhyouShinkiSakuseiWindow.addEventListener(PopupEvent.SHINKI_KINMUHYO_HANEI, shinkiKinmuhyoHaneiHandler);	// 新規勤務表反映
 			// 勤務表年月最大値を作業年月に設定
 			var sagyoNengetsu:String = ShinkiKinmuhyo.getInstance().nengetsu;
 			var sagyoNengetsuArray:Array = sagyoNengetsu.split("-");
@@ -139,13 +139,13 @@ package com.chronos.air.view.controller {
 
 		/** 休み区分LabelFuntion */
 		public function yasumiKubunLabelFunction(item:Object, data:DataGridColumn):String {
-			var yasumiKubun:String = KinmuhyoShosai(item).yasumiKubun;
+			var yasumiKubun:String = item.value;
 			// Logger.log("休み区分："+ yasumiKubun);
 			return yasumiKubun;
 		}
 
-		/** 勤務表新規作成ウィンドウを閉じる */
-		private function kinmuhyoShinkiSakuseiWindowCloseHandler(e:PopupEvent):void {
+		/** 新規勤務表反映 */
+		private function shinkiKinmuhyoHaneiHandler(e:PopupEvent):void {
 			// 勤務表設定
 			var nengetsu:String = model.kinmuhyo.nengetsu;
 			var nengetsuArray:Array = nengetsu.split("-");
@@ -154,6 +154,10 @@ package com.chronos.air.view.controller {
 
 			view.kinmuhyoDateChooser.displayedYear = year;
 			view.kinmuhyoDateChooser.displayedMonth = month;
+
+			// 保存可能状態に更新
+			view.currentState = "updateKinmuhyo";
+			model.isPersisted = false;
 		}
 
 		private function jikokuKoushinKaishiHandler(e:DataGridEvent):void {
@@ -163,12 +167,12 @@ package com.chronos.air.view.controller {
 
 		private function jikokuKoushinShuryoHandler(e:DataGridEvent):void {
 
+		}
 
-
-			//view.kinmuhyoShosaiDataGrid.listData;
-			//DataGridListData(e.itemRenderer.listData ).label;
-			//Logger.log(DataGridListData(e.itemRenderer.data).label + "!!");
-			//Logger.log(e.itemRenderer.data.shigyoJikan);
+		/** 勤務表保存 */
+		private function kinmuhyoHozonHandler(e:MouseEvent):void {
+			var event:KinmuhyoEvent = new KinmuhyoEvent(KinmuhyoEvent.KINMUHYO_HOZON);
+			event.dispatch();
 		}
 	}
 }

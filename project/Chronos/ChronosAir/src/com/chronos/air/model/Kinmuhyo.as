@@ -27,5 +27,17 @@ package com.chronos.air.model
 
 			return kinmuhyo;
 		}
+
+		public function reset():void {
+			nengetsu = "";
+			shinseiBango = "";
+			shinseiKubun = "";
+			shinseiJokyo = "";
+			syoteiNissu = 0;
+			sagyoNissu = 0;
+			kekkinNissu = 0;
+			jitsudoJikanGokei = 0;
+			sagyoGenba = "";
+		}
 	}
 }

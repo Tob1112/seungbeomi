@@ -18,8 +18,8 @@ package com.chronos.air.model {
 				case KinmuhyoEvent.GET_MAX_NENGETSU:	// 新規作成時年月最大値取得
 					findMaxNengetsu();
 					break;
-				case KinmuhyoEvent.INITIALIZE_KINMUHYO_DATA:
-					initializeKinmuhyoData();
+				case KinmuhyoEvent.KINMUHYO_HOZON:	// 勤務表保存
+					kinmuhyoHozon();
 					break;
 			}
 		}
@@ -30,10 +30,12 @@ package com.chronos.air.model {
 			event.dispatch();
 		}
 
-		private function initializeKinmuhyoData():void {
-			var event:DAOEvent = new DAOEvent(DAOEvent.INITIALIZE_DATA);
+		/** 勤務表保存 */
+		private function kinmuhyoHozon():void {
+			var event:DAOEvent = new DAOEvent(DAOEvent.KINMUHYO_HOZON);
 			event.dispatch();
 		}
+
 
 	}
 }

@@ -15,7 +15,7 @@
 	<!-- SELECT SQL							 -->
 	<!-- =================================== -->
 	<sql id="code.findCode">
-		SELECT * FROM codeHyo
+		SELECT * FROM code
 		ORDER BY code ASC;
 	</sql>
 

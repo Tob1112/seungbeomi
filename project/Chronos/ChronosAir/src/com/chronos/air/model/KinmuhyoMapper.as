@@ -15,7 +15,7 @@ package com.chronos.air.model
 		private static const PARAMETER_NAME_SAGYO_GENBA:String 			= ":sagyoGenba";
 
 
-		public function mapping(obj:Object):Kinmuhyo {
+		public static function mapping(obj:Object):Kinmuhyo {
 			var mapped:Kinmuhyo = new Kinmuhyo();
 			mapped.nengetsu = obj.nengetsu;
 			mapped.shinseiBango = obj.shinseiBango;
@@ -30,7 +30,7 @@ package com.chronos.air.model
 			return mapped;
 		}
 
-		public function paramMapping(obj:Kinmuhyo):Dictionary {
+		public static function paramMapping(obj:Kinmuhyo):Dictionary {
 			var mapped:Dictionary = new Dictionary();
 			mapped[PARAMETER_NAME_NENGETSU] = obj.nengetsu;
 			mapped[PARAMETER_NAME_SHINSEI_KUBUN] = obj.shinseiKubun;

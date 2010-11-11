@@ -5,6 +5,8 @@ package com.chronos.air.model {
 	[Bindable]
 	public class KinmuhyoModel {
 
+		public var isPersisted:Boolean = false;
+
 		public var currentDate:String;	// 現在日時
 		public var yasumiKubunAC:ArrayCollection = new ArrayCollection();
 		public var jikokuhyoAC:ArrayCollection = new ArrayCollection(); // 時刻表
@@ -21,6 +23,5 @@ package com.chronos.air.model {
 			}
 			return instance;
 		}
-
 	}
 }

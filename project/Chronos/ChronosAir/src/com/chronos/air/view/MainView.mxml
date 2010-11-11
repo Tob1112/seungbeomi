@@ -8,7 +8,7 @@
 	xmlns:model="com.chronos.air.model.*">
 
 	<mx:Style source="asset/css/main.css" />
-	<model:MainModel id="model" />
+	<!--<model:MainModel id="model" />-->
 	<controller:MainViewConrtoller id="controller"/>
 
 	<mx:ApplicationControlBar width="100%" styleName="myControlBar">
@@ -17,7 +17,7 @@
 			dataProvider="{mainViewStack}"
 			styleName="myToggleButtonBar" />
 		<mx:HRule width="100%" alpha="0.0"/>
-		<mx:Label id="shainMeiLabel" text="{model.shain.shainMei} " styleName="shainMeiLabel"/>
+		<mx:Label id="shainMeiLabel" text="{controller.model.shain.shainMei} " styleName="shainMeiLabel"/>
 		<mx:Button id="logoutButton" label="LOGOUT"/>
 	</mx:ApplicationControlBar>
 
