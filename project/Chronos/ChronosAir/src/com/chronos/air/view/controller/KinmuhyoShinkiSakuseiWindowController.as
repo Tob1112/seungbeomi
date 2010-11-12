@@ -1,5 +1,6 @@
 package com.chronos.air.view.controller {
 
+	import com.chronos.air.event.KinmuhyoEvent;
 	import com.chronos.air.model.Kinmuhyo;
 	import com.chronos.air.model.KinmuhyoModel;
 	import com.chronos.air.model.KinmuhyoShosai;
@@ -32,6 +33,8 @@ package com.chronos.air.view.controller {
 			view.shigyoJikanComboBox.addEventListener(ListEvent.CHANGE, changeJikokuHandler);	// 始業時刻更新
 			view.shuryouJikanComboBox.addEventListener(ListEvent.CHANGE, changeJikokuHandler);	// 終了時刻更新
 			view.kyukeiJikanComboBox.addEventListener(ListEvent.CHANGE, changeJikokuHandler);	// 休憩時刻更新
+
+			setDisplayShinkiKinmuhyoDateChooserYearAndMonth();	// 年月設定
 		}
 
 		/** 勤務表新規作成ウィンドウを閉じる */
@@ -54,7 +57,7 @@ package com.chronos.air.view.controller {
 			} else {
 				var year:int = view.shinkiKinmuhyoDateChooser.displayedYear;
 				var month:int = view.shinkiKinmuhyoDateChooser.displayedMonth;
-				var getsu:String = month.toString();
+				var getsu:String = (month + 1).toString();
 
 				// 月が１０以下の場合「０」を足す
 				if (month < 10) {
@@ -76,13 +79,14 @@ package com.chronos.air.view.controller {
 						break;
 					}
 					kinmuhyoshosai = KinmuhyoShosai.createDefaultKinmuhyoShosai();
-					kinmuhyoshosai.hizuke = new Date(year, month, hizuke);
+					kinmuhyoshosai.nengetsu = kinmuhyo.nengetsu;	// 年月設定
+					kinmuhyoshosai.hizuke = new Date(year, month, hizuke);	// 日付設定
 					shinkiKinmuhyoShosaiAC.addItem(kinmuhyoshosai);
 				}
 				model.kinmuhyoShosaiAC = shinkiKinmuhyoShosaiAC;
 			}
 			// 親ウィンドウにイベントdispatch
-			view.dispatchEvent(new PopupEvent(PopupEvent.SHINKI_KINMUHYO_HANEI));
+			view.dispatchEvent(new KinmuhyoEvent(KinmuhyoEvent.KINMUHYO_SHINKI_SAKUSEI));
 			closeWindowHandler(e);	// ウィンドウを閉じる
 		}
 
@@ -110,6 +114,13 @@ package com.chronos.air.view.controller {
 		public function kyukeiJikanComboBoxLabelFunction(item:Object):String {
 			var kyukeiJikan:Number = item.jikokuchi as Number;
 			return kyukeiJikan + " 時間";
+		}
+
+		/** 年月設定 */
+		public function setDisplayShinkiKinmuhyoDateChooserYearAndMonth():void {
+			var nengetsuArray:Array = model.shinkiKinmuhyo.nengetsu.split("-");
+			view.shinkiKinmuhyoDateChooser.displayedYear = nengetsuArray[0];
+			view.shinkiKinmuhyoDateChooser.displayedMonth = nengetsuArray[1];
 		}
 	}
 }

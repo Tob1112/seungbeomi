@@ -15,7 +15,7 @@ package com.chronos.air.model {
 			view = KinmuhyoEvent(e).view as KinmuhyoView;
 
 			switch (e.type) {
-				case KinmuhyoEvent.GET_MAX_NENGETSU:	// 新規作成時年月最大値取得
+				case KinmuhyoEvent.FIND_MAX_NENGETSU:	// 新規作成時年月最大値取得
 					findMaxNengetsu();
 					break;
 				case KinmuhyoEvent.KINMUHYO_HOZON:	// 勤務表保存
@@ -28,6 +28,9 @@ package com.chronos.air.model {
 		private function findMaxNengetsu():void {
 			var event:DAOEvent = new DAOEvent(DAOEvent.FIND_MAX_NENGETSU);
 			event.dispatch();
+			
+			// 勤務表新規作成ウィンドウに表示する年月設定
+			
 		}
 
 		/** 勤務表保存 */

@@ -47,7 +47,7 @@ package com.chronos.air.model {
 				mainView = MainView(homeView.parentDocument);
 				var shain:Shain = Shain(e.result);
 
-				// リータン値がある場合
+				// リータン値がある場合：勤務表リスト及び最近勤務表取得
 				if (shain != null) {
 					saveShain(shain);	// ユーザー情報保存
 					findShinseiListAndSaikinKinmuhyo();	// 勤務表リストと勤務表リスト最新勤務表取得
@@ -67,7 +67,7 @@ package com.chronos.air.model {
 					mainView.logoutButton.visible = true;
 					mainView.shainMeiLabel.visible = true;
 					homeView.loginCanvas.visible = false;
-				// リータン値がない場合
+				// リータン値がない場合：ログイン情報リセット
 				} else {
 					resetLoginField();
 				}
@@ -89,7 +89,6 @@ package com.chronos.air.model {
 				kinmuhyoModel.kinmuhyo.sagyoNissu = kinmuhyo.sagyoNissu;
 				kinmuhyoModel.kinmuhyo.kekkinNissu = kinmuhyo.kekkinNissu;
 				kinmuhyoModel.kinmuhyo.jitsudoJikanGokei = kinmuhyo.jitsudoJikanGokei;
-
 			}
 
 			/** ログイン失敗時 */
@@ -146,7 +145,7 @@ package com.chronos.air.model {
 
 			/** 全申請リスト検索及び申請リストの中、最新勤務表情報取得 */
 			private function findShinseiListAndSaikinKinmuhyo():void {
-				var daoEvent:DAOEvent = new DAOEvent(DAOEvent.FIND_KINMUHYO);
+				var daoEvent:DAOEvent = new DAOEvent(DAOEvent.FIND_KINMUHYO_LIST);
 				daoEvent.dispatch();
 
 			}

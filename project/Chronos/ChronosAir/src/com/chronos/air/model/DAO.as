@@ -1,5 +1,4 @@
 package com.chronos.air.model {
-	import com.chronos.Constants;
 	import com.chronos.air.common.MessageId;
 	import com.chronos.air.common.Messages;
 	import com.chronos.air.util.Logger;
@@ -12,7 +11,6 @@ package com.chronos.air.model {
 	import flash.utils.Dictionary;
 
 	import mx.collections.ArrayCollection;
-	import mx.formatters.DateFormatter;
 
 	[Bindable]
 	public class DAO
@@ -39,7 +37,7 @@ package com.chronos.air.model {
 					instance = new DAO();
 				}
 			} catch(e:Error) {
-				trace(e.message);
+				throw new Error(e.message);
 			}
 			return instance;
 		}
@@ -101,7 +99,7 @@ package com.chronos.air.model {
 				stmt.execute();
 			} catch (e:Error) {
 				Messages.showError(MessageId.SQL_ERROR, e);
-				trace(e.getStackTrace());
+				throw new Error(e.getStackTrace());
 			}
 		}
 
@@ -113,7 +111,7 @@ package com.chronos.air.model {
 				Logger.log("execute - " + stmt.text);
 				if (parameters != null) {
 					for (var key:Object in parameters) {
-						Logger.log("parameter - " + key + " = " + parameters[key]);
+						Logger.log("parameter - " + key + " = '" + parameters[key] + "'");
 						stmt.parameters[key] = parameters[key];
 					}
 				}
@@ -121,7 +119,7 @@ package com.chronos.air.model {
 				return new ArrayCollection(stmt.getResult().data);
 			} catch (e:Error) {
 				Messages.showError(MessageId.SQL_ERROR, e);
-				trace(e.getStackTrace());
+				throw new Error(e.getStackTrace());
 			} finally {
 				//sqlConnection.close();
 			}
@@ -138,13 +136,13 @@ package com.chronos.air.model {
 				stmt.text = sqlMap[sqlId];
 				stmt.parameters[":id"] = pk;
 				Logger.log("execute - " + stmt.text);
-				Logger.log("parameter - " + pk);
+				Logger.log("parameter - '" + pk + "'");
 				stmt.execute();
 				(stmt.getResult().data == null) ? found = false: found = true;
 				return found;
 			} catch (e:Error) {
 				Messages.showError(MessageId.SQL_ERROR, e);
-				trace(e.getStackTrace());
+				throw new Error(e.getStackTrace());
 			} finally {
 
 			}
@@ -162,7 +160,7 @@ package com.chronos.air.model {
 				Logger.log("execute - " + stmt.text);
 				if (parameters != null) {
 					for (var key:Object in parameters) {
-						Logger.log("parameter - " + key + " = " + parameters[key]);
+						Logger.log("parameter - " + key + " = '" + parameters[key] + "'");
 						stmt.parameters[key] = parameters[key];
 					}
 				}
@@ -178,7 +176,7 @@ package com.chronos.air.model {
 				return found;
 			} catch (e:Error) {
 				Messages.showError(MessageId.SQL_ERROR, e);
-				trace(e.getStackTrace());
+				throw new Error(e.getStackTrace());
 			}
 			return null;
 		}
@@ -197,7 +195,7 @@ package com.chronos.air.model {
 				return found;
 			} catch (e:Error) {
 				Messages.showError(MessageId.SQL_ERROR, e);
-				trace(e.getStackTrace());
+				throw new Error(e.getStackTrace());
 			}
 			return null;
 		}

@@ -17,6 +17,7 @@ package com.chronos.air.view.controller {
 	import flash.geom.Rectangle;
 	import flash.html.HTMLLoader;
 
+	import mx.controls.DateChooser;
 	import mx.controls.dataGridClasses.DataGridColumn;
 	import mx.core.IMXMLObject;
 	import mx.events.DataGridEvent;
@@ -61,7 +62,7 @@ package com.chronos.air.view.controller {
 			model.currentDate = CalendarUtil.currentDateLabel(currentDate);
 		}
 
-		/** メニュー表示＊非表示 */
+		/** メニュー表示/非表示 */
 		private function menuBoxToggleHandler(e:DividerEvent):void {
 			if (view.currentState == SHOW_MENU_STATE) {
 				view.currentState = HIDE_MENU_STATE;
@@ -87,28 +88,43 @@ package com.chronos.air.view.controller {
 		/** 勤務表新規作成ウィンドウポップアップ */
 		private function popupKinmuhyoShinkiSakuseiWindow(e:MouseEvent):void {
 			// 勤務表年月最大値取得
-			var event:KinmuhyoEvent = new KinmuhyoEvent(KinmuhyoEvent.GET_MAX_NENGETSU, view);
+			var event:KinmuhyoEvent = new KinmuhyoEvent(KinmuhyoEvent.FIND_MAX_NENGETSU, view);
 			event.dispatch();
 
-			// 勤務表新規作成ウィンドウポップアップ
-			var kinmuhyouShinkiSakuseiWindow:KinmuhyoShinkiSakuseiWindow
-				= PopUpManager.createPopUp(view, KinmuhyoShinkiSakuseiWindow, true) as KinmuhyoShinkiSakuseiWindow;
-			kinmuhyouShinkiSakuseiWindow.addEventListener(KinmuhyoEvent.KINMUHYO_SHINKI_SAKUSEI, kinmuhyoShinkiSakuseiHandler);	// 勤務表新規作成
-			kinmuhyouShinkiSakuseiWindow.addEventListener(PopupEvent.SHINKI_KINMUHYO_HANEI, shinkiKinmuhyoHaneiHandler);	// 新規勤務表反映
 			// 勤務表年月最大値を作業年月に設定
 			var sagyoNengetsu:String = ShinkiKinmuhyo.getInstance().nengetsu;
 			var sagyoNengetsuArray:Array = sagyoNengetsu.split("-");
+			/*
 			if (sagyoNengetsu != "") {
 				kinmuhyouShinkiSakuseiWindow.shinkiKinmuhyoDateChooser.displayedYear = sagyoNengetsuArray[0];
-				kinmuhyouShinkiSakuseiWindow.shinkiKinmuhyoDateChooser.displayedMonth = sagyoNengetsuArray[1] - 1;
+				kinmuhyouShinkiSakuseiWindow.shinkiKinmuhyoDateChooser.displayedMonth = sagyoNengetsuArray[1];
 			}
+			*/
+
+			// 勤務表新規作成ウィンドウポップアップ
+			var kinmuhyouShinkiSakuseiWindow:KinmuhyoShinkiSakuseiWindow
+					= PopUpManager.createPopUp(view, KinmuhyoShinkiSakuseiWindow, true) as KinmuhyoShinkiSakuseiWindow;
+			kinmuhyouShinkiSakuseiWindow.addEventListener(KinmuhyoEvent.KINMUHYO_SHINKI_SAKUSEI, kinmuhyoShinkiSakuseiHandler);	// 勤務表新規作成
+			//kinmuhyouShinkiSakuseiWindow.controller.model.shinkiKinmuhyo.nengetsu = sagyoNengetsu;
 
 			PopUpManager.centerPopUp(kinmuhyouShinkiSakuseiWindow);
 		}
 
 		/** 勤務表新規作成 */
 		private function kinmuhyoShinkiSakuseiHandler(e:KinmuhyoEvent):void {
-			Logger.log("kinmuhyoShinkiSakuseiHandler");
+			// 勤務表設定
+			var nengetsu:String = model.kinmuhyo.nengetsu;
+			var nengetsuArray:Array = nengetsu.split("-");
+			var year:int = nengetsuArray[0];
+			var month:int = nengetsuArray[1];
+
+			view.kinmuhyoDateChooser.displayedYear = year;
+			view.kinmuhyoDateChooser.displayedMonth = month;
+
+			// 保存可能状態に更新
+			view.currentState = "updateKinmuhyo";
+			model.isPersisted = false;
+
 		}
 
 		/** 勤務表プレビュー */
@@ -134,6 +150,7 @@ package com.chronos.air.view.controller {
 		public function shinseiListLabelFunction(item:Object):String {
 			var nengetsu:String = Kinmuhyo(item).nengetsu;
 			var code:String = Kinmuhyo(item).shinseiJokyo;
+			Logger.log(LabelUtil.nengetsuLabel(nengetsu)  + "-" + ShinseiJokyoEnum.fromCode(code));
 			return LabelUtil.nengetsuLabel(nengetsu)  + " " + ShinseiJokyoEnum.fromCode(code);
 		}
 
@@ -142,22 +159,6 @@ package com.chronos.air.view.controller {
 			var yasumiKubun:String = item.value;
 			// Logger.log("休み区分："+ yasumiKubun);
 			return yasumiKubun;
-		}
-
-		/** 新規勤務表反映 */
-		private function shinkiKinmuhyoHaneiHandler(e:PopupEvent):void {
-			// 勤務表設定
-			var nengetsu:String = model.kinmuhyo.nengetsu;
-			var nengetsuArray:Array = nengetsu.split("-");
-			var year:int = nengetsuArray[0];
-			var month:int = nengetsuArray[1];
-
-			view.kinmuhyoDateChooser.displayedYear = year;
-			view.kinmuhyoDateChooser.displayedMonth = month;
-
-			// 保存可能状態に更新
-			view.currentState = "updateKinmuhyo";
-			model.isPersisted = false;
 		}
 
 		private function jikokuKoushinKaishiHandler(e:DataGridEvent):void {
