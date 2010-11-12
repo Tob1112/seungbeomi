@@ -9,13 +9,12 @@
 	verticalScrollPolicy="off">
 
 	<mx:Style source="asset/css/kinmuhyo.css" />
-	<model:KinmuhyoModel id="model" />
 	<controller:KinmuhyoShinkiSakuseiWindowController id="controller" />
 
 	<mx:Form horizontalCenter="0" verticalCenter="0">
 		<mx:FormHeading label="新規勤務表設定" />
 		<mx:FormItem label="作業年月" required="true">
-			<mx:DateChooser id="shinkiKinmuhyoDateChooser" width="160" height="25" styleName="shinkiKinmuhyoDateChooser"/>
+			<mx:DateChooser id="shinkiKinmuhyoDateChooser"  width="160" height="25" styleName="shinkiKinmuhyoDateChooser"/>
 		</mx:FormItem>
 		<mx:FormItem label="始業時間">
 			<mx:ComboBox id="shigyoJikanComboBox" width="160" prompt="選択してくだたい。" labelField="jikoku" dataProvider="{controller.model.jikokuhyoAC}"/>

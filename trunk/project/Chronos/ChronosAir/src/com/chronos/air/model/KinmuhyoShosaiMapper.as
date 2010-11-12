@@ -47,5 +47,6 @@ package com.chronos.air.model {
 
 			return mapped;
 		}
+
 	}
 }

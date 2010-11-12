@@ -32,13 +32,30 @@
 	<!-- =================================== -->
 	<!-- INSERT SQL							 -->
 	<!-- =================================== -->
-
+	<sql id="kinmuhyoShosai.insertKinmuhyoShosai">
+		INSERT INTO kinmuhyoShosai(nengetsu, hizuke, yasumiKubun, shigyoJikan, shigyoJikanchi, syuryoJikan, syuryoJikanchi, kyukeiJikan, jitsudoJikan, sagyoNaiyo)
+		VALUES (:nengetsu, strftime('%m-%d', :hizuke), :yasumiKubun, :shigyoJikan, :shigyoJikanchi, :syuryoJikan, :syuryoJikanchi, :kyukeiJikan, :jitsudoJikan, :sagyoNaiyo);
+	</sql>
 
 
 	<!-- =================================== -->
 	<!-- UPDATE SQL							 -->
 	<!-- =================================== -->
-
+	<sql id="kinmuhyoShosai.updateKinmuhyoShosai">
+		UPDATE kinmuhyoShosai
+		SET
+			yasumiKubun		= :yasumiKubun,
+			shigyoJikan		= :shigyoJikan,
+			shigyoJikanchi	= :shigyoJikanchi,
+			syuryoJikan		= :syuryoJikan,
+			syuryoJikanchi	= :syuryoJikanchi,
+			kyukeiJikan		= :kyukeiJikan,
+			jitsudoJikan	= :jitsudoJikan,
+			sagyoNaiyo		= :sagyoNaiyo
+		WHERE
+			nengetsu		= :nengetsu,;
+			AND hizuke 			= strftime('%m-%d', :hizuke),
+	</sql>
 
 	<!-- =================================== -->
 	<!-- DELETE SQL							 -->
