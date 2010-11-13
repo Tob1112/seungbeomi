@@ -29,11 +29,13 @@ package com.chronos
 			addCommand(DAOEvent.FIND_MAX_NENGETSU, DAOCommand);	// 勤務表年月最大値取得
 			addCommand(DAOEvent.FIND_JIKOKUHYO, DAOCommand);	// 時刻表検索(勤務表用)
 			addCommand(DAOEvent.FIND_CODE_DATA, DAOCommand);	// コードデータ検索
-			addCommand(DAOEvent.KINMUHYO_HOZON, DAOCommand);	// 勤務表保存
+			addCommand(DAOEvent.SAVE_KINMUHYO, DAOCommand);		// 勤務表保存
+			addCommand(DAOEvent.FIND_KINMUHYO_SHOSAI, DAOCommand);	// 勤務表詳細検索
 
 			// 勤務表 --------------------------------------------------------------
 			addCommand(KinmuhyoEvent.FIND_MAX_NENGETSU, KinmuhyoCommand); // 勤務表年月最大値取得
-			addCommand(KinmuhyoEvent.KINMUHYO_HOZON, KinmuhyoCommand);		// 勤務表保存
+			addCommand(KinmuhyoEvent.SAVE_KINMUHYO, KinmuhyoCommand);		// 勤務表保存
+			addCommand(KinmuhyoEvent.FIND_KINMUHYO_SHOSAI, KinmuhyoCommand);	// 勤務表詳細検索
 
 			// 申請サービス ---------------------------------------------------------
 			addCommand(ShinseiServiceEvent.LOGIN, ShinseiServiceCommand);	// ログイン

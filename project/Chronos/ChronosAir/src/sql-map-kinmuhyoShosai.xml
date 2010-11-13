@@ -34,7 +34,7 @@
 	<!-- =================================== -->
 	<sql id="kinmuhyoShosai.insertKinmuhyoShosai">
 		INSERT INTO kinmuhyoShosai(nengetsu, hizuke, yasumiKubun, shigyoJikan, shigyoJikanchi, syuryoJikan, syuryoJikanchi, kyukeiJikan, jitsudoJikan, sagyoNaiyo)
-		VALUES (:nengetsu, strftime('%m-%d', :hizuke), :yasumiKubun, :shigyoJikan, :shigyoJikanchi, :syuryoJikan, :syuryoJikanchi, :kyukeiJikan, :jitsudoJikan, :sagyoNaiyo);
+		VALUES (:nengetsu, :hizuke, :yasumiKubun, :shigyoJikan, :shigyoJikanchi, :syuryoJikan, :syuryoJikanchi, :kyukeiJikan, :jitsudoJikan, :sagyoNaiyo);
 	</sql>
 
 
@@ -53,8 +53,8 @@
 			jitsudoJikan	= :jitsudoJikan,
 			sagyoNaiyo		= :sagyoNaiyo
 		WHERE
-			nengetsu		= :nengetsu,;
-			AND hizuke 			= strftime('%m-%d', :hizuke),
+			nengetsu		= :nengetsu,
+			AND hizuke 		= :hizuke;
 	</sql>
 
 	<!-- =================================== -->

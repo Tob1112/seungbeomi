@@ -10,7 +10,8 @@ package com.chronos.air.event {
 		public static const FIND_MAX_NENGETSU:String	= "daoEvent.findMaxNengetsu";	// 年月最大値検索
 		public static const FIND_JIKOKUHYO:String		= "daoEvent.findJikokuhyo";		// 時刻表検索
 		public static const FIND_CODE_DATA:String 		= "daoEvent.findCodeData";		// コードデータ検索
-		public static const KINMUHYO_HOZON:String		= "daoEvent.kinmuhyoHozon";		// 勤務表保存
+		public static const SAVE_KINMUHYO:String		= "daoEvent.saveKinmuhyo";		// 勤務表保存
+		public static const FIND_KINMUHYO_SHOSAI:String = "daoEvent.findKinmuhyoShosai";// 勤務表詳細検索
 
 		public function DAOEvent(type:String) {
 			super(type);

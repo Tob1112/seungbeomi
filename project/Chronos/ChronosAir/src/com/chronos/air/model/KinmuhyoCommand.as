@@ -18,8 +18,11 @@ package com.chronos.air.model {
 				case KinmuhyoEvent.FIND_MAX_NENGETSU:	// 新規作成時年月最大値取得
 					findMaxNengetsu();
 					break;
-				case KinmuhyoEvent.KINMUHYO_HOZON:	// 勤務表保存
-					kinmuhyoHozon();
+				case KinmuhyoEvent.SAVE_KINMUHYO:	// 勤務表保存
+					saveKinmuhyo();
+					break;
+				case KinmuhyoEvent.FIND_KINMUHYO_SHOSAI:
+					findKinmuhyoShosai();
 					break;
 			}
 		}
@@ -28,17 +31,26 @@ package com.chronos.air.model {
 		private function findMaxNengetsu():void {
 			var event:DAOEvent = new DAOEvent(DAOEvent.FIND_MAX_NENGETSU);
 			event.dispatch();
-			
+
 			// 勤務表新規作成ウィンドウに表示する年月設定
-			
+
 		}
 
 		/** 勤務表保存 */
-		private function kinmuhyoHozon():void {
-			var event:DAOEvent = new DAOEvent(DAOEvent.KINMUHYO_HOZON);
+		private function saveKinmuhyo():void {
+			var event:DAOEvent = new DAOEvent(DAOEvent.SAVE_KINMUHYO);
 			event.dispatch();
 		}
 
+		/** 勤務表詳細検索 */
+		private function findKinmuhyoShosai():void {
+			var event:DAOEvent = new DAOEvent(DAOEvent.FIND_KINMUHYO_SHOSAI);
+			event.dispatch();
 
+			// 勤務表DateChooser更新
+			var nengetsuArray:Array = model.nengetsu.split("-");
+			view.kinmuhyoDateChooser.displayedYear = nengetsuArray[0];
+			view.kinmuhyoDateChooser.displayedMonth = nengetsuArray[1] - 1;
+		}
 	}
 }

@@ -101,8 +101,11 @@ package com.chronos.air.model {
 				case DAOEvent.FIND_CODE_DATA:	// コードデータ検索
 					findCodeData();
 					break;
-				case DAOEvent.KINMUHYO_HOZON:	// 勤務表保存
-					kinmuhyoHozon();
+				case DAOEvent.SAVE_KINMUHYO:	// 勤務表保存
+					saveKinmuhyo();
+					break;
+				case DAOEvent.FIND_KINMUHYO_SHOSAI:	// 勤務表詳細検索
+					findKinmuhyoShosai();
 					break;
 				default:
 					Messages.showError(MessageId.NOT_FOUND_OPERATION_ERROR);
@@ -138,11 +141,16 @@ package com.chronos.air.model {
 
 		/** 全申請リスト検索及び申請リストの中、最新勤務表情報取得 */
 		public function findKinmuhyoListAndSaikinKinmuhyo():void {
+			findKinmuhyoList();
+			findSaikinKinmuhyo();
+		}
+
+		/** 勤務表リスト検索 */
+		private function findKinmuhyoList():void {
 			var saishinKinmuhyoNengetsu:String;				// 最新勤務表年月
 			var kinmuhyo:Kinmuhyo;							// 勤務表
 			var kinmuhyoShosai:KinmuhyoShosai;				// 勤務表詳細
 			var kinmuhyoAC:ArrayCollection;					// 勤務表リスト
-			var kinmuhyoShosaiAC:ArrayCollection;			// 勤務表詳細
 			var kinmuhyoShosaiMapper:KinmuhyoShosaiMapper;	// 勤務表詳細マップ
 			var cursor:IViewCursor;							// カーソル
 
@@ -152,40 +160,37 @@ package com.chronos.air.model {
 			try {
 				// 勤務表リスト検索 ----------------------------------
 				kinmuhyoAC = DAO.execute(con, SQL_FIND_KINMUHYO_LIST) as ArrayCollection;
-				// 申請リストが存在する場合
+				// 申請リストが存在する場合:
 				if (kinmuhyoAC.length > 0) {
 					cursor = kinmuhyoAC.createCursor();
 					kinmuhyoModel.kinmuhyoAC.removeAll();
 
-					//var isSaishinKinmuhyo:Boolean = true;
-					//kinmuhyoMapper = new KinmuhyoMapper();
-					for (; !cursor.afterLast; cursor.moveNext()) {
-						kinmuhyo = KinmuhyoMapper.mapping(cursor.current);
-						// 最近申請年月取得
-						//if (isSaishinKinmuhyo) {
-							//saishinKinmuhyoNengetsu = kinmuhyo.nengetsu;
-							//isSaishinKinmuhyo = false;
-						//}
-						kinmuhyoModel.kinmuhyoAC.addItem(kinmuhyo);
-					}
-
-					// 最近勤務表取得 ------------------------------------
-					kinmuhyoModel.kinmuhyo = kinmuhyoModel.kinmuhyoAC.getItemAt(0) as Kinmuhyo;
-					/*
-					var parameters:Dictionary = new Dictionary();
-					parameters[PARAMETER_NAME_NENGETSU] = saishinKinmuhyoNengetsu;
-
-					//kinmuhyoMapper = new KinmuhyoMapper();
-					kinmuhyoAC = DAO.execute(con, SQL_FIND_KINMUHYO_SHOSAI, parameters) as ArrayCollection;
-					cursor = kinmuhyoAC.createCursor();
-					//kinmuhyoModel.kinmuhyoAC.removeAll();
-
 					for (; !cursor.afterLast; cursor.moveNext()) {
 						kinmuhyo = KinmuhyoMapper.mapping(cursor.current);
 						kinmuhyoModel.kinmuhyoAC.addItem(kinmuhyo);
 					}
-					*/
 				}
+			} finally {
+				con.close();
+			}
+		}
+
+		/** 最近勤務表取得 */
+		private function findSaikinKinmuhyo():void {
+			var kinmuhyoShosaiAC:ArrayCollection;			// 勤務表詳細
+			con = new SQLConnection();
+			con.open(file);
+			try {
+				// 勤務表が存在する場合
+				if (kinmuhyoModel.kinmuhyoAC.length != 0) {
+					kinmuhyoModel.kinmuhyo = kinmuhyoModel.kinmuhyoAC.getItemAt(0) as Kinmuhyo;
+					var params:Dictionary = new Dictionary();
+					params[PARAMETER_NAME_NENGETSU] = kinmuhyoModel.kinmuhyo.nengetsu
+					kinmuhyoShosaiAC = DAO.execute(con, SQL_FIND_KINMUHYO_SHOSAI, params) as ArrayCollection;
+					kinmuhyoModel.kinmuhyoShosaiAC = kinmuhyoShosaiAC;
+				}
+			} catch (e:Error) {
+				Messages.showError(MessageId.SQL_ERROR, e);
 			} finally {
 				con.close();
 			}
@@ -247,7 +252,7 @@ package com.chronos.air.model {
 		}
 
 		/** 勤務表保存 */
-		private function kinmuhyoHozon():void {
+		private function saveKinmuhyo():void {
 			var isPersisted:Boolean = kinmuhyoModel.isPersisted;
 			var kinmuhyo:Kinmuhyo;
 			var kinmuhyoShosaiAC:ArrayCollection = new ArrayCollection();
@@ -255,8 +260,9 @@ package com.chronos.air.model {
 			var kinmuhyoMapper:KinmuhyoMapper = new KinmuhyoMapper();
 			var params:Dictionary;
 			var isExist:Object = null;
-			var savekinmuhyoSQL:String;
-			var savekinmuhyoShosaiSQL:String;
+			var saveKinmuhyoSQL:String;
+			var saveKinmuhyoShosaiSQL:String;
+			var kinmuhyoAC:ArrayCollection;
 
 			// 保存されていない場合、勤務表と勤務表詳細情報の保存処理を行う。
 			if (!isPersisted) {
@@ -276,38 +282,81 @@ package com.chronos.air.model {
 
 					// 存在する場合：更新 -----------------------------------------------------
 					if (isExist != null) {
-						savekinmuhyoSQL = SQL_UPDATE_KINMUHYO;
-						savekinmuhyoShosaiSQL = SQL_UPDATE_KINMUHYO_SHOSAI;
+						saveKinmuhyoSQL = SQL_UPDATE_KINMUHYO;
+						saveKinmuhyoShosaiSQL = SQL_UPDATE_KINMUHYO_SHOSAI;
 					// 存在しない場合：保存  --------------------------------------------------
 					} else {
-						savekinmuhyoSQL = SQL_INSERT_KINMUHYO;
-						savekinmuhyoShosaiSQL = SQL_INSERT_KINMUHYO_SHOSAI;
+						saveKinmuhyoSQL = SQL_INSERT_KINMUHYO;
+						saveKinmuhyoShosaiSQL = SQL_INSERT_KINMUHYO_SHOSAI;
 					}
 
 					con.begin();	// トランザクション開始
 
 					// 勤務表保存
-					DAO.execute(con, savekinmuhyoSQL, params);
+					DAO.execute(con, saveKinmuhyoSQL, params);
 
 					// 勤務表詳細保存 : TODO バッチ処理
 					var cursor:IViewCursor = kinmuhyoShosaiAC.createCursor();
 					for (; !cursor.afterLast; cursor.moveNext()) {
 						params = new Dictionary();
-						kinmuhyoShosai = KinmuhyoShosai(cursor.current);
+						kinmuhyoShosai = KinmuhyoShosaiMapper.mapping(cursor.current);
 						params = KinmuhyoShosaiMapper.parameterMapping(kinmuhyoShosai);
-						DAO.execute(con, savekinmuhyoShosaiSQL, params);
+						DAO.execute(con, saveKinmuhyoShosaiSQL, params);
 					}
 
-					Messages.showError(MessageId.SAVE_SUCCESS);
+					// 勤務表リスト更新
+					// TODO reloadKinmuhyoList(con);
+					kinmuhyoAC = DAO.execute(con, SQL_FIND_KINMUHYO_LIST) as ArrayCollection;
+					// 申請リストが存在する場合:
+					if (kinmuhyoAC.length > 0) {
+						cursor = kinmuhyoAC.createCursor();
+						kinmuhyoModel.kinmuhyoAC.removeAll();
+
+						for (; !cursor.afterLast; cursor.moveNext()) {
+							kinmuhyo = KinmuhyoMapper.mapping(cursor.current);
+							kinmuhyoModel.kinmuhyoAC.addItem(kinmuhyo);
+						}
+					}
+					Messages.showMessage(MessageId.SAVE_SUCCESS);
 					// TODO kinmuhyoModel.isPersisted = true;
 					con.commit();		// トランザクション終了
 				} catch (e:Error) {
 					con.rollback();		// ロールバック
-					Messages.showError("" + e);
+					Messages.showError(MessageId.SQL_ERROR + e);
 					trace("ロールバック: " + e.getStackTrace());
 				}finally {
-					//con.close();
+					con.close();
 				}
+			}
+		}
+
+		private function reloadKinmuhyoList(con:SQLConnection):void {
+			// findKinmuhyoList();
+		}
+
+		/** 年月で勤務表詳細取得 */
+		private function findKinmuhyoShosai():void {
+			var kinmuhyoShosaiAC:ArrayCollection;			// 勤務表詳細
+			var kinmuhyoAC:ArrayCollection;					// 勤務表ArrayCollection
+			var nengetsu:String = kinmuhyoModel.nengetsu;	// 検索用勤務表年月
+			con = new SQLConnection();
+			con.open(file);
+			try {
+				var params:Dictionary = new Dictionary();
+				params[PARAMETER_NAME_NENGETSU] = nengetsu;
+				kinmuhyoShosaiAC = DAO.execute(con, SQL_FIND_KINMUHYO_SHOSAI, params) as ArrayCollection;
+				kinmuhyoModel.kinmuhyoShosaiAC.removeAll();	// 勤務表詳細全削除
+				kinmuhyoModel.kinmuhyoShosaiAC = kinmuhyoShosaiAC;
+
+				kinmuhyoAC = DAO.execute(con, SQL_FIND_KINMUHYO, params) as ArrayCollection;
+				// 勤務表が存在する場合
+				if (kinmuhyoAC.length != 0) {
+					kinmuhyoModel.kinmuhyo = KinmuhyoMapper.mapping(kinmuhyoAC.getItemAt(0));	// 勤務表更新
+				}
+			} catch (e:Error) {
+				Messages.showError(MessageId.SQL_ERROR, e);
+			} finally {
+				con.close();
 			}
 		}
 	}

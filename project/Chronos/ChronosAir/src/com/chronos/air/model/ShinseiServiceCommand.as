@@ -107,7 +107,15 @@ package com.chronos.air.model {
 				kinmuhyoModel.kinmuhyoAC.removeAll();
 				kinmuhyoModel.kinmuhyoShosaiAC.removeAll();
 
-				// 画面初期化
+				// 画面初期化 -----------------------------------------
+				// 勤務表画面DateChooser初期化
+				var currentDateArray:Array = kinmuhyoModel.currentDate.split(".");
+				mainView.kinmuhyoView.kinmuhyoDateChooser.displayedYear = currentDateArray[0];
+				mainView.kinmuhyoView.kinmuhyoDateChooser.displayedMonth = currentDateArray[1] - 1;
+
+				// TODO 勤務表DateChooserを保存された勤務表より年月が超えることを防ぐ処理
+
+				// ログインフォム初期化
 				mainView.homeView.idTextInput.text = "";
 				mainView.homeView.passwordTextInput.text = "";
 				mainView.homeView.rememberMeCheckBox.selected = false;

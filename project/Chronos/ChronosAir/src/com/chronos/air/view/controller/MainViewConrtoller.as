@@ -21,15 +21,8 @@ package com.chronos.air.view.controller {
 		public function initialized(doc:Object, id:String):void {
 			view = doc as MainView;
 			// イベント登録
-			view.addEventListener(FlexEvent.INITIALIZE, applicationInitializeHandler);
 			view.addEventListener(FlexEvent.CREATION_COMPLETE, creationCompletHandler);
-		}
-
-		/** アプリケーション初期化処理を行う */
-		public function applicationInitializeHandler(e:FlexEvent):void {
-			// アプリケーション初期化
-			var event:ApplicationEvent = new ApplicationEvent(ApplicationEvent.INITIALIZE_APPLICATION);
-			event.dispatch();
+			view.addEventListener(FlexEvent.INITIALIZE, applicationInitializeHandler);
 		}
 
 		public function creationCompletHandler(e:FlexEvent):void {
@@ -38,6 +31,13 @@ package com.chronos.air.view.controller {
 
 			// ViewStackをロックし、HOME画面を表示する。
 			initMainView();
+		}
+
+		/** アプリケーション初期化処理を行う */
+		public function applicationInitializeHandler(e:FlexEvent):void {
+			// アプリケーション初期化
+			var event:ApplicationEvent = new ApplicationEvent(ApplicationEvent.INITIALIZE_APPLICATION);
+			event.dispatch();
 		}
 
 		/** ViewStackをロックし、HOME画面を表示する。 */
