@@ -18,7 +18,7 @@ package com.chronos.air.model
 			kinmuhyo.nengetsu = "";
 			kinmuhyo.shinseiBango = "";
 			kinmuhyo.shinseiKubun = "";
-			kinmuhyo.shinseiJokyo = "";
+			kinmuhyo.shinseiJokyo = "1";		// 作成中
 			kinmuhyo.syoteiNissu = 0;
 			kinmuhyo.sagyoNissu = 0;
 			kinmuhyo.kekkinNissu = 0;
@@ -32,7 +32,7 @@ package com.chronos.air.model
 			nengetsu = "";
 			shinseiBango = "";
 			shinseiKubun = "";
-			shinseiJokyo = "";
+			shinseiJokyo = "1";	// 作成中
 			syoteiNissu = 0;
 			sagyoNissu = 0;
 			kekkinNissu = 0;

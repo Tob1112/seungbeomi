@@ -8,6 +8,11 @@
                 super.data=value;
 
                 var date:Date=value[DataGridListData(listData).dataField] as Date;
+                // アプリケーションの初期化のため
+                if (date == null) {
+	                var hizukeArray:Array = String(value.hizuke).split("-");
+                	date = new Date(hizukeArray[0], hizukeArray[1]-1, hizukeArray[2]);
+                }
 
                 if (date) {
                     switch (date.day) {

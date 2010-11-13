@@ -24,9 +24,6 @@
 			verticalScrollPolicy="off">
 			<mx:Button id="kinmuhyoShinkiSakuseiButton" label="新規作成" left="5" top="10" width="84" height="30" fontSize="12"/>
 			<mx:Button id="kinmuhyoPreviewButton" label="プレビュー" right="5" top="10" width="84" height="30" fontSize="11"/>
-			<!-- ================================================== -->
-			<!-- サマリーFORM											-->
-			<!-- ================================================== -->
 
 			<mx:HRule left="10" right="10" y="50"/>
 
@@ -34,7 +31,7 @@
 			<!-- 申請書リストBOX										-->
 			<!-- ================================================== -->
 			<mx:Label width="100%" text="勤務表リスト" styleName="sectionHeader" x="5" y="60"/>
-			<mx:List id="shinseiList" left="5" right="5" height="435" y="80" styleName="shinseiList"
+			<mx:List id="kinmuhyoList" left="5" right="5" height="435" y="80" styleName="shinseiList"
 				dataProvider="{controller.model.kinmuhyoAC}"
 				labelFunction="{controller.shinseiListLabelFunction}"
 				selectable="true">
@@ -67,6 +64,7 @@
 						<mx:DataGridColumn headerText="終了時間値" dataField="syuryoJikanchi"
 							visible="true"/>
 						<mx:DataGridColumn headerText="休憩時間" dataField="kyukeiJikan"
+							labelFunction="{controller.kyukeiJikanLabelFunction}"
 							itemEditor="com.chronos.air.view.JikokuComboBox" />
 						<mx:DataGridColumn headerText="実働時間" dataField="jitsudoJikan" editable="false"/>
 						<mx:DataGridColumn headerText="作業内容及び状況" dataField="sagyoNaiyo" width="300"/>
@@ -87,8 +85,8 @@
 			   </mx:Form>
 				<mx:Label text="実働時間合計：" fontSize="12" top="10" right="355"/>
 				<mx:Label text="{controller.model.kinmuhyo.jitsudoJikanGokei}" top="10" fontSize="15" id="jitsudouJikanGokeiLabel" right="268" fontWeight="bold" color="#33C815"/>
-				<mx:Button y="8" id="kinmuhyoHozonButton" label="SAVE" right="105" width="96" height="40" fontSize="15" fontWeight="bold" enabled="false"/>
-				<mx:Button y="8" id="kinmuhyoSoshinButton" label="SEND" right="10" width="96" height="40" fontSize="15" fontWeight="bold" enabled="false"/>
+				<mx:Button y="8" id="saveKinmuhyoButton" label="SAVE" right="105" width="96" height="40" fontSize="15" fontWeight="bold" enabled="false"/>
+				<mx:Button y="8" id="sendKinmuhyoButton" label="SEND" right="10" width="96" height="40" fontSize="15" fontWeight="bold" enabled="false"/>
 			</mx:Canvas>
 		</mx:VBox>
 	</mx:HDividedBox>
@@ -104,8 +102,8 @@
 			<mx:SetProperty target="{menuBox}" name="width" value="0"/>
 		</mx:State>
 		<mx:State name="updateKinmuhyo">
-			<mx:SetProperty target="{kinmuhyoHozonButton}" name="enabled" value="true" />
-			<mx:SetProperty target="{kinmuhyoSoshinButton}" name="enabled" value="true" />
+			<mx:SetProperty target="{saveKinmuhyoButton}" name="enabled" value="true" />
+			<mx:SetProperty target="{sendKinmuhyoButton}" name="enabled" value="true" />
 		</mx:State>
 	</mx:states>
 
@@ -117,7 +115,7 @@
           <mx:Move target="{menuBox}" />
        </mx:Transition>
        <mx:Transition fromState="*" toState="updateKinmuhyo">
-            <mx:Sequence targets="{[kinmuhyoHozonButton, kinmuhyoSoshinButton]}">
+            <mx:Sequence targets="{[saveKinmuhyoButton, sendKinmuhyoButton]}">
                 <mx:Glow duration="700" alphaFrom="1.0" alphaTo="0.0" blurXFrom="0.0" blurXTo="100.0" blurYFrom="0.0" blurYTo="100.0" color="0x009900"/>
             </mx:Sequence>
         </mx:Transition>

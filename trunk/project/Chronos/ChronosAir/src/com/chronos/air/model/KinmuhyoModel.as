@@ -8,6 +8,7 @@ package com.chronos.air.model {
 		public var isPersisted:Boolean = false;
 
 		public var currentDate:String;	// 現在日時
+		public var nengetsu:String;	// 勤務表詳細検索用
 		public var yasumiKubunAC:ArrayCollection = new ArrayCollection();
 		public var jikokuhyoAC:ArrayCollection = new ArrayCollection(); // 時刻表
 		public var kinmuhyo:Kinmuhyo = new Kinmuhyo();	// 勤務表
