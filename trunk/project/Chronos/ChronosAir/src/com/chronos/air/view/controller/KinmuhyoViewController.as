@@ -84,6 +84,8 @@ package com.chronos.air.view.controller {
 
 				if (month < 10) {
 					getsu = "0" + month;
+				} else {
+					getsu = month.toString();
 				}
 
 				// 勤務表リストと勤務表詳細と同期
