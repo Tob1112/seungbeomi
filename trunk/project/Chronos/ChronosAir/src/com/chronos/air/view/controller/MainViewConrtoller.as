@@ -11,6 +11,7 @@ package com.chronos.air.view.controller {
 
 	import mx.core.IMXMLObject;
 	import mx.events.FlexEvent;
+	import mx.managers.CursorManager;
 
 	public class MainViewConrtoller implements IMXMLObject{
 
@@ -32,6 +33,8 @@ package com.chronos.air.view.controller {
 			// ViewStackをロックし、HOME画面を表示する。
 			initMainView();
 		}
+
+		//----------------------------------------------------------------------------------------------
 
 		/** アプリケーション初期化処理を行う */
 		public function applicationInitializeHandler(e:FlexEvent):void {

@@ -20,6 +20,8 @@ package com.chronos.air.model {
 					break;
 			}
 		}
+		
+		//----------------------------------------------------------------------------------------------
 
 		/** アプリケーション初期化 */
 		private function initializeApplication():void {

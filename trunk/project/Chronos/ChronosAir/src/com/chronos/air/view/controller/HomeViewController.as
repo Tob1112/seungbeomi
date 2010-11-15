@@ -10,6 +10,7 @@ package com.chronos.air.view.controller {
 
 	import mx.core.IMXMLObject;
 	import mx.events.FlexEvent;
+	import mx.managers.CursorManager;
 	import mx.validators.Validator;
 
 	public class HomeViewController implements IMXMLObject {
@@ -29,7 +30,10 @@ package com.chronos.air.view.controller {
 			view.rememberMeCheckBox.addEventListener(MouseEvent.CLICK, rememberMeHandler);
 		}
 
+		//----------------------------------------------------------------------------------------------
+
 		private function loginButtonClickHandler(e:MouseEvent):void {
+			CursorManager.setBusyCursor();
 			// 妥当性チェック
 			view.validators.forEach(function(item:Object, index:int, array:Array):void {
 				item.enabled = true;

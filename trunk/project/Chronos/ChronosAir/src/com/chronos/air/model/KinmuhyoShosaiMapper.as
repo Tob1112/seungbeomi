@@ -2,6 +2,8 @@ package com.chronos.air.model {
 
 	import flash.utils.Dictionary;
 
+	import mx.collections.ArrayCollection;
+
 	public class KinmuhyoShosaiMapper {
 
 		private static const PARAMETER_NAME_NENGETSU:String 			= ":nengetsu";
@@ -36,7 +38,7 @@ package com.chronos.air.model {
 			mapped[PARAMETER_NAME_NENGETSU] = obj.nengetsu;
 			(obj.nengetsu == null)       ? mapped[PARAMETER_NAME_NENGETSU] = "" 	   : mapped[PARAMETER_NAME_NENGETSU] = obj.nengetsu;
 			(obj.hizuke == null)         ? mapped[PARAMETER_NAME_HIZUKE] = "" 		   : mapped[PARAMETER_NAME_HIZUKE] = obj.hizuke;
-			(obj.yasumiKubun == null)    ? mapped[PARAMETER_NAME_YASUMI_KUBUN] = ""    : mapped[PARAMETER_NAME_YASUMI_KUBUN] = obj.yasumiKubun;
+			(obj.yasumiKubun == null)    ? mapped[PARAMETER_NAME_YASUMI_KUBUN] = ""    : mapped[PARAMETER_NAME_YASUMI_KUBUN] = yasumiKubunToCode(obj.yasumiKubun);
 			(obj.shigyoJikan == null)    ? mapped[PARAMETER_NAME_SHIGYO_JIKAN] = ""    : mapped[PARAMETER_NAME_SHIGYO_JIKAN] = obj.shigyoJikan;
 			(obj.shigyoJikanchi == 0)    ? mapped[PARAMETER_NAME_SHIGYO_JIKANCHI] = 0  : mapped[PARAMETER_NAME_SHIGYO_JIKANCHI] = obj.shigyoJikanchi;
 			(obj.syuryoJikan == null)    ? mapped[PARAMETER_NAME_SYURYO_JIKAN] = ""    : mapped[PARAMETER_NAME_SYURYO_JIKAN] = obj.syuryoJikan;
@@ -46,6 +48,21 @@ package com.chronos.air.model {
 			(obj.sagyoNaiyo == null)     ? mapped[PARAMETER_NAME_SAGYO_NAIYO] = "" 	   : mapped[PARAMETER_NAME_SAGYO_NAIYO] = obj.sagyoNaiyo;
 
 			return mapped;
+		}
+
+		private static function yasumiKubunToCode(value:String):String {
+			var model:KinmuhyoModel = KinmuhyoModel.getInstance();
+			var yasumiKubunAC:ArrayCollection = model.yasumiKubunAC;
+			var code:String;
+
+			for each (var obj:Object in yasumiKubunAC) {
+				if (obj.value == value) {
+					code = obj.code;
+					break;
+				}
+			}
+
+			return code;
 		}
 
 	}

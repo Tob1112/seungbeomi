@@ -55,6 +55,8 @@ package com.chronos.air.view.controller {
 			setCurrentDate();	// 現在の時刻を設定する。(2011年11月3日(水))
 		}
 
+		// -----------------------------------------------------------------------------------------------------------------
+
 		/** 現在の時刻を設定する。(2011年11月3日(水)) */
 		private function setCurrentDate():void {
 			var currentDate:Date = new Date();
@@ -187,18 +189,17 @@ package com.chronos.air.view.controller {
 		}
 		/** 休み区分LabelFuntion */
 		public function yasumiKubunLabelFunction(item:Object, data:DataGridColumn):String {
-			var result:String;
+			var value:String;
 			// TODO コードを休み区分に変更
 			var yasumiKubunAC:ArrayCollection = model.yasumiKubunAC as ArrayCollection;
 			for each (var obj:Object in yasumiKubunAC) {
 				if (obj.code == item.yasumiKubun) {
-					result = item.yasumiKubun;
+					value = obj.value;
 					break;
 				}
 			}
 
-			Logger.log("休み区分："+ item.yasumiKubun);
-			return result;
+			return value;
 		}
 		/** 休憩時間LabelFunction */
 		public function kyukeiJikanLabelFunction(item:Object, data:DataGridColumn):String {
