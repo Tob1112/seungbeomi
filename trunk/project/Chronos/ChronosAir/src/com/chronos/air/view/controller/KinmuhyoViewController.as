@@ -222,13 +222,14 @@ package com.chronos.air.view.controller {
 
 			// 勤務表 -----------------------
 			kinmuhyoXML = <勤務表/>;
-			kinmuhyoXML.年月 = kinmuhyo.nengetsu;
-			kinmuhyoXML.社員番号 = appModel.shain.shainBango;
-			kinmuhyoXML.社員名 = appModel.shain.shainMei;
-			kinmuhyoXML.所定日数 = kinmuhyo.syoteiNissu;
-			kinmuhyoXML.作業日数 = kinmuhyo.sagyoNissu;
-			kinmuhyoXML.欠勤日数 = kinmuhyo.kekkinNissu;
-			kinmuhyoXML.実働時間合計 = kinmuhyo.jitsudoJikanGokei;
+			kinmuhyoXML.勤務表 = <勤務表/>;
+			kinmuhyoXML.勤務表.@年月 = kinmuhyo.nengetsu;
+			kinmuhyoXML.勤務表.@社員番号 = appModel.shain.shainBango;
+			kinmuhyoXML.勤務表.@社員名 = appModel.shain.shainMei;
+			kinmuhyoXML.勤務表.@所定日数 = kinmuhyo.syoteiNissu;
+			kinmuhyoXML.勤務表.@作業日数 = kinmuhyo.sagyoNissu;
+			kinmuhyoXML.勤務表.@欠勤日数 = kinmuhyo.kekkinNissu;
+			kinmuhyoXML.勤務表.@実働時間合計 = kinmuhyo.jitsudoJikanGokei;
 			var i:int=0;
 			for (; !cursor.afterLast; cursor.moveNext()) {
 				var kinmuhyoShosai:KinmuhyoShosai = KinmuhyoShosai(cursor.current);
