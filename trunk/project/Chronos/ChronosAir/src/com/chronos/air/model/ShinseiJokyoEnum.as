@@ -17,7 +17,6 @@ package com.chronos.air.model
 		private var value:String;
 
 		public function ShinseiJokyoEnum(code:String, value:String) {
-			//trace(code + ":" + value);
 			this.code = code;
 			this.value = value;
 		}
