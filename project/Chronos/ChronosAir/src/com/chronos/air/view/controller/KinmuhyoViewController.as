@@ -177,7 +177,7 @@ package com.chronos.air.view.controller {
 			event.dispatch();
 		}
 
-		// LABEL FUNCTION ---------------------------------------------------
+		// LABEL FUNCTION -----------------------------------------------------------------------------
 		/** 勤務表リストLabelFunction */
 		public function shinseiListLabelFunction(item:Object):String {
 			var nengetsu:String = Kinmuhyo(item).nengetsu;
@@ -187,7 +187,9 @@ package com.chronos.air.view.controller {
 		/** 休み区分LabelFuntion */
 		public function yasumiKubunLabelFunction(item:Object, data:DataGridColumn):String {
 
-			// Logger.log("休み区分："+ yasumiKubun);
+			// TODO コードを休み区分に変更
+
+			Logger.log("休み区分："+ item.yasumiKubun);
 			return item.yasumiKubun;
 		}
 		/** 休憩時間LabelFunction */

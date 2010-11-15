@@ -123,7 +123,7 @@ package com.chronos.air.view.controller {
 				if (isUpdatedKyukeiJikan) {
 					kinmuhyoShosai.kyukeiJikan = shinkiKinmuhyo.kyukeiJikan;
 				}
-				// 実働時間
+				// 実働時間計算
 				if (isUpdatedShigyoJikan && isUpdatedSyuryoJikan && isUpdatedKyukeiJikan) {
 					kinmuhyoShosai.jitsudoJikan = syuryoJikanchi - shigyoJikanchi - kyukeiJikan;
 				}

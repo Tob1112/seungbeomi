@@ -22,6 +22,7 @@ package com.chronos.air.model {
 		private var dao:DAO = DAO.getInstance();
 		private var con:SQLConnection;
 
+		// SQL ID --------------------------------------------------------------------------
 		// SQL PREFIX
 		private static const PREFIX_SHAIN:String 						= "shain.";
 		private static const PREFIX_KINMUHYO:String 					= "kinmuhyo.";
@@ -51,7 +52,7 @@ package com.chronos.air.model {
 
 		// REMOVE SQL ID
 
-		// PARAMETER NAME
+		// PARAMETER NAME --------------------------------------------------------------------
 		// SHAIN  PARAMETER
 		private static const PARAMETER_NAME_ID:String 					= ":id";
 		private static const PARAMETER_NAME_PASSWORD:String 			= ":password";
@@ -83,6 +84,8 @@ package com.chronos.air.model {
 		// ETC
 		private static const REMEMBER_ME:int = 1;
 		private static const FORGET_ME:int   = 0;
+
+		// EXECUTE -----------------------------------------------------------------------------------
 
 		public function execute(e:CairngormEvent):void {
 			switch(e.type) {

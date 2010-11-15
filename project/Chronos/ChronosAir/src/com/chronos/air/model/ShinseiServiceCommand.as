@@ -156,6 +156,8 @@ package com.chronos.air.model {
 				var daoEvent:DAOEvent = new DAOEvent(DAOEvent.FIND_KINMUHYO_LIST);
 				daoEvent.dispatch();
 
+				// 最新の勤務表を選択表示をする
+				mainView.kinmuhyoView.kinmuhyoList.selectedIndex = 0;
 			}
 		}
 

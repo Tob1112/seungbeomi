@@ -12,7 +12,6 @@
 	<util:DateColumnFormatter id="hizukeDateColumnFormatter" />
 
 	<mx:HDividedBox id="kinmuhyoDividedBox" width="100%" height="100%"
-		horizontalDividerCursor="@Embed('asset/img/arrow.gif')"
 		horizontalGap="5"
 		doubleClickEnabled="true">
 		<!-- ================================================== -->
@@ -54,6 +53,7 @@
 							labelFunction="{hizukeDateColumnFormatter.format}"
 							itemRenderer="com.chronos.air.view.DayColoredLabel" editable="false"/>
 						<mx:DataGridColumn headerText="休み区分" dataField="yasumiKubun" minWidth="100"
+							labelFunction="{controller.yasumiKubunLabelFunction}"
 							itemEditor="com.chronos.air.view.YasumiKubunComboBox"/>
 						<mx:DataGridColumn headerText="始業時間" dataField="shigyoJikan"
 							itemEditor="com.chronos.air.view.JikokuComboBox"/>

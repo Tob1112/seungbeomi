@@ -21,7 +21,7 @@ package com.chronos.air.model {
 				case KinmuhyoEvent.SAVE_KINMUHYO:	// 勤務表保存
 					saveKinmuhyo();
 					break;
-				case KinmuhyoEvent.FIND_KINMUHYO_SHOSAI:
+				case KinmuhyoEvent.FIND_KINMUHYO_SHOSAI:	// 勤務表詳細検索
 					findKinmuhyoShosai();
 					break;
 			}
