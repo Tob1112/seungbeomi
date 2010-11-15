@@ -17,6 +17,7 @@ package com.chronos.air.view.controller {
 	import flash.geom.Rectangle;
 	import flash.html.HTMLLoader;
 
+	import mx.collections.ArrayCollection;
 	import mx.controls.dataGridClasses.DataGridColumn;
 	import mx.core.IMXMLObject;
 	import mx.events.DataGridEvent;
@@ -186,11 +187,18 @@ package com.chronos.air.view.controller {
 		}
 		/** 休み区分LabelFuntion */
 		public function yasumiKubunLabelFunction(item:Object, data:DataGridColumn):String {
-
+			var result:String;
 			// TODO コードを休み区分に変更
+			var yasumiKubunAC:ArrayCollection = model.yasumiKubunAC as ArrayCollection;
+			for each (var obj:Object in yasumiKubunAC) {
+				if (obj.code == item.yasumiKubun) {
+					result = item.yasumiKubun;
+					break;
+				}
+			}
 
 			Logger.log("休み区分："+ item.yasumiKubun);
-			return item.yasumiKubun;
+			return result;
 		}
 		/** 休憩時間LabelFunction */
 		public function kyukeiJikanLabelFunction(item:Object, data:DataGridColumn):String {
