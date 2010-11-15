@@ -6,6 +6,7 @@ package com.chronos.air.model {
 	import com.chronos.air.common.MessageId;
 	import com.chronos.air.common.Messages;
 	import com.chronos.air.event.DAOEvent;
+	import com.chronos.air.util.Logger;
 
 	import flash.data.SQLConnection;
 	import flash.filesystem.File;
@@ -114,7 +115,7 @@ package com.chronos.air.model {
 					Messages.showError(MessageId.NOT_FOUND_OPERATION_ERROR);
 			}
 		}
-		
+
 		//----------------------------------------------------------------------------------------------
 
 		/** ユーザー情報保存 */
@@ -213,6 +214,7 @@ package com.chronos.air.model {
 					kinmuhyoModel.shinkiKinmuhyo = ShinkiKinmuhyo.getInstance();	// 新規勤務表取得
 					kinmuhyoModel.shinkiKinmuhyo.nengetsu = nengetsu;
 				}
+				Logger.log("max年月：" + nengetsu);
 			} finally {
 				con.close();
 			}
@@ -322,7 +324,7 @@ package com.chronos.air.model {
 							kinmuhyoModel.kinmuhyoAC.addItem(kinmuhyo);
 						}
 					}
-					Messages.showMessage(MessageId.SAVE_SUCCESS);
+					//Messages.showMessage(MessageId.SAVE_SUCCESS);
 					// TODO kinmuhyoModel.isPersisted = true;
 					con.commit();		// トランザクション終了
 				} catch (e:Error) {
