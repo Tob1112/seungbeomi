@@ -159,7 +159,6 @@ package com.chronos.air.view.controller {
 					isUpdatedKyukeiJikan = true;
 					break;
 			}
-
 		}
 		/** 時間ComboBox Label Function */
 		public function kyukeiJikanComboBoxLabelFunction(item:Object):String {
