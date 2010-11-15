@@ -41,6 +41,8 @@ package com.chronos.air.view.controller {
 			setDisplayShinkiKinmuhyoDateChooserYearAndMonth();	// 年月設定
 		}
 
+		//----------------------------------------------------------------------------------------------
+
 		/** 勤務表新規作成ウィンドウを閉じる */
 		private function closeWindowHandler(e:*):void {
 			PopUpManager.removePopUp(view);

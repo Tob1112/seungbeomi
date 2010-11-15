@@ -114,6 +114,8 @@ package com.chronos.air.model {
 					Messages.showError(MessageId.NOT_FOUND_OPERATION_ERROR);
 			}
 		}
+		
+		//----------------------------------------------------------------------------------------------
 
 		/** ユーザー情報保存 */
 		private function saveShain():void {

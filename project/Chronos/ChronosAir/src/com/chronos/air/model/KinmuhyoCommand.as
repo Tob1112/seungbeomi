@@ -26,6 +26,8 @@ package com.chronos.air.model {
 					break;
 			}
 		}
+		
+		//----------------------------------------------------------------------------------------------
 
 		/** 新規作成時年月最大値取得 */
 		private function findMaxNengetsu():void {
