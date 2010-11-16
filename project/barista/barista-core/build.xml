@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="barista-core" basedir="." default="all">
-    
+
 	<!-- ========================================== -->
     <!-- CLASSPATH									-->
     <!-- ========================================== -->
@@ -24,12 +24,17 @@
     <!-- ========================================== -->
     <!-- TARGETS									-->
     <!-- ========================================== -->
+	<target name="init">
+		<mkdir dir="${build.dir}"/>
+		<mkdir dir="${dist.dir}"/>
+	</target>
+
     <target name="compile" description="Compile main source tree java files">
-        <javac destdir="${build.dir}" debug="true" optimize="false" deprecation="false" failonerror="true" encoding="UTF-8">
+        <javac destdir="${build.dir}" debug="true" optimize="false" deprecation="false" failonerror="true" encoding="UTF-8" includeantruntime="false">
             <src path="${src.dir}" />
             <classpath refid="classpath" />
         </javac>
-        
+
         <!-- Copy XML files to ${build.dir}/build -->
         <copy todir="${build.dir}">
             <!--<fileset dir="${src.dir}" includes="**/*.java" /> -->
@@ -40,28 +45,27 @@
     <target name="dist" description="Deploy application">
 		<jar jarfile="${dist.dir}/${app.name}.jar" manifest="./META-INF/MANIFEST.MF" basedir="${build.dir}" includes="**/*.class,**/*.java,*.xml,*.properties" />
 	</target>
-	
+
 	<target name="deploy">
+        <copy todir="${common.lib.dir}" preservelastmodified="true">
+            <fileset dir="${dist.dir}" />
+        </copy>
         <copy todir="${domain.lib.dir}" preservelastmodified="true">
             <fileset dir="${dist.dir}" />
         </copy>
-        <copy todir="${web.lib.dir}" preservelastmodified="true">
+        <copy todir="${webapp.lib.dir}" preservelastmodified="true">
             <fileset dir="${dist.dir}" />
         </copy>
-        <copy todir="${appengine.lib.dir}" preservelastmodified="true">
+		<copy todir="${appengine.lib.dir}" preservelastmodified="true">
             <fileset dir="${dist.dir}" />
         </copy>
 	</target>
 
     <target name="clean" description="Clean output directories">
-       	<delete>
-        	<fileset dir="${build.dir}"/>
-        	<fileset dir="${dist.dir}" includes="**/*" />
-        </delete>
-    	<delete dir="${build.dir}/org" />
-    	<delete dir="${build.dir}/META-INF" />
+    	<delete dir="${build.dir}" />
+    	<delete dir="${dist.dir}" />
     </target>
-    
-    <target name="all" depends="clean, compile, dist, deploy, clean" />
+
+    <target name="all" depends="clean, init, compile, dist, deploy, clean" />
 
 </project>
