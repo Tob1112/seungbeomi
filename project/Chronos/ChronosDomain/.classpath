@@ -6,7 +6,7 @@
 	<classpathentry kind="src" path="src/test/resources"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="lib/chronos-common.jar"/>
-	<classpathentry kind="lib" path="lib/barista-core.jar"/>
+	<classpathentry kind="lib" path="lib/barista-core.jar" sourcepath="/barista-core"/>
 	<classpathentry kind="lib" path="lib/antlr-2.7.6.jar"/>
 	<classpathentry kind="lib" path="lib/asm-1.5.3.jar"/>
 	<classpathentry kind="lib" path="lib/c3p0-0.9.1.2.jar"/>
@@ -36,9 +36,13 @@
 	<classpathentry kind="lib" path="lib/mail.jar"/>
 	<classpathentry kind="lib" path="lib/poi-3.2-FINAL-20081019.jar"/>
 	<classpathentry kind="lib" path="lib/servlet-api-2.5.jar"/>
-	<classpathentry kind="lib" path="lib/spring-test-2.5.6.jar"/>
+	<classpathentry kind="lib" path="lib/spring-test-2.5.6.jar" sourcepath="/Users/seungbeomi/.m2/repository/org/springframework/spring-test/2.5.6/spring-test-2.5.6-sources.jar"/>
 	<classpathentry kind="lib" path="lib/spring-web-2.5.6.jar"/>
 	<classpathentry kind="lib" path="lib/spring-webmvc-2.5.6.jar"/>
 	<classpathentry kind="lib" path="lib/spring.jar"/>
+	<classpathentry kind="lib" path="lib/ojdbc14.jar"/>
+	<classpathentry kind="lib" path="lib/ibatis-2.3.4.726.jar"/>
+	<classpathentry kind="lib" path="lib/unitils-core-3.1.jar"/>
+	<classpathentry kind="lib" path="lib/ognl-2.7.3.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

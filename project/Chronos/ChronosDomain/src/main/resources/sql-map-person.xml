@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+        "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Person">
+
+	<resultMap id="allPersonMap" class="com.chronos.domain.sample.Person">
+		<result property="id" column="ID" />
+		<result property="name" column="NAME" />
+	</resultMap>
+
+	<sql id="selectAll">
+		SELECT ID, NAME
+    </sql>
+	<sql id="whereFind">
+		WHERE ID = #id#
+    </sql>
+
+	<select id="get" parameterClass="hashmap" resultMap="allPersonMap">
+		/* sql_id : person get */
+		<include refid="selectAll" />
+		FROM PERSON
+		<include refid="whereFind" />
+	</select>
+
+	<select id="list" resultMap="allPersonMap">
+		/* sql_id : person list */
+		<include refid="selectAll" />
+		FROM PERSON
+	</select>
+
+	<insert id="add" parameterClass="hashmap">
+		/* sql_id : person add */
+		INSERT INTO PERSON (ID, NAME) VALUES (#id#, #name#)
+    </insert>
+
+	<update id="update" parameterClass="hashmap">
+		/* sql_id : person update */
+		UPDATE PERSON SET NAME = #name#
+		<include refid="whereFind" />
+	</update>
+
+	<delete id="delete" parameterClass="hashmap">
+		/* sql_id : person delete */
+		DELETE FROM PERSON
+		<include refid="whereFind" />
+	</delete>
+
+</sqlMap>

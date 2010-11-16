@@ -24,7 +24,7 @@ import org.barista.exception.BaristaRuntimeException;
  * <p>시트를 기입할때의 주의점은 아래와 같다.</p>
  * <ui>
  * 	<li>셀의 서식설정은 모두 "문자"로 한다.</li>
- * 	<li>첫번째행은 테이블명을 기입한다.</li>
+ * 	<li>첫번째행은 컬럼명을 기입한다.</li>
  * 	<li>두번째행은 데이터타입을 기입한다.</li>
  * 	<li>세번째행부터는 데이터을 기입한다.</li>
  * </ui>
@@ -33,13 +33,13 @@ import org.barista.exception.BaristaRuntimeException;
  */
 public class ExcelLoader {
 	private static final int CELL_TYPE_NUMERIC = 0;
-	
+
 	private Connection connection;
-	
+
 	public ExcelLoader(Connection connection) {
 		this.connection = connection;
 	}
-	
+
 	/**
 	 * 지정된 워크북을 열어 지정된 시트명의 테이터를 지정된 테이블에 로드한다.
 	 * @param tableName
@@ -52,15 +52,15 @@ public class ExcelLoader {
 		List<String> types;
 		List<Map<String, String>> data;
 		HSSFSheet sheet;
-		
+
 		sheet = this.getSheet(workbookPath, sheetName);
-		
+
 		columnNames = this.loadColumnNames(sheet);
 		types = this.loadTypes(sheet);
 		data = this.loadData(sheet, columnNames);
-		
+
 		sql = this.createSql(tableName, columnNames, types);
-		
+
 		for (int i=0; i < data.size(); i++) {
 			this.insert(sql, columnNames, types, data.get(i));
 		}
@@ -84,9 +84,9 @@ public class ExcelLoader {
 		InputStream is;
 		HSSFWorkbook workbook;
 		HSSFSheet sheet;
-		
+
 		workbook = null;
-		
+
 		try {
 			is = new FileInputStream(new File(workbookPath));
 			workbook = new HSSFWorkbook(new POIFSFileSystem(is));
@@ -99,7 +99,7 @@ public class ExcelLoader {
 			System.out.println(e);
 			System.exit(0);
 		}
-		
+
 		sheet = workbook.getSheet(sheetName);
 		if (sheet == null) {
 			System.out.println("시트를 찾지 못했습니다.: sheetName=<" + sheetName + ">");
@@ -118,27 +118,27 @@ public class ExcelLoader {
 		int current;
 		List<String> columnNames;
 		HSSFCell cell;
-		
+
 		current = 0;
 		columnNames = new ArrayList<String>();
-		
+
 		while (true) {
-			cell = sheet.getRow(1).getCell(current);
-			
+			cell = sheet.getRow(0).getCell(current);
+
 			if (cell == null) {
 				break;
 			}
-			
-			cellValue = this.readCellValueAsString(sheet.getRow(1).getCell(current), false);
+
+			cellValue = this.readCellValueAsString(sheet.getRow(0).getCell(current), false);
 			columnNames.add(cellValue);
 			current++;
 		}
-		
+
 		return columnNames;
 	}
 
 	/**
-	 * 지정된 시트로부터 데이터타입을 로드한다. 
+	 * 지정된 시트로부터 데이터타입을 로드한다.
 	 * @param sheet 시트
 	 * @return
 	 */
@@ -147,10 +147,10 @@ public class ExcelLoader {
 		int current;
 		List<String> types;
 		HSSFCell cell;
-		
+
 		current = 0;
 		types = new ArrayList<String>();
-		
+
 		while (true) {
 			cell = sheet.getRow(1).getCell(current);
 			if (cell == null) {
@@ -160,10 +160,10 @@ public class ExcelLoader {
 			types.add(cellValue);
 			current++;
 		}
-		
+
 		return types;
 	}
-	
+
 	/**
 	 * 지정된 시트로부터 데이타를 로드한다.
 	 * @param sheet 시트
@@ -176,30 +176,30 @@ public class ExcelLoader {
 		Map<String, String> line;
 		List<Map<String, String>> loadeds;
 		HSSFCell cell;
-		
+
 		current = 2;
 		loadeds = new ArrayList<Map<String,String>>();
-		
+
 		while (true) {
 			if (sheet.getRow(current) == null) {
 				break;
 			}
 			line = new HashMap<String, String>();
-			
+
 			for (int i=0; i < headers.size(); i++) {
 				cell = sheet.getRow(current).getCell(i);
-				if (cell == null) {
+				if (cell != null) {
 					cellValue = this.readCellValueAsString(cell, false);
 					line.put(headers.get(i), cellValue);
 				}
 			}
-			
+
 			loadeds.add(line);
 			current++;
 		}
 		return loadeds;
 	}
-	
+
 	/**
 	 * 테이블명, 컬럼명, 데이터타입리스트를 이용해 INSERT 쿼리를 생성한다.
 	 * @param tableName 테이블명
@@ -211,13 +211,13 @@ public class ExcelLoader {
 		StringBuffer sb;
 		String sql;
 		String type;
-		
+
 		sb = new StringBuffer();
 		sb.append("INSERT INTO " + tableName + "(");
-		
+
 		for (int i=0; i < columnNames.size(); i++) {
 			type = types.get(i);
-			
+
 			if (type.equals("Date")) {
 				sb.append("TO_DATE(?, 'YYYYMMDDHH24MISS', 'NLS_DATE_LANGUAGE=AMERICAN')");
 			} else if (type.equals("Timestamp")) {
@@ -233,14 +233,14 @@ public class ExcelLoader {
 				sb.append(", ");
 			}
 		}
-		
+
 		sb.append(")");
 		sql = sb.toString();
 		return sql;
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * @param sql
 	 * @param columnNames
 	 * @param types
@@ -251,15 +251,15 @@ public class ExcelLoader {
 		String type;
 		int numberOfSet;
 		PreparedStatement stmt;
-		
+
 		try {
 			stmt = this.connection.prepareStatement(sql);
-			
+
 			numberOfSet = 0;
 			for (int i=0; i < types.size(); i++) {
 				columnName = columnNames.get(i);
 				type = types.get(i);
-				
+
 				if (type.equals("String")) {
 					stmt.setString(numberOfSet + 1, data.get(columnName));
 					numberOfSet++;
@@ -285,7 +285,7 @@ public class ExcelLoader {
 			throw new BaristaRuntimeException("SQL Exception: " + e);
 		}
 	}
-	
+
 	/**
 	 * @param tableName
 	 */
@@ -298,7 +298,7 @@ public class ExcelLoader {
 		} catch (SQLException e) {
 			throw new BaristaRuntimeException("SQL Exception: " + e);
 		}
-		
+
 	}
 
 	/**
@@ -311,7 +311,7 @@ public class ExcelLoader {
 		String read;
 		int cellType;
 		int indexOfPeriod;
-		
+
 		cellType = cell.getCellType();
 		if (cellType == CELL_TYPE_NUMERIC) {
 			read = Double.toString(cell.getNumericCellValue());
