@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="chronos-common" basedir="." default="all">
+
+	<!-- ========================================== -->
+    <!-- CLASSPATH									-->
+    <!-- ========================================== -->
+	<property file="build.properties" />
+	<property name="src.dir" value="src/main/java"/>
+	<property name="resources.dir" value="src/main/resources"/>
+	<property name="test.src.dir" value="src/test/java"/>
+	<property name="test.resources.dir" value="src/test/resources"/>
+	<property name="lib.dir" value="lib"/>
+	<property name="dist.dir" value="dist"/>
+	<property name="build.dir" value="build"/>
+
+    <!-- ========================================== -->
+    <!-- CLASSPATH									-->
+    <!-- ========================================== -->
+    <path id="classpath">
+        <fileset dir="${lib.dir}" includes="*.jar" />
+        <pathelement path="${build.dir}" />
+    </path>
+
+    <!-- ========================================== -->
+    <!-- TARGETS									-->
+    <!-- ========================================== -->
+	<target name="init">
+		<mkdir dir="${build.dir}"/>
+		<mkdir dir="${dist.dir}"/>
+	</target>
+
+    <target name="compile" description="Compile main source tree java files">
+        <javac destdir="${build.dir}" debug="true" optimize="false" deprecation="false" failonerror="true" encoding="UTF-8" includeantruntime="false">
+            <src path="${src.dir}" />
+            <classpath refid="classpath" />
+        </javac>
+
+        <!-- Copy XML files to ${build.dir}/build -->
+        <copy todir="${build.dir}">
+            <!--<fileset dir="${src.dir}" includes="**/*.java" /> -->
+            <fileset dir="${resources.dir}" includes="**/*.xml,**/*.properties" />
+        </copy>
+    </target>
+
+    <target name="dist" description="Deploy application">
+		<jar jarfile="${dist.dir}/${app.name}.jar" manifest="./META-INF/MANIFEST.MF" basedir="${build.dir}" includes="**/*.class,**/*.java,*.xml,*.properties" />
+	</target>
+
+	<target name="deploy">
+        <copy todir="${domain.lib.dir}" preservelastmodified="true">
+            <fileset dir="${dist.dir}" />
+        </copy>
+        <copy todir="${webapp.lib.dir}" preservelastmodified="true">
+            <fileset dir="${dist.dir}" />
+        </copy>
+		<copy todir="${appengine.lib.dir}" preservelastmodified="true">
+            <fileset dir="${dist.dir}" />
+        </copy>
+	</target>
+
+    <target name="clean" description="Clean output directories">
+    	<delete dir="${build.dir}" />
+    	<delete dir="${dist.dir}" />
+    </target>
+
+    <target name="all" depends="clean, init, compile, dist, deploy, clean" />
+
+</project>
