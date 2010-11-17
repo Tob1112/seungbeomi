@@ -21,9 +21,11 @@
 			minWidth="180" maxWidth="180"
 			backgroundColor="#EDEDED" borderStyle="solid"
 			verticalScrollPolicy="off">
+			<mx:Button id="kinmuhyoShinkiSakuseiButton" label="新規作成" left="5" top="10" height="30" fontSize="12" right="5"/>
+			<!--
 			<mx:Button id="kinmuhyoShinkiSakuseiButton" label="新規作成" left="5" top="10" width="84" height="30" fontSize="12"/>
 			<mx:Button id="kinmuhyoPreviewButton" label="プレビュー" right="5" top="10" width="84" height="30" fontSize="11"/>
-
+			-->
 			<mx:HRule left="10" right="10" y="50"/>
 
 			<!-- ================================================== -->

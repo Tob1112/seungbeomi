@@ -20,7 +20,7 @@ package com.chronos.air.model {
 		public static function mapping(obj:Object):KinmuhyoShosai {
 			var mapped:KinmuhyoShosai = new KinmuhyoShosai();
 			mapped.nengetsu = obj.nengetsu;
-			mapped.hizuke = obj.hizuke;
+			mapped.hizuke = makeHizukeToDate(obj.hizuke);
 			mapped.yasumiKubun = obj.yasumiKubun;
 			mapped.shigyoJikan = obj.shigyoJikan;
 			mapped.shigyoJikanchi = obj.shigyoJikanchi;
@@ -63,6 +63,20 @@ package com.chronos.air.model {
 			}
 
 			return code;
+		}
+
+		private static function makeHizukeToDate(hizuke:Object):Date {
+			var result:Date;
+			var hizukeArray:Array;
+
+			if (hizuke is String) {
+				hizukeArray = String(hizuke).split("-");
+				result = new Date(hizukeArray[0], hizukeArray[1] - 1, hizukeArray[2]);
+			} else {
+				result = hizuke as Date;
+			}
+
+			return result;
 		}
 
 	}

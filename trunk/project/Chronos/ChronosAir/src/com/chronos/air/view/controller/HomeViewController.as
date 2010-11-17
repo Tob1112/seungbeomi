@@ -4,9 +4,14 @@ package com.chronos.air.view.controller {
 	import com.chronos.air.common.Messages;
 	import com.chronos.air.event.ShinseiServiceEvent;
 	import com.chronos.air.model.ApplicationModel;
+	import com.chronos.air.util.Logger;
 	import com.chronos.air.view.HomeView;
+	import com.hurlant.crypto.Crypto;
+	import com.hurlant.crypto.hash.IHash;
+	import com.hurlant.util.Hex;
 
 	import flash.events.MouseEvent;
+	import flash.utils.ByteArray;
 
 	import mx.core.IMXMLObject;
 	import mx.events.FlexEvent;
@@ -34,6 +39,7 @@ package com.chronos.air.view.controller {
 
 		private function loginButtonClickHandler(e:MouseEvent):void {
 			CursorManager.setBusyCursor();
+
 			// 妥当性チェック
 			view.validators.forEach(function(item:Object, index:int, array:Array):void {
 				item.enabled = true;
@@ -44,12 +50,15 @@ package com.chronos.air.view.controller {
 				return;
 			}
 
-
 			var isRememberMe:Boolean = view.rememberMeCheckBox.selected;
 			var event:ShinseiServiceEvent;
+			var hash:IHash = Crypto.getHash("md5");
+			var pw:ByteArray;
 
 			model.shain.id = view.idTextInput.text;
-			model.shain.password = view.passwordTextInput.text;
+			// パスワードmd5暗号化
+			pw = hash.hash(Hex.toArray(Hex.fromString(view.passwordTextInput.text)));
+			model.shain.password = Hex.fromArray(pw);
 			model.shain.rememberMe = view.rememberMeCheckBox.selected;
 
 			// ログイン
