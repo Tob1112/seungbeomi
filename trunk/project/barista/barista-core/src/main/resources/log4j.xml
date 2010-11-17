@@ -38,8 +38,12 @@
         <level value="DEBUG" />
     </logger>
 
-   	<!-- iContact logger -->
+   	<!-- BARISTA LOGGER -->
 	<logger name="org.barista">
+		<level value="DEBUG"/>
+	</logger>
+	<!-- BARISTA LOGGER -->
+	<logger name="com.chronos">
 		<level value="DEBUG"/>
 	</logger>
 
