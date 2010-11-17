@@ -6,7 +6,7 @@
 <struts>
 
     <constant name="struts.enable.DynamicMethodInvocation" value="false" />
-    <constant name="struts.devMode" value="false" />
+    <constant name="struts.devMode" value="true" />
     <constant name="struts.objectFactory" value="spring" />
 
 	<!--
@@ -21,6 +21,6 @@
     </package>
     -->
 
-    <include file="struts-person.xml"/>
+    <include file="struts-sample.xml"/>
 
 </struts>
