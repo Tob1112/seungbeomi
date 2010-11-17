@@ -1,0 +1,54 @@
+body, td, p {
+	font: normal x-small verdana, arial, sans-serif;
+}
+
+.panelTitle {
+	background-color: #003399;
+	color: #eeeeee;
+	font-size: 11pt;
+	border-color: #3366ff #000033 #000033 #3366ff;
+	border-width: 1;
+	border-style: solid;
+	padding: 1;
+}
+
+.panelBody {
+	background-color: #eeeeee;
+	border-color: black;
+	border-width: 0 1 1 1;
+	border-style: solid;
+	padding: 2;
+}
+
+#pageTitle {
+	background-color: #003399;
+	color: #eeeeee;
+	font-weight: bold;
+	font-size: 11pt;
+	border-width: 1;
+	border-style: solid;
+	padding: 1;
+	text-align: center;
+}
+
+#header {
+	background-color: #999999;
+	font-size: xx-small;
+	text-align: center;
+	color: black;
+	border-color: #666666 #cccccc #cccccc #666666;
+	border-width: 0 0 0 1;
+	border-style: solid;
+	padding: 1;
+}
+
+#footer {
+	background-color: #ffffff;
+	font-size: 9pt;
+	color: black;
+	text-align: center;
+	border-color: #666666 #cccccc #cccccc #666666;
+	border-width: 1 0 0 0 ;
+	border-style: solid;
+	padding: 1;
+}
