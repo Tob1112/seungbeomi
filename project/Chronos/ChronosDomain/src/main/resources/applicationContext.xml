@@ -23,9 +23,14 @@
         <!-- IBATIS SQLMAPCLIENT                  			-->
         <!-- ============================================== -->
         <bean id="sqlMapClient"
-                class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
-	        <property name="configLocation" value="classpath:sqlMapConfig.xml" />
-	        <property name="dataSource" ref="dataSource"/>
-        </bean>
+	        class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+			<property name="configLocation" value="classpath:sql-map-config.xml" />
+			<property name="dataSource" ref="dataSource"/>
+			<property name="lobHandler" ref="oracleLobHandler"/>
+		</bean>
 
+		<bean id="simpleNativeJdbcExtractor" class="org.springframework.jdbc.support.nativejdbc.SimpleNativeJdbcExtractor"/>
+	    <bean id="oracleLobHandler" class="org.springframework.jdbc.support.lob.OracleLobHandler">
+	        <property name="nativeJdbcExtractor" ref="simpleNativeJdbcExtractor"/>
+	    </bean>
 </beans>

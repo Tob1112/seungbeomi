@@ -47,6 +47,7 @@
 	</target>
 
 	<target name="deploy">
+		<!-- COPY JAR FILE -->
         <copy todir="${domain.lib.dir}" preservelastmodified="true">
             <fileset dir="${dist.dir}" />
         </copy>
@@ -55,6 +56,14 @@
         </copy>
 		<copy todir="${appengine.lib.dir}" preservelastmodified="true">
             <fileset dir="${dist.dir}" />
+        </copy>
+
+		<!-- COPY RESOURCES FILE -->
+		<copy todir="${domain.resources.dir}" preservelastmodified="true">
+            <fileset dir="${resources.dir}" />
+        </copy>
+		<copy todir="${webapp.resources.dir}" preservelastmodified="true">
+            <fileset dir="${resources.dir}" />
         </copy>
 	</target>
 
