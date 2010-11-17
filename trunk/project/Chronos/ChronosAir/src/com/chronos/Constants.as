@@ -20,8 +20,7 @@ package com.chronos
     	public static const HOME_VIEWSTACK_INDEX:int = 0;
 		public static const KINMUHYO_VIEWSTACK_INDEX:int = 1;
 
-		public static const PROJECT_PATH:String = PROJECT_NAME;
-    	public static const SYSTEM_DIRECTORY_PATH:String = PROJECT_PATH + File.separator + SYSTEM_DIRECTORY_NAME;
+    	public static const SYSTEM_DIRECTORY_PATH:String = PROJECT_NAME + File.separator + SYSTEM_DIRECTORY_NAME;
     	public static const DATABASE_FILE_PATH:String = SYSTEM_DIRECTORY_PATH + File.separator + DATABASE_NAME;
     	public static const ORIGINAL_DATABASE_FILE_PATH:String = DATABASE_DIRECTORY_NAME + File.separator + DATABASE_NAME;
 

@@ -4,7 +4,6 @@ package com.chronos.air.model {
 	public class ApplicationModel {
 
 		public var shain:Shain = new Shain();
-		public var kinmuhyoTemplate:XML;
 
 		private static var instance:ApplicationModel = null;
 

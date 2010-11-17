@@ -1,16 +1,12 @@
 package com.chronos.air.view.controller {
 
-	import com.chronos.Constants;
 	import com.chronos.air.common.LabelUtil;
 	import com.chronos.air.event.KinmuhyoEvent;
-	import com.chronos.air.model.ApplicationModel;
 	import com.chronos.air.model.Kinmuhyo;
 	import com.chronos.air.model.KinmuhyoModel;
-	import com.chronos.air.model.KinmuhyoShosai;
 	import com.chronos.air.model.ShinkiKinmuhyo;
 	import com.chronos.air.model.ShinseiJokyoEnum;
 	import com.chronos.air.util.CalendarUtil;
-	import com.chronos.air.util.DateUtils;
 	import com.chronos.air.util.Logger;
 	import com.chronos.air.view.KinmuhyoShinkiSakuseiWindow;
 	import com.chronos.air.view.KinmuhyoView;
@@ -18,14 +14,10 @@ package com.chronos.air.view.controller {
 	import flash.display.NativeWindowInitOptions;
 	import flash.display.NativeWindowSystemChrome;
 	import flash.events.MouseEvent;
-	import flash.filesystem.File;
-	import flash.filesystem.FileMode;
-	import flash.filesystem.FileStream;
 	import flash.geom.Rectangle;
 	import flash.html.HTMLLoader;
 
 	import mx.collections.ArrayCollection;
-	import mx.collections.IViewCursor;
 	import mx.controls.dataGridClasses.DataGridColumn;
 	import mx.core.IMXMLObject;
 	import mx.events.DataGridEvent;
@@ -37,10 +29,8 @@ package com.chronos.air.view.controller {
 	public class KinmuhyoViewController implements IMXMLObject{
 
 		private var view:KinmuhyoView;
-		[Bindable] public var model:KinmuhyoModel = KinmuhyoModel.getInstance();
-		[Bindable] private var appModel:ApplicationModel = ApplicationModel.getInstance();
-		[Bindable] private var kinmuhyoXML:XML;	// 送信用勤務表XML
-		private var stream:FileStream;
+		[Bindable]
+		public var model:KinmuhyoModel = KinmuhyoModel.getInstance();
 
 		private static const SHOW_MENU_STATE:String = "showMenu";
 		private static const HIDE_MENU_STATE:String = "hideMenu";
@@ -58,7 +48,6 @@ package com.chronos.air.view.controller {
 			view.kinmuhyoPreviewButton.addEventListener(MouseEvent.CLICK, kinmuhyouPreviewHandler);	// 勤務表プレビュー
 			view.kinmuhyoList.addEventListener(ListEvent.CHANGE, kinmuhyoListClickHandler);	// 勤務表リストクリック
 			view.saveKinmuhyoButton.addEventListener(MouseEvent.CLICK, saveKinmuhyoHandler);	// 勤務表保存
-			view.sendKinmuhyoButton.addEventListener(MouseEvent.CLICK, sendKinmuhyoHandler);	// 勤務表送信
 
 			//view.kinmuhyoShosaiDataGrid.addEventListener(ListEvent.CHANGE, jikokuHenkoHandler);
 			view.kinmuhyoShosaiDataGrid.addEventListener(DataGridEvent.ITEM_EDIT_BEGIN, jikokuKoushinKaishiHandler);
@@ -115,25 +104,21 @@ package com.chronos.air.view.controller {
 			var event:KinmuhyoEvent = new KinmuhyoEvent(KinmuhyoEvent.FIND_MAX_NENGETSU, view);
 			event.dispatch();
 
+			// 勤務表年月最大値を作業年月に設定
+			var sagyoNengetsu:String = ShinkiKinmuhyo.getInstance().nengetsu;
+			var sagyoNengetsuArray:Array = sagyoNengetsu.split("-");
+
 			// 勤務表新規作成ウィンドウポップアップ
 			var kinmuhyouShinkiSakuseiWindow:KinmuhyoShinkiSakuseiWindow
 					= PopUpManager.createPopUp(view, KinmuhyoShinkiSakuseiWindow, true) as KinmuhyoShinkiSakuseiWindow;
 			kinmuhyouShinkiSakuseiWindow.addEventListener(KinmuhyoEvent.KINMUHYO_SHINKI_SAKUSEI, kinmuhyoShinkiSakuseiHandler);	// 勤務表新規作成
 			//kinmuhyouShinkiSakuseiWindow.controller.model.shinkiKinmuhyo.nengetsu = sagyoNengetsu;
 
-			// 勤務表年月最大値を作業年月に設定
-			var sagyoNengetsu:String = ShinkiKinmuhyo.getInstance().nengetsu;
-			var sagyoNengetsuArray:Array = sagyoNengetsu.split("-");
-			var year:int = sagyoNengetsuArray[0];
-			var month:int = int(sagyoNengetsuArray[1]);
 			if (sagyoNengetsu != "") {
-				if (month == 12) {
-					year = year + 1;
-					month = 0;
-				}
-				kinmuhyouShinkiSakuseiWindow.shinkiKinmuhyoDateChooser.displayedYear = year;
-				kinmuhyouShinkiSakuseiWindow.shinkiKinmuhyoDateChooser.displayedMonth = month;
+				kinmuhyouShinkiSakuseiWindow.shinkiKinmuhyoDateChooser.displayedYear = sagyoNengetsuArray[0];
+				kinmuhyouShinkiSakuseiWindow.shinkiKinmuhyoDateChooser.displayedMonth = sagyoNengetsuArray[1];
 			}
+
 			PopUpManager.centerPopUp(kinmuhyouShinkiSakuseiWindow);
 		}
 
@@ -148,18 +133,10 @@ package com.chronos.air.view.controller {
 			view.kinmuhyoDateChooser.displayedYear = year;
 			view.kinmuhyoDateChooser.displayedMonth = month - 1;
 
-			// 勤務表保存
-			saveKinmuhyoHandler(e);
-
-			// 保存可能状態に更新
-			updatedKinmuhyo();
-		}
-
-		/** 保存可能状態に更新 */
-		private function updatedKinmuhyo():void {
 			// 保存可能状態に更新
 			view.currentState = "updateKinmuhyo";
 			model.isPersisted = false;
+
 		}
 
 		/** 勤務表プレビュー */
@@ -191,76 +168,16 @@ package com.chronos.air.view.controller {
 		}
 
 		/** 勤務表保存 */
-		private function saveKinmuhyoHandler(e:*):void {
+		private function saveKinmuhyoHandler(e:MouseEvent):void {
 			var event:KinmuhyoEvent = new KinmuhyoEvent(KinmuhyoEvent.SAVE_KINMUHYO);
 			event.dispatch();
 		}
 
-		/** 勤務表詳細検索 */
 		private function findKinmuhyoShosai(nengetsu:String):void {
 			model.nengetsu = nengetsu;	// 検索のため
 
 			var event:KinmuhyoEvent = new KinmuhyoEvent(KinmuhyoEvent.FIND_KINMUHYO_SHOSAI, view);
 			event.dispatch();
-		}
-
-		/** 勤務表送信 */
-		private function sendKinmuhyoHandler(e:MouseEvent):void {
-
-			createKinmuhyoXML();	// 勤務表XML作成
-			writeKinmuhyoXML();
-			//zipKinmuhyo();		// 勤務表圧縮
-			//sendKinmuhyo();		// 勤務表送信
-		}
-
-		/** 勤務表XML作成 */
-		private function createKinmuhyoXML():void {
-
-			var kinmuhyo:Kinmuhyo = model.kinmuhyo;
-			var kinmuhyoShosaiAC:ArrayCollection = model.kinmuhyoShosaiAC;
-			var cursor:IViewCursor = kinmuhyoShosaiAC.createCursor();
-
-			// 勤務表 -----------------------
-			kinmuhyoXML = <勤務表/>;
-			kinmuhyoXML.勤務表 = <勤務表/>;
-			kinmuhyoXML.勤務表.@年月 = kinmuhyo.nengetsu;
-			kinmuhyoXML.勤務表.@社員番号 = appModel.shain.shainBango;
-			kinmuhyoXML.勤務表.@社員名 = appModel.shain.shainMei;
-			kinmuhyoXML.勤務表.@所定日数 = kinmuhyo.syoteiNissu;
-			kinmuhyoXML.勤務表.@作業日数 = kinmuhyo.sagyoNissu;
-			kinmuhyoXML.勤務表.@欠勤日数 = kinmuhyo.kekkinNissu;
-			kinmuhyoXML.勤務表.@実働時間合計 = kinmuhyo.jitsudoJikanGokei;
-			var i:int=0;
-			for (; !cursor.afterLast; cursor.moveNext()) {
-				var kinmuhyoShosai:KinmuhyoShosai = KinmuhyoShosai(cursor.current);
-				kinmuhyoXML.勤務表詳細[i] = <勤務表詳細/>;
-				kinmuhyoXML.勤務表詳細[i].@日付 = DateUtils.formatYYMM(kinmuhyoShosai.hizuke);
-				kinmuhyoXML.勤務表詳細[i].@休み区分 = kinmuhyoShosai.yasumiKubun;
-				kinmuhyoXML.勤務表詳細[i].@始業時間 = kinmuhyoShosai.shigyoJikan;
-				kinmuhyoXML.勤務表詳細[i].@始業時間値 = kinmuhyoShosai.shigyoJikanchi;
-				kinmuhyoXML.勤務表詳細[i].@終了時間 = kinmuhyoShosai.syuryoJikan;
-				kinmuhyoXML.勤務表詳細[i].@終了時間値 = kinmuhyoShosai.syuryoJikanchi;
-				kinmuhyoXML.勤務表詳細[i].@休憩時間 = kinmuhyoShosai.kyukeiJikan;
-				kinmuhyoXML.勤務表詳細[i].@実働時間 = kinmuhyoShosai.jitsudoJikan;
-				kinmuhyoXML.勤務表詳細[i].@作業内容 = kinmuhyoShosai.sagyoNaiyo;
-				i++;
-			}
-		}
-
-		/** 勤務表XML出力 */
-		private function writeKinmuhyoXML():void {
-			var sendFileName:String = "201011_勤務表_孫承範.xml";
-			var kinmuhyoXMLFile:File = File.userDirectory.resolvePath(Constants.PROJECT_PATH + File.separator + sendFileName);
-			//var kinmuhyoXMLFile:File = File.createTempFile().resolvePath(sendFileName);
-			Logger.log("送信用臨時ファイル：" + kinmuhyoXMLFile.nativePath);
-
-			var outputString:String = '<?xml version="1.0" encoding="utf-8"?>\n';
-			outputString += kinmuhyoXML.toXMLString();
-			outputString = outputString.replace(/\n/g, File.lineEnding);
-			stream = new FileStream();
-			stream.open(kinmuhyoXMLFile, FileMode.WRITE);
-			stream.writeUTFBytes(outputString);
-			stream.close();
 		}
 
 		// LABEL FUNCTION -----------------------------------------------------------------------------
@@ -276,11 +193,12 @@ package com.chronos.air.view.controller {
 			// TODO コードを休み区分に変更
 			var yasumiKubunAC:ArrayCollection = model.yasumiKubunAC as ArrayCollection;
 			for each (var obj:Object in yasumiKubunAC) {
-				if (obj.code == item.yasumiKubun) {
+				if (obj.code == item.yasumiKubun || obj.value == item.yasumiKubun) {
 					value = obj.value;
 					break;
 				}
 			}
+
 			return value;
 		}
 		/** 休憩時間LabelFunction */

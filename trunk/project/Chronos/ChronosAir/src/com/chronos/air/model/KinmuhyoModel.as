@@ -4,7 +4,7 @@ package com.chronos.air.model {
 
 	[Bindable]
 	public class KinmuhyoModel {
-		// TODO
+
 		public var isPersisted:Boolean = false;
 
 		public var currentDate:String;	// 現在日時
