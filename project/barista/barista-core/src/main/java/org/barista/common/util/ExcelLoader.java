@@ -24,7 +24,7 @@ import org.barista.exception.BaristaRuntimeException;
  * <p>시트를 기입할때의 주의점은 아래와 같다.</p>
  * <ui>
  * 	<li>셀의 서식설정은 모두 "문자"로 한다.</li>
- * 	<li>첫번째행은 컬럼명을 기입한다.</li>
+ * 	<li>첫번째행은 테이블명을 기입한다.</li>
  * 	<li>두번째행은 데이터타입을 기입한다.</li>
  * 	<li>세번째행부터는 데이터을 기입한다.</li>
  * </ui>
@@ -213,7 +213,7 @@ public class ExcelLoader {
 		String type;
 
 		sb = new StringBuffer();
-		sb.append("INSERT INTO " + tableName + "(");
+		sb.append("INSERT INTO " + tableName + " VALUES (");
 
 		for (int i=0; i < columnNames.size(); i++) {
 			type = types.get(i);
@@ -264,7 +264,7 @@ public class ExcelLoader {
 					stmt.setString(numberOfSet + 1, data.get(columnName));
 					numberOfSet++;
 				} else if (type.equals("int")) {
-					stmt.setInt(numberOfSet + 1, Integer.parseInt(data.get(columnName)));
+					stmt.setInt(numberOfSet + 1, (int) Double.parseDouble(data.get(columnName)));
 					numberOfSet++;
 				} else if (type.equals("long")) {
 					stmt.setLong(numberOfSet + 1, Long.parseLong(data.get(columnName)));
@@ -282,6 +282,7 @@ public class ExcelLoader {
 			stmt.execute();
 			stmt.close();
 		} catch (SQLException e) {
+			e.printStackTrace();
 			throw new BaristaRuntimeException("SQL Exception: " + e);
 		}
 	}
@@ -296,6 +297,7 @@ public class ExcelLoader {
 			stmt.execute();
 			stmt.close();
 		} catch (SQLException e) {
+			e.printStackTrace();
 			throw new BaristaRuntimeException("SQL Exception: " + e);
 		}
 

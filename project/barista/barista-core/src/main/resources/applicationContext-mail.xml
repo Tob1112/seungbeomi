@@ -10,6 +10,6 @@
 		 />-->
 
 	<bean id="mailSender"
-		class="com.icontact.common.mail.MockMailSender"
+		class="org.barista.common.mail.MockMailSender"
 		scope="singlton" />
 </beans>
