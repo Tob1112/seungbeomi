@@ -6,8 +6,8 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 
+	<context:annotation-config />
 	<context:property-placeholder location="classpath:database.properties" />
-	<context:component-scan base-package="com.chronos.domain.sample" />
 
 	<!-- ============================================== -->
 	<!-- DATASOURCE										-->
@@ -36,9 +36,14 @@
 
 
 	<!-- ============================================== -->
-	<!-- DOMAIN BEANS									-->
+	<!-- SAMPLE BEANS									-->
 	<!-- ============================================== -->
-	<bean id="icontactDao" class="com.chronos.domain.sample.PersonDaoImpl">
+	<bean id="personAction" class="com.chronos.web.sample.PersonAction" />
+
+	<bean id="personService" class="com.chronos.domain.sample.PersonServiceImpl"/>
+
+	<bean id="personDao" class="com.chronos.domain.sample.PersonDaoImpl">
 		<property name="sqlMapClient" ref="sqlMapClient"/>
 	</bean>
+
 </beans>

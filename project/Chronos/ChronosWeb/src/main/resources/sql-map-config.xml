@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//iBATIS.com//DTD SQL Map Config 2.0//EN"
+		"http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+
+<sqlMapConfig>
+	<settings
+		cacheModelsEnabled="true"
+		useStatementNamespaces="true"
+	/>
+	<!-- ========== CLOB/BLOB HANDLER SETTING ============= -->
+	<typeHandler
+		callback="org.springframework.orm.ibatis.support.ClobStringTypeHandler"
+		jdbcType="CLOB" javaType="java.lang.String" />
+	<typeHandler
+		callback="org.springframework.orm.ibatis.support.BlobByteArrayTypeHandler"
+		jdbcType="BLOB" javaType="[B" />
+
+
+	<!-- ============================================= -->
+    <!-- SQL MAPPING FILE                              -->
+    <!-- ============================================= -->
+	<sqlMap resource="sql-map-person.xml" />
+
+</sqlMapConfig>
