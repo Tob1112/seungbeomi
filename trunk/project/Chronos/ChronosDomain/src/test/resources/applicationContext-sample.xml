@@ -34,11 +34,10 @@
     </bean>
 
 
-
 	<!-- ============================================== -->
 	<!-- DOMAIN BEANS									-->
 	<!-- ============================================== -->
-	<bean id="icontactDao" class="com.chronos.domain.sample.PersonDaoImpl">
+	<bean id="personDao" class="com.chronos.domain.sample.PersonDaoImpl">
 		<property name="sqlMapClient" ref="sqlMapClient"/>
 	</bean>
 </beans>

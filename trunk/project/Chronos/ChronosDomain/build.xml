@@ -47,11 +47,17 @@
 	</target>
 
 	<target name="deploy">
+		<!-- COPY JAR FILE -->
         <copy todir="${webapp.lib.dir}" preservelastmodified="true">
             <fileset dir="${dist.dir}" />
         </copy>
 		<copy todir="${appengine.lib.dir}" preservelastmodified="true">
             <fileset dir="${dist.dir}" />
+        </copy>
+
+		<!-- COPY RESOURCES FILE -->
+		<copy todir="${webapp.resources.dir}" preservelastmodified="true">
+            <fileset dir="${resources.dir}" />
         </copy>
 	</target>
 

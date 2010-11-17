@@ -3,7 +3,7 @@ package com.chronos.domain.sample;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.unitils.reflectionassert.ReflectionAssert.assertReflectionEquals;
-import static org.unitils.reflectionassert.ReflectionComparatorMode.*;
+import static org.unitils.reflectionassert.ReflectionComparatorMode.LENIENT_ORDER;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -18,8 +18,6 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -74,6 +72,7 @@ public class PersonTest {
 	public void setUp() throws SQLException {
 		assertNotNull(datasource);
 		connection = datasource.getConnection();
+		connection.setAutoCommit(false);
 	}
 
 	@After
@@ -97,15 +96,48 @@ public class PersonTest {
 	}
 
 	@Test
-	public void testPersonDBunitCRUD() {
+	public void testPersonExcelCRUD() {
 		List<Person> founds;
+		Person found;
 
 		this.unloadTestData(TABLE_NAME_PERSON);
 		this.loadTestData(TABLE_NAME_PERSON, "list");
 
 		founds = dao.list();
-
 		assertEquals(2, founds.size());
+
+		//-----------------------------------------
+
+		this.unloadTestData(TABLE_NAME_PERSON);
+		this.loadTestData(TABLE_NAME_PERSON, "get");
+
+		found = dao.get(1);
+		assertEquals("get", found.getName());
+
+		//-----------------------------------------
+
+		this.unloadTestData(TABLE_NAME_PERSON);
+		this.loadTestData(TABLE_NAME_PERSON, "add");
+
+		founds = dao.list();
+		assertEquals(2, founds.size());
+
+		//-----------------------------------------
+
+		this.unloadTestData(TABLE_NAME_PERSON);
+		this.loadTestData(TABLE_NAME_PERSON, "update");
+
+		found = dao.get(2);
+		assertEquals("update", found.getName());
+
+		//-----------------------------------------
+
+		this.unloadTestData(TABLE_NAME_PERSON);
+		this.loadTestData(TABLE_NAME_PERSON, "delete");
+
+		founds = dao.list();
+		assertEquals(1, founds.size());
+
 	}
 
 	private Person createDefaultPerson() {
