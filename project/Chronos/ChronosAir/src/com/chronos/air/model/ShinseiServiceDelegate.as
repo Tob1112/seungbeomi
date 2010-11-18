@@ -2,6 +2,7 @@ package com.chronos.air.model {
 	import com.adobe.cairngorm.business.ServiceLocator;
 	import com.chronos.Constants;
 
+	import mx.managers.CursorManager;
 	import mx.rpc.AsyncToken;
 	import mx.rpc.IResponder;
 	import mx.rpc.remoting.RemoteObject;
@@ -36,7 +37,9 @@ package com.chronos.air.model {
 
 		/** 勤務表送信 */
 		public function sendKinmuhyo(shinsei:Shinsei):void {
-			service.sendKinmuhyo(shinsei);
+			CursorManager.removeBusyCursor();	// TODO delete
+			var token:AsyncToken = service.sendKinmuhyo(shinsei);
+			token.addResponder(responder);
 		}
 	}
 }

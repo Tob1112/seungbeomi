@@ -13,8 +13,8 @@ package com.chronos.air.view.controller {
 	import com.chronos.air.model.ShinseiJokyoEnum;
 	import com.chronos.air.util.CalendarUtil;
 	import com.chronos.air.util.Logger;
-	import com.chronos.air.util.Zip;
 	import com.chronos.air.util.DateUtils;
+	import com.chronos.air.util.Zip;
 	import com.chronos.air.view.KinmuhyoShinkiSakuseiWindow;
 	import com.chronos.air.view.KinmuhyoView;
 
@@ -35,6 +35,7 @@ package com.chronos.air.view.controller {
 	import mx.events.DividerEvent;
 	import mx.events.FlexEvent;
 	import mx.events.ListEvent;
+	import mx.managers.CursorManager;
 	import mx.managers.PopUpManager;
 
 	public class KinmuhyoViewController implements IMXMLObject{
@@ -202,6 +203,7 @@ package com.chronos.air.view.controller {
 		}
 		/** 勤務表送信 */
         private function sendKinmuhyoHandler(e:MouseEvent):void {
+				CursorManager.setBusyCursor();
 				saveKinmuhyoHandler(e);	// 勤務表保存
                 createKinmuhyoXML();    // 勤務表XML生成
                 writeKinmuhyoXML();		// 勤務表XML作成

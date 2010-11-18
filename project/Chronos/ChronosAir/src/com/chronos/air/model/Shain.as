@@ -1,6 +1,7 @@
 package com.chronos.air.model
 {
-	[RemoteClass(alias="com.chronos.appengine.domain.Shain")]
+	//[RemoteClass(alias="com.chronos.appengine.domain.Shain")]
+	[RemoteClass(alias="com.chronos.appengine.sample.Shain")]
 	[Bindable]
 	public class Shain
 	{

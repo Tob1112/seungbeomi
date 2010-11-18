@@ -2,10 +2,10 @@
 <rds:ServiceLocator xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:rds="com.adobe.cairngorm.business.*">
 
  <!--
- <mx:RemoteObject id="chronosRO" destination="ShinseiService"
+ <mx:RemoteObject id="chronosRO" destination="mockShinseiService"
                      endpoint="http://localhost:8888/spring/messagebroker/amf"/>
  -->
- <mx:RemoteObject id="chronosRO" destination="ShinseiService"
+ <mx:RemoteObject id="chronosRO" destination="mockShinseiService"
                      endpoint="http://chronosgae.appspot.com/spring/messagebroker/amf"/>
 
 </rds:ServiceLocator>
