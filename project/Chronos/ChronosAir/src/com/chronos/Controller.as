@@ -40,6 +40,7 @@ package com.chronos
 			// 申請サービス ---------------------------------------------------------
 			addCommand(ShinseiServiceEvent.LOGIN, ShinseiServiceCommand);	// ログイン
 			addCommand(ShinseiServiceEvent.LOGOUT, ShinseiServiceCommand);	// ログアウト
+			addCommand(ShinseiServiceEvent.SEND_KINMUHYO, ShinseiServiceCommand);	// 勤務表送信
 
 			// sample --------------------------------------------------------------
 			addCommand(PersonEvent.SAY_HELLO, PersonCommand);

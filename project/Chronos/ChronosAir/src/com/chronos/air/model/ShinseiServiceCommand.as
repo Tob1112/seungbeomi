@@ -11,6 +11,11 @@ package com.chronos.air.model {
 	import com.chronos.air.view.KinmuhyoView;
 	import com.chronos.air.view.MainView;
 
+	import flash.filesystem.File;
+	import flash.filesystem.FileMode;
+	import flash.filesystem.FileStream;
+	import flash.utils.ByteArray;
+
 	import mx.managers.CursorManager;
 	import mx.rpc.Responder;
 	import mx.rpc.events.FaultEvent;
@@ -39,6 +44,15 @@ package com.chronos.air.model {
 					mainView = ShinseiServiceEvent(e).view as MainView;
 					logoutHandler();
 					break;
+				case ShinseiServiceEvent.SEND_KINMUHYO:	// 勤務表送信
+					kinmuhyoView = ShinseiServiceEvent(e).view as KinmuhyoView;
+
+					prepareSendKinmuhyo();
+
+					responder = new Responder(sendKinmuhyoResultHandler, sendKinmuhyoFaultHandler);
+					delegate = new ShinseiServiceDelegate(responder);
+					delegate.sendKinmuhyo(appModel.shinsei);
+					break;
 			}
 		}
 
@@ -59,9 +73,11 @@ package com.chronos.air.model {
 				}
 
 				// model 設定
+				appModel.shain.shainBango = shain.shainBango;
 				appModel.shain.shainMei = shain.shainMei;
-				appModel.shain.id = "";
-				appModel.shain.password = "";
+				//appModel.shain.id = "";		// 送信時使用するためコメント処理
+				//appModel.shain.password = "";	// 送信時使用するためコメント処理
+
 				// view 設定
 				mainView.mainViewStack.selectedIndex = Constants.KINMUHYO_VIEWSTACK_INDEX;
 				mainView.buttonBar.enabled = true;
@@ -161,6 +177,37 @@ package com.chronos.air.model {
 
 			// 最新の勤務表を選択表示をする
 			mainView.kinmuhyoView.kinmuhyoList.selectedIndex = 0;
+		}
+
+		/** 勤務表送信 */
+		private function prepareSendKinmuhyo():void {
+			var shinsei:Shinsei = new Shinsei();
+			var shain:Shain = appModel.shain;
+			var sendFile:File = appModel.file;
+
+			var bytes:ByteArray = new ByteArray();
+			var inputStream:FileStream = new FileStream();
+			inputStream.open(sendFile, FileMode.READ);
+			inputStream.readBytes(bytes, 0, sendFile.size);
+			inputStream.close();
+
+			shinsei.shain = shain;
+			shinsei.shinseisho = kinmuhyoModel.kinmuhyo;
+			shinsei.shinseiFileName = sendFile.name;
+			shinsei.shinseiData = bytes;
+
+			appModel.shinsei = shinsei;	// 申請ファイル格納
+
+		}
+
+		/** 勤務表送信成功 */
+		private function sendKinmuhyoResultHandler(e:ResultEvent):void {
+
+		}
+
+		/** 勤務表送信失敗 */
+		private function sendKinmuhyoFaultHandler(e:FaultEvent):void {
+
 		}
 	}
 

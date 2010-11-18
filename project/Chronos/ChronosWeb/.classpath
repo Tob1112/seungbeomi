@@ -16,55 +16,5 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-fileupload-1.2.1.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-io-1.3.2.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/freemarker-2.3.16.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/javassist-3.7.ga.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/ognl-3.0.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/struts2-core-2.2.1.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/struts2-spring-plugin-2.1.6.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/xwork-core-2.2.1.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/barista-core.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/chronos-common.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/chronos-domain.jar" sourcepath="/ChronosDomain"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/antlr-2.7.6.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/asm-1.5.3.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/c3p0-0.9.1.2.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/cglib-2.1.3.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-collections-3.2.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-compress-1.0.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-dbcp-1.2.2.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-io-1.4.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-lang-2.4.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-logging-1.1.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-pool-1.5.4.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/dbunit-2.4.7.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/dom4j-1.6.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/ehcache-1.5.0-osgi.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/hamcrest-core-1.1.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/hibernate-3.2.6.ga.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/hibernate-annotations-3.4.0.GA.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/hibernate-commons-annotations-3.3.0.ga.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/hibernate-entitymanager-3.3.1.ga.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/hibernate-jpa-2.0-api-1.0.0.Final.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/hsqldb.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/ibatis-2.3.4.726.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/javassist-3.4.GA.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jboss-archive-browsing-5.0.0alpha-200607201-119.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jta-1.1.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/junit-4.4.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/log4j-1.2.15.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mail.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/ognl-2.7.3.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/ojdbc14.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/poi-3.2-FINAL-20081019.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/servlet-api-2.5.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-test-2.5.6.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-web-2.5.6.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-webmvc-2.5.6.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/unitils-core-3.1.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/sitemesh-2.4.2.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/struts2-sitemesh-plugin-2.1.6.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

@@ -4,8 +4,9 @@ package com.chronos.air.event {
 
 	public class ShinseiServiceEvent extends CairngormEvent {
 
-		public static const LOGIN:String = "login";
-		public static const LOGOUT:String = "logout";
+		public static const LOGIN:String = "shinseiServiceEvent.login";
+		public static const LOGOUT:String = "shinseiServiceEvent.logout";
+		public static const SEND_KINMUHYO:String	= "shinseiServiceEvent.sendKinmuhyo";
 
 		public var view:Object;
 

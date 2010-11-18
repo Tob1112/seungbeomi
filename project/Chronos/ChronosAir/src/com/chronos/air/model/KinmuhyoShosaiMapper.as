@@ -1,5 +1,7 @@
 package com.chronos.air.model {
 
+	import com.chronos.Constants;
+
 	import flash.utils.Dictionary;
 
 	import mx.collections.ArrayCollection;
@@ -56,6 +58,10 @@ package com.chronos.air.model {
 			var code:String;
 
 			for each (var obj:Object in yasumiKubunAC) {
+				if (value == "") {
+					code = value;
+					break;
+				}
 				if (obj.value == value) {
 					code = obj.code;
 					break;

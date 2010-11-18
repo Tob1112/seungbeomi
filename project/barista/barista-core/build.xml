@@ -38,8 +38,10 @@
         </javac>
 
         <!-- Copy XML files to ${build.dir}/build -->
-        <copy todir="${build.dir}">
-            <!--<fileset dir="${src.dir}" includes="**/*.java" /> -->
+    	<copy todir="${build.dir}">
+        <!--
+            <fileset dir="${src.dir}" includes="**/*.java" />
+        -->
             <fileset dir="${resources.dir}" includes="**/*.xml,**/*.properties" />
         </copy>
     </target>
