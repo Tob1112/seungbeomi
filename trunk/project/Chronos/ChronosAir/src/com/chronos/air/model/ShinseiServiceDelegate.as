@@ -21,16 +21,22 @@ package com.chronos.air.model {
 			this.responder = responder;
 		}
 
-		// ログイン
+		//---------------------------------------------------------------------------
+
+		/** ログイン */
 		public function login(shain:Shain):void {
 			var token:AsyncToken = service.login(shain);
 			token.addResponder(responder);
 		}
 
-		// ログアウト
+		/** ログアウト */
 		public function logout():void {
 			service.logout();
 		}
 
+		/** 勤務表送信 */
+		public function sendKinmuhyo(shinsei:Shinsei):void {
+			service.sendKinmuhyo(shinsei);
+		}
 	}
 }

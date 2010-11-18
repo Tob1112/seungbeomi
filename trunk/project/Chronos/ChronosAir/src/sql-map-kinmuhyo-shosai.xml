@@ -53,7 +53,7 @@
 			jitsudoJikan	= :jitsudoJikan,
 			sagyoNaiyo		= :sagyoNaiyo
 		WHERE
-			nengetsu		= :nengetsu,
+			nengetsu		= :nengetsu
 			AND hizuke 		= :hizuke;
 	</sql>
 

@@ -16,7 +16,8 @@
     <!-- ========================================== -->
     <!-- CLASSPATH									-->
     <!-- ========================================== -->
-    <path id="classpath">
+	<path id="classpath">
+    	<fileset dir="${repository.dir}" includes="*.jar" />
         <fileset dir="${lib.dir}" includes="*.jar" />
         <pathelement path="${build.dir}" />
     </path>
@@ -37,7 +38,9 @@
 
         <!-- Copy XML files to ${build.dir}/build -->
         <copy todir="${build.dir}">
-            <!--<fileset dir="${src.dir}" includes="**/*.java" /> -->
+        <!--
+            <fileset dir="${src.dir}" includes="**/*.java" />
+        -->
             <fileset dir="${resources.dir}" includes="**/*.xml,**/*.properties" />
         </copy>
     </target>
