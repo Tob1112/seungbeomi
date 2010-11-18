@@ -192,7 +192,7 @@ package com.chronos.air.model {
 			inputStream.close();
 
 			shinsei.shain = shain;
-			shinsei.shinseisho = kinmuhyoModel.kinmuhyo;
+			shinsei.kinmuhyo = kinmuhyoModel.kinmuhyo;
 			shinsei.shinseiFileName = sendFile.name;
 			shinsei.shinseiData = bytes;
 
@@ -202,12 +202,14 @@ package com.chronos.air.model {
 
 		/** 勤務表送信成功 */
 		private function sendKinmuhyoResultHandler(e:ResultEvent):void {
-
+			CursorManager.removeBusyCursor();
+			Messages.showMessage("正常に送信されました。");
 		}
 
 		/** 勤務表送信失敗 */
 		private function sendKinmuhyoFaultHandler(e:FaultEvent):void {
-
+			CursorManager.removeBusyCursor();
+			Messages.showError(e.toString());
 		}
 	}
 

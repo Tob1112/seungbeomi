@@ -114,7 +114,7 @@ package com.chronos.air.model {
 					Messages.showError(MessageId.NOT_FOUND_OPERATION_ERROR);
 			}
 		}
-		
+
 		//----------------------------------------------------------------------------------------------
 
 		/** ユーザー情報保存 */
@@ -322,7 +322,7 @@ package com.chronos.air.model {
 							kinmuhyoModel.kinmuhyoAC.addItem(kinmuhyo);
 						}
 					}
-					Messages.showMessage(MessageId.SAVE_SUCCESS);
+					//Messages.showMessage(MessageId.SAVE_SUCCESS);
 					// TODO kinmuhyoModel.isPersisted = true;
 					con.commit();		// トランザクション終了
 				} catch (e:Error) {
