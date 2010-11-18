@@ -1,4 +1,4 @@
-package com.chronos.appengine.domain;
+package com.chronos.appengine.sample;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
 

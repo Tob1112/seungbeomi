@@ -1,4 +1,4 @@
-package com.chronos.appengine.domain;
+package com.chronos.appengine.sample;
 
 public class User {
 
