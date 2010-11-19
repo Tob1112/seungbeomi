@@ -5,22 +5,46 @@
 	xsi:schemaLocation="
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
-        
+
     <context:annotation-config />
 
-<!--  
-	<bean id="pmf"
+	<!-- ============================================== -->
+	<!-- JDO PERSISTENCE SETTINGS	 					-->
+	<!-- ============================================== -->
+    <bean id="persistenceManagerFactory"
 		class="org.springframework.orm.jdo.LocalPersistenceManagerFactoryBean"
 		lazy-init="false">
 		<property name="persistenceManagerFactoryName" value="transactions-optional" />
 	</bean>
-	<bean id="datastoreService"
-        class="com.google.appengine.api.datastore.DatastoreServiceFactory"
-        factory-method="getDatastoreService"/>
-        
     <bean id="transactionManager" class="org.springframework.orm.jdo.JdoTransactionManager">
-		<property name="persistenceManagerFactory" ref="pmf" />
+		<property name="persistenceManagerFactory" ref="persistenceManagerFactory" />
 	</bean>
--->	
-    
+	<bean id="jdoTemplate"
+		class="org.springframework.orm.jdo.JdoTemplate">
+		<property name="persistenceManagerFactory" ref="persistenceManagerFactory"/>
+	</bean>
+	<!--<bean id="datastoreService"
+        class="com.google.appengine.api.datastore.DatastoreServiceFactory"
+        factory-method="getDatastoreService"/>-->
+
+	<!-- ============================================== -->
+	<!-- JPA PERSISTENCE SETTINGS	 					-->
+	<!-- ============================================== -->
+	<!--
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
+		<property name="persistenceUnitName" value="chronos-unit"/>
+	</bean>
+
+	<bean name="transactionManager"
+		class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+
+	<bean id="jpaTemplate"
+		class="org.springframework.orm.jpa.JpaTemplate">
+		<property name="entityManagerFactory" ref="entityManagerFactory"/>
+	</bean>
+	-->
+
 </beans>
