@@ -115,6 +115,7 @@ package com.chronos.air.model {
 			resetLoginField();
 			homeView.currentState = "showError";
 			homeView.errorText.text = MessageId.LOGIN_ERROR;
+			CursorManager.removeBusyCursor();
 		}
 
 		/** ログアウト */

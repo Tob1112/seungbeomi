@@ -12,7 +12,7 @@ package com.chronos.air.common
 		public static const SERVER_ACCESS_ERROR:String 			= "サーバーアクセスにエラーが発生しました。";
 		public static const SYSTEM_ERROR:String 				= "システムエラーが発生しました。";
 		public static const SQL_ERROR:String					= "SQLエラーが発生しました。";
-		public static const LOGIN_ERROR:String 					= "入力したidまたはパスワードが\n間違っています。";
+		public static const LOGIN_ERROR:String 					= "サーバー側に問題がありまして、\n接続ができません。";
 		public static const OVER_DATA_FOUND_ERROR:String 		= "複数のデータが検索されました。";
 		public static const NOT_FOUND_OPERATION_ERROR:String 	= "操作に過ちがありますので、再度確認してください。";
 		public static const DO_NOT_ARCHIVE_ERROR:String 		= "ファイル圧縮に失敗しました。";
