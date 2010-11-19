@@ -53,5 +53,7 @@
 	<classpathentry kind="lib" path="C:/workspace/lib/xwork-core-2.2.1.jar"/>
 	<classpathentry kind="lib" path="lib/barista-core.jar"/>
 	<classpathentry kind="lib" path="lib/chronos-common.jar"/>
+	<classpathentry kind="lib" path="C:/workspace/lib/spring-orm-jdo-only-2.5.6.jar"/>
+	<classpathentry kind="lib" path="C:/workspace/lib/jdo2-api-2.3-eb.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
