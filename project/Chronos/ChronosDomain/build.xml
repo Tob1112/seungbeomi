@@ -34,8 +34,6 @@
         <javac destdir="${build.dir}" debug="true" optimize="false" deprecation="false" failonerror="true" encoding="UTF-8" includeantruntime="false">
             <src path="${src.dir}" />
         	<exclude name="**/*DaoiJdo.java" />
-        	<exclude name="**/*DaoiJdo.java" />
-        	<exclude name="**/sample/*" />
             <classpath refid="classpath" />
         </javac>
         <!-- Copy XML files to ${build.dir}/build -->
