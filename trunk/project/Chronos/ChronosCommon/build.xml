@@ -68,6 +68,9 @@
 		<copy todir="${webapp.resources.dir}" preservelastmodified="true">
             <fileset dir="${resources.dir}" />
         </copy>
+		<copy todir="${appengine.resources.dir}" preservelastmodified="true">
+            <fileset dir="${resources.dir}" />
+        </copy>
 	</target>
 
     <target name="clean" description="Clean output directories">

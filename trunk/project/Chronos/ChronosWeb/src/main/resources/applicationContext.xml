@@ -20,7 +20,7 @@
         </bean>
 
         <!-- ============================================== -->
-        <!-- IBATIS SQLMAPCLIENT                  			-->
+        <!-- IBATIS SQL MAP CLIENT                 			-->
         <!-- ============================================== -->
         <bean id="sqlMapClient"
 	        class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
@@ -33,4 +33,44 @@
 	    <bean id="oracleLobHandler" class="org.springframework.jdbc.support.lob.OracleLobHandler">
 	        <property name="nativeJdbcExtractor" ref="simpleNativeJdbcExtractor"/>
 	    </bean>
+
+		<!-- ============================================== -->
+		<!-- JDO PERSISTENCE SETTINGS	 					-->
+		<!-- ============================================== -->
+	    <bean id="persistenceManagerFactory"
+			class="org.springframework.orm.jdo.LocalPersistenceManagerFactoryBean"
+			lazy-init="false">
+			<property name="persistenceManagerFactoryName" value="transactions-optional" />
+		</bean>
+	    <bean id="transactionManager" class="org.springframework.orm.jdo.JdoTransactionManager">
+			<property name="persistenceManagerFactory" ref="persistenceManagerFactory" />
+		</bean>
+		<bean id="jdoTemplate"
+			class="org.springframework.orm.jdo.JdoTemplate">
+			<property name="persistenceManagerFactory" ref="persistenceManagerFactory"/>
+		</bean>
+		<!--<bean id="datastoreService"
+	        class="com.google.appengine.api.datastore.DatastoreServiceFactory"
+	        factory-method="getDatastoreService"/>-->
+
+		<!-- ============================================== -->
+		<!-- JPA PERSISTENCE SETTINGS	 					-->
+		<!-- ============================================== -->
+		<!--
+		<bean id="entityManagerFactory"
+			class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
+			<property name="persistenceUnitName" value="chronos-unit"/>
+		</bean>
+
+		<bean name="transactionManager"
+			class="org.springframework.orm.jpa.JpaTransactionManager">
+			<property name="entityManagerFactory" ref="entityManagerFactory" />
+		</bean>
+
+		<bean id="jpaTemplate"
+			class="org.springframework.orm.jpa.JpaTemplate">
+			<property name="entityManagerFactory" ref="entityManagerFactory"/>
+		</bean>
+		-->
+
 </beans>

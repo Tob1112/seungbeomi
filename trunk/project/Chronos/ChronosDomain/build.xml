@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="chronos-domain" basedir="." default="all">
+<project name="chronos-domain" basedir=".">
 
 	<!-- ========================================== -->
     <!-- CLASSPATH									-->
@@ -30,19 +30,29 @@
 		<mkdir dir="${dist.dir}"/>
 	</target>
 
-    <target name="compile" description="Compile main source tree java files">
+    <target name="compile-web" description="Compile main source tree java files">
         <javac destdir="${build.dir}" debug="true" optimize="false" deprecation="false" failonerror="true" encoding="UTF-8" includeantruntime="false">
             <src path="${src.dir}" />
+        	<exclude name="**/*DaoiJdo.java" />
+        	<exclude name="**/*DaoiJdo.java" />
+        	<exclude name="**/sample/*" />
             <classpath refid="classpath" />
         </javac>
-
         <!-- Copy XML files to ${build.dir}/build -->
-        <copy todir="${build.dir}">
         <!--
+        <copy todir="${build.dir}">
             <fileset dir="${src.dir}" includes="**/*.java" />
-        -->
             <fileset dir="${resources.dir}" includes="**/*.xml,**/*.properties" />
         </copy>
+        -->
+    </target>
+	<target name="compile-appengine" description="Compile main source tree java files">
+        <javac destdir="${build.dir}" debug="true" optimize="false" deprecation="false" failonerror="true" encoding="UTF-8" includeantruntime="false">
+            <src path="${src.dir}"/>
+        	<exclude name="**/*DaoiBatis.java" />
+        	<exclude name="**/sample/*" />
+            <classpath refid="classpath" />
+        </javac>
     </target>
 
     <target name="dist" description="Deploy application">
@@ -60,7 +70,11 @@
 
 		<!-- COPY RESOURCES FILE -->
 		<copy todir="${webapp.resources.dir}" preservelastmodified="true">
-            <fileset dir="${resources.dir}" />
+            <fileset dir="${resources.dir}" excludes="**/META-INF/*"/>
+        </copy>
+		<copy todir="${appengine.resources.dir}" preservelastmodified="true">
+            <fileset dir="${resources.dir}"
+            	excludes="applicationContext.xml, **/sql-map*.xml, SqlMapConfig.xml, database.properties, **/META-INF/*, **/*sample*" />
         </copy>
 	</target>
 
@@ -69,6 +83,7 @@
     	<delete dir="${dist.dir}" />
     </target>
 
-    <target name="all" depends="clean, init, compile, dist, deploy, clean" />
+    <target name="all-web" depends="clean, init, compile-web, dist, deploy, clean" />
+	<target name="all-appengine" depends="clean, init, compile-appengine, dist, deploy, clean" />
 
 </project>
