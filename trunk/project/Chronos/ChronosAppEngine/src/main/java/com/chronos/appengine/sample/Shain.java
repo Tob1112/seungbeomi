@@ -1,12 +1,24 @@
 package com.chronos.appengine.sample;
 
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.IdentityType;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
+
 import org.apache.commons.lang.builder.ToStringBuilder;
 
+@PersistenceCapable(identityType=IdentityType.APPLICATION)
 public class Shain {
 
+	@PrimaryKey
+	@Persistent
 	private String id;
+	@Persistent
 	private String password;
+	@Persistent
 	private String shainMei;
+	@Persistent
 	private String shainBango;
 
 	public String getId() {
@@ -45,5 +57,5 @@ public class Shain {
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this);
 	}
-	
+
 }
