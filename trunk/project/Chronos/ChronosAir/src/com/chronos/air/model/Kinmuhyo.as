@@ -1,6 +1,6 @@
 package com.chronos.air.model
 {
-	[RemoteClass(alias="com.chronos.appengine.sample.Kinmuhyo")]
+	[RemoteClass(alias="com.chronos.domain.Kinmuhyo")]
 	[Bindable]
 	public class Kinmuhyo
 	{

@@ -52,14 +52,14 @@ package com.chronos.air.view.controller {
 
 			var isRememberMe:Boolean = view.rememberMeCheckBox.selected;
 			var event:ShinseiServiceEvent;
-			var hash:IHash = Crypto.getHash("md5");
-			var pw:ByteArray;
+			var pw:String = view.passwordTextInput.text
 
 			model.shain.id = view.idTextInput.text;
 			// パスワードmd5暗号化
-			pw = hash.hash(Hex.toArray(Hex.fromString(view.passwordTextInput.text)));
-			model.shain.password = Hex.fromArray(pw);
+			//model.shain.password = encryptPasswordMd5(pw);
+			model.shain.password = pw;
 			model.shain.rememberMe = view.rememberMeCheckBox.selected;
+
 
 			// ログイン
 			event = new ShinseiServiceEvent(ShinseiServiceEvent.LOGIN, view);
@@ -70,6 +70,16 @@ package com.chronos.air.view.controller {
 			if (e.currentTarget.selected == true) {
 				Messages.showMessage(MessageId.SECURITY_MESSAGE);
 			}
+		}
+
+		/** パスワードをmd5を使用し変更 */
+		private function encryptPasswordMd5(pw:String):String {
+			var result:String;
+			var hash:IHash = Crypto.getHash("md5");
+			var pwba:ByteArray = hash.hash(Hex.toArray(Hex.fromString(pw)));
+			result = Hex.fromArray(pwba);
+			Logger.log("pw : " + result);
+			return result;
 		}
 	}
 }
