@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+        "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Shain">
+
+	<resultMap id="allShainMap" class="com.chronos.domain.Shain">
+		<result property="id" column="SHAIN_ID" />
+		<result property="password" column="PASSWORD" />
+		<result property="shainMei" column="SHAIN_MEI" />
+		<result property="shainBango" column="SHAIN_BANGO" />
+	</resultMap>
+
+	<sql id="selectAll">
+		SELECT SHAIN_ID, PASSWORD, SHAIN_MEI, SHAIN_BANGO
+    </sql>
+	<sql id="whereFind">
+		WHERE SHAIN_ID = #id#
+    </sql>
+
+	<select id="findShain" parameterClass="hashmap" resultMap="allShainMap">
+		/* sql_id : shain findShain */
+		<include refid="selectAll" />
+			FROM SHAIN
+		<include refid="whereFind" />
+		<isNotNull>
+			AND PASSWORD = #password#
+		</isNotNull>
+	</select>
+
+</sqlMap>

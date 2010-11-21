@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:security="http://www.springframework.org/schema/security"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-2.0.1.xsd">
+
+    <security:global-method-security>
+        <!--<security:protect-pointcut expression="execution(public * com.chronos.blazeds..*.*(..))" access="ROLE_ADMIN, ROLE_USER"/>-->
+    </security:global-method-security>
+
+    <security:http auto-config="true">
+        <security:intercept-url pattern="/index.html" filters="none"/>
+        <security:intercept-url pattern="*.swf" filters="none"/>
+        <security:intercept-url pattern="*.html" access="ROLE_USER"/>
+        <!--<security:intercept-url pattern="/com/chronos/**" access="ROLE_USER, ROLE_ADMIN, ROLE_ANONYMOUS"/>-->
+        <!--<security:intercept-url pattern="/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />-->
+    </security:http>
+
+    <!--<bean id="preAuthenticatedEntryPoint" class="org.springframework.security.ui.preauth.PreAuthenticatedProcessingFilterEntryPoint"/>-->
+    <bean id="loggerListener" class="org.springframework.security.event.authentication.LoggerListener" />
+
+    <security:authentication-provider>
+        <!--
+        <security:user-service>
+        	<security:user password="user" name="user" authorities="ROLE_USER"/>
+        	<security:user password="admin" name="admin" authorities="ROLE_ADMIN,ROLE_USER"/>
+        	<security:user password="test" name="test" authorities="ROLE_USER"/>
+        </security:user-service>
+        <security:password-encoder hash="md5" />
+        -->
+        <security:jdbc-user-service
+            role-prefix="ROLE_"
+            data-source-ref="dataSource"
+            users-by-username-query="SELECT SHAIN_ID AS USERNAME, PASSWORD, 1 AS ENABLE FROM SHAIN WHERE SHAIN_ID = ?"
+            authorities-by-username-query="SELECT S.SHAIN_ID AS USERNAME, A.AUTHORITY AS AUTHORITIES FROM SHAIN S, AUTHORITIES A WHERE S.SHAIN_ID = A.SHAIN_ID AND S.SHAIN_ID = ?"/>
+    </security:authentication-provider>
+
+</beans>
