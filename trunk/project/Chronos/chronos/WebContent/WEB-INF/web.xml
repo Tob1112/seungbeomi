@@ -8,6 +8,9 @@
 	<display-name>chronos</display-name>
 	<description>Chronos Blazeds</description>
 
+	<!-- ============================================= -->
+	<!-- CONTEXT						   			   -->
+	<!-- ============================================= -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
@@ -18,6 +21,9 @@
         </param-value>
 	</context-param>
 
+	<!-- ============================================= -->
+	<!-- LISTENER						   			   -->
+	<!-- ============================================= -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener
 		</listener-class>
@@ -26,6 +32,39 @@
 		<listener-class>flex.messaging.HttpFlexSession</listener-class>
 	</listener>
 
+	<!-- ============================================= -->
+	<!-- FILTER							   			   -->
+	<!-- ============================================= -->
+	<filter>
+		<filter-name>struts-cleanup</filter-name>
+		<filter-class>org.apache.struts2.dispatcher.ActionContextCleanUp</filter-class>
+	</filter>
+	<filter>
+		<filter-name>sitemesh</filter-name>
+		<filter-class>com.opensymphony.module.sitemesh.filter.PageFilter</filter-class> <!-- for JSP -->
+		<!--<filter-class>com.opensymphony.module.sitemesh.filter.VelocityPageFilter</filter-class>--> <!-- for VELOCITY -->
+		<!--<filter-class>com.opensymphony.module.sitemesh.filter.FreeMarkerPageFilter</filter-class>--> <!-- for FREEMARKER -->
+	</filter>
+	<filter>
+		<filter-name>struts2</filter-name>
+		<filter-class>org.apache.struts2.dispatcher.FilterDispatcher</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>struts-cleanup</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>sitemesh</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>struts2</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<!-- ============================================= -->
+	<!-- SERVLET						   			   -->
+	<!-- ============================================= -->
 	<servlet>
 		<servlet-name>blazeds</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet
@@ -42,5 +81,9 @@
 		<servlet-name>blazeds</servlet-name>
 		<url-pattern>/spring/*</url-pattern>
 	</servlet-mapping>
+
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
 
 </web-app>
