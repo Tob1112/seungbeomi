@@ -7,14 +7,14 @@
 
 	<package name="person" namespace="/person" extends="struts-default" >
 
-		<action name="personList" class="com.chronos.web.sample.PersonAction">
-			<!--<result name="success">/WEB-INF/jsp/person.jsp</result>-->
+		<action name="personAction" class="com.chronos.management.sample.PersonAction">
 			<result name="success">/WEB-INF/jsp/person.jsp</result>
 		</action>
 
+		<!--
 		<action name="sitemeshHome" class="com.chronos.web.sample.SitemeshHomeAction">
 			<result>/WEB-INF/jsp/decorators/sitemeshHome.jsp</result>
 		</action>
-
+		-->
 	</package>
 </struts>

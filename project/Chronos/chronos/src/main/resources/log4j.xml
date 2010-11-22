@@ -45,10 +45,13 @@
 	<logger name="com.chronos">
 		<level value="DEBUG"/>
 	</logger>
+	-->
+	<logger name="com.opensymphony.xwork2">
+		<level value="INFO"/>
+	</logger>
 	<logger name="org.springframework">
 		<level value="INFO"/>
 	</logger>
-	-->
 
  	<root>
         <priority value ="DEBUG" />
