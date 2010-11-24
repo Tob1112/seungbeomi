@@ -1,15 +1,79 @@
 <ivy-module version="2.0">
     <info organisation="org" module="barista-core"/>
+    <!--
+    <configurations>
+        <conf name="global" />
+        <conf name="web" extends="global"/>
+        <conf name="provided"/>
+        <conf name="test"/>
+    </configurations>
+
+    <publications>
+        <artifact name="workast" type="jar" conf="web" />
+    </publications>
+    -->
+
     <dependencies>
 		<!--
 		<dependency org="org.springframework" name="spring" rev="2.5.6"/>
 		<dependency org="org.springframework" name="org.springframework.spring-library" rev="2.5.6.A" />
 		<dependency org="org.springframework" name="org.springframework.context.support" rev="2.5.6.A" />
 		<dependency org="org.apache.struts" name="struts2-parent" rev="2.2.1"/>
-		<dependency org="junit" name="junit" rev="4.4"/>
 		-->
 
-		<dependency org="org.springframework" name="spring-webmvc" rev="2.5.5"/>
-        <dependency org="org.springframework" name="spring" rev="2.5.5"/>
+        <dependency org="org.springframework" name="spring" rev="2.5+"/>
+		<dependency org="junit" name="junit" rev="4.4"/>
+
+		<!-- ========================================== -->
+	    <!-- EXCLUDE									-->
+	    <!-- ========================================== -->
+        <exclude type="license" ext="txt" />
+        <exclude type="src" ext="jar"/>
+        <exclude type="sources" ext="jar"/>
+        <exclude type="javadocs" ext="jar"/>
+        <exclude type="library" ext="libd"/>
+
+        <exclude org="aopalliance" />
+		<exclude org="asm" artifact="asm-tree" />
+		<exclude org="asm" artifact="asm-attrs" />
+		<exclude org="com.bea.wlplatform" />
+		<exclude org="com.caucho" />
+		<exclude org="com.experlog" />
+		<exclude org="com.jamonapi" />
+		<exclude org="com.lowagie" />
+		<exclude org="com.oracle" />
+		<exclude org="com.oracle.toplink" />
+		<exclude org="com.sun.jdmk" />
+		<exclude org="com.sun.jmx" />
+		<exclude org="commons-attributes" />
+		<exclude org="jasperreports" />
+		<exclude org="javassist" />
+		<exclude org="javax.ejb" />
+		<exclude org="javax.faces" />
+		<exclude org="javax.jdo" />
+		<exclude org="javax.jms" />
+		<exclude org="javax.portlet" />
+		<exclude org="javax.resource" />
+		<exclude org="javax.xml" />
+		<exclude org="jexcelapi" />
+		<exclude org="jotm" />
+		<exclude org="net.sf.jsr107cache" />
+		<exclude org="org.apache.axis" />
+		<exclude org="org.apache.ibatis" />
+		<exclude org="org.apache.poi" />
+		<exclude org="org.apache.tiles" />
+		<exclude org="org.beanshell" />
+		<exclude org="org.codehaus.groovy" />
+		<exclude org="org.jruby" />
+		<exclude org="org.freemarker" />
+		<exclude org="struts" />
+		<exclude org="tomcat" />
+		<exclude org="velocity" />
+		<exclude org="velocity-tools" />
+		<exclude org="cglib" artifact="cglib" />
+
+		<exclude artifact="persistence-api" />
+		<exclude artifact="hibernate-entitymanager" />
+		<exclude artifact="jsp-api" />
     </dependencies>
 </ivy-module>
