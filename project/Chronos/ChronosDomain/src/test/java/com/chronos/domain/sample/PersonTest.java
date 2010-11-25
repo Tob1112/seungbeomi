@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.dbcp.BasicDataSource;
-import org.barista.common.util.ExcelLoader;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -22,7 +22,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:applicationContext-sample.xml"})
+@ContextConfiguration
+//@ContextConfiguration(locations = {"classpath:applicationContext-sample.xml"})
 public class PersonTest {
 
 	@Autowired
@@ -63,6 +64,7 @@ public class PersonTest {
 		assertEquals(0, dao.list().size());
 	}
 
+
 	//-----------------------------------------------------------------------------
 	private static final String WORKBOOK_PATH 		= "testdata/Person.xls";
 	private static final String TABLE_NAME_PERSON 	= "PERSON";
@@ -72,7 +74,7 @@ public class PersonTest {
 	public void setUp() throws SQLException {
 		assertNotNull(datasource);
 		connection = datasource.getConnection();
-		connection.setAutoCommit(false);
+		//connection.setAutoCommit(false);
 	}
 
 	@After
@@ -115,7 +117,6 @@ public class PersonTest {
 		assertEquals("get", found.getName());
 
 		//-----------------------------------------
-
 		this.unloadTestData(TABLE_NAME_PERSON);
 		this.loadTestData(TABLE_NAME_PERSON, "add");
 
