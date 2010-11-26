@@ -10,10 +10,14 @@ public class KinmuhyoServiceImpl implements KinmuhyoService {
 
 	}
 
-	/** 勤務表保存 */
+	/** 勤務表XMLファイル保存 */
 	@Override
-	public Shinsei saveKinmuhyo(Shinsei shinsei) {
-		// TODO Auto-generated method stub
+	public Shinsei saveKinmuhyo(Shinsei shinsei, String sessionId) {
+		// sessionIdを使用し、tmp directory作成
+
+		// DB保存
+
+		// tmp directory削除
 		return null;
 	}
 

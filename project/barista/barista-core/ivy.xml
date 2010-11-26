@@ -59,8 +59,6 @@
 		<exclude org="jotm" />
 		<exclude org="net.sf.jsr107cache" />
 		<exclude org="org.apache.axis" />
-		<exclude org="org.apache.ibatis" />
-		<exclude org="org.apache.poi" />
 		<exclude org="org.apache.tiles" />
 		<exclude org="org.beanshell" />
 		<exclude org="org.codehaus.groovy" />
