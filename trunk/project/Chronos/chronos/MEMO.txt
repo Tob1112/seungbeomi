@@ -1,0 +1,7 @@
+● 申請番号ルール
+	[yyyyMMKKNNNNXX]：14桁
+	yyyy	年
+	MM		月
+	KK		会社区分
+	NNNN	社員番号
+	XX		申請区分：勤務表・交通費等

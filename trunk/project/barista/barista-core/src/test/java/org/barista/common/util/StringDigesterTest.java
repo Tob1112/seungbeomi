@@ -1,11 +1,10 @@
 package org.barista.common.util;
 
-import static org.junit.Assert.*;
-import static org.hamcrest.CoreMatchers.*;
-
-import org.junit.Test;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
 import org.barista.common.util.StringDigester.Algorithm;
+import org.junit.Test;
 
 
 public class StringDigesterTest {
