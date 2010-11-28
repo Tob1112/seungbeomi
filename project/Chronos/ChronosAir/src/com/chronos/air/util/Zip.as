@@ -5,7 +5,7 @@ package com.chronos.air.util
 	import com.chronos.air.common.Messages;
 	import com.chronos.air.model.ApplicationModel;
 
-	import ext.deng.fzip.FZip;
+	import lib.deng.fzip.FZip;
 
 	import flash.events.Event;
 	import flash.filesystem.File;

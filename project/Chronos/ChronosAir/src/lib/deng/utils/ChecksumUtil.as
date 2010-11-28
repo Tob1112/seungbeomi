@@ -1,4 +1,4 @@
-package ext.deng.utils
+package lib.deng.utils
 {
     import flash.utils.ByteArray;
 

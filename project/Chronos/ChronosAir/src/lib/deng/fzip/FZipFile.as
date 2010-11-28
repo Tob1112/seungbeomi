@@ -18,9 +18,9 @@
  * 3. This notice may not be removed or altered from any source distribution.
  */
 
-package ext.deng.fzip
+package lib.deng.fzip
 {
-    import ext.deng.utils.ChecksumUtil;
+    import lib.deng.utils.ChecksumUtil;
 
     import flash.utils.*;
 
