@@ -18,9 +18,9 @@
  * 3. This notice may not be removed or altered from any source distribution.
  */
 
-package ext.deng.fzip
+package lib.deng.fzip
 {
-    import ext.deng.fzip.FZipFile;
+    import lib.deng.fzip.FZipFile;
     import flash.events.Event;
 
     /**

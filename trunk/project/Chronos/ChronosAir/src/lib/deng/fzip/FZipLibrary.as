@@ -18,7 +18,7 @@
  * 3. This notice may not be removed or altered from any source distribution.
  */
 
-package ext.deng.fzip {
+package lib.deng.fzip {
     import flash.events.*;
     import flash.display.Bitmap;
     import flash.display.BitmapData;

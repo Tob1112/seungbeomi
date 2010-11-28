@@ -236,7 +236,7 @@ package com.chronos.air.view.controller {
                 kinmuhyoXML.勤務表詳細[i].@休み区分 = kinmuhyoShosai.yasumiKubun;
                 kinmuhyoXML.勤務表詳細[i].@始業時間 = kinmuhyoShosai.shigyoJikan;
                 kinmuhyoXML.勤務表詳細[i].@始業時間値 = kinmuhyoShosai.shigyoJikanchi;
-                kinmuhyoXML.勤務表詳細[i].@終了時間 = kinmuhyoShosai.syuryoJikan;
+                kinmuhyoXML.勤務表詳細[i].@終了時間 = String(kinmuhyoShosai.syuryoJikan).replace(" ", "");
                 kinmuhyoXML.勤務表詳細[i].@終了時間値 = kinmuhyoShosai.syuryoJikanchi;
                 kinmuhyoXML.勤務表詳細[i].@休憩時間 = kinmuhyoShosai.kyukeiJikan;
                 kinmuhyoXML.勤務表詳細[i].@実働時間 = kinmuhyoShosai.jitsudoJikan;

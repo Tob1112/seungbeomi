@@ -4,7 +4,7 @@ package com.chronos.air.model {
 
 	//[RemoteClass(alias="com.chronos.domain.Shinsei")]
 	//[RemoteClass(alias="com.chronos.appengine.sample.Shinsei")]
-	[RemoteClass(alias="com.chronos.doamin.Shinsei")]
+	[RemoteClass(alias="com.chronos.domain.Shinsei")]
 	[Bindable]
 	public class Shinsei {
 		// TODO 勤務表・交通費など対応するように
