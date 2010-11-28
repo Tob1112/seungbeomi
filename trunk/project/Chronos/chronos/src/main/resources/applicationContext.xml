@@ -42,4 +42,7 @@
 		<property name="basename" value="messages" />
 	</bean>
 
+	<!--<bean id="systemProperty"
+		class="org.barista.common.util.SystemPropertyImpl"/>-->
+
 </beans>

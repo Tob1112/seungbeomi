@@ -47,12 +47,12 @@
         </javac>
 
         <!-- Copy XML files to ${build.dir}/build -->
-    	<copy todir="${build.dir}">
         <!--
+    	<copy todir="${build.dir}">
             <fileset dir="${src.dir}" includes="**/*.java" />
             <fileset dir="${resources.dir}" includes="**/*.xml,**/*.properties" />
-        -->
         </copy>
+        -->
     </target>
 
     <target name="dist" description="Deploy application">
@@ -62,6 +62,7 @@
 	<target name="deploy">
 
 		<!-- COPY JAR FILE -->
+		<!--
 		<copy todir="${common.lib.dir}" preservelastmodified="true">
             <fileset dir="${dist.dir}" />
         </copy>
@@ -74,11 +75,13 @@
 		<copy todir="${appengine.lib.dir}" preservelastmodified="true">
             <fileset dir="${dist.dir}" />
         </copy>
+        -->
 		<copy todir="${chronos.lib.dir}" preservelastmodified="true">
             <fileset dir="${dist.dir}" />
         </copy>
 
 		<!-- COPY RESOURCES FILE -->
+		<!--
 		<copy todir="${common.resources.dir}" preservelastmodified="true">
             <fileset dir="${resources.dir}" />
         </copy>
@@ -88,6 +91,7 @@
 		<copy todir="${webapp.resources.dir}" preservelastmodified="true">
             <fileset dir="${resources.dir}" />
         </copy>
+        -->
 	</target>
 
     <target name="clean" description="Clean output directories">
