@@ -38,14 +38,13 @@
         <level value="WARN" />
     </logger>
 
-	<!--
 	<logger name="org.barista">
 		<level value="DEBUG"/>
 	</logger>
 	<logger name="com.chronos">
 		<level value="DEBUG"/>
 	</logger>
-	-->
+
 	<logger name="com.opensymphony.xwork2">
 		<level value="WARN"/>
 	</logger>
@@ -54,7 +53,7 @@
 	</logger>
 
  	<root>
-        <priority value ="WARN" />
+        <priority value ="INFO" />
     	<appender-ref ref="console" />
     	<!--<appender-ref ref="dailyPrmsLog" />-->
   	</root>

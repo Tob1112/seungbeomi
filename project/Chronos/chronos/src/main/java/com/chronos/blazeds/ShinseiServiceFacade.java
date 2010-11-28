@@ -34,9 +34,7 @@ public class ShinseiServiceFacade {
 	/** 申請勤務表保存 */
 	@RemotingInclude
 	public Shinsei sendKinmuhyo(Shinsei shinsei) {
-		HttpServletRequest request = FlexContext.getHttpRequest();
-		String sessionId = request.getSession().getId();
 
-		return kinmuhyoService.saveKinmuhyo(shinsei, sessionId);
+		return kinmuhyoService.saveKinmuhyo(shinsei);
 	}
 }
