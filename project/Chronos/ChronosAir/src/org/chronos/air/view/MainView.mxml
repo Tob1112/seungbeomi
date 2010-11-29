@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml"
+	width="1000" height="600"
+	horizontalScrollPolicy="off"
+	verticalScrollPolicy="off"
+	xmlns:view="org.chronos.air.view.*"
+	xmlns:controller="org.chronos.air.view.controller.*"
+	xmlns:model="org.chronos.air.model.*">
+
+	<mx:Style source="asset/css/main.css" />
+	<!--<model:MainModel id="model" />-->
+	<controller:MainViewConrtoller id="controller"/>
+
+	<mx:ApplicationControlBar width="100%" styleName="myControlBar">
+		<mx:Label text="CHRONOS" styleName="logoLabel"/>
+		<mx:ToggleButtonBar id="buttonBar"
+			dataProvider="{mainViewStack}"
+			styleName="myToggleButtonBar" />
+		<mx:HRule width="100%" alpha="0.0"/>
+		<mx:Label id="shainMeiLabel" text="{controller.model.shain.shainMei} " styleName="shainMeiLabel"/>
+		<mx:Button id="logoutButton" label="LOGOUT"/>
+	</mx:ApplicationControlBar>
+
+	<mx:ViewStack id="mainViewStack"
+		width="100%" height="100%"
+		creationPolicy="all"
+		styleName="myMainViewStack">
+		<view:HomeView id="homeView" label="HOME" />
+		<view:KinmuhyoView id="kinmuhyoView" label="勤務表" />
+		<!-- <view:KotsuhiView id="kotsuhiView" label="交通費"/> -->
+	</mx:ViewStack>
+
+</mx:VBox>

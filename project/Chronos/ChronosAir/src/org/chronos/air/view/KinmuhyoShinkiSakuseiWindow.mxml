@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute"
+	width="304" height="292"
+	xmlns:model="org.chronos.air.model.*"
+	xmlns:controller="org.chronos.air.view.controller.*"
+	showCloseButton="true"
+	title="勤務表新規作成"
+	styleName="kinmuhyoShinkiSakuseiTitleWindow"
+	verticalScrollPolicy="off">
+
+	<mx:Style source="asset/css/kinmuhyo.css" />
+	<controller:KinmuhyoShinkiSakuseiWindowController id="controller" />
+
+	<mx:Form horizontalCenter="0" verticalCenter="0">
+		<mx:FormHeading label="新規勤務表設定" />
+		<mx:FormItem label="作業年月" required="true">
+			<mx:DateChooser id="shinkiKinmuhyoDateChooser"  width="160" height="25" styleName="shinkiKinmuhyoDateChooser"/>
+		</mx:FormItem>
+		<mx:FormItem label="始業時間">
+			<mx:ComboBox id="shigyoJikanComboBox" width="160" prompt="選択してくだたい。" labelField="jikoku" dataProvider="{controller.model.jikokuhyoAC}"/>
+		</mx:FormItem>
+		<mx:FormItem label="終了時間">
+			<mx:ComboBox id="shuryoJikanComboBox" width="160" prompt="選択してくだたい。" labelField="jikoku" dataProvider="{controller.model.jikokuhyoAC}"/>
+		</mx:FormItem>
+		<mx:FormItem label="休憩時間">
+			<mx:ComboBox id="kyukeiJikanComboBox" width="160" prompt="選択してくだたい。" labelFunction="{controller.kyukeiJikanComboBoxLabelFunction}" dataProvider="{controller.model.jikokuhyoAC}" maxHeight="100" />
+		</mx:FormItem>
+		<mx:FormItem label="作業現場">
+			<mx:TextInput id="sagyoGenba" />
+		</mx:FormItem>
+		<!--<mx:CheckBox id="kinmuhyoHaneiCheckBox" label="デフォルト値として勤務表に反映する。"/>-->
+	</mx:Form>
+	<mx:ControlBar horizontalAlign="center">
+		<mx:Button id="kinmuhyoSakuseiButton" label="勤務表作成" width="80"/>
+		<mx:Button id="cancelButton" label="キャンセル" width="80"/>
+	</mx:ControlBar>
+
+</mx:TitleWindow>

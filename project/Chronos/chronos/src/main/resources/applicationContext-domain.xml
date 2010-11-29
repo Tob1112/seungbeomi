@@ -11,7 +11,7 @@
 	<!-- ============================================== -->
 	<!-- DAO											-->
 	<!-- ============================================== -->
-	<bean id="shainDao" class="com.chronos.domain.ShainDaoImpl">
+	<bean id="shainDao" class="org.chronos.domain.ShainDaoImpl">
 		<property name="sqlMapClient" ref="sqlMapClient"/>
 	</bean>
 

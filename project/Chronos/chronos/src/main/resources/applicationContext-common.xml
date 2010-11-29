@@ -11,6 +11,6 @@
 	<!-- ============================================== -->
 	<!-- COMMON											-->
 	<!-- ============================================== -->
-	<bean id="loginService" class="com.chronos.common.LoginServiceImpl"/>
+	<bean id="loginService" class="org.chronos.common.LoginServiceImpl"/>
 
 </beans>

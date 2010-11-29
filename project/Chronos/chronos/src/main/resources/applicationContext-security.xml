@@ -7,7 +7,7 @@
         http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-2.0.1.xsd">
 
     <security:global-method-security>
-        <!--<security:protect-pointcut expression="execution(public * com.chronos.blazeds..*.*(..))" access="ROLE_ADMIN, ROLE_USER"/>-->
+        <!--<security:protect-pointcut expression="execution(public * org.chronos.blazeds..*.*(..))" access="ROLE_ADMIN, ROLE_USER"/>-->
     </security:global-method-security>
 
     <security:http auto-config="true">
