@@ -2,9 +2,9 @@
 <mx:WindowedApplication xmlns:mx="http://www.adobe.com/2006/mxml"
 	layout="absolute"
 	horizontalScrollPolicy="off" verticalScrollPolicy="off"
-	xmlns:chronos="com.chronos.*"
-	xmlns:sample="com.chronos.air.sample.*"
-	xmlns:view="com.chronos.air.view.*">
+	xmlns:chronos="org.chronos.*"
+	xmlns:sample="org.chronos.air.sample.*"
+	xmlns:view="org.chronos.air.view.*">
 
 	<mx:Style source="asset/css/common.css" />
 

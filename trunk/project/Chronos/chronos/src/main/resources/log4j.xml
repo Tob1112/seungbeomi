@@ -41,7 +41,7 @@
 	<logger name="org.barista">
 		<level value="DEBUG"/>
 	</logger>
-	<logger name="com.chronos">
+	<logger name="org.chronos">
 		<level value="DEBUG"/>
 	</logger>
 

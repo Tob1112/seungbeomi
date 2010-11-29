@@ -11,11 +11,11 @@
 	<!-- ============================================== -->
     <!-- SERVICE										-->
     <!-- ============================================== -->
-	<!--<bean id="personService" class="com.chronos.domain.sample.PersonServiceImpl"/>-->
+	<!--<bean id="personService" class="org.chronos.domain.sample.PersonServiceImpl"/>-->
 	<!--
-	<bean id="shainService" class="com.chronos.appengine.ShainServiceImpl"/>
+	<bean id="shainService" class="org.chronos.appengine.ShainServiceImpl"/>
 
-	<bean id="kinmuhyoService" class="com.chronos.appengine.KinmuhyoServiceImpl"/>
+	<bean id="kinmuhyoService" class="org.chronos.appengine.KinmuhyoServiceImpl"/>
 	-->
 
 

@@ -4,7 +4,7 @@
 
 <sqlMap namespace="Shain">
 
-	<resultMap id="allShainMap" class="com.chronos.domain.Shain">
+	<resultMap id="allShainMap" class="org.chronos.domain.Shain">
 		<result property="id" column="SHAIN_ID" />
 		<result property="password" column="PASSWORD" />
 		<result property="shainMei" column="SHAIN_MEI" />
