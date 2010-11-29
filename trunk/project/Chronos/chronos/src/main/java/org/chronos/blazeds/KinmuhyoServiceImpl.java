@@ -13,6 +13,7 @@ import org.barista.common.util.SystemUtiltity;
 import org.barista.common.util.ZipFile;
 import org.barista.common.xml.XmlDocument;
 import org.chronos.domain.Shinsei;
+import org.chronos.domain.ChronosEnum.ShinseiKubun;
 
 
 public class KinmuhyoServiceImpl implements KinmuhyoService {
@@ -25,6 +26,12 @@ public class KinmuhyoServiceImpl implements KinmuhyoService {
 		// TODO Auto-generated method stub
 
 	}
+
+	private static final String XPATH_NENGETSU 		= "/勤務表/勤務表/@年月";
+	private static final String XPATH_KAISHA_KUBUN 	= "XX";
+	private static final String XPATH_SHAIN_BANGO 	= "/勤務表/勤務表/@社員番号";
+	private static final String XPATH_SHINSEI_KUBUN = "/勤務表";
+	private static final String XPATH_KINMUHYO 		= "/勤務表/勤務表";
 
 	/** 勤務表XMLファイル保存 */
 	@Override
@@ -45,11 +52,20 @@ public class KinmuhyoServiceImpl implements KinmuhyoService {
 
 		XmlDocument kinmuhyoXml = new XmlDocument(kinmuhyoFile);
 
+		// 申請番号生成
+		String nengetsu = kinmuhyoXml.getAttributeValue(XPATH_NENGETSU).replace("-", "");
+		String shainBango = kinmuhyoXml.getAttributeValue(XPATH_SHAIN_BANGO);
+
+		String shinseiBango = nengetsu + shainBango + ShinseiKubun.KINMUHYO;
+		System.out.println("shinseiBango : " + shinseiBango);
+
+
+
 		// DB保存
-		
+
 
 		// tmp directory削除
-		SystemUtiltity.deleteFile(tmpDir);
+		//SystemUtiltity.deleteFile(tmpDir);
 
 		return null;
 	}
