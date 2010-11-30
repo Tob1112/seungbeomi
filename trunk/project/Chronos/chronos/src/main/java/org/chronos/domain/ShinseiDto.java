@@ -1,16 +1,14 @@
 package org.chronos.domain;
 
-import org.chronos.domain.ChronosEnum.ShinseiJokyo;
-import org.chronos.domain.ChronosEnum.ShinseiKubun;
+import org.apache.commons.lang.builder.ToStringBuilder;
 
-public class Shinsei {
+public class ShinseiDto {
 
 	private String shinseiBango;
 	private String shainId;
-	private ShinseiKubun shinseiKubun;
-	private ShinseiJokyo shinseiJokyo;
+	private String shinseiKubun;
+	private String shinseiJokyo;
 	private String shinseiFile;
-	private byte[] shinseiData;
 	private String shinseiKekka;
 
 	public String getShinseiBango() {
@@ -25,16 +23,16 @@ public class Shinsei {
 	public void setShainId(String shainId) {
 		this.shainId = shainId;
 	}
-	public ShinseiKubun getShinseiKubun() {
+	public String getShinseiKubun() {
 		return shinseiKubun;
 	}
-	public void setShinseiKubun(ShinseiKubun shinseiKubun) {
+	public void setShinseiKubun(String shinseiKubun) {
 		this.shinseiKubun = shinseiKubun;
 	}
-	public ShinseiJokyo getShinseiJokyo() {
+	public String getShinseiJokyo() {
 		return shinseiJokyo;
 	}
-	public void setShinseiJokyo(ShinseiJokyo shinseiJokyo) {
+	public void setShinseiJokyo(String shinseiJokyo) {
 		this.shinseiJokyo = shinseiJokyo;
 	}
 	public String getShinseiFile() {
@@ -43,16 +41,15 @@ public class Shinsei {
 	public void setShinseiFile(String shinseiFile) {
 		this.shinseiFile = shinseiFile;
 	}
-	public byte[] getShinseiData() {
-		return shinseiData;
-	}
-	public void setShinseiData(byte[] shinseiData) {
-		this.shinseiData = shinseiData;
-	}
 	public String getShinseiKekka() {
 		return shinseiKekka;
 	}
 	public void setShinseiKekka(String shinseiKekka) {
 		this.shinseiKekka = shinseiKekka;
+	}
+
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this);
 	}
 }

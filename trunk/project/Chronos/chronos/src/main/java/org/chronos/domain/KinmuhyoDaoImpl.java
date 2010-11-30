@@ -7,9 +7,8 @@ import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 public class KinmuhyoDaoImpl extends SqlMapClientDaoSupport implements KinmuhyoDao {
 
 	@Override
-	public void addKinmuhyo(Kinmuhyo kinmuhyo) {
-		// TODO Auto-generated method stub
-
+	public Shinsei addKinmuhyo(Shinsei shinsei) {
+		return null;
 	}
 
 	@Override

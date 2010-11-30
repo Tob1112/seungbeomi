@@ -20,5 +20,6 @@
     <!-- SQL MAPPING FILE                              -->
     <!-- ============================================= -->
 	<sqlMap resource="sql-map-shain.xml" />
+	<sqlMap resource="sql-map-shinsei.xml" />
 
 </sqlMapConfig>

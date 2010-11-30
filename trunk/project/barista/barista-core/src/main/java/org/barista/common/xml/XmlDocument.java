@@ -39,7 +39,8 @@ import com.sun.org.apache.xml.internal.serialize.XMLSerializer;
 public class XmlDocument {
 
 	/** 改行コード */
-	private static final String CR_LF = "\r\n";
+	//private static final String CR_LF = "\r\n";
+	private static final String CR_LF = System.getProperty("line.separator");
 	/** このXMLドキュメントの元になるDOM */
 	private Document source = null;
 	/** XML処理命令 */
