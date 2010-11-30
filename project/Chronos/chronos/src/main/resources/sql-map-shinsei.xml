@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+        "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Shinsei">
+
+	<resultMap id="allShinseiMap" class="org.chronos.domain.ShinseiDto">
+		<result property="shinseiBango" column="SHINSEI_BANGO" />
+		<result property="shainId" column="SHAIN_ID" />
+		<result property="shinseiKubun" column="SHINSEI_KUBUN" />
+		<result property="shinseiJokyo" column="SHINSEI_JOKYO"/>
+		<result property="shinseiFile" column="SHINSEI_FILE" />
+		<result property="shinseiKekka" column="SHINSEI_KEKKA" />
+	</resultMap>
+
+	<sql id="selectAll">
+		SELECT SHINSEI_BANGO, SHAIN_ID, SHINSEI_KUBUN, SHINSEI_JOKYO, SHINSEI_FILE, SHINSEI_KEKKA
+    </sql>
+	<sql id="whereFind">
+		WHERE SHINSEI_BANGO = #shinseiBango#
+    </sql>
+
+	<select id="getShinsei" parameterClass="hashmap" resultMap="allShinseiMap">
+		/* sql_id : shinsei getShinsei */
+		<include refid="selectAll" />
+		FROM SHINSEI
+		<include refid="whereFind" />
+	</select>
+
+	<insert id="addShinsei" parameterClass="hashmap">
+		/* sql_id : shinsei addShinsei */
+		INSERT INTO SHINSEI (SHINSEI_BANGO, SHAIN_ID, SHINSEI_KUBUN, SHINSEI_JOKYO, SHINSEI_FILE,SHINSEI_KEKKA)
+		VALUES (#shinseiBango#, #shainId#, #shinseiKubun#, #shinseiJokyo#, #shinseiFile#, #shinseiKekka#)
+	</insert>
+
+</sqlMap>

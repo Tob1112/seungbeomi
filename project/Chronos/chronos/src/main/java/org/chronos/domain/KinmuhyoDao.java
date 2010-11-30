@@ -10,7 +10,7 @@ public interface KinmuhyoDao {
 
 	Kinmuhyo getKinmuhyo(String email);
 
-	void addKinmuhyo(Kinmuhyo kinmuhyo);
+	Shinsei addKinmuhyo(Shinsei shinsei);
 
 	void updateKinmuhyo(Kinmuhyo kinmuhyo);
 

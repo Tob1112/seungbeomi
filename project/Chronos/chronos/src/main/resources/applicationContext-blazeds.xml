@@ -15,7 +15,8 @@
     <!-- see flex side SampleServices.xml file -->
     <!--<flex:remoting-destination ref="chronosService" />-->
 
-	<bean id="shinseiService" class="org.chronos.blazeds.ShinseiServiceFacade"/>
+	<bean id="uketsukeService" class="org.chronos.blazeds.UketsukeService"/>
+	<bean id="shinseiService" class="org.chronos.blazeds.ShinseiServiceImpl"/>
 	<bean id="kinmuhyoService" class="org.chronos.blazeds.KinmuhyoServiceImpl"/>
 
 </beans>

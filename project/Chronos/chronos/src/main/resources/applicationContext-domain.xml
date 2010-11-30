@@ -15,4 +15,13 @@
 		<property name="sqlMapClient" ref="sqlMapClient"/>
 	</bean>
 
+	<bean id="kinmuhyoDao" class="org.chronos.domain.KinmuhyoDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapClient"/>
+	</bean>
+
+	<bean id="shinseiDao" class="org.chronos.domain.ShinseiDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapClient"/>
+	</bean>
+
+
 </beans>
