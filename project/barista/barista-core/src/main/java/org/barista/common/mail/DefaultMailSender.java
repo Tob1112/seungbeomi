@@ -82,7 +82,7 @@ public class DefaultMailSender implements MailSender{
 /*
 			Authenticator auth = new Authenticator() {
 				protected PasswordAuthentication getPasswordAuthentication() {
-					return new PasswordAuthentication("seungbeomi@gmail.com", "thstmdqja79");
+					return new PasswordAuthentication("seungbeomi@gmail.com", "spring");
 				}
 			};
 			Session session = Session.getDefaultInstance(prop, auth);
