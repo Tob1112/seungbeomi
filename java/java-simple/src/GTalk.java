@@ -50,7 +50,7 @@ public class GTalk {
             System.exit(1);
         }
         try {
-            connection.login("seungbeomi@gmail.com", "thstmdqja79");
+            connection.login("seungbeomi@gmail.com", "spring");
             System.out.println("Logged in as " + connection.getUser());
 
             Presence presence = new Presence(Presence.Type.available);
