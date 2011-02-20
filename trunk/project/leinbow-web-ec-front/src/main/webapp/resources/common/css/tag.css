@@ -1,0 +1,91 @@
+@charset "UTF-8";
+
+/* TAG			##################################### */
+html,body {
+	height:100%;
+}
+body{
+	font-family: Helvetica, Verdana, Arial, "ヒラギノ角ゴPro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", sans-serif;
+	text-align: left;
+	background-color: #ffffff;
+	color: #000;
+}
+table{
+/*
+	letter-spacing: 0.05em;
+	font-family: Verdana, Arial, Helvetica, "ヒラギノ角ゴPro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", sans-serif;
+	line-height: 1.4;
+*/
+	text-align: left;
+}
+strong{
+	font-weight: bold;
+}
+
+input.tbox-s{
+	width: 50px;
+}
+input.tbox-m{
+	width: 165px;
+}
+input.tbox-l{
+	width: 300px;
+}
+input.w150{
+	width: 150px;
+}
+input.w270{
+	width: 270px;
+}
+div#col-center input.tbox-m{
+	width: 150px;
+}
+div#col-center input.tbox-l{
+	width: 310px;
+}
+select.sbox-m{
+	width: 180px;
+}
+div#col-center select.sbox-m{
+	width: 150px;
+}
+input.radio-s{
+}
+
+input.noime {
+	ime-mode: disabled;
+}
+
+label{
+	margin: 0 5px;
+}
+
+a{
+	color: #000;
+	text-decoration: underline;
+}
+a:hover{
+	color: #333;
+	text-decoration: none;
+}
+
+.group:after{
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+	font-size: 0.1em;
+	line-height: 0;
+}
+.group{
+    display: inline-block;
+}
+/* Hides from IE-mac \*/
+* html .group{
+    height: 1%;
+}
+.group{
+    display: block;
+}
+/* End hide from IE-mac */

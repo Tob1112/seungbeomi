@@ -1,0 +1,108 @@
+@charset "utf-8";
+
+/* -----------------------------------------------
+CSS file RESTIR Online Boutique
+FileName:/common_shop/css/heading.css
+Author:　
+----------------------------------------------- */
+
+h1.h1-01 {
+	clear:both;
+	line-height:1.231;
+	margin-top:-9px;
+	zoom:1;
+}
+	*:first-child+html h1.h1-01 {
+		clear:none;
+		width:100%;
+		margin-top:0;
+		padding-top:5px;
+	}
+h1.h1-02 {
+	padding-bottom:2px;
+	border-bottom:2px solid #000000;
+}
+	h1.h1-02 span {
+		padding-bottom:9px;
+		display:block;
+		border-bottom:25px solid #000000;
+	}
+
+h2.h2-01 {
+	clear:both;
+	padding-top:59px;
+}
+h2.h2-02 {
+	margin-top:24px;
+	padding-bottom:1px;
+}
+h2.h2-03 {
+	margin-top:15px;
+	text-align:center;
+}
+h2.h2-03.h2-03-02 {
+	text-align:left;
+}
+h2.h2-04 {
+	margin-top:0;
+	text-align:left;
+}
+h2.h2-05 {
+	margin-top:20px;
+	text-align:left;
+}
+h2.h2-06 {
+	margin-top:0.2em;
+	text-align:left;
+}
+
+h3.h3-01 {
+	margin-top:20px;
+	text-align:left;
+}
+	h3.h3-01 em {
+		color:#4E4E4E;
+		font-style:italic;
+	}
+
+h3.h3-02 {
+	margin-top:20px;
+	font-weight:bold;
+	text-align:left;
+}
+
+h4.h4-01 {
+	margin-top:6px;
+	text-align:left;
+}
+
+/* add by AM-01 start */
+	h1.h1-brands {
+		clear:both;
+		line-height:1.231;
+		margin-top: 25px;
+		zoom:1;
+	}
+	*:first-child+html h1.h1-brands {
+		clear:none;
+		width:100%;
+		margin-top:34px;
+	}
+/* add by AM-01 start */
+
+/* add by AM-02 start */
+	h1.h1-goods {
+		clear:both;
+		line-height:1.231;
+		margin-top: 20px;
+		zoom:1;
+	}
+	*:first-child+html h1.h1-goods {
+		clear:none;
+		width:100%;
+		margin-top:34px;
+	}
+
+/* add by AM-02 end */
+
+/* CSS Document */

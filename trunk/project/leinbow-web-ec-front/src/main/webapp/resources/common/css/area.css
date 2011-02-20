@@ -1,0 +1,355 @@
+@charset "utf-8";
+
+/* -----------------------------------------------
+CSS file RESTIR Online Boutique
+FileName:/common/css/area.css
+Author:　
+----------------------------------------------- */
+.area-siteId-01 {
+	float:left;
+	padding-top: 28px;
+	margin-bottom:4px;
+}
+
+.area-users-01 {
+	float:right;
+	width:625px;
+	height:25px;
+}
+
+.area-globalNavigation-01 {
+	float:right;
+	padding:8px 0 5px 0;
+	width:636px;
+}
+	.area-globalNavigation-01 ul.logout{
+		padding-left:98px;
+	}
+	.area-globalNavigation-01 ul.login{
+	}
+	/* RF20100506 */
+	.area-globalNavigation-01 ul li+li {
+		padding-left:22px;
+		/*background:url(../../g_images/prt-separator-01.gif) no-repeat;*/
+		background:url(../../g_images/prt-separator-01.gif) no-repeat;
+	}
+
+	.area-globalNavigation-01 ul li {
+		float:left;
+		padding-left:0;
+		background:none;
+	}
+	.area-globalNavigation-01 ul li img {
+		vertical-align:bottom;
+	}
+
+.area-categoryNavigation-01 {
+	clear:both;
+	padding-top:10px;
+	border-top:solid 1px #000;
+}
+	.area-categoryNavigation-01 > ul {
+		position:relative;
+		z-index:9;
+		zoom:1;
+	}
+	.area-categoryNavigation-01 ul li > a {
+		display:block;
+		color:#fff;
+		padding:0 8px;
+		zoom:1;
+	}
+	.area-categoryNavigation-01 ul li > a:link,
+	.area-categoryNavigation-01 ul li > a:visited,
+	.area-categoryNavigation-01 ul li > a:hover,
+	.area-categoryNavigation-01 ul li > a:visited:hover,
+	.area-categoryNavigation-01 ul li > a:active {
+		color:#fff;
+	}
+
+	.area-categoryNavigation-01 > ul > li > a:link,
+	.area-categoryNavigation-01 > ul > li > a:visited {
+		background-color:#000;
+	}
+	.area-categoryNavigation-01 > ul > li > a:hover,
+	.area-categoryNavigation-01 > ul > li > a:visited:hover {
+		background-color:#333;
+	}
+	.area-categoryNavigation-01 > ul > li > a:active {
+		background-color:#000;
+	}
+	.area-categoryNavigation-01 > ul > li > a.active {
+		background-color:#333;
+	}
+	.area-categoryNavigation-01 > ul > li {
+		margin-left:5px;
+		float:left;
+		padding-bottom:5px;
+	}
+	.area-categoryNavigation-01 > ul > li > a {
+		padding:6px 10px;
+		text-align:center;
+		line-height:1.34;
+		zoom:1;
+	}
+	.area-categoryNavigation-01 > ul > li.active {
+		padding-bottom:0;
+		zoom:1;
+	}
+	.area-categoryNavigation-01 > ul > li.active > a {
+		background:#333;
+		padding-bottom:11px;
+	}
+
+
+	.area-categoryNavigation-01 > ul > li .subBlock-A {
+		display:none;
+	}
+	.area-categoryNavigation-01 .subBlock-A {
+		padding:3px 0 10px;
+		background:url(../../g_images/prt-spreader-01.png) no-repeat;
+		position:absolute;
+		display:none;
+	}
+	.area-categoryNavigation-01 .subBlock-A .close {
+		padding:4px 5px 2px;
+		text-align:right;
+	}
+	.area-categoryNavigation-01 .subBlock-A ul > li {
+		margin:2px 5px 0;
+		position:relative;
+	}
+	.area-categoryNavigation-01 .subBlock-A ul > li > a {
+		padding:3px 5px;
+	}
+	.area-categoryNavigation-01 .subBlock-A ul > li > a:link,
+	.area-categoryNavigation-01 .subBlock-A ul > li > a:visited {
+		background-color:#444;
+	}
+	.area-categoryNavigation-01 .subBlock-A ul > li > a:hover,
+	.area-categoryNavigation-01 .subBlock-A ul > li > a:visited:hover {
+		background-color:#666;
+	}
+	.area-categoryNavigation-01 .subBlock-A ul > li > a:active {
+		background-color:#444;
+	}
+	.area-categoryNavigation-01 .subBlock-A ul > li > a.active {
+		background-color:#666;
+	}
+	.area-categoryNavigation-01 .subBlock-A > ul > li  ul {
+		position:absolute;
+		top:-5px;
+		background:url(../../g_images/prt-spreader-01.png) no-repeat;
+		padding:3px 0 5px;
+		display:none;
+	}
+	.area-categoryNavigation-01 .subBlock-B {
+		padding:3px 10px 10px;
+		width:940px;
+		background:url(../../g_images/prt-spreader-01.png) no-repeat;
+		position:absolute;
+		left:0;
+		visibility:hidden;
+	}
+	.area-categoryNavigation-01 .subBlock-B .close {
+		margin-bottom:3px;
+		text-align:right;
+	}
+	.area-categoryNavigation-01 .subBlock-B > ul > li > a:link,
+	.area-categoryNavigation-01 .subBlock-B > ul > li > a:visited {
+		background-color:#000;
+	}
+	.area-categoryNavigation-01 .subBlock-B > ul > li > a:hover,
+	.area-categoryNavigation-01 .subBlock-B > ul > li > a:visited:hover,
+	.area-categoryNavigation-01 .subBlock-B > ul > li > a.active {
+		background-color:#444;
+	}
+	.area-categoryNavigation-01 .subBlock-B > ul > li > a:active {
+		background-color:#000;
+	}
+	.area-categoryNavigation-01 .subBlock-B > ul > li  {
+		clear:left;
+		padding-top:2px;
+	}
+	.area-categoryNavigation-01 .subBlock-B > ul > li  {
+		clear:left;
+		padding-top:2px;
+	}
+	.area-categoryNavigation-01 .subBlock-B > ul > li > a {
+		text-align:center;
+	}
+	.area-categoryNavigation-01 .subBlock-B > ul > li  ul,
+	.area-categoryNavigation-01 .subBlock-B > ul > li  ul > li {
+		float:left;
+	}
+	.area-categoryNavigation-01 .subBlock-B > ul > li  ul {
+		width:940px;
+		visibility:hidden;
+		position:absolute;
+	}
+	.area-categoryNavigation-01 .subBlock-B > ul > li  ul > li {
+		padding-top:2px;
+	}
+	.area-categoryNavigation-01 .subBlock-B > ul > li  ul > li {
+		width:233px;
+		margin-right:2px;
+	}
+	.area-categoryNavigation-01 .subBlock-B > ul > li  ul > li.all {
+		width:940px!important;
+		text-align:center;
+	}
+	.area-categoryNavigation-01 .subBlock-B > ul > li  ul > li:first-child,
+	.area-categoryNavigation-01 .subBlock-B > ul > li  ul > li + li + li + li {
+		width:234px;
+	}
+	.area-categoryNavigation-01 .subBlock-B > ul > li  ul > li + li + li + li {
+		margin-right:0;
+	}
+	.area-categoryNavigation-01 .subBlock-B ul > li  ul > li > a:link,
+	.area-categoryNavigation-01 .subBlock-B ul > li  ul > li > a:visited {
+		background-color:#444;
+	}
+	.area-categoryNavigation-01 .subBlock-B ul > li  ul > li > a:hover,
+	.area-categoryNavigation-01 .subBlock-B ul > li  ul > li > a:visited:hover {
+		background-color:#666;
+	}
+	.area-categoryNavigation-01 .subBlock-B ul > li  ul > li > a:active {
+		background-color:#444;
+	}
+	.area-categoryNavigation-01 .subBlock-B ul > li  ul > li > a {
+		line-height:1.9;
+	}
+/* width */
+
+	.area-categoryNavigation-01 > ul > li:first-child {
+		margin-left:0;
+		width:132px;
+	}
+	.area-categoryNavigation-01 > ul > li + li {
+		width:133px;
+	}
+	.area-categoryNavigation-01 > ul.type02 > li:first-child {
+		margin-left:0;
+		width:113px;
+	}
+	.area-categoryNavigation-01 > ul.type02 > li + li {
+		width:116px;
+	}
+	.area-categoryNavigation-01 > ul > li:first-child .subBlock-A {
+		width:132px;
+	}
+	.area-categoryNavigation-01 > ul > li + li .subBlock-A {
+		width:133px;
+	}
+	.area-categoryNavigation-01 > ul.type02 > li:first-child .subBlock-A {
+		width:113px;
+	}
+	.area-categoryNavigation-01 > ul.type02 > li + li .subBlock-A {
+		width:116px;
+	}
+	.area-categoryNavigation-01 > ul .subBlock-A > ul > li  ul {
+		width:133px;
+	}
+	.area-categoryNavigation-01 > ul.type02 .subBlock-A > ul > li  ul {
+		width:116px;
+	}
+
+.area-utility-01 {
+	float:left;
+}
+	.area-utility-01 ul li {
+		float:left;
+		padding-left:16px;
+		background:url(../../g_images/prt-separator-02.gif) no-repeat 7px 0;
+	}
+
+	.area-utility-01 ul li:first-child {
+		padding-left:0;
+		background:none;
+	}
+	.area-utility-01 ul li a {
+		display:block;
+		color:#666;
+		line-height:1.0;
+	}
+	.area-utility-01 ul li a:hover {
+		color:#999;
+	}
+
+.area-address-01 {
+	float:right;
+}
+	.area-address-01 address {
+		font-style:normal;
+		font-size:85%;
+		color:#666;
+	}
+
+#area-main-01 {
+	position:relative;
+	padding-top:11px;
+	zoom:1;
+}
+#area-main-02 {
+	position:relative;
+	margin-top:8px;
+	padding:25px 0 30px 0;
+	zoom:1;
+	border-top:10px solid #000000;
+	border-bottom:10px solid #000000;
+}
+#area-main-03 {
+	position:relative;
+	margin-top:8px;
+	padding:0 0 30px 0;
+	zoom:1;
+	border-top:10px solid #000000;
+	border-bottom:10px solid #000000;
+}
+
+#area-subColumn-01 {
+	width:110px;
+	float:left;
+}
+#area-mainColumn-01 {
+	width:820px;
+	float:right;
+}
+
+.area-subColumn-02 {
+	width:408px;
+	float:right;
+}
+.area-mainColumn-02 {
+	width:532px;
+	float:left;
+}
+
+/* clear fix
+******************************** */
+
+.area-categoryNavigation-01 ul,
+#area-main-02,
+#area-main-03 {
+	zoom:1;
+}
+
+.area-categoryNavigation-01 ul:after,
+#area-main-02:after,
+#area-main-03:after {
+	content:".";
+	clear:both;
+	height:0;
+	display:block;
+	visibility:hidden;
+}
+
+
+.member-name {
+	float: right;
+	width: 510px;
+	text-align: right;
+	height: 20px;
+}
+
+/* CSS Document */

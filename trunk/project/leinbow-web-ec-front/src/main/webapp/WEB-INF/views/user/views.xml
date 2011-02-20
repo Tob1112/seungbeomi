@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+
+    <definition extends="public" name="user/login">
+        <put-attribute name="body" value="/WEB-INF/views/user/login.jsp"/>
+    </definition>
+
+    <!-- いちいち設定することは手間なので、asterisksを使う -->
+    <!-- http://stackoverflow.com/questions/3504744/urlbasedviewresolver-and-apache-tiles2-in-spring-3 -->
+
+
+
+</tiles-definitions>

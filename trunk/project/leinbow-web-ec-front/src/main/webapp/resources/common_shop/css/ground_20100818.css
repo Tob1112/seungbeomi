@@ -1,0 +1,26 @@
+@charset "utf-8";
+
+/* -----------------------------------------------
+CSS file RESTIR Online Boutique
+FileName:/common_shop/css/ground.css
+Author:　
+----------------------------------------------- */
+
+/* NEWS用 トップページFLLOWUS部分修正 20100818 */
+
+.ground-object-04 li.li-H {
+	top:17px;
+	left:104px;
+}
+
+.ground-object-04 li.li-I {
+	top:17px;
+	left:172px;
+}
+
+.ground-object-04 li.li-J {
+	top:17px;
+	left:210px;
+}
+
+/* CSS Document */

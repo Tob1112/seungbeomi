@@ -1,0 +1,111 @@
+@charset "utf-8";
+
+/* ===============================================
+ *
+ *	RESTIR内追加CSS
+ *	Music Player　JASRACロゴエリア用
+ *
+ * ============================================== */
+
+
+
+/* float解除 ↓↓↓ ----------------------------- */
+.clearfix:after{
+    content:			".";
+    display:			block;
+    height:				0;
+    clear:				both;
+    visibility:			hidden;
+}
+
+.clearfix{
+    display:			inline-block;
+    min-height:			1%;  /* for IE 7*/
+}
+
+/* Hides from IE-mac */
+* html .clearfix { 		height: 1%; }
+.clearfix { 			display: block; }
+/* End hide from IE-mac */
+
+/* float解除 ↑↑↑ ----------------------------- */
+
+
+
+#restir_topMusic_jasrac {
+	margin:				0;
+	paddig:				0;
+	color:				#666;
+	font-weight:		normal;
+/*	width:				408px;*/
+	font-family:		Helvetica,Arial,sans-serif;
+	text-align:			right;
+	line-height:		1.2;
+}
+
+#restir_topMusic_jasrac ul {
+	margin:				0 0 0 676px;
+	padding:			0;
+	width:				284px;
+}
+
+
+#restir_topMusic_jasrac li {
+	float:				left;
+	margin:				0;
+	padding:			0;
+	list-style:			none;
+	list-style-position:outside;
+}
+
+#restir_topMusic_jasrac .jasrac_logo {
+	width:				50px;
+	height:				50px;
+	margin:				0 0 0 4px;
+}
+
+
+/* フォントサイズ ブラウザハック有 ↓↓↓ ----------------------------- */
+/* Safari base */
+#restir_topMusic_jasrac  p {
+	margin-top:			10px;
+	font-size:			62%;
+	letter-spacing:		0.05em;
+}
+
+/* Firefox only */
+body:first-of-type #restir_topMusic_jasrac  p {
+	font-size:			68%;
+	letter-spacing:		0;
+}
+
+/* IE8 only */
+html>/* */body #restir_topMusic_jasrac  p {
+	font-size:			64%;
+	letter-spacing:		0;
+}
+
+/* IE7 only */
+*:first-child+html #restir_topMusic_jasrac  p {
+	font-size:			64%;
+	letter-spacing:		0;
+}
+
+/* フォントサイズ ブラウザハック有 ↑↑↑ ----------------------------- */
+
+
+
+#restir_topMusic_jasrac .jasrac_num_left {
+	margin-right:		20px;
+}
+
+.block-toPageTop-02 {
+	margin-top:			5px;
+}
+
+.contentsBody {
+	padding-bottom:		4px;
+}
+
+
+

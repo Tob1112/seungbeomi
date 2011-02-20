@@ -1,0 +1,76 @@
+@charset "utf-8";
+
+/* ===============================================
+ *
+ *	RESTIR内追加CSS
+ *	NEWS用 タイトルフォント修正
+ *
+ * ============================================== */
+
+/* NEWS HOMEページ用 */
+.ground-object-05 .info h3.newsT {
+	font-size:	100%;
+	font-weight:	bold;
+	line-height:	1.2em;
+	margin-bottom:	0.2em;
+	letter-spacing:	0.03em;
+	font-family:	'HelveticaNeue-Light','Helvetica Neue Light','Helvetica Neue',Helvetica,'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro',Arial,sans-serif;"
+
+}
+
+
+
+/* NEWS LISTページ用 */
+.block-entryList-01 .subBlock ul li h2.newsT {
+	font-weight: 	bold;
+	line-height: 	1.2em;
+	letter-spacing: 0.04em;
+	font-family: 	'HelveticaNeue-Light','Helvetica Neue Light','Helvetica Neue',Helvetica,'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro',Arial,sans-serif;
+	font-size:	111%;
+}
+
+
+
+/* NEWS 各ページ用 */
+.block-entryBody-02 h2.newsT {
+	font-weight: 	bold;
+	line-height: 	1.2em;
+	letter-spacing: 0.03em;
+	font-family: 	'HelveticaNeue-Light','Helvetica Neue Light','Helvetica Neue',Helvetica,'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro',Arial,sans-serif;
+}
+
+.block-entryBody-02 h3.newsS {
+	font-family: 	'HelveticaNeue-Light','Helvetica Neue Light','Helvetica Neue',Helvetica,'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro',Arial,sans-serif;
+	font-size:	98%;
+}
+
+.block-entryBody-02 p.f_orange {
+	font-size:			109%;
+}
+
+.block-entryBody-02 p.f_orange a,
+.block-entryBody-02 p.f_orange a:link,
+.block-entryBody-02 p.f_orange a:visited {
+	font-family: 	Helvetica,'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro',Arial,sans-serif;
+	color:				#ac790d;
+	outline:			none;
+}
+
+.block-entryBody-02 p.f_orange a:hover {
+	color:				#bd9644;
+}
+
+
+
+/* 左メニュー　アーカイブリスト タイトル */
+.archive_title {
+	font-size:			138.5%;
+	font-family:		Times, Times New Roman, serif;
+	margin-top:			15px;
+	text-align:			center;
+}
+
+/* 左メニュー　アーカイブリスト  月別 */
+.ul-B li {
+	font-style:			italic;
+}

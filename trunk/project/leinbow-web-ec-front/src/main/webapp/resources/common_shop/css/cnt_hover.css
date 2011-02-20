@@ -1,0 +1,208 @@
+@charset "utf-8";
+
+/* ===============================================
+ *
+ *	RESTIR内追加CSS
+ *	FollowUs・AboutUs用 ロールオーバー設定
+ *
+ * ============================================== */
+
+
+/* FollowUs ------------------------------------- */
+/* LC */
+.ground-object-04 li.li-A {
+	width:				56px;
+	height:				39px;
+	background:		url(../../files_top/other/images/txt-fu-01.gif) no-repeat center 0;
+}
+
+.ground-object-04 li.li-A a {
+	display:					block;
+	width:						56px;
+	height:						39px;
+	border:						none;
+	text-decoration:	none;
+	text-indent:			-9999px;
+	outline:					none;
+}
+
+.ground-object-04 li.li-A a:link,
+.ground-object-04 li.li-A a:visited {
+	background-image:	url(../../files_top/other/images/txt-fu-01.gif);
+}
+
+.ground-object-04 li.li-A a:hover,
+.ground-object-04 li.li-A a:active {
+	background-image:	url(../../files_top/other/images/txt-fu-01-ovr.gif);
+}
+
+
+/* twitter */
+.ground-object-04 li.li-B {
+	width:				26px;
+	height:				39px;
+	background:		url(../../files_top/other/images/txt-fu-02.gif) no-repeat center 0;
+}
+
+.ground-object-04 li.li-B a {
+	display:					block;
+	width:						26px;
+	height:						39px;
+	border:						none;
+	text-decoration:	none;
+	text-indent:			-9999px;
+	outline:					none;
+}
+
+.ground-object-04 li.li-B a:link,
+.ground-object-04 li.li-B a:visited {
+	background-image:	url(../../files_top/other/images/txt-fu-02.gif);
+}
+
+.ground-object-04 li.li-B a:hover,
+.ground-object-04 li.li-B a:active {
+	background-image:	url(../../files_top/other/images/txt-fu-02-ovr.gif);
+}
+
+
+/* facebook */
+.ground-object-04 li.li-C {
+	width:				32px;
+	height:				39px;
+	background:		url(../../files_top/other/images/txt-fu-03.gif) no-repeat center 0;
+}
+
+.ground-object-04 li.li-C a {
+	display:					block;
+	width:						32px;
+	height:						39px;
+	border:						none;
+	text-decoration:	none;
+	text-indent:			-9999px;
+	outline:					none;
+}
+
+.ground-object-04 li.li-C a:link,
+.ground-object-04 li.li-C a:visited {
+	background-image:	url(../../files_top/other/images/txt-fu-03.gif);
+}
+
+.ground-object-04 li.li-C a:hover,
+.ground-object-04 li.li-C a:active {
+	background-image:	url(../../files_top/other/images/txt-fu-03-ovr.gif);
+}
+
+
+
+
+/* AboutUs ------------------------------------- */
+/* RESTIR MIDTOWN */
+.ground-object-04 li.li-D {
+	width:				137px;
+	height:				14px;
+	background:		url(../../files_top/other/images/txt-au-01.gif) no-repeat 0 0;
+}
+
+.ground-object-04 li.li-D a {
+	display:					block;
+	width:						137px;
+	height:						14px;
+	border:						none;
+	text-decoration:	none;
+	text-indent:			-9999px;
+	outline:					none;
+}
+
+.ground-object-04 li.li-D a:link,
+.ground-object-04 li.li-D a:link {
+	background-image:	url(../../files_top/other/images/txt-au-01.gif);
+}
+
+.ground-object-04 li.li-D a:hover,
+.ground-object-04 li.li-D a:active {
+	background-image:	url(../../files_top/other/images/txt-au-01-ovr.gif);
+}
+
+
+/* THE COMPANY'S */
+.ground-object-04 li.li-E {
+	width:				117px;
+	height:				10px;
+	background:		url(../../files_top/other/images/txt-au-02.gif) no-repeat 0 0;
+}
+
+.ground-object-04 li.li-E a {
+	display:					block;
+	width:						117px;
+	height:						10px;
+	border:						none;
+	text-decoration:	none;
+	text-indent:			-9999px;
+	outline:					none;
+}
+
+.ground-object-04 li.li-E a:link,
+.ground-object-04 li.li-E a:link {
+	background-image:	url(../../files_top/other/images/txt-au-02.gif);
+}
+
+.ground-object-04 li.li-E a:hover,
+.ground-object-04 li.li-E a:active {
+	background-image:	url(../../files_top/other/images/txt-au-02-ovr.gif);
+}
+
+
+/* RECRUIT */
+.ground-object-04 li.li-F {
+	width:				70px;
+	height:				13px;
+	background:		url(../../files_top/other/images/txt-au-03.gif) no-repeat 0 0;
+}
+
+.ground-object-04 li.li-F a {
+	display:					block;
+	width:						70px;
+	height:						13px;
+	border:						none;
+	text-decoration:	none;
+	text-indent:			-9999px;
+	outline:					none;
+}
+
+.ground-object-04 li.li-F a:link,
+.ground-object-04 li.li-F a:link {
+	background-image:	url(../../files_top/other/images/txt-au-03.gif);
+}
+
+.ground-object-04 li.li-F a:hover,
+.ground-object-04 li.li-F a:active {
+	background-image:	url(../../files_top/other/images/txt-au-03-ovr.gif);
+}
+
+
+/* CONTACT */
+.ground-object-04 li.li-G {
+	width:				75px;
+	height:				13px;
+	background:		url(../../files_top/other/images/txt-au-04.gif) no-repeat 0 0;
+}
+
+.ground-object-04 li.li-G a {
+	display:					block;
+	width:						75px;
+	height:						13px;
+	border:						none;
+	text-decoration:	none;
+	text-indent:			-9999px;
+	outline:					none;
+}
+
+.ground-object-04 li.li-G a:link,
+.ground-object-04 li.li-G a:link {
+	background-image:	url(../../files_top/other/images/txt-au-04.gif);
+}
+
+.ground-object-04 li.li-G a:hover,
+.ground-object-04 li.li-G a:active {
+	background-image:	url(../../files_top/other/images/txt-au-04-ovr.gif);
+}
