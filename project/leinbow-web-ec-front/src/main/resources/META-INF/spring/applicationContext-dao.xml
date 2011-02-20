@@ -18,4 +18,6 @@
 
     <!-- dao class -->
 
+    <bean id="userDao" class="com.leinbow.dao.mybatis.UserDaoMybatis"/>
+
 </beans>
