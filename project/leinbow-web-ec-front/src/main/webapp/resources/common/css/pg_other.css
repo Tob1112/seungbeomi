@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="ja">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Cache-Control" content="no-cache" />
+	<meta name="description" content="世界中から厳選したトップブランドを取り扱いラグジュアリーなラインアップを誇る、 セレクトショップ RESTIR（リステア） のオンラインブティック" />
+	<meta name="keywords" content="" />
+	<meta name="auther" content="" />
+
+	<link type="text/css" href="/common/css/site.css" rel="stylesheet"  media="screen,print"  />
+	<link href="/common/css/main.css" rel="stylesheet" type="text/css" />
+	<link href="/common/css/style_st.css" rel="stylesheet" type="text/css" id="jstyle" />
+	<link href="/common/css/pg_cart.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="/common/js/jquery.js"></script>
+	<script type="text/javascript" src="/common/js/jquery.cookie.js"></script>
+	<script type="text/javascript" src="/common/js/main.js"></script>
+
+	<script type="text/javascript" src="/common/js/jquery-1.3.2.min.js"></script>
+	<script type="text/javascript" src="/common/js/plug-in.js"></script>
+	<script type="text/javascript" src="/common/js/rollover.js"></script>
+	<script type="text/javascript" src="/common/js/scroll.js"></script>
+	<script type="text/javascript" src="/common/js/settings.js"></script>
+	<script type="text/javascript" src="/common/js/swfobject.js"></script>
+	<title>RESTIR.COM</title>
+</head>
+<body id="error">
+
+<div class="region" id="header">
+
+<div class="areaGroup">
+
+<div class="area-siteId-01">
+<p id="siteId-01"><a href="/"><img src="/g_images/siteid-01.gif" alt="RESTIR.COM" width="314" height="51" /></a></p>
+<!-- area-siteId-01 --></div>
+
+
+
+
+
+<div class="area-categoryNavigation-01" id="categoryNavigation-A">
+
+<!-- / categoryNavigation-01 --></div>
+<!-- / areaGroup --></div>
+<!-- / header --></div>
+
+
+<div class="region contentsBody">
+<div class="areaGroup">
+<div id="area-main-01">
+
+<div class="main_box">
+	<img src="/img/sorry.jpg" />
+	<p style="font-size:18px;">指定されたURLが見つからないか、<br />
+	サーバーが混み合っております。</p>
+	<p style="font-size:12px; margin:8px 0 10px 0;">恐れいりますが、再度URLをご確認いただくか、<br />
+	しばらく経ってから再度アクセスをお願いいたします。</p>
+<br/>
+
+	<p style="font-size:18px;">Specified URL is not found or the server is crowded. </p>
+	<p style="font-size:12px; margin:8px 0 10px 0;">Please access it again after URL is confirmed again or it passes for a while though it astonishes.</p>
+<br/>
+
+	<p style="font-size:18px;">未找到您所指定的URL地址，或系统繁忙。</p>
+	<p style="font-size:12px; margin:8px 0 10px 0;">请您再次确认URL地址，或稍等片刻后重新进行链接。</p>
+	<a href="/"><img src="/img/sitetop_btn.jpg" /></a>
+<br/>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="region" id="footer">
+
+<div class="area-utility-01">
+<!-- / area-utility-01 --></div>
+
+<div class="area-address-01">
+<address>Restir Inc. all rights reserved.</address>
+<!-- / area-address-01 --></div>
+
+<!-- / footer --></div>
+<!-- / area-main-01 --></div>
+</div>
+<!-- / contensBody --></div>
+
+
+</body>
+</html>
+
+
+
+

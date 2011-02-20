@@ -1,0 +1,132 @@
+@charset "utf-8";
+
+/* ===============================================
+ *
+ *	RESTIR内追加CSS
+ *	HOME リニューアル　20101119リリース　レイアウト
+ *
+ * ============================================== */
+
+#home {
+	width:960px;
+	margin: 20px auto 20px;
+	height: 100%;
+	}
+	
+#left_column{
+	width:655px;
+	float:left;
+	margin-right:35px;
+}
+
+#right_column{
+	width:270px;
+	float:left;
+}
+
+
+.arrived {
+	width:655px;
+	height:400px;
+	margin-bottom:20px;
+}
+
+.magazine {
+	width:655px;
+	height:370px;
+	border-top: 6px solid #000;
+	margin-bottom:20px;
+}
+
+*:first-child+html .magazine_bg {
+	width:655px;
+	height:370px;
+	overflow:hidden;
+	background-repeat: no-repeat;
+	background-position: 0 50px; 
+	z-index:200;
+}
+
+*:first-child+html .magazine_bg .mag_seeall  img {
+	filter: alpha(opacity=0);
+	-moz-opacity:0.0;
+	opacity:0.0;
+}
+
+
+
+.videos {
+	width:655px;
+	height:270px;
+	background-color: #000;
+}
+
+.music {
+	width:655px;
+	height:250px;
+	margin-bottom:30px;
+}
+
+.left_bottom {
+	width:655px;
+	height:380px;
+}
+
+.ad2 {
+	width:270px;
+	height:380px;
+	float:left;
+	margin-right: 30px;
+	border-top:6px solid #000;
+}
+
+.ad2_border {
+	width:230px;
+	height:340px;
+	margin: 10px 0 0 14px;
+	border: 5px solid #000;
+}
+
+
+.joinus {
+	width:355px;
+	height:365px;
+	background-color: #000;
+	float:left;
+}
+
+.ad1 {
+	width:255px;
+	padding: 20px 0 20px 15px;
+}
+
+.ad1_border {
+	width:230px;
+	height:340px;
+	border: 5px solid #000;
+}
+
+
+.blog {
+	width:270px;
+	height:520px;
+	background-color: #000;
+}
+
+.news {
+	width:270px;
+	height:525px;
+	margin-bottom: 20px;
+}
+
+.letter {
+	width:270px;
+	height:150px;
+	background-color: #000;
+}
+
+.followus {
+	width:270px;
+	height:115px;
+}
+

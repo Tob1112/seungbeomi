@@ -1,0 +1,226 @@
+@charset "utf-8";
+
+/* -----------------------------------------------
+CSS file RESTIR Online Boutique
+FileName:/common_shop/css/ground.css
+Author:　
+----------------------------------------------- */
+
+.block-groundInner-01 {
+	padding:15px 0;
+	border-bottom:10px solid #000000;
+	width:100%;
+}
+
+.block-groundInner-02 {
+	padding-top:15px;
+	width:100%;
+}
+	.block-groundInner-02 .inner-A {
+		width:270px;
+		float:left;
+	}
+	.block-groundInner-02 .inner-B {
+		width:252px;
+		float:right;
+	}
+
+.ground-object-01 {
+	width:682px;
+	float:left;
+}
+	.ground-object-01 .div-A {
+		width:70px;
+		float:left;
+	}
+	.ground-object-01 .div-B {
+		width:612px;
+		float:left;
+	}
+
+.ground-object-02 {
+	width:270px;
+}
+.ground-object-02.playerTop {
+	float:right;
+}
+	.ground-object-02 .set-object {
+		width:270px;
+		height:300px;
+		background:url(../../g_images/prt-rounder-01.gif) left top no-repeat;
+	}
+	.ground-object-02 .set-object p.ttl {
+		padding-top:5px;
+		text-align:center;
+	}
+	.ground-object-02 .set-object .set-flash {
+		text-align:center;
+	}
+	.ground-object-02 .set-object p.subttl {
+		text-align:center;
+	}
+
+.ground-object-03 {
+	width:100%;
+	text-align:left;
+}
+	.ground-object-03 .div-A {
+		width:71px;
+		float:left;
+	}
+	.ground-object-03 .div-B {
+		width:461px;
+		float:left;
+	}
+
+.ground-object-04 {
+	margin-top:10px;
+	width:100%;
+	height:70px;
+	background-color:#000000;
+	position:relative;
+	text-align:left;
+}
+	.ground-object-04 h3 {
+		position:absolute;
+		top:0;
+		left:0;
+	}
+	.ground-object-04 li {
+		font-size:1px;
+		line-height:0;
+		position:absolute;
+	}
+	.ground-object-04 li.li-A {
+		top:17px;
+		left:109px;
+	}
+	.ground-object-04 li.li-B {
+		top:17px;
+		left:177px;
+	}
+	.ground-object-04 li.li-C {
+		top:17px;
+		left:220px;
+	}
+	.ground-object-04 li.li-D {
+		top:10px;
+		left:78px;
+	}
+	.ground-object-04 li.li-E {
+		top:30px;
+		left:78px;
+	}
+	.ground-object-04 li.li-F {
+		top:50px;
+		left:78px;
+	}
+	.ground-object-04 li.li-G {
+		top:50px;
+		left:148px;
+	}
+
+.ground-object-05 {
+	width:100%;
+}
+	.ground-object-05 ul {
+		width:100%;
+	}
+	.ground-object-05 ul li {
+		padding:10px 0;
+		width:250px;
+		border-bottom:1px dotted #000;
+		text-align:left;
+		vertical-align:bottom;
+	}
+	.ground-object-05 ul li .viz {
+		float:left;
+		font-size:1px;
+		line-height:0;
+		width:95px;
+	}
+	.ground-object-05 ul li .info {
+		float:left;
+		width:155px;
+	}
+	.ground-object-05 ul li .info p.eheader {
+	}
+	.ground-object-05 ul li .info p.eheader span {
+		display:block;
+	}
+	.ground-object-05 ul li .info p.eheader span.category {
+		float:left;
+	}
+	.ground-object-05 ul li .info p.eheader span.date {
+		float:right;
+	}
+	.ground-object-05 ul li .info h3 {
+
+	}
+	.ground-object-05 ul li .info p.description {
+
+	}
+
+.ground-object-06 {
+	width:100%;
+}
+	.ground-object-06 .set-list {
+		width:100%;
+		height:395px;
+		overflow-y:scroll;
+		overflow-x:hidden;
+	}
+	.ground-object-06 .set-list h3 {
+		margin-top:10px;
+		width:390px;
+		font-weight:normal;
+		text-align:center;
+	}
+	.ground-object-06 .set-list p.description {
+		margin-top:3px;
+		line-height:1.1;
+		text-align:center;
+	}
+	.ground-object-06 .set-list div.entryBody {
+		margin:0 auto;
+		padding:5px 0 10px 0;
+		width:390px;
+		text-align:left;
+	}
+	.ground-object-06 .set-list div.entryBody .viz {
+		margin-top:5px;
+	}
+	.ground-object-06 .set-list div.entryBody .cap {
+		margin-top:6px;
+	}
+	.ground-object-06 .set-list div.entryBody .txt {
+		margin-top:5px;
+	}
+	.ground-object-06 .set-list div.entryBody .txt a {
+		text-decoration:underline;
+	}
+
+/* clear fix 
+******************************** */
+
+.ground-object-01,
+.block-groundInner-01,
+.block-groundInner-02,
+.ground-object-05 ul li,
+.ground-object-05 ul li .info p.eheader {
+	zoom:1;
+}
+
+.ground-object-01:after,
+.block-groundInner-01:after,
+.block-groundInner-02:after,
+.ground-object-05 ul li:after,
+.ground-object-05 ul li .info p.eheader:after {
+	content:"."; 
+	clear:both; 
+	height:0; 
+	display:block; 
+	visibility:hidden;
+}
+
+/* CSS Document */

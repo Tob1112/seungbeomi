@@ -1,0 +1,227 @@
+@charset "utf-8";
+
+/* -----------------------------------------------
+CSS file RESTIR Online Boutique
+FileName:/common/css/fonts.css
+Author:　
+----------------------------------------------- */
+
+/* font-family
+************************************************* */
+
+.area-categoryNavigation-01 ul,
+.area-utility-01 ul li,
+.area-address-01,
+.block-navigation-01 ul li,
+.block-search-01 p,
+.block-langswitcn-01 p,
+.block-cart-01,
+.block-topicPath-01 ul li,
+.block-sorter-01 dt,
+.block-sorter-01 dd > a,
+.block-pager-01 ul,
+.block-pager-01 .prev,
+.block-pager-01 .next,
+.block-itemLIst-01 li a.caption,
+.block-itemLIst-01 li span.spec,
+.block-itemList-02 .subBlock ul li span,
+.block-toPageTop-01 p a,
+.block-itemDetail-01 .div-B dl.spec dt,
+.block-itemDetail-01 .div-B p.price,
+.block-itemDetail-01 .div-B p.movieBtn,
+.block-itemDetail-01 .div-B dl.color dt .title,
+.block-itemDetail-01 .div-B dl.color dt .name,
+.block-itemDetail-01 .div-B dl.size dt .title,
+.block-itemDetail-01 .div-B dl.size dt .name,
+.block-itemDetail-01 .div-B dl.data dt,
+.block-itemDetail-01 .div-B div.orders .quantity .title,
+.block-itemDetail-01 .div-B div.orders .request .wishlist,
+.block-itemDetail-01 .div-B div.orders .request .cart,
+.block-itemDetail-01 .div-B div.ask .title,
+.block-itemDetail-01 .div-A .flash dl dt,
+.block-itemDetail-01 .div-A .flash dl dd.get {
+	font-family:Helvetica, Arial, sans-serif;
+}
+
+.area-categoryNavigation-01 ul,
+.block-staticElem-04 p.p-A {
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.block-itemDetail-01 .div-B > h1,
+.block-itemDetail-01 .div-B > h2,
+h1.h1-01,
+h2.h2-03,
+.block-archiveList-01 ul.ul-A li,
+.block-archiveList-01 ul.ul-B li,
+.block-archiveList-01 ul.ul-C li,
+.block-archiveList-01 ul.ul-D li,
+h2.h2-04,
+h3.h3-01,
+.block-staticElem-01 p.p-B,
+.block-staticElem-02 p.p-A {
+	font-family:Times, Times New Roman, serif;
+}
+
+.area-utility-01 ul li + li + li + li+ li+ li+ li + li  {
+	font-family:'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro','メイリオ',Meiryo,'ＭＳ Ｐゴシック','MS PGothic',sans-serif;
+}
+
+.block-staticElem-01 p.p-A,
+h2.h2-05,
+.block-staticElem-01 p.p-C,
+h3.h3-02,
+.block-staticElem-01 p.p-D,
+.block-staticElem-03 .set-Static td,
+.block-staticElem-01 ol.ol-A li,
+.block-staticElem-04 p.p-B {
+	font-family:'HiraKakuPro-W3','ヒラギノ角ゴ Pro W3','メイリオ',Meiryo,'ＭＳ Ｐゴシック','MS PGothic',sans-serif;
+}
+
+.block-entryBody-01 h3,
+.block-entryBody-01 p.description,
+.block-entryBody-01 p.date,
+.block-pager-02 ul li,
+.block-entryList-01 .subBlock ul li p.eheader,
+.block-entryList-01 .subBlock ul li h2,
+.block-entryBody-02 p.eheader,
+.block-entryBody-02 h3,
+.block-pager-03 p,
+h4.h4-01,
+.block-staticElem-02 div.set-List li,
+.block-entryBody-01 p.entrydate,
+.block-entryBody-01 h2.set-Music,
+.block-entryBody-01 div.entryBody .music .stitle,
+.ground-object-05 ul li .info p.eheader,
+.ground-object-05 ul li .info h2,
+.ground-object-06 .set-list h3,
+.ground-object-06 .set-list p.description {
+	font-family: "Myriad Pro", Myriad , Arial;
+}
+
+/* font-size
+************************************************* */
+
+h3.h3-01 em {
+	font-size:65%;
+}
+
+.block-navigation-01 ul li a,
+.block-search-01 p.submit a,
+.block-langswitcn-01 p.switch a,
+.block-sorter-01 dt,
+.block-sorter-01 dd,
+.block-pager-01 .show,
+.block-itemDetail-01 .div-A .flash dl dt,
+.block-itemDetail-01 .div-B div.ask dl.desk dt span,
+.block-entryList-01 .subBlock ul li p.eheader,
+.block-staticElem-01 p.p-A,
+.block-staticElem-01 p.p-D,
+.block-staticElem-03 .set-Static td,
+.block-staticElem-01 ol.ol-A li,
+.ground-object-05 ul li .info p.eheader,
+.ground-object-05 ul li .info p.description,
+.block-staticElem-04 p.p-B {
+	font-size:77%;
+}
+
+.area-categoryNavigation-01 ul li > a,
+.area-utility-01 ul li {
+        font-size:108%;
+}
+.block-cart-01 .subBlock dl,
+.block-topicPath-01 ul li,
+.block-itemList-02 .subBlock ul li span,
+.block-toPageTop-01 p a,
+.block-itemDetail-01 .div-B .comment,
+.block-itemDetail-01 .div-B p.movieBtn a,
+.block-itemDetail-01 .div-B dl.spec,
+.block-itemDetail-01 .div-B dl.color dt .title,
+.block-itemDetail-01 .div-B dl.color dt .name,
+.block-itemDetail-01 .div-B dl.size dt .title,
+.block-itemDetail-01 .div-B dl.size dt .name,
+.block-itemDetail-01 .div-B dl.size dd ul li,
+.block-itemDetail-01 .div-B dl.data dt,
+.block-itemDetail-01 .div-B div.ask .title + p,
+.block-itemDetail-01 .div-B div.orders span.title,
+.block-itemDetail-01 .div-A .flash dl dd,
+.block-itemDetail-01 .div-A .flash dl dd.get,
+.block-entryBody-01 div.entryBody .cap,
+.block-entryBody-02 .cap,
+.block-entryList-01 .subBlock ul li p.description,
+.block-staticElem-01 p.p-B,
+.block-staticElem-02 p.p-A,
+.block-staticElem-02 div.set-List li,
+.block-archiveList-01 ul.ul-C li,
+.block-archiveList-01 ul.ul-D li,
+.block-entryBody-02 .entryBody .txt-B,
+.block-entryBody-02 .entryBody .txt-C,
+.ground-object-06 .set-list p.description,
+.ground-object-06 .set-list div.entryBody .cap,
+.block-staticElem-04 p.p-A {
+	font-size:80%;
+}
+
+.area-categoryNavigation-01 > ul > li > a {
+	font-size:108%;
+}
+
+.block-cart-01 .subBlock > p a span,
+.block-itemLIst-01 li a.caption em + em,
+.block-entryList-01 .subBlock ul li h2,
+.block-entryBody-02 h3,
+h4.h4-01,
+.block-entryBody-01 p.entrydate,
+.block-entryBody-01 div.entryBody .music .stitle {
+	font-size:116%;
+}
+.block-itemLIst-01 li a.caption em:first-child,
+.block-entryBody-01 p.description,
+.block-entryBody-02 p.eheader {
+	font-size:123.1%;
+}
+h1.h1-01:first-letter,
+h2.h2-04:first-letter,
+h3.h3-01:first-letter {
+	font-size:127%;
+}
+
+.block-itemDetail-01 .div-B p.price em:first-child,
+.block-itemDetail-01 .div-B div.ask .title,
+h2.h2-03,
+.block-archiveList-01 ul.ul-A li,
+.block-archiveList-01 ul.ul-B li,
+h3.h3-01,
+.ground-object-05 ul li .info h3 {
+	font-size:138.5%;
+}
+
+.block-itemDetail-01 .div-B > h2,
+h2.h2-05,
+.ground-object-06 .set-list h3 {
+	font-size:182%;
+}
+
+h1.h1-01,
+.block-entryBody-02 h2,
+h2.h2-04 {
+	font-size:197%;
+}
+
+.block-itemDetail-01 .div-B > h1,
+.block-entryBody-01 h3 {
+	font-size:246%;
+}
+
+.block-entryBody-01 h2.set-Music {
+	font-size:312%;
+}
+
+#header #viewStatus p {
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+#header #viewStatus p {
+	font-size:90%;
+}
+
+/* CSS Document */

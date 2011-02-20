@@ -1,0 +1,692 @@
+@charset "UTF-8";
+/*@import url("http://yui.yahooapis.com/2.7.0/build/reset/reset-min.css");*/
+@import url("reset.css");
+@import url("pg_share.css");
+@import url("pg_other.css");
+@import url("tag.css");
+@import url("btn.css");
+@import url("icon.css");
+@import url("bar.css");
+
+/* CONTAINER					##################################### */
+div#container{
+	margin: 0;
+	width: 100%;
+}
+/* CHANGE0902 */
+div#sub-container{
+	/* CHANGE1006 */
+	margin: 0 auto;
+	width: 960px;
+	overflow: hidden;
+}
+div#sub-container p#h-catch{
+	/* CHANGE1006 */
+	margin: 5px 0;
+}
+
+/* MODULE						##################################### */
+
+
+/* 英語タイトル */
+.ttl01{
+	font-family: "Times New Roman", Times, serif;
+	font-size: 190%;
+	margin-bottom: 20px;
+}
+
+/*
+.ttl01:first-letter{
+	font-size: 125%;
+}
+*/
+
+/* 日本語サブタイトル */
+.ttl02-jp{
+	font-family: "ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro", sans-serif;
+	font-size: 129%;
+	margin-bottom: 10px;
+	font-weight: bold;
+}
+
+/* 英語サブタイトル */
+.ttl02{
+	font-family: "Times New Roman", Times, serif;
+	font-size: 159%;
+	margin-bottom: 10px;
+}
+
+/*
+.ttl02:first-letter{
+	font-size: 114%;
+}
+*/
+
+
+.ttl03{
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+.ttl04{
+	font-family: "Times New Roman", Times, serif;
+	font-size: 174%;
+	margin: 20px 0;
+	color:#333333;
+}
+
+.ttl05{
+	font-size: 144%;
+	color:#fff;
+	margin-bottom: 10px;
+}
+
+
+/* ログイン系 英語タイトル */
+.ttl06{
+	font-family: "Times New Roman", Times, serif;
+	font-size: 159%;
+	margin-bottom: 3px;
+}
+/*
+.ttl06:first-letter{
+	font-size: 114%;
+}
+*/
+
+/* ログイン系 日本語タイトル */
+.ttl06-jp{
+	display: block;
+	border-top: 1px solid #000;
+	font-family: "ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro", sans-serif;
+	font-size: 77%;
+	padding-top: 3px;
+	margin-bottom: 20px;
+	font-weight: normal;
+}
+
+
+
+.ttl-left { float: left; }
+.ttl-space { margin: 10px 0 0 20px; }
+
+
+.box01{
+	margin: 20px auto;
+}
+
+.box02{
+	margin: 20px auto 60px;
+}
+
+.box03{
+	border-bottom: 1px solid #000;
+	padding-bottom: 20px;
+	margin-bottom: 20px;
+}
+
+.txt01{
+	font-size: 115%;
+}
+
+.square{
+	font-size: 175%;
+}
+
+.group{
+	overflow: hidden;
+	zoom: 1;
+}
+
+/* HEADER						##################################### */
+div#header{
+	clear: both;
+	margin: 0 auto 20px auto;
+	width: 960px;
+	overflow: visible;
+	font-size: 13px;
+	zoom: 1;
+}
+div#header a{
+	text-decoration:none;
+}
+div#headerInner{
+	padding: 10px 0 0;
+	border-bottom: 1px solid #000;
+	height: 75px;
+	zoom: 1;
+	position: relative;
+}
+	div#header #siteLogo{
+		position: absolute;
+		width: 176px;
+		height: 79px;
+		top: 10px;
+		left: 0;
+	}
+		div#header #siteLogo a{
+			display: block;
+			width: 314px;
+			height: 75px;
+			background: url(../../per_images/format/header/site_logo.gif) 0 17px no-repeat;
+			font-size: 1px;
+			text-indent: -9999px;
+		}
+
+	ul#globalToolbar{
+		position: absolute;
+		top: 10px;
+		right: 0;
+		overflow: hidden;
+		zoom: 1;
+		height : 20px;
+	}
+		ul#globalToolbar li{
+			float: left;
+			padding-left: 5px;
+			height: 20px
+			display: block;
+			overflow: hidden;
+			zoom: 1;
+		}
+			ul#globalToolbar li div#box-search label{
+				display: none;
+			}
+			ul#globalToolbar li div#box-search input{
+				float: left;
+				margin-right: 5px;
+				height: 18px;
+				border: 1px solid #000;
+			}
+			ul#globalToolbar li a{
+				/* CHANGE0105 */
+				float: left;
+				display: block;
+				width: 70px;
+				height: 20px;
+				background: url(../../per_images/format/header/gtool.png) 0 0 no-repeat;
+				font-size: 1px;
+				text-indent: -9999px;
+				overflow: hidden;
+				zoom: 1;
+			}
+			ul#globalToolbar li.login a{ background-position: 0 0; }
+			ul#globalToolbar li.signup a{ background-position: -75px 0; }
+			ul#globalToolbar li.mailmagazine a{ width: 100px; background-position: -150px 0; }
+			ul#globalToolbar li.search a{ width: 90px; background-position: -255px 0; }
+			ul#globalToolbar li.cart a{ width: 90px; background-position: -350px 0; }
+
+			ul#globalToolbar li.login a:hover{ background-position: 0 -20px; }
+			ul#globalToolbar li.signup a:hover{ background-position: -75px -20px; }
+			ul#globalToolbar li.mailmagazine a:hover{ width: 100px; background-position: -150px -20px; }
+			ul#globalToolbar li.search a:hover{ width: 90px; background-position: -255px -20px; }
+			ul#globalToolbar li.cart a:hover{ width: 90px; background-position: -350px -20px; }
+
+	ul#navSub{
+		position: absolute;
+		top: 60px;
+		right: 0;
+		height: 20px;
+	}
+		ul#navSub li{
+			height: 20px;
+			float: left;
+			padding: 0 0 0 18px;
+			margin-left: 8px;
+			background: url(../../per_images/format/header/subnav_hr.png) 0 0 no-repeat;
+		}
+			ul#navSub li a{
+				display: block;
+				height: 20px;
+				background: url(../../per_images/format/header/gnav.png) 0 0 no-repeat;
+				font-size: 1px;
+				text-indent: -9999px;
+				width: 50px;
+			}
+				ul#navSub li.home{
+					background: none;
+				}
+				ul#navSub li.home a{ width: 50px; background-position: 0 0; }
+				ul#navSub li.shop a{ width: 42px; background-position: -100px 0; }
+				ul#navSub li.magazine a{ width: 85px; background-position: -200px 0; }
+				ul#navSub li.vitrinetv a{ width: 80px; background-position: -300px 0; }
+				ul#navSub li.news a{ width: 45px; background-position: -400px 0; }
+				ul#navSub li.blog a{ width: 40px; background-position: -500px 0; }
+				ul#navSub li.videos a{ width: 58px; background-position: -600px 0; }
+				ul#navSub li.music a{ width: 53px; background-position: -700px 0; }
+				ul#navSub li.mypage a{ width: 70px; background-position: -800px 0; }
+
+				ul#navSub li.home a:hover{ background-position: 0 -20px; }
+				ul#navSub li.shop a:hover{ background-position: -100px -20px; }
+				ul#navSub li.magazine a:hover{ background-position: -200px -20px; }
+				ul#navSub li.vitrinetv a:hover{ background-position: -300px -20px; }
+				ul#navSub li.news a:hover{ background-position: -400px -20px; }
+				ul#navSub li.blog a:hover{ background-position: -500px -20px; }
+				ul#navSub li.videos a:hover{ background-position: -600px -20px; }
+				ul#navSub li.music a:hover{ background-position: -700px -20px;}
+				ul#navSub li.mypage a:hover{ background-position: -800px -20px; }
+	ul#navGlobal{
+		padding-top: 5px;
+		width: 970px;
+	}
+		ul#navGlobal li{
+			float: left;
+			height: 30px;
+			margin-right: 6px;
+		}
+			ul#navGlobal li a{
+				display: block;
+				background: url(../../per_images/format/header/nav_category.png) 0 0 no-repeat;
+				width: 155px;
+				height: 30px;
+				font-size: 1px;
+				text-indent: -9999px;
+			}
+				ul#navGlobal li.womens a{ background-position: 0 0; }
+				ul#navGlobal li.mens a{ background-position: -160px 0; }
+				ul#navGlobal li.brands a{ background-position: -320px 0; }
+				ul#navGlobal li.culture a{ background-position: -480px 0; }
+				ul#navGlobal li.beauty a{ background-position: -640px 0; }
+				ul#navGlobal li.design a{ background-position: -800px 0; }
+
+				ul#navGlobal li.womens a:hover{ background-position: 0 -30px; }
+				ul#navGlobal li.mens a:hover{ background-position: -160px -30px; }
+				ul#navGlobal li.brands a:hover{ background-position: -320px -30px; }
+				ul#navGlobal li.culture a:hover{ background-position: -480px -30px; }
+				ul#navGlobal li.beauty a:hover{ background-position: -640px -30px; }
+				ul#navGlobal li.design a:hover{ background-position: -800px -30px; }
+
+/* BODY							##################################### */
+div#main{
+	font-size: 11px;
+	width: 960px;
+
+}
+	/* topic-path */
+	ul#topic-path,
+	ul#topic-path02{
+		clear: both;
+		overflow: hidden;
+		margin: 15px auto 20px;
+		font-family: "Times New Roman", Times, sans-serif;
+		color: #666;
+		zoom: 1;
+	}
+	ul#topic-path02{
+	}
+		ul#topic-path li,
+		ul#topic-path02 li{
+			float: left; display: inline;
+			margin: 5px 5px 0 0;
+			font-size: 77%;
+		}
+		ul#topic-path li.li-first,
+		ul#topic-path02 li.li-first{
+		}
+		ul#topic-path li a,
+		ul#topic-path02 li a{
+		    padding-right: 15px;
+		    background: url("../../per_images/format/topickpath/topickpath_arrow.jpg") no-repeat right center;
+			color: #666;
+		}
+		ul#topic-path li a:hover,
+		ul#topic-path02 li a:hover{
+			color: #999;
+		}
+
+	/* col-center */
+	div#col-center{
+		clear: both;
+		margin: 15px auto 30px;
+		min-height: 500px;
+		height: auto !important;
+		height: 500px;
+	}
+
+	/* col-all */
+	div#col-all2{
+		margin: 0 auto 20px auto;
+	}
+
+/* MENU							##################################### */
+	/* col-left */
+	div#col-left{
+		margin: 20px 0;
+		overflow: hidden;
+	}
+		/* menu-box */
+		div.menu-box{
+			margin-bottom: 15px;
+			width: 200px;
+			background: url("../../per_images/format/menu/box_middle.jpg") repeat-y;
+		}
+			div#menu-h-search{
+				width: 200px; height: 25px;
+				background: url("../../per_images/format/menu/h_search.jpg") repeat-y;
+				text-indent: -9999px;
+			}
+			div#menu-h-burandsearch,
+			div#menu-h-categorysearch,
+			div#menu-h-pricesearch{
+				margin: 0 auto;
+				width: 198px; height: 25px;
+				background: url("../../per_images/format/menu/h_brand_search.jpg") no-repeat;
+				text-indent: -9999px;
+			}
+			div#menu-h-categorysearch{
+				background-image: url("../../per_images/format/menu/h_category_search.jpg");
+			}
+			div#menu-h-pricesearch{
+				background-image: url("../../per_images/format/menu/h_price_search.jpg");
+			}
+
+			/* btn-brandlist */
+			div.menu-box a#btn-brandlist{
+				display: block;
+				margin: 8px auto;
+				width: 180px; height: 30px;
+				text-indent: -9999px;
+				background: url("../../per_images/format/menu/btn_brandlist.jpg") left top no-repeat;
+				overflow: hidden;
+				outline: none;
+			}
+			div.menu-box a#btn-brandlist:hover,
+			div.menu-box a#btn-combinationsearch:hover{
+				background-position: left bottom;
+			}
+			/* btn-combinationsearch */
+			div.menu-box a#btn-combinationsearch{
+				display: block;
+				margin: 8px auto;
+				width: 180px; height: 30px;
+				text-indent: -9999px;
+				background: url("../../per_images/format/menu/btn_combination.jpg") left top no-repeat;
+				overflow: hidden;
+				outline: none;
+			}
+
+			/* menu-form-search */
+			div.menu-box div#menu-form-search{
+				height: 100%
+			}
+
+			/* select-price */
+			div.menu-box select#select-price{
+				display: block;
+				margin: 8px auto;
+				width: 180px; height: 20px;
+			}
+
+			/* hr */
+			div.menu-box div.hr{
+				margin: 0 auto;
+				width: 198px; height: 9px;
+				background: url("../../per_images/format/menu/hr.gif") repeat-x;
+			}
+
+			div.menu-box div.bottom{
+				width: 200px; height: 4px;
+				background: url("../../per_images/format/menu/box_bottom.jpg") no-repeat;
+				font-size: 0;
+			}
+
+			/* menu-category-search */
+			ul#menu-category-search{
+				width: 200px; height: 300px;
+			}
+				ul#menu-category-search li a{
+					display: block;
+					width: 200px; height: 30px;
+					background: url("../../per_images/format/menu/btn_category.jpg") no-repeat;
+					overflow: hidden;
+					outline: none;
+				}
+				ul#menu-category-search li a#h-skincare{
+					background-position: left top;
+				}
+					ul#menu-category-search li a#h-skincare:hover{
+						background-position: -200px top;
+					}
+				ul#menu-category-search li a#h-basemake{
+					background-position: left -30px;
+				}
+					ul#menu-category-search li a#h-basemake:hover{
+						background-position: -200px -30px;
+					}
+				ul#menu-category-search li a#h-pointmake{
+					background-position: left -60px;
+				}
+					ul#menu-category-search li a#h-pointmake:hover{
+						background-position: -200px -60px;
+					}
+				ul#menu-category-search li a#h-bodycare{
+					background-position: left -90px;
+				}
+					ul#menu-category-search li a#h-bodycare:hover{
+						background-position: -200px -90px;
+					}
+				ul#menu-category-search li a#h-haircare{
+					background-position: left -120px;
+				}
+					ul#menu-category-search li a#h-haircare:hover{
+						background-position: -200px -120px;
+					}
+				ul#menu-category-search li a#h-fragrance{
+					background-position: left -150px;
+				}
+					ul#menu-category-search li a#h-fragrance:hover{
+						background-position: -200px -150px;
+					}
+				ul#menu-category-search li a#h-cosmeticitem{
+					background-position: left -180px;
+				}
+					ul#menu-category-search li a#h-cosmeticitem:hover{
+						background-position: -200px -180px;
+					}
+				ul#menu-category-search li a#h-kit{
+					background-position: left -210px;
+				}
+					ul#menu-category-search li a#h-kit:hover{
+						background-position: -200px -210px;
+					}
+				ul#menu-category-search li a#h-menscosmetic{
+					background-position: left -240px;
+				}
+					ul#menu-category-search li a#h-menscosmetic:hover{
+						background-position: -200px -240px;
+					}
+				ul#menu-category-search li a#h-supplement{
+					background-position: left -270px;
+				}
+					ul#menu-category-search li a#h-supplement:hover{
+						background-position: -200px -270px;
+					}
+
+			/* bn-list */
+			ul.bn-list{
+				width: 200px;
+			}
+				ul.bn-list li{
+				}
+				/* CHANGE 1020 */
+				ul.bn-list li a{
+					display: block;
+					margin: 10px 0;
+				}
+				ul.bn-list li a#bn-bpu01{
+					background-image: url("../../per_images/format/menu/bn01.jpg");
+				}
+				ul.bn-list li a#bn-bpu02{
+					background-image: url("../../per_images/format/menu/bn02.jpg");
+				}
+				ul.bn-list li a#bn-bpu03{
+					background-image: url("../../per_images/format/menu/bn03.jpg");
+				}
+				ul.bn-list li a#bn-bpu04{
+					height: 96px;
+					background-image: url("../../per_images/format/menu/bn04.jpg");
+				}
+				ul.bn-list li a#bn-bpu05{
+					height: 96px;
+					background-image: url("../../per_images/format/menu/bn05.jpg");
+				}
+
+			/* menu-h-brandpickup */
+			div#menu-h-brandpickup{
+				background-image: url("../../per_images/format/menu/h_brandpickup.jpg");
+			}
+			/* bn-list-brandpickup */
+			ul#bn-list-brandpickup{
+				margin: 0 auto;
+				width: 174px;
+			}
+				ul#bn-list-brandpickup li{
+					margin: 10px 0;
+				}
+				/* CHANGE 1020 */
+				ul#bn-list-brandpickup li a{}
+
+			/* menu-h-mobileshopping */
+			div#menu-h-mobileshopping{
+				background-image: url("../../per_images/format/menu/h_mobileshopping.jpg");
+			}
+
+			/* qr */
+			div#qr{
+				margin: 0 auto;
+				width: 198px; height: 115px;
+				background: url("../../per_images/format/menu/qr.jpg") no-repeat;
+				text-indent: -9999px;
+			}
+			/* btn-brandlist */
+			div.menu-box a#btn-urlsend{
+				display: block;
+				margin: 8px auto;
+				width: 150px; height: 18px;
+				text-indent: -9999px;
+				background: url("../../per_images/format/menu/btn_urlsend.gif") no-repeat;
+				overflow: hidden;
+				outline: none;
+			}
+			div.menu-box a#btn-urlsend:hover{
+				background-position: left bottom;
+			}
+			div#mobile-url{
+				margin: 0 auto 10px auto;
+				width: 198px; height: ;
+			}
+
+			/* box-clubon */
+			div#box-clubon{
+				display: block;
+				margin: 15px auto 10px auto;
+				width: 200px; height: 140px;
+				text-indent: -9999px;
+				background: url("../../per_images/format/menu/bnr_card.jpg") no-repeat;
+			}
+			div#box-clubon a#btn-clubon-online01,
+			div#box-clubon a#btn-clubon-online02{
+				display: block;
+				margin: 75px auto 0 auto;
+				width: 180px; height: 20px;
+				text-indent: -9999px;
+				overflow: hidden;
+				outline: none;
+			}
+			div#box-clubon a#btn-clubon-online02{
+				margin-top: 5px;
+			}
+
+			ul.bn-list li a#bn-bpu07,
+			ul.bn-list li a#bn-bpu08{
+				margin: 5px 0;
+				height: 40px;
+			}
+			ul.bn-list li a#bn-bpu08{
+			}
+
+
+/* FOOTER						##################################### */
+div#footer{
+	clear: both;
+	margin: 60px 0 20px 0;
+	width: 960px;
+	overflow: hidden;
+}
+	/* relevant-navi */
+	ul#relevant-navi{
+		clear: both;
+		margin: 10px auto 0 auto;
+		width: 430px; height: 20px;
+		overflow: hidden;
+	}
+		ul#relevant-navi li{
+			float: left; display: inline;
+			margin: 0 0 0 0;
+			text-indent: -9999px;
+			background: url("../../per_images/format/footer/btn_footer1.jpg") no-repeat;		}
+		ul#relevant-navi li a{
+			display: block;
+			height: 20px;
+			background: url("../../per_images/format/footer/btn_footer1.jpg") no-repeat;
+		}
+		ul#relevant-navi li a#btn-footer-7i{
+			width: 139px;
+			background-position: -205px top;
+		}
+			ul#relevant-navi li a#btn-footer-7i:hover{
+				background-position: -205px bottom;
+			}
+		ul#relevant-navi li a#btn-footer-ntv7{
+			width: 84px;
+			background-position: -344px top;
+		}
+			ul#relevant-navi li a#btn-footer-ntv7:hover{
+				background-position: -344px bottom;
+			}
+
+	/* footer-left */
+	div#footer-left{
+		margin-bottom: 10px;
+		float: left;
+		font-size: 85%;
+	}
+
+		/* company-navi */
+		ul#company-navi{
+			overflow: hidden;
+		}
+			ul#company-navi li{
+				display: inline;
+			}
+			ul#company-navi li.first{
+				padding: 0;
+				margin: 0;
+				border: none;
+			}
+				ul#company-navi li a{
+					color: #666;
+					text-decoration: none;
+				}
+				ul#company-navi li a:hover{
+					color: #999;
+				}
+				ul#company-navi li a:hover{
+					color: #999;
+					text-decoration: underline;
+				}
+
+
+	/* footer-right */
+	div#footer-right{
+		font-size: 77%;
+		letter-spacing: 0;
+		color: #8f8f8f;
+	}
+
+	div#footer p.copyright{
+		text-align: right;
+		font-size: 77%;
+		color: #8f8f8f;
+	}
+

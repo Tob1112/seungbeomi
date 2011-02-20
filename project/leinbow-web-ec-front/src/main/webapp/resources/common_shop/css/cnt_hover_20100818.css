@@ -1,0 +1,95 @@
+@charset "utf-8";
+
+/* ===============================================
+ *
+ *	RESTIR内追加CSS
+ *	FollowUs ロールオーバー設定
+ *
+ * ============================================== */
+
+
+/* FollowUs ------------------------------------- */
+/* LC */
+.ground-object-04 li.li-H {
+	width:				56px;
+	height:				39px;
+	background:		url(../../files_top/other/images/txt-fu-01.gif) no-repeat center 0;
+}
+
+.ground-object-04 li.li-H a {
+	display:					block;
+	width:						56px;
+	height:						39px;
+	border:						none;
+	text-decoration:	none;
+	text-indent:			-9999px;
+	outline:					none;
+}
+
+.ground-object-04 li.li-H a:link,
+.ground-object-04 li.li-H a:visited {
+	background-image:	url(../../files_top/other/images/txt-fu-01.gif);
+}
+
+.ground-object-04 li.li-H a:hover,
+.ground-object-04 li.li-H a:active {
+	background-image:	url(../../files_top/other/images/txt-fu-01-ovr.gif);
+}
+
+
+/* twitter */
+.ground-object-04 li.li-I {
+	width:				26px;
+	height:				39px;
+	background:		url(../../files_top/other/images/txt-fu-02.gif) no-repeat center 0;
+}
+
+.ground-object-04 li.li-I a {
+	display:					block;
+	width:						26px;
+	height:						39px;
+	border:						none;
+	text-decoration:	none;
+	text-indent:			-9999px;
+	outline:					none;
+}
+
+.ground-object-04 li.li-I a:link,
+.ground-object-04 li.li-I a:visited {
+	background-image:	url(../../files_top/other/images/txt-fu-02.gif);
+}
+
+.ground-object-04 li.li-I a:hover,
+.ground-object-04 li.li-I a:active {
+	background-image:	url(../../files_top/other/images/txt-fu-02-ovr.gif);
+}
+
+
+/* facebook */
+.ground-object-04 li.li-J {
+	width:				32px;
+	height:				39px;
+	background:		url(../../files_top/other/images/txt-fu-03.gif) no-repeat center 0;
+}
+
+.ground-object-04 li.li-J a {
+	display:					block;
+	width:						32px;
+	height:						39px;
+	border:						none;
+	text-decoration:	none;
+	text-indent:			-9999px;
+	outline:					none;
+}
+
+.ground-object-04 li.li-J a:link,
+.ground-object-04 li.li-J a:visited {
+	background-image:	url(../../files_top/other/images/txt-fu-03.gif);
+}
+
+.ground-object-04 li.li-J a:hover,
+.ground-object-04 li.li-J a:active {
+	background-image:	url(../../files_top/other/images/txt-fu-03-ovr.gif);
+}
+
+

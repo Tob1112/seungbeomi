@@ -1,0 +1,33 @@
+@charset "utf-8";
+
+/* -----------------------------------------------
+CSS file RESTIR Online Boutique
+FileName:/common_shop/css/layout.css
+Author:　
+----------------------------------------------- */
+
+.region{
+	width:960px;
+	margin:0 auto;
+}
+#header {
+/*	padding-top:20px; */
+}
+#header #viewStatus {
+padding:8px 0;
+height:12px;
+text-align:right;
+}
+#header #viewStatus p {
+min-height:1.1em;
+}
+.contentsBody {
+	clear:left;
+	padding-bottom:10px;
+}
+#footer {
+	padding:4px 0 84px;
+	border-top:1px solid #DDDDDD;
+}
+
+/* CSS Document */

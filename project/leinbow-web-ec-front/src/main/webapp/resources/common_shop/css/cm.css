@@ -1,0 +1,73 @@
+@charset "utf-8";
+
+/* ===============================================
+ *
+ *	RESTIR内追加CSS
+ *	広告ムービーエリア用 修正
+ *
+ * ============================================== */
+ 
+ul.cm {
+	width:		240px;
+	height:		43px;
+	margin:		0 auto;
+	padding:	0;
+	text-align:	center; 
+}
+
+/* 上部広告 ------------------------------------------------------------------- */
+ul.cm li.cm1 {
+	width:		240px;
+	height:		43px;
+	list-style:		none;
+	margin:			0;
+	padding:		0;
+	text-indent:	-9999px;
+	overflow:		hidden;
+	background:		url(../../files_top/videos/images/seemore_1.gif) no-repeat 0 0;
+}
+
+ul.cm li.cm1 a {
+	width:			240px;
+	height:			43px;
+	display:		block;
+	margin:			0;
+	padding:		0;
+	outline:		0;
+	text-decoration:none;
+	background:		url(../../files_top/videos/images/seemore_1.gif) no-repeat 0 0;
+}
+
+ul.cm li.cm1 a:hover,
+ul.cm li.cm1 a:active {
+	background:		url(../../files_top/videos/images/seemore_1-ovr.gif) no-repeat 0 0;
+}
+
+
+/* 下部広告 ------------------------------------------------------------------- */
+ul.cm li.cm2 {
+	width:		240px;
+	height:		43px;
+	list-style:		none;
+	margin:			0;
+	padding:		0;
+	text-indent:	-9999px;
+	overflow:		hidden;
+	background:		url(../../files_top/videos/images/seemore_2.gif) no-repeat 0 0;
+}
+
+ul.cm li.cm2 a {
+	width:			240px;
+	height:			43px;
+	display:		block;
+	margin:			0;
+	padding:		0;
+	outline:		0;
+	text-decoration:none;
+	background:		url(../../files_top/videos/images/seemore_2.gif) no-repeat 0 0;
+}
+
+ul.cm li.cm2 a:hover,
+ul.cm li.cm2 a:active {
+	background:		url(../../files_top/videos/images/seemore_2-ovr.gif) no-repeat 0 0;
+}
