@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="net.seungbeomi.unit">
+
+	<class
+		name="Article"
+		table="ARTICLE">
+		<id
+			name="id"
+			column="ID"
+			type="long">
+			<generator class="identity" />
+		</id>
+		<property
+			name="title"
+			column="TITLE"
+			type="string"
+			not-null="true" />
+		<property
+			name="content"
+			column="CONTENT"
+			type="string"
+			not-null="true" />
+		<set
+			name="attachments"
+			table="ATTACHMENT"
+			inverse="true"
+			cascade="all">
+			<key column="ARTICLEID" />
+			<one-to-many class="Attachment" />
+		</set>
+	</class>
+
+</hibernate-mapping>

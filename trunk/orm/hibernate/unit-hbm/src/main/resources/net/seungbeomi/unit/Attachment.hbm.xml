@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="net.seungbeomi.unit">
+
+	<class
+		name="Attachment"
+		table="ATTACHMENT">
+		<id
+			name="id"
+			column="ID"
+			type="long">
+			<generator class="identity" />
+		</id>
+		<property
+			name="filename"
+			column="FILENAME"
+			type="string"
+			not-null="true" />
+		<many-to-one
+			class="net.seungbeomi.unit.Article"
+			name="article"
+			column="ARTICLEID"
+			foreign-key="FK_ATTACHMENT" />
+	</class>
+
+</hibernate-mapping>
