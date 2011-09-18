@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="h2db" basedir=".">
+
+	<property file="../database.properties" />
+	<!-- Oracle, DB2, Derby, HSQLDB, MSSQLServer, MySQL, PostgreSQL -->
+	<property name="database.mode" value="MySQL" />
+
+	<property name="url" value="jdbc:h2:~/test;MODE=${database.mode};DB_CLOSE_ON_EXIT=TRUE" />
+	<property name="script" value="h2/sample.sql" />
+
+	<path id="classpath">
+		<pathelement location="h2/h2.jar" />
+	</path>
+
+	<target name="start">
+		<java classname="org.h2.tools.RunScript" classpathref="classpath" fork="true">
+			<arg value="-url" />
+			<arg value="${url}" />
+			<arg value="-user" />
+			<arg value="sa" />
+			<arg value="-script" />
+			<arg value="${script}" />
+			<arg value="-showResults" />
+		</java>
+	</target>
+
+	<target name="console">
+		<java classname="org.h2.tools.Console" classpathref="classpath" fork="true">
+			<arg value="-url" />
+			<arg value="${url}" />
+		</java>
+	</target>
+
+	<target name="clean">
+		<delete dir="../data" />
+	</target>
+
+</project>
