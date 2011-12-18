@@ -5,22 +5,57 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
 
-	<http auto-config="true" use-expressions="true">
+	<http auto-config="false" access-denied-page="/login.do" use-expressions="true">
 		<!-- Authentication policy -->
-		<intercept-url pattern="/views/**" access="hasRole('ROLE_USER')" />
-		<form-login login-page="/login.jsp" 
-				authentication-failure-url="/error.jsp" 
-				default-target-url="/login.do"/>
+		<intercept-url pattern="/secure/admin.do" access="hasRole('ROLE_ADMIN') and fullyAuthenticated" />
+		<intercept-url pattern="/secure/**" access="hasRole('ROLE_USER')" />
+		<intercept-url pattern="/login.do" access="permitAll" />
+		<intercept-url pattern="/" access="permitAll" />
+		<intercept-url pattern="/**" access="hasRole('ROLE_USER')" />
+
+		<form-login login-page="/login.do" authentication-failure-url="/error.jsp" default-target-url="/loginSuccess.do"/>
+		<logout logout-url="/logout"  logout-success-url="/" invalidate-session="true" />
+		<!-- token-validity-seconds = -1 : 브라우저가 닫힐때 삭제됨 -->
+
+		<remember-me services-ref="ipTokenBasedRememberMeServices" />
 	</http>
 
 	<authentication-manager alias="authenticationManager">
 	    <authentication-provider>
-	        <user-service>
-	            <user name="admin" password="admin" authorities="ROLE_ADMIN,ROLE_USER" />
-		        <user name="user" password="user" authorities="ROLE_USER" />
-		    </user-service>
+	    	<jdbc-user-service id="userService" data-source-ref="dataSource"
+	    	users-by-username-query="SELECT userid, password, enabled FROM userinfo WHERE userid = ?"
+          	authorities-by-username-query="SELECT  userid, authority FROM authorities WHERE userId = ?"/>
 		</authentication-provider>
 	</authentication-manager>
+	
+	<!-- <beans:bean id="userService" class="seungbeomi.spring.security.InMemoryChangePasswordDaoImpl">
+		<beans:property name="userProperties">
+			<beans:props>
+				<beans:prop key="admin">admin, ROLE_ADMIN</beans:prop>
+				<beans:prop key="user">user, ROLE_USER</beans:prop>
+			</beans:props>
+		</beans:property>
+	</beans:bean> -->
+	
+	<beans:bean id="ipTokenBasedRememberMeServices" class="seungbeomi.spring.security.IPTokenBasedRememberMeServices">
+		<beans:property name="key" value="security"/>
+		<beans:property name="userDetailsService" ref="userService"/>
+		<beans:property name="parameter" value="_remember_me"/>
+		<beans:property name="cookieName" value="REMEMBER_ME"/>
+	</beans:bean>
+	
+	<!--  
+	<beans:bean id="accessDecisionManager" class="org.springframework.security.access.vote.AffirmativeBased">
+        <beans:property name="decisionVoters">
+            <beans:list>
+                <beans:ref local="roleVoter"/>
+                <beans:ref local="authenticatedVoter"/>
+            </beans:list>
+        </beans:property>
+    </beans:bean>
+    <beans:bean id="roleVoter" class="org.springframework.security.access.vote.RoleVoter" />
+    <beans:bean id="authenticatedVoter" class="org.springframework.security.access.vote.AuthenticatedVoter" />
+	-->
 
 
 </beans:beans>
