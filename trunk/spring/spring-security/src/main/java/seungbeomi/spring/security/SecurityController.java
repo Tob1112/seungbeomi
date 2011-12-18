@@ -1,7 +1,9 @@
 package seungbeomi.spring.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -10,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class SecurityController {
 	
-	//@Autowired
-	//private ChangePassword changePasswordDao;
+	@Autowired
+	private JdbcUserDetailsManager jdbcUserService;
 
 	@RequestMapping(value="/", method=RequestMethod.GET)
 	public String index() {
@@ -50,7 +52,7 @@ public class SecurityController {
 		if (principal instanceof UserDetails) {
 			username = ((UserDetails) principal).getUsername();
 		}
-		//changePasswordDao.changePassword(username, newPassword);
+		jdbcUserService.changePassword(username, newPassword);
 		SecurityContextHolder.clearContext();
 		return "redirect:/";
 	}

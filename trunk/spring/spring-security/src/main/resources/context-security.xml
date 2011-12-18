@@ -23,8 +23,8 @@
 	<authentication-manager alias="authenticationManager">
 	    <authentication-provider>
 	    	<jdbc-user-service id="userService" data-source-ref="dataSource"
-	    	users-by-username-query="SELECT userid, password, enabled FROM userinfo WHERE userid = ?"
-          	authorities-by-username-query="SELECT  userid, authority FROM authorities WHERE userId = ?"/>
+	    	users-by-username-query="SELECT username, password, enabled FROM users WHERE username = ?"
+          	authorities-by-username-query="SELECT  username, authority FROM authorities WHERE username = ?"/>
 		</authentication-provider>
 	</authentication-manager>
 	

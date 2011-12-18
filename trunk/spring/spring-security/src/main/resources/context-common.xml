@@ -8,5 +8,10 @@
 		<jdbc:script location="classpath:database/security-schema.sql" />
 		<jdbc:script location="classpath:database/test-data.sql" />
 	</jdbc:embedded-database>
+	
+	<bean id="jdbcUserService" class="org.springframework.security.provisioning.JdbcUserDetailsManager">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="changePasswordSql" value="UPDATE USERS SET PASSWORD = ? WHERE USERNAME = ?"/>
+	</bean>
 
 </beans>
