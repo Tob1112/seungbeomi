@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=Windows-31J"
-    pageEncoding="Windows-31J"%>
+<%@ page language="java" contentType="text/html; charset=Windows-31J" pageEncoding="Windows-31J"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head><title>SpringSecurity Sample</title></head>
