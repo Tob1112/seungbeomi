@@ -9,9 +9,41 @@
 		<jdbc:script location="classpath:database/test-data.sql" />
 	</jdbc:embedded-database>
 	
+	<!-- UserDetails 관련 SQL확장가능 -->
 	<bean id="jdbcUserService" class="org.springframework.security.provisioning.JdbcUserDetailsManager">
 		<property name="dataSource" ref="dataSource"/>
+		<property name="authenticationManager" ref="authenticationManager"/>
 		<property name="changePasswordSql" value="UPDATE USERS SET PASSWORD = ? WHERE USERNAME = ?"/>
 	</bean>
+	
+	<!-- <bean id="userService" class="seungbeomi.spring.security.InMemoryChangePasswordDaoImpl">
+		<property name="userProperties">
+			<props>
+				<prop key="admin">admin, ROLE_ADMIN</prop>
+				<prop key="user">user, ROLE_USER</prop>
+			</props>
+		</property>
+	</bean> -->
+	
+	<!-- TokenBasedRememberMeServices 클래스의 확장 -->
+	<bean id="ipTokenBasedRememberMeServices" class="seungbeomi.spring.security.IPTokenBasedRememberMeServices">
+		<property name="key" value="security"/>
+		<property name="userDetailsService" ref="userService"/>
+		<property name="parameter" value="_remember_me"/>
+		<property name="cookieName" value="REMEMBER_ME"/>
+	</bean>
+	
+	<!--  
+	<bean id="accessDecisionManager" class="org.springframework.security.access.vote.AffirmativeBased">
+        <property name="decisionVoters">
+            <list>
+                <ref local="roleVoter"/>
+                <ref local="authenticatedVoter"/>
+            </list>
+        </property>
+    </bean>
+    <bean id="roleVoter" class="org.springframework.security.access.vote.RoleVoter" />
+    <bean id="authenticatedVoter" class="org.springframework.security.access.vote.AuthenticatedVoter" />
+	-->
 
 </beans>
