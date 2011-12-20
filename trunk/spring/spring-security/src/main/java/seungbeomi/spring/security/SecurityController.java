@@ -45,6 +45,11 @@ public class SecurityController {
 		return "views/secure/changePassword";
 	}
 	
+	/**
+	 * 비밀번호를 변경한다.
+	 * @param newPassword
+	 * @return
+	 */
 	@RequestMapping(value="/secure/changePassword.do", method=RequestMethod.POST)
 	public String submitChangePassword(@RequestParam("password") String newPassword) {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
