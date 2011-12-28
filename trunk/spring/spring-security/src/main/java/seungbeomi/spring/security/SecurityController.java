@@ -12,6 +12,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class SecurityController {
 	
+	/**
+	 * void createUser(UserDetails user)
+	 * void updateUser(final UserDetails user)
+	 * void deleteUser(String username)
+	 * boolean userExists(String username)
+	 * void changePassword(String oldPassword, String newPassword)
+	 */
 	@Autowired
 	private JdbcUserDetailsManager jdbcUserService;
 
@@ -58,7 +65,9 @@ public class SecurityController {
 			username = ((UserDetails) principal).getUsername();
 		}
 		jdbcUserService.changePassword(username, newPassword);
-		SecurityContextHolder.clearContext();
+		// 자동로그아웃
+		// TODO 사용자경고 및 재인증요청으로 변경
+		SecurityContextHolder.clearContext();	
 		return "redirect:/";
 	}
 	

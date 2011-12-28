@@ -39,7 +39,9 @@ public class IPTokenBasedRememberMeServices extends TokenBasedRememberMeServices
 	
 	@Override
 	protected String makeTokenSignature(long tokenExpiryTime, String username, String password) {
-		return DigestUtils.md5DigestAsHex((username + ":" + tokenExpiryTime + ":" + password + ":" + getKey() + ":" + getUserIPAddress(getContext())).getBytes());
+		String signature = DigestUtils.md5DigestAsHex((username + ":" + tokenExpiryTime + ":" + password + ":" + getKey() + ":" + getUserIPAddress(getContext())).getBytes());
+		logger.debug(">>> signature : " + signature);
+		return signature;
 	}
 	
 	@Override
@@ -47,6 +49,9 @@ public class IPTokenBasedRememberMeServices extends TokenBasedRememberMeServices
 			HttpServletRequest request, HttpServletResponse response) {
 		String[] tokensWithIPAddress = Arrays.copyOf(tokens, tokens.length + 1);
 		tokensWithIPAddress[tokensWithIPAddress.length - 1] = getUserIPAddress(request);
+		for (String token : tokensWithIPAddress) {
+			logger.debug(">>> token : " + token);
+		}
 		super.setCookie(tokensWithIPAddress, maxAge, request, response);
 	}
 	
@@ -57,6 +62,7 @@ public class IPTokenBasedRememberMeServices extends TokenBasedRememberMeServices
 			setContext(request);
 			// 마지막 토큰을 가져온다
 			String ipAddressToken = cookieTokens[cookieTokens.length-1];
+			logger.debug(">>> ipAddressToken : " + ipAddressToken);
 			if (!getUserIPAddress(request).equals(ipAddressToken)) {
 				throw new InvalidCookieException("Cookie IP Address did not contain a matching IP (contained '" + ipAddressToken + "')");
 			}

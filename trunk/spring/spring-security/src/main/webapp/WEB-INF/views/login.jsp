@@ -3,7 +3,7 @@
 <html>
 <head><title>SpringSecurity Sample</title></head>
 <body>
-  <form name="f" action="<c:url value='j_spring_security_check'/>" method="post">
+  <form name="f" action="<c:url value='/j_spring_security_check'/>" method="post">
     ID : <input type="text" name="j_username"/><br/>
     Password : <input type="password" name="j_password"/><br/>
     <input type="checkbox" name="_remember_me"/>

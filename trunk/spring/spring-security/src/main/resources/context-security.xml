@@ -1,31 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans:beans xmlns="http://www.springframework.org/schema/security"
+<b:beans xmlns="http://www.springframework.org/schema/security"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:b="http://www.springframework.org/schema/beans"
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
 
-	<http auto-config="false" access-denied-page="/login.do" use-expressions="true">
+	<http auto-config="false" access-denied-page="/login.do">
 		<!-- Authentication policy -->
-		<intercept-url pattern="/secure/admin.do" access="hasRole('ROLE_ADMIN') and fullyAuthenticated" />
-		<intercept-url pattern="/secure/**" access="hasRole('ROLE_USER')" />
-		<intercept-url pattern="/login.do" access="permitAll" />
-		<intercept-url pattern="/" access="permitAll" />
-		<intercept-url pattern="/**" access="hasRole('ROLE_USER')" />
+		<intercept-url pattern="/secure/admin.do" access="ROLE_ADMIN" />
+		<intercept-url pattern="/secure/**" access="ROLE_USER" />
+		<intercept-url pattern="/login.do" access="ROLE_ANONYMOUS" />
+		<intercept-url pattern="/" access="ROLE_ANONYMOUS" />
+		<intercept-url pattern="/**" access="ROLE_USER" />
 
 		<form-login login-page="/login.do" authentication-failure-url="/error.jsp" default-target-url="/loginSuccess.do"/>
-		<logout logout-url="/logout"  logout-success-url="/" invalidate-session="true" />
+		<logout logout-url="/logout" logout-success-url="/" invalidate-session="true" delete-cookies="JSESSIONID" />
 		<!-- token-validity-seconds = -1 : 브라우저가 닫힐때 삭제됨 -->
 
-		<remember-me services-ref="ipTokenBasedRememberMeServices" />
+		<remember-me key="security" services-ref="ipTokenBasedRememberMeServices" />
 	</http>
 
 	<authentication-manager alias="authenticationManager">
+	    <!-- 그룹기능미사용시 -->
+	    <!--  
 	    <authentication-provider>
 	    	<jdbc-user-service id="userService" data-source-ref="dataSource"
-	    	users-by-username-query="SELECT username, password, enabled FROM users WHERE username = ?"
-          	authorities-by-username-query="SELECT  username, authority FROM authorities WHERE username = ?"/>
+		    	users-by-username-query="
+		    		SELECT /* users-by-username-query */
+		    		       USERNAME, PASSWORD, ENABLED 
+		    		FROM   USERS 
+		    		WHERE  USERNAME = ?"
+	          	authorities-by-username-query="
+	          		SELECT /* authorities-by-username-query */
+	          		       USERNAME, AUTHORITY 
+	          		FROM   AUTHORITIES 
+	          		WHERE  USERNAME = ?"/>
+		</authentication-provider>
+	    -->
+	    <!-- 그룹기능사용시 -->
+	    <authentication-provider>
+	    	<jdbc-user-service id="userService" data-source-ref="dataSource"
+		    	users-by-username-query="
+		    		SELECT /* users-by-username-query */ 
+		    		       USERNAME, PASSWORD, ENABLED 
+		    		FROM   USERS 
+		    		WHERE  USERNAME = ?"
+	          	group-authorities-by-username-query="
+	          		SELECT /* group-authorities-by-username-query */
+	          			   G.ID, G.GROUP_NAME, GA.AUTHORITY 
+					FROM   GROUPS G, GROUP_MEMBERS GM, GROUP_AUTHORITIES GA 
+					WHERE  GM.USERNAME = ? 
+					AND    G.ID = GA.GROUP_ID 
+					AND    G.ID = GM.GROUP_ID"/>
 		</authentication-provider>
 	</authentication-manager>
+	
+	<!-- UserDetails 관련 SQL확장가능 -->
+	<b:bean id="jdbcUserService" class="org.springframework.security.provisioning.JdbcUserDetailsManager">
+		<b:property name="dataSource" ref="dataSource"/>
+		<b:property name="authenticationManager" ref="authenticationManager"/>
+		<!-- 그룹기능사용시 사용자에게 바로 권한을 허용하는 기능 비활성화 [S] -->
+		<b:property name="enableGroups" value="true"/>
+		<b:property name="enableAuthorities" value="false"/>
+		<!-- 그룹기능사용시 사용자에게 바로 권한을 허용하는 기능 비활성화 [E] -->
+		<b:property name="changePasswordSql" value="UPDATE USERS SET PASSWORD = ? WHERE USERNAME = ?"/>
+	</b:bean>
+	
+	<!-- TokenBasedRememberMeServices 클래스의 확장 -->
+	<b:bean id="ipTokenBasedRememberMeServices" class="seungbeomi.spring.security.IPTokenBasedRememberMeServices">
+		<b:property name="key" value="security"/>
+		<b:property name="userDetailsService" ref="userService"/>
+		<b:property name="parameter" value="_remember_me"/>
+		<b:property name="cookieName" value="REMEMBER_ME"/>
+	</b:bean>
 
-</beans:beans>
+</b:beans>
