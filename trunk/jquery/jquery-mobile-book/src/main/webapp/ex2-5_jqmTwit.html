@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>jQuery Mobile Application</title>
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0a4.1/jquery.mobile-1.0a4.1.min.css" type="text/css" />
+        <script src="http://code.jquery.com/jquery-1.5.2.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="http://code.jquery.com/mobile/1.0a4.1/jquery.mobile-1.0a4.1.min.js" type="text/javascript" charset="utf-8"></script>   
+    </head>
+    <body>
+    	<section id="page1" data-role="page">
+    		<header data-role="header">
+    			<h1>jqmTwit</h1>
+    		</header>
+    		<div class="content" data-role="content">
+    			<p>Twitter feed goes here.</p>
+    			<p><a href="#page2">Settings</a></p>
+    		</div>
+    		<footer data-role="footer">
+    			<h2>Because the world needed another Twitter app.</h2>
+    		</footer>
+    	</section>
+    	
+    	<section id="page2" data-role="page">
+    		<header data-role="header">
+    			<h1>jqmTwit: Settings</h1>
+    		</header>
+    		<div class="content" data-role="content">
+    			<p>Settings go here.</p>
+    		</div>
+    		<footer data-role="footer">
+    			<h2>Because the world needed another Twitter app.</h2>
+    		</footer>
+    	</section>
+    	
+    	<!-- Ex 2-6 jqmTwit initialization script -->
+    	<script type="text/javascript">
+    		$(document).ready(function(){
+    			refreshFeed();
+    			$("#page1").bind("pageshow", function(event, ui) {
+    				refreshFeed();
+    			})
+    		})
+    	</script>
+    </body>    
+</html>
