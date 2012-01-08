@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Greenhouse</string>
+	<string name="login">Sign In</string>
+	<string name="copyright">\u00A9 Copyright 2011 SpringSource</string>
+    <string name="title_event_details">Event Details</string>
+    <string name="title_event_description">Event Description</string>
+	<string name="title_event_tweets">Event Tweets</string>
+    <string name="title_event_sessions_filtered">Filtered Sessions</string>
+    <string name="title_event_sessions_schedule">Session Schedule</string>
+    <string name="title_event_sessions_current">Current Sessions</string>
+    <string name="title_event_sessions_upcoming">Upcoming Sessions</string>
+    <string name="title_event_sessions_my_favorites">My Favorite Sessions</string>
+    <string name="title_event_sessions_conference_favorites">Conference Favorite Sessions</string>
+    <string name="title_event_sessions_by_day">Sessions by Day</string>
+    <string name="title_event_session_details">Session Details</string>
+    <string name="title_event_session_description">Session Description</string>
+    <string name="title_event_session_rating">Rate the Session</string>
+    <string name="title_event_session_tweets">Session Tweets</string>
+    <string name="title_tweet_details">Tweet Details</string>
+    <string name="title_post_tweet">Post Tweet</string>
+    
+    <string-array name="event_details_options_array">
+        <item>Filtered Sessions</item>
+        <item>Session Schedule</item>
+        <item>Post Tweet</item>
+        <item>Twitter Feed</item>
+    </string-array>
+    
+    <string-array name="event_filtered_sessions_options_array">
+    	<item>Current</item>
+    	<item>Upcoming</item>
+    	<item>My Favorites</item>
+    	<item>Conference Favorites</item>
+    </string-array>
+    
+    <string-array name="event_session_details_options_array">
+        <item>Favorite</item>
+        <item>Rate</item>
+        <item>Post Tweet</item>
+        <item>Twitter Feed</item>
+    </string-array>
+    
+    <string-array name="tweet_details_options_array">
+        <item>Reply</item>
+        <item>Retweet</item>
+        <item>Quote</item>
+    </string-array>
+    
+</resources>

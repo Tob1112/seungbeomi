@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+
+	<!-- Layout Styles -->
+	
+	<style name="FillLayout">
+		<item name="android:layout_width">fill_parent</item>
+		<item name="android:layout_height">fill_parent</item>
+		<item name="android:padding">0dp</item>
+	</style>
+	
+	<style name="FillLayout.Padded">
+		<item name="android:layout_width">fill_parent</item>
+		<item name="android:layout_height">fill_parent</item>
+		<item name="android:padding">5dp</item>
+	</style>
+		
+	<style name="ScrollView" parent="FillLayout">
+		<item name="android:fillViewport">true</item>
+		<item name="android:scrollbars">none</item>		
+	</style>
+			
+	
+	<!-- ListView Styles -->
+	
+	<style name="MenuListView">
+	    <item name="android:layout_width">fill_parent</item>
+    	<item name="android:layout_height">wrap_content</item>  
+	</style>
+
+		
+	<!-- TextView Styles -->
+		
+    <style name="TextView">
+    	<item name="android:textAppearance">@android:style/TextAppearance</item>    
+    	<item name="android:layout_width">wrap_content</item>
+    	<item name="android:layout_height">wrap_content</item> 
+    </style>
+    
+    <style name="TextView.Small">
+    	<item name="android:textSize">12sp</item> 
+    </style>
+    
+    <style name="TextView.Small.Bold">
+    	<item name="android:textStyle">bold</item> 
+    </style>
+        
+    <style name="TextView.Bold">
+        <item name="android:textStyle">bold</item>
+    </style> 
+
+    
+    <!-- Button Styles -->
+    
+    <style name="WideButton">
+        <item name="android:layout_width">fill_parent</item>
+       	<item name="android:layout_height">wrap_content</item>   
+ 		<item name="android:layout_centerHorizontal">true</item>
+ 		<item name="android:padding">10dp</item>
+    	<item name="android:textSize">16sp</item> 
+    </style>
+        
+</resources>
