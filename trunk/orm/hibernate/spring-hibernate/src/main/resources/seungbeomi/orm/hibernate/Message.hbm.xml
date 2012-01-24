@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012. 1. 24 ???? 8:20:57 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<class 
+		name="seungbeomi.orm.hibernate.Message" 
+		table="MESSAGES">
+		<id 
+			name="id" 
+			type="java.lang.Long" 
+			column="MESSAGE_ID">
+			<generator class="increment" />
+		</id>
+		<property 
+			name="text" 
+			type="java.lang.String" 
+			column="MESSAGE_TEXT"/>
+		<many-to-one 
+			name="nextMessage" 
+			cascade="all"
+			column="NEXT_MESSAGE_ID"
+			foreign-key="FK_NEXT_MESSAGE" />
+	</class>
+</hibernate-mapping>
