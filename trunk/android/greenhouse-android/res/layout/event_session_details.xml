@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	style="@style/FillLayout">
+
+	<ListView
+		style="@style/MenuListView"
+		android:layout_alignParentBottom="true"
+		android:id="@+id/event_session_details_menu"
+		android:entries="@array/event_session_details_options_array" />
+		
+	<FrameLayout
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_above="@id/event_session_details_menu"
+		android:layout_alignParentTop="true">
+	
+		<ScrollView
+			style="@style/ScrollView">
+	
+			<RelativeLayout
+				style="@style/FillLayout.Padded">
+	
+				<LinearLayout
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+				    android:orientation="vertical"
+		    		android:paddingBottom="20dp">
+		
+					<TextView 
+						style="@style/TextView.Bold" 
+						android:id="@+id/event_session_details_name" />
+				
+				    <TextView 
+				    	style="@style/TextView.Small"
+				    	android:id="@+id/event_session_details_leaders" />
+				        
+				    <TextView 
+				    	style="@style/TextView.Small"
+				    	android:id="@+id/event_session_details_time_and_room" />
+				    	
+				    <TextView 
+				    	style="@style/TextView"
+				    	android:id="@+id/event_session_details_favorite" />
+				    	
+				    <TextView 
+				    	style="@style/TextView"
+				    	android:id="@+id/event_session_details_rating" />
+				    	
+				    <TextView 
+				    	style="@style/TextView"
+				    	android:id="@+id/event_session_details_description" />
+				    	
+				</LinearLayout>
+				    		
+			</RelativeLayout>
+			
+		</ScrollView>
+	
+	</FrameLayout>
+	
+</RelativeLayout>
