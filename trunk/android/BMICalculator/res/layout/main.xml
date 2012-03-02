@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal" >
+		<TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/label_height" />
+		<TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/label_previous_time" />
+		<TextView
+		    android:id="@+id/label_previous_height"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content" />
+	</LinearLayout>
+	<EditText android:id="@+id/text_height"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:numeric="integer"
+	    android:maxLength="3"
+	    android:text="160"/>
+	
+	<LinearLayout
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal" >
+		<TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/label_weight" />
+		<TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/label_previous_time" />
+		<TextView
+		    android:id="@+id/label_previous_weight"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content" />
+	</LinearLayout>
+	<EditText android:id="@+id/text_weight"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:numeric="integer"
+	    android:maxLength="3"
+	    android:text="50"/>
+	
+	<Button android:id="@+id/button_calculate"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:text="@string/button_calculate" />
+	<Button android:id="@+id/button_show_next_activity"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:text="@string/button_show_next_activity" />
+	<Button android:id="@+id/button_broadcast_with_action"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:text="@string/button_broadcast_with_action" />
+	<Button android:id="@+id/button_broadcast_with_category"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:text="@string/button_broadcast_with_category" />
+	<Button android:id="@+id/button_broadcast_with_uri"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:text="@string/button_broadcast_with_uri" />
+	
+</LinearLayout>
