@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">BMILog</string>
+    <string name="label_height">身長：</string>
+    <string name="label_weight">体重：</string>
+    <string name="label_bmi">BMI:</string>
+
+</resources>
