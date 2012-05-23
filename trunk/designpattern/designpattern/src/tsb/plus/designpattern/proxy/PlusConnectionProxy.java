@@ -1,5 +1,6 @@
 package tsb.plus.designpattern.proxy;
 
+import tsb.plus.designpattern.delegate.PlusDelegate;
 import tsb.plus.designpattern.model.Param;
 import tsb.plus.designpattern.model.Result;
 
@@ -13,11 +14,19 @@ import tsb.plus.designpattern.model.Result;
 public class PlusConnectionProxy implements PlusConnection {
 
 	private PlusConnection plusConnection;
-	
+	private PlusDelegate plusDelegate;
+
+	public PlusConnectionProxy(PlusDelegate plusDelegate) {
+		this.plusDelegate = plusDelegate;
+	}
+
 	@Override
 	public Result send(Param param) {
+		
+		System.out.println("Proxy::Proxy 메소드 실행");
+		
 		if (plusConnection == null) {
-			plusConnection = new PlusConnectionImpl();
+			plusConnection = new PlusConnectionImpl(plusDelegate);
 		}
 		return plusConnection.send(param);
 	}

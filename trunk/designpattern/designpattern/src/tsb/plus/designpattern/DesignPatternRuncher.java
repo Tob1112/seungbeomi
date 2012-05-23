@@ -4,6 +4,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import tsb.plus.designpattern.delegate.PlusDelegate;
@@ -27,7 +28,8 @@ public class DesignPatternRuncher {
 	@Test
 	public void testProxyPattern() {
 		
-		PlusConnection plusConnection = new PlusConnectionProxy();
+		PlusDelegate plusDelegate = new PlusDelegateImpl();
+		PlusConnection plusConnection = new PlusConnectionProxy(plusDelegate);	// Dependency Injection
 		Result result = plusConnection.send(param);
 		
 		assertThat(result.getName(), is("seungbeomi"));
@@ -35,7 +37,7 @@ public class DesignPatternRuncher {
 		assertThat(result.getCompany(), is("TSB"));
 	}
 	
-	@Test
+	@Ignore @Test
 	public void testDelegatePattern() {
 		
 		PlusDelegate delegate = new PlusDelegateImpl();

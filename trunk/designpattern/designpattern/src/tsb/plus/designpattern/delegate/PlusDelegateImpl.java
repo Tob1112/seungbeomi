@@ -19,6 +19,7 @@ public class PlusDelegateImpl implements PlusDelegate {
 	
 	@Override
 	public Result send(Param param) {
+		System.out.println("Delegate::Delegate 메소드 실행");
 		return service.execute(param);
 	}
 
