@@ -68,7 +68,7 @@ public class DesignPatternRuncher {
 	}
 	
 	/**
-	 * 결과값 검즘
+	 * 결과값 검증
 	 * @param result
 	 */
 	private void assertResult(Result result) {
