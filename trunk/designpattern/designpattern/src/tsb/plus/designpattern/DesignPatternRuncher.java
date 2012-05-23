@@ -4,11 +4,13 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import tsb.plus.designpattern.delegate.PlusDelegate;
 import tsb.plus.designpattern.delegate.PlusDelegateImpl;
+import tsb.plus.designpattern.factory.PlusFactory;
+import tsb.plus.designpattern.factory.PlusServiceFactory;
+import tsb.plus.designpattern.factory.PlusServiceInvoker;
 import tsb.plus.designpattern.model.Param;
 import tsb.plus.designpattern.model.Result;
 import tsb.plus.designpattern.proxy.PlusConnection;
@@ -18,6 +20,9 @@ public class DesignPatternRuncher {
 	
 	private Param param;
 	
+	/**
+	 * 테스트Param
+	 */
 	@Before
 	public void beforeClass() {
 		param = new Param();
@@ -25,6 +30,9 @@ public class DesignPatternRuncher {
 		
 	}
 	
+	/**
+	 * 프록시패턴
+	 */
 	@Test
 	public void testProxyPattern() {
 		
@@ -32,20 +40,42 @@ public class DesignPatternRuncher {
 		PlusConnection plusConnection = new PlusConnectionProxy(plusDelegate);	// Dependency Injection
 		Result result = plusConnection.send(param);
 		
-		assertThat(result.getName(), is("seungbeomi"));
-		assertThat(result.getAge(), is(34));
-		assertThat(result.getCompany(), is("TSB"));
+		assertResult(result);
 	}
 	
-	@Ignore @Test
+	/**
+	 * 델리게이트패턴
+	 */
+	@Test
 	public void testDelegatePattern() {
 		
 		PlusDelegate delegate = new PlusDelegateImpl();
 		Result result = delegate.send(param);
 		
+		assertResult(result);
+	}
+	
+	/**
+	 * 팩토리패턴
+	 */
+	public void testFactoryPattern() {
+		
+		PlusFactory factory = new PlusServiceFactory();
+		PlusServiceInvoker serviceInvoker = factory.getServiceInvoker("spring"); // spring or ejb
+		Result result = serviceInvoker.invoke(param);
+		
+		assertResult(result);
+	}
+	
+	/**
+	 * 결과값 검즘
+	 * @param result
+	 */
+	private void assertResult(Result result) {
 		assertThat(result.getName(), is("seungbeomi"));
 		assertThat(result.getAge(), is(34));
 		assertThat(result.getCompany(), is("TSB"));
 	}
+	
 
 }
