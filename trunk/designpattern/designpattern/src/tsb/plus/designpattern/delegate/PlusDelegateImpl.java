@@ -6,13 +6,13 @@ import tsb.plus.designpattern.model.Result;
 public class PlusDelegateImpl implements PlusDelegate {
 
 	private PlusServiceLocator serviceLocator;
-	private PlusRemoteObject service;
+	private PlusBusinessService service;
 	
 	public PlusDelegateImpl() {
 		if (serviceLocator == null) {
 			serviceLocator = PlusServiceLocator.getInstance();
 		}
-		service = (PlusRemoteObject) serviceLocator.getRemoteObject();
+		service = (PlusBusinessService) serviceLocator.getRemoteObject();
 	}
 	
 	@Override

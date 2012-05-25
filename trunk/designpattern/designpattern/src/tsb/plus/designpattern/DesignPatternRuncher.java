@@ -3,7 +3,8 @@ package tsb.plus.designpattern;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import tsb.plus.designpattern.delegate.PlusDelegate;
@@ -18,13 +19,13 @@ import tsb.plus.designpattern.proxy.PlusProxyImpl;
 
 public class DesignPatternRuncher {
 	
-	private Param param;
+	private static Param param;
 	
 	/**
 	 * 테스트Param
 	 */
-	@Before
-	public void beforeClass() {
+	@BeforeClass
+	public static void beforeClass() {
 		param = new Param();
 		param.setName("seungbeomi");
 		
@@ -33,7 +34,7 @@ public class DesignPatternRuncher {
 	/**
 	 * 프록시패턴
 	 */
-	@Test
+	@Ignore @Test
 	public void testProxyPattern() {
 		System.out.println("[PROXY PATTERN] =======================================");
 		
@@ -59,7 +60,7 @@ public class DesignPatternRuncher {
 	/**
 	 * 팩토리패턴
 	 */
-	@Test
+	@Ignore @Test
 	public void testFactoryPattern() {
 		System.out.println("[FACTORY PATTERN] =======================================");
 		
