@@ -5,8 +5,6 @@ import tsb.plus.designpattern.model.Result;
 
 public class PlusDelegateImpl implements PlusDelegate {
 
-	private static final String REMOTE_OBJECT = "tsb.plus.designpattern.delegate.PlusRemoteObject";
-	
 	private PlusServiceLocator serviceLocator;
 	private PlusRemoteObject service;
 	
@@ -14,7 +12,7 @@ public class PlusDelegateImpl implements PlusDelegate {
 		if (serviceLocator == null) {
 			serviceLocator = PlusServiceLocator.getInstance();
 		}
-		service = (PlusRemoteObject) serviceLocator.getRemoteObject(REMOTE_OBJECT);
+		service = (PlusRemoteObject) serviceLocator.getRemoteObject();
 	}
 	
 	@Override

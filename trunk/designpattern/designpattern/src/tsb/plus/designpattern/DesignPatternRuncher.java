@@ -13,8 +13,8 @@ import tsb.plus.designpattern.factory.PlusServiceFactory;
 import tsb.plus.designpattern.factory.PlusServiceInvoker;
 import tsb.plus.designpattern.model.Param;
 import tsb.plus.designpattern.model.Result;
-import tsb.plus.designpattern.proxy.PlusConnection;
-import tsb.plus.designpattern.proxy.PlusConnectionProxy;
+import tsb.plus.designpattern.proxy.PlusProxy;
+import tsb.plus.designpattern.proxy.PlusProxyImpl;
 
 public class DesignPatternRuncher {
 	
@@ -35,10 +35,10 @@ public class DesignPatternRuncher {
 	 */
 	@Test
 	public void testProxyPattern() {
+		System.out.println("[PROXY PATTERN] =======================================");
 		
-		PlusDelegate plusDelegate = new PlusDelegateImpl();
-		PlusConnection plusConnection = new PlusConnectionProxy(plusDelegate);	// Dependency Injection
-		Result result = plusConnection.send(param);
+		PlusProxy proxy = new PlusProxyImpl();
+		Result result = proxy.send(param);
 		
 		assertResult(result);
 	}
@@ -48,6 +48,7 @@ public class DesignPatternRuncher {
 	 */
 	@Test
 	public void testDelegatePattern() {
+		System.out.println("[DELEGATE PATTERN] =======================================");
 		
 		PlusDelegate delegate = new PlusDelegateImpl();
 		Result result = delegate.send(param);
@@ -58,13 +59,34 @@ public class DesignPatternRuncher {
 	/**
 	 * 팩토리패턴
 	 */
+	@Test
 	public void testFactoryPattern() {
+		System.out.println("[FACTORY PATTERN] =======================================");
 		
 		PlusFactory factory = new PlusServiceFactory();
-		PlusServiceInvoker serviceInvoker = factory.getServiceInvoker("spring"); // spring or ejb
-		Result result = serviceInvoker.invoke(param);
+		PlusServiceInvoker springServiceInvoker = factory.getServiceInvoker("spring");
+		Result springResult = springServiceInvoker.invoke(param);
+		
+		assertResult(springResult);
+		
+		PlusServiceInvoker ejbServiceInvoker = factory.getServiceInvoker("ejb");
+		Result ejbResult = ejbServiceInvoker.invoke(param);
+		
+		assertResult(ejbResult);
+	}
+	
+	/**
+	 * TSB Framewok
+	 */
+	@Test
+	public void testTSBFramework() {
+		System.out.println("[TSB Framework] =======================================");
+		
+		tsb.plus.designpattern.fw.PlusProxy proxy = new tsb.plus.designpattern.fw.PlusProxyImpl();
+		Result result = proxy.send(param);
 		
 		assertResult(result);
+		
 	}
 	
 	/**
