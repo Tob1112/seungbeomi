@@ -2,7 +2,7 @@ package tsb.plus.designpattern.delegate;
 
 public class PlusServiceLocator {
 
-	private static final String REMOTE_OBJECT = "tsb.plus.designpattern.delegate.PlusRemoteObject";
+	private static final String REMOTE_OBJECT = "tsb.plus.designpattern.delegate.PlusBusinessService";
 	
 	private static PlusServiceLocator instance;
 	
@@ -10,7 +10,7 @@ public class PlusServiceLocator {
 	
 	public static PlusServiceLocator getInstance() {
 		if (instance == null) {
-			System.out.println("Delegate::ServiceLocator 객체 생성");
+			System.out.println("Delegate::ServiceLocator 생성");
 			instance = new PlusServiceLocator();
 		}
 		return instance;
@@ -21,7 +21,7 @@ public class PlusServiceLocator {
 		try {
 			Class clazz = Class.forName(REMOTE_OBJECT);
 			remoteObject = clazz.newInstance();
-			System.out.println("Delegate::실행 대상 객체 취득 : " + remoteObject.toString());
+			System.out.println("Delegate::실행 객체 취득 : " + remoteObject.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
